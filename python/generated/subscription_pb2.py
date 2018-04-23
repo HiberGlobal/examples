@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='subscription.proto',
   package='hiber.account.subscription',
   syntax='proto3',
-  serialized_pb=_b('\n\x12subscription.proto\x12\x1ahiber.account.subscription\x1a\nbase.proto\x1a\x1fgoogle/protobuf/timestamp.proto*)\n\x0bServiceType\x12\x08\n\x04_24h\x10\x00\x12\x07\n\x03_6h\x10\x01\x12\x07\n\x03_1h\x10\x02\x42\x46\n*global.hiber.api.grpc.account.subscriptionB\x0fSubscriptionApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\x12subscription.proto\x12\x1ahiber.account.subscription\x1a\nbase.proto\x1a\x1fgoogle/protobuf/timestamp.proto*A\n\x0bServiceType\x12\x0e\n\nOncePerDay\x10\x00\x12\x11\n\rOncePer6Hours\x10\x01\x12\x0f\n\x0bOncePerHour\x10\x02\x42\x46\n*global.hiber.api.grpc.account.subscriptionB\x0fSubscriptionApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 
@@ -33,29 +33,29 @@ _SERVICETYPE = _descriptor.EnumDescriptor(
   file=DESCRIPTOR,
   values=[
     _descriptor.EnumValueDescriptor(
-      name='_24h', index=0, number=0,
+      name='OncePerDay', index=0, number=0,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='_6h', index=1, number=1,
+      name='OncePer6Hours', index=1, number=1,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='_1h', index=2, number=2,
+      name='OncePerHour', index=2, number=2,
       options=None,
       type=None),
   ],
   containing_type=None,
   options=None,
   serialized_start=95,
-  serialized_end=136,
+  serialized_end=160,
 )
 _sym_db.RegisterEnumDescriptor(_SERVICETYPE)
 
 ServiceType = enum_type_wrapper.EnumTypeWrapper(_SERVICETYPE)
-_24h = 0
-_6h = 1
-_1h = 2
+OncePerDay = 0
+OncePer6Hours = 1
+OncePerHour = 2
 
 
 DESCRIPTOR.enum_types_by_name['ServiceType'] = _SERVICETYPE
