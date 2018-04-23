@@ -6,24 +6,16 @@ allprojects {
 }
 
 ext {
-
   versions = [
-    compiler: [java  : JavaVersion.VERSION_1_8,
-               kotlin: '1.2.31'],
+    compiler: [java: JavaVersion.VERSION_1_8],
 
     build   : [grpc  : '1.9.0',
                protoc: '3.3.0']
   ]
 
-  buildPlugins = [kotlin  : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.compiler.kotlin",
-                  protobuf: 'com.google.protobuf:protobuf-gradle-plugin:0.8.3',
-                  jar     : 'com.github.jengelman.gradle.plugins:shadow:2.0.2']
+  buildPlugins = [protobuf: 'com.google.protobuf:protobuf-gradle-plugin:0.8.3']
 
-  common = [kotlinStdLib    : "org.jetbrains.kotlin:kotlin-stdlib:$versions.compiler.kotlin",
-            kotlinStdLibJdk7: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.compiler.kotlin",
-            kotlinStdLibJdk8: "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.compiler.kotlin",
-            logging         : "ch.qos.logback:logback-classic:1.2.3",
-            klogging        : 'io.github.microutils:kotlin-logging:1.4.9']
+  common = [logging: 'ch.qos.logback:logback-classic:1.2.3']
 
   grpc = [protobuf: "io.grpc:grpc-protobuf:${versions.build.grpc}",
           stub    : "io.grpc:grpc-stub:${versions.build.grpc}",

@@ -15,7 +15,7 @@ dependencies {
   grpc.each { compile it.value }
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+tasks.withType(JavaCompile).all {
   dependsOn 'generateProto'
 }
 
