@@ -15,9 +15,9 @@ module Hiber
         self.unmarshal_class_method = :decode
         self.service_name = 'hiber.token.TokenService'
 
-        rpc :List, ListRequest, ListRequest::Response
-        rpc :Create, CreateRequest, CreateRequest::Response
-        rpc :Delete, DeleteRequest, DeleteRequest::Response
+        rpc :List, ListTokensRequest, ListTokensRequest::Response
+        rpc :Create, CreateTokenRequest, CreateTokenRequest::Response
+        rpc :Delete, DeleteTokenRequest, DeleteTokenRequest::Response
       end
 
       Stub = Service.rpc_stub_class

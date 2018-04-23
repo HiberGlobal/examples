@@ -17,10 +17,10 @@ module Hiber
         self.unmarshal_class_method = :decode
         self.service_name = 'hiber.tag.TagService'
 
-        rpc :List, ListRequest, ListRequest::Response
-        rpc :Create, CreateRequest, Tag
-        rpc :Update, UpdateRequest, Tag
-        rpc :Delete, DeleteRequest, DeleteRequest::Response
+        rpc :List, ListTagsRequest, ListTagsRequest::Response
+        rpc :Create, CreateTagRequest, Tag
+        rpc :Update, UpdateTagRequest, Tag
+        rpc :Delete, DeleteTagRequest, DeleteTagRequest::Response
       end
 
       Stub = Service.rpc_stub_class

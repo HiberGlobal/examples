@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='currentuser.proto',
   package='hiber.user',
   syntax='proto3',
-  serialized_pb=_b('\n\x11\x63urrentuser.proto\x12\nhiber.user\"H\n\x0b\x43urrentUser\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x10\n\x08\x61\x63\x63ounts\x18\x04 \x03(\t\"\x14\n\x12\x43urrentUserRequest\"3\n\x14RequestAccessRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x1a\n\n\x08Response\"\x1b\n\rDeleteRequest\x1a\n\n\x08Response2\x8e\x02\n\x12\x43urrentUserService\x12\x46\n\x0b\x43urrentUser\x12\x1e.hiber.user.CurrentUserRequest\x1a\x17.hiber.user.CurrentUser\x12\\\n\rRequestAccess\x12 .hiber.user.RequestAccessRequest\x1a).hiber.user.RequestAccessRequest.Response\x12R\n\x11\x44\x65leteCurrentUser\x12\x19.hiber.user.DeleteRequest\x1a\".hiber.user.DeleteRequest.ResponseB5\n\x1aglobal.hiber.api.grpc.userB\x0e\x43urrentUserApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\x11\x63urrentuser.proto\x12\nhiber.user\"H\n\x0b\x43urrentUser\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x10\n\x08\x61\x63\x63ounts\x18\x04 \x03(\t\"\x14\n\x12\x43urrentUserRequest\"3\n\x14RequestAccessRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x1a\n\n\x08Response\"&\n\x18\x44\x65leteCurrentUserRequest\x1a\n\n\x08Response2\xa4\x02\n\x12\x43urrentUserService\x12\x46\n\x0b\x43urrentUser\x12\x1e.hiber.user.CurrentUserRequest\x1a\x17.hiber.user.CurrentUser\x12\\\n\rRequestAccess\x12 .hiber.user.RequestAccessRequest\x1a).hiber.user.RequestAccessRequest.Response\x12h\n\x11\x44\x65leteCurrentUser\x12$.hiber.user.DeleteCurrentUserRequest\x1a-.hiber.user.DeleteCurrentUserRequest.ResponseB5\n\x1aglobal.hiber.api.grpc.userB\x0e\x43urrentUserApiP\x00Z\x05hiberb\x06proto3')
 )
 
 
@@ -155,9 +155,9 @@ _REQUESTACCESSREQUEST = _descriptor.Descriptor(
 )
 
 
-_DELETEREQUEST_RESPONSE = _descriptor.Descriptor(
+_DELETECURRENTUSERREQUEST_RESPONSE = _descriptor.Descriptor(
   name='Response',
-  full_name='hiber.user.DeleteRequest.Response',
+  full_name='hiber.user.DeleteCurrentUserRequest.Response',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
@@ -178,9 +178,9 @@ _DELETEREQUEST_RESPONSE = _descriptor.Descriptor(
   serialized_end=180,
 )
 
-_DELETEREQUEST = _descriptor.Descriptor(
-  name='DeleteRequest',
-  full_name='hiber.user.DeleteRequest',
+_DELETECURRENTUSERREQUEST = _descriptor.Descriptor(
+  name='DeleteCurrentUserRequest',
+  full_name='hiber.user.DeleteCurrentUserRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
@@ -188,7 +188,7 @@ _DELETEREQUEST = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_DELETEREQUEST_RESPONSE, ],
+  nested_types=[_DELETECURRENTUSERREQUEST_RESPONSE, ],
   enum_types=[
   ],
   options=None,
@@ -198,15 +198,15 @@ _DELETEREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=182,
-  serialized_end=209,
+  serialized_end=220,
 )
 
 _REQUESTACCESSREQUEST_RESPONSE.containing_type = _REQUESTACCESSREQUEST
-_DELETEREQUEST_RESPONSE.containing_type = _DELETEREQUEST
+_DELETECURRENTUSERREQUEST_RESPONSE.containing_type = _DELETECURRENTUSERREQUEST
 DESCRIPTOR.message_types_by_name['CurrentUser'] = _CURRENTUSER
 DESCRIPTOR.message_types_by_name['CurrentUserRequest'] = _CURRENTUSERREQUEST
 DESCRIPTOR.message_types_by_name['RequestAccessRequest'] = _REQUESTACCESSREQUEST
-DESCRIPTOR.message_types_by_name['DeleteRequest'] = _DELETEREQUEST
+DESCRIPTOR.message_types_by_name['DeleteCurrentUserRequest'] = _DELETECURRENTUSERREQUEST
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 CurrentUser = _reflection.GeneratedProtocolMessageType('CurrentUser', (_message.Message,), dict(
@@ -238,20 +238,20 @@ RequestAccessRequest = _reflection.GeneratedProtocolMessageType('RequestAccessRe
 _sym_db.RegisterMessage(RequestAccessRequest)
 _sym_db.RegisterMessage(RequestAccessRequest.Response)
 
-DeleteRequest = _reflection.GeneratedProtocolMessageType('DeleteRequest', (_message.Message,), dict(
+DeleteCurrentUserRequest = _reflection.GeneratedProtocolMessageType('DeleteCurrentUserRequest', (_message.Message,), dict(
 
   Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
-    DESCRIPTOR = _DELETEREQUEST_RESPONSE,
+    DESCRIPTOR = _DELETECURRENTUSERREQUEST_RESPONSE,
     __module__ = 'currentuser_pb2'
-    # @@protoc_insertion_point(class_scope:hiber.user.DeleteRequest.Response)
+    # @@protoc_insertion_point(class_scope:hiber.user.DeleteCurrentUserRequest.Response)
     ))
   ,
-  DESCRIPTOR = _DELETEREQUEST,
+  DESCRIPTOR = _DELETECURRENTUSERREQUEST,
   __module__ = 'currentuser_pb2'
-  # @@protoc_insertion_point(class_scope:hiber.user.DeleteRequest)
+  # @@protoc_insertion_point(class_scope:hiber.user.DeleteCurrentUserRequest)
   ))
-_sym_db.RegisterMessage(DeleteRequest)
-_sym_db.RegisterMessage(DeleteRequest.Response)
+_sym_db.RegisterMessage(DeleteCurrentUserRequest)
+_sym_db.RegisterMessage(DeleteCurrentUserRequest.Response)
 
 
 DESCRIPTOR.has_options = True
@@ -263,8 +263,8 @@ _CURRENTUSERSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=212,
-  serialized_end=482,
+  serialized_start=223,
+  serialized_end=515,
   methods=[
   _descriptor.MethodDescriptor(
     name='CurrentUser',
@@ -289,8 +289,8 @@ _CURRENTUSERSERVICE = _descriptor.ServiceDescriptor(
     full_name='hiber.user.CurrentUserService.DeleteCurrentUser',
     index=2,
     containing_service=None,
-    input_type=_DELETEREQUEST,
-    output_type=_DELETEREQUEST_RESPONSE,
+    input_type=_DELETECURRENTUSERREQUEST,
+    output_type=_DELETECURRENTUSERREQUEST_RESPONSE,
     options=None,
   ),
 ])

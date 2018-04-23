@@ -37,84 +37,84 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :webhooks, :message, 3, "hiber.Filter.Webhooks"
     optional :tags, :message, 4, "hiber.tag.TagSelection"
   end
-  add_message "hiber.webhook.ListRequest" do
+  add_message "hiber.webhook.ListWebhooksRequest" do
     optional :account, :string, 1
     optional :selection, :message, 2, "hiber.webhook.WebhookSelection"
     optional :pagination, :message, 3, "hiber.Pagination"
   end
-  add_message "hiber.webhook.ListRequest.Response" do
+  add_message "hiber.webhook.ListWebhooksRequest.Response" do
     repeated :webhooks, :message, 1, "hiber.webhook.Webhook"
-    optional :request, :message, 2, "hiber.webhook.ListRequest"
+    optional :request, :message, 2, "hiber.webhook.ListWebhooksRequest"
     optional :pagination, :message, 3, "hiber.Pagination.Result"
   end
-  add_message "hiber.webhook.CreateRequest" do
+  add_message "hiber.webhook.CreateWebhookRequest" do
     optional :account, :string, 1
     optional :description, :string, 2
     optional :data, :message, 3, "hiber.webhook.Webhook.WebhookData"
     optional :filters, :message, 4, "hiber.webhook.Webhook.WebhookFilters"
     repeated :tags, :int64, 5
   end
-  add_message "hiber.webhook.GetRequest" do
+  add_message "hiber.webhook.GetWebhookRequest" do
     optional :id, :int64, 1
     optional :account, :string, 2
     optional :tags, :message, 3, "hiber.tag.TagSelection"
   end
-  add_message "hiber.webhook.EnableRequest" do
+  add_message "hiber.webhook.EnableWebhookRequest" do
     optional :id, :int64, 1
     optional :account, :string, 2
     optional :tags, :message, 3, "hiber.tag.TagSelection"
   end
-  add_message "hiber.webhook.DisableRequest" do
+  add_message "hiber.webhook.DisableWebhookRequest" do
     optional :id, :int64, 1
     optional :account, :string, 2
     optional :tags, :message, 3, "hiber.tag.TagSelection"
   end
-  add_message "hiber.webhook.UpdateFilterRequest" do
+  add_message "hiber.webhook.UpdateWebhookFilterRequest" do
     optional :id, :int64, 1
     optional :account, :string, 2
-    optional :event_filter, :message, 3, "hiber.webhook.UpdateFilterRequest.UpdateEvents"
-    optional :modem_filter, :message, 4, "hiber.webhook.UpdateFilterRequest.UpdateModems"
-    optional :tag_filter, :message, 5, "hiber.webhook.UpdateFilterRequest.UpdateTags"
+    optional :event_filter, :message, 3, "hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents"
+    optional :modem_filter, :message, 4, "hiber.webhook.UpdateWebhookFilterRequest.UpdateModems"
+    optional :tag_filter, :message, 5, "hiber.webhook.UpdateWebhookFilterRequest.UpdateTags"
     optional :tags, :message, 6, "hiber.tag.TagSelection"
   end
-  add_message "hiber.webhook.UpdateFilterRequest.UpdateEvents" do
+  add_message "hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents" do
     optional :updated, :bool, 1
     optional :value, :message, 2, "hiber.Filter.Events"
   end
-  add_message "hiber.webhook.UpdateFilterRequest.UpdateModems" do
+  add_message "hiber.webhook.UpdateWebhookFilterRequest.UpdateModems" do
     optional :updated, :bool, 1
     optional :value, :message, 2, "hiber.Filter.Modems"
   end
-  add_message "hiber.webhook.UpdateFilterRequest.UpdateTags" do
+  add_message "hiber.webhook.UpdateWebhookFilterRequest.UpdateTags" do
     optional :updated, :bool, 1
     optional :value, :message, 2, "hiber.Filter.Tags"
   end
-  add_message "hiber.webhook.UpdateRequest" do
+  add_message "hiber.webhook.UpdateWebhookRequest" do
     optional :id, :int64, 1
     optional :account, :string, 2
-    optional :update, :message, 3, "hiber.webhook.UpdateRequest.UpdateWebhook"
+    optional :update, :message, 3, "hiber.webhook.UpdateWebhookRequest.UpdateWebhook"
     optional :tags, :message, 4, "hiber.tag.TagSelection"
   end
-  add_message "hiber.webhook.UpdateRequest.UpdateWebhook" do
+  add_message "hiber.webhook.UpdateWebhookRequest.UpdateWebhook" do
     optional :url, :string, 1
     optional :secret, :message, 2, "hiber.UpdateClearableString"
     optional :content_type, :enum, 3, "hiber.webhook.Webhook.ContentType"
     optional :description, :message, 4, "hiber.UpdateClearableString"
   end
-  add_message "hiber.webhook.UpdateTagsRequest" do
+  add_message "hiber.webhook.UpdateWebhookTagsRequest" do
     optional :account, :string, 1
     repeated :webhook_ids, :int64, 2
     optional :update, :message, 3, "hiber.tag.UpdateTagsForItem"
     optional :tags, :message, 4, "hiber.tag.TagSelection"
   end
-  add_message "hiber.webhook.UpdateTagsRequest.Response" do
+  add_message "hiber.webhook.UpdateWebhookTagsRequest.Response" do
     repeated :webhooks, :message, 1, "hiber.webhook.Webhook"
   end
-  add_message "hiber.webhook.DeleteRequest" do
+  add_message "hiber.webhook.DeleteWebhookRequest" do
     optional :id, :int64, 1
     optional :account, :string, 2
   end
-  add_message "hiber.webhook.DeleteRequest.Response" do
+  add_message "hiber.webhook.DeleteWebhookRequest.Response" do
   end
 end
 
@@ -125,21 +125,21 @@ module Hiber
     Webhook::WebhookFilters = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.Webhook.WebhookFilters").msgclass
     Webhook::ContentType = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.Webhook.ContentType").enummodule
     WebhookSelection = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.WebhookSelection").msgclass
-    ListRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.ListRequest").msgclass
-    ListRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.ListRequest.Response").msgclass
-    CreateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.CreateRequest").msgclass
-    GetRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.GetRequest").msgclass
-    EnableRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.EnableRequest").msgclass
-    DisableRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.DisableRequest").msgclass
-    UpdateFilterRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.UpdateFilterRequest").msgclass
-    UpdateFilterRequest::UpdateEvents = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.UpdateFilterRequest.UpdateEvents").msgclass
-    UpdateFilterRequest::UpdateModems = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.UpdateFilterRequest.UpdateModems").msgclass
-    UpdateFilterRequest::UpdateTags = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.UpdateFilterRequest.UpdateTags").msgclass
-    UpdateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.UpdateRequest").msgclass
-    UpdateRequest::UpdateWebhook = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.UpdateRequest.UpdateWebhook").msgclass
-    UpdateTagsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.UpdateTagsRequest").msgclass
-    UpdateTagsRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.UpdateTagsRequest.Response").msgclass
-    DeleteRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.DeleteRequest").msgclass
-    DeleteRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.DeleteRequest.Response").msgclass
+    ListWebhooksRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.ListWebhooksRequest").msgclass
+    ListWebhooksRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.ListWebhooksRequest.Response").msgclass
+    CreateWebhookRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.CreateWebhookRequest").msgclass
+    GetWebhookRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.GetWebhookRequest").msgclass
+    EnableWebhookRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.EnableWebhookRequest").msgclass
+    DisableWebhookRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.DisableWebhookRequest").msgclass
+    UpdateWebhookFilterRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.UpdateWebhookFilterRequest").msgclass
+    UpdateWebhookFilterRequest::UpdateEvents = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents").msgclass
+    UpdateWebhookFilterRequest::UpdateModems = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.UpdateWebhookFilterRequest.UpdateModems").msgclass
+    UpdateWebhookFilterRequest::UpdateTags = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.UpdateWebhookFilterRequest.UpdateTags").msgclass
+    UpdateWebhookRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.UpdateWebhookRequest").msgclass
+    UpdateWebhookRequest::UpdateWebhook = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.UpdateWebhookRequest.UpdateWebhook").msgclass
+    UpdateWebhookTagsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.UpdateWebhookTagsRequest").msgclass
+    UpdateWebhookTagsRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.UpdateWebhookTagsRequest.Response").msgclass
+    DeleteWebhookRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.DeleteWebhookRequest").msgclass
+    DeleteWebhookRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.DeleteWebhookRequest.Response").msgclass
   end
 end

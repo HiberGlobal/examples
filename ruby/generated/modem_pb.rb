@@ -56,36 +56,36 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :child_accounts, :message, 2, "hiber.Filter.ChildAccounts"
     optional :time_range, :message, 3, "hiber.TimeRange"
   end
-  add_message "hiber.modem.ListRequest" do
+  add_message "hiber.modem.ListModemsRequest" do
     optional :account, :string, 1
     optional :selection, :message, 2, "hiber.modem.ModemSelection"
     optional :pagination, :message, 3, "hiber.Pagination"
-    optional :sort_by, :enum, 4, "hiber.modem.ListRequest.Sort"
+    optional :sort_by, :enum, 4, "hiber.modem.ListModemsRequest.Sort"
   end
-  add_message "hiber.modem.ListRequest.Response" do
+  add_message "hiber.modem.ListModemsRequest.Response" do
     repeated :modems, :message, 1, "hiber.modem.Modem"
-    optional :request, :message, 2, "hiber.modem.ListRequest"
+    optional :request, :message, 2, "hiber.modem.ListModemsRequest"
     optional :pagination, :message, 3, "hiber.Pagination.Result"
   end
-  add_enum "hiber.modem.ListRequest.Sort" do
+  add_enum "hiber.modem.ListModemsRequest.Sort" do
     value :LAST_MESSAGE_RECEIVED, 0
     value :LAST_MESSAGE_RECEIVED_INVERTED, 1
     value :MODEM_NUMBER_ASC, 2
     value :MODEM_NUMBER_DESC, 3
   end
-  add_message "hiber.modem.GetRequest" do
+  add_message "hiber.modem.GetModemRequest" do
     optional :account, :string, 1
     optional :modem_number, :string, 2
     optional :tags, :message, 3, "hiber.tag.TagSelection"
   end
-  add_message "hiber.modem.MessagesRequest" do
+  add_message "hiber.modem.ListModemMessagesRequest" do
     optional :account, :string, 1
     optional :selection, :message, 2, "hiber.modem.ModemMessageSelection"
     optional :pagination, :message, 3, "hiber.Pagination"
   end
-  add_message "hiber.modem.MessagesRequest.Response" do
+  add_message "hiber.modem.ListModemMessagesRequest.Response" do
     repeated :messages, :message, 1, "hiber.modem.ModemMessage"
-    optional :request, :message, 2, "hiber.modem.MessagesRequest"
+    optional :request, :message, 2, "hiber.modem.ListModemMessagesRequest"
     optional :pagination, :message, 3, "hiber.Pagination.Result"
   end
   add_message "hiber.modem.MessageCountRequest" do
@@ -96,25 +96,25 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     map :message_count_per_day, :string, :int32, 1
     optional :request, :message, 2, "hiber.modem.MessageCountRequest"
   end
-  add_message "hiber.modem.RenameRequest" do
+  add_message "hiber.modem.RenameModemRequest" do
     optional :account, :string, 1
     optional :modem_number, :string, 2
     optional :name, :string, 3
     optional :tags, :message, 4, "hiber.tag.TagSelection"
   end
-  add_message "hiber.modem.UpdatePayloadTemplateRequest" do
+  add_message "hiber.modem.UpdateModemPayloadTemplateRequest" do
     optional :account, :string, 1
     optional :modem_number, :string, 2
     optional :payload_template, :string, 3
     optional :tags, :message, 4, "hiber.tag.TagSelection"
   end
-  add_message "hiber.modem.UpdateTagsRequest" do
+  add_message "hiber.modem.UpdateModemTagsRequest" do
     optional :account, :string, 1
     repeated :modem_numbers, :string, 2
     optional :update, :message, 3, "hiber.tag.UpdateTagsForItem"
     optional :tags, :message, 4, "hiber.tag.TagSelection"
   end
-  add_message "hiber.modem.UpdateTagsRequest.Response" do
+  add_message "hiber.modem.UpdateModemTagsRequest.Response" do
     repeated :modems, :message, 1, "hiber.modem.Modem"
   end
 end
@@ -127,17 +127,17 @@ module Hiber
     ModemSelection = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.ModemSelection").msgclass
     ModemMessage = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.ModemMessage").msgclass
     ModemMessageSelection = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.ModemMessageSelection").msgclass
-    ListRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.ListRequest").msgclass
-    ListRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.ListRequest.Response").msgclass
-    ListRequest::Sort = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.ListRequest.Sort").enummodule
-    GetRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.GetRequest").msgclass
-    MessagesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.MessagesRequest").msgclass
-    MessagesRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.MessagesRequest.Response").msgclass
+    ListModemsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.ListModemsRequest").msgclass
+    ListModemsRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.ListModemsRequest.Response").msgclass
+    ListModemsRequest::Sort = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.ListModemsRequest.Sort").enummodule
+    GetModemRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.GetModemRequest").msgclass
+    ListModemMessagesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.ListModemMessagesRequest").msgclass
+    ListModemMessagesRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.ListModemMessagesRequest.Response").msgclass
     MessageCountRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.MessageCountRequest").msgclass
     MessageCountRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.MessageCountRequest.Response").msgclass
-    RenameRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.RenameRequest").msgclass
-    UpdatePayloadTemplateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.UpdatePayloadTemplateRequest").msgclass
-    UpdateTagsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.UpdateTagsRequest").msgclass
-    UpdateTagsRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.UpdateTagsRequest.Response").msgclass
+    RenameModemRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.RenameModemRequest").msgclass
+    UpdateModemPayloadTemplateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.UpdateModemPayloadTemplateRequest").msgclass
+    UpdateModemTagsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.UpdateModemTagsRequest").msgclass
+    UpdateModemTagsRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.modem.UpdateModemTagsRequest.Response").msgclass
   end
 end

@@ -1,6 +1,6 @@
 package global.hiber.example;
 
-import global.hiber.api.grpc.modem.ModemApi.ListRequest;
+import global.hiber.api.grpc.modem.ModemApi.ListModemsRequest;
 import global.hiber.api.grpc.modem.ModemApi.Modem;
 import global.hiber.api.grpc.modem.ModemServiceGrpc;
 import io.grpc.ManagedChannel;
@@ -19,7 +19,7 @@ public class ModemServiceClient {
 
   public List<Modem> modems() {
     try {
-      return stub.list(ListRequest.getDefaultInstance()).getModemsList();
+      return stub.list(ListModemsRequest.getDefaultInstance()).getModemsList();
     } catch (StatusRuntimeException e) {
       System.out.println("GRPC call failed:");
       throw e;

@@ -17,17 +17,17 @@ class AccountServiceStub(object):
     """
     self.Tree = channel.unary_unary(
         '/hiber.account.AccountService/Tree',
-        request_serializer=account__pb2.TreeRequest.SerializeToString,
-        response_deserializer=account__pb2.TreeRequest.AccountTree.FromString,
+        request_serializer=account__pb2.AccountTreeRequest.SerializeToString,
+        response_deserializer=account__pb2.AccountTreeRequest.AccountTree.FromString,
         )
     self.Get = channel.unary_unary(
         '/hiber.account.AccountService/Get',
-        request_serializer=account__pb2.GetRequest.SerializeToString,
+        request_serializer=account__pb2.GetAccountRequest.SerializeToString,
         response_deserializer=account__pb2.Account.FromString,
         )
     self.Update = channel.unary_unary(
         '/hiber.account.AccountService/Update',
-        request_serializer=account__pb2.UpdateRequest.SerializeToString,
+        request_serializer=account__pb2.UpdateAccountRequest.SerializeToString,
         response_deserializer=account__pb2.Account.FromString,
         )
 
@@ -63,17 +63,17 @@ def add_AccountServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'Tree': grpc.unary_unary_rpc_method_handler(
           servicer.Tree,
-          request_deserializer=account__pb2.TreeRequest.FromString,
-          response_serializer=account__pb2.TreeRequest.AccountTree.SerializeToString,
+          request_deserializer=account__pb2.AccountTreeRequest.FromString,
+          response_serializer=account__pb2.AccountTreeRequest.AccountTree.SerializeToString,
       ),
       'Get': grpc.unary_unary_rpc_method_handler(
           servicer.Get,
-          request_deserializer=account__pb2.GetRequest.FromString,
+          request_deserializer=account__pb2.GetAccountRequest.FromString,
           response_serializer=account__pb2.Account.SerializeToString,
       ),
       'Update': grpc.unary_unary_rpc_method_handler(
           servicer.Update,
-          request_deserializer=account__pb2.UpdateRequest.FromString,
+          request_deserializer=account__pb2.UpdateAccountRequest.FromString,
           response_serializer=account__pb2.Account.SerializeToString,
       ),
   }

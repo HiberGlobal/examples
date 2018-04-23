@@ -146,25 +146,25 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :time_range, :message, 6, "hiber.TimeRange"
     optional :errors_only, :bool, 7
   end
-  add_message "hiber.event.ListRequest" do
+  add_message "hiber.event.ListEventsRequest" do
     optional :account, :string, 1
     optional :selection, :message, 2, "hiber.event.EventSelection"
     optional :pagination, :message, 3, "hiber.Pagination"
-    optional :sort, :enum, 4, "hiber.event.ListRequest.Sort"
+    optional :sort, :enum, 4, "hiber.event.ListEventsRequest.Sort"
   end
-  add_message "hiber.event.ListRequest.Response" do
+  add_message "hiber.event.ListEventsRequest.Response" do
     repeated :events, :message, 1, "hiber.event.Event"
-    optional :request, :message, 2, "hiber.event.ListRequest"
+    optional :request, :message, 2, "hiber.event.ListEventsRequest"
     optional :pagination, :message, 3, "hiber.Pagination.Result"
   end
-  add_enum "hiber.event.ListRequest.Sort" do
+  add_enum "hiber.event.ListEventsRequest.Sort" do
     value :TIME, 0
     value :TIME_INVERTED, 1
     value :MODEM_NUMBER_ASC, 2
     value :MODEM_NUMBER_DESC, 3
     value :MODEM_NUMBER_SPECIFIED, 4
   end
-  add_message "hiber.event.StreamRequest" do
+  add_message "hiber.event.EventStreamRequest" do
     optional :account, :string, 1
     optional :selection, :message, 2, "hiber.event.EventSelection"
   end
@@ -190,9 +190,9 @@ module Hiber
     Event::WebhookEvent::UpdatedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.WebhookEvent.UpdatedEvent").msgclass
     Event::WebhookEvent::DeletedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.WebhookEvent.DeletedEvent").msgclass
     EventSelection = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.EventSelection").msgclass
-    ListRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.ListRequest").msgclass
-    ListRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.ListRequest.Response").msgclass
-    ListRequest::Sort = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.ListRequest.Sort").enummodule
-    StreamRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.StreamRequest").msgclass
+    ListEventsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.ListEventsRequest").msgclass
+    ListEventsRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.ListEventsRequest.Response").msgclass
+    ListEventsRequest::Sort = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.ListEventsRequest.Sort").enummodule
+    EventStreamRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.EventStreamRequest").msgclass
   end
 end

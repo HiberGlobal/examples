@@ -16,18 +16,18 @@ class TokenServiceStub(object):
     """
     self.List = channel.unary_unary(
         '/hiber.token.TokenService/List',
-        request_serializer=token__pb2.ListRequest.SerializeToString,
-        response_deserializer=token__pb2.ListRequest.Response.FromString,
+        request_serializer=token__pb2.ListTokensRequest.SerializeToString,
+        response_deserializer=token__pb2.ListTokensRequest.Response.FromString,
         )
     self.Create = channel.unary_unary(
         '/hiber.token.TokenService/Create',
-        request_serializer=token__pb2.CreateRequest.SerializeToString,
-        response_deserializer=token__pb2.CreateRequest.Response.FromString,
+        request_serializer=token__pb2.CreateTokenRequest.SerializeToString,
+        response_deserializer=token__pb2.CreateTokenRequest.Response.FromString,
         )
     self.Delete = channel.unary_unary(
         '/hiber.token.TokenService/Delete',
-        request_serializer=token__pb2.DeleteRequest.SerializeToString,
-        response_deserializer=token__pb2.DeleteRequest.Response.FromString,
+        request_serializer=token__pb2.DeleteTokenRequest.SerializeToString,
+        response_deserializer=token__pb2.DeleteTokenRequest.Response.FromString,
         )
 
 
@@ -61,18 +61,18 @@ def add_TokenServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'List': grpc.unary_unary_rpc_method_handler(
           servicer.List,
-          request_deserializer=token__pb2.ListRequest.FromString,
-          response_serializer=token__pb2.ListRequest.Response.SerializeToString,
+          request_deserializer=token__pb2.ListTokensRequest.FromString,
+          response_serializer=token__pb2.ListTokensRequest.Response.SerializeToString,
       ),
       'Create': grpc.unary_unary_rpc_method_handler(
           servicer.Create,
-          request_deserializer=token__pb2.CreateRequest.FromString,
-          response_serializer=token__pb2.CreateRequest.Response.SerializeToString,
+          request_deserializer=token__pb2.CreateTokenRequest.FromString,
+          response_serializer=token__pb2.CreateTokenRequest.Response.SerializeToString,
       ),
       'Delete': grpc.unary_unary_rpc_method_handler(
           servicer.Delete,
-          request_deserializer=token__pb2.DeleteRequest.FromString,
-          response_serializer=token__pb2.DeleteRequest.Response.SerializeToString,
+          request_deserializer=token__pb2.DeleteTokenRequest.FromString,
+          response_serializer=token__pb2.DeleteTokenRequest.Response.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

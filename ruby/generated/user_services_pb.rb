@@ -15,7 +15,7 @@ module Hiber
         self.unmarshal_class_method = :decode
         self.service_name = 'hiber.user.UserService'
 
-        rpc :List, ListRequest, ListRequest::Response
+        rpc :List, ListUsersRequest, ListUsersRequest::Response
         rpc :ListAccessRequests, ListAccessRequestsRequest, ListAccessRequestsRequest::Response
         rpc :Approve, ApproveUserRequest, ApproveUserRequest::Response
         rpc :Remove, RemoveUserRequest, RemoveUserRequest::Response

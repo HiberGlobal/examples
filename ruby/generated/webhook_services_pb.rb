@@ -15,15 +15,15 @@ module Hiber
         self.unmarshal_class_method = :decode
         self.service_name = 'hiber.webhook.WebhookService'
 
-        rpc :List, ListRequest, ListRequest::Response
-        rpc :Create, CreateRequest, Webhook
-        rpc :Enable, EnableRequest, Webhook
-        rpc :Disable, DisableRequest, Webhook
-        rpc :UpdateFilter, UpdateFilterRequest, Webhook
-        rpc :Update, UpdateRequest, Webhook
-        rpc :UpdateTags, UpdateTagsRequest, UpdateTagsRequest::Response
-        rpc :Get, GetRequest, Webhook
-        rpc :Delete, DeleteRequest, DeleteRequest::Response
+        rpc :List, ListWebhooksRequest, ListWebhooksRequest::Response
+        rpc :Create, CreateWebhookRequest, Webhook
+        rpc :Enable, EnableWebhookRequest, Webhook
+        rpc :Disable, DisableWebhookRequest, Webhook
+        rpc :UpdateFilter, UpdateWebhookFilterRequest, Webhook
+        rpc :Update, UpdateWebhookRequest, Webhook
+        rpc :UpdateTags, UpdateWebhookTagsRequest, UpdateWebhookTagsRequest::Response
+        rpc :Get, GetWebhookRequest, Webhook
+        rpc :Delete, DeleteWebhookRequest, DeleteWebhookRequest::Response
       end
 
       Stub = Service.rpc_stub_class

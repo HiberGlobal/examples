@@ -22,6 +22,6 @@ val account: Account = Account.newBuilder().apply {
 
 class AccountGrpcController : AccountServiceGrpc.AccountServiceImplBase(), GrpcController {
 
-  override fun get(request: GetRequest, response: StreamObserver<Account>) = response.unary { account }
-  override fun update(request: UpdateRequest, response: StreamObserver<Account>) = response.unary { account }
+  override fun get(request: GetAccountRequest, response: StreamObserver<Account>) = response.unary { account }
+  override fun update(request: UpdateAccountRequest, response: StreamObserver<Account>) = response.unary { account }
 }

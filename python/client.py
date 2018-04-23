@@ -14,7 +14,7 @@ def run():
                                                          metadata=metadata).email)
 
     modemStub = generated.modem_pb2_grpc.ModemServiceStub(channel)
-    response = modemStub.List(request=generated.modem_pb2.ListRequest(), metadata=metadata)
+    response = modemStub.List(request=generated.modem_pb2.ListModemsRequest(), metadata=metadata)
     print("First modem: " + next(iter(response.modems or []), None).number)
 
 

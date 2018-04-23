@@ -17,18 +17,18 @@ class ModemServiceStub(object):
     """
     self.List = channel.unary_unary(
         '/hiber.modem.ModemService/List',
-        request_serializer=modem__pb2.ListRequest.SerializeToString,
-        response_deserializer=modem__pb2.ListRequest.Response.FromString,
+        request_serializer=modem__pb2.ListModemsRequest.SerializeToString,
+        response_deserializer=modem__pb2.ListModemsRequest.Response.FromString,
         )
     self.Get = channel.unary_unary(
         '/hiber.modem.ModemService/Get',
-        request_serializer=modem__pb2.GetRequest.SerializeToString,
+        request_serializer=modem__pb2.GetModemRequest.SerializeToString,
         response_deserializer=modem__pb2.Modem.FromString,
         )
     self.Messages = channel.unary_unary(
         '/hiber.modem.ModemService/Messages',
-        request_serializer=modem__pb2.MessagesRequest.SerializeToString,
-        response_deserializer=modem__pb2.MessagesRequest.Response.FromString,
+        request_serializer=modem__pb2.ListModemMessagesRequest.SerializeToString,
+        response_deserializer=modem__pb2.ListModemMessagesRequest.Response.FromString,
         )
     self.MessageCount = channel.unary_unary(
         '/hiber.modem.ModemService/MessageCount',
@@ -37,18 +37,18 @@ class ModemServiceStub(object):
         )
     self.Rename = channel.unary_unary(
         '/hiber.modem.ModemService/Rename',
-        request_serializer=modem__pb2.RenameRequest.SerializeToString,
+        request_serializer=modem__pb2.RenameModemRequest.SerializeToString,
         response_deserializer=modem__pb2.Modem.FromString,
         )
     self.UpdatePayloadTemplate = channel.unary_unary(
         '/hiber.modem.ModemService/UpdatePayloadTemplate',
-        request_serializer=modem__pb2.UpdatePayloadTemplateRequest.SerializeToString,
+        request_serializer=modem__pb2.UpdateModemPayloadTemplateRequest.SerializeToString,
         response_deserializer=modem__pb2.Modem.FromString,
         )
     self.UpdateTags = channel.unary_unary(
         '/hiber.modem.ModemService/UpdateTags',
-        request_serializer=modem__pb2.UpdateTagsRequest.SerializeToString,
-        response_deserializer=modem__pb2.UpdateTagsRequest.Response.FromString,
+        request_serializer=modem__pb2.UpdateModemTagsRequest.SerializeToString,
+        response_deserializer=modem__pb2.UpdateModemTagsRequest.Response.FromString,
         )
 
 
@@ -111,18 +111,18 @@ def add_ModemServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'List': grpc.unary_unary_rpc_method_handler(
           servicer.List,
-          request_deserializer=modem__pb2.ListRequest.FromString,
-          response_serializer=modem__pb2.ListRequest.Response.SerializeToString,
+          request_deserializer=modem__pb2.ListModemsRequest.FromString,
+          response_serializer=modem__pb2.ListModemsRequest.Response.SerializeToString,
       ),
       'Get': grpc.unary_unary_rpc_method_handler(
           servicer.Get,
-          request_deserializer=modem__pb2.GetRequest.FromString,
+          request_deserializer=modem__pb2.GetModemRequest.FromString,
           response_serializer=modem__pb2.Modem.SerializeToString,
       ),
       'Messages': grpc.unary_unary_rpc_method_handler(
           servicer.Messages,
-          request_deserializer=modem__pb2.MessagesRequest.FromString,
-          response_serializer=modem__pb2.MessagesRequest.Response.SerializeToString,
+          request_deserializer=modem__pb2.ListModemMessagesRequest.FromString,
+          response_serializer=modem__pb2.ListModemMessagesRequest.Response.SerializeToString,
       ),
       'MessageCount': grpc.unary_unary_rpc_method_handler(
           servicer.MessageCount,
@@ -131,18 +131,18 @@ def add_ModemServiceServicer_to_server(servicer, server):
       ),
       'Rename': grpc.unary_unary_rpc_method_handler(
           servicer.Rename,
-          request_deserializer=modem__pb2.RenameRequest.FromString,
+          request_deserializer=modem__pb2.RenameModemRequest.FromString,
           response_serializer=modem__pb2.Modem.SerializeToString,
       ),
       'UpdatePayloadTemplate': grpc.unary_unary_rpc_method_handler(
           servicer.UpdatePayloadTemplate,
-          request_deserializer=modem__pb2.UpdatePayloadTemplateRequest.FromString,
+          request_deserializer=modem__pb2.UpdateModemPayloadTemplateRequest.FromString,
           response_serializer=modem__pb2.Modem.SerializeToString,
       ),
       'UpdateTags': grpc.unary_unary_rpc_method_handler(
           servicer.UpdateTags,
-          request_deserializer=modem__pb2.UpdateTagsRequest.FromString,
-          response_serializer=modem__pb2.UpdateTagsRequest.Response.SerializeToString,
+          request_deserializer=modem__pb2.UpdateModemTagsRequest.FromString,
+          response_serializer=modem__pb2.UpdateModemTagsRequest.Response.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

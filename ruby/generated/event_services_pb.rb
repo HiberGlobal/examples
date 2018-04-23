@@ -17,8 +17,8 @@ module Hiber
         self.unmarshal_class_method = :decode
         self.service_name = 'hiber.event.EventService'
 
-        rpc :List, ListRequest, ListRequest::Response
-        rpc :Stream, StreamRequest, stream(Event)
+        rpc :List, ListEventsRequest, ListEventsRequest::Response
+        rpc :Stream, EventStreamRequest, stream(Event)
       end
 
       Stub = Service.rpc_stub_class

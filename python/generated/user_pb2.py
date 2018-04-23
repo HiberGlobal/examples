@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='user.proto',
   package='hiber.user',
   syntax='proto3',
-  serialized_pb=_b('\n\nuser.proto\x12\nhiber.user\x1a\nbase.proto\"/\n\x04User\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\"2\n\rUserSelection\x12\x10\n\x08\x62y_email\x18\x01 \x01(\t\x12\x0f\n\x07\x62y_name\x18\x02 \x01(\t\"\xf9\x01\n\x0bListRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12,\n\tselection\x18\x02 \x01(\x0b\x32\x19.hiber.user.UserSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\x83\x01\n\x08Response\x12\x1f\n\x05users\x18\x01 \x03(\x0b\x32\x10.hiber.user.User\x12(\n\x07request\x18\x02 \x01(\x0b\x32\x17.hiber.user.ListRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\x95\x02\n\x19ListAccessRequestsRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12,\n\tselection\x18\x02 \x01(\x0b\x32\x19.hiber.user.UserSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\x91\x01\n\x08Response\x12\x1f\n\x05users\x18\x01 \x03(\x0b\x32\x10.hiber.user.User\x12\x36\n\x07request\x18\x02 \x01(\x0b\x32%.hiber.user.ListAccessRequestsRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"B\n\x12\x41pproveUserRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x1a\n\n\x08Response\"A\n\x11RemoveUserRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x1a\n\n\x08Response\"S\n\x11\x43reateUserRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x10\n\x08password\x18\x04 \x01(\t2\xa1\x03\n\x0bUserService\x12\x41\n\x04List\x12\x17.hiber.user.ListRequest\x1a .hiber.user.ListRequest.Response\x12k\n\x12ListAccessRequests\x12%.hiber.user.ListAccessRequestsRequest\x1a..hiber.user.ListAccessRequestsRequest.Response\x12R\n\x07\x41pprove\x12\x1e.hiber.user.ApproveUserRequest\x1a\'.hiber.user.ApproveUserRequest.Response\x12O\n\x06Remove\x12\x1d.hiber.user.RemoveUserRequest\x1a&.hiber.user.RemoveUserRequest.Response\x12=\n\nCreateUser\x12\x1d.hiber.user.CreateUserRequest\x1a\x10.hiber.user.UserB.\n\x1aglobal.hiber.api.grpc.userB\x07UserApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\nuser.proto\x12\nhiber.user\x1a\nbase.proto\"/\n\x04User\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\"2\n\rUserSelection\x12\x10\n\x08\x62y_email\x18\x01 \x01(\t\x12\x0f\n\x07\x62y_name\x18\x02 \x01(\t\"\x83\x02\n\x10ListUsersRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12,\n\tselection\x18\x02 \x01(\x0b\x32\x19.hiber.user.UserSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\x88\x01\n\x08Response\x12\x1f\n\x05users\x18\x01 \x03(\x0b\x32\x10.hiber.user.User\x12-\n\x07request\x18\x02 \x01(\x0b\x32\x1c.hiber.user.ListUsersRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\x95\x02\n\x19ListAccessRequestsRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12,\n\tselection\x18\x02 \x01(\x0b\x32\x19.hiber.user.UserSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\x91\x01\n\x08Response\x12\x1f\n\x05users\x18\x01 \x03(\x0b\x32\x10.hiber.user.User\x12\x36\n\x07request\x18\x02 \x01(\x0b\x32%.hiber.user.ListAccessRequestsRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"B\n\x12\x41pproveUserRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x1a\n\n\x08Response\"A\n\x11RemoveUserRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x1a\n\n\x08Response\"S\n\x11\x43reateUserRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x10\n\x08password\x18\x04 \x01(\t2\xab\x03\n\x0bUserService\x12K\n\x04List\x12\x1c.hiber.user.ListUsersRequest\x1a%.hiber.user.ListUsersRequest.Response\x12k\n\x12ListAccessRequests\x12%.hiber.user.ListAccessRequestsRequest\x1a..hiber.user.ListAccessRequestsRequest.Response\x12R\n\x07\x41pprove\x12\x1e.hiber.user.ApproveUserRequest\x1a\'.hiber.user.ApproveUserRequest.Response\x12O\n\x06Remove\x12\x1d.hiber.user.RemoveUserRequest\x1a&.hiber.user.RemoveUserRequest.Response\x12=\n\nCreateUser\x12\x1d.hiber.user.CreateUserRequest\x1a\x10.hiber.user.UserB.\n\x1aglobal.hiber.api.grpc.userB\x07UserApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,])
 
@@ -110,29 +110,29 @@ _USERSELECTION = _descriptor.Descriptor(
 )
 
 
-_LISTREQUEST_RESPONSE = _descriptor.Descriptor(
+_LISTUSERSREQUEST_RESPONSE = _descriptor.Descriptor(
   name='Response',
-  full_name='hiber.user.ListRequest.Response',
+  full_name='hiber.user.ListUsersRequest.Response',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='users', full_name='hiber.user.ListRequest.Response.users', index=0,
+      name='users', full_name='hiber.user.ListUsersRequest.Response.users', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='request', full_name='hiber.user.ListRequest.Response.request', index=1,
+      name='request', full_name='hiber.user.ListUsersRequest.Response.request', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='pagination', full_name='hiber.user.ListRequest.Response.pagination', index=2,
+      name='pagination', full_name='hiber.user.ListUsersRequest.Response.pagination', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -150,33 +150,33 @@ _LISTREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=258,
-  serialized_end=389,
+  serialized_start=263,
+  serialized_end=399,
 )
 
-_LISTREQUEST = _descriptor.Descriptor(
-  name='ListRequest',
-  full_name='hiber.user.ListRequest',
+_LISTUSERSREQUEST = _descriptor.Descriptor(
+  name='ListUsersRequest',
+  full_name='hiber.user.ListUsersRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='account', full_name='hiber.user.ListRequest.account', index=0,
+      name='account', full_name='hiber.user.ListUsersRequest.account', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='selection', full_name='hiber.user.ListRequest.selection', index=1,
+      name='selection', full_name='hiber.user.ListUsersRequest.selection', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='pagination', full_name='hiber.user.ListRequest.pagination', index=2,
+      name='pagination', full_name='hiber.user.ListUsersRequest.pagination', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -185,7 +185,7 @@ _LISTREQUEST = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_LISTREQUEST_RESPONSE, ],
+  nested_types=[_LISTUSERSREQUEST_RESPONSE, ],
   enum_types=[
   ],
   options=None,
@@ -195,7 +195,7 @@ _LISTREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=140,
-  serialized_end=389,
+  serialized_end=399,
 )
 
 
@@ -239,8 +239,8 @@ _LISTACCESSREQUESTSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=524,
-  serialized_end=669,
+  serialized_start=534,
+  serialized_end=679,
 )
 
 _LISTACCESSREQUESTSREQUEST = _descriptor.Descriptor(
@@ -283,8 +283,8 @@ _LISTACCESSREQUESTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=392,
-  serialized_end=669,
+  serialized_start=402,
+  serialized_end=679,
 )
 
 
@@ -307,8 +307,8 @@ _APPROVEUSERREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=258,
-  serialized_end=268,
+  serialized_start=263,
+  serialized_end=273,
 )
 
 _APPROVEUSERREQUEST = _descriptor.Descriptor(
@@ -344,8 +344,8 @@ _APPROVEUSERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=671,
-  serialized_end=737,
+  serialized_start=681,
+  serialized_end=747,
 )
 
 
@@ -368,8 +368,8 @@ _REMOVEUSERREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=258,
-  serialized_end=268,
+  serialized_start=263,
+  serialized_end=273,
 )
 
 _REMOVEUSERREQUEST = _descriptor.Descriptor(
@@ -405,8 +405,8 @@ _REMOVEUSERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=739,
-  serialized_end=804,
+  serialized_start=749,
+  serialized_end=814,
 )
 
 
@@ -457,16 +457,16 @@ _CREATEUSERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=806,
-  serialized_end=889,
+  serialized_start=816,
+  serialized_end=899,
 )
 
-_LISTREQUEST_RESPONSE.fields_by_name['users'].message_type = _USER
-_LISTREQUEST_RESPONSE.fields_by_name['request'].message_type = _LISTREQUEST
-_LISTREQUEST_RESPONSE.fields_by_name['pagination'].message_type = base__pb2._PAGINATION_RESULT
-_LISTREQUEST_RESPONSE.containing_type = _LISTREQUEST
-_LISTREQUEST.fields_by_name['selection'].message_type = _USERSELECTION
-_LISTREQUEST.fields_by_name['pagination'].message_type = base__pb2._PAGINATION
+_LISTUSERSREQUEST_RESPONSE.fields_by_name['users'].message_type = _USER
+_LISTUSERSREQUEST_RESPONSE.fields_by_name['request'].message_type = _LISTUSERSREQUEST
+_LISTUSERSREQUEST_RESPONSE.fields_by_name['pagination'].message_type = base__pb2._PAGINATION_RESULT
+_LISTUSERSREQUEST_RESPONSE.containing_type = _LISTUSERSREQUEST
+_LISTUSERSREQUEST.fields_by_name['selection'].message_type = _USERSELECTION
+_LISTUSERSREQUEST.fields_by_name['pagination'].message_type = base__pb2._PAGINATION
 _LISTACCESSREQUESTSREQUEST_RESPONSE.fields_by_name['users'].message_type = _USER
 _LISTACCESSREQUESTSREQUEST_RESPONSE.fields_by_name['request'].message_type = _LISTACCESSREQUESTSREQUEST
 _LISTACCESSREQUESTSREQUEST_RESPONSE.fields_by_name['pagination'].message_type = base__pb2._PAGINATION_RESULT
@@ -477,7 +477,7 @@ _APPROVEUSERREQUEST_RESPONSE.containing_type = _APPROVEUSERREQUEST
 _REMOVEUSERREQUEST_RESPONSE.containing_type = _REMOVEUSERREQUEST
 DESCRIPTOR.message_types_by_name['User'] = _USER
 DESCRIPTOR.message_types_by_name['UserSelection'] = _USERSELECTION
-DESCRIPTOR.message_types_by_name['ListRequest'] = _LISTREQUEST
+DESCRIPTOR.message_types_by_name['ListUsersRequest'] = _LISTUSERSREQUEST
 DESCRIPTOR.message_types_by_name['ListAccessRequestsRequest'] = _LISTACCESSREQUESTSREQUEST
 DESCRIPTOR.message_types_by_name['ApproveUserRequest'] = _APPROVEUSERREQUEST
 DESCRIPTOR.message_types_by_name['RemoveUserRequest'] = _REMOVEUSERREQUEST
@@ -498,20 +498,20 @@ UserSelection = _reflection.GeneratedProtocolMessageType('UserSelection', (_mess
   ))
 _sym_db.RegisterMessage(UserSelection)
 
-ListRequest = _reflection.GeneratedProtocolMessageType('ListRequest', (_message.Message,), dict(
+ListUsersRequest = _reflection.GeneratedProtocolMessageType('ListUsersRequest', (_message.Message,), dict(
 
   Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
-    DESCRIPTOR = _LISTREQUEST_RESPONSE,
+    DESCRIPTOR = _LISTUSERSREQUEST_RESPONSE,
     __module__ = 'user_pb2'
-    # @@protoc_insertion_point(class_scope:hiber.user.ListRequest.Response)
+    # @@protoc_insertion_point(class_scope:hiber.user.ListUsersRequest.Response)
     ))
   ,
-  DESCRIPTOR = _LISTREQUEST,
+  DESCRIPTOR = _LISTUSERSREQUEST,
   __module__ = 'user_pb2'
-  # @@protoc_insertion_point(class_scope:hiber.user.ListRequest)
+  # @@protoc_insertion_point(class_scope:hiber.user.ListUsersRequest)
   ))
-_sym_db.RegisterMessage(ListRequest)
-_sym_db.RegisterMessage(ListRequest.Response)
+_sym_db.RegisterMessage(ListUsersRequest)
+_sym_db.RegisterMessage(ListUsersRequest.Response)
 
 ListAccessRequestsRequest = _reflection.GeneratedProtocolMessageType('ListAccessRequestsRequest', (_message.Message,), dict(
 
@@ -575,16 +575,16 @@ _USERSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=892,
-  serialized_end=1309,
+  serialized_start=902,
+  serialized_end=1329,
   methods=[
   _descriptor.MethodDescriptor(
     name='List',
     full_name='hiber.user.UserService.List',
     index=0,
     containing_service=None,
-    input_type=_LISTREQUEST,
-    output_type=_LISTREQUEST_RESPONSE,
+    input_type=_LISTUSERSREQUEST,
+    output_type=_LISTUSERSREQUEST_RESPONSE,
     options=None,
   ),
   _descriptor.MethodDescriptor(

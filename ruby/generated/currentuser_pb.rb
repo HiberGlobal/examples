@@ -17,9 +17,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "hiber.user.RequestAccessRequest.Response" do
   end
-  add_message "hiber.user.DeleteRequest" do
+  add_message "hiber.user.DeleteCurrentUserRequest" do
   end
-  add_message "hiber.user.DeleteRequest.Response" do
+  add_message "hiber.user.DeleteCurrentUserRequest.Response" do
   end
 end
 
@@ -29,7 +29,7 @@ module Hiber
     CurrentUserRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.CurrentUserRequest").msgclass
     RequestAccessRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.RequestAccessRequest").msgclass
     RequestAccessRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.RequestAccessRequest.Response").msgclass
-    DeleteRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.DeleteRequest").msgclass
-    DeleteRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.DeleteRequest.Response").msgclass
+    DeleteCurrentUserRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.DeleteCurrentUserRequest").msgclass
+    DeleteCurrentUserRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.DeleteCurrentUserRequest.Response").msgclass
   end
 end

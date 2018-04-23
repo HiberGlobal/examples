@@ -17,12 +17,12 @@ class EventServiceStub(object):
     """
     self.List = channel.unary_unary(
         '/hiber.event.EventService/List',
-        request_serializer=event__pb2.ListRequest.SerializeToString,
-        response_deserializer=event__pb2.ListRequest.Response.FromString,
+        request_serializer=event__pb2.ListEventsRequest.SerializeToString,
+        response_deserializer=event__pb2.ListEventsRequest.Response.FromString,
         )
     self.Stream = channel.unary_stream(
         '/hiber.event.EventService/Stream',
-        request_serializer=event__pb2.StreamRequest.SerializeToString,
+        request_serializer=event__pb2.EventStreamRequest.SerializeToString,
         response_deserializer=event__pb2.Event.FromString,
         )
 
@@ -51,12 +51,12 @@ def add_EventServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'List': grpc.unary_unary_rpc_method_handler(
           servicer.List,
-          request_deserializer=event__pb2.ListRequest.FromString,
-          response_serializer=event__pb2.ListRequest.Response.SerializeToString,
+          request_deserializer=event__pb2.ListEventsRequest.FromString,
+          response_serializer=event__pb2.ListEventsRequest.Response.SerializeToString,
       ),
       'Stream': grpc.unary_stream_rpc_method_handler(
           servicer.Stream,
-          request_deserializer=event__pb2.StreamRequest.FromString,
+          request_deserializer=event__pb2.EventStreamRequest.FromString,
           response_serializer=event__pb2.Event.SerializeToString,
       ),
   }

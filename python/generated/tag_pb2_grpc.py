@@ -17,23 +17,23 @@ class TagServiceStub(object):
     """
     self.List = channel.unary_unary(
         '/hiber.tag.TagService/List',
-        request_serializer=tag__pb2.ListRequest.SerializeToString,
-        response_deserializer=tag__pb2.ListRequest.Response.FromString,
+        request_serializer=tag__pb2.ListTagsRequest.SerializeToString,
+        response_deserializer=tag__pb2.ListTagsRequest.Response.FromString,
         )
     self.Create = channel.unary_unary(
         '/hiber.tag.TagService/Create',
-        request_serializer=tag__pb2.CreateRequest.SerializeToString,
+        request_serializer=tag__pb2.CreateTagRequest.SerializeToString,
         response_deserializer=tag__pb2.Tag.FromString,
         )
     self.Update = channel.unary_unary(
         '/hiber.tag.TagService/Update',
-        request_serializer=tag__pb2.UpdateRequest.SerializeToString,
+        request_serializer=tag__pb2.UpdateTagRequest.SerializeToString,
         response_deserializer=tag__pb2.Tag.FromString,
         )
     self.Delete = channel.unary_unary(
         '/hiber.tag.TagService/Delete',
-        request_serializer=tag__pb2.DeleteRequest.SerializeToString,
-        response_deserializer=tag__pb2.DeleteRequest.Response.FromString,
+        request_serializer=tag__pb2.DeleteTagRequest.SerializeToString,
+        response_deserializer=tag__pb2.DeleteTagRequest.Response.FromString,
         )
 
 
@@ -75,23 +75,23 @@ def add_TagServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'List': grpc.unary_unary_rpc_method_handler(
           servicer.List,
-          request_deserializer=tag__pb2.ListRequest.FromString,
-          response_serializer=tag__pb2.ListRequest.Response.SerializeToString,
+          request_deserializer=tag__pb2.ListTagsRequest.FromString,
+          response_serializer=tag__pb2.ListTagsRequest.Response.SerializeToString,
       ),
       'Create': grpc.unary_unary_rpc_method_handler(
           servicer.Create,
-          request_deserializer=tag__pb2.CreateRequest.FromString,
+          request_deserializer=tag__pb2.CreateTagRequest.FromString,
           response_serializer=tag__pb2.Tag.SerializeToString,
       ),
       'Update': grpc.unary_unary_rpc_method_handler(
           servicer.Update,
-          request_deserializer=tag__pb2.UpdateRequest.FromString,
+          request_deserializer=tag__pb2.UpdateTagRequest.FromString,
           response_serializer=tag__pb2.Tag.SerializeToString,
       ),
       'Delete': grpc.unary_unary_rpc_method_handler(
           servicer.Delete,
-          request_deserializer=tag__pb2.DeleteRequest.FromString,
-          response_serializer=tag__pb2.DeleteRequest.Response.SerializeToString,
+          request_deserializer=tag__pb2.DeleteTagRequest.FromString,
+          response_serializer=tag__pb2.DeleteTagRequest.Response.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

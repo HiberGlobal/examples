@@ -16,48 +16,48 @@ class WebhookServiceStub(object):
     """
     self.List = channel.unary_unary(
         '/hiber.webhook.WebhookService/List',
-        request_serializer=webhook__pb2.ListRequest.SerializeToString,
-        response_deserializer=webhook__pb2.ListRequest.Response.FromString,
+        request_serializer=webhook__pb2.ListWebhooksRequest.SerializeToString,
+        response_deserializer=webhook__pb2.ListWebhooksRequest.Response.FromString,
         )
     self.Create = channel.unary_unary(
         '/hiber.webhook.WebhookService/Create',
-        request_serializer=webhook__pb2.CreateRequest.SerializeToString,
+        request_serializer=webhook__pb2.CreateWebhookRequest.SerializeToString,
         response_deserializer=webhook__pb2.Webhook.FromString,
         )
     self.Enable = channel.unary_unary(
         '/hiber.webhook.WebhookService/Enable',
-        request_serializer=webhook__pb2.EnableRequest.SerializeToString,
+        request_serializer=webhook__pb2.EnableWebhookRequest.SerializeToString,
         response_deserializer=webhook__pb2.Webhook.FromString,
         )
     self.Disable = channel.unary_unary(
         '/hiber.webhook.WebhookService/Disable',
-        request_serializer=webhook__pb2.DisableRequest.SerializeToString,
+        request_serializer=webhook__pb2.DisableWebhookRequest.SerializeToString,
         response_deserializer=webhook__pb2.Webhook.FromString,
         )
     self.UpdateFilter = channel.unary_unary(
         '/hiber.webhook.WebhookService/UpdateFilter',
-        request_serializer=webhook__pb2.UpdateFilterRequest.SerializeToString,
+        request_serializer=webhook__pb2.UpdateWebhookFilterRequest.SerializeToString,
         response_deserializer=webhook__pb2.Webhook.FromString,
         )
     self.Update = channel.unary_unary(
         '/hiber.webhook.WebhookService/Update',
-        request_serializer=webhook__pb2.UpdateRequest.SerializeToString,
+        request_serializer=webhook__pb2.UpdateWebhookRequest.SerializeToString,
         response_deserializer=webhook__pb2.Webhook.FromString,
         )
     self.UpdateTags = channel.unary_unary(
         '/hiber.webhook.WebhookService/UpdateTags',
-        request_serializer=webhook__pb2.UpdateTagsRequest.SerializeToString,
-        response_deserializer=webhook__pb2.UpdateTagsRequest.Response.FromString,
+        request_serializer=webhook__pb2.UpdateWebhookTagsRequest.SerializeToString,
+        response_deserializer=webhook__pb2.UpdateWebhookTagsRequest.Response.FromString,
         )
     self.Get = channel.unary_unary(
         '/hiber.webhook.WebhookService/Get',
-        request_serializer=webhook__pb2.GetRequest.SerializeToString,
+        request_serializer=webhook__pb2.GetWebhookRequest.SerializeToString,
         response_deserializer=webhook__pb2.Webhook.FromString,
         )
     self.Delete = channel.unary_unary(
         '/hiber.webhook.WebhookService/Delete',
-        request_serializer=webhook__pb2.DeleteRequest.SerializeToString,
-        response_deserializer=webhook__pb2.DeleteRequest.Response.FromString,
+        request_serializer=webhook__pb2.DeleteWebhookRequest.SerializeToString,
+        response_deserializer=webhook__pb2.DeleteWebhookRequest.Response.FromString,
         )
 
 
@@ -133,48 +133,48 @@ def add_WebhookServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'List': grpc.unary_unary_rpc_method_handler(
           servicer.List,
-          request_deserializer=webhook__pb2.ListRequest.FromString,
-          response_serializer=webhook__pb2.ListRequest.Response.SerializeToString,
+          request_deserializer=webhook__pb2.ListWebhooksRequest.FromString,
+          response_serializer=webhook__pb2.ListWebhooksRequest.Response.SerializeToString,
       ),
       'Create': grpc.unary_unary_rpc_method_handler(
           servicer.Create,
-          request_deserializer=webhook__pb2.CreateRequest.FromString,
+          request_deserializer=webhook__pb2.CreateWebhookRequest.FromString,
           response_serializer=webhook__pb2.Webhook.SerializeToString,
       ),
       'Enable': grpc.unary_unary_rpc_method_handler(
           servicer.Enable,
-          request_deserializer=webhook__pb2.EnableRequest.FromString,
+          request_deserializer=webhook__pb2.EnableWebhookRequest.FromString,
           response_serializer=webhook__pb2.Webhook.SerializeToString,
       ),
       'Disable': grpc.unary_unary_rpc_method_handler(
           servicer.Disable,
-          request_deserializer=webhook__pb2.DisableRequest.FromString,
+          request_deserializer=webhook__pb2.DisableWebhookRequest.FromString,
           response_serializer=webhook__pb2.Webhook.SerializeToString,
       ),
       'UpdateFilter': grpc.unary_unary_rpc_method_handler(
           servicer.UpdateFilter,
-          request_deserializer=webhook__pb2.UpdateFilterRequest.FromString,
+          request_deserializer=webhook__pb2.UpdateWebhookFilterRequest.FromString,
           response_serializer=webhook__pb2.Webhook.SerializeToString,
       ),
       'Update': grpc.unary_unary_rpc_method_handler(
           servicer.Update,
-          request_deserializer=webhook__pb2.UpdateRequest.FromString,
+          request_deserializer=webhook__pb2.UpdateWebhookRequest.FromString,
           response_serializer=webhook__pb2.Webhook.SerializeToString,
       ),
       'UpdateTags': grpc.unary_unary_rpc_method_handler(
           servicer.UpdateTags,
-          request_deserializer=webhook__pb2.UpdateTagsRequest.FromString,
-          response_serializer=webhook__pb2.UpdateTagsRequest.Response.SerializeToString,
+          request_deserializer=webhook__pb2.UpdateWebhookTagsRequest.FromString,
+          response_serializer=webhook__pb2.UpdateWebhookTagsRequest.Response.SerializeToString,
       ),
       'Get': grpc.unary_unary_rpc_method_handler(
           servicer.Get,
-          request_deserializer=webhook__pb2.GetRequest.FromString,
+          request_deserializer=webhook__pb2.GetWebhookRequest.FromString,
           response_serializer=webhook__pb2.Webhook.SerializeToString,
       ),
       'Delete': grpc.unary_unary_rpc_method_handler(
           servicer.Delete,
-          request_deserializer=webhook__pb2.DeleteRequest.FromString,
-          response_serializer=webhook__pb2.DeleteRequest.Response.SerializeToString,
+          request_deserializer=webhook__pb2.DeleteWebhookRequest.FromString,
+          response_serializer=webhook__pb2.DeleteWebhookRequest.Response.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

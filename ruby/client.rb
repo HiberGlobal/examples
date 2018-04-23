@@ -12,7 +12,7 @@ def main
   p "Current iuser is: #{email}"
 
   modemStub = Hiber::Modem::ModemService::Stub.new('localhost:9090', :this_channel_is_insecure)
-  modems = modemStub.list(Hiber::Modem::ListRequest.new(), metadata).modems
+  modems = modemStub.list(Hiber::Modem::ListModemsRequest.new(), metadata).modems
   p "Modems: #{modems}"
 
 end

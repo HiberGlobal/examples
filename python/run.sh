@@ -16,5 +16,7 @@ pip install -r requirements.txt
 mkdir -p generated
 python -m grpc_tools.protoc -I../hiber-api --python_out=generated --grpc_python_out=generated ../hiber-api/*.proto
 
+sleep 2
+
 echo "Doing client calls..."
 python client.py

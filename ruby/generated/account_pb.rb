@@ -29,18 +29,18 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :email, :string, 2
     optional :phone, :string, 3
   end
-  add_message "hiber.account.GetRequest" do
+  add_message "hiber.account.GetAccountRequest" do
     optional :account, :string, 1
   end
-  add_message "hiber.account.TreeRequest" do
+  add_message "hiber.account.AccountTreeRequest" do
     optional :account, :string, 1
   end
-  add_message "hiber.account.TreeRequest.AccountTree" do
+  add_message "hiber.account.AccountTreeRequest.AccountTree" do
     optional :account, :string, 1
     optional :company_name, :string, 2
-    repeated :children, :message, 3, "hiber.account.TreeRequest.AccountTree"
+    repeated :children, :message, 3, "hiber.account.AccountTreeRequest.AccountTree"
   end
-  add_message "hiber.account.UpdateRequest" do
+  add_message "hiber.account.UpdateAccountRequest" do
     optional :account, :string, 1
     optional :display_name, :string, 2
     optional :vat_number, :string, 3
@@ -56,9 +56,9 @@ module Hiber
     Account = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.account.Account").msgclass
     Account::Address = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.account.Account.Address").msgclass
     Account::Contact = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.account.Account.Contact").msgclass
-    GetRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.account.GetRequest").msgclass
-    TreeRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.account.TreeRequest").msgclass
-    TreeRequest::AccountTree = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.account.TreeRequest.AccountTree").msgclass
-    UpdateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.account.UpdateRequest").msgclass
+    GetAccountRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.account.GetAccountRequest").msgclass
+    AccountTreeRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.account.AccountTreeRequest").msgclass
+    AccountTreeRequest::AccountTree = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.account.AccountTreeRequest.AccountTree").msgclass
+    UpdateAccountRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.account.UpdateAccountRequest").msgclass
   end
 end

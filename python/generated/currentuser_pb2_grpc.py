@@ -27,8 +27,8 @@ class CurrentUserServiceStub(object):
         )
     self.DeleteCurrentUser = channel.unary_unary(
         '/hiber.user.CurrentUserService/DeleteCurrentUser',
-        request_serializer=currentuser__pb2.DeleteRequest.SerializeToString,
-        response_deserializer=currentuser__pb2.DeleteRequest.Response.FromString,
+        request_serializer=currentuser__pb2.DeleteCurrentUserRequest.SerializeToString,
+        response_deserializer=currentuser__pb2.DeleteCurrentUserRequest.Response.FromString,
         )
 
 
@@ -73,8 +73,8 @@ def add_CurrentUserServiceServicer_to_server(servicer, server):
       ),
       'DeleteCurrentUser': grpc.unary_unary_rpc_method_handler(
           servicer.DeleteCurrentUser,
-          request_deserializer=currentuser__pb2.DeleteRequest.FromString,
-          response_serializer=currentuser__pb2.DeleteRequest.Response.SerializeToString,
+          request_deserializer=currentuser__pb2.DeleteCurrentUserRequest.FromString,
+          response_serializer=currentuser__pb2.DeleteCurrentUserRequest.Response.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

@@ -3,11 +3,9 @@ package global.hiber.api.grpc
 import global.hiber.api.grpc.extensions.asGrpc
 import global.hiber.api.grpc.modem.ModemApi
 import global.hiber.api.grpc.modem.ModemServiceGrpc
-import global.hiber.api.grpc.tag.TagApi
 import io.grpc.stub.StreamObserver
 import java.time.Instant
 import java.time.LocalDate
-
 import global.hiber.api.grpc.Location as ModemLocation
 import global.hiber.api.grpc.Pagination as GrpcPagination
 
@@ -32,9 +30,12 @@ class ModemGrpcController : ModemServiceGrpc.ModemServiceImplBase(),
     addTags(tag)
   }.build()
 
-  override fun list(request: ModemApi.ListRequest, response: StreamObserver<ModemApi.ListRequest.Response>) =
+  override fun list(
+    request: ModemApi.ListModemsRequest,
+    response: StreamObserver<ModemApi.ListModemsRequest.Response>
+  ) =
     response.unary {
-      ModemApi.ListRequest.Response.newBuilder().apply {
+      ModemApi.ListModemsRequest.Response.newBuilder().apply {
         addModems(modem)
         pagination = global.hiber.api.grpc.Pagination.Result.newBuilder().apply {
           size = 1
@@ -45,13 +46,13 @@ class ModemGrpcController : ModemServiceGrpc.ModemServiceImplBase(),
       }.build()
     }
 
-  override fun get(request: ModemApi.GetRequest, response: StreamObserver<ModemApi.Modem>) =
+  override fun get(request: ModemApi.GetModemRequest, response: StreamObserver<ModemApi.Modem>) =
     response.unary { modem }
 
   override fun messages(
-    request: ModemApi.MessagesRequest,
-    response: StreamObserver<ModemApi.MessagesRequest.Response>
-  ) = response.unary { ModemApi.MessagesRequest.Response.getDefaultInstance() }
+    request: ModemApi.ListModemMessagesRequest,
+    response: StreamObserver<ModemApi.ListModemMessagesRequest.Response>
+  ) = response.unary { ModemApi.ListModemMessagesRequest.Response.getDefaultInstance() }
 
   override fun messageCount(
     request: ModemApi.MessageCountRequest,
@@ -63,16 +64,16 @@ class ModemGrpcController : ModemServiceGrpc.ModemServiceImplBase(),
       .build()
   }
 
-  override fun rename(request: ModemApi.RenameRequest, response: StreamObserver<ModemApi.Modem>) =
+  override fun rename(request: ModemApi.RenameModemRequest, response: StreamObserver<ModemApi.Modem>) =
     response.unary { modem }
 
   override fun updatePayloadTemplate(
-    request: ModemApi.UpdatePayloadTemplateRequest,
+    request: ModemApi.UpdateModemPayloadTemplateRequest,
     response: StreamObserver<ModemApi.Modem>
   ) = response.unary { modem }
 
   override fun updateTags(
-    request: ModemApi.UpdateTagsRequest,
-    response: StreamObserver<ModemApi.UpdateTagsRequest.Response>
-  ) = response.unary { ModemApi.UpdateTagsRequest.Response.newBuilder().addModems(modem).build() }
+    request: ModemApi.UpdateModemTagsRequest,
+    response: StreamObserver<ModemApi.UpdateModemTagsRequest.Response>
+  ) = response.unary { ModemApi.UpdateModemTagsRequest.Response.newBuilder().addModems(modem).build() }
 }

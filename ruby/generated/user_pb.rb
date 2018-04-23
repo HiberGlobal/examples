@@ -14,14 +14,14 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :by_email, :string, 1
     optional :by_name, :string, 2
   end
-  add_message "hiber.user.ListRequest" do
+  add_message "hiber.user.ListUsersRequest" do
     optional :account, :string, 1
     optional :selection, :message, 2, "hiber.user.UserSelection"
     optional :pagination, :message, 3, "hiber.Pagination"
   end
-  add_message "hiber.user.ListRequest.Response" do
+  add_message "hiber.user.ListUsersRequest.Response" do
     repeated :users, :message, 1, "hiber.user.User"
-    optional :request, :message, 2, "hiber.user.ListRequest"
+    optional :request, :message, 2, "hiber.user.ListUsersRequest"
     optional :pagination, :message, 3, "hiber.Pagination.Result"
   end
   add_message "hiber.user.ListAccessRequestsRequest" do
@@ -58,8 +58,8 @@ module Hiber
   module User
     User = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.User").msgclass
     UserSelection = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.UserSelection").msgclass
-    ListRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.ListRequest").msgclass
-    ListRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.ListRequest.Response").msgclass
+    ListUsersRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.ListUsersRequest").msgclass
+    ListUsersRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.ListUsersRequest.Response").msgclass
     ListAccessRequestsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.ListAccessRequestsRequest").msgclass
     ListAccessRequestsRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.ListAccessRequestsRequest.Response").msgclass
     ApproveUserRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.ApproveUserRequest").msgclass

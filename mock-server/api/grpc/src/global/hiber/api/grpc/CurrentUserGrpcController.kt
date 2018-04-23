@@ -25,7 +25,7 @@ class CurrentUserGrpcController : CurrentUserServiceGrpc.CurrentUserServiceImplB
   ) = response.unary { CurrentUserApi.RequestAccessRequest.Response.getDefaultInstance() }
 
   override fun deleteCurrentUser(
-    request: CurrentUserApi.DeleteRequest,
-    response: StreamObserver<CurrentUserApi.DeleteRequest.Response>
-  ) = response.unary { CurrentUserApi.DeleteRequest.Response.getDefaultInstance() }
+    request: CurrentUserApi.DeleteCurrentUserRequest,
+    response: StreamObserver<CurrentUserApi.DeleteCurrentUserRequest.Response>
+  ) = response.unary { CurrentUserApi.DeleteCurrentUserRequest.Response.getDefaultInstance() }
 }

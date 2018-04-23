@@ -19,7 +19,7 @@ module Hiber
 
         rpc :CurrentUser, CurrentUserRequest, CurrentUser
         rpc :RequestAccess, RequestAccessRequest, RequestAccessRequest::Response
-        rpc :DeleteCurrentUser, DeleteRequest, DeleteRequest::Response
+        rpc :DeleteCurrentUser, DeleteCurrentUserRequest, DeleteCurrentUserRequest::Response
       end
 
       Stub = Service.rpc_stub_class

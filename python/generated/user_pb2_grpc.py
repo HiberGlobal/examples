@@ -16,8 +16,8 @@ class UserServiceStub(object):
     """
     self.List = channel.unary_unary(
         '/hiber.user.UserService/List',
-        request_serializer=user__pb2.ListRequest.SerializeToString,
-        response_deserializer=user__pb2.ListRequest.Response.FromString,
+        request_serializer=user__pb2.ListUsersRequest.SerializeToString,
+        response_deserializer=user__pb2.ListUsersRequest.Response.FromString,
         )
     self.ListAccessRequests = channel.unary_unary(
         '/hiber.user.UserService/ListAccessRequests',
@@ -85,8 +85,8 @@ def add_UserServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'List': grpc.unary_unary_rpc_method_handler(
           servicer.List,
-          request_deserializer=user__pb2.ListRequest.FromString,
-          response_serializer=user__pb2.ListRequest.Response.SerializeToString,
+          request_deserializer=user__pb2.ListUsersRequest.FromString,
+          response_serializer=user__pb2.ListUsersRequest.Response.SerializeToString,
       ),
       'ListAccessRequests': grpc.unary_unary_rpc_method_handler(
           servicer.ListAccessRequests,

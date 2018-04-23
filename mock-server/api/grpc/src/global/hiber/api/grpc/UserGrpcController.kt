@@ -7,9 +7,9 @@ import io.grpc.stub.StreamObserver
 
 class UserGrpcController : UserServiceGrpc.UserServiceImplBase(), GrpcController {
 
-  override fun list(request: UserApi.ListRequest, response: StreamObserver<UserApi.ListRequest.Response>) =
+  override fun list(request: UserApi.ListUsersRequest, response: StreamObserver<UserApi.ListUsersRequest.Response>) =
     response.unary {
-      UserApi.ListRequest.Response.newBuilder().apply {
+      UserApi.ListUsersRequest.Response.newBuilder().apply {
         addUsers(UserApi.User.newBuilder().apply {
           id = "example-user"
           name = "example-user"

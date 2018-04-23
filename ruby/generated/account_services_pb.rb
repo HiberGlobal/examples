@@ -17,9 +17,9 @@ module Hiber
         self.unmarshal_class_method = :decode
         self.service_name = 'hiber.account.AccountService'
 
-        rpc :Tree, TreeRequest, TreeRequest::AccountTree
-        rpc :Get, GetRequest, Account
-        rpc :Update, UpdateRequest, Account
+        rpc :Tree, AccountTreeRequest, AccountTreeRequest::AccountTree
+        rpc :Get, GetAccountRequest, Account
+        rpc :Update, UpdateAccountRequest, Account
       end
 
       Stub = Service.rpc_stub_class

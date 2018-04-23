@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='token.proto',
   package='hiber.token',
   syntax='proto3',
-  serialized_pb=_b('\n\x0btoken.proto\x12\x0bhiber.token\x1a\nbase.proto\"\x9c\x01\n\x05Token\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07user_id\x18\x03 \x01(\t\x12\x0f\n\x07\x61\x63\x63ount\x18\x04 \x01(\t\x12\x31\n\x0bpermissions\x18\x05 \x03(\x0e\x32\x1c.hiber.token.TokenPermission\x12$\n\nexpires_at\x18\x06 \x01(\x0b\x32\x10.hiber.Timestamp\"Z\n\x0eTokenSelection\x12\"\n\x05users\x18\x01 \x01(\x0b\x32\x13.hiber.Filter.Users\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x16\n\x0eincludeExpired\x18\x04 \x01(\x08\"\xff\x01\n\x0bListRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12.\n\tselection\x18\x02 \x01(\x0b\x32\x1b.hiber.token.TokenSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\x87\x01\n\x08Response\x12\"\n\x06tokens\x18\x01 \x03(\x0b\x32\x12.hiber.token.Token\x12)\n\x07request\x18\x02 \x01(\x0b\x32\x18.hiber.token.ListRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xa2\x01\n\rCreateRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x31\n\x0bpermissions\x18\x03 \x03(\x0e\x32\x1c.hiber.token.TokenPermission\x12$\n\nexpires_at\x18\x04 \x01(\x0b\x32\x10.hiber.Timestamp\x1a\x19\n\x08Response\x12\r\n\x05token\x18\x01 \x01(\t\">\n\rDeleteRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x10\n\x08token_id\x18\x02 \x01(\x03\x1a\n\n\x08Response*W\n\x0fTokenPermission\x12\r\n\tUSER_READ\x10\x00\x12\x0f\n\x0bUSER_ACTION\x10\x01\x12\x10\n\x0c\x41\x43\x43OUNT_READ\x10\x02\x12\x12\n\x0e\x41\x43\x43OUNT_ACTION\x10\x03\x32\xe9\x01\n\x0cTokenService\x12\x43\n\x04List\x12\x18.hiber.token.ListRequest\x1a!.hiber.token.ListRequest.Response\x12I\n\x06\x43reate\x12\x1a.hiber.token.CreateRequest\x1a#.hiber.token.CreateRequest.Response\x12I\n\x06\x44\x65lete\x12\x1a.hiber.token.DeleteRequest\x1a#.hiber.token.DeleteRequest.ResponseB0\n\x1bglobal.hiber.api.grpc.tokenB\x08TokenApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\x0btoken.proto\x12\x0bhiber.token\x1a\nbase.proto\"\x9c\x01\n\x05Token\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07user_id\x18\x03 \x01(\t\x12\x0f\n\x07\x61\x63\x63ount\x18\x04 \x01(\t\x12\x31\n\x0bpermissions\x18\x05 \x03(\x0e\x32\x1c.hiber.token.TokenPermission\x12$\n\nexpires_at\x18\x06 \x01(\x0b\x32\x10.hiber.Timestamp\"Z\n\x0eTokenSelection\x12\"\n\x05users\x18\x01 \x01(\x0b\x32\x13.hiber.Filter.Users\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x16\n\x0eincludeExpired\x18\x04 \x01(\x08\"\x8b\x02\n\x11ListTokensRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12.\n\tselection\x18\x02 \x01(\x0b\x32\x1b.hiber.token.TokenSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\x8d\x01\n\x08Response\x12\"\n\x06tokens\x18\x01 \x03(\x0b\x32\x12.hiber.token.Token\x12/\n\x07request\x18\x02 \x01(\x0b\x32\x1e.hiber.token.ListTokensRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xa7\x01\n\x12\x43reateTokenRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x31\n\x0bpermissions\x18\x03 \x03(\x0e\x32\x1c.hiber.token.TokenPermission\x12$\n\nexpires_at\x18\x04 \x01(\x0b\x32\x10.hiber.Timestamp\x1a\x19\n\x08Response\x12\r\n\x05token\x18\x01 \x01(\t\"C\n\x12\x44\x65leteTokenRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x10\n\x08token_id\x18\x02 \x01(\x03\x1a\n\n\x08Response*W\n\x0fTokenPermission\x12\r\n\tUSER_READ\x10\x00\x12\x0f\n\x0bUSER_ACTION\x10\x01\x12\x10\n\x0c\x41\x43\x43OUNT_READ\x10\x02\x12\x12\n\x0e\x41\x43\x43OUNT_ACTION\x10\x03\x32\x89\x02\n\x0cTokenService\x12O\n\x04List\x12\x1e.hiber.token.ListTokensRequest\x1a\'.hiber.token.ListTokensRequest.Response\x12S\n\x06\x43reate\x12\x1f.hiber.token.CreateTokenRequest\x1a(.hiber.token.CreateTokenRequest.Response\x12S\n\x06\x44\x65lete\x12\x1f.hiber.token.DeleteTokenRequest\x1a(.hiber.token.DeleteTokenRequest.ResponseB0\n\x1bglobal.hiber.api.grpc.tokenB\x08TokenApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,])
 
@@ -50,8 +50,8 @@ _TOKENPERMISSION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=778,
-  serialized_end=865,
+  serialized_start=800,
+  serialized_end=887,
 )
 _sym_db.RegisterEnumDescriptor(_TOKENPERMISSION)
 
@@ -174,29 +174,29 @@ _TOKENSELECTION = _descriptor.Descriptor(
 )
 
 
-_LISTREQUEST_RESPONSE = _descriptor.Descriptor(
+_LISTTOKENSREQUEST_RESPONSE = _descriptor.Descriptor(
   name='Response',
-  full_name='hiber.token.ListRequest.Response',
+  full_name='hiber.token.ListTokensRequest.Response',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='tokens', full_name='hiber.token.ListRequest.Response.tokens', index=0,
+      name='tokens', full_name='hiber.token.ListTokensRequest.Response.tokens', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='request', full_name='hiber.token.ListRequest.Response.request', index=1,
+      name='request', full_name='hiber.token.ListTokensRequest.Response.request', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='pagination', full_name='hiber.token.ListRequest.Response.pagination', index=2,
+      name='pagination', full_name='hiber.token.ListTokensRequest.Response.pagination', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -214,33 +214,33 @@ _LISTREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=412,
-  serialized_end=547,
+  serialized_start=418,
+  serialized_end=559,
 )
 
-_LISTREQUEST = _descriptor.Descriptor(
-  name='ListRequest',
-  full_name='hiber.token.ListRequest',
+_LISTTOKENSREQUEST = _descriptor.Descriptor(
+  name='ListTokensRequest',
+  full_name='hiber.token.ListTokensRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='account', full_name='hiber.token.ListRequest.account', index=0,
+      name='account', full_name='hiber.token.ListTokensRequest.account', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='selection', full_name='hiber.token.ListRequest.selection', index=1,
+      name='selection', full_name='hiber.token.ListTokensRequest.selection', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='pagination', full_name='hiber.token.ListRequest.pagination', index=2,
+      name='pagination', full_name='hiber.token.ListTokensRequest.pagination', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -249,7 +249,7 @@ _LISTREQUEST = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_LISTREQUEST_RESPONSE, ],
+  nested_types=[_LISTTOKENSREQUEST_RESPONSE, ],
   enum_types=[
   ],
   options=None,
@@ -259,19 +259,19 @@ _LISTREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=292,
-  serialized_end=547,
+  serialized_end=559,
 )
 
 
-_CREATEREQUEST_RESPONSE = _descriptor.Descriptor(
+_CREATETOKENREQUEST_RESPONSE = _descriptor.Descriptor(
   name='Response',
-  full_name='hiber.token.CreateRequest.Response',
+  full_name='hiber.token.CreateTokenRequest.Response',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='token', full_name='hiber.token.CreateRequest.Response.token', index=0,
+      name='token', full_name='hiber.token.CreateTokenRequest.Response.token', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -289,40 +289,40 @@ _CREATEREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=687,
-  serialized_end=712,
+  serialized_start=704,
+  serialized_end=729,
 )
 
-_CREATEREQUEST = _descriptor.Descriptor(
-  name='CreateRequest',
-  full_name='hiber.token.CreateRequest',
+_CREATETOKENREQUEST = _descriptor.Descriptor(
+  name='CreateTokenRequest',
+  full_name='hiber.token.CreateTokenRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='account', full_name='hiber.token.CreateRequest.account', index=0,
+      name='account', full_name='hiber.token.CreateTokenRequest.account', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='name', full_name='hiber.token.CreateRequest.name', index=1,
+      name='name', full_name='hiber.token.CreateTokenRequest.name', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='permissions', full_name='hiber.token.CreateRequest.permissions', index=2,
+      name='permissions', full_name='hiber.token.CreateTokenRequest.permissions', index=2,
       number=3, type=14, cpp_type=8, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='expires_at', full_name='hiber.token.CreateRequest.expires_at', index=3,
+      name='expires_at', full_name='hiber.token.CreateTokenRequest.expires_at', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -331,7 +331,7 @@ _CREATEREQUEST = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_CREATEREQUEST_RESPONSE, ],
+  nested_types=[_CREATETOKENREQUEST_RESPONSE, ],
   enum_types=[
   ],
   options=None,
@@ -340,14 +340,14 @@ _CREATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=550,
-  serialized_end=712,
+  serialized_start=562,
+  serialized_end=729,
 )
 
 
-_DELETEREQUEST_RESPONSE = _descriptor.Descriptor(
+_DELETETOKENREQUEST_RESPONSE = _descriptor.Descriptor(
   name='Response',
-  full_name='hiber.token.DeleteRequest.Response',
+  full_name='hiber.token.DeleteTokenRequest.Response',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
@@ -364,26 +364,26 @@ _DELETEREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=412,
-  serialized_end=422,
+  serialized_start=418,
+  serialized_end=428,
 )
 
-_DELETEREQUEST = _descriptor.Descriptor(
-  name='DeleteRequest',
-  full_name='hiber.token.DeleteRequest',
+_DELETETOKENREQUEST = _descriptor.Descriptor(
+  name='DeleteTokenRequest',
+  full_name='hiber.token.DeleteTokenRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='account', full_name='hiber.token.DeleteRequest.account', index=0,
+      name='account', full_name='hiber.token.DeleteTokenRequest.account', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='token_id', full_name='hiber.token.DeleteRequest.token_id', index=1,
+      name='token_id', full_name='hiber.token.DeleteTokenRequest.token_id', index=1,
       number=2, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -392,7 +392,7 @@ _DELETEREQUEST = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_DELETEREQUEST_RESPONSE, ],
+  nested_types=[_DELETETOKENREQUEST_RESPONSE, ],
   enum_types=[
   ],
   options=None,
@@ -401,28 +401,28 @@ _DELETEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=714,
-  serialized_end=776,
+  serialized_start=731,
+  serialized_end=798,
 )
 
 _TOKEN.fields_by_name['permissions'].enum_type = _TOKENPERMISSION
 _TOKEN.fields_by_name['expires_at'].message_type = base__pb2._TIMESTAMP
 _TOKENSELECTION.fields_by_name['users'].message_type = base__pb2._FILTER_USERS
-_LISTREQUEST_RESPONSE.fields_by_name['tokens'].message_type = _TOKEN
-_LISTREQUEST_RESPONSE.fields_by_name['request'].message_type = _LISTREQUEST
-_LISTREQUEST_RESPONSE.fields_by_name['pagination'].message_type = base__pb2._PAGINATION_RESULT
-_LISTREQUEST_RESPONSE.containing_type = _LISTREQUEST
-_LISTREQUEST.fields_by_name['selection'].message_type = _TOKENSELECTION
-_LISTREQUEST.fields_by_name['pagination'].message_type = base__pb2._PAGINATION
-_CREATEREQUEST_RESPONSE.containing_type = _CREATEREQUEST
-_CREATEREQUEST.fields_by_name['permissions'].enum_type = _TOKENPERMISSION
-_CREATEREQUEST.fields_by_name['expires_at'].message_type = base__pb2._TIMESTAMP
-_DELETEREQUEST_RESPONSE.containing_type = _DELETEREQUEST
+_LISTTOKENSREQUEST_RESPONSE.fields_by_name['tokens'].message_type = _TOKEN
+_LISTTOKENSREQUEST_RESPONSE.fields_by_name['request'].message_type = _LISTTOKENSREQUEST
+_LISTTOKENSREQUEST_RESPONSE.fields_by_name['pagination'].message_type = base__pb2._PAGINATION_RESULT
+_LISTTOKENSREQUEST_RESPONSE.containing_type = _LISTTOKENSREQUEST
+_LISTTOKENSREQUEST.fields_by_name['selection'].message_type = _TOKENSELECTION
+_LISTTOKENSREQUEST.fields_by_name['pagination'].message_type = base__pb2._PAGINATION
+_CREATETOKENREQUEST_RESPONSE.containing_type = _CREATETOKENREQUEST
+_CREATETOKENREQUEST.fields_by_name['permissions'].enum_type = _TOKENPERMISSION
+_CREATETOKENREQUEST.fields_by_name['expires_at'].message_type = base__pb2._TIMESTAMP
+_DELETETOKENREQUEST_RESPONSE.containing_type = _DELETETOKENREQUEST
 DESCRIPTOR.message_types_by_name['Token'] = _TOKEN
 DESCRIPTOR.message_types_by_name['TokenSelection'] = _TOKENSELECTION
-DESCRIPTOR.message_types_by_name['ListRequest'] = _LISTREQUEST
-DESCRIPTOR.message_types_by_name['CreateRequest'] = _CREATEREQUEST
-DESCRIPTOR.message_types_by_name['DeleteRequest'] = _DELETEREQUEST
+DESCRIPTOR.message_types_by_name['ListTokensRequest'] = _LISTTOKENSREQUEST
+DESCRIPTOR.message_types_by_name['CreateTokenRequest'] = _CREATETOKENREQUEST
+DESCRIPTOR.message_types_by_name['DeleteTokenRequest'] = _DELETETOKENREQUEST
 DESCRIPTOR.enum_types_by_name['TokenPermission'] = _TOKENPERMISSION
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -440,50 +440,50 @@ TokenSelection = _reflection.GeneratedProtocolMessageType('TokenSelection', (_me
   ))
 _sym_db.RegisterMessage(TokenSelection)
 
-ListRequest = _reflection.GeneratedProtocolMessageType('ListRequest', (_message.Message,), dict(
+ListTokensRequest = _reflection.GeneratedProtocolMessageType('ListTokensRequest', (_message.Message,), dict(
 
   Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
-    DESCRIPTOR = _LISTREQUEST_RESPONSE,
+    DESCRIPTOR = _LISTTOKENSREQUEST_RESPONSE,
     __module__ = 'token_pb2'
-    # @@protoc_insertion_point(class_scope:hiber.token.ListRequest.Response)
+    # @@protoc_insertion_point(class_scope:hiber.token.ListTokensRequest.Response)
     ))
   ,
-  DESCRIPTOR = _LISTREQUEST,
+  DESCRIPTOR = _LISTTOKENSREQUEST,
   __module__ = 'token_pb2'
-  # @@protoc_insertion_point(class_scope:hiber.token.ListRequest)
+  # @@protoc_insertion_point(class_scope:hiber.token.ListTokensRequest)
   ))
-_sym_db.RegisterMessage(ListRequest)
-_sym_db.RegisterMessage(ListRequest.Response)
+_sym_db.RegisterMessage(ListTokensRequest)
+_sym_db.RegisterMessage(ListTokensRequest.Response)
 
-CreateRequest = _reflection.GeneratedProtocolMessageType('CreateRequest', (_message.Message,), dict(
+CreateTokenRequest = _reflection.GeneratedProtocolMessageType('CreateTokenRequest', (_message.Message,), dict(
 
   Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
-    DESCRIPTOR = _CREATEREQUEST_RESPONSE,
+    DESCRIPTOR = _CREATETOKENREQUEST_RESPONSE,
     __module__ = 'token_pb2'
-    # @@protoc_insertion_point(class_scope:hiber.token.CreateRequest.Response)
+    # @@protoc_insertion_point(class_scope:hiber.token.CreateTokenRequest.Response)
     ))
   ,
-  DESCRIPTOR = _CREATEREQUEST,
+  DESCRIPTOR = _CREATETOKENREQUEST,
   __module__ = 'token_pb2'
-  # @@protoc_insertion_point(class_scope:hiber.token.CreateRequest)
+  # @@protoc_insertion_point(class_scope:hiber.token.CreateTokenRequest)
   ))
-_sym_db.RegisterMessage(CreateRequest)
-_sym_db.RegisterMessage(CreateRequest.Response)
+_sym_db.RegisterMessage(CreateTokenRequest)
+_sym_db.RegisterMessage(CreateTokenRequest.Response)
 
-DeleteRequest = _reflection.GeneratedProtocolMessageType('DeleteRequest', (_message.Message,), dict(
+DeleteTokenRequest = _reflection.GeneratedProtocolMessageType('DeleteTokenRequest', (_message.Message,), dict(
 
   Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
-    DESCRIPTOR = _DELETEREQUEST_RESPONSE,
+    DESCRIPTOR = _DELETETOKENREQUEST_RESPONSE,
     __module__ = 'token_pb2'
-    # @@protoc_insertion_point(class_scope:hiber.token.DeleteRequest.Response)
+    # @@protoc_insertion_point(class_scope:hiber.token.DeleteTokenRequest.Response)
     ))
   ,
-  DESCRIPTOR = _DELETEREQUEST,
+  DESCRIPTOR = _DELETETOKENREQUEST,
   __module__ = 'token_pb2'
-  # @@protoc_insertion_point(class_scope:hiber.token.DeleteRequest)
+  # @@protoc_insertion_point(class_scope:hiber.token.DeleteTokenRequest)
   ))
-_sym_db.RegisterMessage(DeleteRequest)
-_sym_db.RegisterMessage(DeleteRequest.Response)
+_sym_db.RegisterMessage(DeleteTokenRequest)
+_sym_db.RegisterMessage(DeleteTokenRequest.Response)
 
 
 DESCRIPTOR.has_options = True
@@ -495,16 +495,16 @@ _TOKENSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=868,
-  serialized_end=1101,
+  serialized_start=890,
+  serialized_end=1155,
   methods=[
   _descriptor.MethodDescriptor(
     name='List',
     full_name='hiber.token.TokenService.List',
     index=0,
     containing_service=None,
-    input_type=_LISTREQUEST,
-    output_type=_LISTREQUEST_RESPONSE,
+    input_type=_LISTTOKENSREQUEST,
+    output_type=_LISTTOKENSREQUEST_RESPONSE,
     options=None,
   ),
   _descriptor.MethodDescriptor(
@@ -512,8 +512,8 @@ _TOKENSERVICE = _descriptor.ServiceDescriptor(
     full_name='hiber.token.TokenService.Create',
     index=1,
     containing_service=None,
-    input_type=_CREATEREQUEST,
-    output_type=_CREATEREQUEST_RESPONSE,
+    input_type=_CREATETOKENREQUEST,
+    output_type=_CREATETOKENREQUEST_RESPONSE,
     options=None,
   ),
   _descriptor.MethodDescriptor(
@@ -521,8 +521,8 @@ _TOKENSERVICE = _descriptor.ServiceDescriptor(
     full_name='hiber.token.TokenService.Delete',
     index=2,
     containing_service=None,
-    input_type=_DELETEREQUEST,
-    output_type=_DELETEREQUEST_RESPONSE,
+    input_type=_DELETETOKENREQUEST,
+    output_type=_DELETETOKENREQUEST_RESPONSE,
     options=None,
   ),
 ])
