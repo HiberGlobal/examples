@@ -64,7 +64,7 @@ Gradle is used for building and running the mock server.
 
 To build the server, run `./gradlew build` in the `mock-server` directory.
 
-To run the server, run `./gradlew run` in the `mock-server` directory.
+To run the server, run `./gradlew server:run` in the `mock-server` directory.
 
 ### Building your changes to a Docker image
 
