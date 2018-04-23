@@ -1,0 +1,44 @@
+group 'global.hiber.example.java'
+version '1.0-SNAPSHOT'
+
+buildscript {
+  repositories {
+    mavenCentral()
+    maven { url "https://plugins.gradle.org/m2/" }
+  }
+
+  dependencies {
+    apply from: 'dependencies.gradle'
+    buildPlugins.each { classpath it.value }
+  }
+}
+
+configure(subprojects) {
+  apply plugin: 'kotlin'
+
+  dependencies {
+    rootProject.ext.common.each { compile it.value }
+  }
+
+  sourceSets.main.java.srcDir "src"
+  sourceSets.main.kotlin.srcDir "src"
+  sourceSets.main.resources.srcDir "resources"
+
+  sourceSets.test.java.srcDir "test"
+  sourceSets.test.kotlin.srcDir "test"
+  sourceSets.test.resources.srcDir "test-resources"
+
+  sourceCompatibility = rootProject.extensions.ext.versions.compiler.java
+  targetCompatibility = rootProject.extensions.ext.versions.compiler.java
+  kotlin.experimental.coroutines "enable"
+  tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+      jvmTarget = rootProject.extensions.ext.versions.compiler.java
+      allWarningsAsErrors = true
+    }
+  }
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = "4.5"
+}

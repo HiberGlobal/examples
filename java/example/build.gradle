@@ -1,0 +1,7 @@
+apply plugin: 'application'
+
+mainClassName = 'global.hiber.example.Example'
+
+dependencies {
+  compile project(':api')
+}
