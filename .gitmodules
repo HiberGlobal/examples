@@ -1,3 +1,4 @@
 [submodule "hiber-api"]
 	path = hiber-api
-	url = https://github.com/magnitudespace/hiber-api
+	url = https://github.com/hiberglobal/api
+	branch = master
