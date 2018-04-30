@@ -4,24 +4,26 @@ import (
 	"./hiber"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
 	metadata "google.golang.org/grpc/metadata"
 	"log"
 )
 
 const (
 	address = "localhost:9090"
+	// address = "api.dev.hiber.global:443" // use a real token when calling the dev api
 	token   = "my-super-secret-token"
 )
 
 func main() {
-  // the mock server is http only, use https when connecting to https://dev.hiber.global
 	conn, err := grpc.Dial(address, grpc.WithInsecure())
+  // conn, err := grpc.Dial(address, grpc.WithTransportCredentials(credentials.NewClientTLSFromCert(nil, ""))) // use with api.dev.hiber.global
 	if err != nil {
 		log.Fatalf("Connection to server failed: %v", err)
 	}
 	defer conn.Close()
 
-	ctx := metadata.NewOutgoingContext(context.Background(), metadata.New(map[string]string{"authorization": "bearer my-super-secret-token"}))
+	ctx := metadata.NewOutgoingContext(context.Background(), metadata.New(map[string]string{"authorization": "bearer " + token}))
 
 	currentUserClient := hiber.NewCurrentUserServiceClient(conn)
 	currentUser, err := currentUserClient.CurrentUser(ctx, &hiber.CurrentUserRequest{})
