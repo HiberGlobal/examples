@@ -7,8 +7,8 @@ import generated.modem_pb2_grpc
 
 
 def run():
-    # the mock server is http only, use https when connecting to https://dev.hiber.global
     channel = grpc.insecure_channel('localhost:9090')
+    # channel = grpc.secure_channel('api.dev.hiber.global:443', grpc.ssl_channel_credentials()) // use you real token when enabling this
     metadata = [('authorization', 'bearer my-super-secret-token')]
     currentUserStub = generated.currentuser_pb2_grpc.CurrentUserServiceStub(channel)
     print("Logged in as: " + currentUserStub.CurrentUser(request=generated.currentuser_pb2.CurrentUserRequest(),
