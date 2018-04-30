@@ -63,4 +63,9 @@ class WebhooksGrpcController : WebhookServiceGrpc.WebhookServiceImplBase(), Grpc
     request: WebhookApi.DeleteWebhookRequest,
     response: StreamObserver<WebhookApi.DeleteWebhookRequest.Response>
   ) = response.unary { WebhookApi.DeleteWebhookRequest.Response.getDefaultInstance() }
+
+  override fun history(
+    request: WebhookApi.WebhookHistoryRequest,
+    response: StreamObserver<WebhookApi.WebhookHistoryRequest.Response>
+  ) = response.unary { WebhookApi.WebhookHistoryRequest.Response.getDefaultInstance() }
 }

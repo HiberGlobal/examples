@@ -80,7 +80,10 @@ It has these top-level messages:
 	CreateUserRequest
 	Webhook
 	WebhookSelection
+	WebhookCall
+	WebhookHistorySelection
 	ListWebhooksRequest
+	WebhookHistoryRequest
 	CreateWebhookRequest
 	GetWebhookRequest
 	EnableWebhookRequest

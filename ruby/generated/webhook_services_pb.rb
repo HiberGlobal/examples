@@ -16,6 +16,7 @@ module Hiber
         self.service_name = 'hiber.webhook.WebhookService'
 
         rpc :List, ListWebhooksRequest, ListWebhooksRequest::Response
+        rpc :History, WebhookHistoryRequest, WebhookHistoryRequest::Response
         rpc :Create, CreateWebhookRequest, Webhook
         rpc :Enable, EnableWebhookRequest, Webhook
         rpc :Disable, DisableWebhookRequest, Webhook

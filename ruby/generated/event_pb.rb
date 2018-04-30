@@ -23,6 +23,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :webhook_created, :message, 11, "hiber.event.Event.WebhookEvent.CreatedEvent"
       optional :webhook_updated, :message, 12, "hiber.event.Event.WebhookEvent.UpdatedEvent"
       optional :webhook_deleted, :message, 13, "hiber.event.Event.WebhookEvent.DeletedEvent"
+      optional :webhook_failed, :message, 14, "hiber.event.Event.WebhookEvent.FailedEvent"
     end
   end
   add_message "hiber.event.Event.ModemEvent" do
@@ -138,6 +139,15 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :description, :string, 5
     optional :time, :message, 6, "hiber.Timestamp"
   end
+  add_message "hiber.event.Event.WebhookEvent.FailedEvent" do
+    optional :account, :string, 1
+    optional :reason, :string, 2
+    optional :failed, :message, 3, "hiber.webhook.Webhook"
+    repeated :tags, :message, 4, "hiber.tag.Tag"
+    optional :title, :string, 5
+    optional :description, :string, 6
+    optional :time, :message, 7, "hiber.Timestamp"
+  end
   add_message "hiber.event.EventSelection" do
     optional :events, :message, 1, "hiber.Filter.Events"
     optional :modems, :message, 2, "hiber.Filter.Modems"
@@ -189,6 +199,7 @@ module Hiber
     Event::WebhookEvent::CreatedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.WebhookEvent.CreatedEvent").msgclass
     Event::WebhookEvent::UpdatedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.WebhookEvent.UpdatedEvent").msgclass
     Event::WebhookEvent::DeletedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.WebhookEvent.DeletedEvent").msgclass
+    Event::WebhookEvent::FailedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.WebhookEvent.FailedEvent").msgclass
     EventSelection = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.EventSelection").msgclass
     ListEventsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.ListEventsRequest").msgclass
     ListEventsRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.ListEventsRequest.Response").msgclass

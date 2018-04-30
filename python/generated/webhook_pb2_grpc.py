@@ -19,6 +19,11 @@ class WebhookServiceStub(object):
         request_serializer=webhook__pb2.ListWebhooksRequest.SerializeToString,
         response_deserializer=webhook__pb2.ListWebhooksRequest.Response.FromString,
         )
+    self.History = channel.unary_unary(
+        '/hiber.webhook.WebhookService/History',
+        request_serializer=webhook__pb2.WebhookHistoryRequest.SerializeToString,
+        response_deserializer=webhook__pb2.WebhookHistoryRequest.Response.FromString,
+        )
     self.Create = channel.unary_unary(
         '/hiber.webhook.WebhookService/Create',
         request_serializer=webhook__pb2.CreateWebhookRequest.SerializeToString,
@@ -66,6 +71,13 @@ class WebhookServiceServicer(object):
   pass
 
   def List(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def History(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -135,6 +147,11 @@ def add_WebhookServiceServicer_to_server(servicer, server):
           servicer.List,
           request_deserializer=webhook__pb2.ListWebhooksRequest.FromString,
           response_serializer=webhook__pb2.ListWebhooksRequest.Response.SerializeToString,
+      ),
+      'History': grpc.unary_unary_rpc_method_handler(
+          servicer.History,
+          request_deserializer=webhook__pb2.WebhookHistoryRequest.FromString,
+          response_serializer=webhook__pb2.WebhookHistoryRequest.Response.SerializeToString,
       ),
       'Create': grpc.unary_unary_rpc_method_handler(
           servicer.Create,

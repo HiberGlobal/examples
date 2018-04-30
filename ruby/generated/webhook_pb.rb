@@ -14,6 +14,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :data, :message, 4, "hiber.webhook.Webhook.WebhookData"
     optional :filters, :message, 5, "hiber.webhook.Webhook.WebhookFilters"
     repeated :tags, :message, 6, "hiber.tag.Tag"
+    optional :health, :enum, 7, "hiber.Health"
   end
   add_message "hiber.webhook.Webhook.WebhookData" do
     optional :url, :string, 1
@@ -36,6 +37,19 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :url, :string, 2
     optional :webhooks, :message, 3, "hiber.Filter.Webhooks"
     optional :tags, :message, 4, "hiber.tag.TagSelection"
+    repeated :health, :enum, 5, "hiber.Health"
+  end
+  add_message "hiber.webhook.WebhookCall" do
+    optional :time, :message, 1, "hiber.Timestamp"
+    optional :url, :string, 2
+    map :headers, :string, :string, 3
+    optional :body, :bytes, 4
+    optional :successful, :bool, 5
+    optional :error, :string, 6
+  end
+  add_message "hiber.webhook.WebhookHistorySelection" do
+    optional :onlyFailures, :bool, 2
+    optional :time_range, :message, 3, "hiber.TimeRange"
   end
   add_message "hiber.webhook.ListWebhooksRequest" do
     optional :account, :string, 1
@@ -45,6 +59,17 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.webhook.ListWebhooksRequest.Response" do
     repeated :webhooks, :message, 1, "hiber.webhook.Webhook"
     optional :request, :message, 2, "hiber.webhook.ListWebhooksRequest"
+    optional :pagination, :message, 3, "hiber.Pagination.Result"
+  end
+  add_message "hiber.webhook.WebhookHistoryRequest" do
+    optional :account, :string, 1
+    optional :webhook_id, :int64, 2
+    optional :selection, :message, 3, "hiber.webhook.WebhookHistorySelection"
+    optional :pagination, :message, 4, "hiber.Pagination"
+  end
+  add_message "hiber.webhook.WebhookHistoryRequest.Response" do
+    repeated :calls, :message, 1, "hiber.webhook.WebhookCall"
+    optional :request, :message, 2, "hiber.webhook.WebhookHistoryRequest"
     optional :pagination, :message, 3, "hiber.Pagination.Result"
   end
   add_message "hiber.webhook.CreateWebhookRequest" do
@@ -125,8 +150,12 @@ module Hiber
     Webhook::WebhookFilters = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.Webhook.WebhookFilters").msgclass
     Webhook::ContentType = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.Webhook.ContentType").enummodule
     WebhookSelection = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.WebhookSelection").msgclass
+    WebhookCall = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.WebhookCall").msgclass
+    WebhookHistorySelection = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.WebhookHistorySelection").msgclass
     ListWebhooksRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.ListWebhooksRequest").msgclass
     ListWebhooksRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.ListWebhooksRequest.Response").msgclass
+    WebhookHistoryRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.WebhookHistoryRequest").msgclass
+    WebhookHistoryRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.WebhookHistoryRequest.Response").msgclass
     CreateWebhookRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.CreateWebhookRequest").msgclass
     GetWebhookRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.GetWebhookRequest").msgclass
     EnableWebhookRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.webhook.EnableWebhookRequest").msgclass

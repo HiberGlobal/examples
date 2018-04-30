@@ -24,7 +24,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='event.proto',
   package='hiber.event',
   syntax='proto3',
-  serialized_pb=_b('\n\x0b\x65vent.proto\x12\x0bhiber.event\x1a\nbase.proto\x1a\x0bmodem.proto\x1a\ttag.proto\x1a\nuser.proto\x1a\rwebhook.proto\"\xb0\x1a\n\x05\x45vent\x12Y\n\x16modem_location_updated\x18\x02 \x01(\x0b\x32\x37.hiber.event.Event.ModemEvent.ModemLocationUpdatedEventH\x00\x12\x44\n\x0bmodem_stale\x18\x03 \x01(\x0b\x32-.hiber.event.Event.ModemEvent.ModemStaleEventH\x00\x12\x66\n\x16modem_message_received\x18\x04 \x01(\x0b\x32\x44.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageReceivedEventH\x00\x12\x64\n\x15modem_message_dropped\x18\x05 \x01(\x0b\x32\x43.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDroppedEventH\x00\x12\x64\n\x15modem_message_delayed\x18\x06 \x01(\x0b\x32\x43.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDelayedEventH\x00\x12t\n\x1emodem_message_cannot_be_parsed\x18\x07 \x01(\x0b\x32J.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEventH\x00\x12\x41\n\nuser_added\x18\x08 \x01(\x0b\x32+.hiber.event.Event.UserEvent.UserAddedEventH\x00\x12\x45\n\x0cuser_removed\x18\t \x01(\x0b\x32-.hiber.event.Event.UserEvent.UserRemovedEventH\x00\x12R\n\x13user_access_request\x18\n \x01(\x0b\x32\x33.hiber.event.Event.UserEvent.UserAccessRequestEventH\x00\x12G\n\x0fwebhook_created\x18\x0b \x01(\x0b\x32,.hiber.event.Event.WebhookEvent.CreatedEventH\x00\x12G\n\x0fwebhook_updated\x18\x0c \x01(\x0b\x32,.hiber.event.Event.WebhookEvent.UpdatedEventH\x00\x12G\n\x0fwebhook_deleted\x18\r \x01(\x0b\x32,.hiber.event.Event.WebhookEvent.DeletedEventH\x00\x1a\x8b\x0b\n\nModemEvent\x1a\xc7\x01\n\x19ModemLocationUpdatedEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x14\n\x0cmodem_number\x18\x02 \x01(\t\x12!\n\x08location\x18\x03 \x01(\x0b\x32\x0f.hiber.Location\x12\x1e\n\x04time\x18\x04 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x1c\n\x04tags\x18\x05 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\r\n\x05title\x18\x06 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x07 \x01(\t\x1a\xd8\x01\n\x0fModemStaleEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x14\n\x0cmodem_number\x18\x02 \x01(\t\x12\x14\n\x0cguard_period\x18\x03 \x01(\x05\x12\x1e\n\x04time\x18\x04 \x01(\x0b\x32\x10.hiber.Timestamp\x12&\n\x0clast_message\x18\x05 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x1c\n\x04tags\x18\x06 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\r\n\x05title\x18\x07 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x08 \x01(\t\x1a\xd7\x07\n\x0cMessageEvent\x1a\xd0\x01\n\x19ModemMessageReceivedEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x14\n\x0cmodem_number\x18\x02 \x01(\t\x12*\n\x07message\x18\x03 \x01(\x0b\x32\x19.hiber.modem.ModemMessage\x12\x1c\n\x04tags\x18\x04 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\r\n\x05title\x18\x05 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x06 \x01(\t\x12\x1e\n\x04time\x18\x07 \x01(\x0b\x32\x10.hiber.Timestamp\x1a\x8e\x02\n\x18ModemMessageDroppedEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x14\n\x0cmodem_number\x18\x02 \x01(\t\x12\x18\n\x10\x64ropped_messages\x18\x03 \x01(\x05\x12*\n\x07message\x18\x04 \x01(\x0b\x32\x19.hiber.modem.ModemMessage\x12\x1c\n\x04tags\x18\x05 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12#\n\x0cmodem_health\x18\x06 \x01(\x0e\x32\r.hiber.Health\x12\r\n\x05title\x18\x07 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x08 \x01(\t\x12\x1e\n\x04time\x18\t \x01(\x0b\x32\x10.hiber.Timestamp\x1a\x8b\x02\n\x18ModemMessageDelayedEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x14\n\x0cmodem_number\x18\x02 \x01(\t\x12*\n\x07message\x18\x03 \x01(\x0b\x32\x19.hiber.modem.ModemMessage\x12\x15\n\rdelay_seconds\x18\x04 \x01(\x03\x12\x1c\n\x04tags\x18\x05 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12#\n\x0cmodem_health\x18\x06 \x01(\x0e\x32\r.hiber.Health\x12\r\n\x05title\x18\x07 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x08 \x01(\t\x12\x1e\n\x04time\x18\t \x01(\x0b\x32\x10.hiber.Timestamp\x1a\xd4\x01\n\x1fModemMessageCannotBeParsedEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x14\n\x0cmodem_number\x18\x02 \x01(\t\x12\x18\n\x10modem_message_id\x18\x03 \x01(\x03\x12\x1e\n\x04time\x18\x04 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x0e\n\x06reason\x18\x05 \x01(\t\x12\x1c\n\x04tags\x18\x06 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\r\n\x05title\x18\x07 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x08 \x01(\t\x1a\xf4\x02\n\tUserEvent\x1as\n\x0eUserAddedEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x0c\n\x04user\x18\x02 \x01(\t\x12\r\n\x05title\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x04 \x01(\t\x12\x1e\n\x04time\x18\x05 \x01(\x0b\x32\x10.hiber.Timestamp\x1au\n\x10UserRemovedEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x0c\n\x04user\x18\x02 \x01(\t\x12\r\n\x05title\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x04 \x01(\t\x12\x1e\n\x04time\x18\x05 \x01(\x0b\x32\x10.hiber.Timestamp\x1a{\n\x16UserAccessRequestEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x0c\n\x04user\x18\x02 \x01(\t\x12\x1e\n\x04time\x18\x03 \x01(\x0b\x32\x10.hiber.Timestamp\x12\r\n\x05title\x18\x04 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x05 \x01(\t\x1a\x94\x04\n\x0cWebhookEvent\x1a\xaa\x01\n\x0c\x43reatedEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\'\n\x07\x63reated\x18\x02 \x01(\x0b\x32\x16.hiber.webhook.Webhook\x12\x1c\n\x04tags\x18\x03 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\r\n\x05title\x18\x04 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x05 \x01(\t\x12\x1e\n\x04time\x18\x06 \x01(\x0b\x32\x10.hiber.Timestamp\x1a\xa9\x01\n\x0cUpdatedEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12&\n\x06update\x18\x02 \x01(\x0b\x32\x16.hiber.webhook.Webhook\x12\x1c\n\x04tags\x18\x03 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\r\n\x05title\x18\x04 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x05 \x01(\t\x12\x1e\n\x04time\x18\x06 \x01(\x0b\x32\x10.hiber.Timestamp\x1a\xaa\x01\n\x0c\x44\x65letedEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\'\n\x07\x64\x65leted\x18\x02 \x01(\x0b\x32\x16.hiber.webhook.Webhook\x12\x1c\n\x04tags\x18\x03 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\r\n\x05title\x18\x04 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x05 \x01(\t\x12\x1e\n\x04time\x18\x06 \x01(\x0b\x32\x10.hiber.TimestampB\x07\n\x05\x65vent\"\xe3\x01\n\x0e\x45ventSelection\x12$\n\x06\x65vents\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Events\x12$\n\x06modems\x18\x02 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12(\n\x08webhooks\x18\x03 \x01(\x0b\x32\x16.hiber.Filter.Webhooks\x12 \n\x04tags\x18\x04 \x01(\x0b\x32\x12.hiber.Filter.Tags\x12$\n\ntime_range\x18\x06 \x01(\x0b\x32\x10.hiber.TimeRange\x12\x13\n\x0b\x65rrors_only\x18\x07 \x01(\x08\"\xac\x03\n\x11ListEventsRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12.\n\tselection\x18\x02 \x01(\x0b\x32\x1b.hiber.event.EventSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x12\x31\n\x04sort\x18\x04 \x01(\x0e\x32#.hiber.event.ListEventsRequest.Sort\x1a\x8d\x01\n\x08Response\x12\"\n\x06\x65vents\x18\x01 \x03(\x0b\x32\x12.hiber.event.Event\x12/\n\x07request\x18\x02 \x01(\x0b\x32\x1e.hiber.event.ListEventsRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"l\n\x04Sort\x12\x08\n\x04TIME\x10\x00\x12\x11\n\rTIME_INVERTED\x10\x01\x12\x14\n\x10MODEM_NUMBER_ASC\x10\x02\x12\x15\n\x11MODEM_NUMBER_DESC\x10\x03\x12\x1a\n\x16MODEM_NUMBER_SPECIFIED\x10\x04\"U\n\x12\x45ventStreamRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12.\n\tselection\x18\x02 \x01(\x0b\x32\x1b.hiber.event.EventSelection2\xa0\x01\n\x0c\x45ventService\x12O\n\x04List\x12\x1e.hiber.event.ListEventsRequest\x1a\'.hiber.event.ListEventsRequest.Response\x12?\n\x06Stream\x12\x1f.hiber.event.EventStreamRequest\x1a\x12.hiber.event.Event0\x01\x42\x30\n\x1bglobal.hiber.api.grpc.eventB\x08\x45ventApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\x0b\x65vent.proto\x12\x0bhiber.event\x1a\nbase.proto\x1a\x0bmodem.proto\x1a\ttag.proto\x1a\nuser.proto\x1a\rwebhook.proto\"\xb2\x1c\n\x05\x45vent\x12Y\n\x16modem_location_updated\x18\x02 \x01(\x0b\x32\x37.hiber.event.Event.ModemEvent.ModemLocationUpdatedEventH\x00\x12\x44\n\x0bmodem_stale\x18\x03 \x01(\x0b\x32-.hiber.event.Event.ModemEvent.ModemStaleEventH\x00\x12\x66\n\x16modem_message_received\x18\x04 \x01(\x0b\x32\x44.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageReceivedEventH\x00\x12\x64\n\x15modem_message_dropped\x18\x05 \x01(\x0b\x32\x43.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDroppedEventH\x00\x12\x64\n\x15modem_message_delayed\x18\x06 \x01(\x0b\x32\x43.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDelayedEventH\x00\x12t\n\x1emodem_message_cannot_be_parsed\x18\x07 \x01(\x0b\x32J.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEventH\x00\x12\x41\n\nuser_added\x18\x08 \x01(\x0b\x32+.hiber.event.Event.UserEvent.UserAddedEventH\x00\x12\x45\n\x0cuser_removed\x18\t \x01(\x0b\x32-.hiber.event.Event.UserEvent.UserRemovedEventH\x00\x12R\n\x13user_access_request\x18\n \x01(\x0b\x32\x33.hiber.event.Event.UserEvent.UserAccessRequestEventH\x00\x12G\n\x0fwebhook_created\x18\x0b \x01(\x0b\x32,.hiber.event.Event.WebhookEvent.CreatedEventH\x00\x12G\n\x0fwebhook_updated\x18\x0c \x01(\x0b\x32,.hiber.event.Event.WebhookEvent.UpdatedEventH\x00\x12G\n\x0fwebhook_deleted\x18\r \x01(\x0b\x32,.hiber.event.Event.WebhookEvent.DeletedEventH\x00\x12\x45\n\x0ewebhook_failed\x18\x0e \x01(\x0b\x32+.hiber.event.Event.WebhookEvent.FailedEventH\x00\x1a\x8b\x0b\n\nModemEvent\x1a\xc7\x01\n\x19ModemLocationUpdatedEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x14\n\x0cmodem_number\x18\x02 \x01(\t\x12!\n\x08location\x18\x03 \x01(\x0b\x32\x0f.hiber.Location\x12\x1e\n\x04time\x18\x04 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x1c\n\x04tags\x18\x05 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\r\n\x05title\x18\x06 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x07 \x01(\t\x1a\xd8\x01\n\x0fModemStaleEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x14\n\x0cmodem_number\x18\x02 \x01(\t\x12\x14\n\x0cguard_period\x18\x03 \x01(\x05\x12\x1e\n\x04time\x18\x04 \x01(\x0b\x32\x10.hiber.Timestamp\x12&\n\x0clast_message\x18\x05 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x1c\n\x04tags\x18\x06 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\r\n\x05title\x18\x07 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x08 \x01(\t\x1a\xd7\x07\n\x0cMessageEvent\x1a\xd0\x01\n\x19ModemMessageReceivedEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x14\n\x0cmodem_number\x18\x02 \x01(\t\x12*\n\x07message\x18\x03 \x01(\x0b\x32\x19.hiber.modem.ModemMessage\x12\x1c\n\x04tags\x18\x04 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\r\n\x05title\x18\x05 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x06 \x01(\t\x12\x1e\n\x04time\x18\x07 \x01(\x0b\x32\x10.hiber.Timestamp\x1a\x8e\x02\n\x18ModemMessageDroppedEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x14\n\x0cmodem_number\x18\x02 \x01(\t\x12\x18\n\x10\x64ropped_messages\x18\x03 \x01(\x05\x12*\n\x07message\x18\x04 \x01(\x0b\x32\x19.hiber.modem.ModemMessage\x12\x1c\n\x04tags\x18\x05 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12#\n\x0cmodem_health\x18\x06 \x01(\x0e\x32\r.hiber.Health\x12\r\n\x05title\x18\x07 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x08 \x01(\t\x12\x1e\n\x04time\x18\t \x01(\x0b\x32\x10.hiber.Timestamp\x1a\x8b\x02\n\x18ModemMessageDelayedEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x14\n\x0cmodem_number\x18\x02 \x01(\t\x12*\n\x07message\x18\x03 \x01(\x0b\x32\x19.hiber.modem.ModemMessage\x12\x15\n\rdelay_seconds\x18\x04 \x01(\x03\x12\x1c\n\x04tags\x18\x05 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12#\n\x0cmodem_health\x18\x06 \x01(\x0e\x32\r.hiber.Health\x12\r\n\x05title\x18\x07 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x08 \x01(\t\x12\x1e\n\x04time\x18\t \x01(\x0b\x32\x10.hiber.Timestamp\x1a\xd4\x01\n\x1fModemMessageCannotBeParsedEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x14\n\x0cmodem_number\x18\x02 \x01(\t\x12\x18\n\x10modem_message_id\x18\x03 \x01(\x03\x12\x1e\n\x04time\x18\x04 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x0e\n\x06reason\x18\x05 \x01(\t\x12\x1c\n\x04tags\x18\x06 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\r\n\x05title\x18\x07 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x08 \x01(\t\x1a\xf4\x02\n\tUserEvent\x1as\n\x0eUserAddedEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x0c\n\x04user\x18\x02 \x01(\t\x12\r\n\x05title\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x04 \x01(\t\x12\x1e\n\x04time\x18\x05 \x01(\x0b\x32\x10.hiber.Timestamp\x1au\n\x10UserRemovedEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x0c\n\x04user\x18\x02 \x01(\t\x12\r\n\x05title\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x04 \x01(\t\x12\x1e\n\x04time\x18\x05 \x01(\x0b\x32\x10.hiber.Timestamp\x1a{\n\x16UserAccessRequestEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x0c\n\x04user\x18\x02 \x01(\t\x12\x1e\n\x04time\x18\x03 \x01(\x0b\x32\x10.hiber.Timestamp\x12\r\n\x05title\x18\x04 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x05 \x01(\t\x1a\xcf\x05\n\x0cWebhookEvent\x1a\xaa\x01\n\x0c\x43reatedEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\'\n\x07\x63reated\x18\x02 \x01(\x0b\x32\x16.hiber.webhook.Webhook\x12\x1c\n\x04tags\x18\x03 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\r\n\x05title\x18\x04 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x05 \x01(\t\x12\x1e\n\x04time\x18\x06 \x01(\x0b\x32\x10.hiber.Timestamp\x1a\xa9\x01\n\x0cUpdatedEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12&\n\x06update\x18\x02 \x01(\x0b\x32\x16.hiber.webhook.Webhook\x12\x1c\n\x04tags\x18\x03 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\r\n\x05title\x18\x04 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x05 \x01(\t\x12\x1e\n\x04time\x18\x06 \x01(\x0b\x32\x10.hiber.Timestamp\x1a\xaa\x01\n\x0c\x44\x65letedEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\'\n\x07\x64\x65leted\x18\x02 \x01(\x0b\x32\x16.hiber.webhook.Webhook\x12\x1c\n\x04tags\x18\x03 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\r\n\x05title\x18\x04 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x05 \x01(\t\x12\x1e\n\x04time\x18\x06 \x01(\x0b\x32\x10.hiber.Timestamp\x1a\xb8\x01\n\x0b\x46\x61iledEvent\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x0e\n\x06reason\x18\x02 \x01(\t\x12&\n\x06\x66\x61iled\x18\x03 \x01(\x0b\x32\x16.hiber.webhook.Webhook\x12\x1c\n\x04tags\x18\x04 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\r\n\x05title\x18\x05 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x06 \x01(\t\x12\x1e\n\x04time\x18\x07 \x01(\x0b\x32\x10.hiber.TimestampB\x07\n\x05\x65vent\"\xe3\x01\n\x0e\x45ventSelection\x12$\n\x06\x65vents\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Events\x12$\n\x06modems\x18\x02 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12(\n\x08webhooks\x18\x03 \x01(\x0b\x32\x16.hiber.Filter.Webhooks\x12 \n\x04tags\x18\x04 \x01(\x0b\x32\x12.hiber.Filter.Tags\x12$\n\ntime_range\x18\x06 \x01(\x0b\x32\x10.hiber.TimeRange\x12\x13\n\x0b\x65rrors_only\x18\x07 \x01(\x08\"\xac\x03\n\x11ListEventsRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12.\n\tselection\x18\x02 \x01(\x0b\x32\x1b.hiber.event.EventSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x12\x31\n\x04sort\x18\x04 \x01(\x0e\x32#.hiber.event.ListEventsRequest.Sort\x1a\x8d\x01\n\x08Response\x12\"\n\x06\x65vents\x18\x01 \x03(\x0b\x32\x12.hiber.event.Event\x12/\n\x07request\x18\x02 \x01(\x0b\x32\x1e.hiber.event.ListEventsRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"l\n\x04Sort\x12\x08\n\x04TIME\x10\x00\x12\x11\n\rTIME_INVERTED\x10\x01\x12\x14\n\x10MODEM_NUMBER_ASC\x10\x02\x12\x15\n\x11MODEM_NUMBER_DESC\x10\x03\x12\x1a\n\x16MODEM_NUMBER_SPECIFIED\x10\x04\"U\n\x12\x45ventStreamRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12.\n\tselection\x18\x02 \x01(\x0b\x32\x1b.hiber.event.EventSelection2\xa0\x01\n\x0c\x45ventService\x12O\n\x04List\x12\x1e.hiber.event.ListEventsRequest\x1a\'.hiber.event.ListEventsRequest.Response\x12?\n\x06Stream\x12\x1f.hiber.event.EventStreamRequest\x1a\x12.hiber.event.Event0\x01\x42\x30\n\x1bglobal.hiber.api.grpc.eventB\x08\x45ventApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,modem__pb2.DESCRIPTOR,tag__pb2.DESCRIPTOR,user__pb2.DESCRIPTOR,webhook__pb2.DESCRIPTOR,])
 
@@ -59,8 +59,8 @@ _LISTEVENTSREQUEST_SORT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=4021,
-  serialized_end=4129,
+  serialized_start=4279,
+  serialized_end=4387,
 )
 _sym_db.RegisterEnumDescriptor(_LISTEVENTSREQUEST_SORT)
 
@@ -133,8 +133,8 @@ _EVENT_MODEMEVENT_MODEMLOCATIONUPDATEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1145,
-  serialized_end=1344,
+  serialized_start=1216,
+  serialized_end=1415,
 )
 
 _EVENT_MODEMEVENT_MODEMSTALEEVENT = _descriptor.Descriptor(
@@ -212,8 +212,8 @@ _EVENT_MODEMEVENT_MODEMSTALEEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1347,
-  serialized_end=1563,
+  serialized_start=1418,
+  serialized_end=1634,
 )
 
 _EVENT_MODEMEVENT_MESSAGEEVENT_MODEMMESSAGERECEIVEDEVENT = _descriptor.Descriptor(
@@ -284,8 +284,8 @@ _EVENT_MODEMEVENT_MESSAGEEVENT_MODEMMESSAGERECEIVEDEVENT = _descriptor.Descripto
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1583,
-  serialized_end=1791,
+  serialized_start=1654,
+  serialized_end=1862,
 )
 
 _EVENT_MODEMEVENT_MESSAGEEVENT_MODEMMESSAGEDROPPEDEVENT = _descriptor.Descriptor(
@@ -370,8 +370,8 @@ _EVENT_MODEMEVENT_MESSAGEEVENT_MODEMMESSAGEDROPPEDEVENT = _descriptor.Descriptor
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1794,
-  serialized_end=2064,
+  serialized_start=1865,
+  serialized_end=2135,
 )
 
 _EVENT_MODEMEVENT_MESSAGEEVENT_MODEMMESSAGEDELAYEDEVENT = _descriptor.Descriptor(
@@ -456,8 +456,8 @@ _EVENT_MODEMEVENT_MESSAGEEVENT_MODEMMESSAGEDELAYEDEVENT = _descriptor.Descriptor
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2067,
-  serialized_end=2334,
+  serialized_start=2138,
+  serialized_end=2405,
 )
 
 _EVENT_MODEMEVENT_MESSAGEEVENT_MODEMMESSAGECANNOTBEPARSEDEVENT = _descriptor.Descriptor(
@@ -535,8 +535,8 @@ _EVENT_MODEMEVENT_MESSAGEEVENT_MODEMMESSAGECANNOTBEPARSEDEVENT = _descriptor.Des
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2337,
-  serialized_end=2549,
+  serialized_start=2408,
+  serialized_end=2620,
 )
 
 _EVENT_MODEMEVENT_MESSAGEEVENT = _descriptor.Descriptor(
@@ -558,8 +558,8 @@ _EVENT_MODEMEVENT_MESSAGEEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1566,
-  serialized_end=2549,
+  serialized_start=1637,
+  serialized_end=2620,
 )
 
 _EVENT_MODEMEVENT = _descriptor.Descriptor(
@@ -581,8 +581,8 @@ _EVENT_MODEMEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1130,
-  serialized_end=2549,
+  serialized_start=1201,
+  serialized_end=2620,
 )
 
 _EVENT_USEREVENT_USERADDEDEVENT = _descriptor.Descriptor(
@@ -639,8 +639,8 @@ _EVENT_USEREVENT_USERADDEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2565,
-  serialized_end=2680,
+  serialized_start=2636,
+  serialized_end=2751,
 )
 
 _EVENT_USEREVENT_USERREMOVEDEVENT = _descriptor.Descriptor(
@@ -697,8 +697,8 @@ _EVENT_USEREVENT_USERREMOVEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2682,
-  serialized_end=2799,
+  serialized_start=2753,
+  serialized_end=2870,
 )
 
 _EVENT_USEREVENT_USERACCESSREQUESTEVENT = _descriptor.Descriptor(
@@ -755,8 +755,8 @@ _EVENT_USEREVENT_USERACCESSREQUESTEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2801,
-  serialized_end=2924,
+  serialized_start=2872,
+  serialized_end=2995,
 )
 
 _EVENT_USEREVENT = _descriptor.Descriptor(
@@ -778,8 +778,8 @@ _EVENT_USEREVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2552,
-  serialized_end=2924,
+  serialized_start=2623,
+  serialized_end=2995,
 )
 
 _EVENT_WEBHOOKEVENT_CREATEDEVENT = _descriptor.Descriptor(
@@ -843,8 +843,8 @@ _EVENT_WEBHOOKEVENT_CREATEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2944,
-  serialized_end=3114,
+  serialized_start=3015,
+  serialized_end=3185,
 )
 
 _EVENT_WEBHOOKEVENT_UPDATEDEVENT = _descriptor.Descriptor(
@@ -908,8 +908,8 @@ _EVENT_WEBHOOKEVENT_UPDATEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3117,
-  serialized_end=3286,
+  serialized_start=3188,
+  serialized_end=3357,
 )
 
 _EVENT_WEBHOOKEVENT_DELETEDEVENT = _descriptor.Descriptor(
@@ -973,8 +973,80 @@ _EVENT_WEBHOOKEVENT_DELETEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3289,
-  serialized_end=3459,
+  serialized_start=3360,
+  serialized_end=3530,
+)
+
+_EVENT_WEBHOOKEVENT_FAILEDEVENT = _descriptor.Descriptor(
+  name='FailedEvent',
+  full_name='hiber.event.Event.WebhookEvent.FailedEvent',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='account', full_name='hiber.event.Event.WebhookEvent.FailedEvent.account', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='reason', full_name='hiber.event.Event.WebhookEvent.FailedEvent.reason', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='failed', full_name='hiber.event.Event.WebhookEvent.FailedEvent.failed', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='tags', full_name='hiber.event.Event.WebhookEvent.FailedEvent.tags', index=3,
+      number=4, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='title', full_name='hiber.event.Event.WebhookEvent.FailedEvent.title', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='description', full_name='hiber.event.Event.WebhookEvent.FailedEvent.description', index=5,
+      number=6, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='time', full_name='hiber.event.Event.WebhookEvent.FailedEvent.time', index=6,
+      number=7, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3533,
+  serialized_end=3717,
 )
 
 _EVENT_WEBHOOKEVENT = _descriptor.Descriptor(
@@ -987,7 +1059,7 @@ _EVENT_WEBHOOKEVENT = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_EVENT_WEBHOOKEVENT_CREATEDEVENT, _EVENT_WEBHOOKEVENT_UPDATEDEVENT, _EVENT_WEBHOOKEVENT_DELETEDEVENT, ],
+  nested_types=[_EVENT_WEBHOOKEVENT_CREATEDEVENT, _EVENT_WEBHOOKEVENT_UPDATEDEVENT, _EVENT_WEBHOOKEVENT_DELETEDEVENT, _EVENT_WEBHOOKEVENT_FAILEDEVENT, ],
   enum_types=[
   ],
   options=None,
@@ -996,8 +1068,8 @@ _EVENT_WEBHOOKEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2927,
-  serialized_end=3459,
+  serialized_start=2998,
+  serialized_end=3717,
 )
 
 _EVENT = _descriptor.Descriptor(
@@ -1091,6 +1163,13 @@ _EVENT = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='webhook_failed', full_name='hiber.event.Event.webhook_failed', index=12,
+      number=14, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1107,7 +1186,7 @@ _EVENT = _descriptor.Descriptor(
       index=0, containing_type=None, fields=[]),
   ],
   serialized_start=92,
-  serialized_end=3468,
+  serialized_end=3726,
 )
 
 
@@ -1172,8 +1251,8 @@ _EVENTSELECTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3471,
-  serialized_end=3698,
+  serialized_start=3729,
+  serialized_end=3956,
 )
 
 
@@ -1217,8 +1296,8 @@ _LISTEVENTSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3878,
-  serialized_end=4019,
+  serialized_start=4136,
+  serialized_end=4277,
 )
 
 _LISTEVENTSREQUEST = _descriptor.Descriptor(
@@ -1269,8 +1348,8 @@ _LISTEVENTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3701,
-  serialized_end=4129,
+  serialized_start=3959,
+  serialized_end=4387,
 )
 
 
@@ -1307,8 +1386,8 @@ _EVENTSTREAMREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4131,
-  serialized_end=4216,
+  serialized_start=4389,
+  serialized_end=4474,
 )
 
 _EVENT_MODEMEVENT_MODEMLOCATIONUPDATEDEVENT.fields_by_name['location'].message_type = base__pb2._LOCATION
@@ -1357,6 +1436,10 @@ _EVENT_WEBHOOKEVENT_DELETEDEVENT.fields_by_name['deleted'].message_type = webhoo
 _EVENT_WEBHOOKEVENT_DELETEDEVENT.fields_by_name['tags'].message_type = tag__pb2._TAG
 _EVENT_WEBHOOKEVENT_DELETEDEVENT.fields_by_name['time'].message_type = base__pb2._TIMESTAMP
 _EVENT_WEBHOOKEVENT_DELETEDEVENT.containing_type = _EVENT_WEBHOOKEVENT
+_EVENT_WEBHOOKEVENT_FAILEDEVENT.fields_by_name['failed'].message_type = webhook__pb2._WEBHOOK
+_EVENT_WEBHOOKEVENT_FAILEDEVENT.fields_by_name['tags'].message_type = tag__pb2._TAG
+_EVENT_WEBHOOKEVENT_FAILEDEVENT.fields_by_name['time'].message_type = base__pb2._TIMESTAMP
+_EVENT_WEBHOOKEVENT_FAILEDEVENT.containing_type = _EVENT_WEBHOOKEVENT
 _EVENT_WEBHOOKEVENT.containing_type = _EVENT
 _EVENT.fields_by_name['modem_location_updated'].message_type = _EVENT_MODEMEVENT_MODEMLOCATIONUPDATEDEVENT
 _EVENT.fields_by_name['modem_stale'].message_type = _EVENT_MODEMEVENT_MODEMSTALEEVENT
@@ -1370,6 +1453,7 @@ _EVENT.fields_by_name['user_access_request'].message_type = _EVENT_USEREVENT_USE
 _EVENT.fields_by_name['webhook_created'].message_type = _EVENT_WEBHOOKEVENT_CREATEDEVENT
 _EVENT.fields_by_name['webhook_updated'].message_type = _EVENT_WEBHOOKEVENT_UPDATEDEVENT
 _EVENT.fields_by_name['webhook_deleted'].message_type = _EVENT_WEBHOOKEVENT_DELETEDEVENT
+_EVENT.fields_by_name['webhook_failed'].message_type = _EVENT_WEBHOOKEVENT_FAILEDEVENT
 _EVENT.oneofs_by_name['event'].fields.append(
   _EVENT.fields_by_name['modem_location_updated'])
 _EVENT.fields_by_name['modem_location_updated'].containing_oneof = _EVENT.oneofs_by_name['event']
@@ -1406,6 +1490,9 @@ _EVENT.fields_by_name['webhook_updated'].containing_oneof = _EVENT.oneofs_by_nam
 _EVENT.oneofs_by_name['event'].fields.append(
   _EVENT.fields_by_name['webhook_deleted'])
 _EVENT.fields_by_name['webhook_deleted'].containing_oneof = _EVENT.oneofs_by_name['event']
+_EVENT.oneofs_by_name['event'].fields.append(
+  _EVENT.fields_by_name['webhook_failed'])
+_EVENT.fields_by_name['webhook_failed'].containing_oneof = _EVENT.oneofs_by_name['event']
 _EVENTSELECTION.fields_by_name['events'].message_type = base__pb2._FILTER_EVENTS
 _EVENTSELECTION.fields_by_name['modems'].message_type = base__pb2._FILTER_MODEMS
 _EVENTSELECTION.fields_by_name['webhooks'].message_type = base__pb2._FILTER_WEBHOOKS
@@ -1534,6 +1621,13 @@ Event = _reflection.GeneratedProtocolMessageType('Event', (_message.Message,), d
       # @@protoc_insertion_point(class_scope:hiber.event.Event.WebhookEvent.DeletedEvent)
       ))
     ,
+
+    FailedEvent = _reflection.GeneratedProtocolMessageType('FailedEvent', (_message.Message,), dict(
+      DESCRIPTOR = _EVENT_WEBHOOKEVENT_FAILEDEVENT,
+      __module__ = 'event_pb2'
+      # @@protoc_insertion_point(class_scope:hiber.event.Event.WebhookEvent.FailedEvent)
+      ))
+    ,
     DESCRIPTOR = _EVENT_WEBHOOKEVENT,
     __module__ = 'event_pb2'
     # @@protoc_insertion_point(class_scope:hiber.event.Event.WebhookEvent)
@@ -1560,6 +1654,7 @@ _sym_db.RegisterMessage(Event.WebhookEvent)
 _sym_db.RegisterMessage(Event.WebhookEvent.CreatedEvent)
 _sym_db.RegisterMessage(Event.WebhookEvent.UpdatedEvent)
 _sym_db.RegisterMessage(Event.WebhookEvent.DeletedEvent)
+_sym_db.RegisterMessage(Event.WebhookEvent.FailedEvent)
 
 EventSelection = _reflection.GeneratedProtocolMessageType('EventSelection', (_message.Message,), dict(
   DESCRIPTOR = _EVENTSELECTION,
@@ -1600,8 +1695,8 @@ _EVENTSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=4219,
-  serialized_end=4379,
+  serialized_start=4477,
+  serialized_end=4637,
   methods=[
   _descriptor.MethodDescriptor(
     name='List',

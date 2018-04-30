@@ -1,7 +1,9 @@
 apply plugin: 'application'
+apply plugin: "com.google.osdetector"
 
 mainClassName = 'global.hiber.example.ExampleKt'
 
 dependencies {
   compile project(':api')
+  compile grpcNative(osdetector.classifier)
 }

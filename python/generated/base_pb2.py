@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='base.proto',
   package='hiber',
   syntax='proto3',
-  serialized_pb=_b('\n\nbase.proto\x12\x05hiber\x1a\x1fgoogle/protobuf/timestamp.proto\"3\n\x11UpdateZeroableInt\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\r\"7\n\x15UpdateClearableString\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\t\"/\n\rUpdateBoolean\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\x08\"K\n\tTimeRange\x12\x1f\n\x05start\x18\x01 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x1d\n\x03\x65nd\x18\x02 \x01(\x0b\x32\x10.hiber.Timestamp\"K\n\tTimestamp\x12-\n\ttimestamp\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0f\n\x07textual\x18\x04 \x01(\t\"/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"q\n\x04\x41rea\x12\x1f\n\x06\x63\x65nter\x18\x01 \x01(\x0b\x32\x0f.hiber.Location\x12$\n\x0b\x62ottom_left\x18\x02 \x01(\x0b\x32\x0f.hiber.Location\x12\"\n\ttop_right\x18\x04 \x01(\x0b\x32\x0f.hiber.Location\"\xb8\x01\n\nPagination\x12\x0c\n\x04size\x18\x01 \x01(\x05\x12\x0c\n\x04page\x18\x02 \x01(\x05\x1a\x8d\x01\n\x06Result\x12\x0c\n\x04size\x18\x01 \x01(\x05\x12\x0c\n\x04page\x18\x02 \x01(\x05\x12\r\n\x05total\x18\x03 \x01(\x05\x12\x12\n\ntotalPages\x18\x04 \x01(\x05\x12#\n\x08previous\x18\x06 \x01(\x0b\x32\x11.hiber.Pagination\x12\x1f\n\x04next\x18\x07 \x01(\x0b\x32\x11.hiber.Pagination\"\xe4\x02\n\x06\x46ilter\x1a\x46\n\rChildAccounts\x12\x13\n\x0binclude_all\x18\x01 \x01(\x08\x12\x0f\n\x07include\x18\x02 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x03 \x03(\t\x1aN\n\x06\x45vents\x12!\n\x07include\x18\x01 \x03(\x0e\x32\x10.hiber.EventType\x12!\n\x07\x65xclude\x18\x02 \x03(\x0e\x32\x10.hiber.EventType\x1a*\n\x06Modems\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t\x1a(\n\x04Tags\x12\x0f\n\x07include\x18\x01 \x03(\x03\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\x03\x1a\x41\n\x08Webhooks\x12\x0f\n\x07include\x18\x01 \x03(\x03\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\x03\x12\x13\n\x0bonly_active\x18\x03 \x01(\x08\x1a)\n\x05Users\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t*\xd7\x01\n\tEventType\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\x13\n\x0fWEBHOOK_CREATED\x10\x01\x12\x13\n\x0fWEBHOOK_UPDATED\x10\x02\x12\x13\n\x0fWEBHOOK_DELETED\x10\x03\x12\x1a\n\x16MODEM_LOCATION_UPDATED\x10\x04\x12\x1a\n\x16MODEM_MESSAGE_RECEIVED\x10\x05\x12\x16\n\x12\x43REDENTIAL_UPDATED\x10\x08\x12\x16\n\x12\x43REDENTIAL_CREATED\x10\t\x12\x16\n\x12\x43REDENTIAL_DELETED\x10\n*(\n\x06Health\x12\x06\n\x02OK\x10\x00\x12\x0b\n\x07WARNING\x10\x01\x12\t\n\x05\x45RROR\x10\x02\x42 \n\x15global.hiber.api.grpcP\x01Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\nbase.proto\x12\x05hiber\x1a\x1fgoogle/protobuf/timestamp.proto\"3\n\x11UpdateZeroableInt\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\r\"7\n\x15UpdateClearableString\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\t\"/\n\rUpdateBoolean\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\x08\"K\n\tTimeRange\x12\x1f\n\x05start\x18\x01 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x1d\n\x03\x65nd\x18\x02 \x01(\x0b\x32\x10.hiber.Timestamp\"K\n\tTimestamp\x12-\n\ttimestamp\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0f\n\x07textual\x18\x04 \x01(\t\"/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"q\n\x04\x41rea\x12\x1f\n\x06\x63\x65nter\x18\x01 \x01(\x0b\x32\x0f.hiber.Location\x12$\n\x0b\x62ottom_left\x18\x02 \x01(\x0b\x32\x0f.hiber.Location\x12\"\n\ttop_right\x18\x04 \x01(\x0b\x32\x0f.hiber.Location\"\xb8\x01\n\nPagination\x12\x0c\n\x04size\x18\x01 \x01(\x05\x12\x0c\n\x04page\x18\x02 \x01(\x05\x1a\x8d\x01\n\x06Result\x12\x0c\n\x04size\x18\x01 \x01(\x05\x12\x0c\n\x04page\x18\x02 \x01(\x05\x12\r\n\x05total\x18\x03 \x01(\x05\x12\x12\n\ntotalPages\x18\x04 \x01(\x05\x12#\n\x08previous\x18\x06 \x01(\x0b\x32\x11.hiber.Pagination\x12\x1f\n\x04next\x18\x07 \x01(\x0b\x32\x11.hiber.Pagination\"\xe4\x02\n\x06\x46ilter\x1a\x46\n\rChildAccounts\x12\x13\n\x0binclude_all\x18\x01 \x01(\x08\x12\x0f\n\x07include\x18\x02 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x03 \x03(\t\x1aN\n\x06\x45vents\x12!\n\x07include\x18\x01 \x03(\x0e\x32\x10.hiber.EventType\x12!\n\x07\x65xclude\x18\x02 \x03(\x0e\x32\x10.hiber.EventType\x1a*\n\x06Modems\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t\x1a(\n\x04Tags\x12\x0f\n\x07include\x18\x01 \x03(\x03\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\x03\x1a\x41\n\x08Webhooks\x12\x0f\n\x07include\x18\x01 \x03(\x03\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\x03\x12\x13\n\x0bonly_active\x18\x03 \x01(\x08\x1a)\n\x05Users\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t*\xe4\x02\n\tEventType\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\x13\n\x0fWEBHOOK_CREATED\x10\x01\x12\x13\n\x0fWEBHOOK_UPDATED\x10\x02\x12\x13\n\x0fWEBHOOK_DELETED\x10\x03\x12\x1a\n\x16MODEM_LOCATION_UPDATED\x10\x04\x12\x1a\n\x16MODEM_MESSAGE_RECEIVED\x10\x05\x12\x17\n\x13USER_ACCESS_REQUEST\x10\x08\x12\x0e\n\nUSER_ADDED\x10\t\x12\x10\n\x0cUSER_REMOVED\x10\n\x12\x12\n\x0eWEBHOOK_FAILED\x10\x0b\x12\x13\n\x0f\x41\x43\x43OUNT_UPDATED\x10\x0c\x12\x1f\n\x1bMODEM_MESSAGE_SEQUENCE_SKIP\x10\r\x12\x19\n\x15MODEM_MESSAGE_DELAYED\x10\x0e\x12\"\n\x1eMODEM_MESSAGE_CANNOT_BE_PARSED\x10\x0f\x12\x0f\n\x0bMODEM_STALE\x10\x10*(\n\x06Health\x12\x06\n\x02OK\x10\x00\x12\x0b\n\x07WARNING\x10\x01\x12\t\n\x05\x45RROR\x10\x02\x42 \n\x15global.hiber.api.grpcP\x01Z\x05hiberb\x06proto3')
   ,
   dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 
@@ -56,22 +56,46 @@ _EVENTTYPE = _descriptor.EnumDescriptor(
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='CREDENTIAL_UPDATED', index=6, number=8,
+      name='USER_ACCESS_REQUEST', index=6, number=8,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='CREDENTIAL_CREATED', index=7, number=9,
+      name='USER_ADDED', index=7, number=9,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='CREDENTIAL_DELETED', index=8, number=10,
+      name='USER_REMOVED', index=8, number=10,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='WEBHOOK_FAILED', index=9, number=11,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ACCOUNT_UPDATED', index=10, number=12,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='MODEM_MESSAGE_SEQUENCE_SKIP', index=11, number=13,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='MODEM_MESSAGE_DELAYED', index=12, number=14,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='MODEM_MESSAGE_CANNOT_BE_PARSED', index=13, number=15,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='MODEM_STALE', index=14, number=16,
       options=None,
       type=None),
   ],
   containing_type=None,
   options=None,
   serialized_start=1078,
-  serialized_end=1293,
+  serialized_end=1434,
 )
 _sym_db.RegisterEnumDescriptor(_EVENTTYPE)
 
@@ -97,8 +121,8 @@ _HEALTH = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1295,
-  serialized_end=1335,
+  serialized_start=1436,
+  serialized_end=1476,
 )
 _sym_db.RegisterEnumDescriptor(_HEALTH)
 
@@ -109,9 +133,15 @@ WEBHOOK_UPDATED = 2
 WEBHOOK_DELETED = 3
 MODEM_LOCATION_UPDATED = 4
 MODEM_MESSAGE_RECEIVED = 5
-CREDENTIAL_UPDATED = 8
-CREDENTIAL_CREATED = 9
-CREDENTIAL_DELETED = 10
+USER_ACCESS_REQUEST = 8
+USER_ADDED = 9
+USER_REMOVED = 10
+WEBHOOK_FAILED = 11
+ACCOUNT_UPDATED = 12
+MODEM_MESSAGE_SEQUENCE_SKIP = 13
+MODEM_MESSAGE_DELAYED = 14
+MODEM_MESSAGE_CANNOT_BE_PARSED = 15
+MODEM_STALE = 16
 OK = 0
 WARNING = 1
 ERROR = 2

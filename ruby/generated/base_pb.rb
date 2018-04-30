@@ -81,9 +81,15 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :WEBHOOK_DELETED, 3
     value :MODEM_LOCATION_UPDATED, 4
     value :MODEM_MESSAGE_RECEIVED, 5
-    value :CREDENTIAL_UPDATED, 8
-    value :CREDENTIAL_CREATED, 9
-    value :CREDENTIAL_DELETED, 10
+    value :USER_ACCESS_REQUEST, 8
+    value :USER_ADDED, 9
+    value :USER_REMOVED, 10
+    value :WEBHOOK_FAILED, 11
+    value :ACCOUNT_UPDATED, 12
+    value :MODEM_MESSAGE_SEQUENCE_SKIP, 13
+    value :MODEM_MESSAGE_DELAYED, 14
+    value :MODEM_MESSAGE_CANNOT_BE_PARSED, 15
+    value :MODEM_STALE, 16
   end
   add_enum "hiber.Health" do
     value :OK, 0

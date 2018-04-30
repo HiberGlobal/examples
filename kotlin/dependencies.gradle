@@ -27,5 +27,7 @@ ext {
 
   grpc = [protobuf: "io.grpc:grpc-protobuf:${versions.build.grpc}",
           stub    : "io.grpc:grpc-stub:${versions.build.grpc}",
-          client  : "io.grpc:grpc-netty:${versions.build.grpc}"]
+          client  : "io.grpc:grpc-netty:${versions.build.grpc}",
+          auth    : "io.grpc:grpc-auth:${versions.build.grpc}"]
+  grpcNative = { String classifier -> 'io.netty:netty-tcnative-boringssl-static:2.0.7.Final:' + classifier }
 }

@@ -10,7 +10,7 @@ def main
   # the mock server is http only, use https when connecting to https://dev.hiber.global
   currentUserStub = Hiber::User::CurrentUserService::Stub.new('localhost:9090', :this_channel_is_insecure)
   email = currentUserStub.current_user(Hiber::User::CurrentUserRequest.new(), metadata).email
-  p "Current iuser is: #{email}"
+  p "Current user is: #{email}"
 
   # the mock server is http only, use https when connecting to https://dev.hiber.global
   modemStub = Hiber::Modem::ModemService::Stub.new('localhost:9090', :this_channel_is_insecure)

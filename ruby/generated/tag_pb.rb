@@ -22,7 +22,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :tag_ids_to_add, :int64, 1
     repeated :tag_ids_to_remove, :int64, 2
     repeated :new_tags_to_add, :message, 3, "hiber.tag.Tag.Label"
-    optional :new_tags_visible_to_sub_accounts, :bool, 4
   end
   add_message "hiber.tag.ListTagsRequest" do
     optional :account, :string, 1
@@ -35,7 +34,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.tag.CreateTagRequest" do
     optional :account, :string, 1
     optional :create, :message, 2, "hiber.tag.Tag.Label"
-    optional :visible_to_sub_accounts, :bool, 3
   end
   add_message "hiber.tag.UpdateTagRequest" do
     optional :account, :string, 1
