@@ -22,3 +22,20 @@ To start the mock server manually, run:
 ```
 docker run -it -p9090:9090 hiberglobal/mock-server:latest
 ```
+
+## Examples
+
+Currently available:
+
+- [ ] C++
+- [ ] C#
+- [ ] Dart
+- [x] [Go](https://github.com/HiberGlobal/examples/tree/master/go)
+- [x] [Java](https://github.com/HiberGlobal/examples/tree/master/java)
+- [x] [Kotlin](https://github.com/HiberGlobal/examples/tree/master/kotlin)
+- [x] [Node](https://github.com/HiberGlobal/examples/tree/master/node)
+- [ ] Plain Javascript (using grpc web)
+- [ ] Objective-C
+- [ ] PHP
+- [x] [Python](https://github.com/HiberGlobal/examples/tree/master/python)
+- [x] [Ruby](https://github.com/HiberGlobal/examples/tree/master/ruby)
