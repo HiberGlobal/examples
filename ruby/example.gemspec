@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.require_paths = ['generated']
   s.platform      = Gem::Platform::RUBY
 
-  s.add_dependency 'grpc', '~> 1.9'
+  s.add_dependency 'grpc', '~> 1.11'
   s.add_dependency 'google-protobuf'
   s.add_dependency 'grpc-tools'
   s.add_development_dependency 'bundler', '~> 1.7'

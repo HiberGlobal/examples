@@ -15,7 +15,7 @@ class Example(val host: String, val port: Int, val token: String) {
 }
 
 fun main(args: Array<String>) {
-//  val client = Example("api.dev.hiber.global", 443, "YOUR-HIBER-DEV-TOKEN-HERE") // with useTransportSecurity
+//  val client = Example("api.dev.hiber.global", 443, "my-super-secret-token") // with useTransportSecurity
   val client = Example("localhost", 9090, "my-super-secret-token") // use plaintext
 
   val user = client.currentUserServiceClient.currentUser()

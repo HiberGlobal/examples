@@ -16,8 +16,7 @@ ext {
   ]
 
   buildPlugins = [kotlin  : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.compiler.kotlin",
-                  protobuf: 'com.google.protobuf:protobuf-gradle-plugin:0.8.5',
-                  jar     : 'com.github.jengelman.gradle.plugins:shadow:2.0.2']
+                  protobuf: 'com.google.protobuf:protobuf-gradle-plugin:0.8.5']
 
   common = [kotlinStdLib    : "org.jetbrains.kotlin:kotlin-stdlib:$versions.compiler.kotlin",
             kotlinStdLibJdk7: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.compiler.kotlin",

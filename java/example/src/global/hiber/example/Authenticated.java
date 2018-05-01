@@ -7,7 +7,7 @@ class Authenticated implements CallCredentials {
 
   private final String token;
 
-  public Authenticated(String token) {
+  Authenticated(String token) {
     this.token = token;
   }
 

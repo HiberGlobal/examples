@@ -8,20 +8,21 @@ import io.grpc.ManagedChannelBuilder;
 import java.util.List;
 
 public class Example {
-  private final ManagedChannel channel;
-  public final CurrentUserServiceClient currentUserServiceClient;
-  public final ModemServiceClient modemServiceClient;
+  private final CurrentUserServiceClient currentUserServiceClient;
+  private final ModemServiceClient modemServiceClient;
 
-  Example(String host, int port, String token) {
-    this.channel = ManagedChannelBuilder.forAddress(host, port)
-      .usePlaintext(true) // the mock server is http only, use https when connecting to https://dev.hiber.global
+  private Example(String host, int port, String token) {
+    ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port)
+//      .useTransportSecurity() // for api.dev.hiber.global
+      .usePlaintext(true) // for mock server
       .build();
 
     this.currentUserServiceClient = new CurrentUserServiceClient(channel, token);
     this.modemServiceClient = new ModemServiceClient(channel, token);
   }
 
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
+//    Example client = new Example("api.dev.hiber.global", 443, "my-super-secret-token"); // use your real token!
     Example client = new Example("localhost", 9090, "my-super-secret-token");
 
     CurrentUser user = client.currentUserServiceClient.currentUser();

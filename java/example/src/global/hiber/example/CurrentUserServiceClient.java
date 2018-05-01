@@ -6,16 +6,16 @@ import global.hiber.api.grpc.user.CurrentUserServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
 
-public class CurrentUserServiceClient {
+class CurrentUserServiceClient {
   private final CurrentUserServiceGrpc.CurrentUserServiceBlockingStub stub;
 
-  public CurrentUserServiceClient(ManagedChannel channel, String token) {
+  CurrentUserServiceClient(ManagedChannel channel, String token) {
     this.stub = CurrentUserServiceGrpc
       .newBlockingStub(channel)
       .withCallCredentials(new Authenticated(token));
   }
 
-  public CurrentUser currentUser() {
+  CurrentUser currentUser() {
     try {
       return stub.currentUser(CurrentUserRequest.getDefaultInstance());
     } catch (StatusRuntimeException e) {

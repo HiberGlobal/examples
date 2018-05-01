@@ -6,18 +6,21 @@ allprojects {
 }
 
 ext {
+
   versions = [
     compiler: [java: JavaVersion.VERSION_1_8],
 
-    build   : [grpc  : '1.9.0',
-               protoc: '3.3.0']
+    build   : [grpc  : '1.11.0',
+               protoc: '3.5.1']
   ]
 
-  buildPlugins = [protobuf: 'com.google.protobuf:protobuf-gradle-plugin:0.8.3']
+  buildPlugins = [protobuf: 'com.google.protobuf:protobuf-gradle-plugin:0.8.5']
 
-  common = [logging: 'ch.qos.logback:logback-classic:1.2.3']
+  common = [logging: "ch.qos.logback:logback-classic:1.2.3"]
 
   grpc = [protobuf: "io.grpc:grpc-protobuf:${versions.build.grpc}",
           stub    : "io.grpc:grpc-stub:${versions.build.grpc}",
-          client  : "io.grpc:grpc-netty:${versions.build.grpc}"]
+          client  : "io.grpc:grpc-netty:${versions.build.grpc}",
+          auth    : "io.grpc:grpc-auth:${versions.build.grpc}"]
+  grpcNative = { String classifier -> 'io.netty:netty-tcnative-boringssl-static:2.0.8.Final:' + classifier }
 }

@@ -8,16 +8,16 @@ import io.grpc.StatusRuntimeException;
 
 import java.util.List;
 
-public class ModemServiceClient {
+class ModemServiceClient {
   private final ModemServiceGrpc.ModemServiceBlockingStub stub;
 
-  public ModemServiceClient(ManagedChannel channel, String token) {
+  ModemServiceClient(ManagedChannel channel, String token) {
     this.stub = ModemServiceGrpc
       .newBlockingStub(channel)
       .withCallCredentials(new Authenticated(token));
   }
 
-  public List<Modem> modems() {
+  List<Modem> modems() {
     try {
       return stub.list(ListModemsRequest.getDefaultInstance()).getModemsList();
     } catch (StatusRuntimeException e) {
