@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.versioning.example";
+option java_outer_classname = "VersioningExampleApi";
+option go_package = "hiber";
+
+package hiber.versioning.example;
+
+/* For services, versioning is limited to adding and deprecating methods.
+ * The service itself can be deprecated as well, but is not reflected in generated code.
+ */
+service ExampleService {
+  option deprecated = true;
+
+  /* For methods, versioning is generally done in the requests and responses.
+   * The method itself can be deprecated, but its request (and response) message would also be deprecated.
+   */
+  rpc ExampleMethod (ExampleRequest) returns (ExampleRequest.Response) {
+    option deprecated = true;
+  };
+}
+
+/* For message which are only used for output, versioning is limited to deprecatng fields
+ * or deprecating the entire message.
+ * Deprecated fields can be removed after a certain period of time, when we see it's not used anymore.
+ */
+message Example {
+  /* Deprecated numeric id.
+   * Use the identifier field. This field may be removed in a future update.
+   */
+  int64 id = 1 [deprecated = true];
+  string account = 2;
+  string name = 3;
+  string identifier = 4;
+}
+
+message ExampleRequest {
+  option deprecated = true;
+
+  /* This message has been deprecated and may be removed in a future update. */
+  message ExampleFilter {
+    option deprecated = true;
+    repeated int64 include = 1;
+    repeated int64 exclude = 2;
+  }
+
+  message ExampleFilterByIdentifier {
+    repeated string include = 1;
+    repeated string exclude = 2;
+  }
+
+  message Response {
+    ExampleRequest request = 1;
+    repeated Example examples = 2;
+  }
+
+  string account = 1;
+
+  /* Deprecated numeric id.
+   * Use the identifier field. This field may be removed in a future update.
+   */
+  int64 id = 2 [deprecated = true];
+  string identifier = 3;
+
+  /* Deprecated filter, which filters by the deprecated id.
+   * Use the filter_by_identifier field. This field may be removed in a future update.
+   */
+  ExampleFilter filter = 4 [deprecated = true];
+  ExampleFilterByIdentifier filter_by_identifier = 5;
+
+  // string match_name = 6;
+  /* Code compiled with an old version of the proto files will still use field 6, but it is gone when they upgrade.
+   * For backwards compatibility, the field is extracted from unknown fields and can still be used by older code.
+   */
+  reserved 6;
+  string match_name = 7;
+}
