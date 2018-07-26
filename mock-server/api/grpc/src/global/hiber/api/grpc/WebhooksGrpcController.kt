@@ -6,7 +6,7 @@ import io.grpc.stub.StreamObserver
 
 val webhook = WebhookApi.Webhook.newBuilder().apply {
   id = 1L
-  account = "example-account"
+  organization = "example-organization"
   data = WebhookApi.Webhook.WebhookData.newBuilder().apply {
     active = true
     contentType = WebhookApi.Webhook.ContentType.PROTO

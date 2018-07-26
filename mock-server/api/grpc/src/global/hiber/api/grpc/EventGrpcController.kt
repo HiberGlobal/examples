@@ -16,10 +16,10 @@ class EventGrpcController : EventServiceGrpc.EventServiceImplBase(),
     EventApi.ListEventsRequest.Response.newBuilder().apply {
       addAllEvents(
         listOf(
-
+        
           EventApi.Event.newBuilder().apply {
             modemLocationUpdated = EventApi.Event.ModemEvent.ModemLocationUpdatedEvent.newBuilder().apply {
-              account = "example-account"
+              organization = "example-organization"
               location = locationBuilder.setLatitude(10.0).setLongitude(10.0).build()
               modemNumber = "example-modem"
               title = "location updated"
@@ -30,7 +30,7 @@ class EventGrpcController : EventServiceGrpc.EventServiceImplBase(),
 
           EventApi.Event.newBuilder().apply {
             userAccessRequest = EventApi.Event.UserEvent.UserAccessRequestEvent.newBuilder().apply {
-              account = "example-account"
+              organization = "example-organization"
               time = Instant.now().asGrpc
               user = "example-user-2"
               title = "user requested access"

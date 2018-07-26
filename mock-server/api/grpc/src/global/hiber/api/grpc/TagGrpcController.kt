@@ -8,7 +8,6 @@ val tag = TagApi.Tag.newBuilder().apply {
   id = 1L
   label = TagApi.Tag.Label.newBuilder().apply {
     name = "example-tag"
-    color = "000000"
   }.build()
 }.build()
 
