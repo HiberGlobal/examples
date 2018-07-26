@@ -4,6 +4,28 @@
 var grpc = require('grpc');
 var currentuser_pb = require('./currentuser_pb.js');
 
+function serialize_hiber_user_CancelAccessRequestRequest(arg) {
+  if (!(arg instanceof currentuser_pb.CancelAccessRequestRequest)) {
+    throw new Error('Expected argument of type hiber.user.CancelAccessRequestRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_user_CancelAccessRequestRequest(buffer_arg) {
+  return currentuser_pb.CancelAccessRequestRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_user_CancelAccessRequestRequest_Response(arg) {
+  if (!(arg instanceof currentuser_pb.CancelAccessRequestRequest.Response)) {
+    throw new Error('Expected argument of type hiber.user.CancelAccessRequestRequest.Response');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_user_CancelAccessRequestRequest_Response(buffer_arg) {
+  return currentuser_pb.CancelAccessRequestRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_hiber_user_CurrentUser(arg) {
   if (!(arg instanceof currentuser_pb.CurrentUser)) {
     throw new Error('Expected argument of type hiber.user.CurrentUser');
@@ -70,9 +92,53 @@ function deserialize_hiber_user_RequestAccessRequest_Response(buffer_arg) {
   return currentuser_pb.RequestAccessRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_hiber_user_UpdateDefaultOrganizationRequest(arg) {
+  if (!(arg instanceof currentuser_pb.UpdateDefaultOrganizationRequest)) {
+    throw new Error('Expected argument of type hiber.user.UpdateDefaultOrganizationRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
 
-// Calls related to the current user. Typically, a newly created account only has access to these calls, all
-// other require an account to be linked.
+function deserialize_hiber_user_UpdateDefaultOrganizationRequest(buffer_arg) {
+  return currentuser_pb.UpdateDefaultOrganizationRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_user_UpdateDefaultOrganizationRequest_Response(arg) {
+  if (!(arg instanceof currentuser_pb.UpdateDefaultOrganizationRequest.Response)) {
+    throw new Error('Expected argument of type hiber.user.UpdateDefaultOrganizationRequest.Response');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_user_UpdateDefaultOrganizationRequest_Response(buffer_arg) {
+  return currentuser_pb.UpdateDefaultOrganizationRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_user_UpdateSettingsRequest(arg) {
+  if (!(arg instanceof currentuser_pb.UpdateSettingsRequest)) {
+    throw new Error('Expected argument of type hiber.user.UpdateSettingsRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_user_UpdateSettingsRequest(buffer_arg) {
+  return currentuser_pb.UpdateSettingsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_user_UpdateSettingsRequest_Response(arg) {
+  if (!(arg instanceof currentuser_pb.UpdateSettingsRequest.Response)) {
+    throw new Error('Expected argument of type hiber.user.UpdateSettingsRequest.Response');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_user_UpdateSettingsRequest_Response(buffer_arg) {
+  return currentuser_pb.UpdateSettingsRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+
+// Calls related to the current user. Typically, a newly created organization only has access to these calls, all
+// other require an organization to be linked.
 var CurrentUserServiceService = exports.CurrentUserServiceService = {
   currentUser: {
     path: '/hiber.user.CurrentUserService/CurrentUser',
@@ -96,6 +162,17 @@ var CurrentUserServiceService = exports.CurrentUserServiceService = {
     responseSerialize: serialize_hiber_user_RequestAccessRequest_Response,
     responseDeserialize: deserialize_hiber_user_RequestAccessRequest_Response,
   },
+  cancelAccessRequest: {
+    path: '/hiber.user.CurrentUserService/CancelAccessRequest',
+    requestStream: false,
+    responseStream: false,
+    requestType: currentuser_pb.CancelAccessRequestRequest,
+    responseType: currentuser_pb.CancelAccessRequestRequest.Response,
+    requestSerialize: serialize_hiber_user_CancelAccessRequestRequest,
+    requestDeserialize: deserialize_hiber_user_CancelAccessRequestRequest,
+    responseSerialize: serialize_hiber_user_CancelAccessRequestRequest_Response,
+    responseDeserialize: deserialize_hiber_user_CancelAccessRequestRequest_Response,
+  },
   deleteCurrentUser: {
     path: '/hiber.user.CurrentUserService/DeleteCurrentUser',
     requestStream: false,
@@ -106,6 +183,28 @@ var CurrentUserServiceService = exports.CurrentUserServiceService = {
     requestDeserialize: deserialize_hiber_user_DeleteCurrentUserRequest,
     responseSerialize: serialize_hiber_user_DeleteCurrentUserRequest_Response,
     responseDeserialize: deserialize_hiber_user_DeleteCurrentUserRequest_Response,
+  },
+  updateDefaultOrganization: {
+    path: '/hiber.user.CurrentUserService/UpdateDefaultOrganization',
+    requestStream: false,
+    responseStream: false,
+    requestType: currentuser_pb.UpdateDefaultOrganizationRequest,
+    responseType: currentuser_pb.UpdateDefaultOrganizationRequest.Response,
+    requestSerialize: serialize_hiber_user_UpdateDefaultOrganizationRequest,
+    requestDeserialize: deserialize_hiber_user_UpdateDefaultOrganizationRequest,
+    responseSerialize: serialize_hiber_user_UpdateDefaultOrganizationRequest_Response,
+    responseDeserialize: deserialize_hiber_user_UpdateDefaultOrganizationRequest_Response,
+  },
+  updateSettings: {
+    path: '/hiber.user.CurrentUserService/UpdateSettings',
+    requestStream: false,
+    responseStream: false,
+    requestType: currentuser_pb.UpdateSettingsRequest,
+    responseType: currentuser_pb.UpdateSettingsRequest.Response,
+    requestSerialize: serialize_hiber_user_UpdateSettingsRequest,
+    requestDeserialize: deserialize_hiber_user_UpdateSettingsRequest,
+    responseSerialize: serialize_hiber_user_UpdateSettingsRequest_Response,
+    responseDeserialize: deserialize_hiber_user_UpdateSettingsRequest_Response,
   },
 };
 

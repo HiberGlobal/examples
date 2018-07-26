@@ -13,11 +13,17 @@ var global = Function('return this')();
 
 var base_pb = require('./base_pb.js');
 var modem_pb = require('./modem_pb.js');
+var modem_transfer_pb = require('./modem_transfer_pb.js');
+var modem_claim_pb = require('./modem_claim_pb.js');
 var tag_pb = require('./tag_pb.js');
 var user_pb = require('./user_pb.js');
 var webhook_pb = require('./webhook_pb.js');
 goog.exportSymbol('proto.hiber.event.Event', null, global);
 goog.exportSymbol('proto.hiber.event.Event.ModemEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.ModemEvent.ClaimEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.ModemEvent.MessageEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDelayedEvent', null, global);
@@ -25,6 +31,12 @@ goog.exportSymbol('proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageD
 goog.exportSymbol('proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.ModemEvent.ModemStaleEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.ModemTransferEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.UserEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.UserEvent.UserAccessRequestEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.UserEvent.UserAddedEvent', null, global);
@@ -65,7 +77,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.hiber.event.Event.oneofGroups_ = [[2,3,4,5,6,7,8,9,10,11,12,13,14]];
+proto.hiber.event.Event.oneofGroups_ = [[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]];
 
 /**
  * @enum {number}
@@ -84,7 +96,15 @@ proto.hiber.event.Event.EventCase = {
   WEBHOOK_CREATED: 11,
   WEBHOOK_UPDATED: 12,
   WEBHOOK_DELETED: 13,
-  WEBHOOK_FAILED: 14
+  WEBHOOK_FAILED: 14,
+  MODEM_TRANSFER_STARTED: 15,
+  MODEM_TRANSFER_CANCELLED: 16,
+  MODEM_TRANSFER_RECEIVED: 17,
+  MODEM_TRANSFER_NOT_RECEIVED: 18,
+  MODEM_TRANSFER_RETURN_TRANSFER_STARTED: 19,
+  MODEM_CLAIMED_EVENT: 20,
+  MODEM_CLAIM_ACCEPTED_EVENT: 21,
+  MODEM_CLAIM_REJECTED_EVENT: 22
 };
 
 /**
@@ -135,7 +155,15 @@ proto.hiber.event.Event.toObject = function(includeInstance, msg) {
     webhookCreated: (f = msg.getWebhookCreated()) && proto.hiber.event.Event.WebhookEvent.CreatedEvent.toObject(includeInstance, f),
     webhookUpdated: (f = msg.getWebhookUpdated()) && proto.hiber.event.Event.WebhookEvent.UpdatedEvent.toObject(includeInstance, f),
     webhookDeleted: (f = msg.getWebhookDeleted()) && proto.hiber.event.Event.WebhookEvent.DeletedEvent.toObject(includeInstance, f),
-    webhookFailed: (f = msg.getWebhookFailed()) && proto.hiber.event.Event.WebhookEvent.FailedEvent.toObject(includeInstance, f)
+    webhookFailed: (f = msg.getWebhookFailed()) && proto.hiber.event.Event.WebhookEvent.FailedEvent.toObject(includeInstance, f),
+    modemTransferStarted: (f = msg.getModemTransferStarted()) && proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.toObject(includeInstance, f),
+    modemTransferCancelled: (f = msg.getModemTransferCancelled()) && proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.toObject(includeInstance, f),
+    modemTransferReceived: (f = msg.getModemTransferReceived()) && proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.toObject(includeInstance, f),
+    modemTransferNotReceived: (f = msg.getModemTransferNotReceived()) && proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.toObject(includeInstance, f),
+    modemTransferReturnTransferStarted: (f = msg.getModemTransferReturnTransferStarted()) && proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.toObject(includeInstance, f),
+    modemClaimedEvent: (f = msg.getModemClaimedEvent()) && proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.toObject(includeInstance, f),
+    modemClaimAcceptedEvent: (f = msg.getModemClaimAcceptedEvent()) && proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.toObject(includeInstance, f),
+    modemClaimRejectedEvent: (f = msg.getModemClaimRejectedEvent()) && proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -236,6 +264,46 @@ proto.hiber.event.Event.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.hiber.event.Event.WebhookEvent.FailedEvent;
       reader.readMessage(value,proto.hiber.event.Event.WebhookEvent.FailedEvent.deserializeBinaryFromReader);
       msg.setWebhookFailed(value);
+      break;
+    case 15:
+      var value = new proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent;
+      reader.readMessage(value,proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.deserializeBinaryFromReader);
+      msg.setModemTransferStarted(value);
+      break;
+    case 16:
+      var value = new proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent;
+      reader.readMessage(value,proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.deserializeBinaryFromReader);
+      msg.setModemTransferCancelled(value);
+      break;
+    case 17:
+      var value = new proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent;
+      reader.readMessage(value,proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.deserializeBinaryFromReader);
+      msg.setModemTransferReceived(value);
+      break;
+    case 18:
+      var value = new proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent;
+      reader.readMessage(value,proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.deserializeBinaryFromReader);
+      msg.setModemTransferNotReceived(value);
+      break;
+    case 19:
+      var value = new proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent;
+      reader.readMessage(value,proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.deserializeBinaryFromReader);
+      msg.setModemTransferReturnTransferStarted(value);
+      break;
+    case 20:
+      var value = new proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent;
+      reader.readMessage(value,proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.deserializeBinaryFromReader);
+      msg.setModemClaimedEvent(value);
+      break;
+    case 21:
+      var value = new proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent;
+      reader.readMessage(value,proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.deserializeBinaryFromReader);
+      msg.setModemClaimAcceptedEvent(value);
+      break;
+    case 22:
+      var value = new proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent;
+      reader.readMessage(value,proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.deserializeBinaryFromReader);
+      msg.setModemClaimRejectedEvent(value);
       break;
     default:
       reader.skipField();
@@ -368,6 +436,70 @@ proto.hiber.event.Event.serializeBinaryToWriter = function(message, writer) {
       14,
       f,
       proto.hiber.event.Event.WebhookEvent.FailedEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getModemTransferStarted();
+  if (f != null) {
+    writer.writeMessage(
+      15,
+      f,
+      proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getModemTransferCancelled();
+  if (f != null) {
+    writer.writeMessage(
+      16,
+      f,
+      proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getModemTransferReceived();
+  if (f != null) {
+    writer.writeMessage(
+      17,
+      f,
+      proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getModemTransferNotReceived();
+  if (f != null) {
+    writer.writeMessage(
+      18,
+      f,
+      proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getModemTransferReturnTransferStarted();
+  if (f != null) {
+    writer.writeMessage(
+      19,
+      f,
+      proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getModemClaimedEvent();
+  if (f != null) {
+    writer.writeMessage(
+      20,
+      f,
+      proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getModemClaimAcceptedEvent();
+  if (f != null) {
+    writer.writeMessage(
+      21,
+      f,
+      proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getModemClaimRejectedEvent();
+  if (f != null) {
+    writer.writeMessage(
+      22,
+      f,
+      proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.serializeBinaryToWriter
     );
   }
 };
@@ -543,7 +675,7 @@ proto.hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent.prototype.toObject 
  */
 proto.hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     modemNumber: jspb.Message.getFieldWithDefault(msg, 2, ""),
     location: (f = msg.getLocation()) && base_pb.Location.toObject(includeInstance, f),
     time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f),
@@ -589,7 +721,7 @@ proto.hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent.deserializeBinaryFr
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -647,7 +779,7 @@ proto.hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent.prototype.serialize
  */
 proto.hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -703,16 +835,16 @@ proto.hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent.serializeBinaryToWr
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent.prototype.getAccount = function() {
+proto.hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent.prototype.setAccount = function(value) {
+proto.hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -907,9 +1039,9 @@ proto.hiber.event.Event.ModemEvent.ModemStaleEvent.prototype.toObject = function
  */
 proto.hiber.event.Event.ModemEvent.ModemStaleEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     modemNumber: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    guardPeriod: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    maximumInactivityPeriod: jspb.Message.getFieldWithDefault(msg, 3, 0),
     time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f),
     lastMessage: (f = msg.getLastMessage()) && base_pb.Timestamp.toObject(includeInstance, f),
     tagsList: jspb.Message.toObjectList(msg.getTagsList(),
@@ -954,7 +1086,7 @@ proto.hiber.event.Event.ModemEvent.ModemStaleEvent.deserializeBinaryFromReader =
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -962,7 +1094,7 @@ proto.hiber.event.Event.ModemEvent.ModemStaleEvent.deserializeBinaryFromReader =
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setGuardPeriod(value);
+      msg.setMaximumInactivityPeriod(value);
       break;
     case 4:
       var value = new base_pb.Timestamp;
@@ -1016,7 +1148,7 @@ proto.hiber.event.Event.ModemEvent.ModemStaleEvent.prototype.serializeBinary = f
  */
 proto.hiber.event.Event.ModemEvent.ModemStaleEvent.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -1030,7 +1162,7 @@ proto.hiber.event.Event.ModemEvent.ModemStaleEvent.serializeBinaryToWriter = fun
       f
     );
   }
-  f = message.getGuardPeriod();
+  f = message.getMaximumInactivityPeriod();
   if (f !== 0) {
     writer.writeInt32(
       3,
@@ -1079,16 +1211,16 @@ proto.hiber.event.Event.ModemEvent.ModemStaleEvent.serializeBinaryToWriter = fun
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.event.Event.ModemEvent.ModemStaleEvent.prototype.getAccount = function() {
+proto.hiber.event.Event.ModemEvent.ModemStaleEvent.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.ModemEvent.ModemStaleEvent.prototype.setAccount = function(value) {
+proto.hiber.event.Event.ModemEvent.ModemStaleEvent.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -1109,16 +1241,16 @@ proto.hiber.event.Event.ModemEvent.ModemStaleEvent.prototype.setModemNumber = fu
 
 
 /**
- * optional int32 guard_period = 3;
+ * optional int32 maximum_inactivity_period = 3;
  * @return {number}
  */
-proto.hiber.event.Event.ModemEvent.ModemStaleEvent.prototype.getGuardPeriod = function() {
+proto.hiber.event.Event.ModemEvent.ModemStaleEvent.prototype.getMaximumInactivityPeriod = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
 /** @param {number} value */
-proto.hiber.event.Event.ModemEvent.ModemStaleEvent.prototype.setGuardPeriod = function(value) {
+proto.hiber.event.Event.ModemEvent.ModemStaleEvent.prototype.setMaximumInactivityPeriod = function(value) {
   jspb.Message.setField(this, 3, value);
 };
 
@@ -1414,7 +1546,7 @@ proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent.protot
  */
 proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     modemNumber: jspb.Message.getFieldWithDefault(msg, 2, ""),
     message: (f = msg.getMessage()) && modem_pb.ModemMessage.toObject(includeInstance, f),
     tagsList: jspb.Message.toObjectList(msg.getTagsList(),
@@ -1460,7 +1592,7 @@ proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent.deseri
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -1518,7 +1650,7 @@ proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent.protot
  */
 proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -1574,16 +1706,16 @@ proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent.serial
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent.prototype.getAccount = function() {
+proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent.prototype.setAccount = function(value) {
+proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -1778,7 +1910,7 @@ proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDroppedEvent.prototy
  */
 proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDroppedEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     modemNumber: jspb.Message.getFieldWithDefault(msg, 2, ""),
     droppedMessages: jspb.Message.getFieldWithDefault(msg, 3, 0),
     message: (f = msg.getMessage()) && modem_pb.ModemMessage.toObject(includeInstance, f),
@@ -1826,7 +1958,7 @@ proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDroppedEvent.deseria
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -1892,7 +2024,7 @@ proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDroppedEvent.prototy
  */
 proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDroppedEvent.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -1962,16 +2094,16 @@ proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDroppedEvent.seriali
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDroppedEvent.prototype.getAccount = function() {
+proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDroppedEvent.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDroppedEvent.prototype.setAccount = function(value) {
+proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDroppedEvent.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -2196,7 +2328,7 @@ proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDelayedEvent.prototy
  */
 proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDelayedEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     modemNumber: jspb.Message.getFieldWithDefault(msg, 2, ""),
     message: (f = msg.getMessage()) && modem_pb.ModemMessage.toObject(includeInstance, f),
     delaySeconds: jspb.Message.getFieldWithDefault(msg, 4, 0),
@@ -2244,7 +2376,7 @@ proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDelayedEvent.deseria
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -2310,7 +2442,7 @@ proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDelayedEvent.prototy
  */
 proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDelayedEvent.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -2380,16 +2512,16 @@ proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDelayedEvent.seriali
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDelayedEvent.prototype.getAccount = function() {
+proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDelayedEvent.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDelayedEvent.prototype.setAccount = function(value) {
+proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDelayedEvent.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -2614,7 +2746,7 @@ proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent.
  */
 proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     modemNumber: jspb.Message.getFieldWithDefault(msg, 2, ""),
     modemMessageId: jspb.Message.getFieldWithDefault(msg, 3, 0),
     time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f),
@@ -2661,7 +2793,7 @@ proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent.
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -2722,7 +2854,7 @@ proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent.
  */
 proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -2784,16 +2916,16 @@ proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent.
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent.prototype.getAccount = function() {
+proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent.prototype.setAccount = function(value) {
+proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -2930,6 +3062,3159 @@ proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent.
 
 /** @param {string} value */
 proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent.prototype.setDescription = function(value) {
+  jspb.Message.setField(this, 8, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.hiber.event.Event.ModemEvent.ClaimEvent, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.event.Event.ModemEvent.ClaimEvent.displayName = 'proto.hiber.event.Event.ModemEvent.ClaimEvent';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.ModemEvent.ClaimEvent.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.event.Event.ModemEvent.ClaimEvent} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.event.Event.ModemEvent.ClaimEvent}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.event.Event.ModemEvent.ClaimEvent;
+  return proto.hiber.event.Event.ModemEvent.ClaimEvent.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.event.Event.ModemEvent.ClaimEvent} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.event.Event.ModemEvent.ClaimEvent}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.event.Event.ModemEvent.ClaimEvent.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.event.Event.ModemEvent.ClaimEvent} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.repeatedFields_, null);
+};
+goog.inherits(proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.displayName = 'proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.repeatedFields_ = [7];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    modemNumber: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    claim: (f = msg.getClaim()) && modem_claim_pb.ModemClaim.toObject(includeInstance, f),
+    time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f),
+    title: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    tagsList: jspb.Message.toObjectList(msg.getTagsList(),
+    tag_pb.Tag.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent;
+  return proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganization(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setModemNumber(value);
+      break;
+    case 3:
+      var value = new modem_claim_pb.ModemClaim;
+      reader.readMessage(value,modem_claim_pb.ModemClaim.deserializeBinaryFromReader);
+      msg.setClaim(value);
+      break;
+    case 4:
+      var value = new base_pb.Timestamp;
+      reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTitle(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
+      break;
+    case 7:
+      var value = new tag_pb.Tag;
+      reader.readMessage(value,tag_pb.Tag.deserializeBinaryFromReader);
+      msg.addTags(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOrganization();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getModemNumber();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getClaim();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      modem_claim_pb.ModemClaim.serializeBinaryToWriter
+    );
+  }
+  f = message.getTime();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      base_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getTitle();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = message.getDescription();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
+  f = message.getTagsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      7,
+      f,
+      tag_pb.Tag.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional string organization = 1;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.getOrganization = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.setOrganization = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional string modem_number = 2;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.getModemNumber = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.setModemNumber = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional hiber.modem.ModemClaim claim = 3;
+ * @return {?proto.hiber.modem.ModemClaim}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.getClaim = function() {
+  return /** @type{?proto.hiber.modem.ModemClaim} */ (
+    jspb.Message.getWrapperField(this, modem_claim_pb.ModemClaim, 3));
+};
+
+
+/** @param {?proto.hiber.modem.ModemClaim|undefined} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.setClaim = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.clearClaim = function() {
+  this.setClaim(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.hasClaim = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional hiber.Timestamp time = 4;
+ * @return {?proto.hiber.Timestamp}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.getTime = function() {
+  return /** @type{?proto.hiber.Timestamp} */ (
+    jspb.Message.getWrapperField(this, base_pb.Timestamp, 4));
+};
+
+
+/** @param {?proto.hiber.Timestamp|undefined} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.setTime = function(value) {
+  jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.clearTime = function() {
+  this.setTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.hasTime = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional string title = 5;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.getTitle = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.setTitle = function(value) {
+  jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * optional string description = 6;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.setDescription = function(value) {
+  jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * repeated hiber.tag.Tag tags = 7;
+ * @return {!Array.<!proto.hiber.tag.Tag>}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.getTagsList = function() {
+  return /** @type{!Array.<!proto.hiber.tag.Tag>} */ (
+    jspb.Message.getRepeatedWrapperField(this, tag_pb.Tag, 7));
+};
+
+
+/** @param {!Array.<!proto.hiber.tag.Tag>} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.setTagsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 7, value);
+};
+
+
+/**
+ * @param {!proto.hiber.tag.Tag=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.hiber.tag.Tag}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.addTags = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 7, opt_value, proto.hiber.tag.Tag, opt_index);
+};
+
+
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent.prototype.clearTagsList = function() {
+  this.setTagsList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.repeatedFields_, null);
+};
+goog.inherits(proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.displayName = 'proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.repeatedFields_ = [7];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    modemNumber: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    claim: (f = msg.getClaim()) && modem_claim_pb.ModemClaim.toObject(includeInstance, f),
+    time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f),
+    title: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    tagsList: jspb.Message.toObjectList(msg.getTagsList(),
+    tag_pb.Tag.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent;
+  return proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganization(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setModemNumber(value);
+      break;
+    case 3:
+      var value = new modem_claim_pb.ModemClaim;
+      reader.readMessage(value,modem_claim_pb.ModemClaim.deserializeBinaryFromReader);
+      msg.setClaim(value);
+      break;
+    case 4:
+      var value = new base_pb.Timestamp;
+      reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTitle(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
+      break;
+    case 7:
+      var value = new tag_pb.Tag;
+      reader.readMessage(value,tag_pb.Tag.deserializeBinaryFromReader);
+      msg.addTags(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOrganization();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getModemNumber();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getClaim();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      modem_claim_pb.ModemClaim.serializeBinaryToWriter
+    );
+  }
+  f = message.getTime();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      base_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getTitle();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = message.getDescription();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
+  f = message.getTagsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      7,
+      f,
+      tag_pb.Tag.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional string organization = 1;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.getOrganization = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.setOrganization = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional string modem_number = 2;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.getModemNumber = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.setModemNumber = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional hiber.modem.ModemClaim claim = 3;
+ * @return {?proto.hiber.modem.ModemClaim}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.getClaim = function() {
+  return /** @type{?proto.hiber.modem.ModemClaim} */ (
+    jspb.Message.getWrapperField(this, modem_claim_pb.ModemClaim, 3));
+};
+
+
+/** @param {?proto.hiber.modem.ModemClaim|undefined} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.setClaim = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.clearClaim = function() {
+  this.setClaim(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.hasClaim = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional hiber.Timestamp time = 4;
+ * @return {?proto.hiber.Timestamp}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.getTime = function() {
+  return /** @type{?proto.hiber.Timestamp} */ (
+    jspb.Message.getWrapperField(this, base_pb.Timestamp, 4));
+};
+
+
+/** @param {?proto.hiber.Timestamp|undefined} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.setTime = function(value) {
+  jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.clearTime = function() {
+  this.setTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.hasTime = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional string title = 5;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.getTitle = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.setTitle = function(value) {
+  jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * optional string description = 6;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.setDescription = function(value) {
+  jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * repeated hiber.tag.Tag tags = 7;
+ * @return {!Array.<!proto.hiber.tag.Tag>}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.getTagsList = function() {
+  return /** @type{!Array.<!proto.hiber.tag.Tag>} */ (
+    jspb.Message.getRepeatedWrapperField(this, tag_pb.Tag, 7));
+};
+
+
+/** @param {!Array.<!proto.hiber.tag.Tag>} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.setTagsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 7, value);
+};
+
+
+/**
+ * @param {!proto.hiber.tag.Tag=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.hiber.tag.Tag}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.addTags = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 7, opt_value, proto.hiber.tag.Tag, opt_index);
+};
+
+
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.prototype.clearTagsList = function() {
+  this.setTagsList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.repeatedFields_, null);
+};
+goog.inherits(proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.displayName = 'proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.repeatedFields_ = [9];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    modemNumber: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    claim: (f = msg.getClaim()) && modem_claim_pb.ModemClaim.toObject(includeInstance, f),
+    time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f),
+    reason: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    comment: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    title: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    tagsList: jspb.Message.toObjectList(msg.getTagsList(),
+    tag_pb.Tag.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent;
+  return proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganization(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setModemNumber(value);
+      break;
+    case 3:
+      var value = new modem_claim_pb.ModemClaim;
+      reader.readMessage(value,modem_claim_pb.ModemClaim.deserializeBinaryFromReader);
+      msg.setClaim(value);
+      break;
+    case 4:
+      var value = new base_pb.Timestamp;
+      reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
+      break;
+    case 5:
+      var value = /** @type {!proto.hiber.modem.ModemClaim.RejectReason} */ (reader.readEnum());
+      msg.setReason(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setComment(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTitle(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
+      break;
+    case 9:
+      var value = new tag_pb.Tag;
+      reader.readMessage(value,tag_pb.Tag.deserializeBinaryFromReader);
+      msg.addTags(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOrganization();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getModemNumber();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getClaim();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      modem_claim_pb.ModemClaim.serializeBinaryToWriter
+    );
+  }
+  f = message.getTime();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      base_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getReason();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      5,
+      f
+    );
+  }
+  f = message.getComment();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
+  f = message.getTitle();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+  f = message.getDescription();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
+  f = message.getTagsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      9,
+      f,
+      tag_pb.Tag.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional string organization = 1;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.getOrganization = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.setOrganization = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional string modem_number = 2;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.getModemNumber = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.setModemNumber = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional hiber.modem.ModemClaim claim = 3;
+ * @return {?proto.hiber.modem.ModemClaim}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.getClaim = function() {
+  return /** @type{?proto.hiber.modem.ModemClaim} */ (
+    jspb.Message.getWrapperField(this, modem_claim_pb.ModemClaim, 3));
+};
+
+
+/** @param {?proto.hiber.modem.ModemClaim|undefined} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.setClaim = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.clearClaim = function() {
+  this.setClaim(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.hasClaim = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional hiber.Timestamp time = 4;
+ * @return {?proto.hiber.Timestamp}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.getTime = function() {
+  return /** @type{?proto.hiber.Timestamp} */ (
+    jspb.Message.getWrapperField(this, base_pb.Timestamp, 4));
+};
+
+
+/** @param {?proto.hiber.Timestamp|undefined} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.setTime = function(value) {
+  jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.clearTime = function() {
+  this.setTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.hasTime = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional hiber.modem.ModemClaim.RejectReason reason = 5;
+ * @return {!proto.hiber.modem.ModemClaim.RejectReason}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.getReason = function() {
+  return /** @type {!proto.hiber.modem.ModemClaim.RejectReason} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/** @param {!proto.hiber.modem.ModemClaim.RejectReason} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.setReason = function(value) {
+  jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * optional string comment = 6;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.getComment = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.setComment = function(value) {
+  jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * optional string title = 7;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.getTitle = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.setTitle = function(value) {
+  jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * optional string description = 8;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.setDescription = function(value) {
+  jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * repeated hiber.tag.Tag tags = 9;
+ * @return {!Array.<!proto.hiber.tag.Tag>}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.getTagsList = function() {
+  return /** @type{!Array.<!proto.hiber.tag.Tag>} */ (
+    jspb.Message.getRepeatedWrapperField(this, tag_pb.Tag, 9));
+};
+
+
+/** @param {!Array.<!proto.hiber.tag.Tag>} value */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.setTagsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 9, value);
+};
+
+
+/**
+ * @param {!proto.hiber.tag.Tag=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.hiber.tag.Tag}
+ */
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.addTags = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 9, opt_value, proto.hiber.tag.Tag, opt_index);
+};
+
+
+proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.prototype.clearTagsList = function() {
+  this.setTagsList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.event.Event.ModemTransferEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.hiber.event.Event.ModemTransferEvent, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.event.Event.ModemTransferEvent.displayName = 'proto.hiber.event.Event.ModemTransferEvent';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.event.Event.ModemTransferEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.ModemTransferEvent.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.event.Event.ModemTransferEvent} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemTransferEvent.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.event.Event.ModemTransferEvent}
+ */
+proto.hiber.event.Event.ModemTransferEvent.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.event.Event.ModemTransferEvent;
+  return proto.hiber.event.Event.ModemTransferEvent.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.event.Event.ModemTransferEvent} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.event.Event.ModemTransferEvent}
+ */
+proto.hiber.event.Event.ModemTransferEvent.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.event.Event.ModemTransferEvent.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.event.Event.ModemTransferEvent.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.event.Event.ModemTransferEvent} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemTransferEvent.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.repeatedFields_, null);
+};
+goog.inherits(proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.displayName = 'proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.repeatedFields_ = [4];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    transfer: (f = msg.getTransfer()) && modem_transfer_pb.ModemTransfer.toObject(includeInstance, f),
+    organization: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f),
+    tagsList: jspb.Message.toObjectList(msg.getTagsList(),
+    tag_pb.Tag.toObject, includeInstance),
+    title: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 6, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent;
+  return proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new modem_transfer_pb.ModemTransfer;
+      reader.readMessage(value,modem_transfer_pb.ModemTransfer.deserializeBinaryFromReader);
+      msg.setTransfer(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganization(value);
+      break;
+    case 3:
+      var value = new base_pb.Timestamp;
+      reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
+      break;
+    case 4:
+      var value = new tag_pb.Tag;
+      reader.readMessage(value,tag_pb.Tag.deserializeBinaryFromReader);
+      msg.addTags(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTitle(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTransfer();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      modem_transfer_pb.ModemTransfer.serializeBinaryToWriter
+    );
+  }
+  f = message.getOrganization();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getTime();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      base_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getTagsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      4,
+      f,
+      tag_pb.Tag.serializeBinaryToWriter
+    );
+  }
+  f = message.getTitle();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = message.getDescription();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional hiber.modem.ModemTransfer transfer = 1;
+ * @return {?proto.hiber.modem.ModemTransfer}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.prototype.getTransfer = function() {
+  return /** @type{?proto.hiber.modem.ModemTransfer} */ (
+    jspb.Message.getWrapperField(this, modem_transfer_pb.ModemTransfer, 1));
+};
+
+
+/** @param {?proto.hiber.modem.ModemTransfer|undefined} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.prototype.setTransfer = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.prototype.clearTransfer = function() {
+  this.setTransfer(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.prototype.hasTransfer = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional string organization = 2;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.prototype.getOrganization = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.prototype.setOrganization = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional hiber.Timestamp time = 3;
+ * @return {?proto.hiber.Timestamp}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.prototype.getTime = function() {
+  return /** @type{?proto.hiber.Timestamp} */ (
+    jspb.Message.getWrapperField(this, base_pb.Timestamp, 3));
+};
+
+
+/** @param {?proto.hiber.Timestamp|undefined} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.prototype.setTime = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.prototype.clearTime = function() {
+  this.setTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.prototype.hasTime = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * repeated hiber.tag.Tag tags = 4;
+ * @return {!Array.<!proto.hiber.tag.Tag>}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.prototype.getTagsList = function() {
+  return /** @type{!Array.<!proto.hiber.tag.Tag>} */ (
+    jspb.Message.getRepeatedWrapperField(this, tag_pb.Tag, 4));
+};
+
+
+/** @param {!Array.<!proto.hiber.tag.Tag>} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.prototype.setTagsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 4, value);
+};
+
+
+/**
+ * @param {!proto.hiber.tag.Tag=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.hiber.tag.Tag}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.prototype.addTags = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.hiber.tag.Tag, opt_index);
+};
+
+
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.prototype.clearTagsList = function() {
+  this.setTagsList([]);
+};
+
+
+/**
+ * optional string title = 5;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.prototype.getTitle = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.prototype.setTitle = function(value) {
+  jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * optional string description = 6;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.prototype.setDescription = function(value) {
+  jspb.Message.setField(this, 6, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.repeatedFields_, null);
+};
+goog.inherits(proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.displayName = 'proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.repeatedFields_ = [4];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    transfer: (f = msg.getTransfer()) && modem_transfer_pb.ModemTransfer.toObject(includeInstance, f),
+    organization: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f),
+    tagsList: jspb.Message.toObjectList(msg.getTagsList(),
+    tag_pb.Tag.toObject, includeInstance),
+    title: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 6, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent;
+  return proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new modem_transfer_pb.ModemTransfer;
+      reader.readMessage(value,modem_transfer_pb.ModemTransfer.deserializeBinaryFromReader);
+      msg.setTransfer(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganization(value);
+      break;
+    case 3:
+      var value = new base_pb.Timestamp;
+      reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
+      break;
+    case 4:
+      var value = new tag_pb.Tag;
+      reader.readMessage(value,tag_pb.Tag.deserializeBinaryFromReader);
+      msg.addTags(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTitle(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTransfer();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      modem_transfer_pb.ModemTransfer.serializeBinaryToWriter
+    );
+  }
+  f = message.getOrganization();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getTime();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      base_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getTagsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      4,
+      f,
+      tag_pb.Tag.serializeBinaryToWriter
+    );
+  }
+  f = message.getTitle();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = message.getDescription();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional hiber.modem.ModemTransfer transfer = 1;
+ * @return {?proto.hiber.modem.ModemTransfer}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.prototype.getTransfer = function() {
+  return /** @type{?proto.hiber.modem.ModemTransfer} */ (
+    jspb.Message.getWrapperField(this, modem_transfer_pb.ModemTransfer, 1));
+};
+
+
+/** @param {?proto.hiber.modem.ModemTransfer|undefined} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.prototype.setTransfer = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.prototype.clearTransfer = function() {
+  this.setTransfer(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.prototype.hasTransfer = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional string organization = 2;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.prototype.getOrganization = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.prototype.setOrganization = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional hiber.Timestamp time = 3;
+ * @return {?proto.hiber.Timestamp}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.prototype.getTime = function() {
+  return /** @type{?proto.hiber.Timestamp} */ (
+    jspb.Message.getWrapperField(this, base_pb.Timestamp, 3));
+};
+
+
+/** @param {?proto.hiber.Timestamp|undefined} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.prototype.setTime = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.prototype.clearTime = function() {
+  this.setTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.prototype.hasTime = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * repeated hiber.tag.Tag tags = 4;
+ * @return {!Array.<!proto.hiber.tag.Tag>}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.prototype.getTagsList = function() {
+  return /** @type{!Array.<!proto.hiber.tag.Tag>} */ (
+    jspb.Message.getRepeatedWrapperField(this, tag_pb.Tag, 4));
+};
+
+
+/** @param {!Array.<!proto.hiber.tag.Tag>} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.prototype.setTagsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 4, value);
+};
+
+
+/**
+ * @param {!proto.hiber.tag.Tag=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.hiber.tag.Tag}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.prototype.addTags = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.hiber.tag.Tag, opt_index);
+};
+
+
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.prototype.clearTagsList = function() {
+  this.setTagsList([]);
+};
+
+
+/**
+ * optional string title = 5;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.prototype.getTitle = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.prototype.setTitle = function(value) {
+  jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * optional string description = 6;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.prototype.setDescription = function(value) {
+  jspb.Message.setField(this, 6, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.repeatedFields_, null);
+};
+goog.inherits(proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.displayName = 'proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.repeatedFields_ = [4];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    transfer: (f = msg.getTransfer()) && modem_transfer_pb.ModemTransfer.toObject(includeInstance, f),
+    organization: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f),
+    tagsList: jspb.Message.toObjectList(msg.getTagsList(),
+    tag_pb.Tag.toObject, includeInstance),
+    title: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 6, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent;
+  return proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new modem_transfer_pb.ModemTransfer;
+      reader.readMessage(value,modem_transfer_pb.ModemTransfer.deserializeBinaryFromReader);
+      msg.setTransfer(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganization(value);
+      break;
+    case 3:
+      var value = new base_pb.Timestamp;
+      reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
+      break;
+    case 4:
+      var value = new tag_pb.Tag;
+      reader.readMessage(value,tag_pb.Tag.deserializeBinaryFromReader);
+      msg.addTags(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTitle(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTransfer();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      modem_transfer_pb.ModemTransfer.serializeBinaryToWriter
+    );
+  }
+  f = message.getOrganization();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getTime();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      base_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getTagsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      4,
+      f,
+      tag_pb.Tag.serializeBinaryToWriter
+    );
+  }
+  f = message.getTitle();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = message.getDescription();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional hiber.modem.ModemTransfer transfer = 1;
+ * @return {?proto.hiber.modem.ModemTransfer}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.prototype.getTransfer = function() {
+  return /** @type{?proto.hiber.modem.ModemTransfer} */ (
+    jspb.Message.getWrapperField(this, modem_transfer_pb.ModemTransfer, 1));
+};
+
+
+/** @param {?proto.hiber.modem.ModemTransfer|undefined} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.prototype.setTransfer = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.prototype.clearTransfer = function() {
+  this.setTransfer(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.prototype.hasTransfer = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional string organization = 2;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.prototype.getOrganization = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.prototype.setOrganization = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional hiber.Timestamp time = 3;
+ * @return {?proto.hiber.Timestamp}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.prototype.getTime = function() {
+  return /** @type{?proto.hiber.Timestamp} */ (
+    jspb.Message.getWrapperField(this, base_pb.Timestamp, 3));
+};
+
+
+/** @param {?proto.hiber.Timestamp|undefined} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.prototype.setTime = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.prototype.clearTime = function() {
+  this.setTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.prototype.hasTime = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * repeated hiber.tag.Tag tags = 4;
+ * @return {!Array.<!proto.hiber.tag.Tag>}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.prototype.getTagsList = function() {
+  return /** @type{!Array.<!proto.hiber.tag.Tag>} */ (
+    jspb.Message.getRepeatedWrapperField(this, tag_pb.Tag, 4));
+};
+
+
+/** @param {!Array.<!proto.hiber.tag.Tag>} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.prototype.setTagsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 4, value);
+};
+
+
+/**
+ * @param {!proto.hiber.tag.Tag=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.hiber.tag.Tag}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.prototype.addTags = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.hiber.tag.Tag, opt_index);
+};
+
+
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.prototype.clearTagsList = function() {
+  this.setTagsList([]);
+};
+
+
+/**
+ * optional string title = 5;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.prototype.getTitle = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.prototype.setTitle = function(value) {
+  jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * optional string description = 6;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.prototype.setDescription = function(value) {
+  jspb.Message.setField(this, 6, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.repeatedFields_, null);
+};
+goog.inherits(proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.displayName = 'proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.repeatedFields_ = [4];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    transfer: (f = msg.getTransfer()) && modem_transfer_pb.ModemTransfer.toObject(includeInstance, f),
+    organization: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f),
+    tagsList: jspb.Message.toObjectList(msg.getTagsList(),
+    tag_pb.Tag.toObject, includeInstance),
+    title: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 6, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent;
+  return proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new modem_transfer_pb.ModemTransfer;
+      reader.readMessage(value,modem_transfer_pb.ModemTransfer.deserializeBinaryFromReader);
+      msg.setTransfer(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganization(value);
+      break;
+    case 3:
+      var value = new base_pb.Timestamp;
+      reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
+      break;
+    case 4:
+      var value = new tag_pb.Tag;
+      reader.readMessage(value,tag_pb.Tag.deserializeBinaryFromReader);
+      msg.addTags(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTitle(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTransfer();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      modem_transfer_pb.ModemTransfer.serializeBinaryToWriter
+    );
+  }
+  f = message.getOrganization();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getTime();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      base_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getTagsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      4,
+      f,
+      tag_pb.Tag.serializeBinaryToWriter
+    );
+  }
+  f = message.getTitle();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = message.getDescription();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional hiber.modem.ModemTransfer transfer = 1;
+ * @return {?proto.hiber.modem.ModemTransfer}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.prototype.getTransfer = function() {
+  return /** @type{?proto.hiber.modem.ModemTransfer} */ (
+    jspb.Message.getWrapperField(this, modem_transfer_pb.ModemTransfer, 1));
+};
+
+
+/** @param {?proto.hiber.modem.ModemTransfer|undefined} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.prototype.setTransfer = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.prototype.clearTransfer = function() {
+  this.setTransfer(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.prototype.hasTransfer = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional string organization = 2;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.prototype.getOrganization = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.prototype.setOrganization = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional hiber.Timestamp time = 3;
+ * @return {?proto.hiber.Timestamp}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.prototype.getTime = function() {
+  return /** @type{?proto.hiber.Timestamp} */ (
+    jspb.Message.getWrapperField(this, base_pb.Timestamp, 3));
+};
+
+
+/** @param {?proto.hiber.Timestamp|undefined} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.prototype.setTime = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.prototype.clearTime = function() {
+  this.setTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.prototype.hasTime = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * repeated hiber.tag.Tag tags = 4;
+ * @return {!Array.<!proto.hiber.tag.Tag>}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.prototype.getTagsList = function() {
+  return /** @type{!Array.<!proto.hiber.tag.Tag>} */ (
+    jspb.Message.getRepeatedWrapperField(this, tag_pb.Tag, 4));
+};
+
+
+/** @param {!Array.<!proto.hiber.tag.Tag>} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.prototype.setTagsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 4, value);
+};
+
+
+/**
+ * @param {!proto.hiber.tag.Tag=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.hiber.tag.Tag}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.prototype.addTags = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.hiber.tag.Tag, opt_index);
+};
+
+
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.prototype.clearTagsList = function() {
+  this.setTagsList([]);
+};
+
+
+/**
+ * optional string title = 5;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.prototype.getTitle = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.prototype.setTitle = function(value) {
+  jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * optional string description = 6;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent.prototype.setDescription = function(value) {
+  jspb.Message.setField(this, 6, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.repeatedFields_, null);
+};
+goog.inherits(proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.displayName = 'proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.repeatedFields_ = [3,6];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    returnTransfer: (f = msg.getReturnTransfer()) && modem_transfer_pb.ModemTransfer.toObject(includeInstance, f),
+    originalTransfer: (f = msg.getOriginalTransfer()) && modem_transfer_pb.ModemTransfer.toObject(includeInstance, f),
+    returnLinesList: jspb.Message.toObjectList(msg.getReturnLinesList(),
+    modem_transfer_pb.ModemTransferReturnLine.toObject, includeInstance),
+    organization: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f),
+    tagsList: jspb.Message.toObjectList(msg.getTagsList(),
+    tag_pb.Tag.toObject, includeInstance),
+    title: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 8, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent;
+  return proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new modem_transfer_pb.ModemTransfer;
+      reader.readMessage(value,modem_transfer_pb.ModemTransfer.deserializeBinaryFromReader);
+      msg.setReturnTransfer(value);
+      break;
+    case 2:
+      var value = new modem_transfer_pb.ModemTransfer;
+      reader.readMessage(value,modem_transfer_pb.ModemTransfer.deserializeBinaryFromReader);
+      msg.setOriginalTransfer(value);
+      break;
+    case 3:
+      var value = new modem_transfer_pb.ModemTransferReturnLine;
+      reader.readMessage(value,modem_transfer_pb.ModemTransferReturnLine.deserializeBinaryFromReader);
+      msg.addReturnLines(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganization(value);
+      break;
+    case 5:
+      var value = new base_pb.Timestamp;
+      reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
+      break;
+    case 6:
+      var value = new tag_pb.Tag;
+      reader.readMessage(value,tag_pb.Tag.deserializeBinaryFromReader);
+      msg.addTags(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTitle(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getReturnTransfer();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      modem_transfer_pb.ModemTransfer.serializeBinaryToWriter
+    );
+  }
+  f = message.getOriginalTransfer();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      modem_transfer_pb.ModemTransfer.serializeBinaryToWriter
+    );
+  }
+  f = message.getReturnLinesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      3,
+      f,
+      modem_transfer_pb.ModemTransferReturnLine.serializeBinaryToWriter
+    );
+  }
+  f = message.getOrganization();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getTime();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      base_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getTagsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      6,
+      f,
+      tag_pb.Tag.serializeBinaryToWriter
+    );
+  }
+  f = message.getTitle();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+  f = message.getDescription();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional hiber.modem.ModemTransfer return_transfer = 1;
+ * @return {?proto.hiber.modem.ModemTransfer}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.getReturnTransfer = function() {
+  return /** @type{?proto.hiber.modem.ModemTransfer} */ (
+    jspb.Message.getWrapperField(this, modem_transfer_pb.ModemTransfer, 1));
+};
+
+
+/** @param {?proto.hiber.modem.ModemTransfer|undefined} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.setReturnTransfer = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.clearReturnTransfer = function() {
+  this.setReturnTransfer(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.hasReturnTransfer = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional hiber.modem.ModemTransfer original_transfer = 2;
+ * @return {?proto.hiber.modem.ModemTransfer}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.getOriginalTransfer = function() {
+  return /** @type{?proto.hiber.modem.ModemTransfer} */ (
+    jspb.Message.getWrapperField(this, modem_transfer_pb.ModemTransfer, 2));
+};
+
+
+/** @param {?proto.hiber.modem.ModemTransfer|undefined} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.setOriginalTransfer = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.clearOriginalTransfer = function() {
+  this.setOriginalTransfer(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.hasOriginalTransfer = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * repeated hiber.modem.ModemTransferReturnLine return_lines = 3;
+ * @return {!Array.<!proto.hiber.modem.ModemTransferReturnLine>}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.getReturnLinesList = function() {
+  return /** @type{!Array.<!proto.hiber.modem.ModemTransferReturnLine>} */ (
+    jspb.Message.getRepeatedWrapperField(this, modem_transfer_pb.ModemTransferReturnLine, 3));
+};
+
+
+/** @param {!Array.<!proto.hiber.modem.ModemTransferReturnLine>} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.setReturnLinesList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 3, value);
+};
+
+
+/**
+ * @param {!proto.hiber.modem.ModemTransferReturnLine=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.hiber.modem.ModemTransferReturnLine}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.addReturnLines = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.hiber.modem.ModemTransferReturnLine, opt_index);
+};
+
+
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.clearReturnLinesList = function() {
+  this.setReturnLinesList([]);
+};
+
+
+/**
+ * optional string organization = 4;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.getOrganization = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.setOrganization = function(value) {
+  jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * optional hiber.Timestamp time = 5;
+ * @return {?proto.hiber.Timestamp}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.getTime = function() {
+  return /** @type{?proto.hiber.Timestamp} */ (
+    jspb.Message.getWrapperField(this, base_pb.Timestamp, 5));
+};
+
+
+/** @param {?proto.hiber.Timestamp|undefined} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.setTime = function(value) {
+  jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.clearTime = function() {
+  this.setTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.hasTime = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * repeated hiber.tag.Tag tags = 6;
+ * @return {!Array.<!proto.hiber.tag.Tag>}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.getTagsList = function() {
+  return /** @type{!Array.<!proto.hiber.tag.Tag>} */ (
+    jspb.Message.getRepeatedWrapperField(this, tag_pb.Tag, 6));
+};
+
+
+/** @param {!Array.<!proto.hiber.tag.Tag>} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.setTagsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 6, value);
+};
+
+
+/**
+ * @param {!proto.hiber.tag.Tag=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.hiber.tag.Tag}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.addTags = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.hiber.tag.Tag, opt_index);
+};
+
+
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.clearTagsList = function() {
+  this.setTagsList([]);
+};
+
+
+/**
+ * optional string title = 7;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.getTitle = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.setTitle = function(value) {
+  jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * optional string description = 8;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent.prototype.setDescription = function(value) {
   jspb.Message.setField(this, 8, value);
 };
 
@@ -3097,7 +6382,7 @@ proto.hiber.event.Event.UserEvent.UserAddedEvent.prototype.toObject = function(o
  */
 proto.hiber.event.Event.UserEvent.UserAddedEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     user: jspb.Message.getFieldWithDefault(msg, 2, ""),
     title: jspb.Message.getFieldWithDefault(msg, 3, ""),
     description: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -3140,7 +6425,7 @@ proto.hiber.event.Event.UserEvent.UserAddedEvent.deserializeBinaryFromReader = f
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -3188,7 +6473,7 @@ proto.hiber.event.Event.UserEvent.UserAddedEvent.prototype.serializeBinary = fun
  */
 proto.hiber.event.Event.UserEvent.UserAddedEvent.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -3228,16 +6513,16 @@ proto.hiber.event.Event.UserEvent.UserAddedEvent.serializeBinaryToWriter = funct
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.event.Event.UserEvent.UserAddedEvent.prototype.getAccount = function() {
+proto.hiber.event.Event.UserEvent.UserAddedEvent.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.UserEvent.UserAddedEvent.prototype.setAccount = function(value) {
+proto.hiber.event.Event.UserEvent.UserAddedEvent.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -3364,7 +6649,7 @@ proto.hiber.event.Event.UserEvent.UserRemovedEvent.prototype.toObject = function
  */
 proto.hiber.event.Event.UserEvent.UserRemovedEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     user: jspb.Message.getFieldWithDefault(msg, 2, ""),
     title: jspb.Message.getFieldWithDefault(msg, 3, ""),
     description: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -3407,7 +6692,7 @@ proto.hiber.event.Event.UserEvent.UserRemovedEvent.deserializeBinaryFromReader =
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -3455,7 +6740,7 @@ proto.hiber.event.Event.UserEvent.UserRemovedEvent.prototype.serializeBinary = f
  */
 proto.hiber.event.Event.UserEvent.UserRemovedEvent.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -3495,16 +6780,16 @@ proto.hiber.event.Event.UserEvent.UserRemovedEvent.serializeBinaryToWriter = fun
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.event.Event.UserEvent.UserRemovedEvent.prototype.getAccount = function() {
+proto.hiber.event.Event.UserEvent.UserRemovedEvent.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.UserEvent.UserRemovedEvent.prototype.setAccount = function(value) {
+proto.hiber.event.Event.UserEvent.UserRemovedEvent.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -3631,7 +6916,7 @@ proto.hiber.event.Event.UserEvent.UserAccessRequestEvent.prototype.toObject = fu
  */
 proto.hiber.event.Event.UserEvent.UserAccessRequestEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     user: jspb.Message.getFieldWithDefault(msg, 2, ""),
     time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f),
     title: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -3674,7 +6959,7 @@ proto.hiber.event.Event.UserEvent.UserAccessRequestEvent.deserializeBinaryFromRe
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -3722,7 +7007,7 @@ proto.hiber.event.Event.UserEvent.UserAccessRequestEvent.prototype.serializeBina
  */
 proto.hiber.event.Event.UserEvent.UserAccessRequestEvent.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -3762,16 +7047,16 @@ proto.hiber.event.Event.UserEvent.UserAccessRequestEvent.serializeBinaryToWriter
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.event.Event.UserEvent.UserAccessRequestEvent.prototype.getAccount = function() {
+proto.hiber.event.Event.UserEvent.UserAccessRequestEvent.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.UserEvent.UserAccessRequestEvent.prototype.setAccount = function(value) {
+proto.hiber.event.Event.UserEvent.UserAccessRequestEvent.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -4021,7 +7306,7 @@ proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.toObject = function(
  */
 proto.hiber.event.Event.WebhookEvent.CreatedEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     created: (f = msg.getCreated()) && webhook_pb.Webhook.toObject(includeInstance, f),
     tagsList: jspb.Message.toObjectList(msg.getTagsList(),
     tag_pb.Tag.toObject, includeInstance),
@@ -4066,7 +7351,7 @@ proto.hiber.event.Event.WebhookEvent.CreatedEvent.deserializeBinaryFromReader = 
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = new webhook_pb.Webhook;
@@ -4120,7 +7405,7 @@ proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.serializeBinary = fu
  */
 proto.hiber.event.Event.WebhookEvent.CreatedEvent.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -4169,16 +7454,16 @@ proto.hiber.event.Event.WebhookEvent.CreatedEvent.serializeBinaryToWriter = func
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.getAccount = function() {
+proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.setAccount = function(value) {
+proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -4358,7 +7643,7 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.toObject = function(
  */
 proto.hiber.event.Event.WebhookEvent.UpdatedEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     update: (f = msg.getUpdate()) && webhook_pb.Webhook.toObject(includeInstance, f),
     tagsList: jspb.Message.toObjectList(msg.getTagsList(),
     tag_pb.Tag.toObject, includeInstance),
@@ -4403,7 +7688,7 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.deserializeBinaryFromReader = 
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = new webhook_pb.Webhook;
@@ -4457,7 +7742,7 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.serializeBinary = fu
  */
 proto.hiber.event.Event.WebhookEvent.UpdatedEvent.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -4506,16 +7791,16 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.serializeBinaryToWriter = func
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.getAccount = function() {
+proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.setAccount = function(value) {
+proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -4695,7 +7980,7 @@ proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.toObject = function(
  */
 proto.hiber.event.Event.WebhookEvent.DeletedEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     deleted: (f = msg.getDeleted()) && webhook_pb.Webhook.toObject(includeInstance, f),
     tagsList: jspb.Message.toObjectList(msg.getTagsList(),
     tag_pb.Tag.toObject, includeInstance),
@@ -4740,7 +8025,7 @@ proto.hiber.event.Event.WebhookEvent.DeletedEvent.deserializeBinaryFromReader = 
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = new webhook_pb.Webhook;
@@ -4794,7 +8079,7 @@ proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.serializeBinary = fu
  */
 proto.hiber.event.Event.WebhookEvent.DeletedEvent.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -4843,16 +8128,16 @@ proto.hiber.event.Event.WebhookEvent.DeletedEvent.serializeBinaryToWriter = func
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.getAccount = function() {
+proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.setAccount = function(value) {
+proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -5032,7 +8317,7 @@ proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.toObject = function(o
  */
 proto.hiber.event.Event.WebhookEvent.FailedEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     reason: jspb.Message.getFieldWithDefault(msg, 2, ""),
     failed: (f = msg.getFailed()) && webhook_pb.Webhook.toObject(includeInstance, f),
     tagsList: jspb.Message.toObjectList(msg.getTagsList(),
@@ -5078,7 +8363,7 @@ proto.hiber.event.Event.WebhookEvent.FailedEvent.deserializeBinaryFromReader = f
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -5136,7 +8421,7 @@ proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.serializeBinary = fun
  */
 proto.hiber.event.Event.WebhookEvent.FailedEvent.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -5192,16 +8477,16 @@ proto.hiber.event.Event.WebhookEvent.FailedEvent.serializeBinaryToWriter = funct
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.getAccount = function() {
+proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.setAccount = function(value) {
+proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -5732,6 +9017,246 @@ proto.hiber.event.Event.prototype.hasWebhookFailed = function() {
 };
 
 
+/**
+ * optional ModemTransferEvent.ModemTransferStartedEvent modem_transfer_started = 15;
+ * @return {?proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent}
+ */
+proto.hiber.event.Event.prototype.getModemTransferStarted = function() {
+  return /** @type{?proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent, 15));
+};
+
+
+/** @param {?proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent|undefined} value */
+proto.hiber.event.Event.prototype.setModemTransferStarted = function(value) {
+  jspb.Message.setOneofWrapperField(this, 15, proto.hiber.event.Event.oneofGroups_[0], value);
+};
+
+
+proto.hiber.event.Event.prototype.clearModemTransferStarted = function() {
+  this.setModemTransferStarted(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.prototype.hasModemTransferStarted = function() {
+  return jspb.Message.getField(this, 15) != null;
+};
+
+
+/**
+ * optional ModemTransferEvent.ModemTransferCancelledEvent modem_transfer_cancelled = 16;
+ * @return {?proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent}
+ */
+proto.hiber.event.Event.prototype.getModemTransferCancelled = function() {
+  return /** @type{?proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent, 16));
+};
+
+
+/** @param {?proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent|undefined} value */
+proto.hiber.event.Event.prototype.setModemTransferCancelled = function(value) {
+  jspb.Message.setOneofWrapperField(this, 16, proto.hiber.event.Event.oneofGroups_[0], value);
+};
+
+
+proto.hiber.event.Event.prototype.clearModemTransferCancelled = function() {
+  this.setModemTransferCancelled(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.prototype.hasModemTransferCancelled = function() {
+  return jspb.Message.getField(this, 16) != null;
+};
+
+
+/**
+ * optional ModemTransferEvent.ModemTransferReceivedEvent modem_transfer_received = 17;
+ * @return {?proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent}
+ */
+proto.hiber.event.Event.prototype.getModemTransferReceived = function() {
+  return /** @type{?proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent, 17));
+};
+
+
+/** @param {?proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent|undefined} value */
+proto.hiber.event.Event.prototype.setModemTransferReceived = function(value) {
+  jspb.Message.setOneofWrapperField(this, 17, proto.hiber.event.Event.oneofGroups_[0], value);
+};
+
+
+proto.hiber.event.Event.prototype.clearModemTransferReceived = function() {
+  this.setModemTransferReceived(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.prototype.hasModemTransferReceived = function() {
+  return jspb.Message.getField(this, 17) != null;
+};
+
+
+/**
+ * optional ModemTransferEvent.ModemTransferNotReceivedEvent modem_transfer_not_received = 18;
+ * @return {?proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent}
+ */
+proto.hiber.event.Event.prototype.getModemTransferNotReceived = function() {
+  return /** @type{?proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent, 18));
+};
+
+
+/** @param {?proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent|undefined} value */
+proto.hiber.event.Event.prototype.setModemTransferNotReceived = function(value) {
+  jspb.Message.setOneofWrapperField(this, 18, proto.hiber.event.Event.oneofGroups_[0], value);
+};
+
+
+proto.hiber.event.Event.prototype.clearModemTransferNotReceived = function() {
+  this.setModemTransferNotReceived(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.prototype.hasModemTransferNotReceived = function() {
+  return jspb.Message.getField(this, 18) != null;
+};
+
+
+/**
+ * optional ModemTransferEvent.ModemTransferReturnTransferStartedEvent modem_transfer_return_transfer_started = 19;
+ * @return {?proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent}
+ */
+proto.hiber.event.Event.prototype.getModemTransferReturnTransferStarted = function() {
+  return /** @type{?proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent, 19));
+};
+
+
+/** @param {?proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent|undefined} value */
+proto.hiber.event.Event.prototype.setModemTransferReturnTransferStarted = function(value) {
+  jspb.Message.setOneofWrapperField(this, 19, proto.hiber.event.Event.oneofGroups_[0], value);
+};
+
+
+proto.hiber.event.Event.prototype.clearModemTransferReturnTransferStarted = function() {
+  this.setModemTransferReturnTransferStarted(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.prototype.hasModemTransferReturnTransferStarted = function() {
+  return jspb.Message.getField(this, 19) != null;
+};
+
+
+/**
+ * optional ModemEvent.ClaimEvent.ModemClaimedEvent modem_claimed_event = 20;
+ * @return {?proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent}
+ */
+proto.hiber.event.Event.prototype.getModemClaimedEvent = function() {
+  return /** @type{?proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent, 20));
+};
+
+
+/** @param {?proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent|undefined} value */
+proto.hiber.event.Event.prototype.setModemClaimedEvent = function(value) {
+  jspb.Message.setOneofWrapperField(this, 20, proto.hiber.event.Event.oneofGroups_[0], value);
+};
+
+
+proto.hiber.event.Event.prototype.clearModemClaimedEvent = function() {
+  this.setModemClaimedEvent(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.prototype.hasModemClaimedEvent = function() {
+  return jspb.Message.getField(this, 20) != null;
+};
+
+
+/**
+ * optional ModemEvent.ClaimEvent.ModemClaimAcceptedEvent modem_claim_accepted_event = 21;
+ * @return {?proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent}
+ */
+proto.hiber.event.Event.prototype.getModemClaimAcceptedEvent = function() {
+  return /** @type{?proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent, 21));
+};
+
+
+/** @param {?proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent|undefined} value */
+proto.hiber.event.Event.prototype.setModemClaimAcceptedEvent = function(value) {
+  jspb.Message.setOneofWrapperField(this, 21, proto.hiber.event.Event.oneofGroups_[0], value);
+};
+
+
+proto.hiber.event.Event.prototype.clearModemClaimAcceptedEvent = function() {
+  this.setModemClaimAcceptedEvent(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.prototype.hasModemClaimAcceptedEvent = function() {
+  return jspb.Message.getField(this, 21) != null;
+};
+
+
+/**
+ * optional ModemEvent.ClaimEvent.ModemClaimRejectedEvent modem_claim_rejected_event = 22;
+ * @return {?proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent}
+ */
+proto.hiber.event.Event.prototype.getModemClaimRejectedEvent = function() {
+  return /** @type{?proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent, 22));
+};
+
+
+/** @param {?proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent|undefined} value */
+proto.hiber.event.Event.prototype.setModemClaimRejectedEvent = function(value) {
+  jspb.Message.setOneofWrapperField(this, 22, proto.hiber.event.Event.oneofGroups_[0], value);
+};
+
+
+proto.hiber.event.Event.prototype.clearModemClaimRejectedEvent = function() {
+  this.setModemClaimRejectedEvent(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.prototype.hasModemClaimRejectedEvent = function() {
+  return jspb.Message.getField(this, 22) != null;
+};
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -6143,7 +9668,7 @@ proto.hiber.event.ListEventsRequest.prototype.toObject = function(opt_includeIns
  */
 proto.hiber.event.ListEventsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     selection: (f = msg.getSelection()) && proto.hiber.event.EventSelection.toObject(includeInstance, f),
     pagination: (f = msg.getPagination()) && base_pb.Pagination.toObject(includeInstance, f),
     sort: jspb.Message.getFieldWithDefault(msg, 4, 0)
@@ -6185,7 +9710,7 @@ proto.hiber.event.ListEventsRequest.deserializeBinaryFromReader = function(msg, 
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = new proto.hiber.event.EventSelection;
@@ -6230,7 +9755,7 @@ proto.hiber.event.ListEventsRequest.prototype.serializeBinary = function() {
  */
 proto.hiber.event.ListEventsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -6531,16 +10056,16 @@ proto.hiber.event.ListEventsRequest.Response.prototype.hasPagination = function(
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.event.ListEventsRequest.prototype.getAccount = function() {
+proto.hiber.event.ListEventsRequest.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.ListEventsRequest.prototype.setAccount = function(value) {
+proto.hiber.event.ListEventsRequest.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -6667,7 +10192,7 @@ proto.hiber.event.EventStreamRequest.prototype.toObject = function(opt_includeIn
  */
 proto.hiber.event.EventStreamRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     selection: (f = msg.getSelection()) && proto.hiber.event.EventSelection.toObject(includeInstance, f)
   };
 
@@ -6707,7 +10232,7 @@ proto.hiber.event.EventStreamRequest.deserializeBinaryFromReader = function(msg,
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = new proto.hiber.event.EventSelection;
@@ -6743,7 +10268,7 @@ proto.hiber.event.EventStreamRequest.prototype.serializeBinary = function() {
  */
 proto.hiber.event.EventStreamRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -6762,16 +10287,16 @@ proto.hiber.event.EventStreamRequest.serializeBinaryToWriter = function(message,
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.event.EventStreamRequest.prototype.getAccount = function() {
+proto.hiber.event.EventStreamRequest.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.EventStreamRequest.prototype.setAccount = function(value) {
+proto.hiber.event.EventStreamRequest.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 

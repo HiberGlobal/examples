@@ -18,6 +18,28 @@ function deserialize_hiber_modem_GetModemRequest(buffer_arg) {
   return modem_pb.GetModemRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_hiber_modem_LicenseKeysRequest(arg) {
+  if (!(arg instanceof modem_pb.LicenseKeysRequest)) {
+    throw new Error('Expected argument of type hiber.modem.LicenseKeysRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_modem_LicenseKeysRequest(buffer_arg) {
+  return modem_pb.LicenseKeysRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_modem_LicenseKeysRequest_Response(arg) {
+  if (!(arg instanceof modem_pb.LicenseKeysRequest.Response)) {
+    throw new Error('Expected argument of type hiber.modem.LicenseKeysRequest.Response');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_modem_LicenseKeysRequest_Response(buffer_arg) {
+  return modem_pb.LicenseKeysRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_hiber_modem_ListModemMessagesRequest(arg) {
   if (!(arg instanceof modem_pb.ListModemMessagesRequest)) {
     throw new Error('Expected argument of type hiber.modem.ListModemMessagesRequest');
@@ -106,17 +128,6 @@ function deserialize_hiber_modem_RenameModemRequest(buffer_arg) {
   return modem_pb.RenameModemRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_hiber_modem_UpdateModemPayloadTemplateRequest(arg) {
-  if (!(arg instanceof modem_pb.UpdateModemPayloadTemplateRequest)) {
-    throw new Error('Expected argument of type hiber.modem.UpdateModemPayloadTemplateRequest');
-  }
-  return new Buffer(arg.serializeBinary());
-}
-
-function deserialize_hiber_modem_UpdateModemPayloadTemplateRequest(buffer_arg) {
-  return modem_pb.UpdateModemPayloadTemplateRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_hiber_modem_UpdateModemTagsRequest(arg) {
   if (!(arg instanceof modem_pb.UpdateModemTagsRequest)) {
     throw new Error('Expected argument of type hiber.modem.UpdateModemTagsRequest');
@@ -139,21 +150,32 @@ function deserialize_hiber_modem_UpdateModemTagsRequest_Response(buffer_arg) {
   return modem_pb.UpdateModemTagsRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_hiber_modem_UpdatePeripheralsRequest(arg) {
+  if (!(arg instanceof modem_pb.UpdatePeripheralsRequest)) {
+    throw new Error('Expected argument of type hiber.modem.UpdatePeripheralsRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_modem_UpdatePeripheralsRequest(buffer_arg) {
+  return modem_pb.UpdatePeripheralsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_modem_UpdatePeripheralsRequest_Response(arg) {
+  if (!(arg instanceof modem_pb.UpdatePeripheralsRequest.Response)) {
+    throw new Error('Expected argument of type hiber.modem.UpdatePeripheralsRequest.Response');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_modem_UpdatePeripheralsRequest_Response(buffer_arg) {
+  return modem_pb.UpdatePeripheralsRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 // The core of the Hiber system, modems are the network nodes that send information and user data.
 // This service contains calls to list and manage them, as well as list their messages.
 var ModemServiceService = exports.ModemServiceService = {
-  list: {
-    path: '/hiber.modem.ModemService/List',
-    requestStream: false,
-    responseStream: false,
-    requestType: modem_pb.ListModemsRequest,
-    responseType: modem_pb.ListModemsRequest.Response,
-    requestSerialize: serialize_hiber_modem_ListModemsRequest,
-    requestDeserialize: deserialize_hiber_modem_ListModemsRequest,
-    responseSerialize: serialize_hiber_modem_ListModemsRequest_Response,
-    responseDeserialize: deserialize_hiber_modem_ListModemsRequest_Response,
-  },
   get: {
     path: '/hiber.modem.ModemService/Get',
     requestStream: false,
@@ -164,6 +186,17 @@ var ModemServiceService = exports.ModemServiceService = {
     requestDeserialize: deserialize_hiber_modem_GetModemRequest,
     responseSerialize: serialize_hiber_modem_Modem,
     responseDeserialize: deserialize_hiber_modem_Modem,
+  },
+  list: {
+    path: '/hiber.modem.ModemService/List',
+    requestStream: false,
+    responseStream: false,
+    requestType: modem_pb.ListModemsRequest,
+    responseType: modem_pb.ListModemsRequest.Response,
+    requestSerialize: serialize_hiber_modem_ListModemsRequest,
+    requestDeserialize: deserialize_hiber_modem_ListModemsRequest,
+    responseSerialize: serialize_hiber_modem_ListModemsRequest_Response,
+    responseDeserialize: deserialize_hiber_modem_ListModemsRequest_Response,
   },
   messages: {
     path: '/hiber.modem.ModemService/Messages',
@@ -198,17 +231,6 @@ var ModemServiceService = exports.ModemServiceService = {
     responseSerialize: serialize_hiber_modem_Modem,
     responseDeserialize: deserialize_hiber_modem_Modem,
   },
-  updatePayloadTemplate: {
-    path: '/hiber.modem.ModemService/UpdatePayloadTemplate',
-    requestStream: false,
-    responseStream: false,
-    requestType: modem_pb.UpdateModemPayloadTemplateRequest,
-    responseType: modem_pb.Modem,
-    requestSerialize: serialize_hiber_modem_UpdateModemPayloadTemplateRequest,
-    requestDeserialize: deserialize_hiber_modem_UpdateModemPayloadTemplateRequest,
-    responseSerialize: serialize_hiber_modem_Modem,
-    responseDeserialize: deserialize_hiber_modem_Modem,
-  },
   updateTags: {
     path: '/hiber.modem.ModemService/UpdateTags',
     requestStream: false,
@@ -219,6 +241,28 @@ var ModemServiceService = exports.ModemServiceService = {
     requestDeserialize: deserialize_hiber_modem_UpdateModemTagsRequest,
     responseSerialize: serialize_hiber_modem_UpdateModemTagsRequest_Response,
     responseDeserialize: deserialize_hiber_modem_UpdateModemTagsRequest_Response,
+  },
+  updatePeripherals: {
+    path: '/hiber.modem.ModemService/UpdatePeripherals',
+    requestStream: false,
+    responseStream: false,
+    requestType: modem_pb.UpdatePeripheralsRequest,
+    responseType: modem_pb.UpdatePeripheralsRequest.Response,
+    requestSerialize: serialize_hiber_modem_UpdatePeripheralsRequest,
+    requestDeserialize: deserialize_hiber_modem_UpdatePeripheralsRequest,
+    responseSerialize: serialize_hiber_modem_UpdatePeripheralsRequest_Response,
+    responseDeserialize: deserialize_hiber_modem_UpdatePeripheralsRequest_Response,
+  },
+  licenseKeys: {
+    path: '/hiber.modem.ModemService/LicenseKeys',
+    requestStream: false,
+    responseStream: false,
+    requestType: modem_pb.LicenseKeysRequest,
+    responseType: modem_pb.LicenseKeysRequest.Response,
+    requestSerialize: serialize_hiber_modem_LicenseKeysRequest,
+    requestDeserialize: deserialize_hiber_modem_LicenseKeysRequest,
+    responseSerialize: serialize_hiber_modem_LicenseKeysRequest_Response,
+    responseDeserialize: deserialize_hiber_modem_LicenseKeysRequest_Response,
   },
 };
 

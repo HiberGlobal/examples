@@ -13,14 +13,14 @@ var global = Function('return this')();
 
 var base_pb = require('./base_pb.js');
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
-goog.exportSymbol('proto.hiber.account.subscription.ServiceType', null, global);
+goog.exportSymbol('proto.hiber.organization.subscription.ServiceType', null, global);
 /**
  * @enum {number}
  */
-proto.hiber.account.subscription.ServiceType = {
-  ONCEPERDAY: 0,
-  ONCEPER6HOURS: 1,
-  ONCEPERHOUR: 2
+proto.hiber.organization.subscription.ServiceType = {
+  ONCE_PER_DAY: 0,
+  ONCE_PER_6_HOURS: 1,
+  ONCE_PER_HOUR: 2
 };
 
-goog.object.extend(exports, proto.hiber.account.subscription);
+goog.object.extend(exports, proto.hiber.organization.subscription);

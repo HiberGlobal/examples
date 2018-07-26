@@ -210,8 +210,7 @@ proto.hiber.tag.Tag.Label.prototype.toObject = function(opt_includeInstance) {
  */
 proto.hiber.tag.Tag.Label.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    color: jspb.Message.getFieldWithDefault(msg, 2, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -252,10 +251,6 @@ proto.hiber.tag.Tag.Label.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setColor(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -292,13 +287,6 @@ proto.hiber.tag.Tag.Label.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getColor();
-  if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
-  }
 };
 
 
@@ -314,21 +302,6 @@ proto.hiber.tag.Tag.Label.prototype.getName = function() {
 /** @param {string} value */
 proto.hiber.tag.Tag.Label.prototype.setName = function(value) {
   jspb.Message.setField(this, 1, value);
-};
-
-
-/**
- * optional string color = 2;
- * @return {string}
- */
-proto.hiber.tag.Tag.Label.prototype.getColor = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/** @param {string} value */
-proto.hiber.tag.Tag.Label.prototype.setColor = function(value) {
-  jspb.Message.setField(this, 2, value);
 };
 
 
@@ -922,7 +895,7 @@ proto.hiber.tag.ListTagsRequest.prototype.toObject = function(opt_includeInstanc
  */
 proto.hiber.tag.ListTagsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     selection: (f = msg.getSelection()) && proto.hiber.tag.TagSelection.toObject(includeInstance, f)
   };
 
@@ -962,7 +935,7 @@ proto.hiber.tag.ListTagsRequest.deserializeBinaryFromReader = function(msg, read
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = new proto.hiber.tag.TagSelection;
@@ -998,7 +971,7 @@ proto.hiber.tag.ListTagsRequest.prototype.serializeBinary = function() {
  */
 proto.hiber.tag.ListTagsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -1229,16 +1202,16 @@ proto.hiber.tag.ListTagsRequest.Response.prototype.hasRequest = function() {
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.tag.ListTagsRequest.prototype.getAccount = function() {
+proto.hiber.tag.ListTagsRequest.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.tag.ListTagsRequest.prototype.setAccount = function(value) {
+proto.hiber.tag.ListTagsRequest.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -1320,7 +1293,7 @@ proto.hiber.tag.CreateTagRequest.prototype.toObject = function(opt_includeInstan
  */
 proto.hiber.tag.CreateTagRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     create: (f = msg.getCreate()) && proto.hiber.tag.Tag.Label.toObject(includeInstance, f)
   };
 
@@ -1360,7 +1333,7 @@ proto.hiber.tag.CreateTagRequest.deserializeBinaryFromReader = function(msg, rea
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = new proto.hiber.tag.Tag.Label;
@@ -1396,7 +1369,7 @@ proto.hiber.tag.CreateTagRequest.prototype.serializeBinary = function() {
  */
 proto.hiber.tag.CreateTagRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -1415,16 +1388,16 @@ proto.hiber.tag.CreateTagRequest.serializeBinaryToWriter = function(message, wri
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.tag.CreateTagRequest.prototype.getAccount = function() {
+proto.hiber.tag.CreateTagRequest.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.tag.CreateTagRequest.prototype.setAccount = function(value) {
+proto.hiber.tag.CreateTagRequest.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -1506,7 +1479,7 @@ proto.hiber.tag.UpdateTagRequest.prototype.toObject = function(opt_includeInstan
  */
 proto.hiber.tag.UpdateTagRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     id: jspb.Message.getFieldWithDefault(msg, 2, 0),
     update: (f = msg.getUpdate()) && proto.hiber.tag.Tag.Label.toObject(includeInstance, f)
   };
@@ -1547,7 +1520,7 @@ proto.hiber.tag.UpdateTagRequest.deserializeBinaryFromReader = function(msg, rea
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt64());
@@ -1587,7 +1560,7 @@ proto.hiber.tag.UpdateTagRequest.prototype.serializeBinary = function() {
  */
 proto.hiber.tag.UpdateTagRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -1613,16 +1586,16 @@ proto.hiber.tag.UpdateTagRequest.serializeBinaryToWriter = function(message, wri
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.tag.UpdateTagRequest.prototype.getAccount = function() {
+proto.hiber.tag.UpdateTagRequest.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.tag.UpdateTagRequest.prototype.setAccount = function(value) {
+proto.hiber.tag.UpdateTagRequest.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -1719,7 +1692,7 @@ proto.hiber.tag.DeleteTagRequest.prototype.toObject = function(opt_includeInstan
  */
 proto.hiber.tag.DeleteTagRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     id: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
@@ -1759,7 +1732,7 @@ proto.hiber.tag.DeleteTagRequest.deserializeBinaryFromReader = function(msg, rea
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt64());
@@ -1794,7 +1767,7 @@ proto.hiber.tag.DeleteTagRequest.prototype.serializeBinary = function() {
  */
 proto.hiber.tag.DeleteTagRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -1928,16 +1901,16 @@ proto.hiber.tag.DeleteTagRequest.Response.serializeBinaryToWriter = function(mes
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.tag.DeleteTagRequest.prototype.getAccount = function() {
+proto.hiber.tag.DeleteTagRequest.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.tag.DeleteTagRequest.prototype.setAccount = function(value) {
+proto.hiber.tag.DeleteTagRequest.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
