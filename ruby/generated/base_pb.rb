@@ -25,6 +25,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :timestamp, :message, 1, "google.protobuf.Timestamp"
     optional :textual, :string, 4
   end
+  add_message "hiber.Date" do
+    optional :year, :uint32, 1
+    optional :month, :uint32, 2
+    optional :day, :uint32, 3
+    optional :textual, :string, 4
+  end
   add_message "hiber.Location" do
     optional :latitude, :double, 1
     optional :longitude, :double, 2
@@ -42,16 +48,20 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :size, :int32, 1
     optional :page, :int32, 2
     optional :total, :int32, 3
-    optional :totalPages, :int32, 4
+    optional :total_pages, :int32, 4
     optional :previous, :message, 6, "hiber.Pagination"
     optional :next, :message, 7, "hiber.Pagination"
   end
   add_message "hiber.Filter" do
   end
-  add_message "hiber.Filter.ChildAccounts" do
+  add_message "hiber.Filter.ChildOrganizations" do
     optional :include_all, :bool, 1
     repeated :include, :string, 2
     repeated :exclude, :string, 3
+  end
+  add_message "hiber.Filter.Organizations" do
+    repeated :include, :string, 1
+    repeated :exclude, :string, 2
   end
   add_message "hiber.Filter.Events" do
     repeated :include, :enum, 1, "hiber.EventType"
@@ -85,11 +95,19 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :USER_ADDED, 9
     value :USER_REMOVED, 10
     value :WEBHOOK_FAILED, 11
-    value :ACCOUNT_UPDATED, 12
+    value :ORGANIZATION_UPDATED, 12
     value :MODEM_MESSAGE_SEQUENCE_SKIP, 13
     value :MODEM_MESSAGE_DELAYED, 14
     value :MODEM_MESSAGE_CANNOT_BE_PARSED, 15
     value :MODEM_STALE, 16
+    value :MODEM_TRANSFER_STARTED, 17
+    value :MODEM_TRANSFER_RECEIVED, 18
+    value :MODEM_TRANSFER_CANCELLED, 19
+    value :MODEM_TRANSFER_NOT_RECEIVED, 20
+    value :MODEM_TRANSFER_RETURN_TRANSFER_STARTED, 21
+    value :MODEM_CLAIM_CREATED, 22
+    value :MODEM_CLAIM_ACCEPTED, 23
+    value :MODEM_CLAIM_REFUSED, 24
   end
   add_enum "hiber.Health" do
     value :OK, 0
@@ -104,12 +122,14 @@ module Hiber
   UpdateBoolean = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.UpdateBoolean").msgclass
   TimeRange = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.TimeRange").msgclass
   Timestamp = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Timestamp").msgclass
+  Date = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Date").msgclass
   Location = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Location").msgclass
   Area = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Area").msgclass
   Pagination = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Pagination").msgclass
   Pagination::Result = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Pagination.Result").msgclass
   Filter = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Filter").msgclass
-  Filter::ChildAccounts = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Filter.ChildAccounts").msgclass
+  Filter::ChildOrganizations = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Filter.ChildOrganizations").msgclass
+  Filter::Organizations = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Filter.Organizations").msgclass
   Filter::Events = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Filter.Events").msgclass
   Filter::Modems = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Filter.Modems").msgclass
   Filter::Tags = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Filter.Tags").msgclass

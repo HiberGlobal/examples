@@ -11,7 +11,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "hiber.tag.Tag.Label" do
     optional :name, :string, 1
-    optional :color, :string, 2
   end
   add_message "hiber.tag.TagSelection" do
     repeated :search, :string, 1
@@ -24,7 +23,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :new_tags_to_add, :message, 3, "hiber.tag.Tag.Label"
   end
   add_message "hiber.tag.ListTagsRequest" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :selection, :message, 2, "hiber.tag.TagSelection"
   end
   add_message "hiber.tag.ListTagsRequest.Response" do
@@ -32,16 +31,16 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :request, :message, 2, "hiber.tag.ListTagsRequest"
   end
   add_message "hiber.tag.CreateTagRequest" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :create, :message, 2, "hiber.tag.Tag.Label"
   end
   add_message "hiber.tag.UpdateTagRequest" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :id, :int64, 2
     optional :update, :message, 3, "hiber.tag.Tag.Label"
   end
   add_message "hiber.tag.DeleteTagRequest" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :id, :int64, 2
   end
   add_message "hiber.tag.DeleteTagRequest.Response" do

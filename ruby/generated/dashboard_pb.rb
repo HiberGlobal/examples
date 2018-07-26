@@ -8,15 +8,16 @@ require 'modem_pb'
 require 'event_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.dashboard.DashboardRequest" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :selection, :message, 2, "hiber.map.MapSelection"
     optional :message_count_selection, :message, 3, "hiber.modem.ModemMessageSelection"
     optional :event_selection, :message, 4, "hiber.event.EventSelection"
+    optional :time_zone_offset, :int32, 5
   end
   add_message "hiber.dashboard.DashboardRequest.Response" do
     repeated :ground_stations, :message, 1, "hiber.map.GroundStation"
     repeated :map_blocks, :message, 2, "hiber.map.MapBlock"
-    map :message_count_per_day, :string, :int32, 3
+    repeated :message_count_per_day, :message, 3, "hiber.modem.MessageCountRequest.Response.MessageCount"
     optional :modem_warning_count, :int32, 4
     optional :modem_error_count, :int32, 5
     repeated :events, :message, 6, "hiber.event.Event"

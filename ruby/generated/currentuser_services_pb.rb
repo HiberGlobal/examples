@@ -7,8 +7,8 @@ require 'currentuser_pb'
 module Hiber
   module User
     module CurrentUserService
-      # Calls related to the current user. Typically, a newly created account only has access to these calls, all
-      # other require an account to be linked.
+      # Calls related to the current user. Typically, a newly created organization only has access to these calls, all
+      # other require an organization to be linked.
       class Service
 
         include GRPC::GenericService
@@ -19,7 +19,10 @@ module Hiber
 
         rpc :CurrentUser, CurrentUserRequest, CurrentUser
         rpc :RequestAccess, RequestAccessRequest, RequestAccessRequest::Response
+        rpc :CancelAccessRequest, CancelAccessRequestRequest, CancelAccessRequestRequest::Response
         rpc :DeleteCurrentUser, DeleteCurrentUserRequest, DeleteCurrentUserRequest::Response
+        rpc :UpdateDefaultOrganization, UpdateDefaultOrganizationRequest, UpdateDefaultOrganizationRequest::Response
+        rpc :UpdateSettings, UpdateSettingsRequest, UpdateSettingsRequest::Response
       end
 
       Stub = Service.rpc_stub_class

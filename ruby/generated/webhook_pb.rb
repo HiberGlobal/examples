@@ -9,7 +9,7 @@ require 'google/protobuf/timestamp_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.webhook.Webhook" do
     optional :id, :int64, 1
-    optional :account, :string, 2
+    optional :organization, :string, 2
     optional :description, :string, 3
     optional :data, :message, 4, "hiber.webhook.Webhook.WebhookData"
     optional :filters, :message, 5, "hiber.webhook.Webhook.WebhookFilters"
@@ -48,11 +48,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :error, :string, 6
   end
   add_message "hiber.webhook.WebhookHistorySelection" do
-    optional :onlyFailures, :bool, 2
+    optional :only_failures, :bool, 2
     optional :time_range, :message, 3, "hiber.TimeRange"
   end
   add_message "hiber.webhook.ListWebhooksRequest" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :selection, :message, 2, "hiber.webhook.WebhookSelection"
     optional :pagination, :message, 3, "hiber.Pagination"
   end
@@ -62,7 +62,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :pagination, :message, 3, "hiber.Pagination.Result"
   end
   add_message "hiber.webhook.WebhookHistoryRequest" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :webhook_id, :int64, 2
     optional :selection, :message, 3, "hiber.webhook.WebhookHistorySelection"
     optional :pagination, :message, 4, "hiber.Pagination"
@@ -73,7 +73,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :pagination, :message, 3, "hiber.Pagination.Result"
   end
   add_message "hiber.webhook.CreateWebhookRequest" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :description, :string, 2
     optional :data, :message, 3, "hiber.webhook.Webhook.WebhookData"
     optional :filters, :message, 4, "hiber.webhook.Webhook.WebhookFilters"
@@ -81,26 +81,22 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "hiber.webhook.GetWebhookRequest" do
     optional :id, :int64, 1
-    optional :account, :string, 2
-    optional :tags, :message, 3, "hiber.tag.TagSelection"
+    optional :organization, :string, 2
   end
   add_message "hiber.webhook.EnableWebhookRequest" do
     optional :id, :int64, 1
-    optional :account, :string, 2
-    optional :tags, :message, 3, "hiber.tag.TagSelection"
+    optional :organization, :string, 2
   end
   add_message "hiber.webhook.DisableWebhookRequest" do
     optional :id, :int64, 1
-    optional :account, :string, 2
-    optional :tags, :message, 3, "hiber.tag.TagSelection"
+    optional :organization, :string, 2
   end
   add_message "hiber.webhook.UpdateWebhookFilterRequest" do
     optional :id, :int64, 1
-    optional :account, :string, 2
+    optional :organization, :string, 2
     optional :event_filter, :message, 3, "hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents"
     optional :modem_filter, :message, 4, "hiber.webhook.UpdateWebhookFilterRequest.UpdateModems"
     optional :tag_filter, :message, 5, "hiber.webhook.UpdateWebhookFilterRequest.UpdateTags"
-    optional :tags, :message, 6, "hiber.tag.TagSelection"
   end
   add_message "hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents" do
     optional :updated, :bool, 1
@@ -116,9 +112,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "hiber.webhook.UpdateWebhookRequest" do
     optional :id, :int64, 1
-    optional :account, :string, 2
+    optional :organization, :string, 2
     optional :update, :message, 3, "hiber.webhook.UpdateWebhookRequest.UpdateWebhook"
-    optional :tags, :message, 4, "hiber.tag.TagSelection"
   end
   add_message "hiber.webhook.UpdateWebhookRequest.UpdateWebhook" do
     optional :url, :string, 1
@@ -127,17 +122,16 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :description, :message, 4, "hiber.UpdateClearableString"
   end
   add_message "hiber.webhook.UpdateWebhookTagsRequest" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     repeated :webhook_ids, :int64, 2
     optional :update, :message, 3, "hiber.tag.UpdateTagsForItem"
-    optional :tags, :message, 4, "hiber.tag.TagSelection"
   end
   add_message "hiber.webhook.UpdateWebhookTagsRequest.Response" do
     repeated :webhooks, :message, 1, "hiber.webhook.Webhook"
   end
   add_message "hiber.webhook.DeleteWebhookRequest" do
     optional :id, :int64, 1
-    optional :account, :string, 2
+    optional :organization, :string, 2
   end
   add_message "hiber.webhook.DeleteWebhookRequest.Response" do
   end
