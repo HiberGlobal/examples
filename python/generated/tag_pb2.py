@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='tag.proto',
   package='hiber.tag',
   syntax='proto3',
-  serialized_pb=_b('\n\ttag.proto\x12\thiber.tag\x1a\nbase.proto\"\\\n\x03Tag\x12\n\n\x02id\x18\x01 \x01(\x03\x12#\n\x05label\x18\x03 \x01(\x0b\x32\x14.hiber.tag.Tag.Label\x1a$\n\x05Label\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05\x63olor\x18\x02 \x01(\t\"Q\n\x0cTagSelection\x12\x0e\n\x06search\x18\x01 \x03(\t\x12\r\n\x05names\x18\x02 \x03(\t\x12\"\n\x06\x66ilter\x18\x03 \x01(\x0b\x32\x12.hiber.Filter.Tags\"u\n\x11UpdateTagsForItem\x12\x16\n\x0etag_ids_to_add\x18\x01 \x03(\x03\x12\x19\n\x11tag_ids_to_remove\x18\x02 \x03(\x03\x12-\n\x0fnew_tags_to_add\x18\x03 \x03(\x0b\x32\x14.hiber.tag.Tag.Label\"\xa5\x01\n\x0fListTagsRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12*\n\tselection\x18\x02 \x01(\x0b\x32\x17.hiber.tag.TagSelection\x1aU\n\x08Response\x12\x1c\n\x04tags\x18\x01 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12+\n\x07request\x18\x02 \x01(\x0b\x32\x1a.hiber.tag.ListTagsRequest\"I\n\x10\x43reateTagRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12$\n\x06\x63reate\x18\x02 \x01(\x0b\x32\x14.hiber.tag.Tag.Label\"U\n\x10UpdateTagRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\x12$\n\x06update\x18\x03 \x01(\x0b\x32\x14.hiber.tag.Tag.Label\";\n\x10\x44\x65leteTagRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\x1a\n\n\x08Response2\x90\x02\n\nTagService\x12G\n\x04List\x12\x1a.hiber.tag.ListTagsRequest\x1a#.hiber.tag.ListTagsRequest.Response\x12\x35\n\x06\x43reate\x12\x1b.hiber.tag.CreateTagRequest\x1a\x0e.hiber.tag.Tag\x12\x35\n\x06Update\x12\x1b.hiber.tag.UpdateTagRequest\x1a\x0e.hiber.tag.Tag\x12K\n\x06\x44\x65lete\x12\x1b.hiber.tag.DeleteTagRequest\x1a$.hiber.tag.DeleteTagRequest.ResponseB,\n\x19global.hiber.api.grpc.tagB\x06TagApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\ttag.proto\x12\thiber.tag\x1a\nbase.proto\"S\n\x03Tag\x12\n\n\x02id\x18\x01 \x01(\x03\x12#\n\x05label\x18\x03 \x01(\x0b\x32\x14.hiber.tag.Tag.Label\x1a\x1b\n\x05Label\x12\x0c\n\x04name\x18\x01 \x01(\tJ\x04\x08\x02\x10\x03\"Q\n\x0cTagSelection\x12\x0e\n\x06search\x18\x01 \x03(\t\x12\r\n\x05names\x18\x02 \x03(\t\x12\"\n\x06\x66ilter\x18\x03 \x01(\x0b\x32\x12.hiber.Filter.Tags\"u\n\x11UpdateTagsForItem\x12\x16\n\x0etag_ids_to_add\x18\x01 \x03(\x03\x12\x19\n\x11tag_ids_to_remove\x18\x02 \x03(\x03\x12-\n\x0fnew_tags_to_add\x18\x03 \x03(\x0b\x32\x14.hiber.tag.Tag.Label\"\xaa\x01\n\x0fListTagsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12*\n\tselection\x18\x02 \x01(\x0b\x32\x17.hiber.tag.TagSelection\x1aU\n\x08Response\x12\x1c\n\x04tags\x18\x01 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12+\n\x07request\x18\x02 \x01(\x0b\x32\x1a.hiber.tag.ListTagsRequest\"N\n\x10\x43reateTagRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12$\n\x06\x63reate\x18\x02 \x01(\x0b\x32\x14.hiber.tag.Tag.Label\"Z\n\x10UpdateTagRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\x12$\n\x06update\x18\x03 \x01(\x0b\x32\x14.hiber.tag.Tag.Label\"@\n\x10\x44\x65leteTagRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\x1a\n\n\x08Response2\x90\x02\n\nTagService\x12G\n\x04List\x12\x1a.hiber.tag.ListTagsRequest\x1a#.hiber.tag.ListTagsRequest.Response\x12\x35\n\x06\x43reate\x12\x1b.hiber.tag.CreateTagRequest\x1a\x0e.hiber.tag.Tag\x12\x35\n\x06Update\x12\x1b.hiber.tag.UpdateTagRequest\x1a\x0e.hiber.tag.Tag\x12K\n\x06\x44\x65lete\x12\x1b.hiber.tag.DeleteTagRequest\x1a$.hiber.tag.DeleteTagRequest.ResponseB,\n\x19global.hiber.api.grpc.tagB\x06TagApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,])
 
@@ -41,13 +41,6 @@ _TAG_LABEL = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='color', full_name='hiber.tag.Tag.Label.color', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -61,7 +54,7 @@ _TAG_LABEL = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=92,
-  serialized_end=128,
+  serialized_end=119,
 )
 
 _TAG = _descriptor.Descriptor(
@@ -98,7 +91,7 @@ _TAG = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=36,
-  serialized_end=128,
+  serialized_end=119,
 )
 
 
@@ -142,8 +135,8 @@ _TAGSELECTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=130,
-  serialized_end=211,
+  serialized_start=121,
+  serialized_end=202,
 )
 
 
@@ -187,8 +180,8 @@ _UPDATETAGSFORITEM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=213,
-  serialized_end=330,
+  serialized_start=204,
+  serialized_end=321,
 )
 
 
@@ -225,8 +218,8 @@ _LISTTAGSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=413,
-  serialized_end=498,
+  serialized_start=409,
+  serialized_end=494,
 )
 
 _LISTTAGSREQUEST = _descriptor.Descriptor(
@@ -237,7 +230,7 @@ _LISTTAGSREQUEST = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='account', full_name='hiber.tag.ListTagsRequest.account', index=0,
+      name='organization', full_name='hiber.tag.ListTagsRequest.organization', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -262,8 +255,8 @@ _LISTTAGSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=333,
-  serialized_end=498,
+  serialized_start=324,
+  serialized_end=494,
 )
 
 
@@ -275,7 +268,7 @@ _CREATETAGREQUEST = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='account', full_name='hiber.tag.CreateTagRequest.account', index=0,
+      name='organization', full_name='hiber.tag.CreateTagRequest.organization', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -300,8 +293,8 @@ _CREATETAGREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=500,
-  serialized_end=573,
+  serialized_start=496,
+  serialized_end=574,
 )
 
 
@@ -313,7 +306,7 @@ _UPDATETAGREQUEST = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='account', full_name='hiber.tag.UpdateTagRequest.account', index=0,
+      name='organization', full_name='hiber.tag.UpdateTagRequest.organization', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -345,8 +338,8 @@ _UPDATETAGREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=575,
-  serialized_end=660,
+  serialized_start=576,
+  serialized_end=666,
 )
 
 
@@ -369,8 +362,8 @@ _DELETETAGREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=413,
-  serialized_end=423,
+  serialized_start=409,
+  serialized_end=419,
 )
 
 _DELETETAGREQUEST = _descriptor.Descriptor(
@@ -381,7 +374,7 @@ _DELETETAGREQUEST = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='account', full_name='hiber.tag.DeleteTagRequest.account', index=0,
+      name='organization', full_name='hiber.tag.DeleteTagRequest.organization', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -406,8 +399,8 @@ _DELETETAGREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=662,
-  serialized_end=721,
+  serialized_start=668,
+  serialized_end=732,
 )
 
 _TAG_LABEL.containing_type = _TAG
@@ -513,8 +506,8 @@ _TAGSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=724,
-  serialized_end=996,
+  serialized_start=735,
+  serialized_end=1007,
   methods=[
   _descriptor.MethodDescriptor(
     name='List',

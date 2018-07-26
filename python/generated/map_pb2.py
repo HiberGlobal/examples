@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='map.proto',
   package='hiber.map',
   syntax='proto3',
-  serialized_pb=_b('\n\tmap.proto\x12\thiber.map\x1a\nbase.proto\"\x8c\x02\n\x0cMapSelection\x12$\n\x06modems\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12\x33\n\x0e\x63hild_accounts\x18\x02 \x01(\x0b\x32\x1b.hiber.Filter.ChildAccounts\x12\r\n\x05level\x18\x03 \x01(\x05\x12\x35\n\x04\x61rea\x18\x04 \x01(\x0b\x32\'.hiber.map.MapSelection.AreaRestriction\x1a[\n\x0f\x41reaRestriction\x12$\n\x0b\x62ottom_left\x18\x01 \x01(\x0b\x32\x0f.hiber.Location\x12\"\n\ttop_right\x18\x02 \x01(\x0b\x32\x0f.hiber.Location\"2\n\rGroundStation\x12!\n\x08location\x18\x01 \x01(\x0b\x32\x0f.hiber.Location\"i\n\x08MapBlock\x12\x19\n\x04\x61rea\x18\x01 \x01(\x0b\x32\x0b.hiber.Area\x12\x13\n\x0bmodem_count\x18\x02 \x01(\x05\x12\x13\n\x0b\x65rror_count\x18\x03 \x01(\x05\x12\x18\n\x10\x65rror_percentage\x18\x04 \x01(\x02\"\xda\x01\n\nMapRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12*\n\tselection\x18\x02 \x01(\x0b\x32\x17.hiber.map.MapSelection\x1a\x8e\x01\n\x08Response\x12\x31\n\x0fground_stations\x18\x01 \x03(\x0b\x32\x18.hiber.map.GroundStation\x12\'\n\nmap_blocks\x18\x02 \x03(\x0b\x32\x13.hiber.map.MapBlock\x12&\n\x07request\x18\x04 \x01(\x0b\x32\x15.hiber.map.MapRequest2J\n\nMapService\x12<\n\x03Map\x12\x15.hiber.map.MapRequest\x1a\x1e.hiber.map.MapRequest.ResponseB,\n\x19global.hiber.api.grpc.mapB\x06MapApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\tmap.proto\x12\thiber.map\x1a\nbase.proto\"\x96\x02\n\x0cMapSelection\x12$\n\x06modems\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12=\n\x13\x63hild_organizations\x18\x02 \x01(\x0b\x32 .hiber.Filter.ChildOrganizations\x12\r\n\x05level\x18\x03 \x01(\x05\x12\x35\n\x04\x61rea\x18\x04 \x01(\x0b\x32\'.hiber.map.MapSelection.AreaRestriction\x1a[\n\x0f\x41reaRestriction\x12$\n\x0b\x62ottom_left\x18\x01 \x01(\x0b\x32\x0f.hiber.Location\x12\"\n\ttop_right\x18\x02 \x01(\x0b\x32\x0f.hiber.Location\"2\n\rGroundStation\x12!\n\x08location\x18\x01 \x01(\x0b\x32\x0f.hiber.Location\"i\n\x08MapBlock\x12\x19\n\x04\x61rea\x18\x01 \x01(\x0b\x32\x0b.hiber.Area\x12\x13\n\x0bmodem_count\x18\x02 \x01(\x05\x12\x13\n\x0b\x65rror_count\x18\x03 \x01(\x05\x12\x18\n\x10\x65rror_percentage\x18\x04 \x01(\x02\"\xdf\x01\n\nMapRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12*\n\tselection\x18\x02 \x01(\x0b\x32\x17.hiber.map.MapSelection\x1a\x8e\x01\n\x08Response\x12\x31\n\x0fground_stations\x18\x01 \x03(\x0b\x32\x18.hiber.map.GroundStation\x12\'\n\nmap_blocks\x18\x02 \x03(\x0b\x32\x13.hiber.map.MapBlock\x12&\n\x07request\x18\x04 \x01(\x0b\x32\x15.hiber.map.MapRequest2J\n\nMapService\x12<\n\x03Map\x12\x15.hiber.map.MapRequest\x1a\x1e.hiber.map.MapRequest.ResponseB,\n\x19global.hiber.api.grpc.mapB\x06MapApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,])
 
@@ -60,8 +60,8 @@ _MAPSELECTION_AREARESTRICTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=214,
-  serialized_end=305,
+  serialized_start=224,
+  serialized_end=315,
 )
 
 _MAPSELECTION = _descriptor.Descriptor(
@@ -79,7 +79,7 @@ _MAPSELECTION = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='child_accounts', full_name='hiber.map.MapSelection.child_accounts', index=1,
+      name='child_organizations', full_name='hiber.map.MapSelection.child_organizations', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -112,7 +112,7 @@ _MAPSELECTION = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=37,
-  serialized_end=305,
+  serialized_end=315,
 )
 
 
@@ -142,8 +142,8 @@ _GROUNDSTATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=307,
-  serialized_end=357,
+  serialized_start=317,
+  serialized_end=367,
 )
 
 
@@ -194,8 +194,8 @@ _MAPBLOCK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=359,
-  serialized_end=464,
+  serialized_start=369,
+  serialized_end=474,
 )
 
 
@@ -239,8 +239,8 @@ _MAPREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=543,
-  serialized_end=685,
+  serialized_start=558,
+  serialized_end=700,
 )
 
 _MAPREQUEST = _descriptor.Descriptor(
@@ -251,7 +251,7 @@ _MAPREQUEST = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='account', full_name='hiber.map.MapRequest.account', index=0,
+      name='organization', full_name='hiber.map.MapRequest.organization', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -276,15 +276,15 @@ _MAPREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=467,
-  serialized_end=685,
+  serialized_start=477,
+  serialized_end=700,
 )
 
 _MAPSELECTION_AREARESTRICTION.fields_by_name['bottom_left'].message_type = base__pb2._LOCATION
 _MAPSELECTION_AREARESTRICTION.fields_by_name['top_right'].message_type = base__pb2._LOCATION
 _MAPSELECTION_AREARESTRICTION.containing_type = _MAPSELECTION
 _MAPSELECTION.fields_by_name['modems'].message_type = base__pb2._FILTER_MODEMS
-_MAPSELECTION.fields_by_name['child_accounts'].message_type = base__pb2._FILTER_CHILDACCOUNTS
+_MAPSELECTION.fields_by_name['child_organizations'].message_type = base__pb2._FILTER_CHILDORGANIZATIONS
 _MAPSELECTION.fields_by_name['area'].message_type = _MAPSELECTION_AREARESTRICTION
 _GROUNDSTATION.fields_by_name['location'].message_type = base__pb2._LOCATION
 _MAPBLOCK.fields_by_name['area'].message_type = base__pb2._AREA
@@ -353,8 +353,8 @@ _MAPSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=687,
-  serialized_end=761,
+  serialized_start=702,
+  serialized_end=776,
   methods=[
   _descriptor.MethodDescriptor(
     name='Map',

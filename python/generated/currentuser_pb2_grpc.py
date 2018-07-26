@@ -5,8 +5,8 @@ import currentuser_pb2 as currentuser__pb2
 
 
 class CurrentUserServiceStub(object):
-  """Calls related to the current user. Typically, a newly created account only has access to these calls, all
-  other require an account to be linked.
+  """Calls related to the current user. Typically, a newly created organization only has access to these calls, all
+  other require an organization to be linked.
   """
 
   def __init__(self, channel):
@@ -25,16 +25,31 @@ class CurrentUserServiceStub(object):
         request_serializer=currentuser__pb2.RequestAccessRequest.SerializeToString,
         response_deserializer=currentuser__pb2.RequestAccessRequest.Response.FromString,
         )
+    self.CancelAccessRequest = channel.unary_unary(
+        '/hiber.user.CurrentUserService/CancelAccessRequest',
+        request_serializer=currentuser__pb2.CancelAccessRequestRequest.SerializeToString,
+        response_deserializer=currentuser__pb2.CancelAccessRequestRequest.Response.FromString,
+        )
     self.DeleteCurrentUser = channel.unary_unary(
         '/hiber.user.CurrentUserService/DeleteCurrentUser',
         request_serializer=currentuser__pb2.DeleteCurrentUserRequest.SerializeToString,
         response_deserializer=currentuser__pb2.DeleteCurrentUserRequest.Response.FromString,
         )
+    self.UpdateDefaultOrganization = channel.unary_unary(
+        '/hiber.user.CurrentUserService/UpdateDefaultOrganization',
+        request_serializer=currentuser__pb2.UpdateDefaultOrganizationRequest.SerializeToString,
+        response_deserializer=currentuser__pb2.UpdateDefaultOrganizationRequest.Response.FromString,
+        )
+    self.UpdateSettings = channel.unary_unary(
+        '/hiber.user.CurrentUserService/UpdateSettings',
+        request_serializer=currentuser__pb2.UpdateSettingsRequest.SerializeToString,
+        response_deserializer=currentuser__pb2.UpdateSettingsRequest.Response.FromString,
+        )
 
 
 class CurrentUserServiceServicer(object):
-  """Calls related to the current user. Typically, a newly created account only has access to these calls, all
-  other require an account to be linked.
+  """Calls related to the current user. Typically, a newly created organization only has access to these calls, all
+  other require an organization to be linked.
   """
 
   def CurrentUser(self, request, context):
@@ -51,7 +66,28 @@ class CurrentUserServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def CancelAccessRequest(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
   def DeleteCurrentUser(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def UpdateDefaultOrganization(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def UpdateSettings(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -71,10 +107,25 @@ def add_CurrentUserServiceServicer_to_server(servicer, server):
           request_deserializer=currentuser__pb2.RequestAccessRequest.FromString,
           response_serializer=currentuser__pb2.RequestAccessRequest.Response.SerializeToString,
       ),
+      'CancelAccessRequest': grpc.unary_unary_rpc_method_handler(
+          servicer.CancelAccessRequest,
+          request_deserializer=currentuser__pb2.CancelAccessRequestRequest.FromString,
+          response_serializer=currentuser__pb2.CancelAccessRequestRequest.Response.SerializeToString,
+      ),
       'DeleteCurrentUser': grpc.unary_unary_rpc_method_handler(
           servicer.DeleteCurrentUser,
           request_deserializer=currentuser__pb2.DeleteCurrentUserRequest.FromString,
           response_serializer=currentuser__pb2.DeleteCurrentUserRequest.Response.SerializeToString,
+      ),
+      'UpdateDefaultOrganization': grpc.unary_unary_rpc_method_handler(
+          servicer.UpdateDefaultOrganization,
+          request_deserializer=currentuser__pb2.UpdateDefaultOrganizationRequest.FromString,
+          response_serializer=currentuser__pb2.UpdateDefaultOrganizationRequest.Response.SerializeToString,
+      ),
+      'UpdateSettings': grpc.unary_unary_rpc_method_handler(
+          servicer.UpdateSettings,
+          request_deserializer=currentuser__pb2.UpdateSettingsRequest.FromString,
+          response_serializer=currentuser__pb2.UpdateSettingsRequest.Response.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
