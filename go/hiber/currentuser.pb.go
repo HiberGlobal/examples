@@ -18,18 +18,70 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
+type CurrentUser_Settings_Layout int32
+
+const (
+	CurrentUser_Settings_PORTRAIT  CurrentUser_Settings_Layout = 0
+	CurrentUser_Settings_LANDSCAPE CurrentUser_Settings_Layout = 1
+)
+
+var CurrentUser_Settings_Layout_name = map[int32]string{
+	0: "PORTRAIT",
+	1: "LANDSCAPE",
+}
+var CurrentUser_Settings_Layout_value = map[string]int32{
+	"PORTRAIT":  0,
+	"LANDSCAPE": 1,
+}
+
+func (x CurrentUser_Settings_Layout) String() string {
+	return proto.EnumName(CurrentUser_Settings_Layout_name, int32(x))
+}
+func (CurrentUser_Settings_Layout) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor1, []int{0, 0, 0}
+}
+
+type CurrentUser_Settings_MapStyle int32
+
+const (
+	CurrentUser_Settings_CLASSIC      CurrentUser_Settings_MapStyle = 0
+	CurrentUser_Settings_SATELLITE    CurrentUser_Settings_MapStyle = 1
+	CurrentUser_Settings_HIBER_VISION CurrentUser_Settings_MapStyle = 2
+)
+
+var CurrentUser_Settings_MapStyle_name = map[int32]string{
+	0: "CLASSIC",
+	1: "SATELLITE",
+	2: "HIBER_VISION",
+}
+var CurrentUser_Settings_MapStyle_value = map[string]int32{
+	"CLASSIC":      0,
+	"SATELLITE":    1,
+	"HIBER_VISION": 2,
+}
+
+func (x CurrentUser_Settings_MapStyle) String() string {
+	return proto.EnumName(CurrentUser_Settings_MapStyle_name, int32(x))
+}
+func (CurrentUser_Settings_MapStyle) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor1, []int{0, 0, 1}
+}
+
 // Your personal data
 type CurrentUser struct {
-	Id       string   `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
-	Email    string   `protobuf:"bytes,2,opt,name=email" json:"email,omitempty"`
-	Name     string   `protobuf:"bytes,3,opt,name=name" json:"name,omitempty"`
-	Accounts []string `protobuf:"bytes,4,rep,name=accounts" json:"accounts,omitempty"`
+	Id                     string                `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	Email                  string                `protobuf:"bytes,2,opt,name=email" json:"email,omitempty"`
+	Name                   string                `protobuf:"bytes,3,opt,name=name" json:"name,omitempty"`
+	Organizations          []string              `protobuf:"bytes,4,rep,name=organizations" json:"organizations,omitempty"`
+	DefaultOrganization    string                `protobuf:"bytes,5,opt,name=default_organization,json=defaultOrganization" json:"default_organization,omitempty"`
+	RequestedOrganizations []string              `protobuf:"bytes,6,rep,name=requested_organizations,json=requestedOrganizations" json:"requested_organizations,omitempty"`
+	Settings               *CurrentUser_Settings `protobuf:"bytes,7,opt,name=settings" json:"settings,omitempty"`
 }
 
 func (m *CurrentUser) Reset()                    { *m = CurrentUser{} }
 func (m *CurrentUser) String() string            { return proto.CompactTextString(m) }
 func (*CurrentUser) ProtoMessage()               {}
-func (*CurrentUser) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{0} }
+func (*CurrentUser) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{0} }
 
 func (m *CurrentUser) GetId() string {
 	if m != nil {
@@ -52,11 +104,57 @@ func (m *CurrentUser) GetName() string {
 	return ""
 }
 
-func (m *CurrentUser) GetAccounts() []string {
+func (m *CurrentUser) GetOrganizations() []string {
 	if m != nil {
-		return m.Accounts
+		return m.Organizations
 	}
 	return nil
+}
+
+func (m *CurrentUser) GetDefaultOrganization() string {
+	if m != nil {
+		return m.DefaultOrganization
+	}
+	return ""
+}
+
+func (m *CurrentUser) GetRequestedOrganizations() []string {
+	if m != nil {
+		return m.RequestedOrganizations
+	}
+	return nil
+}
+
+func (m *CurrentUser) GetSettings() *CurrentUser_Settings {
+	if m != nil {
+		return m.Settings
+	}
+	return nil
+}
+
+// Settings used by the UI
+type CurrentUser_Settings struct {
+	Layout   CurrentUser_Settings_Layout   `protobuf:"varint,1,opt,name=layout,enum=hiber.user.CurrentUser_Settings_Layout" json:"layout,omitempty"`
+	MapStyle CurrentUser_Settings_MapStyle `protobuf:"varint,2,opt,name=map_style,json=mapStyle,enum=hiber.user.CurrentUser_Settings_MapStyle" json:"map_style,omitempty"`
+}
+
+func (m *CurrentUser_Settings) Reset()                    { *m = CurrentUser_Settings{} }
+func (m *CurrentUser_Settings) String() string            { return proto.CompactTextString(m) }
+func (*CurrentUser_Settings) ProtoMessage()               {}
+func (*CurrentUser_Settings) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{0, 0} }
+
+func (m *CurrentUser_Settings) GetLayout() CurrentUser_Settings_Layout {
+	if m != nil {
+		return m.Layout
+	}
+	return CurrentUser_Settings_PORTRAIT
+}
+
+func (m *CurrentUser_Settings) GetMapStyle() CurrentUser_Settings_MapStyle {
+	if m != nil {
+		return m.MapStyle
+	}
+	return CurrentUser_Settings_CLASSIC
 }
 
 // Get your personal data
@@ -66,23 +164,23 @@ type CurrentUserRequest struct {
 func (m *CurrentUserRequest) Reset()                    { *m = CurrentUserRequest{} }
 func (m *CurrentUserRequest) String() string            { return proto.CompactTextString(m) }
 func (*CurrentUserRequest) ProtoMessage()               {}
-func (*CurrentUserRequest) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{1} }
+func (*CurrentUserRequest) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{1} }
 
-// Request access to an account by name, if it exists.
-// You request will be saved and the account owner notified.
-// Account admins can approve or reject your request.
+// Request access to an organization by name, if it exists.
+// You request will be saved and the organization owner notified.
+// Organization admins can approve or reject your request.
 type RequestAccessRequest struct {
-	Account string `protobuf:"bytes,1,opt,name=account" json:"account,omitempty"`
+	Organization string `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
 }
 
 func (m *RequestAccessRequest) Reset()                    { *m = RequestAccessRequest{} }
 func (m *RequestAccessRequest) String() string            { return proto.CompactTextString(m) }
 func (*RequestAccessRequest) ProtoMessage()               {}
-func (*RequestAccessRequest) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{2} }
+func (*RequestAccessRequest) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{2} }
 
-func (m *RequestAccessRequest) GetAccount() string {
+func (m *RequestAccessRequest) GetOrganization() string {
 	if m != nil {
-		return m.Account
+		return m.Organization
 	}
 	return ""
 }
@@ -94,7 +192,34 @@ func (m *RequestAccessRequest_Response) Reset()         { *m = RequestAccessRequ
 func (m *RequestAccessRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*RequestAccessRequest_Response) ProtoMessage()    {}
 func (*RequestAccessRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor2, []int{2, 0}
+	return fileDescriptor1, []int{2, 0}
+}
+
+// Cancel a previously made access request.
+type CancelAccessRequestRequest struct {
+	Organization string `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
+}
+
+func (m *CancelAccessRequestRequest) Reset()                    { *m = CancelAccessRequestRequest{} }
+func (m *CancelAccessRequestRequest) String() string            { return proto.CompactTextString(m) }
+func (*CancelAccessRequestRequest) ProtoMessage()               {}
+func (*CancelAccessRequestRequest) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{3} }
+
+func (m *CancelAccessRequestRequest) GetOrganization() string {
+	if m != nil {
+		return m.Organization
+	}
+	return ""
+}
+
+type CancelAccessRequestRequest_Response struct {
+}
+
+func (m *CancelAccessRequestRequest_Response) Reset()         { *m = CancelAccessRequestRequest_Response{} }
+func (m *CancelAccessRequestRequest_Response) String() string { return proto.CompactTextString(m) }
+func (*CancelAccessRequestRequest_Response) ProtoMessage()    {}
+func (*CancelAccessRequestRequest_Response) Descriptor() ([]byte, []int) {
+	return fileDescriptor1, []int{3, 0}
 }
 
 // Delete yourself.
@@ -105,7 +230,7 @@ type DeleteCurrentUserRequest struct {
 func (m *DeleteCurrentUserRequest) Reset()                    { *m = DeleteCurrentUserRequest{} }
 func (m *DeleteCurrentUserRequest) String() string            { return proto.CompactTextString(m) }
 func (*DeleteCurrentUserRequest) ProtoMessage()               {}
-func (*DeleteCurrentUserRequest) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{3} }
+func (*DeleteCurrentUserRequest) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{4} }
 
 type DeleteCurrentUserRequest_Response struct {
 }
@@ -114,16 +239,99 @@ func (m *DeleteCurrentUserRequest_Response) Reset()         { *m = DeleteCurrent
 func (m *DeleteCurrentUserRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*DeleteCurrentUserRequest_Response) ProtoMessage()    {}
 func (*DeleteCurrentUserRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor2, []int{3, 0}
+	return fileDescriptor1, []int{4, 0}
+}
+
+// Set the default organization to use when it is not specified in the call.
+// Note: this can be a child organization of one of the owned organizations.
+type UpdateDefaultOrganizationRequest struct {
+	Organization string `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
+}
+
+func (m *UpdateDefaultOrganizationRequest) Reset()         { *m = UpdateDefaultOrganizationRequest{} }
+func (m *UpdateDefaultOrganizationRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdateDefaultOrganizationRequest) ProtoMessage()    {}
+func (*UpdateDefaultOrganizationRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor1, []int{5}
+}
+
+func (m *UpdateDefaultOrganizationRequest) GetOrganization() string {
+	if m != nil {
+		return m.Organization
+	}
+	return ""
+}
+
+type UpdateDefaultOrganizationRequest_Response struct {
+	DefaultOrganization string `protobuf:"bytes,1,opt,name=default_organization,json=defaultOrganization" json:"default_organization,omitempty"`
+}
+
+func (m *UpdateDefaultOrganizationRequest_Response) Reset() {
+	*m = UpdateDefaultOrganizationRequest_Response{}
+}
+func (m *UpdateDefaultOrganizationRequest_Response) String() string { return proto.CompactTextString(m) }
+func (*UpdateDefaultOrganizationRequest_Response) ProtoMessage()    {}
+func (*UpdateDefaultOrganizationRequest_Response) Descriptor() ([]byte, []int) {
+	return fileDescriptor1, []int{5, 0}
+}
+
+func (m *UpdateDefaultOrganizationRequest_Response) GetDefaultOrganization() string {
+	if m != nil {
+		return m.DefaultOrganization
+	}
+	return ""
+}
+
+type UpdateSettingsRequest struct {
+	UpdatedSettings *CurrentUser_Settings `protobuf:"bytes,1,opt,name=updated_settings,json=updatedSettings" json:"updated_settings,omitempty"`
+}
+
+func (m *UpdateSettingsRequest) Reset()                    { *m = UpdateSettingsRequest{} }
+func (m *UpdateSettingsRequest) String() string            { return proto.CompactTextString(m) }
+func (*UpdateSettingsRequest) ProtoMessage()               {}
+func (*UpdateSettingsRequest) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{6} }
+
+func (m *UpdateSettingsRequest) GetUpdatedSettings() *CurrentUser_Settings {
+	if m != nil {
+		return m.UpdatedSettings
+	}
+	return nil
+}
+
+type UpdateSettingsRequest_Response struct {
+	Settings *CurrentUser_Settings `protobuf:"bytes,1,opt,name=settings" json:"settings,omitempty"`
+}
+
+func (m *UpdateSettingsRequest_Response) Reset()         { *m = UpdateSettingsRequest_Response{} }
+func (m *UpdateSettingsRequest_Response) String() string { return proto.CompactTextString(m) }
+func (*UpdateSettingsRequest_Response) ProtoMessage()    {}
+func (*UpdateSettingsRequest_Response) Descriptor() ([]byte, []int) {
+	return fileDescriptor1, []int{6, 0}
+}
+
+func (m *UpdateSettingsRequest_Response) GetSettings() *CurrentUser_Settings {
+	if m != nil {
+		return m.Settings
+	}
+	return nil
 }
 
 func init() {
 	proto.RegisterType((*CurrentUser)(nil), "hiber.user.CurrentUser")
+	proto.RegisterType((*CurrentUser_Settings)(nil), "hiber.user.CurrentUser.Settings")
 	proto.RegisterType((*CurrentUserRequest)(nil), "hiber.user.CurrentUserRequest")
 	proto.RegisterType((*RequestAccessRequest)(nil), "hiber.user.RequestAccessRequest")
 	proto.RegisterType((*RequestAccessRequest_Response)(nil), "hiber.user.RequestAccessRequest.Response")
+	proto.RegisterType((*CancelAccessRequestRequest)(nil), "hiber.user.CancelAccessRequestRequest")
+	proto.RegisterType((*CancelAccessRequestRequest_Response)(nil), "hiber.user.CancelAccessRequestRequest.Response")
 	proto.RegisterType((*DeleteCurrentUserRequest)(nil), "hiber.user.DeleteCurrentUserRequest")
 	proto.RegisterType((*DeleteCurrentUserRequest_Response)(nil), "hiber.user.DeleteCurrentUserRequest.Response")
+	proto.RegisterType((*UpdateDefaultOrganizationRequest)(nil), "hiber.user.UpdateDefaultOrganizationRequest")
+	proto.RegisterType((*UpdateDefaultOrganizationRequest_Response)(nil), "hiber.user.UpdateDefaultOrganizationRequest.Response")
+	proto.RegisterType((*UpdateSettingsRequest)(nil), "hiber.user.UpdateSettingsRequest")
+	proto.RegisterType((*UpdateSettingsRequest_Response)(nil), "hiber.user.UpdateSettingsRequest.Response")
+	proto.RegisterEnum("hiber.user.CurrentUser_Settings_Layout", CurrentUser_Settings_Layout_name, CurrentUser_Settings_Layout_value)
+	proto.RegisterEnum("hiber.user.CurrentUser_Settings_MapStyle", CurrentUser_Settings_MapStyle_name, CurrentUser_Settings_MapStyle_value)
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -139,7 +347,10 @@ const _ = grpc.SupportPackageIsVersion4
 type CurrentUserServiceClient interface {
 	CurrentUser(ctx context.Context, in *CurrentUserRequest, opts ...grpc.CallOption) (*CurrentUser, error)
 	RequestAccess(ctx context.Context, in *RequestAccessRequest, opts ...grpc.CallOption) (*RequestAccessRequest_Response, error)
+	CancelAccessRequest(ctx context.Context, in *CancelAccessRequestRequest, opts ...grpc.CallOption) (*CancelAccessRequestRequest_Response, error)
 	DeleteCurrentUser(ctx context.Context, in *DeleteCurrentUserRequest, opts ...grpc.CallOption) (*DeleteCurrentUserRequest_Response, error)
+	UpdateDefaultOrganization(ctx context.Context, in *UpdateDefaultOrganizationRequest, opts ...grpc.CallOption) (*UpdateDefaultOrganizationRequest_Response, error)
+	UpdateSettings(ctx context.Context, in *UpdateSettingsRequest, opts ...grpc.CallOption) (*UpdateSettingsRequest_Response, error)
 }
 
 type currentUserServiceClient struct {
@@ -168,9 +379,36 @@ func (c *currentUserServiceClient) RequestAccess(ctx context.Context, in *Reques
 	return out, nil
 }
 
+func (c *currentUserServiceClient) CancelAccessRequest(ctx context.Context, in *CancelAccessRequestRequest, opts ...grpc.CallOption) (*CancelAccessRequestRequest_Response, error) {
+	out := new(CancelAccessRequestRequest_Response)
+	err := grpc.Invoke(ctx, "/hiber.user.CurrentUserService/CancelAccessRequest", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *currentUserServiceClient) DeleteCurrentUser(ctx context.Context, in *DeleteCurrentUserRequest, opts ...grpc.CallOption) (*DeleteCurrentUserRequest_Response, error) {
 	out := new(DeleteCurrentUserRequest_Response)
 	err := grpc.Invoke(ctx, "/hiber.user.CurrentUserService/DeleteCurrentUser", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *currentUserServiceClient) UpdateDefaultOrganization(ctx context.Context, in *UpdateDefaultOrganizationRequest, opts ...grpc.CallOption) (*UpdateDefaultOrganizationRequest_Response, error) {
+	out := new(UpdateDefaultOrganizationRequest_Response)
+	err := grpc.Invoke(ctx, "/hiber.user.CurrentUserService/UpdateDefaultOrganization", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *currentUserServiceClient) UpdateSettings(ctx context.Context, in *UpdateSettingsRequest, opts ...grpc.CallOption) (*UpdateSettingsRequest_Response, error) {
+	out := new(UpdateSettingsRequest_Response)
+	err := grpc.Invoke(ctx, "/hiber.user.CurrentUserService/UpdateSettings", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -182,7 +420,10 @@ func (c *currentUserServiceClient) DeleteCurrentUser(ctx context.Context, in *De
 type CurrentUserServiceServer interface {
 	CurrentUser(context.Context, *CurrentUserRequest) (*CurrentUser, error)
 	RequestAccess(context.Context, *RequestAccessRequest) (*RequestAccessRequest_Response, error)
+	CancelAccessRequest(context.Context, *CancelAccessRequestRequest) (*CancelAccessRequestRequest_Response, error)
 	DeleteCurrentUser(context.Context, *DeleteCurrentUserRequest) (*DeleteCurrentUserRequest_Response, error)
+	UpdateDefaultOrganization(context.Context, *UpdateDefaultOrganizationRequest) (*UpdateDefaultOrganizationRequest_Response, error)
+	UpdateSettings(context.Context, *UpdateSettingsRequest) (*UpdateSettingsRequest_Response, error)
 }
 
 func RegisterCurrentUserServiceServer(s *grpc.Server, srv CurrentUserServiceServer) {
@@ -225,6 +466,24 @@ func _CurrentUserService_RequestAccess_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CurrentUserService_CancelAccessRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CancelAccessRequestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CurrentUserServiceServer).CancelAccessRequest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hiber.user.CurrentUserService/CancelAccessRequest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CurrentUserServiceServer).CancelAccessRequest(ctx, req.(*CancelAccessRequestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _CurrentUserService_DeleteCurrentUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteCurrentUserRequest)
 	if err := dec(in); err != nil {
@@ -243,6 +502,42 @@ func _CurrentUserService_DeleteCurrentUser_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CurrentUserService_UpdateDefaultOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateDefaultOrganizationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CurrentUserServiceServer).UpdateDefaultOrganization(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hiber.user.CurrentUserService/UpdateDefaultOrganization",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CurrentUserServiceServer).UpdateDefaultOrganization(ctx, req.(*UpdateDefaultOrganizationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CurrentUserService_UpdateSettings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateSettingsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CurrentUserServiceServer).UpdateSettings(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hiber.user.CurrentUserService/UpdateSettings",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CurrentUserServiceServer).UpdateSettings(ctx, req.(*UpdateSettingsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _CurrentUserService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "hiber.user.CurrentUserService",
 	HandlerType: (*CurrentUserServiceServer)(nil),
@@ -256,35 +551,68 @@ var _CurrentUserService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _CurrentUserService_RequestAccess_Handler,
 		},
 		{
+			MethodName: "CancelAccessRequest",
+			Handler:    _CurrentUserService_CancelAccessRequest_Handler,
+		},
+		{
 			MethodName: "DeleteCurrentUser",
 			Handler:    _CurrentUserService_DeleteCurrentUser_Handler,
+		},
+		{
+			MethodName: "UpdateDefaultOrganization",
+			Handler:    _CurrentUserService_UpdateDefaultOrganization_Handler,
+		},
+		{
+			MethodName: "UpdateSettings",
+			Handler:    _CurrentUserService_UpdateSettings_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "currentuser.proto",
 }
 
-func init() { proto.RegisterFile("currentuser.proto", fileDescriptor2) }
+func init() { proto.RegisterFile("currentuser.proto", fileDescriptor1) }
 
-var fileDescriptor2 = []byte{
-	// 291 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x8c, 0x52, 0x41, 0x4b, 0xf3, 0x40,
-	0x10, 0xfd, 0x9a, 0xb6, 0x9f, 0xed, 0x88, 0x85, 0x0e, 0x01, 0x97, 0x1c, 0x24, 0x04, 0x91, 0x7a,
-	0x70, 0x0f, 0x8a, 0x37, 0x2f, 0xad, 0xe2, 0x59, 0x22, 0x5e, 0xc4, 0x4b, 0xb2, 0x1d, 0xda, 0x85,
-	0x34, 0x89, 0xbb, 0x1b, 0x7f, 0x91, 0x3f, 0x54, 0xdc, 0x6e, 0xeb, 0x86, 0xb6, 0xe8, 0x6d, 0xde,
-	0xec, 0x7b, 0xf3, 0xe6, 0x0d, 0x0b, 0x63, 0xd1, 0x28, 0x45, 0xa5, 0x69, 0x34, 0x29, 0x5e, 0xab,
-	0xca, 0x54, 0x08, 0x4b, 0x99, 0x93, 0xe2, 0xdf, 0x9d, 0x44, 0xc0, 0xf1, 0xfd, 0x9a, 0xf0, 0xa2,
-	0x49, 0xe1, 0x08, 0x02, 0x39, 0x67, 0x9d, 0xb8, 0x33, 0x19, 0xa6, 0x81, 0x9c, 0x63, 0x08, 0x7d,
-	0x5a, 0x65, 0xb2, 0x60, 0x81, 0x6d, 0xad, 0x01, 0x22, 0xf4, 0xca, 0x6c, 0x45, 0xac, 0x6b, 0x9b,
-	0xb6, 0xc6, 0x08, 0x06, 0x99, 0x10, 0x55, 0x53, 0x1a, 0xcd, 0x7a, 0x71, 0x77, 0x32, 0x4c, 0xb7,
-	0x38, 0x09, 0x01, 0x3d, 0x93, 0x94, 0xde, 0x1b, 0xd2, 0x26, 0xb9, 0x83, 0xd0, 0x95, 0x53, 0x21,
-	0x48, 0x6b, 0x07, 0x90, 0xc1, 0x91, 0x53, 0xba, 0x45, 0x36, 0x30, 0x02, 0x18, 0xa4, 0xa4, 0xeb,
-	0xaa, 0xd4, 0x94, 0x5c, 0x00, 0x7b, 0xa0, 0x82, 0x0c, 0xed, 0x4e, 0xf6, 0x79, 0xd7, 0x9f, 0x41,
-	0xcb, 0xfc, 0x99, 0xd4, 0x87, 0x14, 0x84, 0x8f, 0xed, 0xdc, 0x67, 0xfc, 0xe7, 0x26, 0x7c, 0xcf,
-	0xc4, 0xd3, 0x03, 0xef, 0xf8, 0x06, 0x27, 0xad, 0x10, 0x18, 0xfb, 0xcc, 0x7d, 0xf9, 0xa2, 0xcb,
-	0xdf, 0x18, 0x7c, 0xb3, 0x3c, 0x2e, 0x61, 0xbc, 0x13, 0x12, 0xcf, 0x7d, 0xfd, 0xc1, 0x1b, 0x5c,
-	0xfd, 0x85, 0xb5, 0x75, 0x9a, 0xdd, 0x42, 0xb4, 0x28, 0xaa, 0x3c, 0x2b, 0x9c, 0x2c, 0xab, 0x25,
-	0x5f, 0xa8, 0x5a, 0x58, 0xfd, 0x6c, 0xe4, 0x49, 0xa7, 0xb5, 0x7c, 0xfa, 0xf7, 0xda, 0xb7, 0xb4,
-	0xfc, 0xbf, 0xfd, 0x51, 0x37, 0x5f, 0x01, 0x00, 0x00, 0xff, 0xff, 0xe6, 0x43, 0xbf, 0x96, 0x66,
-	0x02, 0x00, 0x00,
+var fileDescriptor1 = []byte{
+	// 632 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x9c, 0x95, 0x4f, 0x6f, 0xd3, 0x4c,
+	0x10, 0xc6, 0xbb, 0x69, 0x9a, 0x26, 0xd3, 0x36, 0x6f, 0xba, 0xcd, 0x4b, 0x8d, 0x0f, 0x28, 0x58,
+	0xa5, 0xb4, 0x08, 0x8c, 0x08, 0xaa, 0xe0, 0x00, 0x42, 0x6e, 0x9a, 0xaa, 0x16, 0xa6, 0xa9, 0xec,
+	0x94, 0x03, 0x42, 0xb2, 0xb6, 0xf6, 0x92, 0x5a, 0x72, 0x6c, 0xe3, 0x3f, 0x48, 0xe5, 0xc4, 0x85,
+	0x2b, 0x1f, 0x85, 0x4f, 0xc7, 0x81, 0x23, 0xea, 0xda, 0x71, 0xbc, 0xa4, 0x56, 0x1a, 0x6e, 0xeb,
+	0x99, 0x67, 0x9e, 0x99, 0x1d, 0xff, 0x9c, 0xc0, 0xa6, 0x95, 0x84, 0x21, 0xf5, 0xe2, 0x24, 0xa2,
+	0xa1, 0x1c, 0x84, 0x7e, 0xec, 0x63, 0xb8, 0x74, 0x2e, 0x68, 0x28, 0x5f, 0x47, 0xa4, 0x1f, 0x55,
+	0x58, 0xeb, 0xa5, 0x8a, 0xf3, 0x88, 0x86, 0xb8, 0x09, 0x15, 0xc7, 0x16, 0x50, 0x07, 0xed, 0x35,
+	0xf4, 0x8a, 0x63, 0xe3, 0x36, 0xac, 0xd0, 0x31, 0x71, 0x5c, 0xa1, 0xc2, 0x42, 0xe9, 0x03, 0xc6,
+	0x50, 0xf5, 0xc8, 0x98, 0x0a, 0xcb, 0x2c, 0xc8, 0xce, 0x78, 0x07, 0x36, 0xfc, 0x70, 0x44, 0x3c,
+	0xe7, 0x2b, 0x89, 0x1d, 0xdf, 0x8b, 0x84, 0x6a, 0x67, 0x79, 0xaf, 0xa1, 0xf3, 0x41, 0xfc, 0x0c,
+	0xda, 0x36, 0xfd, 0x44, 0x12, 0x37, 0x36, 0x8b, 0x09, 0x61, 0x85, 0x39, 0x6d, 0x65, 0xb9, 0x41,
+	0x21, 0x85, 0x5f, 0xc0, 0x76, 0x48, 0x3f, 0x27, 0x34, 0x8a, 0xa9, 0x6d, 0xf2, 0x2d, 0x6a, 0xac,
+	0xc5, 0x9d, 0x3c, 0x3d, 0xe0, 0x7a, 0xbd, 0x82, 0x7a, 0x44, 0xe3, 0xd8, 0xf1, 0x46, 0x91, 0xb0,
+	0xda, 0x41, 0x7b, 0x6b, 0xdd, 0x8e, 0x3c, 0xbd, 0xba, 0x5c, 0xb8, 0xb6, 0x6c, 0x64, 0x3a, 0x3d,
+	0xaf, 0x10, 0x7f, 0x21, 0xa8, 0x4f, 0xc2, 0xf8, 0x0d, 0xd4, 0x5c, 0x72, 0xe5, 0x27, 0x31, 0x5b,
+	0x4d, 0xb3, 0xfb, 0x70, 0x9e, 0x91, 0xac, 0x31, 0xb9, 0x9e, 0x95, 0xe1, 0x63, 0x68, 0x8c, 0x49,
+	0x60, 0x46, 0xf1, 0x95, 0x4b, 0xd9, 0x2e, 0x9b, 0xdd, 0xfd, 0xb9, 0x1e, 0xef, 0x48, 0x60, 0x5c,
+	0x17, 0xe8, 0xf5, 0x71, 0x76, 0x92, 0x1e, 0x40, 0x2d, 0x75, 0xc6, 0xeb, 0x50, 0x3f, 0x1b, 0xe8,
+	0x43, 0x5d, 0x51, 0x87, 0xad, 0x25, 0xbc, 0x01, 0x0d, 0x4d, 0x39, 0x3d, 0x32, 0x7a, 0xca, 0x59,
+	0xbf, 0x85, 0xa4, 0x97, 0x50, 0x9f, 0x14, 0xe3, 0x35, 0x58, 0xed, 0x69, 0x8a, 0x61, 0xa8, 0xbd,
+	0x54, 0x67, 0x28, 0xc3, 0xbe, 0xa6, 0xa9, 0xc3, 0x7e, 0x0b, 0xe1, 0x16, 0xac, 0x9f, 0xa8, 0x87,
+	0x7d, 0xdd, 0x7c, 0xaf, 0x1a, 0xea, 0xe0, 0xb4, 0x55, 0x91, 0xda, 0x80, 0x0b, 0xb3, 0xe8, 0xe9,
+	0x66, 0xa5, 0x63, 0x68, 0x67, 0x47, 0xc5, 0xb2, 0x68, 0x14, 0x65, 0x0f, 0x58, 0x82, 0x75, 0xee,
+	0x35, 0xa6, 0xe0, 0x70, 0x31, 0x11, 0xa0, 0xae, 0xd3, 0x28, 0xf0, 0xbd, 0x88, 0x4a, 0x1a, 0x88,
+	0x3d, 0xe2, 0x59, 0xd4, 0xe5, 0x6c, 0xfe, 0xd5, 0x6d, 0x17, 0x84, 0x23, 0xea, 0xd2, 0x98, 0xce,
+	0x4e, 0xcc, 0xe9, 0xbe, 0x23, 0xe8, 0x9c, 0x07, 0x36, 0x89, 0xe9, 0xd1, 0x2c, 0x5f, 0x8b, 0x34,
+	0x7f, 0x3d, 0x35, 0x2d, 0x25, 0x19, 0x95, 0x92, 0x2c, 0xfd, 0x44, 0xf0, 0x7f, 0x3a, 0x47, 0xce,
+	0x5b, 0xd6, 0xfc, 0x2d, 0xb4, 0x12, 0x96, 0xb0, 0xcd, 0x1c, 0x59, 0x74, 0x4b, 0x64, 0xff, 0xcb,
+	0x2a, 0x27, 0x01, 0xf1, 0xa4, 0x30, 0x65, 0xf1, 0x1b, 0x40, 0x8b, 0x7e, 0x03, 0xdd, 0xdf, 0x55,
+	0x8e, 0x06, 0x83, 0x86, 0x5f, 0x1c, 0x8b, 0xe2, 0x63, 0xfe, 0x37, 0xe3, 0x5e, 0x89, 0xe3, 0xe4,
+	0x55, 0x6c, 0x97, 0xe4, 0xf1, 0x47, 0xd8, 0xe0, 0xa8, 0xc2, 0xdc, 0x6c, 0x37, 0x01, 0x27, 0xee,
+	0xcf, 0x53, 0xc8, 0xf9, 0xd5, 0x3d, 0xd8, 0xba, 0x81, 0x35, 0xbc, 0xcb, 0x4d, 0x53, 0x0a, 0xa3,
+	0xf8, 0xf4, 0x76, 0xba, 0x69, 0xbf, 0x4b, 0xd8, 0x9c, 0xa1, 0x11, 0xef, 0x14, 0x5d, 0x4a, 0x61,
+	0x7d, 0x72, 0x1b, 0xd5, 0xb4, 0xd3, 0x37, 0x04, 0x77, 0x4b, 0x79, 0xc6, 0x8f, 0x8b, 0x66, 0xf3,
+	0xb0, 0x17, 0x0f, 0x16, 0x51, 0x4f, 0x47, 0x30, 0xa1, 0xc9, 0x93, 0x8c, 0xef, 0xcf, 0x1a, 0xfd,
+	0x45, 0xb9, 0xf8, 0x68, 0xae, 0x24, 0x6f, 0x70, 0x78, 0x00, 0xe2, 0xc8, 0xf5, 0x2f, 0x88, 0x9b,
+	0xd5, 0x90, 0xc0, 0x91, 0x47, 0x61, 0x60, 0xb1, 0xe2, 0xc3, 0x66, 0x61, 0x3d, 0x4a, 0xe0, 0x9c,
+	0x2d, 0x7d, 0x58, 0x61, 0xb2, 0x8b, 0x1a, 0xfb, 0x8b, 0x7b, 0xfe, 0x27, 0x00, 0x00, 0xff, 0xff,
+	0x19, 0xbe, 0xbc, 0x60, 0xf7, 0x06, 0x00, 0x00,
 }

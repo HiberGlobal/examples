@@ -4,7 +4,6 @@ import (
 	"./hiber"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
 	metadata "google.golang.org/grpc/metadata"
 	"log"
 )
