@@ -66,7 +66,7 @@ proto.hiber.map.MapSelection.prototype.toObject = function(opt_includeInstance) 
 proto.hiber.map.MapSelection.toObject = function(includeInstance, msg) {
   var f, obj = {
     modems: (f = msg.getModems()) && base_pb.Filter.Modems.toObject(includeInstance, f),
-    childAccounts: (f = msg.getChildAccounts()) && base_pb.Filter.ChildAccounts.toObject(includeInstance, f),
+    childOrganizations: (f = msg.getChildOrganizations()) && base_pb.Filter.ChildOrganizations.toObject(includeInstance, f),
     level: jspb.Message.getFieldWithDefault(msg, 3, 0),
     area: (f = msg.getArea()) && proto.hiber.map.MapSelection.AreaRestriction.toObject(includeInstance, f)
   };
@@ -111,9 +111,9 @@ proto.hiber.map.MapSelection.deserializeBinaryFromReader = function(msg, reader)
       msg.setModems(value);
       break;
     case 2:
-      var value = new base_pb.Filter.ChildAccounts;
-      reader.readMessage(value,base_pb.Filter.ChildAccounts.deserializeBinaryFromReader);
-      msg.setChildAccounts(value);
+      var value = new base_pb.Filter.ChildOrganizations;
+      reader.readMessage(value,base_pb.Filter.ChildOrganizations.deserializeBinaryFromReader);
+      msg.setChildOrganizations(value);
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt32());
@@ -161,12 +161,12 @@ proto.hiber.map.MapSelection.serializeBinaryToWriter = function(message, writer)
       base_pb.Filter.Modems.serializeBinaryToWriter
     );
   }
-  f = message.getChildAccounts();
+  f = message.getChildOrganizations();
   if (f != null) {
     writer.writeMessage(
       2,
       f,
-      base_pb.Filter.ChildAccounts.serializeBinaryToWriter
+      base_pb.Filter.ChildOrganizations.serializeBinaryToWriter
     );
   }
   f = message.getLevel();
@@ -421,23 +421,23 @@ proto.hiber.map.MapSelection.prototype.hasModems = function() {
 
 
 /**
- * optional hiber.Filter.ChildAccounts child_accounts = 2;
- * @return {?proto.hiber.Filter.ChildAccounts}
+ * optional hiber.Filter.ChildOrganizations child_organizations = 2;
+ * @return {?proto.hiber.Filter.ChildOrganizations}
  */
-proto.hiber.map.MapSelection.prototype.getChildAccounts = function() {
-  return /** @type{?proto.hiber.Filter.ChildAccounts} */ (
-    jspb.Message.getWrapperField(this, base_pb.Filter.ChildAccounts, 2));
+proto.hiber.map.MapSelection.prototype.getChildOrganizations = function() {
+  return /** @type{?proto.hiber.Filter.ChildOrganizations} */ (
+    jspb.Message.getWrapperField(this, base_pb.Filter.ChildOrganizations, 2));
 };
 
 
-/** @param {?proto.hiber.Filter.ChildAccounts|undefined} value */
-proto.hiber.map.MapSelection.prototype.setChildAccounts = function(value) {
+/** @param {?proto.hiber.Filter.ChildOrganizations|undefined} value */
+proto.hiber.map.MapSelection.prototype.setChildOrganizations = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
 
-proto.hiber.map.MapSelection.prototype.clearChildAccounts = function() {
-  this.setChildAccounts(undefined);
+proto.hiber.map.MapSelection.prototype.clearChildOrganizations = function() {
+  this.setChildOrganizations(undefined);
 };
 
 
@@ -445,7 +445,7 @@ proto.hiber.map.MapSelection.prototype.clearChildAccounts = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.hiber.map.MapSelection.prototype.hasChildAccounts = function() {
+proto.hiber.map.MapSelection.prototype.hasChildOrganizations = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -941,7 +941,7 @@ proto.hiber.map.MapRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.hiber.map.MapRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     selection: (f = msg.getSelection()) && proto.hiber.map.MapSelection.toObject(includeInstance, f)
   };
 
@@ -981,7 +981,7 @@ proto.hiber.map.MapRequest.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = new proto.hiber.map.MapSelection;
@@ -1017,7 +1017,7 @@ proto.hiber.map.MapRequest.prototype.serializeBinary = function() {
  */
 proto.hiber.map.MapRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -1294,16 +1294,16 @@ proto.hiber.map.MapRequest.Response.prototype.hasRequest = function() {
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.map.MapRequest.prototype.getAccount = function() {
+proto.hiber.map.MapRequest.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.map.MapRequest.prototype.setAccount = function(value) {
+proto.hiber.map.MapRequest.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 

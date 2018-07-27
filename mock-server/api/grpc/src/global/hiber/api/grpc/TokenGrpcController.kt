@@ -15,7 +15,7 @@ class TokenGrpcController : TokenServiceGrpc.TokenServiceImplBase(), GrpcControl
   ) = response.unary {
     TokenApi.ListTokensRequest.Response.newBuilder().apply {
       addTokens(TokenApi.Token.newBuilder().apply {
-        account = "example-account"
+        organization = "example-organization"
         expiresAt = Instant.now().plusSeconds(3600).asGrpc
         id = 1
         name = "example-token"

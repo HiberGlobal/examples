@@ -12,7 +12,6 @@ class TestingGrpcController : TestingServiceGrpc.TestingServiceImplBase(), GrpcC
   ) = response.unary {
     TestingApi.PushModemMessagesRequest.Response.newBuilder()
       .setRequest(request)
-      .putMessagesSent("example-modem", 1)
       .build()
   }
 }

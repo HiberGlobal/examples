@@ -17,13 +17,14 @@ module Hiber
         self.unmarshal_class_method = :decode
         self.service_name = 'hiber.modem.ModemService'
 
-        rpc :List, ListModemsRequest, ListModemsRequest::Response
         rpc :Get, GetModemRequest, Modem
+        rpc :List, ListModemsRequest, ListModemsRequest::Response
         rpc :Messages, ListModemMessagesRequest, ListModemMessagesRequest::Response
         rpc :MessageCount, MessageCountRequest, MessageCountRequest::Response
         rpc :Rename, RenameModemRequest, Modem
-        rpc :UpdatePayloadTemplate, UpdateModemPayloadTemplateRequest, Modem
         rpc :UpdateTags, UpdateModemTagsRequest, UpdateModemTagsRequest::Response
+        rpc :UpdatePeripherals, UpdatePeripheralsRequest, UpdatePeripheralsRequest::Response
+        rpc :LicenseKeys, LicenseKeysRequest, LicenseKeysRequest::Response
       end
 
       Stub = Service.rpc_stub_class

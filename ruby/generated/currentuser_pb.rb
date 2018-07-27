@@ -8,28 +8,70 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :id, :string, 1
     optional :email, :string, 2
     optional :name, :string, 3
-    repeated :accounts, :string, 4
+    repeated :organizations, :string, 4
+    optional :default_organization, :string, 5
+    repeated :requested_organizations, :string, 6
+    optional :settings, :message, 7, "hiber.user.CurrentUser.Settings"
+  end
+  add_message "hiber.user.CurrentUser.Settings" do
+    optional :layout, :enum, 1, "hiber.user.CurrentUser.Settings.Layout"
+    optional :map_style, :enum, 2, "hiber.user.CurrentUser.Settings.MapStyle"
+  end
+  add_enum "hiber.user.CurrentUser.Settings.Layout" do
+    value :PORTRAIT, 0
+    value :LANDSCAPE, 1
+  end
+  add_enum "hiber.user.CurrentUser.Settings.MapStyle" do
+    value :CLASSIC, 0
+    value :SATELLITE, 1
+    value :HIBER_VISION, 2
   end
   add_message "hiber.user.CurrentUserRequest" do
   end
   add_message "hiber.user.RequestAccessRequest" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
   end
   add_message "hiber.user.RequestAccessRequest.Response" do
+  end
+  add_message "hiber.user.CancelAccessRequestRequest" do
+    optional :organization, :string, 1
+  end
+  add_message "hiber.user.CancelAccessRequestRequest.Response" do
   end
   add_message "hiber.user.DeleteCurrentUserRequest" do
   end
   add_message "hiber.user.DeleteCurrentUserRequest.Response" do
+  end
+  add_message "hiber.user.UpdateDefaultOrganizationRequest" do
+    optional :organization, :string, 1
+  end
+  add_message "hiber.user.UpdateDefaultOrganizationRequest.Response" do
+    optional :default_organization, :string, 1
+  end
+  add_message "hiber.user.UpdateSettingsRequest" do
+    optional :updated_settings, :message, 1, "hiber.user.CurrentUser.Settings"
+  end
+  add_message "hiber.user.UpdateSettingsRequest.Response" do
+    optional :settings, :message, 1, "hiber.user.CurrentUser.Settings"
   end
 end
 
 module Hiber
   module User
     CurrentUser = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.CurrentUser").msgclass
+    CurrentUser::Settings = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.CurrentUser.Settings").msgclass
+    CurrentUser::Settings::Layout = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.CurrentUser.Settings.Layout").enummodule
+    CurrentUser::Settings::MapStyle = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.CurrentUser.Settings.MapStyle").enummodule
     CurrentUserRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.CurrentUserRequest").msgclass
     RequestAccessRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.RequestAccessRequest").msgclass
     RequestAccessRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.RequestAccessRequest.Response").msgclass
+    CancelAccessRequestRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.CancelAccessRequestRequest").msgclass
+    CancelAccessRequestRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.CancelAccessRequestRequest.Response").msgclass
     DeleteCurrentUserRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.DeleteCurrentUserRequest").msgclass
     DeleteCurrentUserRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.DeleteCurrentUserRequest.Response").msgclass
+    UpdateDefaultOrganizationRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.UpdateDefaultOrganizationRequest").msgclass
+    UpdateDefaultOrganizationRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.UpdateDefaultOrganizationRequest.Response").msgclass
+    UpdateSettingsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.UpdateSettingsRequest").msgclass
+    UpdateSettingsRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.UpdateSettingsRequest.Response").msgclass
   end
 end

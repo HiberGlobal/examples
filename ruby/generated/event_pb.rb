@@ -5,6 +5,8 @@ require 'google/protobuf'
 
 require 'base_pb'
 require 'modem_pb'
+require 'modem_transfer_pb'
+require 'modem_claim_pb'
 require 'tag_pb'
 require 'user_pb'
 require 'webhook_pb'
@@ -24,12 +26,20 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :webhook_updated, :message, 12, "hiber.event.Event.WebhookEvent.UpdatedEvent"
       optional :webhook_deleted, :message, 13, "hiber.event.Event.WebhookEvent.DeletedEvent"
       optional :webhook_failed, :message, 14, "hiber.event.Event.WebhookEvent.FailedEvent"
+      optional :modem_transfer_started, :message, 15, "hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent"
+      optional :modem_transfer_cancelled, :message, 16, "hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent"
+      optional :modem_transfer_received, :message, 17, "hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent"
+      optional :modem_transfer_not_received, :message, 18, "hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent"
+      optional :modem_transfer_return_transfer_started, :message, 19, "hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent"
+      optional :modem_claimed_event, :message, 20, "hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent"
+      optional :modem_claim_accepted_event, :message, 21, "hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent"
+      optional :modem_claim_rejected_event, :message, 22, "hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent"
     end
   end
   add_message "hiber.event.Event.ModemEvent" do
   end
   add_message "hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :modem_number, :string, 2
     optional :location, :message, 3, "hiber.Location"
     optional :time, :message, 4, "hiber.Timestamp"
@@ -38,9 +48,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :description, :string, 7
   end
   add_message "hiber.event.Event.ModemEvent.ModemStaleEvent" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :modem_number, :string, 2
-    optional :guard_period, :int32, 3
+    optional :maximum_inactivity_period, :int32, 3
     optional :time, :message, 4, "hiber.Timestamp"
     optional :last_message, :message, 5, "hiber.Timestamp"
     repeated :tags, :message, 6, "hiber.tag.Tag"
@@ -50,7 +60,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.event.Event.ModemEvent.MessageEvent" do
   end
   add_message "hiber.event.Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :modem_number, :string, 2
     optional :message, :message, 3, "hiber.modem.ModemMessage"
     repeated :tags, :message, 4, "hiber.tag.Tag"
@@ -59,7 +69,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :time, :message, 7, "hiber.Timestamp"
   end
   add_message "hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDroppedEvent" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :modem_number, :string, 2
     optional :dropped_messages, :int32, 3
     optional :message, :message, 4, "hiber.modem.ModemMessage"
@@ -70,7 +80,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :time, :message, 9, "hiber.Timestamp"
   end
   add_message "hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDelayedEvent" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :modem_number, :string, 2
     optional :message, :message, 3, "hiber.modem.ModemMessage"
     optional :delay_seconds, :int64, 4
@@ -81,7 +91,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :time, :message, 9, "hiber.Timestamp"
   end
   add_message "hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :modem_number, :string, 2
     optional :modem_message_id, :int64, 3
     optional :time, :message, 4, "hiber.Timestamp"
@@ -90,24 +100,99 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :title, :string, 7
     optional :description, :string, 8
   end
+  add_message "hiber.event.Event.ModemEvent.ClaimEvent" do
+  end
+  add_message "hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent" do
+    optional :organization, :string, 1
+    optional :modem_number, :string, 2
+    optional :claim, :message, 3, "hiber.modem.ModemClaim"
+    optional :time, :message, 4, "hiber.Timestamp"
+    optional :title, :string, 5
+    optional :description, :string, 6
+    repeated :tags, :message, 7, "hiber.tag.Tag"
+  end
+  add_message "hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent" do
+    optional :organization, :string, 1
+    optional :modem_number, :string, 2
+    optional :claim, :message, 3, "hiber.modem.ModemClaim"
+    optional :time, :message, 4, "hiber.Timestamp"
+    optional :title, :string, 5
+    optional :description, :string, 6
+    repeated :tags, :message, 7, "hiber.tag.Tag"
+  end
+  add_message "hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent" do
+    optional :organization, :string, 1
+    optional :modem_number, :string, 2
+    optional :claim, :message, 3, "hiber.modem.ModemClaim"
+    optional :time, :message, 4, "hiber.Timestamp"
+    optional :reason, :enum, 5, "hiber.modem.ModemClaim.RejectReason"
+    optional :comment, :string, 6
+    optional :title, :string, 7
+    optional :description, :string, 8
+    repeated :tags, :message, 9, "hiber.tag.Tag"
+  end
+  add_message "hiber.event.Event.ModemTransferEvent" do
+  end
+  add_message "hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent" do
+    optional :transfer, :message, 1, "hiber.modem.ModemTransfer"
+    optional :organization, :string, 2
+    optional :time, :message, 3, "hiber.Timestamp"
+    repeated :tags, :message, 4, "hiber.tag.Tag"
+    optional :title, :string, 5
+    optional :description, :string, 6
+  end
+  add_message "hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent" do
+    optional :transfer, :message, 1, "hiber.modem.ModemTransfer"
+    optional :organization, :string, 2
+    optional :time, :message, 3, "hiber.Timestamp"
+    repeated :tags, :message, 4, "hiber.tag.Tag"
+    optional :title, :string, 5
+    optional :description, :string, 6
+  end
+  add_message "hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent" do
+    optional :transfer, :message, 1, "hiber.modem.ModemTransfer"
+    optional :organization, :string, 2
+    optional :time, :message, 3, "hiber.Timestamp"
+    repeated :tags, :message, 4, "hiber.tag.Tag"
+    optional :title, :string, 5
+    optional :description, :string, 6
+  end
+  add_message "hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent" do
+    optional :transfer, :message, 1, "hiber.modem.ModemTransfer"
+    optional :organization, :string, 2
+    optional :time, :message, 3, "hiber.Timestamp"
+    repeated :tags, :message, 4, "hiber.tag.Tag"
+    optional :title, :string, 5
+    optional :description, :string, 6
+  end
+  add_message "hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent" do
+    optional :return_transfer, :message, 1, "hiber.modem.ModemTransfer"
+    optional :original_transfer, :message, 2, "hiber.modem.ModemTransfer"
+    repeated :return_lines, :message, 3, "hiber.modem.ModemTransferReturnLine"
+    optional :organization, :string, 4
+    optional :time, :message, 5, "hiber.Timestamp"
+    repeated :tags, :message, 6, "hiber.tag.Tag"
+    optional :title, :string, 7
+    optional :description, :string, 8
+  end
   add_message "hiber.event.Event.UserEvent" do
   end
   add_message "hiber.event.Event.UserEvent.UserAddedEvent" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :user, :string, 2
     optional :title, :string, 3
     optional :description, :string, 4
     optional :time, :message, 5, "hiber.Timestamp"
   end
   add_message "hiber.event.Event.UserEvent.UserRemovedEvent" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :user, :string, 2
     optional :title, :string, 3
     optional :description, :string, 4
     optional :time, :message, 5, "hiber.Timestamp"
   end
   add_message "hiber.event.Event.UserEvent.UserAccessRequestEvent" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :user, :string, 2
     optional :time, :message, 3, "hiber.Timestamp"
     optional :title, :string, 4
@@ -116,7 +201,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.event.Event.WebhookEvent" do
   end
   add_message "hiber.event.Event.WebhookEvent.CreatedEvent" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :created, :message, 2, "hiber.webhook.Webhook"
     repeated :tags, :message, 3, "hiber.tag.Tag"
     optional :title, :string, 4
@@ -124,7 +209,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :time, :message, 6, "hiber.Timestamp"
   end
   add_message "hiber.event.Event.WebhookEvent.UpdatedEvent" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :update, :message, 2, "hiber.webhook.Webhook"
     repeated :tags, :message, 3, "hiber.tag.Tag"
     optional :title, :string, 4
@@ -132,7 +217,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :time, :message, 6, "hiber.Timestamp"
   end
   add_message "hiber.event.Event.WebhookEvent.DeletedEvent" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :deleted, :message, 2, "hiber.webhook.Webhook"
     repeated :tags, :message, 3, "hiber.tag.Tag"
     optional :title, :string, 4
@@ -140,7 +225,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :time, :message, 6, "hiber.Timestamp"
   end
   add_message "hiber.event.Event.WebhookEvent.FailedEvent" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :reason, :string, 2
     optional :failed, :message, 3, "hiber.webhook.Webhook"
     repeated :tags, :message, 4, "hiber.tag.Tag"
@@ -157,7 +242,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :errors_only, :bool, 7
   end
   add_message "hiber.event.ListEventsRequest" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :selection, :message, 2, "hiber.event.EventSelection"
     optional :pagination, :message, 3, "hiber.Pagination"
     optional :sort, :enum, 4, "hiber.event.ListEventsRequest.Sort"
@@ -175,7 +260,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :MODEM_NUMBER_SPECIFIED, 4
   end
   add_message "hiber.event.EventStreamRequest" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :selection, :message, 2, "hiber.event.EventSelection"
   end
 end
@@ -191,6 +276,16 @@ module Hiber
     Event::ModemEvent::MessageEvent::ModemMessageDroppedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDroppedEvent").msgclass
     Event::ModemEvent::MessageEvent::ModemMessageDelayedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDelayedEvent").msgclass
     Event::ModemEvent::MessageEvent::ModemMessageCannotBeParsedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent").msgclass
+    Event::ModemEvent::ClaimEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.ModemEvent.ClaimEvent").msgclass
+    Event::ModemEvent::ClaimEvent::ModemClaimedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent").msgclass
+    Event::ModemEvent::ClaimEvent::ModemClaimAcceptedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent").msgclass
+    Event::ModemEvent::ClaimEvent::ModemClaimRejectedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent").msgclass
+    Event::ModemTransferEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.ModemTransferEvent").msgclass
+    Event::ModemTransferEvent::ModemTransferStartedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent").msgclass
+    Event::ModemTransferEvent::ModemTransferCancelledEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent").msgclass
+    Event::ModemTransferEvent::ModemTransferReceivedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent").msgclass
+    Event::ModemTransferEvent::ModemTransferNotReceivedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent").msgclass
+    Event::ModemTransferEvent::ModemTransferReturnTransferStartedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent").msgclass
     Event::UserEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.UserEvent").msgclass
     Event::UserEvent::UserAddedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.UserEvent.UserAddedEvent").msgclass
     Event::UserEvent::UserRemovedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.UserEvent.UserRemovedEvent").msgclass

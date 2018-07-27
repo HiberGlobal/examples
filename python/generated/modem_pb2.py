@@ -22,11 +22,109 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='modem.proto',
   package='hiber.modem',
   syntax='proto3',
-  serialized_pb=_b('\n\x0bmodem.proto\x12\x0bhiber.modem\x1a\nbase.proto\x1a\ttag.proto\x1a\x12subscription.proto\"\xbc\x05\n\x05Modem\x12\x0e\n\x06number\x18\x01 \x01(\t\x12\x0f\n\x07\x61\x63\x63ount\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12!\n\x08location\x18\x04 \x01(\x0b\x32\x0f.hiber.Location\x12\x32\n\x18last_message_received_at\x18\x05 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x42\n\x13\x61\x63tive_subscription\x18\x06 \x01(\x0b\x32%.hiber.modem.Modem.ActiveSubscription\x12\x33\n\ttechnical\x18\x07 \x01(\x0b\x32 .hiber.modem.Modem.TechnicalData\x12\x14\n\x0cguard_period\x18\x08 \x01(\x05\x12\x1d\n\x06health\x18\t \x01(\x0e\x32\r.hiber.Health\x12\x1c\n\x04tags\x18\n \x03(\x0b\x32\x0e.hiber.tag.Tag\x1a\xb3\x01\n\rTechnicalData\x12\x0f\n\x07\x63hip_id\x18\x01 \x01(\x03\x12\x15\n\rhardware_name\x18\x02 \x01(\t\x12\x1d\n\x15\x66irmware_version_name\x18\x03 \x01(\t\x12\x1e\n\x16message_format_version\x18\x04 \x01(\x05\x12\x18\n\x10payload_template\x18\x05 \x01(\t\x12!\n\x19hardware_production_batch\x18\x06 \x01(\t\x1a\xaa\x01\n\x12\x41\x63tiveSubscription\x12\x13\n\x0blicense_key\x18\x02 \x01(\t\x12\x35\n\x04type\x18\x03 \x01(\x0e\x32\'.hiber.account.subscription.ServiceType\x12$\n\nstart_date\x18\x04 \x01(\x0b\x32\x10.hiber.Timestamp\x12\"\n\x08\x65nd_date\x18\x05 \x01(\x0b\x32\x10.hiber.Timestamp\"\xfa\x02\n\x0eModemSelection\x12$\n\x06modems\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12%\n\x04tags\x18\x02 \x01(\x0b\x32\x17.hiber.tag.TagSelection\x12\x33\n\x0e\x63hild_accounts\x18\x03 \x01(\x0b\x32\x1b.hiber.Filter.ChildAccounts\x12\x13\n\x0bonly_active\x18\x04 \x01(\x08\x12&\n\x0c\x61\x63tivated_in\x18\x05 \x01(\x0b\x32\x10.hiber.TimeRange\x12\x42\n\x11with_service_type\x18\x06 \x03(\x0e\x32\'.hiber.account.subscription.ServiceType\x12.\n\x14with_last_message_in\x18\x07 \x01(\x0b\x32\x10.hiber.TimeRange\x12\x16\n\x0e\x66reeTextSearch\x18\x08 \x01(\t\x12\x1d\n\x06health\x18\t \x03(\x0e\x32\r.hiber.Health\"\x86\x01\n\x0cModemMessage\x12\x14\n\x0cmodem_number\x18\x01 \x01(\t\x12\x0f\n\x07version\x18\x02 \x01(\r\x12\x1e\n\x04time\x18\x03 \x01(\x0b\x32\x10.hiber.Timestamp\x12!\n\x08location\x18\x04 \x01(\x0b\x32\x0f.hiber.Location\x12\x0c\n\x04\x62ody\x18\x05 \x01(\x0c\"\x98\x01\n\x15ModemMessageSelection\x12$\n\x06modems\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12\x33\n\x0e\x63hild_accounts\x18\x02 \x01(\x0b\x32\x1b.hiber.Filter.ChildAccounts\x12$\n\ntime_range\x18\x03 \x01(\x0b\x32\x10.hiber.TimeRange\"\xb5\x03\n\x11ListModemsRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12.\n\tselection\x18\x02 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x12\x34\n\x07sort_by\x18\x04 \x01(\x0e\x32#.hiber.modem.ListModemsRequest.Sort\x1a\x8d\x01\n\x08Response\x12\"\n\x06modems\x18\x01 \x03(\x0b\x32\x12.hiber.modem.Modem\x12/\n\x07request\x18\x02 \x01(\x0b\x32\x1e.hiber.modem.ListModemsRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"r\n\x04Sort\x12\x19\n\x15LAST_MESSAGE_RECEIVED\x10\x00\x12\"\n\x1eLAST_MESSAGE_RECEIVED_INVERTED\x10\x01\x12\x14\n\x10MODEM_NUMBER_ASC\x10\x02\x12\x15\n\x11MODEM_NUMBER_DESC\x10\x03\"_\n\x0fGetModemRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x14\n\x0cmodem_number\x18\x02 \x01(\t\x12%\n\x04tags\x18\x03 \x01(\x0b\x32\x17.hiber.tag.TagSelection\"\xa9\x02\n\x18ListModemMessagesRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x35\n\tselection\x18\x02 \x01(\x0b\x32\".hiber.modem.ModemMessageSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\x9d\x01\n\x08Response\x12+\n\x08messages\x18\x01 \x03(\x0b\x32\x19.hiber.modem.ModemMessage\x12\x36\n\x07request\x18\x02 \x01(\x0b\x32%.hiber.modem.ListModemMessagesRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xba\x02\n\x13MessageCountRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x35\n\tselection\x18\x02 \x01(\x0b\x32\".hiber.modem.ModemMessageSelection\x1a\xda\x01\n\x08Response\x12`\n\x15message_count_per_day\x18\x01 \x03(\x0b\x32\x41.hiber.modem.MessageCountRequest.Response.MessageCountPerDayEntry\x12\x31\n\x07request\x18\x02 \x01(\x0b\x32 .hiber.modem.MessageCountRequest\x1a\x39\n\x17MessageCountPerDayEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x05:\x02\x38\x01\"p\n\x12RenameModemRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x14\n\x0cmodem_number\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12%\n\x04tags\x18\x04 \x01(\x0b\x32\x17.hiber.tag.TagSelection\"\x8b\x01\n!UpdateModemPayloadTemplateRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x14\n\x0cmodem_number\x18\x02 \x01(\t\x12\x18\n\x10payload_template\x18\x03 \x01(\t\x12%\n\x04tags\x18\x04 \x01(\x0b\x32\x17.hiber.tag.TagSelection\"\xc5\x01\n\x16UpdateModemTagsRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12\x15\n\rmodem_numbers\x18\x02 \x03(\t\x12,\n\x06update\x18\x03 \x01(\x0b\x32\x1c.hiber.tag.UpdateTagsForItem\x12%\n\x04tags\x18\x04 \x01(\x0b\x32\x17.hiber.tag.TagSelection\x1a.\n\x08Response\x12\"\n\x06modems\x18\x01 \x03(\x0b\x32\x12.hiber.modem.Modem2\xd5\x04\n\x0cModemService\x12O\n\x04List\x12\x1e.hiber.modem.ListModemsRequest\x1a\'.hiber.modem.ListModemsRequest.Response\x12\x37\n\x03Get\x12\x1c.hiber.modem.GetModemRequest\x1a\x12.hiber.modem.Modem\x12\x61\n\x08Messages\x12%.hiber.modem.ListModemMessagesRequest\x1a..hiber.modem.ListModemMessagesRequest.Response\x12[\n\x0cMessageCount\x12 .hiber.modem.MessageCountRequest\x1a).hiber.modem.MessageCountRequest.Response\x12=\n\x06Rename\x12\x1f.hiber.modem.RenameModemRequest\x1a\x12.hiber.modem.Modem\x12[\n\x15UpdatePayloadTemplate\x12..hiber.modem.UpdateModemPayloadTemplateRequest\x1a\x12.hiber.modem.Modem\x12_\n\nUpdateTags\x12#.hiber.modem.UpdateModemTagsRequest\x1a,.hiber.modem.UpdateModemTagsRequest.ResponseB0\n\x1bglobal.hiber.api.grpc.modemB\x08ModemApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\x0bmodem.proto\x12\x0bhiber.modem\x1a\nbase.proto\x1a\ttag.proto\x1a\x12subscription.proto\"\xcb\n\n\x05Modem\x12\x0e\n\x06number\x18\x01 \x01(\t\x12\x14\n\x0corganization\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12!\n\x08location\x18\x04 \x01(\x0b\x32\x0f.hiber.Location\x12\x32\n\x18last_message_received_at\x18\x05 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x42\n\x13\x61\x63tive_subscription\x18\x06 \x01(\x0b\x32%.hiber.modem.Modem.ActiveSubscription\x12\x33\n\ttechnical\x18\x07 \x01(\x0b\x32 .hiber.modem.Modem.TechnicalData\x12!\n\x19maximum_inactivity_period\x18\x08 \x01(\x05\x12\x1d\n\x06health\x18\t \x01(\x0e\x32\r.hiber.Health\x12\x1c\n\x04tags\x18\n \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\x33\n\x0bperipherals\x18\x0b \x01(\x0b\x32\x1e.hiber.modem.Modem.Peripherals\x12)\n\x06status\x18\x0c \x01(\x0e\x32\x19.hiber.modem.Modem.Status\x12\x30\n\x0bin_transfer\x18\r \x01(\x0b\x32\x1b.hiber.modem.Modem.Transfer\x1a\x90\x01\n\rTechnicalData\x12\x15\n\rhardware_name\x18\x02 \x01(\t\x12\x1d\n\x15\x66irmware_version_name\x18\x03 \x01(\t\x12!\n\x19hardware_production_batch\x18\x06 \x01(\t\x12\x14\n\x0cmanufacturer\x18\x07 \x01(\tJ\x04\x08\x01\x10\x02J\x04\x08\x04\x10\x05J\x04\x08\x05\x10\x06\x1a\xa6\x01\n\x12\x41\x63tiveSubscription\x12:\n\x04type\x18\x03 \x01(\x0e\x32,.hiber.organization.subscription.ServiceType\x12$\n\nstart_date\x18\x04 \x01(\x0b\x32\x10.hiber.Timestamp\x12\"\n\x08\x65nd_date\x18\x05 \x01(\x0b\x32\x10.hiber.TimestampJ\x04\x08\x01\x10\x02J\x04\x08\x02\x10\x03\x1a\x90\x01\n\x08Transfer\x12\x32\n\x06status\x18\x01 \x01(\x0e\x32\".hiber.modem.Modem.Transfer.Status\x12\x12\n\nidentifier\x18\x02 \x01(\t\"<\n\x06Status\x12\x08\n\x04NONE\x10\x00\x12\x0b\n\x07INBOUND\x10\x01\x12\x0c\n\x08OUTBOUND\x10\x02\x12\r\n\tRETURNING\x10\x03\x1a\xaa\x02\n\x0bPeripherals\x12\x42\n\rhiber_antenna\x18\x01 \x01(\x0e\x32+.hiber.modem.Modem.Peripherals.HiberAntenna\x12\x0b\n\x03gps\x18\x02 \x01(\x08\x12\x44\n\x0bperipherals\x18\x03 \x03(\x0b\x32/.hiber.modem.Modem.Peripherals.PeripheralsEntry\x1a\x32\n\x10PeripheralsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"P\n\x0cHiberAntenna\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\x0f\n\x0bHIBER_PANDA\x10\x01\x12\x11\n\rHIBER_GRIZZLY\x10\x02\x12\x0f\n\x0bHIBER_BLACK\x10\x03\"P\n\x06Status\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\x0b\n\x07\x44\x41MAGED\x10\x02\x12\x08\n\x04LOST\x10\x03\x12\x08\n\x04\x44\x45\x41\x44\x10\x04\x12\x0c\n\x08\x44ISABLED\x10\x05\"\xe7\x04\n\x0eModemSelection\x12$\n\x06modems\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12/\n\x0e\x66ilter_by_tags\x18\x02 \x01(\x0b\x32\x17.hiber.tag.TagSelection\x12=\n\x13\x63hild_organizations\x18\x03 \x01(\x0b\x32 .hiber.Filter.ChildOrganizations\x12\x13\n\x0bonly_active\x18\x04 \x01(\x08\x12&\n\x0c\x61\x63tivated_in\x18\x05 \x01(\x0b\x32\x10.hiber.TimeRange\x12G\n\x11with_service_type\x18\x06 \x03(\x0e\x32,.hiber.organization.subscription.ServiceType\x12.\n\x14with_last_message_in\x18\x07 \x01(\x0b\x32\x10.hiber.TimeRange\x12\x18\n\x10\x66ree_text_search\x18\x08 \x01(\t\x12\x1d\n\x06health\x18\t \x03(\x0e\x32\r.hiber.Health\x12)\n\x06status\x18\n \x03(\x0e\x32\x19.hiber.modem.Modem.Status\x12\x38\n\ttransfers\x18\x0b \x01(\x0b\x32%.hiber.modem.ModemSelection.Transfers\x1ak\n\tTransfers\x12\x1d\n\x15transfers_identifiers\x18\x01 \x03(\t\x12\x1e\n\x16include_inbound_modems\x18\x02 \x01(\x08\x12\x1f\n\x17include_outbound_modems\x18\x03 \x01(\x08\"\xb0\x01\n\x0cModemMessage\x12\x14\n\x0cmodem_number\x18\x01 \x01(\t\x12\x0f\n\x07version\x18\x02 \x01(\r\x12!\n\x07sent_at\x18\x03 \x01(\x0b\x32\x10.hiber.Timestamp\x12!\n\x08location\x18\x04 \x01(\x0b\x32\x0f.hiber.Location\x12\x0c\n\x04\x62ody\x18\x05 \x01(\x0c\x12%\n\x0breceived_at\x18\x06 \x01(\x0b\x32\x10.hiber.Timestamp\"\xa2\x01\n\x15ModemMessageSelection\x12$\n\x06modems\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12=\n\x13\x63hild_organizations\x18\x02 \x01(\x0b\x32 .hiber.Filter.ChildOrganizations\x12$\n\ntime_range\x18\x03 \x01(\x0b\x32\x10.hiber.TimeRange\"C\n\x0fGetModemRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x14\n\x0cmodem_number\x18\x02 \x01(\tJ\x04\x08\x03\x10\x04\"\xe2\x03\n\x11ListModemsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12.\n\tselection\x18\x02 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x12\x34\n\x07sort_by\x18\x04 \x01(\x0e\x32#.hiber.modem.ListModemsRequest.Sort\x1a\x8d\x01\n\x08Response\x12\"\n\x06modems\x18\x01 \x03(\x0b\x32\x12.hiber.modem.Modem\x12/\n\x07request\x18\x02 \x01(\x0b\x32\x1e.hiber.modem.ListModemsRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\x93\x01\n\x04Sort\x12\x19\n\x15LAST_MESSAGE_RECEIVED\x10\x00\x12\"\n\x1eLAST_MESSAGE_RECEIVED_INVERTED\x10\x01\x12\x14\n\x10MODEM_NUMBER_ASC\x10\x02\x12\x15\n\x11MODEM_NUMBER_DESC\x10\x03\x12\x0e\n\nSTATUS_ASC\x10\x04\x12\x0f\n\x0bSTATUS_DESC\x10\x05J\x04\x08\x05\x10\x06\"\xae\x02\n\x18ListModemMessagesRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x35\n\tselection\x18\x02 \x01(\x0b\x32\".hiber.modem.ModemMessageSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\x9d\x01\n\x08Response\x12+\n\x08messages\x18\x01 \x03(\x0b\x32\x19.hiber.modem.ModemMessage\x12\x36\n\x07request\x18\x02 \x01(\x0b\x32%.hiber.modem.ListModemMessagesRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xcd\x02\n\x13MessageCountRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x35\n\tselection\x18\x02 \x01(\x0b\x32\".hiber.modem.ModemMessageSelection\x12\x18\n\x10time_zone_offset\x18\x03 \x01(\x05\x1a\xce\x01\n\x08Response\x12U\n\x15message_count_per_day\x18\x01 \x03(\x0b\x32\x36.hiber.modem.MessageCountRequest.Response.MessageCount\x12\x31\n\x07request\x18\x02 \x01(\x0b\x32 .hiber.modem.MessageCountRequest\x1a\x38\n\x0cMessageCount\x12\x19\n\x04\x64\x61te\x18\x01 \x01(\x0b\x32\x0b.hiber.Date\x12\r\n\x05\x63ount\x18\x02 \x01(\x05\"T\n\x12RenameModemRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x14\n\x0cmodem_number\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\tJ\x04\x08\x04\x10\x05\"\xc8\x02\n\x16UpdateModemTagsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12,\n\x06update\x18\x03 \x01(\x0b\x32\x1c.hiber.tag.UpdateTagsForItem\x12.\n\tselection\x18\x05 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12%\n\npagination\x18\x06 \x01(\x0b\x32\x11.hiber.Pagination\x1a\x92\x01\n\x08Response\x12\"\n\x06modems\x18\x01 \x03(\x0b\x32\x12.hiber.modem.Modem\x12\x34\n\x07request\x18\x02 \x01(\x0b\x32#.hiber.modem.UpdateModemTagsRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xe3\x04\n\x18UpdatePeripheralsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12.\n\tselection\x18\x02 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12\x42\n\rhiber_antenna\x18\x03 \x01(\x0e\x32+.hiber.modem.Modem.Peripherals.HiberAntenna\x12!\n\x03gps\x18\x04 \x01(\x0b\x32\x14.hiber.UpdateBoolean\x12/\n\x16hardcoded_gps_location\x18\x05 \x01(\x0b\x32\x0f.hiber.Location\x12R\n\x0f\x61\x64\x64_peripherals\x18\x06 \x03(\x0b\x32\x39.hiber.modem.UpdatePeripheralsRequest.AddPeripheralsEntry\x12\x1a\n\x12remove_peripherals\x18\x07 \x03(\t\x12%\n\npagination\x18\t \x01(\x0b\x32\x11.hiber.Pagination\x1a\x94\x01\n\x08Response\x12\x36\n\x07request\x18\x01 \x01(\x0b\x32%.hiber.modem.UpdatePeripheralsRequest\x12\"\n\x06modems\x18\x02 \x03(\x0b\x32\x12.hiber.modem.Modem\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\x1a\x35\n\x13\x41\x64\x64PeripheralsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01J\x04\x08\x08\x10\t\"\xfc\x02\n\x12LicenseKeysRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12.\n\tselection\x18\x02 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\xf8\x01\n\x08Response\x12\x30\n\x07request\x18\x01 \x01(\x0b\x32\x1f.hiber.modem.LicenseKeysRequest\x12N\n\x0clicense_keys\x18\x02 \x03(\x0b\x32\x38.hiber.modem.LicenseKeysRequest.Response.ModemLicenseKey\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\x1a<\n\x0fModemLicenseKey\x12\x14\n\x0cmodem_number\x18\x01 \x01(\t\x12\x13\n\x0blicense_key\x18\x02 \x01(\t2\xbe\x05\n\x0cModemService\x12\x37\n\x03Get\x12\x1c.hiber.modem.GetModemRequest\x1a\x12.hiber.modem.Modem\x12O\n\x04List\x12\x1e.hiber.modem.ListModemsRequest\x1a\'.hiber.modem.ListModemsRequest.Response\x12\x61\n\x08Messages\x12%.hiber.modem.ListModemMessagesRequest\x1a..hiber.modem.ListModemMessagesRequest.Response\x12[\n\x0cMessageCount\x12 .hiber.modem.MessageCountRequest\x1a).hiber.modem.MessageCountRequest.Response\x12=\n\x06Rename\x12\x1f.hiber.modem.RenameModemRequest\x1a\x12.hiber.modem.Modem\x12_\n\nUpdateTags\x12#.hiber.modem.UpdateModemTagsRequest\x1a,.hiber.modem.UpdateModemTagsRequest.Response\x12j\n\x11UpdatePeripherals\x12%.hiber.modem.UpdatePeripheralsRequest\x1a..hiber.modem.UpdatePeripheralsRequest.Response\x12X\n\x0bLicenseKeys\x12\x1f.hiber.modem.LicenseKeysRequest\x1a(.hiber.modem.LicenseKeysRequest.ResponseB0\n\x1bglobal.hiber.api.grpc.modemB\x08ModemApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,tag__pb2.DESCRIPTOR,subscription__pb2.DESCRIPTOR,])
 
 
+
+_MODEM_TRANSFER_STATUS = _descriptor.EnumDescriptor(
+  name='Status',
+  full_name='hiber.modem.Modem.Transfer.Status',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='NONE', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='INBOUND', index=1, number=1,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='OUTBOUND', index=2, number=2,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='RETURNING', index=3, number=3,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=984,
+  serialized_end=1044,
+)
+_sym_db.RegisterEnumDescriptor(_MODEM_TRANSFER_STATUS)
+
+_MODEM_PERIPHERALS_HIBERANTENNA = _descriptor.EnumDescriptor(
+  name='HiberAntenna',
+  full_name='hiber.modem.Modem.Peripherals.HiberAntenna',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='DEFAULT', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='HIBER_PANDA', index=1, number=1,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='HIBER_GRIZZLY', index=2, number=2,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='HIBER_BLACK', index=3, number=3,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=1265,
+  serialized_end=1345,
+)
+_sym_db.RegisterEnumDescriptor(_MODEM_PERIPHERALS_HIBERANTENNA)
+
+_MODEM_STATUS = _descriptor.EnumDescriptor(
+  name='Status',
+  full_name='hiber.modem.Modem.Status',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='DEFAULT', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ACTIVE', index=1, number=1,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='DAMAGED', index=2, number=2,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='LOST', index=3, number=3,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='DEAD', index=4, number=4,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='DISABLED', index=5, number=5,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=1347,
+  serialized_end=1427,
+)
+_sym_db.RegisterEnumDescriptor(_MODEM_STATUS)
 
 _LISTMODEMSREQUEST_SORT = _descriptor.EnumDescriptor(
   name='Sort',
@@ -50,11 +148,19 @@ _LISTMODEMSREQUEST_SORT = _descriptor.EnumDescriptor(
       name='MODEM_NUMBER_DESC', index=3, number=3,
       options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='STATUS_ASC', index=4, number=4,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='STATUS_DESC', index=5, number=5,
+      options=None,
+      type=None),
   ],
   containing_type=None,
   options=None,
-  serialized_start=1771,
-  serialized_end=1885,
+  serialized_start=2790,
+  serialized_end=2937,
 )
 _sym_db.RegisterEnumDescriptor(_LISTMODEMSREQUEST_SORT)
 
@@ -67,43 +173,29 @@ _MODEM_TECHNICALDATA = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='chip_id', full_name='hiber.modem.Modem.TechnicalData.chip_id', index=0,
-      number=1, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='hardware_name', full_name='hiber.modem.Modem.TechnicalData.hardware_name', index=1,
+      name='hardware_name', full_name='hiber.modem.Modem.TechnicalData.hardware_name', index=0,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='firmware_version_name', full_name='hiber.modem.Modem.TechnicalData.firmware_version_name', index=2,
+      name='firmware_version_name', full_name='hiber.modem.Modem.TechnicalData.firmware_version_name', index=1,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='message_format_version', full_name='hiber.modem.Modem.TechnicalData.message_format_version', index=3,
-      number=4, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='payload_template', full_name='hiber.modem.Modem.TechnicalData.payload_template', index=4,
-      number=5, type=9, cpp_type=9, label=1,
+      name='hardware_production_batch', full_name='hiber.modem.Modem.TechnicalData.hardware_production_batch', index=2,
+      number=6, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='hardware_production_batch', full_name='hiber.modem.Modem.TechnicalData.hardware_production_batch', index=5,
-      number=6, type=9, cpp_type=9, label=1,
+      name='manufacturer', full_name='hiber.modem.Modem.TechnicalData.manufacturer', index=3,
+      number=7, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -120,8 +212,8 @@ _MODEM_TECHNICALDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=420,
-  serialized_end=599,
+  serialized_start=584,
+  serialized_end=728,
 )
 
 _MODEM_ACTIVESUBSCRIPTION = _descriptor.Descriptor(
@@ -132,28 +224,21 @@ _MODEM_ACTIVESUBSCRIPTION = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='license_key', full_name='hiber.modem.Modem.ActiveSubscription.license_key', index=0,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='type', full_name='hiber.modem.Modem.ActiveSubscription.type', index=1,
+      name='type', full_name='hiber.modem.Modem.ActiveSubscription.type', index=0,
       number=3, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='start_date', full_name='hiber.modem.Modem.ActiveSubscription.start_date', index=2,
+      name='start_date', full_name='hiber.modem.Modem.ActiveSubscription.start_date', index=1,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='end_date', full_name='hiber.modem.Modem.ActiveSubscription.end_date', index=3,
+      name='end_date', full_name='hiber.modem.Modem.ActiveSubscription.end_date', index=2,
       number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -171,8 +256,128 @@ _MODEM_ACTIVESUBSCRIPTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=602,
-  serialized_end=772,
+  serialized_start=731,
+  serialized_end=897,
+)
+
+_MODEM_TRANSFER = _descriptor.Descriptor(
+  name='Transfer',
+  full_name='hiber.modem.Modem.Transfer',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='status', full_name='hiber.modem.Modem.Transfer.status', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='identifier', full_name='hiber.modem.Modem.Transfer.identifier', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _MODEM_TRANSFER_STATUS,
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=900,
+  serialized_end=1044,
+)
+
+_MODEM_PERIPHERALS_PERIPHERALSENTRY = _descriptor.Descriptor(
+  name='PeripheralsEntry',
+  full_name='hiber.modem.Modem.Peripherals.PeripheralsEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='hiber.modem.Modem.Peripherals.PeripheralsEntry.key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='hiber.modem.Modem.Peripherals.PeripheralsEntry.value', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001')),
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1213,
+  serialized_end=1263,
+)
+
+_MODEM_PERIPHERALS = _descriptor.Descriptor(
+  name='Peripherals',
+  full_name='hiber.modem.Modem.Peripherals',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='hiber_antenna', full_name='hiber.modem.Modem.Peripherals.hiber_antenna', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='gps', full_name='hiber.modem.Modem.Peripherals.gps', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='peripherals', full_name='hiber.modem.Modem.Peripherals.peripherals', index=2,
+      number=3, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_MODEM_PERIPHERALS_PERIPHERALSENTRY, ],
+  enum_types=[
+    _MODEM_PERIPHERALS_HIBERANTENNA,
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1047,
+  serialized_end=1345,
 )
 
 _MODEM = _descriptor.Descriptor(
@@ -190,7 +395,7 @@ _MODEM = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='account', full_name='hiber.modem.Modem.account', index=1,
+      name='organization', full_name='hiber.modem.Modem.organization', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -232,7 +437,7 @@ _MODEM = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='guard_period', full_name='hiber.modem.Modem.guard_period', index=7,
+      name='maximum_inactivity_period', full_name='hiber.modem.Modem.maximum_inactivity_period', index=7,
       number=8, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -252,11 +457,33 @@ _MODEM = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='peripherals', full_name='hiber.modem.Modem.peripherals', index=10,
+      number=11, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='status', full_name='hiber.modem.Modem.status', index=11,
+      number=12, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='in_transfer', full_name='hiber.modem.Modem.in_transfer', index=12,
+      number=13, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
-  nested_types=[_MODEM_TECHNICALDATA, _MODEM_ACTIVESUBSCRIPTION, ],
+  nested_types=[_MODEM_TECHNICALDATA, _MODEM_ACTIVESUBSCRIPTION, _MODEM_TRANSFER, _MODEM_PERIPHERALS, ],
   enum_types=[
+    _MODEM_STATUS,
   ],
   options=None,
   is_extendable=False,
@@ -265,9 +492,53 @@ _MODEM = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=72,
-  serialized_end=772,
+  serialized_end=1427,
 )
 
+
+_MODEMSELECTION_TRANSFERS = _descriptor.Descriptor(
+  name='Transfers',
+  full_name='hiber.modem.ModemSelection.Transfers',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='transfers_identifiers', full_name='hiber.modem.ModemSelection.Transfers.transfers_identifiers', index=0,
+      number=1, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='include_inbound_modems', full_name='hiber.modem.ModemSelection.Transfers.include_inbound_modems', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='include_outbound_modems', full_name='hiber.modem.ModemSelection.Transfers.include_outbound_modems', index=2,
+      number=3, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1938,
+  serialized_end=2045,
+)
 
 _MODEMSELECTION = _descriptor.Descriptor(
   name='ModemSelection',
@@ -284,14 +555,14 @@ _MODEMSELECTION = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='tags', full_name='hiber.modem.ModemSelection.tags', index=1,
+      name='filter_by_tags', full_name='hiber.modem.ModemSelection.filter_by_tags', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='child_accounts', full_name='hiber.modem.ModemSelection.child_accounts', index=2,
+      name='child_organizations', full_name='hiber.modem.ModemSelection.child_organizations', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -326,7 +597,7 @@ _MODEMSELECTION = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='freeTextSearch', full_name='hiber.modem.ModemSelection.freeTextSearch', index=7,
+      name='free_text_search', full_name='hiber.modem.ModemSelection.free_text_search', index=7,
       number=8, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -339,10 +610,24 @@ _MODEMSELECTION = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='status', full_name='hiber.modem.ModemSelection.status', index=9,
+      number=10, type=14, cpp_type=8, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='transfers', full_name='hiber.modem.ModemSelection.transfers', index=10,
+      number=11, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
-  nested_types=[],
+  nested_types=[_MODEMSELECTION_TRANSFERS, ],
   enum_types=[
   ],
   options=None,
@@ -351,8 +636,8 @@ _MODEMSELECTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=775,
-  serialized_end=1153,
+  serialized_start=1430,
+  serialized_end=2045,
 )
 
 
@@ -378,7 +663,7 @@ _MODEMMESSAGE = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='time', full_name='hiber.modem.ModemMessage.time', index=2,
+      name='sent_at', full_name='hiber.modem.ModemMessage.sent_at', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -398,6 +683,13 @@ _MODEMMESSAGE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='received_at', full_name='hiber.modem.ModemMessage.received_at', index=5,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -410,8 +702,8 @@ _MODEMMESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1156,
-  serialized_end=1290,
+  serialized_start=2048,
+  serialized_end=2224,
 )
 
 
@@ -430,7 +722,7 @@ _MODEMMESSAGESELECTION = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='child_accounts', full_name='hiber.modem.ModemMessageSelection.child_accounts', index=1,
+      name='child_organizations', full_name='hiber.modem.ModemMessageSelection.child_organizations', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -455,8 +747,46 @@ _MODEMMESSAGESELECTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1293,
-  serialized_end=1445,
+  serialized_start=2227,
+  serialized_end=2389,
+)
+
+
+_GETMODEMREQUEST = _descriptor.Descriptor(
+  name='GetModemRequest',
+  full_name='hiber.modem.GetModemRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organization', full_name='hiber.modem.GetModemRequest.organization', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='modem_number', full_name='hiber.modem.GetModemRequest.modem_number', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2391,
+  serialized_end=2458,
 )
 
 
@@ -500,8 +830,8 @@ _LISTMODEMSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1628,
-  serialized_end=1769,
+  serialized_start=2646,
+  serialized_end=2787,
 )
 
 _LISTMODEMSREQUEST = _descriptor.Descriptor(
@@ -512,7 +842,7 @@ _LISTMODEMSREQUEST = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='account', full_name='hiber.modem.ListModemsRequest.account', index=0,
+      name='organization', full_name='hiber.modem.ListModemsRequest.organization', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -552,53 +882,8 @@ _LISTMODEMSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1448,
-  serialized_end=1885,
-)
-
-
-_GETMODEMREQUEST = _descriptor.Descriptor(
-  name='GetModemRequest',
-  full_name='hiber.modem.GetModemRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='account', full_name='hiber.modem.GetModemRequest.account', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='modem_number', full_name='hiber.modem.GetModemRequest.modem_number', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='tags', full_name='hiber.modem.GetModemRequest.tags', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1887,
-  serialized_end=1982,
+  serialized_start=2461,
+  serialized_end=2943,
 )
 
 
@@ -642,8 +927,8 @@ _LISTMODEMMESSAGESREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2125,
-  serialized_end=2282,
+  serialized_start=3091,
+  serialized_end=3248,
 )
 
 _LISTMODEMMESSAGESREQUEST = _descriptor.Descriptor(
@@ -654,7 +939,7 @@ _LISTMODEMMESSAGESREQUEST = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='account', full_name='hiber.modem.ListModemMessagesRequest.account', index=0,
+      name='organization', full_name='hiber.modem.ListModemMessagesRequest.organization', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -686,27 +971,27 @@ _LISTMODEMMESSAGESREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1985,
-  serialized_end=2282,
+  serialized_start=2946,
+  serialized_end=3248,
 )
 
 
-_MESSAGECOUNTREQUEST_RESPONSE_MESSAGECOUNTPERDAYENTRY = _descriptor.Descriptor(
-  name='MessageCountPerDayEntry',
-  full_name='hiber.modem.MessageCountRequest.Response.MessageCountPerDayEntry',
+_MESSAGECOUNTREQUEST_RESPONSE_MESSAGECOUNT = _descriptor.Descriptor(
+  name='MessageCount',
+  full_name='hiber.modem.MessageCountRequest.Response.MessageCount',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='key', full_name='hiber.modem.MessageCountRequest.Response.MessageCountPerDayEntry.key', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      name='date', full_name='hiber.modem.MessageCountRequest.Response.MessageCount.date', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='value', full_name='hiber.modem.MessageCountRequest.Response.MessageCountPerDayEntry.value', index=1,
+      name='count', full_name='hiber.modem.MessageCountRequest.Response.MessageCount.count', index=1,
       number=2, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -718,14 +1003,14 @@ _MESSAGECOUNTREQUEST_RESPONSE_MESSAGECOUNTPERDAYENTRY = _descriptor.Descriptor(
   nested_types=[],
   enum_types=[
   ],
-  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001')),
+  options=None,
   is_extendable=False,
   syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2542,
-  serialized_end=2599,
+  serialized_start=3528,
+  serialized_end=3584,
 )
 
 _MESSAGECOUNTREQUEST_RESPONSE = _descriptor.Descriptor(
@@ -752,7 +1037,7 @@ _MESSAGECOUNTREQUEST_RESPONSE = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_MESSAGECOUNTREQUEST_RESPONSE_MESSAGECOUNTPERDAYENTRY, ],
+  nested_types=[_MESSAGECOUNTREQUEST_RESPONSE_MESSAGECOUNT, ],
   enum_types=[
   ],
   options=None,
@@ -761,8 +1046,8 @@ _MESSAGECOUNTREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2381,
-  serialized_end=2599,
+  serialized_start=3378,
+  serialized_end=3584,
 )
 
 _MESSAGECOUNTREQUEST = _descriptor.Descriptor(
@@ -773,7 +1058,7 @@ _MESSAGECOUNTREQUEST = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='account', full_name='hiber.modem.MessageCountRequest.account', index=0,
+      name='organization', full_name='hiber.modem.MessageCountRequest.organization', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -783,6 +1068,13 @@ _MESSAGECOUNTREQUEST = _descriptor.Descriptor(
       name='selection', full_name='hiber.modem.MessageCountRequest.selection', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='time_zone_offset', full_name='hiber.modem.MessageCountRequest.time_zone_offset', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
@@ -798,8 +1090,8 @@ _MESSAGECOUNTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2285,
-  serialized_end=2599,
+  serialized_start=3251,
+  serialized_end=3584,
 )
 
 
@@ -811,7 +1103,7 @@ _RENAMEMODEMREQUEST = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='account', full_name='hiber.modem.RenameModemRequest.account', index=0,
+      name='organization', full_name='hiber.modem.RenameModemRequest.organization', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -831,13 +1123,6 @@ _RENAMEMODEMREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='tags', full_name='hiber.modem.RenameModemRequest.tags', index=3,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -850,60 +1135,8 @@ _RENAMEMODEMREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2601,
-  serialized_end=2713,
-)
-
-
-_UPDATEMODEMPAYLOADTEMPLATEREQUEST = _descriptor.Descriptor(
-  name='UpdateModemPayloadTemplateRequest',
-  full_name='hiber.modem.UpdateModemPayloadTemplateRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='account', full_name='hiber.modem.UpdateModemPayloadTemplateRequest.account', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='modem_number', full_name='hiber.modem.UpdateModemPayloadTemplateRequest.modem_number', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='payload_template', full_name='hiber.modem.UpdateModemPayloadTemplateRequest.payload_template', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='tags', full_name='hiber.modem.UpdateModemPayloadTemplateRequest.tags', index=3,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2716,
-  serialized_end=2855,
+  serialized_start=3586,
+  serialized_end=3670,
 )
 
 
@@ -921,6 +1154,20 @@ _UPDATEMODEMTAGSREQUEST_RESPONSE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='request', full_name='hiber.modem.UpdateModemTagsRequest.Response.request', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='pagination', full_name='hiber.modem.UpdateModemTagsRequest.Response.pagination', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -933,8 +1180,8 @@ _UPDATEMODEMTAGSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1628,
-  serialized_end=1674,
+  serialized_start=3855,
+  serialized_end=4001,
 )
 
 _UPDATEMODEMTAGSREQUEST = _descriptor.Descriptor(
@@ -945,29 +1192,29 @@ _UPDATEMODEMTAGSREQUEST = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='account', full_name='hiber.modem.UpdateModemTagsRequest.account', index=0,
+      name='organization', full_name='hiber.modem.UpdateModemTagsRequest.organization', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='modem_numbers', full_name='hiber.modem.UpdateModemTagsRequest.modem_numbers', index=1,
-      number=2, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='update', full_name='hiber.modem.UpdateModemTagsRequest.update', index=2,
+      name='update', full_name='hiber.modem.UpdateModemTagsRequest.update', index=1,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='tags', full_name='hiber.modem.UpdateModemTagsRequest.tags', index=3,
-      number=4, type=11, cpp_type=10, label=1,
+      name='selection', full_name='hiber.modem.UpdateModemTagsRequest.selection', index=2,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='pagination', full_name='hiber.modem.UpdateModemTagsRequest.pagination', index=3,
+      number=6, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -984,8 +1231,295 @@ _UPDATEMODEMTAGSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2858,
-  serialized_end=3055,
+  serialized_start=3673,
+  serialized_end=4001,
+)
+
+
+_UPDATEPERIPHERALSREQUEST_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='hiber.modem.UpdatePeripheralsRequest.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='request', full_name='hiber.modem.UpdatePeripheralsRequest.Response.request', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='modems', full_name='hiber.modem.UpdatePeripheralsRequest.Response.modems', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='pagination', full_name='hiber.modem.UpdatePeripheralsRequest.Response.pagination', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4406,
+  serialized_end=4554,
+)
+
+_UPDATEPERIPHERALSREQUEST_ADDPERIPHERALSENTRY = _descriptor.Descriptor(
+  name='AddPeripheralsEntry',
+  full_name='hiber.modem.UpdatePeripheralsRequest.AddPeripheralsEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='hiber.modem.UpdatePeripheralsRequest.AddPeripheralsEntry.key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='hiber.modem.UpdatePeripheralsRequest.AddPeripheralsEntry.value', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001')),
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4556,
+  serialized_end=4609,
+)
+
+_UPDATEPERIPHERALSREQUEST = _descriptor.Descriptor(
+  name='UpdatePeripheralsRequest',
+  full_name='hiber.modem.UpdatePeripheralsRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organization', full_name='hiber.modem.UpdatePeripheralsRequest.organization', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='selection', full_name='hiber.modem.UpdatePeripheralsRequest.selection', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='hiber_antenna', full_name='hiber.modem.UpdatePeripheralsRequest.hiber_antenna', index=2,
+      number=3, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='gps', full_name='hiber.modem.UpdatePeripheralsRequest.gps', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='hardcoded_gps_location', full_name='hiber.modem.UpdatePeripheralsRequest.hardcoded_gps_location', index=4,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='add_peripherals', full_name='hiber.modem.UpdatePeripheralsRequest.add_peripherals', index=5,
+      number=6, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='remove_peripherals', full_name='hiber.modem.UpdatePeripheralsRequest.remove_peripherals', index=6,
+      number=7, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='pagination', full_name='hiber.modem.UpdatePeripheralsRequest.pagination', index=7,
+      number=9, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_UPDATEPERIPHERALSREQUEST_RESPONSE, _UPDATEPERIPHERALSREQUEST_ADDPERIPHERALSENTRY, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4004,
+  serialized_end=4615,
+)
+
+
+_LICENSEKEYSREQUEST_RESPONSE_MODEMLICENSEKEY = _descriptor.Descriptor(
+  name='ModemLicenseKey',
+  full_name='hiber.modem.LicenseKeysRequest.Response.ModemLicenseKey',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='modem_number', full_name='hiber.modem.LicenseKeysRequest.Response.ModemLicenseKey.modem_number', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='license_key', full_name='hiber.modem.LicenseKeysRequest.Response.ModemLicenseKey.license_key', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4938,
+  serialized_end=4998,
+)
+
+_LICENSEKEYSREQUEST_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='hiber.modem.LicenseKeysRequest.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='request', full_name='hiber.modem.LicenseKeysRequest.Response.request', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='license_keys', full_name='hiber.modem.LicenseKeysRequest.Response.license_keys', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='pagination', full_name='hiber.modem.LicenseKeysRequest.Response.pagination', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_LICENSEKEYSREQUEST_RESPONSE_MODEMLICENSEKEY, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4750,
+  serialized_end=4998,
+)
+
+_LICENSEKEYSREQUEST = _descriptor.Descriptor(
+  name='LicenseKeysRequest',
+  full_name='hiber.modem.LicenseKeysRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organization', full_name='hiber.modem.LicenseKeysRequest.organization', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='selection', full_name='hiber.modem.LicenseKeysRequest.selection', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='pagination', full_name='hiber.modem.LicenseKeysRequest.pagination', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_LICENSEKEYSREQUEST_RESPONSE, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4618,
+  serialized_end=4998,
 )
 
 _MODEM_TECHNICALDATA.containing_type = _MODEM
@@ -993,23 +1527,39 @@ _MODEM_ACTIVESUBSCRIPTION.fields_by_name['type'].enum_type = subscription__pb2._
 _MODEM_ACTIVESUBSCRIPTION.fields_by_name['start_date'].message_type = base__pb2._TIMESTAMP
 _MODEM_ACTIVESUBSCRIPTION.fields_by_name['end_date'].message_type = base__pb2._TIMESTAMP
 _MODEM_ACTIVESUBSCRIPTION.containing_type = _MODEM
+_MODEM_TRANSFER.fields_by_name['status'].enum_type = _MODEM_TRANSFER_STATUS
+_MODEM_TRANSFER.containing_type = _MODEM
+_MODEM_TRANSFER_STATUS.containing_type = _MODEM_TRANSFER
+_MODEM_PERIPHERALS_PERIPHERALSENTRY.containing_type = _MODEM_PERIPHERALS
+_MODEM_PERIPHERALS.fields_by_name['hiber_antenna'].enum_type = _MODEM_PERIPHERALS_HIBERANTENNA
+_MODEM_PERIPHERALS.fields_by_name['peripherals'].message_type = _MODEM_PERIPHERALS_PERIPHERALSENTRY
+_MODEM_PERIPHERALS.containing_type = _MODEM
+_MODEM_PERIPHERALS_HIBERANTENNA.containing_type = _MODEM_PERIPHERALS
 _MODEM.fields_by_name['location'].message_type = base__pb2._LOCATION
 _MODEM.fields_by_name['last_message_received_at'].message_type = base__pb2._TIMESTAMP
 _MODEM.fields_by_name['active_subscription'].message_type = _MODEM_ACTIVESUBSCRIPTION
 _MODEM.fields_by_name['technical'].message_type = _MODEM_TECHNICALDATA
 _MODEM.fields_by_name['health'].enum_type = base__pb2._HEALTH
 _MODEM.fields_by_name['tags'].message_type = tag__pb2._TAG
+_MODEM.fields_by_name['peripherals'].message_type = _MODEM_PERIPHERALS
+_MODEM.fields_by_name['status'].enum_type = _MODEM_STATUS
+_MODEM.fields_by_name['in_transfer'].message_type = _MODEM_TRANSFER
+_MODEM_STATUS.containing_type = _MODEM
+_MODEMSELECTION_TRANSFERS.containing_type = _MODEMSELECTION
 _MODEMSELECTION.fields_by_name['modems'].message_type = base__pb2._FILTER_MODEMS
-_MODEMSELECTION.fields_by_name['tags'].message_type = tag__pb2._TAGSELECTION
-_MODEMSELECTION.fields_by_name['child_accounts'].message_type = base__pb2._FILTER_CHILDACCOUNTS
+_MODEMSELECTION.fields_by_name['filter_by_tags'].message_type = tag__pb2._TAGSELECTION
+_MODEMSELECTION.fields_by_name['child_organizations'].message_type = base__pb2._FILTER_CHILDORGANIZATIONS
 _MODEMSELECTION.fields_by_name['activated_in'].message_type = base__pb2._TIMERANGE
 _MODEMSELECTION.fields_by_name['with_service_type'].enum_type = subscription__pb2._SERVICETYPE
 _MODEMSELECTION.fields_by_name['with_last_message_in'].message_type = base__pb2._TIMERANGE
 _MODEMSELECTION.fields_by_name['health'].enum_type = base__pb2._HEALTH
-_MODEMMESSAGE.fields_by_name['time'].message_type = base__pb2._TIMESTAMP
+_MODEMSELECTION.fields_by_name['status'].enum_type = _MODEM_STATUS
+_MODEMSELECTION.fields_by_name['transfers'].message_type = _MODEMSELECTION_TRANSFERS
+_MODEMMESSAGE.fields_by_name['sent_at'].message_type = base__pb2._TIMESTAMP
 _MODEMMESSAGE.fields_by_name['location'].message_type = base__pb2._LOCATION
+_MODEMMESSAGE.fields_by_name['received_at'].message_type = base__pb2._TIMESTAMP
 _MODEMMESSAGESELECTION.fields_by_name['modems'].message_type = base__pb2._FILTER_MODEMS
-_MODEMMESSAGESELECTION.fields_by_name['child_accounts'].message_type = base__pb2._FILTER_CHILDACCOUNTS
+_MODEMMESSAGESELECTION.fields_by_name['child_organizations'].message_type = base__pb2._FILTER_CHILDORGANIZATIONS
 _MODEMMESSAGESELECTION.fields_by_name['time_range'].message_type = base__pb2._TIMERANGE
 _LISTMODEMSREQUEST_RESPONSE.fields_by_name['modems'].message_type = _MODEM
 _LISTMODEMSREQUEST_RESPONSE.fields_by_name['request'].message_type = _LISTMODEMSREQUEST
@@ -1019,35 +1569,55 @@ _LISTMODEMSREQUEST.fields_by_name['selection'].message_type = _MODEMSELECTION
 _LISTMODEMSREQUEST.fields_by_name['pagination'].message_type = base__pb2._PAGINATION
 _LISTMODEMSREQUEST.fields_by_name['sort_by'].enum_type = _LISTMODEMSREQUEST_SORT
 _LISTMODEMSREQUEST_SORT.containing_type = _LISTMODEMSREQUEST
-_GETMODEMREQUEST.fields_by_name['tags'].message_type = tag__pb2._TAGSELECTION
 _LISTMODEMMESSAGESREQUEST_RESPONSE.fields_by_name['messages'].message_type = _MODEMMESSAGE
 _LISTMODEMMESSAGESREQUEST_RESPONSE.fields_by_name['request'].message_type = _LISTMODEMMESSAGESREQUEST
 _LISTMODEMMESSAGESREQUEST_RESPONSE.fields_by_name['pagination'].message_type = base__pb2._PAGINATION_RESULT
 _LISTMODEMMESSAGESREQUEST_RESPONSE.containing_type = _LISTMODEMMESSAGESREQUEST
 _LISTMODEMMESSAGESREQUEST.fields_by_name['selection'].message_type = _MODEMMESSAGESELECTION
 _LISTMODEMMESSAGESREQUEST.fields_by_name['pagination'].message_type = base__pb2._PAGINATION
-_MESSAGECOUNTREQUEST_RESPONSE_MESSAGECOUNTPERDAYENTRY.containing_type = _MESSAGECOUNTREQUEST_RESPONSE
-_MESSAGECOUNTREQUEST_RESPONSE.fields_by_name['message_count_per_day'].message_type = _MESSAGECOUNTREQUEST_RESPONSE_MESSAGECOUNTPERDAYENTRY
+_MESSAGECOUNTREQUEST_RESPONSE_MESSAGECOUNT.fields_by_name['date'].message_type = base__pb2._DATE
+_MESSAGECOUNTREQUEST_RESPONSE_MESSAGECOUNT.containing_type = _MESSAGECOUNTREQUEST_RESPONSE
+_MESSAGECOUNTREQUEST_RESPONSE.fields_by_name['message_count_per_day'].message_type = _MESSAGECOUNTREQUEST_RESPONSE_MESSAGECOUNT
 _MESSAGECOUNTREQUEST_RESPONSE.fields_by_name['request'].message_type = _MESSAGECOUNTREQUEST
 _MESSAGECOUNTREQUEST_RESPONSE.containing_type = _MESSAGECOUNTREQUEST
 _MESSAGECOUNTREQUEST.fields_by_name['selection'].message_type = _MODEMMESSAGESELECTION
-_RENAMEMODEMREQUEST.fields_by_name['tags'].message_type = tag__pb2._TAGSELECTION
-_UPDATEMODEMPAYLOADTEMPLATEREQUEST.fields_by_name['tags'].message_type = tag__pb2._TAGSELECTION
 _UPDATEMODEMTAGSREQUEST_RESPONSE.fields_by_name['modems'].message_type = _MODEM
+_UPDATEMODEMTAGSREQUEST_RESPONSE.fields_by_name['request'].message_type = _UPDATEMODEMTAGSREQUEST
+_UPDATEMODEMTAGSREQUEST_RESPONSE.fields_by_name['pagination'].message_type = base__pb2._PAGINATION_RESULT
 _UPDATEMODEMTAGSREQUEST_RESPONSE.containing_type = _UPDATEMODEMTAGSREQUEST
 _UPDATEMODEMTAGSREQUEST.fields_by_name['update'].message_type = tag__pb2._UPDATETAGSFORITEM
-_UPDATEMODEMTAGSREQUEST.fields_by_name['tags'].message_type = tag__pb2._TAGSELECTION
+_UPDATEMODEMTAGSREQUEST.fields_by_name['selection'].message_type = _MODEMSELECTION
+_UPDATEMODEMTAGSREQUEST.fields_by_name['pagination'].message_type = base__pb2._PAGINATION
+_UPDATEPERIPHERALSREQUEST_RESPONSE.fields_by_name['request'].message_type = _UPDATEPERIPHERALSREQUEST
+_UPDATEPERIPHERALSREQUEST_RESPONSE.fields_by_name['modems'].message_type = _MODEM
+_UPDATEPERIPHERALSREQUEST_RESPONSE.fields_by_name['pagination'].message_type = base__pb2._PAGINATION_RESULT
+_UPDATEPERIPHERALSREQUEST_RESPONSE.containing_type = _UPDATEPERIPHERALSREQUEST
+_UPDATEPERIPHERALSREQUEST_ADDPERIPHERALSENTRY.containing_type = _UPDATEPERIPHERALSREQUEST
+_UPDATEPERIPHERALSREQUEST.fields_by_name['selection'].message_type = _MODEMSELECTION
+_UPDATEPERIPHERALSREQUEST.fields_by_name['hiber_antenna'].enum_type = _MODEM_PERIPHERALS_HIBERANTENNA
+_UPDATEPERIPHERALSREQUEST.fields_by_name['gps'].message_type = base__pb2._UPDATEBOOLEAN
+_UPDATEPERIPHERALSREQUEST.fields_by_name['hardcoded_gps_location'].message_type = base__pb2._LOCATION
+_UPDATEPERIPHERALSREQUEST.fields_by_name['add_peripherals'].message_type = _UPDATEPERIPHERALSREQUEST_ADDPERIPHERALSENTRY
+_UPDATEPERIPHERALSREQUEST.fields_by_name['pagination'].message_type = base__pb2._PAGINATION
+_LICENSEKEYSREQUEST_RESPONSE_MODEMLICENSEKEY.containing_type = _LICENSEKEYSREQUEST_RESPONSE
+_LICENSEKEYSREQUEST_RESPONSE.fields_by_name['request'].message_type = _LICENSEKEYSREQUEST
+_LICENSEKEYSREQUEST_RESPONSE.fields_by_name['license_keys'].message_type = _LICENSEKEYSREQUEST_RESPONSE_MODEMLICENSEKEY
+_LICENSEKEYSREQUEST_RESPONSE.fields_by_name['pagination'].message_type = base__pb2._PAGINATION_RESULT
+_LICENSEKEYSREQUEST_RESPONSE.containing_type = _LICENSEKEYSREQUEST
+_LICENSEKEYSREQUEST.fields_by_name['selection'].message_type = _MODEMSELECTION
+_LICENSEKEYSREQUEST.fields_by_name['pagination'].message_type = base__pb2._PAGINATION
 DESCRIPTOR.message_types_by_name['Modem'] = _MODEM
 DESCRIPTOR.message_types_by_name['ModemSelection'] = _MODEMSELECTION
 DESCRIPTOR.message_types_by_name['ModemMessage'] = _MODEMMESSAGE
 DESCRIPTOR.message_types_by_name['ModemMessageSelection'] = _MODEMMESSAGESELECTION
-DESCRIPTOR.message_types_by_name['ListModemsRequest'] = _LISTMODEMSREQUEST
 DESCRIPTOR.message_types_by_name['GetModemRequest'] = _GETMODEMREQUEST
+DESCRIPTOR.message_types_by_name['ListModemsRequest'] = _LISTMODEMSREQUEST
 DESCRIPTOR.message_types_by_name['ListModemMessagesRequest'] = _LISTMODEMMESSAGESREQUEST
 DESCRIPTOR.message_types_by_name['MessageCountRequest'] = _MESSAGECOUNTREQUEST
 DESCRIPTOR.message_types_by_name['RenameModemRequest'] = _RENAMEMODEMREQUEST
-DESCRIPTOR.message_types_by_name['UpdateModemPayloadTemplateRequest'] = _UPDATEMODEMPAYLOADTEMPLATEREQUEST
 DESCRIPTOR.message_types_by_name['UpdateModemTagsRequest'] = _UPDATEMODEMTAGSREQUEST
+DESCRIPTOR.message_types_by_name['UpdatePeripheralsRequest'] = _UPDATEPERIPHERALSREQUEST
+DESCRIPTOR.message_types_by_name['LicenseKeysRequest'] = _LICENSEKEYSREQUEST
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Modem = _reflection.GeneratedProtocolMessageType('Modem', (_message.Message,), dict(
@@ -1065,6 +1635,27 @@ Modem = _reflection.GeneratedProtocolMessageType('Modem', (_message.Message,), d
     # @@protoc_insertion_point(class_scope:hiber.modem.Modem.ActiveSubscription)
     ))
   ,
+
+  Transfer = _reflection.GeneratedProtocolMessageType('Transfer', (_message.Message,), dict(
+    DESCRIPTOR = _MODEM_TRANSFER,
+    __module__ = 'modem_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.modem.Modem.Transfer)
+    ))
+  ,
+
+  Peripherals = _reflection.GeneratedProtocolMessageType('Peripherals', (_message.Message,), dict(
+
+    PeripheralsEntry = _reflection.GeneratedProtocolMessageType('PeripheralsEntry', (_message.Message,), dict(
+      DESCRIPTOR = _MODEM_PERIPHERALS_PERIPHERALSENTRY,
+      __module__ = 'modem_pb2'
+      # @@protoc_insertion_point(class_scope:hiber.modem.Modem.Peripherals.PeripheralsEntry)
+      ))
+    ,
+    DESCRIPTOR = _MODEM_PERIPHERALS,
+    __module__ = 'modem_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.modem.Modem.Peripherals)
+    ))
+  ,
   DESCRIPTOR = _MODEM,
   __module__ = 'modem_pb2'
   # @@protoc_insertion_point(class_scope:hiber.modem.Modem)
@@ -1072,13 +1663,24 @@ Modem = _reflection.GeneratedProtocolMessageType('Modem', (_message.Message,), d
 _sym_db.RegisterMessage(Modem)
 _sym_db.RegisterMessage(Modem.TechnicalData)
 _sym_db.RegisterMessage(Modem.ActiveSubscription)
+_sym_db.RegisterMessage(Modem.Transfer)
+_sym_db.RegisterMessage(Modem.Peripherals)
+_sym_db.RegisterMessage(Modem.Peripherals.PeripheralsEntry)
 
 ModemSelection = _reflection.GeneratedProtocolMessageType('ModemSelection', (_message.Message,), dict(
+
+  Transfers = _reflection.GeneratedProtocolMessageType('Transfers', (_message.Message,), dict(
+    DESCRIPTOR = _MODEMSELECTION_TRANSFERS,
+    __module__ = 'modem_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.modem.ModemSelection.Transfers)
+    ))
+  ,
   DESCRIPTOR = _MODEMSELECTION,
   __module__ = 'modem_pb2'
   # @@protoc_insertion_point(class_scope:hiber.modem.ModemSelection)
   ))
 _sym_db.RegisterMessage(ModemSelection)
+_sym_db.RegisterMessage(ModemSelection.Transfers)
 
 ModemMessage = _reflection.GeneratedProtocolMessageType('ModemMessage', (_message.Message,), dict(
   DESCRIPTOR = _MODEMMESSAGE,
@@ -1094,6 +1696,13 @@ ModemMessageSelection = _reflection.GeneratedProtocolMessageType('ModemMessageSe
   ))
 _sym_db.RegisterMessage(ModemMessageSelection)
 
+GetModemRequest = _reflection.GeneratedProtocolMessageType('GetModemRequest', (_message.Message,), dict(
+  DESCRIPTOR = _GETMODEMREQUEST,
+  __module__ = 'modem_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.modem.GetModemRequest)
+  ))
+_sym_db.RegisterMessage(GetModemRequest)
+
 ListModemsRequest = _reflection.GeneratedProtocolMessageType('ListModemsRequest', (_message.Message,), dict(
 
   Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
@@ -1108,13 +1717,6 @@ ListModemsRequest = _reflection.GeneratedProtocolMessageType('ListModemsRequest'
   ))
 _sym_db.RegisterMessage(ListModemsRequest)
 _sym_db.RegisterMessage(ListModemsRequest.Response)
-
-GetModemRequest = _reflection.GeneratedProtocolMessageType('GetModemRequest', (_message.Message,), dict(
-  DESCRIPTOR = _GETMODEMREQUEST,
-  __module__ = 'modem_pb2'
-  # @@protoc_insertion_point(class_scope:hiber.modem.GetModemRequest)
-  ))
-_sym_db.RegisterMessage(GetModemRequest)
 
 ListModemMessagesRequest = _reflection.GeneratedProtocolMessageType('ListModemMessagesRequest', (_message.Message,), dict(
 
@@ -1135,10 +1737,10 @@ MessageCountRequest = _reflection.GeneratedProtocolMessageType('MessageCountRequ
 
   Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
 
-    MessageCountPerDayEntry = _reflection.GeneratedProtocolMessageType('MessageCountPerDayEntry', (_message.Message,), dict(
-      DESCRIPTOR = _MESSAGECOUNTREQUEST_RESPONSE_MESSAGECOUNTPERDAYENTRY,
+    MessageCount = _reflection.GeneratedProtocolMessageType('MessageCount', (_message.Message,), dict(
+      DESCRIPTOR = _MESSAGECOUNTREQUEST_RESPONSE_MESSAGECOUNT,
       __module__ = 'modem_pb2'
-      # @@protoc_insertion_point(class_scope:hiber.modem.MessageCountRequest.Response.MessageCountPerDayEntry)
+      # @@protoc_insertion_point(class_scope:hiber.modem.MessageCountRequest.Response.MessageCount)
       ))
     ,
     DESCRIPTOR = _MESSAGECOUNTREQUEST_RESPONSE,
@@ -1152,7 +1754,7 @@ MessageCountRequest = _reflection.GeneratedProtocolMessageType('MessageCountRequ
   ))
 _sym_db.RegisterMessage(MessageCountRequest)
 _sym_db.RegisterMessage(MessageCountRequest.Response)
-_sym_db.RegisterMessage(MessageCountRequest.Response.MessageCountPerDayEntry)
+_sym_db.RegisterMessage(MessageCountRequest.Response.MessageCount)
 
 RenameModemRequest = _reflection.GeneratedProtocolMessageType('RenameModemRequest', (_message.Message,), dict(
   DESCRIPTOR = _RENAMEMODEMREQUEST,
@@ -1160,13 +1762,6 @@ RenameModemRequest = _reflection.GeneratedProtocolMessageType('RenameModemReques
   # @@protoc_insertion_point(class_scope:hiber.modem.RenameModemRequest)
   ))
 _sym_db.RegisterMessage(RenameModemRequest)
-
-UpdateModemPayloadTemplateRequest = _reflection.GeneratedProtocolMessageType('UpdateModemPayloadTemplateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _UPDATEMODEMPAYLOADTEMPLATEREQUEST,
-  __module__ = 'modem_pb2'
-  # @@protoc_insertion_point(class_scope:hiber.modem.UpdateModemPayloadTemplateRequest)
-  ))
-_sym_db.RegisterMessage(UpdateModemPayloadTemplateRequest)
 
 UpdateModemTagsRequest = _reflection.GeneratedProtocolMessageType('UpdateModemTagsRequest', (_message.Message,), dict(
 
@@ -1183,11 +1778,59 @@ UpdateModemTagsRequest = _reflection.GeneratedProtocolMessageType('UpdateModemTa
 _sym_db.RegisterMessage(UpdateModemTagsRequest)
 _sym_db.RegisterMessage(UpdateModemTagsRequest.Response)
 
+UpdatePeripheralsRequest = _reflection.GeneratedProtocolMessageType('UpdatePeripheralsRequest', (_message.Message,), dict(
+
+  Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
+    DESCRIPTOR = _UPDATEPERIPHERALSREQUEST_RESPONSE,
+    __module__ = 'modem_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.modem.UpdatePeripheralsRequest.Response)
+    ))
+  ,
+
+  AddPeripheralsEntry = _reflection.GeneratedProtocolMessageType('AddPeripheralsEntry', (_message.Message,), dict(
+    DESCRIPTOR = _UPDATEPERIPHERALSREQUEST_ADDPERIPHERALSENTRY,
+    __module__ = 'modem_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.modem.UpdatePeripheralsRequest.AddPeripheralsEntry)
+    ))
+  ,
+  DESCRIPTOR = _UPDATEPERIPHERALSREQUEST,
+  __module__ = 'modem_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.modem.UpdatePeripheralsRequest)
+  ))
+_sym_db.RegisterMessage(UpdatePeripheralsRequest)
+_sym_db.RegisterMessage(UpdatePeripheralsRequest.Response)
+_sym_db.RegisterMessage(UpdatePeripheralsRequest.AddPeripheralsEntry)
+
+LicenseKeysRequest = _reflection.GeneratedProtocolMessageType('LicenseKeysRequest', (_message.Message,), dict(
+
+  Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
+
+    ModemLicenseKey = _reflection.GeneratedProtocolMessageType('ModemLicenseKey', (_message.Message,), dict(
+      DESCRIPTOR = _LICENSEKEYSREQUEST_RESPONSE_MODEMLICENSEKEY,
+      __module__ = 'modem_pb2'
+      # @@protoc_insertion_point(class_scope:hiber.modem.LicenseKeysRequest.Response.ModemLicenseKey)
+      ))
+    ,
+    DESCRIPTOR = _LICENSEKEYSREQUEST_RESPONSE,
+    __module__ = 'modem_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.modem.LicenseKeysRequest.Response)
+    ))
+  ,
+  DESCRIPTOR = _LICENSEKEYSREQUEST,
+  __module__ = 'modem_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.modem.LicenseKeysRequest)
+  ))
+_sym_db.RegisterMessage(LicenseKeysRequest)
+_sym_db.RegisterMessage(LicenseKeysRequest.Response)
+_sym_db.RegisterMessage(LicenseKeysRequest.Response.ModemLicenseKey)
+
 
 DESCRIPTOR.has_options = True
 DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\033global.hiber.api.grpc.modemB\010ModemApiP\000Z\005hiber'))
-_MESSAGECOUNTREQUEST_RESPONSE_MESSAGECOUNTPERDAYENTRY.has_options = True
-_MESSAGECOUNTREQUEST_RESPONSE_MESSAGECOUNTPERDAYENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
+_MODEM_PERIPHERALS_PERIPHERALSENTRY.has_options = True
+_MODEM_PERIPHERALS_PERIPHERALSENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
+_UPDATEPERIPHERALSREQUEST_ADDPERIPHERALSENTRY.has_options = True
+_UPDATEPERIPHERALSREQUEST_ADDPERIPHERALSENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
 
 _MODEMSERVICE = _descriptor.ServiceDescriptor(
   name='ModemService',
@@ -1195,25 +1838,25 @@ _MODEMSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=3058,
-  serialized_end=3655,
+  serialized_start=5001,
+  serialized_end=5703,
   methods=[
-  _descriptor.MethodDescriptor(
-    name='List',
-    full_name='hiber.modem.ModemService.List',
-    index=0,
-    containing_service=None,
-    input_type=_LISTMODEMSREQUEST,
-    output_type=_LISTMODEMSREQUEST_RESPONSE,
-    options=None,
-  ),
   _descriptor.MethodDescriptor(
     name='Get',
     full_name='hiber.modem.ModemService.Get',
-    index=1,
+    index=0,
     containing_service=None,
     input_type=_GETMODEMREQUEST,
     output_type=_MODEM,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='List',
+    full_name='hiber.modem.ModemService.List',
+    index=1,
+    containing_service=None,
+    input_type=_LISTMODEMSREQUEST,
+    output_type=_LISTMODEMSREQUEST_RESPONSE,
     options=None,
   ),
   _descriptor.MethodDescriptor(
@@ -1244,21 +1887,30 @@ _MODEMSERVICE = _descriptor.ServiceDescriptor(
     options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='UpdatePayloadTemplate',
-    full_name='hiber.modem.ModemService.UpdatePayloadTemplate',
-    index=5,
-    containing_service=None,
-    input_type=_UPDATEMODEMPAYLOADTEMPLATEREQUEST,
-    output_type=_MODEM,
-    options=None,
-  ),
-  _descriptor.MethodDescriptor(
     name='UpdateTags',
     full_name='hiber.modem.ModemService.UpdateTags',
-    index=6,
+    index=5,
     containing_service=None,
     input_type=_UPDATEMODEMTAGSREQUEST,
     output_type=_UPDATEMODEMTAGSREQUEST_RESPONSE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='UpdatePeripherals',
+    full_name='hiber.modem.ModemService.UpdatePeripherals',
+    index=6,
+    containing_service=None,
+    input_type=_UPDATEPERIPHERALSREQUEST,
+    output_type=_UPDATEPERIPHERALSREQUEST_RESPONSE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='LicenseKeys',
+    full_name='hiber.modem.ModemService.LicenseKeys',
+    index=7,
+    containing_service=None,
+    input_type=_LICENSEKEYSREQUEST,
+    output_type=_LICENSEKEYSREQUEST_RESPONSE,
     options=None,
   ),
 ])

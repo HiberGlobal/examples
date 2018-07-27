@@ -63,10 +63,11 @@ proto.hiber.dashboard.DashboardRequest.prototype.toObject = function(opt_include
  */
 proto.hiber.dashboard.DashboardRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     selection: (f = msg.getSelection()) && map_pb.MapSelection.toObject(includeInstance, f),
     messageCountSelection: (f = msg.getMessageCountSelection()) && modem_pb.ModemMessageSelection.toObject(includeInstance, f),
-    eventSelection: (f = msg.getEventSelection()) && event_pb.EventSelection.toObject(includeInstance, f)
+    eventSelection: (f = msg.getEventSelection()) && event_pb.EventSelection.toObject(includeInstance, f),
+    timeZoneOffset: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -105,7 +106,7 @@ proto.hiber.dashboard.DashboardRequest.deserializeBinaryFromReader = function(ms
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = new map_pb.MapSelection;
@@ -121,6 +122,10 @@ proto.hiber.dashboard.DashboardRequest.deserializeBinaryFromReader = function(ms
       var value = new event_pb.EventSelection;
       reader.readMessage(value,event_pb.EventSelection.deserializeBinaryFromReader);
       msg.setEventSelection(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setTimeZoneOffset(value);
       break;
     default:
       reader.skipField();
@@ -151,7 +156,7 @@ proto.hiber.dashboard.DashboardRequest.prototype.serializeBinary = function() {
  */
 proto.hiber.dashboard.DashboardRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -182,6 +187,13 @@ proto.hiber.dashboard.DashboardRequest.serializeBinaryToWriter = function(messag
       event_pb.EventSelection.serializeBinaryToWriter
     );
   }
+  f = message.getTimeZoneOffset();
+  if (f !== 0) {
+    writer.writeInt32(
+      5,
+      f
+    );
+  }
 };
 
 
@@ -208,7 +220,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.hiber.dashboard.DashboardRequest.Response.repeatedFields_ = [1,2,6];
+proto.hiber.dashboard.DashboardRequest.Response.repeatedFields_ = [1,2,3,6];
 
 
 
@@ -243,7 +255,8 @@ proto.hiber.dashboard.DashboardRequest.Response.toObject = function(includeInsta
     map_pb.GroundStation.toObject, includeInstance),
     mapBlocksList: jspb.Message.toObjectList(msg.getMapBlocksList(),
     map_pb.MapBlock.toObject, includeInstance),
-    messageCountPerDayMap: (f = msg.getMessageCountPerDayMap()) ? f.toObject(includeInstance, undefined) : [],
+    messageCountPerDayList: jspb.Message.toObjectList(msg.getMessageCountPerDayList(),
+    modem_pb.MessageCountRequest.Response.MessageCount.toObject, includeInstance),
     modemWarningCount: jspb.Message.getFieldWithDefault(msg, 4, 0),
     modemErrorCount: jspb.Message.getFieldWithDefault(msg, 5, 0),
     eventsList: jspb.Message.toObjectList(msg.getEventsList(),
@@ -296,10 +309,9 @@ proto.hiber.dashboard.DashboardRequest.Response.deserializeBinaryFromReader = fu
       msg.addMapBlocks(value);
       break;
     case 3:
-      var value = msg.getMessageCountPerDayMap();
-      reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readInt32);
-         });
+      var value = new modem_pb.MessageCountRequest.Response.MessageCount;
+      reader.readMessage(value,modem_pb.MessageCountRequest.Response.MessageCount.deserializeBinaryFromReader);
+      msg.addMessageCountPerDay(value);
       break;
     case 4:
       var value = /** @type {number} */ (reader.readInt32());
@@ -364,9 +376,13 @@ proto.hiber.dashboard.DashboardRequest.Response.serializeBinaryToWriter = functi
       map_pb.MapBlock.serializeBinaryToWriter
     );
   }
-  f = message.getMessageCountPerDayMap(true);
-  if (f && f.getLength() > 0) {
-    f.serializeBinary(3, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeInt32);
+  f = message.getMessageCountPerDayList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      3,
+      f,
+      modem_pb.MessageCountRequest.Response.MessageCount.serializeBinaryToWriter
+    );
   }
   f = message.getModemWarningCount();
   if (f !== 0) {
@@ -464,20 +480,33 @@ proto.hiber.dashboard.DashboardRequest.Response.prototype.clearMapBlocksList = f
 
 
 /**
- * map<string, int32> message_count_per_day = 3;
- * @param {boolean=} opt_noLazyCreate Do not create the map if
- * empty, instead returning `undefined`
- * @return {!jspb.Map<string,number>}
+ * repeated hiber.modem.MessageCountRequest.Response.MessageCount message_count_per_day = 3;
+ * @return {!Array.<!proto.hiber.modem.MessageCountRequest.Response.MessageCount>}
  */
-proto.hiber.dashboard.DashboardRequest.Response.prototype.getMessageCountPerDayMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,number>} */ (
-      jspb.Message.getMapField(this, 3, opt_noLazyCreate,
-      null));
+proto.hiber.dashboard.DashboardRequest.Response.prototype.getMessageCountPerDayList = function() {
+  return /** @type{!Array.<!proto.hiber.modem.MessageCountRequest.Response.MessageCount>} */ (
+    jspb.Message.getRepeatedWrapperField(this, modem_pb.MessageCountRequest.Response.MessageCount, 3));
 };
 
 
-proto.hiber.dashboard.DashboardRequest.Response.prototype.clearMessageCountPerDayMap = function() {
-  this.getMessageCountPerDayMap().clear();
+/** @param {!Array.<!proto.hiber.modem.MessageCountRequest.Response.MessageCount>} value */
+proto.hiber.dashboard.DashboardRequest.Response.prototype.setMessageCountPerDayList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 3, value);
+};
+
+
+/**
+ * @param {!proto.hiber.modem.MessageCountRequest.Response.MessageCount=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.hiber.modem.MessageCountRequest.Response.MessageCount}
+ */
+proto.hiber.dashboard.DashboardRequest.Response.prototype.addMessageCountPerDay = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.hiber.modem.MessageCountRequest.Response.MessageCount, opt_index);
+};
+
+
+proto.hiber.dashboard.DashboardRequest.Response.prototype.clearMessageCountPerDayList = function() {
+  this.setMessageCountPerDayList([]);
 };
 
 
@@ -573,16 +602,16 @@ proto.hiber.dashboard.DashboardRequest.Response.prototype.hasRequest = function(
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.dashboard.DashboardRequest.prototype.getAccount = function() {
+proto.hiber.dashboard.DashboardRequest.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.dashboard.DashboardRequest.prototype.setAccount = function(value) {
+proto.hiber.dashboard.DashboardRequest.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -674,6 +703,21 @@ proto.hiber.dashboard.DashboardRequest.prototype.clearEventSelection = function(
  */
 proto.hiber.dashboard.DashboardRequest.prototype.hasEventSelection = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional int32 time_zone_offset = 5;
+ * @return {number}
+ */
+proto.hiber.dashboard.DashboardRequest.prototype.getTimeZoneOffset = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/** @param {number} value */
+proto.hiber.dashboard.DashboardRequest.prototype.setTimeZoneOffset = function(value) {
+  jspb.Message.setField(this, 5, value);
 };
 
 

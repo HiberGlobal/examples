@@ -15,15 +15,15 @@ class ModemServiceStub(object):
     Args:
       channel: A grpc.Channel.
     """
-    self.List = channel.unary_unary(
-        '/hiber.modem.ModemService/List',
-        request_serializer=modem__pb2.ListModemsRequest.SerializeToString,
-        response_deserializer=modem__pb2.ListModemsRequest.Response.FromString,
-        )
     self.Get = channel.unary_unary(
         '/hiber.modem.ModemService/Get',
         request_serializer=modem__pb2.GetModemRequest.SerializeToString,
         response_deserializer=modem__pb2.Modem.FromString,
+        )
+    self.List = channel.unary_unary(
+        '/hiber.modem.ModemService/List',
+        request_serializer=modem__pb2.ListModemsRequest.SerializeToString,
+        response_deserializer=modem__pb2.ListModemsRequest.Response.FromString,
         )
     self.Messages = channel.unary_unary(
         '/hiber.modem.ModemService/Messages',
@@ -40,15 +40,20 @@ class ModemServiceStub(object):
         request_serializer=modem__pb2.RenameModemRequest.SerializeToString,
         response_deserializer=modem__pb2.Modem.FromString,
         )
-    self.UpdatePayloadTemplate = channel.unary_unary(
-        '/hiber.modem.ModemService/UpdatePayloadTemplate',
-        request_serializer=modem__pb2.UpdateModemPayloadTemplateRequest.SerializeToString,
-        response_deserializer=modem__pb2.Modem.FromString,
-        )
     self.UpdateTags = channel.unary_unary(
         '/hiber.modem.ModemService/UpdateTags',
         request_serializer=modem__pb2.UpdateModemTagsRequest.SerializeToString,
         response_deserializer=modem__pb2.UpdateModemTagsRequest.Response.FromString,
+        )
+    self.UpdatePeripherals = channel.unary_unary(
+        '/hiber.modem.ModemService/UpdatePeripherals',
+        request_serializer=modem__pb2.UpdatePeripheralsRequest.SerializeToString,
+        response_deserializer=modem__pb2.UpdatePeripheralsRequest.Response.FromString,
+        )
+    self.LicenseKeys = channel.unary_unary(
+        '/hiber.modem.ModemService/LicenseKeys',
+        request_serializer=modem__pb2.LicenseKeysRequest.SerializeToString,
+        response_deserializer=modem__pb2.LicenseKeysRequest.Response.FromString,
         )
 
 
@@ -57,14 +62,14 @@ class ModemServiceServicer(object):
   This service contains calls to list and manage them, as well as list their messages.
   """
 
-  def List(self, request, context):
+  def Get(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def Get(self, request, context):
+  def List(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -92,14 +97,21 @@ class ModemServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def UpdatePayloadTemplate(self, request, context):
+  def UpdateTags(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def UpdateTags(self, request, context):
+  def UpdatePeripherals(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def LicenseKeys(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -109,15 +121,15 @@ class ModemServiceServicer(object):
 
 def add_ModemServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'List': grpc.unary_unary_rpc_method_handler(
-          servicer.List,
-          request_deserializer=modem__pb2.ListModemsRequest.FromString,
-          response_serializer=modem__pb2.ListModemsRequest.Response.SerializeToString,
-      ),
       'Get': grpc.unary_unary_rpc_method_handler(
           servicer.Get,
           request_deserializer=modem__pb2.GetModemRequest.FromString,
           response_serializer=modem__pb2.Modem.SerializeToString,
+      ),
+      'List': grpc.unary_unary_rpc_method_handler(
+          servicer.List,
+          request_deserializer=modem__pb2.ListModemsRequest.FromString,
+          response_serializer=modem__pb2.ListModemsRequest.Response.SerializeToString,
       ),
       'Messages': grpc.unary_unary_rpc_method_handler(
           servicer.Messages,
@@ -134,15 +146,20 @@ def add_ModemServiceServicer_to_server(servicer, server):
           request_deserializer=modem__pb2.RenameModemRequest.FromString,
           response_serializer=modem__pb2.Modem.SerializeToString,
       ),
-      'UpdatePayloadTemplate': grpc.unary_unary_rpc_method_handler(
-          servicer.UpdatePayloadTemplate,
-          request_deserializer=modem__pb2.UpdateModemPayloadTemplateRequest.FromString,
-          response_serializer=modem__pb2.Modem.SerializeToString,
-      ),
       'UpdateTags': grpc.unary_unary_rpc_method_handler(
           servicer.UpdateTags,
           request_deserializer=modem__pb2.UpdateModemTagsRequest.FromString,
           response_serializer=modem__pb2.UpdateModemTagsRequest.Response.SerializeToString,
+      ),
+      'UpdatePeripherals': grpc.unary_unary_rpc_method_handler(
+          servicer.UpdatePeripherals,
+          request_deserializer=modem__pb2.UpdatePeripheralsRequest.FromString,
+          response_serializer=modem__pb2.UpdatePeripheralsRequest.Response.SerializeToString,
+      ),
+      'LicenseKeys': grpc.unary_unary_rpc_method_handler(
+          servicer.LicenseKeys,
+          request_deserializer=modem__pb2.LicenseKeysRequest.FromString,
+          response_serializer=modem__pb2.LicenseKeysRequest.Response.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

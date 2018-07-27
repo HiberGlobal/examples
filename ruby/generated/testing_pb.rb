@@ -6,11 +6,10 @@ require 'google/protobuf'
 require 'base_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.testing.PushModemMessagesRequest" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     repeated :messages, :message, 2, "hiber.testing.PushModemMessagesRequest.MessageToPush"
   end
   add_message "hiber.testing.PushModemMessagesRequest.Response" do
-    map :messages_sent, :string, :int32, 1
     optional :request, :message, 2, "hiber.testing.PushModemMessagesRequest"
   end
   add_message "hiber.testing.PushModemMessagesRequest.MessageToPush" do

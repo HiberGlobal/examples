@@ -27,7 +27,7 @@ class MockServer {
   private val tokenInterceptor = GrpcTokenInterceptor()
   private val services: Set<BindableService> =
     setOf(
-      AccountGrpcController(),
+      OrganizationGrpcController(),
       TagGrpcController(),
       MapGrpcController(),
       ModemGrpcController(),

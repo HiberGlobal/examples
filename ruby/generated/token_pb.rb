@@ -9,17 +9,17 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :id, :int64, 1
     optional :name, :string, 2
     optional :user_id, :string, 3
-    optional :account, :string, 4
+    optional :organization, :string, 4
     repeated :permissions, :enum, 5, "hiber.token.TokenPermission"
     optional :expires_at, :message, 6, "hiber.Timestamp"
   end
   add_message "hiber.token.TokenSelection" do
     optional :users, :message, 1, "hiber.Filter.Users"
     optional :name, :string, 3
-    optional :includeExpired, :bool, 4
+    optional :include_expired, :bool, 4
   end
   add_message "hiber.token.ListTokensRequest" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :selection, :message, 2, "hiber.token.TokenSelection"
     optional :pagination, :message, 3, "hiber.Pagination"
   end
@@ -29,7 +29,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :pagination, :message, 3, "hiber.Pagination.Result"
   end
   add_message "hiber.token.CreateTokenRequest" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :name, :string, 2
     repeated :permissions, :enum, 3, "hiber.token.TokenPermission"
     optional :expires_at, :message, 4, "hiber.Timestamp"
@@ -38,7 +38,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :token, :string, 1
   end
   add_message "hiber.token.DeleteTokenRequest" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :token_id, :int64, 2
   end
   add_message "hiber.token.DeleteTokenRequest.Response" do
@@ -46,8 +46,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_enum "hiber.token.TokenPermission" do
     value :USER_READ, 0
     value :USER_ACTION, 1
-    value :ACCOUNT_READ, 2
-    value :ACCOUNT_ACTION, 3
+    value :ORGANIZATION_READ, 2
+    value :ORGANIZATION_ACTION, 3
   end
 end
 

@@ -22,49 +22,12 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='dashboard.proto',
   package='hiber.dashboard',
   syntax='proto3',
-  serialized_pb=_b('\n\x0f\x64\x61shboard.proto\x12\x0fhiber.dashboard\x1a\tmap.proto\x1a\x0bmodem.proto\x1a\x0b\x65vent.proto\"\xe1\x04\n\x10\x44\x61shboardRequest\x12\x0f\n\x07\x61\x63\x63ount\x18\x01 \x01(\t\x12*\n\tselection\x18\x02 \x01(\x0b\x32\x17.hiber.map.MapSelection\x12\x43\n\x17message_count_selection\x18\x03 \x01(\x0b\x32\".hiber.modem.ModemMessageSelection\x12\x34\n\x0f\x65vent_selection\x18\x04 \x01(\x0b\x32\x1b.hiber.event.EventSelection\x1a\x94\x03\n\x08Response\x12\x31\n\x0fground_stations\x18\x01 \x03(\x0b\x32\x18.hiber.map.GroundStation\x12\'\n\nmap_blocks\x18\x02 \x03(\x0b\x32\x13.hiber.map.MapBlock\x12\x61\n\x15message_count_per_day\x18\x03 \x03(\x0b\x32\x42.hiber.dashboard.DashboardRequest.Response.MessageCountPerDayEntry\x12\x1b\n\x13modem_warning_count\x18\x04 \x01(\x05\x12\x19\n\x11modem_error_count\x18\x05 \x01(\x05\x12\"\n\x06\x65vents\x18\x06 \x03(\x0b\x32\x12.hiber.event.Event\x12\x32\n\x07request\x18\x07 \x01(\x0b\x32!.hiber.dashboard.DashboardRequest\x1a\x39\n\x17MessageCountPerDayEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x05:\x02\x38\x01\x32n\n\x10\x44\x61shboardService\x12Z\n\tDashboard\x12!.hiber.dashboard.DashboardRequest\x1a*.hiber.dashboard.DashboardRequest.ResponseB8\n\x1fglobal.hiber.api.grpc.dashboardB\x0c\x44\x61shboardApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\x0f\x64\x61shboard.proto\x12\x0fhiber.dashboard\x1a\tmap.proto\x1a\x0bmodem.proto\x1a\x0b\x65vent.proto\"\xb9\x04\n\x10\x44\x61shboardRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12*\n\tselection\x18\x02 \x01(\x0b\x32\x17.hiber.map.MapSelection\x12\x43\n\x17message_count_selection\x18\x03 \x01(\x0b\x32\".hiber.modem.ModemMessageSelection\x12\x34\n\x0f\x65vent_selection\x18\x04 \x01(\x0b\x32\x1b.hiber.event.EventSelection\x12\x18\n\x10time_zone_offset\x18\x05 \x01(\x05\x1a\xcd\x02\n\x08Response\x12\x31\n\x0fground_stations\x18\x01 \x03(\x0b\x32\x18.hiber.map.GroundStation\x12\'\n\nmap_blocks\x18\x02 \x03(\x0b\x32\x13.hiber.map.MapBlock\x12U\n\x15message_count_per_day\x18\x03 \x03(\x0b\x32\x36.hiber.modem.MessageCountRequest.Response.MessageCount\x12\x1b\n\x13modem_warning_count\x18\x04 \x01(\x05\x12\x19\n\x11modem_error_count\x18\x05 \x01(\x05\x12\"\n\x06\x65vents\x18\x06 \x03(\x0b\x32\x12.hiber.event.Event\x12\x32\n\x07request\x18\x07 \x01(\x0b\x32!.hiber.dashboard.DashboardRequest2n\n\x10\x44\x61shboardService\x12Z\n\tDashboard\x12!.hiber.dashboard.DashboardRequest\x1a*.hiber.dashboard.DashboardRequest.ResponseB8\n\x1fglobal.hiber.api.grpc.dashboardB\x0c\x44\x61shboardApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[map__pb2.DESCRIPTOR,modem__pb2.DESCRIPTOR,event__pb2.DESCRIPTOR,])
 
 
 
-
-_DASHBOARDREQUEST_RESPONSE_MESSAGECOUNTPERDAYENTRY = _descriptor.Descriptor(
-  name='MessageCountPerDayEntry',
-  full_name='hiber.dashboard.DashboardRequest.Response.MessageCountPerDayEntry',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='key', full_name='hiber.dashboard.DashboardRequest.Response.MessageCountPerDayEntry.key', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='value', full_name='hiber.dashboard.DashboardRequest.Response.MessageCountPerDayEntry.value', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001')),
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=626,
-  serialized_end=683,
-)
 
 _DASHBOARDREQUEST_RESPONSE = _descriptor.Descriptor(
   name='Response',
@@ -125,7 +88,7 @@ _DASHBOARDREQUEST_RESPONSE = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_DASHBOARDREQUEST_RESPONSE_MESSAGECOUNTPERDAYENTRY, ],
+  nested_types=[],
   enum_types=[
   ],
   options=None,
@@ -134,8 +97,8 @@ _DASHBOARDREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=279,
-  serialized_end=683,
+  serialized_start=310,
+  serialized_end=643,
 )
 
 _DASHBOARDREQUEST = _descriptor.Descriptor(
@@ -146,7 +109,7 @@ _DASHBOARDREQUEST = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='account', full_name='hiber.dashboard.DashboardRequest.account', index=0,
+      name='organization', full_name='hiber.dashboard.DashboardRequest.organization', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -173,6 +136,13 @@ _DASHBOARDREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='time_zone_offset', full_name='hiber.dashboard.DashboardRequest.time_zone_offset', index=4,
+      number=5, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -186,13 +156,12 @@ _DASHBOARDREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=74,
-  serialized_end=683,
+  serialized_end=643,
 )
 
-_DASHBOARDREQUEST_RESPONSE_MESSAGECOUNTPERDAYENTRY.containing_type = _DASHBOARDREQUEST_RESPONSE
 _DASHBOARDREQUEST_RESPONSE.fields_by_name['ground_stations'].message_type = map__pb2._GROUNDSTATION
 _DASHBOARDREQUEST_RESPONSE.fields_by_name['map_blocks'].message_type = map__pb2._MAPBLOCK
-_DASHBOARDREQUEST_RESPONSE.fields_by_name['message_count_per_day'].message_type = _DASHBOARDREQUEST_RESPONSE_MESSAGECOUNTPERDAYENTRY
+_DASHBOARDREQUEST_RESPONSE.fields_by_name['message_count_per_day'].message_type = modem__pb2._MESSAGECOUNTREQUEST_RESPONSE_MESSAGECOUNT
 _DASHBOARDREQUEST_RESPONSE.fields_by_name['events'].message_type = event__pb2._EVENT
 _DASHBOARDREQUEST_RESPONSE.fields_by_name['request'].message_type = _DASHBOARDREQUEST
 _DASHBOARDREQUEST_RESPONSE.containing_type = _DASHBOARDREQUEST
@@ -205,13 +174,6 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 DashboardRequest = _reflection.GeneratedProtocolMessageType('DashboardRequest', (_message.Message,), dict(
 
   Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
-
-    MessageCountPerDayEntry = _reflection.GeneratedProtocolMessageType('MessageCountPerDayEntry', (_message.Message,), dict(
-      DESCRIPTOR = _DASHBOARDREQUEST_RESPONSE_MESSAGECOUNTPERDAYENTRY,
-      __module__ = 'dashboard_pb2'
-      # @@protoc_insertion_point(class_scope:hiber.dashboard.DashboardRequest.Response.MessageCountPerDayEntry)
-      ))
-    ,
     DESCRIPTOR = _DASHBOARDREQUEST_RESPONSE,
     __module__ = 'dashboard_pb2'
     # @@protoc_insertion_point(class_scope:hiber.dashboard.DashboardRequest.Response)
@@ -223,13 +185,10 @@ DashboardRequest = _reflection.GeneratedProtocolMessageType('DashboardRequest', 
   ))
 _sym_db.RegisterMessage(DashboardRequest)
 _sym_db.RegisterMessage(DashboardRequest.Response)
-_sym_db.RegisterMessage(DashboardRequest.Response.MessageCountPerDayEntry)
 
 
 DESCRIPTOR.has_options = True
 DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\037global.hiber.api.grpc.dashboardB\014DashboardApiP\000Z\005hiber'))
-_DASHBOARDREQUEST_RESPONSE_MESSAGECOUNTPERDAYENTRY.has_options = True
-_DASHBOARDREQUEST_RESPONSE_MESSAGECOUNTPERDAYENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
 
 _DASHBOARDSERVICE = _descriptor.ServiceDescriptor(
   name='DashboardService',
@@ -237,8 +196,8 @@ _DASHBOARDSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=685,
-  serialized_end=795,
+  serialized_start=645,
+  serialized_end=755,
   methods=[
   _descriptor.MethodDescriptor(
     name='Dashboard',

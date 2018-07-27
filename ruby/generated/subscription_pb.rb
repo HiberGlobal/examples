@@ -6,17 +6,17 @@ require 'google/protobuf'
 require 'base_pb'
 require 'google/protobuf/timestamp_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
-  add_enum "hiber.account.subscription.ServiceType" do
-    value :OncePerDay, 0
-    value :OncePer6Hours, 1
-    value :OncePerHour, 2
+  add_enum "hiber.organization.subscription.ServiceType" do
+    value :ONCE_PER_DAY, 0
+    value :ONCE_PER_6_HOURS, 1
+    value :ONCE_PER_HOUR, 2
   end
 end
 
 module Hiber
-  module Account
+  module Organization
     module Subscription
-      ServiceType = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.account.subscription.ServiceType").enummodule
+      ServiceType = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.organization.subscription.ServiceType").enummodule
     end
   end
 end

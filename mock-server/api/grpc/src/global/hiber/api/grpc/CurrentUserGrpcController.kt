@@ -15,7 +15,7 @@ class CurrentUserGrpcController : CurrentUserServiceGrpc.CurrentUserServiceImplB
       email = "example@example.example"
       id = "example-id"
       name = "example name"
-      addAccounts("example-account")
+      addOrganizations("example-organization")
     }.build()
   }
 

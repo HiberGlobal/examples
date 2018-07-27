@@ -7,7 +7,7 @@ require 'base_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.map.MapSelection" do
     optional :modems, :message, 1, "hiber.Filter.Modems"
-    optional :child_accounts, :message, 2, "hiber.Filter.ChildAccounts"
+    optional :child_organizations, :message, 2, "hiber.Filter.ChildOrganizations"
     optional :level, :int32, 3
     optional :area, :message, 4, "hiber.map.MapSelection.AreaRestriction"
   end
@@ -25,7 +25,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :error_percentage, :float, 4
   end
   add_message "hiber.map.MapRequest" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :selection, :message, 2, "hiber.map.MapSelection"
   end
   add_message "hiber.map.MapRequest.Response" do

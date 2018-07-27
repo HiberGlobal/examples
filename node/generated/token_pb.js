@@ -78,7 +78,7 @@ proto.hiber.token.Token.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     userId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    account: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 4, ""),
     permissionsList: jspb.Message.getRepeatedField(msg, 5),
     expiresAt: (f = msg.getExpiresAt()) && base_pb.Timestamp.toObject(includeInstance, f)
   };
@@ -131,7 +131,7 @@ proto.hiber.token.Token.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 5:
       var value = /** @type {!Array.<!proto.hiber.token.TokenPermission>} */ (reader.readPackedEnum());
@@ -192,7 +192,7 @@ proto.hiber.token.Token.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       4,
@@ -263,16 +263,16 @@ proto.hiber.token.Token.prototype.setUserId = function(value) {
 
 
 /**
- * optional string account = 4;
+ * optional string organization = 4;
  * @return {string}
  */
-proto.hiber.token.Token.prototype.getAccount = function() {
+proto.hiber.token.Token.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.token.Token.prototype.setAccount = function(value) {
+proto.hiber.token.Token.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 4, value);
 };
 
@@ -385,7 +385,7 @@ proto.hiber.token.TokenSelection.toObject = function(includeInstance, msg) {
   var f, obj = {
     users: (f = msg.getUsers()) && base_pb.Filter.Users.toObject(includeInstance, f),
     name: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    includeexpired: jspb.Message.getFieldWithDefault(msg, 4, false)
+    includeExpired: jspb.Message.getFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -433,7 +433,7 @@ proto.hiber.token.TokenSelection.deserializeBinaryFromReader = function(msg, rea
       break;
     case 4:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIncludeexpired(value);
+      msg.setIncludeExpired(value);
       break;
     default:
       reader.skipField();
@@ -479,7 +479,7 @@ proto.hiber.token.TokenSelection.serializeBinaryToWriter = function(message, wri
       f
     );
   }
-  f = message.getIncludeexpired();
+  f = message.getIncludeExpired();
   if (f) {
     writer.writeBool(
       4,
@@ -535,18 +535,18 @@ proto.hiber.token.TokenSelection.prototype.setName = function(value) {
 
 
 /**
- * optional bool includeExpired = 4;
+ * optional bool include_expired = 4;
  * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
  * You should avoid comparisons like {@code val === true/false} in those cases.
  * @return {boolean}
  */
-proto.hiber.token.TokenSelection.prototype.getIncludeexpired = function() {
+proto.hiber.token.TokenSelection.prototype.getIncludeExpired = function() {
   return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 4, false));
 };
 
 
 /** @param {boolean} value */
-proto.hiber.token.TokenSelection.prototype.setIncludeexpired = function(value) {
+proto.hiber.token.TokenSelection.prototype.setIncludeExpired = function(value) {
   jspb.Message.setField(this, 4, value);
 };
 
@@ -598,7 +598,7 @@ proto.hiber.token.ListTokensRequest.prototype.toObject = function(opt_includeIns
  */
 proto.hiber.token.ListTokensRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     selection: (f = msg.getSelection()) && proto.hiber.token.TokenSelection.toObject(includeInstance, f),
     pagination: (f = msg.getPagination()) && base_pb.Pagination.toObject(includeInstance, f)
   };
@@ -639,7 +639,7 @@ proto.hiber.token.ListTokensRequest.deserializeBinaryFromReader = function(msg, 
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = new proto.hiber.token.TokenSelection;
@@ -680,7 +680,7 @@ proto.hiber.token.ListTokensRequest.prototype.serializeBinary = function() {
  */
 proto.hiber.token.ListTokensRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -963,16 +963,16 @@ proto.hiber.token.ListTokensRequest.Response.prototype.hasPagination = function(
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.token.ListTokensRequest.prototype.getAccount = function() {
+proto.hiber.token.ListTokensRequest.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.token.ListTokensRequest.prototype.setAccount = function(value) {
+proto.hiber.token.ListTokensRequest.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -1091,7 +1091,7 @@ proto.hiber.token.CreateTokenRequest.prototype.toObject = function(opt_includeIn
  */
 proto.hiber.token.CreateTokenRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     permissionsList: jspb.Message.getRepeatedField(msg, 3),
     expiresAt: (f = msg.getExpiresAt()) && base_pb.Timestamp.toObject(includeInstance, f)
@@ -1133,7 +1133,7 @@ proto.hiber.token.CreateTokenRequest.deserializeBinaryFromReader = function(msg,
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -1177,7 +1177,7 @@ proto.hiber.token.CreateTokenRequest.prototype.serializeBinary = function() {
  */
 proto.hiber.token.CreateTokenRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -1352,16 +1352,16 @@ proto.hiber.token.CreateTokenRequest.Response.prototype.setToken = function(valu
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.token.CreateTokenRequest.prototype.getAccount = function() {
+proto.hiber.token.CreateTokenRequest.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.token.CreateTokenRequest.prototype.setAccount = function(value) {
+proto.hiber.token.CreateTokenRequest.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -1487,7 +1487,7 @@ proto.hiber.token.DeleteTokenRequest.prototype.toObject = function(opt_includeIn
  */
 proto.hiber.token.DeleteTokenRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     tokenId: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
@@ -1527,7 +1527,7 @@ proto.hiber.token.DeleteTokenRequest.deserializeBinaryFromReader = function(msg,
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt64());
@@ -1562,7 +1562,7 @@ proto.hiber.token.DeleteTokenRequest.prototype.serializeBinary = function() {
  */
 proto.hiber.token.DeleteTokenRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -1696,16 +1696,16 @@ proto.hiber.token.DeleteTokenRequest.Response.serializeBinaryToWriter = function
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.token.DeleteTokenRequest.prototype.getAccount = function() {
+proto.hiber.token.DeleteTokenRequest.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.token.DeleteTokenRequest.prototype.setAccount = function(value) {
+proto.hiber.token.DeleteTokenRequest.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -1731,8 +1731,8 @@ proto.hiber.token.DeleteTokenRequest.prototype.setTokenId = function(value) {
 proto.hiber.token.TokenPermission = {
   USER_READ: 0,
   USER_ACTION: 1,
-  ACCOUNT_READ: 2,
-  ACCOUNT_ACTION: 3
+  ORGANIZATION_READ: 2,
+  ORGANIZATION_ACTION: 3
 };
 
 goog.object.extend(exports, proto.hiber.token);

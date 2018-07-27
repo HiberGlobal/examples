@@ -15,9 +15,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :by_name, :string, 2
   end
   add_message "hiber.user.ListUsersRequest" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :selection, :message, 2, "hiber.user.UserSelection"
     optional :pagination, :message, 3, "hiber.Pagination"
+    optional :sort, :enum, 4, "hiber.user.UserSort"
   end
   add_message "hiber.user.ListUsersRequest.Response" do
     repeated :users, :message, 1, "hiber.user.User"
@@ -25,9 +26,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :pagination, :message, 3, "hiber.Pagination.Result"
   end
   add_message "hiber.user.ListAccessRequestsRequest" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :selection, :message, 2, "hiber.user.UserSelection"
     optional :pagination, :message, 3, "hiber.Pagination"
+    optional :sort, :enum, 4, "hiber.user.UserSort"
   end
   add_message "hiber.user.ListAccessRequestsRequest.Response" do
     repeated :users, :message, 1, "hiber.user.User"
@@ -35,22 +37,28 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :pagination, :message, 3, "hiber.Pagination.Result"
   end
   add_message "hiber.user.ApproveUserRequest" do
-    optional :account, :string, 1
-    optional :user_id, :string, 2
+    optional :organization, :string, 1
+    repeated :user_id, :string, 2
   end
   add_message "hiber.user.ApproveUserRequest.Response" do
   end
   add_message "hiber.user.RemoveUserRequest" do
-    optional :account, :string, 1
-    optional :user_id, :string, 2
+    optional :organization, :string, 1
+    repeated :user_id, :string, 2
   end
   add_message "hiber.user.RemoveUserRequest.Response" do
   end
   add_message "hiber.user.CreateUserRequest" do
-    optional :account, :string, 1
+    optional :organization, :string, 1
     optional :email, :string, 2
     optional :name, :string, 3
     optional :password, :string, 4
+  end
+  add_enum "hiber.user.UserSort" do
+    value :EMAIL_ASC, 0
+    value :EMAIL_DESC, 1
+    value :NAME_ASC, 2
+    value :NAME_DESC, 3
   end
 end
 
@@ -67,5 +75,6 @@ module Hiber
     RemoveUserRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.RemoveUserRequest").msgclass
     RemoveUserRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.RemoveUserRequest.Response").msgclass
     CreateUserRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.CreateUserRequest").msgclass
+    UserSort = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.UserSort").enummodule
   end
 end

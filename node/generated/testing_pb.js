@@ -69,7 +69,7 @@ proto.hiber.testing.PushModemMessagesRequest.prototype.toObject = function(opt_i
  */
 proto.hiber.testing.PushModemMessagesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    account: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     messagesList: jspb.Message.toObjectList(msg.getMessagesList(),
     proto.hiber.testing.PushModemMessagesRequest.MessageToPush.toObject, includeInstance)
   };
@@ -110,7 +110,7 @@ proto.hiber.testing.PushModemMessagesRequest.deserializeBinaryFromReader = funct
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccount(value);
+      msg.setOrganization(value);
       break;
     case 2:
       var value = new proto.hiber.testing.PushModemMessagesRequest.MessageToPush;
@@ -146,7 +146,7 @@ proto.hiber.testing.PushModemMessagesRequest.prototype.serializeBinary = functio
  */
 proto.hiber.testing.PushModemMessagesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccount();
+  f = message.getOrganization();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -211,7 +211,6 @@ proto.hiber.testing.PushModemMessagesRequest.Response.prototype.toObject = funct
  */
 proto.hiber.testing.PushModemMessagesRequest.Response.toObject = function(includeInstance, msg) {
   var f, obj = {
-    messagesSentMap: (f = msg.getMessagesSentMap()) ? f.toObject(includeInstance, undefined) : [],
     request: (f = msg.getRequest()) && proto.hiber.testing.PushModemMessagesRequest.toObject(includeInstance, f)
   };
 
@@ -249,12 +248,6 @@ proto.hiber.testing.PushModemMessagesRequest.Response.deserializeBinaryFromReade
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = msg.getMessagesSentMap();
-      reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readInt32);
-         });
-      break;
     case 2:
       var value = new proto.hiber.testing.PushModemMessagesRequest;
       reader.readMessage(value,proto.hiber.testing.PushModemMessagesRequest.deserializeBinaryFromReader);
@@ -289,10 +282,6 @@ proto.hiber.testing.PushModemMessagesRequest.Response.prototype.serializeBinary 
  */
 proto.hiber.testing.PushModemMessagesRequest.Response.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMessagesSentMap(true);
-  if (f && f.getLength() > 0) {
-    f.serializeBinary(1, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeInt32);
-  }
   f = message.getRequest();
   if (f != null) {
     writer.writeMessage(
@@ -301,24 +290,6 @@ proto.hiber.testing.PushModemMessagesRequest.Response.serializeBinaryToWriter = 
       proto.hiber.testing.PushModemMessagesRequest.serializeBinaryToWriter
     );
   }
-};
-
-
-/**
- * map<string, int32> messages_sent = 1;
- * @param {boolean=} opt_noLazyCreate Do not create the map if
- * empty, instead returning `undefined`
- * @return {!jspb.Map<string,number>}
- */
-proto.hiber.testing.PushModemMessagesRequest.Response.prototype.getMessagesSentMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,number>} */ (
-      jspb.Message.getMapField(this, 1, opt_noLazyCreate,
-      null));
-};
-
-
-proto.hiber.testing.PushModemMessagesRequest.Response.prototype.clearMessagesSentMap = function() {
-  this.getMessagesSentMap().clear();
 };
 
 
@@ -634,16 +605,16 @@ proto.hiber.testing.PushModemMessagesRequest.MessageToPush.prototype.setContent 
 
 
 /**
- * optional string account = 1;
+ * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.testing.PushModemMessagesRequest.prototype.getAccount = function() {
+proto.hiber.testing.PushModemMessagesRequest.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.testing.PushModemMessagesRequest.prototype.setAccount = function(value) {
+proto.hiber.testing.PushModemMessagesRequest.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
