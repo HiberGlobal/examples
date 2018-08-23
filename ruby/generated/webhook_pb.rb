@@ -20,11 +20,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :url, :string, 1
     optional :secret, :string, 2
     optional :content_type, :enum, 3, "hiber.webhook.Webhook.ContentType"
-    optional :active, :bool, 4
+    optional :disabled, :bool, 4
   end
   add_message "hiber.webhook.Webhook.WebhookFilters" do
-    optional :events, :message, 1, "hiber.Filter.Events"
-    optional :modems, :message, 2, "hiber.Filter.Modems"
+    optional :event_types, :message, 1, "hiber.Filter.Events"
+    optional :modem_numbers, :message, 2, "hiber.Filter.Modems"
     optional :tags, :message, 3, "hiber.Filter.Tags"
   end
   add_enum "hiber.webhook.Webhook.ContentType" do

@@ -25,10 +25,14 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.tag.ListTagsRequest" do
     optional :organization, :string, 1
     optional :selection, :message, 2, "hiber.tag.TagSelection"
+    optional :modem_count, :bool, 3
+    optional :webhook_count, :bool, 4
   end
   add_message "hiber.tag.ListTagsRequest.Response" do
     repeated :tags, :message, 1, "hiber.tag.Tag"
     optional :request, :message, 2, "hiber.tag.ListTagsRequest"
+    map :tag_modem_count, :int64, :int32, 3
+    map :tag_webhook_count, :int64, :int32, 4
   end
   add_message "hiber.tag.CreateTagRequest" do
     optional :organization, :string, 1

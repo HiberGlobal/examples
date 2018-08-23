@@ -377,17 +377,19 @@ proto.hiber.user.CurrentUser.Settings.serializeBinaryToWriter = function(message
  * @enum {number}
  */
 proto.hiber.user.CurrentUser.Settings.Layout = {
-  PORTRAIT: 0,
-  LANDSCAPE: 1
+  DEFAULT_LAYOUT: 0,
+  LANDSCAPE: 1,
+  PORTRAIT: 2
 };
 
 /**
  * @enum {number}
  */
 proto.hiber.user.CurrentUser.Settings.MapStyle = {
-  CLASSIC: 0,
+  DEFAULT_MAP_STYLE: 0,
   SATELLITE: 1,
-  HIBER_VISION: 2
+  HIBER_VISION: 2,
+  CLASSIC: 3
 };
 
 /**
@@ -1763,7 +1765,7 @@ proto.hiber.user.UpdateSettingsRequest.prototype.toObject = function(opt_include
  */
 proto.hiber.user.UpdateSettingsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    updatedSettings: (f = msg.getUpdatedSettings()) && proto.hiber.user.CurrentUser.Settings.toObject(includeInstance, f)
+    updateSettings: (f = msg.getUpdateSettings()) && proto.hiber.user.CurrentUser.Settings.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1803,7 +1805,7 @@ proto.hiber.user.UpdateSettingsRequest.deserializeBinaryFromReader = function(ms
     case 1:
       var value = new proto.hiber.user.CurrentUser.Settings;
       reader.readMessage(value,proto.hiber.user.CurrentUser.Settings.deserializeBinaryFromReader);
-      msg.setUpdatedSettings(value);
+      msg.setUpdateSettings(value);
       break;
     default:
       reader.skipField();
@@ -1834,7 +1836,7 @@ proto.hiber.user.UpdateSettingsRequest.prototype.serializeBinary = function() {
  */
 proto.hiber.user.UpdateSettingsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getUpdatedSettings();
+  f = message.getUpdateSettings();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -2005,23 +2007,23 @@ proto.hiber.user.UpdateSettingsRequest.Response.prototype.hasSettings = function
 
 
 /**
- * optional CurrentUser.Settings updated_settings = 1;
+ * optional CurrentUser.Settings update_settings = 1;
  * @return {?proto.hiber.user.CurrentUser.Settings}
  */
-proto.hiber.user.UpdateSettingsRequest.prototype.getUpdatedSettings = function() {
+proto.hiber.user.UpdateSettingsRequest.prototype.getUpdateSettings = function() {
   return /** @type{?proto.hiber.user.CurrentUser.Settings} */ (
     jspb.Message.getWrapperField(this, proto.hiber.user.CurrentUser.Settings, 1));
 };
 
 
 /** @param {?proto.hiber.user.CurrentUser.Settings|undefined} value */
-proto.hiber.user.UpdateSettingsRequest.prototype.setUpdatedSettings = function(value) {
+proto.hiber.user.UpdateSettingsRequest.prototype.setUpdateSettings = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
 
-proto.hiber.user.UpdateSettingsRequest.prototype.clearUpdatedSettings = function() {
-  this.setUpdatedSettings(undefined);
+proto.hiber.user.UpdateSettingsRequest.prototype.clearUpdateSettings = function() {
+  this.setUpdateSettings(undefined);
 };
 
 
@@ -2029,7 +2031,7 @@ proto.hiber.user.UpdateSettingsRequest.prototype.clearUpdatedSettings = function
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.hiber.user.UpdateSettingsRequest.prototype.hasUpdatedSettings = function() {
+proto.hiber.user.UpdateSettingsRequest.prototype.hasUpdateSettings = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 

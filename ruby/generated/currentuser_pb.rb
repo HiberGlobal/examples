@@ -18,13 +18,15 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :map_style, :enum, 2, "hiber.user.CurrentUser.Settings.MapStyle"
   end
   add_enum "hiber.user.CurrentUser.Settings.Layout" do
-    value :PORTRAIT, 0
+    value :DEFAULT_LAYOUT, 0
     value :LANDSCAPE, 1
+    value :PORTRAIT, 2
   end
   add_enum "hiber.user.CurrentUser.Settings.MapStyle" do
-    value :CLASSIC, 0
+    value :DEFAULT_MAP_STYLE, 0
     value :SATELLITE, 1
     value :HIBER_VISION, 2
+    value :CLASSIC, 3
   end
   add_message "hiber.user.CurrentUserRequest" do
   end
@@ -49,7 +51,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :default_organization, :string, 1
   end
   add_message "hiber.user.UpdateSettingsRequest" do
-    optional :updated_settings, :message, 1, "hiber.user.CurrentUser.Settings"
+    optional :update_settings, :message, 1, "hiber.user.CurrentUser.Settings"
   end
   add_message "hiber.user.UpdateSettingsRequest.Response" do
     optional :settings, :message, 1, "hiber.user.CurrentUser.Settings"

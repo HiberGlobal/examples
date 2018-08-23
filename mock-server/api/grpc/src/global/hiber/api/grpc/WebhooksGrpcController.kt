@@ -8,7 +8,6 @@ val webhook = WebhookApi.Webhook.newBuilder().apply {
   id = 1L
   organization = "example-organization"
   data = WebhookApi.Webhook.WebhookData.newBuilder().apply {
-    active = true
     contentType = WebhookApi.Webhook.ContentType.PROTO
     secret = "example-secret"
     url = "https://example.example/example"

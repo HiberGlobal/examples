@@ -896,7 +896,9 @@ proto.hiber.tag.ListTagsRequest.prototype.toObject = function(opt_includeInstanc
 proto.hiber.tag.ListTagsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    selection: (f = msg.getSelection()) && proto.hiber.tag.TagSelection.toObject(includeInstance, f)
+    selection: (f = msg.getSelection()) && proto.hiber.tag.TagSelection.toObject(includeInstance, f),
+    modemCount: jspb.Message.getFieldWithDefault(msg, 3, false),
+    webhookCount: jspb.Message.getFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -942,6 +944,14 @@ proto.hiber.tag.ListTagsRequest.deserializeBinaryFromReader = function(msg, read
       reader.readMessage(value,proto.hiber.tag.TagSelection.deserializeBinaryFromReader);
       msg.setSelection(value);
       break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setModemCount(value);
+      break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setWebhookCount(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -984,6 +994,20 @@ proto.hiber.tag.ListTagsRequest.serializeBinaryToWriter = function(message, writ
       2,
       f,
       proto.hiber.tag.TagSelection.serializeBinaryToWriter
+    );
+  }
+  f = message.getModemCount();
+  if (f) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
+  f = message.getWebhookCount();
+  if (f) {
+    writer.writeBool(
+      4,
+      f
     );
   }
 };
@@ -1045,7 +1069,9 @@ proto.hiber.tag.ListTagsRequest.Response.toObject = function(includeInstance, ms
   var f, obj = {
     tagsList: jspb.Message.toObjectList(msg.getTagsList(),
     proto.hiber.tag.Tag.toObject, includeInstance),
-    request: (f = msg.getRequest()) && proto.hiber.tag.ListTagsRequest.toObject(includeInstance, f)
+    request: (f = msg.getRequest()) && proto.hiber.tag.ListTagsRequest.toObject(includeInstance, f),
+    tagModemCountMap: (f = msg.getTagModemCountMap()) ? f.toObject(includeInstance, undefined) : [],
+    tagWebhookCountMap: (f = msg.getTagWebhookCountMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -1092,6 +1118,18 @@ proto.hiber.tag.ListTagsRequest.Response.deserializeBinaryFromReader = function(
       reader.readMessage(value,proto.hiber.tag.ListTagsRequest.deserializeBinaryFromReader);
       msg.setRequest(value);
       break;
+    case 3:
+      var value = msg.getTagModemCountMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readInt64, jspb.BinaryReader.prototype.readInt32);
+         });
+      break;
+    case 4:
+      var value = msg.getTagWebhookCountMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readInt64, jspb.BinaryReader.prototype.readInt32);
+         });
+      break;
     default:
       reader.skipField();
       break;
@@ -1136,6 +1174,14 @@ proto.hiber.tag.ListTagsRequest.Response.serializeBinaryToWriter = function(mess
       f,
       proto.hiber.tag.ListTagsRequest.serializeBinaryToWriter
     );
+  }
+  f = message.getTagModemCountMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(3, writer, jspb.BinaryWriter.prototype.writeInt64, jspb.BinaryWriter.prototype.writeInt32);
+  }
+  f = message.getTagWebhookCountMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(4, writer, jspb.BinaryWriter.prototype.writeInt64, jspb.BinaryWriter.prototype.writeInt32);
   }
 };
 
@@ -1202,6 +1248,42 @@ proto.hiber.tag.ListTagsRequest.Response.prototype.hasRequest = function() {
 
 
 /**
+ * map<int64, int32> tag_modem_count = 3;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<number,number>}
+ */
+proto.hiber.tag.ListTagsRequest.Response.prototype.getTagModemCountMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<number,number>} */ (
+      jspb.Message.getMapField(this, 3, opt_noLazyCreate,
+      null));
+};
+
+
+proto.hiber.tag.ListTagsRequest.Response.prototype.clearTagModemCountMap = function() {
+  this.getTagModemCountMap().clear();
+};
+
+
+/**
+ * map<int64, int32> tag_webhook_count = 4;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<number,number>}
+ */
+proto.hiber.tag.ListTagsRequest.Response.prototype.getTagWebhookCountMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<number,number>} */ (
+      jspb.Message.getMapField(this, 4, opt_noLazyCreate,
+      null));
+};
+
+
+proto.hiber.tag.ListTagsRequest.Response.prototype.clearTagWebhookCountMap = function() {
+  this.getTagWebhookCountMap().clear();
+};
+
+
+/**
  * optional string organization = 1;
  * @return {string}
  */
@@ -1243,6 +1325,40 @@ proto.hiber.tag.ListTagsRequest.prototype.clearSelection = function() {
  */
 proto.hiber.tag.ListTagsRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional bool modem_count = 3;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.tag.ListTagsRequest.prototype.getModemCount = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 3, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.tag.ListTagsRequest.prototype.setModemCount = function(value) {
+  jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * optional bool webhook_count = 4;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.tag.ListTagsRequest.prototype.getWebhookCount = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 4, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.tag.ListTagsRequest.prototype.setWebhookCount = function(value) {
+  jspb.Message.setField(this, 4, value);
 };
 
 

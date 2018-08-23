@@ -311,7 +311,7 @@ proto.hiber.webhook.Webhook.WebhookData.toObject = function(includeInstance, msg
     url: jspb.Message.getFieldWithDefault(msg, 1, ""),
     secret: jspb.Message.getFieldWithDefault(msg, 2, ""),
     contentType: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    active: jspb.Message.getFieldWithDefault(msg, 4, false)
+    disabled: jspb.Message.getFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -362,7 +362,7 @@ proto.hiber.webhook.Webhook.WebhookData.deserializeBinaryFromReader = function(m
       break;
     case 4:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setActive(value);
+      msg.setDisabled(value);
       break;
     default:
       reader.skipField();
@@ -414,7 +414,7 @@ proto.hiber.webhook.Webhook.WebhookData.serializeBinaryToWriter = function(messa
       f
     );
   }
-  f = message.getActive();
+  f = message.getDisabled();
   if (f) {
     writer.writeBool(
       4,
@@ -470,18 +470,18 @@ proto.hiber.webhook.Webhook.WebhookData.prototype.setContentType = function(valu
 
 
 /**
- * optional bool active = 4;
+ * optional bool disabled = 4;
  * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
  * You should avoid comparisons like {@code val === true/false} in those cases.
  * @return {boolean}
  */
-proto.hiber.webhook.Webhook.WebhookData.prototype.getActive = function() {
+proto.hiber.webhook.Webhook.WebhookData.prototype.getDisabled = function() {
   return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 4, false));
 };
 
 
 /** @param {boolean} value */
-proto.hiber.webhook.Webhook.WebhookData.prototype.setActive = function(value) {
+proto.hiber.webhook.Webhook.WebhookData.prototype.setDisabled = function(value) {
   jspb.Message.setField(this, 4, value);
 };
 
@@ -533,8 +533,8 @@ proto.hiber.webhook.Webhook.WebhookFilters.prototype.toObject = function(opt_inc
  */
 proto.hiber.webhook.Webhook.WebhookFilters.toObject = function(includeInstance, msg) {
   var f, obj = {
-    events: (f = msg.getEvents()) && base_pb.Filter.Events.toObject(includeInstance, f),
-    modems: (f = msg.getModems()) && base_pb.Filter.Modems.toObject(includeInstance, f),
+    eventTypes: (f = msg.getEventTypes()) && base_pb.Filter.Events.toObject(includeInstance, f),
+    modemNumbers: (f = msg.getModemNumbers()) && base_pb.Filter.Modems.toObject(includeInstance, f),
     tags: (f = msg.getTags()) && base_pb.Filter.Tags.toObject(includeInstance, f)
   };
 
@@ -575,12 +575,12 @@ proto.hiber.webhook.Webhook.WebhookFilters.deserializeBinaryFromReader = functio
     case 1:
       var value = new base_pb.Filter.Events;
       reader.readMessage(value,base_pb.Filter.Events.deserializeBinaryFromReader);
-      msg.setEvents(value);
+      msg.setEventTypes(value);
       break;
     case 2:
       var value = new base_pb.Filter.Modems;
       reader.readMessage(value,base_pb.Filter.Modems.deserializeBinaryFromReader);
-      msg.setModems(value);
+      msg.setModemNumbers(value);
       break;
     case 3:
       var value = new base_pb.Filter.Tags;
@@ -616,7 +616,7 @@ proto.hiber.webhook.Webhook.WebhookFilters.prototype.serializeBinary = function(
  */
 proto.hiber.webhook.Webhook.WebhookFilters.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getEvents();
+  f = message.getEventTypes();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -624,7 +624,7 @@ proto.hiber.webhook.Webhook.WebhookFilters.serializeBinaryToWriter = function(me
       base_pb.Filter.Events.serializeBinaryToWriter
     );
   }
-  f = message.getModems();
+  f = message.getModemNumbers();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -644,23 +644,23 @@ proto.hiber.webhook.Webhook.WebhookFilters.serializeBinaryToWriter = function(me
 
 
 /**
- * optional hiber.Filter.Events events = 1;
+ * optional hiber.Filter.Events event_types = 1;
  * @return {?proto.hiber.Filter.Events}
  */
-proto.hiber.webhook.Webhook.WebhookFilters.prototype.getEvents = function() {
+proto.hiber.webhook.Webhook.WebhookFilters.prototype.getEventTypes = function() {
   return /** @type{?proto.hiber.Filter.Events} */ (
     jspb.Message.getWrapperField(this, base_pb.Filter.Events, 1));
 };
 
 
 /** @param {?proto.hiber.Filter.Events|undefined} value */
-proto.hiber.webhook.Webhook.WebhookFilters.prototype.setEvents = function(value) {
+proto.hiber.webhook.Webhook.WebhookFilters.prototype.setEventTypes = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
 
-proto.hiber.webhook.Webhook.WebhookFilters.prototype.clearEvents = function() {
-  this.setEvents(undefined);
+proto.hiber.webhook.Webhook.WebhookFilters.prototype.clearEventTypes = function() {
+  this.setEventTypes(undefined);
 };
 
 
@@ -668,29 +668,29 @@ proto.hiber.webhook.Webhook.WebhookFilters.prototype.clearEvents = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.hiber.webhook.Webhook.WebhookFilters.prototype.hasEvents = function() {
+proto.hiber.webhook.Webhook.WebhookFilters.prototype.hasEventTypes = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional hiber.Filter.Modems modems = 2;
+ * optional hiber.Filter.Modems modem_numbers = 2;
  * @return {?proto.hiber.Filter.Modems}
  */
-proto.hiber.webhook.Webhook.WebhookFilters.prototype.getModems = function() {
+proto.hiber.webhook.Webhook.WebhookFilters.prototype.getModemNumbers = function() {
   return /** @type{?proto.hiber.Filter.Modems} */ (
     jspb.Message.getWrapperField(this, base_pb.Filter.Modems, 2));
 };
 
 
 /** @param {?proto.hiber.Filter.Modems|undefined} value */
-proto.hiber.webhook.Webhook.WebhookFilters.prototype.setModems = function(value) {
+proto.hiber.webhook.Webhook.WebhookFilters.prototype.setModemNumbers = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
 
-proto.hiber.webhook.Webhook.WebhookFilters.prototype.clearModems = function() {
-  this.setModems(undefined);
+proto.hiber.webhook.Webhook.WebhookFilters.prototype.clearModemNumbers = function() {
+  this.setModemNumbers(undefined);
 };
 
 
@@ -698,7 +698,7 @@ proto.hiber.webhook.Webhook.WebhookFilters.prototype.clearModems = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.hiber.webhook.Webhook.WebhookFilters.prototype.hasModems = function() {
+proto.hiber.webhook.Webhook.WebhookFilters.prototype.hasModemNumbers = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 

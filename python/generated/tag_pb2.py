@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='tag.proto',
   package='hiber.tag',
   syntax='proto3',
-  serialized_pb=_b('\n\ttag.proto\x12\thiber.tag\x1a\nbase.proto\"S\n\x03Tag\x12\n\n\x02id\x18\x01 \x01(\x03\x12#\n\x05label\x18\x03 \x01(\x0b\x32\x14.hiber.tag.Tag.Label\x1a\x1b\n\x05Label\x12\x0c\n\x04name\x18\x01 \x01(\tJ\x04\x08\x02\x10\x03\"Q\n\x0cTagSelection\x12\x0e\n\x06search\x18\x01 \x03(\t\x12\r\n\x05names\x18\x02 \x03(\t\x12\"\n\x06\x66ilter\x18\x03 \x01(\x0b\x32\x12.hiber.Filter.Tags\"u\n\x11UpdateTagsForItem\x12\x16\n\x0etag_ids_to_add\x18\x01 \x03(\x03\x12\x19\n\x11tag_ids_to_remove\x18\x02 \x03(\x03\x12-\n\x0fnew_tags_to_add\x18\x03 \x03(\x0b\x32\x14.hiber.tag.Tag.Label\"\xaa\x01\n\x0fListTagsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12*\n\tselection\x18\x02 \x01(\x0b\x32\x17.hiber.tag.TagSelection\x1aU\n\x08Response\x12\x1c\n\x04tags\x18\x01 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12+\n\x07request\x18\x02 \x01(\x0b\x32\x1a.hiber.tag.ListTagsRequest\"N\n\x10\x43reateTagRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12$\n\x06\x63reate\x18\x02 \x01(\x0b\x32\x14.hiber.tag.Tag.Label\"Z\n\x10UpdateTagRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\x12$\n\x06update\x18\x03 \x01(\x0b\x32\x14.hiber.tag.Tag.Label\"@\n\x10\x44\x65leteTagRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\x1a\n\n\x08Response2\x90\x02\n\nTagService\x12G\n\x04List\x12\x1a.hiber.tag.ListTagsRequest\x1a#.hiber.tag.ListTagsRequest.Response\x12\x35\n\x06\x43reate\x12\x1b.hiber.tag.CreateTagRequest\x1a\x0e.hiber.tag.Tag\x12\x35\n\x06Update\x12\x1b.hiber.tag.UpdateTagRequest\x1a\x0e.hiber.tag.Tag\x12K\n\x06\x44\x65lete\x12\x1b.hiber.tag.DeleteTagRequest\x1a$.hiber.tag.DeleteTagRequest.ResponseB,\n\x19global.hiber.api.grpc.tagB\x06TagApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\ttag.proto\x12\thiber.tag\x1a\nbase.proto\"S\n\x03Tag\x12\n\n\x02id\x18\x01 \x01(\x03\x12#\n\x05label\x18\x03 \x01(\x0b\x32\x14.hiber.tag.Tag.Label\x1a\x1b\n\x05Label\x12\x0c\n\x04name\x18\x01 \x01(\tJ\x04\x08\x02\x10\x03\"Q\n\x0cTagSelection\x12\x0e\n\x06search\x18\x01 \x03(\t\x12\r\n\x05names\x18\x02 \x03(\t\x12\"\n\x06\x66ilter\x18\x03 \x01(\x0b\x32\x12.hiber.Filter.Tags\"u\n\x11UpdateTagsForItem\x12\x16\n\x0etag_ids_to_add\x18\x01 \x03(\x03\x12\x19\n\x11tag_ids_to_remove\x18\x02 \x03(\x03\x12-\n\x0fnew_tags_to_add\x18\x03 \x03(\x0b\x32\x14.hiber.tag.Tag.Label\"\xeb\x03\n\x0fListTagsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12*\n\tselection\x18\x02 \x01(\x0b\x32\x17.hiber.tag.TagSelection\x12\x13\n\x0bmodem_count\x18\x03 \x01(\x08\x12\x15\n\rwebhook_count\x18\x04 \x01(\x08\x1a\xe9\x02\n\x08Response\x12\x1c\n\x04tags\x18\x01 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12+\n\x07request\x18\x02 \x01(\x0b\x32\x1a.hiber.tag.ListTagsRequest\x12O\n\x0ftag_modem_count\x18\x03 \x03(\x0b\x32\x36.hiber.tag.ListTagsRequest.Response.TagModemCountEntry\x12S\n\x11tag_webhook_count\x18\x04 \x03(\x0b\x32\x38.hiber.tag.ListTagsRequest.Response.TagWebhookCountEntry\x1a\x34\n\x12TagModemCountEntry\x12\x0b\n\x03key\x18\x01 \x01(\x03\x12\r\n\x05value\x18\x02 \x01(\x05:\x02\x38\x01\x1a\x36\n\x14TagWebhookCountEntry\x12\x0b\n\x03key\x18\x01 \x01(\x03\x12\r\n\x05value\x18\x02 \x01(\x05:\x02\x38\x01\"N\n\x10\x43reateTagRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12$\n\x06\x63reate\x18\x02 \x01(\x0b\x32\x14.hiber.tag.Tag.Label\"Z\n\x10UpdateTagRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\x12$\n\x06update\x18\x03 \x01(\x0b\x32\x14.hiber.tag.Tag.Label\"@\n\x10\x44\x65leteTagRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\x1a\n\n\x08Response2\x90\x02\n\nTagService\x12G\n\x04List\x12\x1a.hiber.tag.ListTagsRequest\x1a#.hiber.tag.ListTagsRequest.Response\x12\x35\n\x06\x43reate\x12\x1b.hiber.tag.CreateTagRequest\x1a\x0e.hiber.tag.Tag\x12\x35\n\x06Update\x12\x1b.hiber.tag.UpdateTagRequest\x1a\x0e.hiber.tag.Tag\x12K\n\x06\x44\x65lete\x12\x1b.hiber.tag.DeleteTagRequest\x1a$.hiber.tag.DeleteTagRequest.ResponseB,\n\x19global.hiber.api.grpc.tagB\x06TagApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,])
 
@@ -185,6 +185,80 @@ _UPDATETAGSFORITEM = _descriptor.Descriptor(
 )
 
 
+_LISTTAGSREQUEST_RESPONSE_TAGMODEMCOUNTENTRY = _descriptor.Descriptor(
+  name='TagModemCountEntry',
+  full_name='hiber.tag.ListTagsRequest.Response.TagModemCountEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='hiber.tag.ListTagsRequest.Response.TagModemCountEntry.key', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='hiber.tag.ListTagsRequest.Response.TagModemCountEntry.value', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001')),
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=707,
+  serialized_end=759,
+)
+
+_LISTTAGSREQUEST_RESPONSE_TAGWEBHOOKCOUNTENTRY = _descriptor.Descriptor(
+  name='TagWebhookCountEntry',
+  full_name='hiber.tag.ListTagsRequest.Response.TagWebhookCountEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='hiber.tag.ListTagsRequest.Response.TagWebhookCountEntry.key', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='hiber.tag.ListTagsRequest.Response.TagWebhookCountEntry.value', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001')),
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=761,
+  serialized_end=815,
+)
+
 _LISTTAGSREQUEST_RESPONSE = _descriptor.Descriptor(
   name='Response',
   full_name='hiber.tag.ListTagsRequest.Response',
@@ -206,10 +280,24 @@ _LISTTAGSREQUEST_RESPONSE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='tag_modem_count', full_name='hiber.tag.ListTagsRequest.Response.tag_modem_count', index=2,
+      number=3, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='tag_webhook_count', full_name='hiber.tag.ListTagsRequest.Response.tag_webhook_count', index=3,
+      number=4, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
-  nested_types=[],
+  nested_types=[_LISTTAGSREQUEST_RESPONSE_TAGMODEMCOUNTENTRY, _LISTTAGSREQUEST_RESPONSE_TAGWEBHOOKCOUNTENTRY, ],
   enum_types=[
   ],
   options=None,
@@ -218,8 +306,8 @@ _LISTTAGSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=409,
-  serialized_end=494,
+  serialized_start=454,
+  serialized_end=815,
 )
 
 _LISTTAGSREQUEST = _descriptor.Descriptor(
@@ -243,6 +331,20 @@ _LISTTAGSREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='modem_count', full_name='hiber.tag.ListTagsRequest.modem_count', index=2,
+      number=3, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='webhook_count', full_name='hiber.tag.ListTagsRequest.webhook_count', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -256,7 +358,7 @@ _LISTTAGSREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=324,
-  serialized_end=494,
+  serialized_end=815,
 )
 
 
@@ -293,8 +395,8 @@ _CREATETAGREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=496,
-  serialized_end=574,
+  serialized_start=817,
+  serialized_end=895,
 )
 
 
@@ -338,8 +440,8 @@ _UPDATETAGREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=576,
-  serialized_end=666,
+  serialized_start=897,
+  serialized_end=987,
 )
 
 
@@ -362,8 +464,8 @@ _DELETETAGREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=409,
-  serialized_end=419,
+  serialized_start=454,
+  serialized_end=464,
 )
 
 _DELETETAGREQUEST = _descriptor.Descriptor(
@@ -399,16 +501,20 @@ _DELETETAGREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=668,
-  serialized_end=732,
+  serialized_start=989,
+  serialized_end=1053,
 )
 
 _TAG_LABEL.containing_type = _TAG
 _TAG.fields_by_name['label'].message_type = _TAG_LABEL
 _TAGSELECTION.fields_by_name['filter'].message_type = base__pb2._FILTER_TAGS
 _UPDATETAGSFORITEM.fields_by_name['new_tags_to_add'].message_type = _TAG_LABEL
+_LISTTAGSREQUEST_RESPONSE_TAGMODEMCOUNTENTRY.containing_type = _LISTTAGSREQUEST_RESPONSE
+_LISTTAGSREQUEST_RESPONSE_TAGWEBHOOKCOUNTENTRY.containing_type = _LISTTAGSREQUEST_RESPONSE
 _LISTTAGSREQUEST_RESPONSE.fields_by_name['tags'].message_type = _TAG
 _LISTTAGSREQUEST_RESPONSE.fields_by_name['request'].message_type = _LISTTAGSREQUEST
+_LISTTAGSREQUEST_RESPONSE.fields_by_name['tag_modem_count'].message_type = _LISTTAGSREQUEST_RESPONSE_TAGMODEMCOUNTENTRY
+_LISTTAGSREQUEST_RESPONSE.fields_by_name['tag_webhook_count'].message_type = _LISTTAGSREQUEST_RESPONSE_TAGWEBHOOKCOUNTENTRY
 _LISTTAGSREQUEST_RESPONSE.containing_type = _LISTTAGSREQUEST
 _LISTTAGSREQUEST.fields_by_name['selection'].message_type = _TAGSELECTION
 _CREATETAGREQUEST.fields_by_name['create'].message_type = _TAG_LABEL
@@ -455,6 +561,20 @@ _sym_db.RegisterMessage(UpdateTagsForItem)
 ListTagsRequest = _reflection.GeneratedProtocolMessageType('ListTagsRequest', (_message.Message,), dict(
 
   Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
+
+    TagModemCountEntry = _reflection.GeneratedProtocolMessageType('TagModemCountEntry', (_message.Message,), dict(
+      DESCRIPTOR = _LISTTAGSREQUEST_RESPONSE_TAGMODEMCOUNTENTRY,
+      __module__ = 'tag_pb2'
+      # @@protoc_insertion_point(class_scope:hiber.tag.ListTagsRequest.Response.TagModemCountEntry)
+      ))
+    ,
+
+    TagWebhookCountEntry = _reflection.GeneratedProtocolMessageType('TagWebhookCountEntry', (_message.Message,), dict(
+      DESCRIPTOR = _LISTTAGSREQUEST_RESPONSE_TAGWEBHOOKCOUNTENTRY,
+      __module__ = 'tag_pb2'
+      # @@protoc_insertion_point(class_scope:hiber.tag.ListTagsRequest.Response.TagWebhookCountEntry)
+      ))
+    ,
     DESCRIPTOR = _LISTTAGSREQUEST_RESPONSE,
     __module__ = 'tag_pb2'
     # @@protoc_insertion_point(class_scope:hiber.tag.ListTagsRequest.Response)
@@ -466,6 +586,8 @@ ListTagsRequest = _reflection.GeneratedProtocolMessageType('ListTagsRequest', (_
   ))
 _sym_db.RegisterMessage(ListTagsRequest)
 _sym_db.RegisterMessage(ListTagsRequest.Response)
+_sym_db.RegisterMessage(ListTagsRequest.Response.TagModemCountEntry)
+_sym_db.RegisterMessage(ListTagsRequest.Response.TagWebhookCountEntry)
 
 CreateTagRequest = _reflection.GeneratedProtocolMessageType('CreateTagRequest', (_message.Message,), dict(
   DESCRIPTOR = _CREATETAGREQUEST,
@@ -499,6 +621,10 @@ _sym_db.RegisterMessage(DeleteTagRequest.Response)
 
 DESCRIPTOR.has_options = True
 DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\031global.hiber.api.grpc.tagB\006TagApiP\000Z\005hiber'))
+_LISTTAGSREQUEST_RESPONSE_TAGMODEMCOUNTENTRY.has_options = True
+_LISTTAGSREQUEST_RESPONSE_TAGMODEMCOUNTENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
+_LISTTAGSREQUEST_RESPONSE_TAGWEBHOOKCOUNTENTRY.has_options = True
+_LISTTAGSREQUEST_RESPONSE_TAGWEBHOOKCOUNTENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
 
 _TAGSERVICE = _descriptor.ServiceDescriptor(
   name='TagService',
@@ -506,8 +632,8 @@ _TAGSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=735,
-  serialized_end=1007,
+  serialized_start=1056,
+  serialized_end=1328,
   methods=[
   _descriptor.MethodDescriptor(
     name='List',

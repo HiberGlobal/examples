@@ -108,6 +108,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :MODEM_CLAIM_CREATED, 22
     value :MODEM_CLAIM_ACCEPTED, 23
     value :MODEM_CLAIM_REFUSED, 24
+    value :TOKEN_EXPIRY_WARNING, 25
+    value :TOKEN_EXPIRED, 26
   end
   add_enum "hiber.Health" do
     value :OK, 0

@@ -8,6 +8,7 @@ require 'modem_pb'
 require 'modem_transfer_pb'
 require 'modem_claim_pb'
 require 'tag_pb'
+require 'token_pb'
 require 'user_pb'
 require 'webhook_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
@@ -34,6 +35,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :modem_claimed_event, :message, 20, "hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent"
       optional :modem_claim_accepted_event, :message, 21, "hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent"
       optional :modem_claim_rejected_event, :message, 22, "hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent"
+      optional :token_expiry_warning, :message, 23, "hiber.event.Event.TokenEvent.TokenExpiryWarningEvent"
+      optional :token_expired, :message, 24, "hiber.event.Event.TokenEvent.TokenExpiredEvent"
     end
   end
   add_message "hiber.event.Event.ModemEvent" do
@@ -233,6 +236,22 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :description, :string, 6
     optional :time, :message, 7, "hiber.Timestamp"
   end
+  add_message "hiber.event.Event.TokenEvent" do
+  end
+  add_message "hiber.event.Event.TokenEvent.TokenExpiryWarningEvent" do
+    optional :organization, :string, 1
+    optional :token, :message, 2, "hiber.token.Token"
+    optional :title, :string, 3
+    optional :description, :string, 4
+    optional :time, :message, 5, "hiber.Timestamp"
+  end
+  add_message "hiber.event.Event.TokenEvent.TokenExpiredEvent" do
+    optional :organization, :string, 1
+    optional :token, :message, 2, "hiber.token.Token"
+    optional :title, :string, 3
+    optional :description, :string, 4
+    optional :time, :message, 5, "hiber.Timestamp"
+  end
   add_message "hiber.event.EventSelection" do
     optional :events, :message, 1, "hiber.Filter.Events"
     optional :modems, :message, 2, "hiber.Filter.Modems"
@@ -295,6 +314,9 @@ module Hiber
     Event::WebhookEvent::UpdatedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.WebhookEvent.UpdatedEvent").msgclass
     Event::WebhookEvent::DeletedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.WebhookEvent.DeletedEvent").msgclass
     Event::WebhookEvent::FailedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.WebhookEvent.FailedEvent").msgclass
+    Event::TokenEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.TokenEvent").msgclass
+    Event::TokenEvent::TokenExpiryWarningEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.TokenEvent.TokenExpiryWarningEvent").msgclass
+    Event::TokenEvent::TokenExpiredEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.TokenEvent.TokenExpiredEvent").msgclass
     EventSelection = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.EventSelection").msgclass
     ListEventsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.ListEventsRequest").msgclass
     ListEventsRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.ListEventsRequest.Response").msgclass

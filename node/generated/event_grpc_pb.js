@@ -8,6 +8,7 @@ var modem_pb = require('./modem_pb.js');
 var modem_transfer_pb = require('./modem_transfer_pb.js');
 var modem_claim_pb = require('./modem_claim_pb.js');
 var tag_pb = require('./tag_pb.js');
+var token_pb = require('./token_pb.js');
 var user_pb = require('./user_pb.js');
 var webhook_pb = require('./webhook_pb.js');
 

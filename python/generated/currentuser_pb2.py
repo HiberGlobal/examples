@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='currentuser.proto',
   package='hiber.user',
   syntax='proto3',
-  serialized_pb=_b('\n\x11\x63urrentuser.proto\x12\nhiber.user\"\xa5\x03\n\x0b\x43urrentUser\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x15\n\rorganizations\x18\x04 \x03(\t\x12\x1c\n\x14\x64\x65\x66\x61ult_organization\x18\x05 \x01(\t\x12\x1f\n\x17requested_organizations\x18\x06 \x03(\t\x12\x32\n\x08settings\x18\x07 \x01(\x0b\x32 .hiber.user.CurrentUser.Settings\x1a\xe2\x01\n\x08Settings\x12\x37\n\x06layout\x18\x01 \x01(\x0e\x32\'.hiber.user.CurrentUser.Settings.Layout\x12<\n\tmap_style\x18\x02 \x01(\x0e\x32).hiber.user.CurrentUser.Settings.MapStyle\"%\n\x06Layout\x12\x0c\n\x08PORTRAIT\x10\x00\x12\r\n\tLANDSCAPE\x10\x01\"8\n\x08MapStyle\x12\x0b\n\x07\x43LASSIC\x10\x00\x12\r\n\tSATELLITE\x10\x01\x12\x10\n\x0cHIBER_VISION\x10\x02\"\x14\n\x12\x43urrentUserRequest\"8\n\x14RequestAccessRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x1a\n\n\x08Response\">\n\x1a\x43\x61ncelAccessRequestRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x1a\n\n\x08Response\"&\n\x18\x44\x65leteCurrentUserRequest\x1a\n\n\x08Response\"b\n UpdateDefaultOrganizationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x1a(\n\x08Response\x12\x1c\n\x14\x64\x65\x66\x61ult_organization\x18\x01 \x01(\t\"\x93\x01\n\x15UpdateSettingsRequest\x12:\n\x10updated_settings\x18\x01 \x01(\x0b\x32 .hiber.user.CurrentUser.Settings\x1a>\n\x08Response\x12\x32\n\x08settings\x18\x01 \x01(\x0b\x32 .hiber.user.CurrentUser.Settings2\xf8\x04\n\x12\x43urrentUserService\x12\x46\n\x0b\x43urrentUser\x12\x1e.hiber.user.CurrentUserRequest\x1a\x17.hiber.user.CurrentUser\x12\\\n\rRequestAccess\x12 .hiber.user.RequestAccessRequest\x1a).hiber.user.RequestAccessRequest.Response\x12n\n\x13\x43\x61ncelAccessRequest\x12&.hiber.user.CancelAccessRequestRequest\x1a/.hiber.user.CancelAccessRequestRequest.Response\x12h\n\x11\x44\x65leteCurrentUser\x12$.hiber.user.DeleteCurrentUserRequest\x1a-.hiber.user.DeleteCurrentUserRequest.Response\x12\x80\x01\n\x19UpdateDefaultOrganization\x12,.hiber.user.UpdateDefaultOrganizationRequest\x1a\x35.hiber.user.UpdateDefaultOrganizationRequest.Response\x12_\n\x0eUpdateSettings\x12!.hiber.user.UpdateSettingsRequest\x1a*.hiber.user.UpdateSettingsRequest.ResponseB5\n\x1aglobal.hiber.api.grpc.userB\x0e\x43urrentUserApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\x11\x63urrentuser.proto\x12\nhiber.user\"\xd0\x03\n\x0b\x43urrentUser\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x15\n\rorganizations\x18\x04 \x03(\t\x12\x1c\n\x14\x64\x65\x66\x61ult_organization\x18\x05 \x01(\t\x12\x1f\n\x17requested_organizations\x18\x06 \x03(\t\x12\x32\n\x08settings\x18\x07 \x01(\x0b\x32 .hiber.user.CurrentUser.Settings\x1a\x8d\x02\n\x08Settings\x12\x37\n\x06layout\x18\x01 \x01(\x0e\x32\'.hiber.user.CurrentUser.Settings.Layout\x12<\n\tmap_style\x18\x02 \x01(\x0e\x32).hiber.user.CurrentUser.Settings.MapStyle\"9\n\x06Layout\x12\x12\n\x0e\x44\x45\x46\x41ULT_LAYOUT\x10\x00\x12\r\n\tLANDSCAPE\x10\x01\x12\x0c\n\x08PORTRAIT\x10\x02\"O\n\x08MapStyle\x12\x15\n\x11\x44\x45\x46\x41ULT_MAP_STYLE\x10\x00\x12\r\n\tSATELLITE\x10\x01\x12\x10\n\x0cHIBER_VISION\x10\x02\x12\x0b\n\x07\x43LASSIC\x10\x03\"\x14\n\x12\x43urrentUserRequest\"8\n\x14RequestAccessRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x1a\n\n\x08Response\">\n\x1a\x43\x61ncelAccessRequestRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x1a\n\n\x08Response\"&\n\x18\x44\x65leteCurrentUserRequest\x1a\n\n\x08Response\"b\n UpdateDefaultOrganizationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x1a(\n\x08Response\x12\x1c\n\x14\x64\x65\x66\x61ult_organization\x18\x01 \x01(\t\"\x92\x01\n\x15UpdateSettingsRequest\x12\x39\n\x0fupdate_settings\x18\x01 \x01(\x0b\x32 .hiber.user.CurrentUser.Settings\x1a>\n\x08Response\x12\x32\n\x08settings\x18\x01 \x01(\x0b\x32 .hiber.user.CurrentUser.Settings2\xf8\x04\n\x12\x43urrentUserService\x12\x46\n\x0b\x43urrentUser\x12\x1e.hiber.user.CurrentUserRequest\x1a\x17.hiber.user.CurrentUser\x12\\\n\rRequestAccess\x12 .hiber.user.RequestAccessRequest\x1a).hiber.user.RequestAccessRequest.Response\x12n\n\x13\x43\x61ncelAccessRequest\x12&.hiber.user.CancelAccessRequestRequest\x1a/.hiber.user.CancelAccessRequestRequest.Response\x12h\n\x11\x44\x65leteCurrentUser\x12$.hiber.user.DeleteCurrentUserRequest\x1a-.hiber.user.DeleteCurrentUserRequest.Response\x12\x80\x01\n\x19UpdateDefaultOrganization\x12,.hiber.user.UpdateDefaultOrganizationRequest\x1a\x35.hiber.user.UpdateDefaultOrganizationRequest.Response\x12_\n\x0eUpdateSettings\x12!.hiber.user.UpdateSettingsRequest\x1a*.hiber.user.UpdateSettingsRequest.ResponseB5\n\x1aglobal.hiber.api.grpc.userB\x0e\x43urrentUserApiP\x00Z\x05hiberb\x06proto3')
 )
 
 
@@ -31,18 +31,22 @@ _CURRENTUSER_SETTINGS_LAYOUT = _descriptor.EnumDescriptor(
   file=DESCRIPTOR,
   values=[
     _descriptor.EnumValueDescriptor(
-      name='PORTRAIT', index=0, number=0,
+      name='DEFAULT_LAYOUT', index=0, number=0,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
       name='LANDSCAPE', index=1, number=1,
       options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='PORTRAIT', index=2, number=2,
+      options=None,
+      type=None),
   ],
   containing_type=None,
   options=None,
   serialized_start=360,
-  serialized_end=397,
+  serialized_end=417,
 )
 _sym_db.RegisterEnumDescriptor(_CURRENTUSER_SETTINGS_LAYOUT)
 
@@ -53,7 +57,7 @@ _CURRENTUSER_SETTINGS_MAPSTYLE = _descriptor.EnumDescriptor(
   file=DESCRIPTOR,
   values=[
     _descriptor.EnumValueDescriptor(
-      name='CLASSIC', index=0, number=0,
+      name='DEFAULT_MAP_STYLE', index=0, number=0,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
@@ -64,11 +68,15 @@ _CURRENTUSER_SETTINGS_MAPSTYLE = _descriptor.EnumDescriptor(
       name='HIBER_VISION', index=2, number=2,
       options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='CLASSIC', index=3, number=3,
+      options=None,
+      type=None),
   ],
   containing_type=None,
   options=None,
-  serialized_start=399,
-  serialized_end=455,
+  serialized_start=419,
+  serialized_end=498,
 )
 _sym_db.RegisterEnumDescriptor(_CURRENTUSER_SETTINGS_MAPSTYLE)
 
@@ -109,7 +117,7 @@ _CURRENTUSER_SETTINGS = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=229,
-  serialized_end=455,
+  serialized_end=498,
 )
 
 _CURRENTUSER = _descriptor.Descriptor(
@@ -181,7 +189,7 @@ _CURRENTUSER = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=34,
-  serialized_end=455,
+  serialized_end=498,
 )
 
 
@@ -204,8 +212,8 @@ _CURRENTUSERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=457,
-  serialized_end=477,
+  serialized_start=500,
+  serialized_end=520,
 )
 
 
@@ -228,8 +236,8 @@ _REQUESTACCESSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=525,
-  serialized_end=535,
+  serialized_start=568,
+  serialized_end=578,
 )
 
 _REQUESTACCESSREQUEST = _descriptor.Descriptor(
@@ -258,8 +266,8 @@ _REQUESTACCESSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=479,
-  serialized_end=535,
+  serialized_start=522,
+  serialized_end=578,
 )
 
 
@@ -282,8 +290,8 @@ _CANCELACCESSREQUESTREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=525,
-  serialized_end=535,
+  serialized_start=568,
+  serialized_end=578,
 )
 
 _CANCELACCESSREQUESTREQUEST = _descriptor.Descriptor(
@@ -312,8 +320,8 @@ _CANCELACCESSREQUESTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=537,
-  serialized_end=599,
+  serialized_start=580,
+  serialized_end=642,
 )
 
 
@@ -336,8 +344,8 @@ _DELETECURRENTUSERREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=525,
-  serialized_end=535,
+  serialized_start=568,
+  serialized_end=578,
 )
 
 _DELETECURRENTUSERREQUEST = _descriptor.Descriptor(
@@ -359,8 +367,8 @@ _DELETECURRENTUSERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=601,
-  serialized_end=639,
+  serialized_start=644,
+  serialized_end=682,
 )
 
 
@@ -390,8 +398,8 @@ _UPDATEDEFAULTORGANIZATIONREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=699,
-  serialized_end=739,
+  serialized_start=742,
+  serialized_end=782,
 )
 
 _UPDATEDEFAULTORGANIZATIONREQUEST = _descriptor.Descriptor(
@@ -420,8 +428,8 @@ _UPDATEDEFAULTORGANIZATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=641,
-  serialized_end=739,
+  serialized_start=684,
+  serialized_end=782,
 )
 
 
@@ -451,8 +459,8 @@ _UPDATESETTINGSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=827,
-  serialized_end=889,
+  serialized_start=869,
+  serialized_end=931,
 )
 
 _UPDATESETTINGSREQUEST = _descriptor.Descriptor(
@@ -463,7 +471,7 @@ _UPDATESETTINGSREQUEST = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='updated_settings', full_name='hiber.user.UpdateSettingsRequest.updated_settings', index=0,
+      name='update_settings', full_name='hiber.user.UpdateSettingsRequest.update_settings', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -481,8 +489,8 @@ _UPDATESETTINGSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=742,
-  serialized_end=889,
+  serialized_start=785,
+  serialized_end=931,
 )
 
 _CURRENTUSER_SETTINGS.fields_by_name['layout'].enum_type = _CURRENTUSER_SETTINGS_LAYOUT
@@ -497,7 +505,7 @@ _DELETECURRENTUSERREQUEST_RESPONSE.containing_type = _DELETECURRENTUSERREQUEST
 _UPDATEDEFAULTORGANIZATIONREQUEST_RESPONSE.containing_type = _UPDATEDEFAULTORGANIZATIONREQUEST
 _UPDATESETTINGSREQUEST_RESPONSE.fields_by_name['settings'].message_type = _CURRENTUSER_SETTINGS
 _UPDATESETTINGSREQUEST_RESPONSE.containing_type = _UPDATESETTINGSREQUEST
-_UPDATESETTINGSREQUEST.fields_by_name['updated_settings'].message_type = _CURRENTUSER_SETTINGS
+_UPDATESETTINGSREQUEST.fields_by_name['update_settings'].message_type = _CURRENTUSER_SETTINGS
 DESCRIPTOR.message_types_by_name['CurrentUser'] = _CURRENTUSER
 DESCRIPTOR.message_types_by_name['CurrentUserRequest'] = _CURRENTUSERREQUEST
 DESCRIPTOR.message_types_by_name['RequestAccessRequest'] = _REQUESTACCESSREQUEST
@@ -614,8 +622,8 @@ _CURRENTUSERSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=892,
-  serialized_end=1524,
+  serialized_start=934,
+  serialized_end=1566,
   methods=[
   _descriptor.MethodDescriptor(
     name='CurrentUser',

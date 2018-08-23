@@ -19,4 +19,4 @@ done
 if [[ "$VERSION" == "" ]]; then usage; exit 1; fi
 
 ./gradlew build -PdockerizeServer
-docker build -t ${IMAGE}:$VERSION -t ${IMAGE}:latest server
+docker build -t ${IMAGE}:$VERSION -t ${IMAGE}:latest --build-arg VERSION=${VERSION} server

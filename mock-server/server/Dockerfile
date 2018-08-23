@@ -1,6 +1,8 @@
 FROM openjdk:8-jre-alpine
 
-COPY build/libs/hiber-mock-server*.jar /opt/hiber/hiber-mock-server.jar
+ARG VERSION=""
+
+COPY build/libs/hiber-mock-server-${VERSION}-all.jar /opt/hiber/hiber-mock-server.jar
 
 WORKDIR /opt/hiber
 
