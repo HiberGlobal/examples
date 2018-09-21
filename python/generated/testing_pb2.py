@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='testing.proto',
   package='hiber.testing',
   syntax='proto3',
-  serialized_pb=_b('\n\rtesting.proto\x12\rhiber.testing\x1a\nbase.proto\"\xba\x02\n\x18PushModemMessagesRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12G\n\x08messages\x18\x02 \x03(\x0b\x32\x35.hiber.testing.PushModemMessagesRequest.MessageToPush\x1a\x44\n\x08Response\x12\x38\n\x07request\x18\x02 \x01(\x0b\x32\'.hiber.testing.PushModemMessagesRequest\x1ay\n\rMessageToPush\x12\x14\n\x0cmodem_number\x18\x01 \x01(\t\x12\x1e\n\x04time\x18\x02 \x01(\x0b\x32\x10.hiber.Timestamp\x12!\n\x08location\x18\x03 \x01(\x0b\x32\x0f.hiber.Location\x12\x0f\n\x07\x63ontent\x18\x04 \x01(\x0c\x32\x80\x01\n\x0eTestingService\x12n\n\x11PushModemMessages\x12\'.hiber.testing.PushModemMessagesRequest\x1a\x30.hiber.testing.PushModemMessagesRequest.ResponseB4\n\x1dglobal.hiber.api.grpc.testingB\nTestingApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\rtesting.proto\x12\rhiber.testing\x1a\nbase.proto\"\xba\x02\n\x18PushModemMessagesRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12G\n\x08messages\x18\x02 \x03(\x0b\x32\x35.hiber.testing.PushModemMessagesRequest.MessageToPush\x1a\x44\n\x08Response\x12\x38\n\x07request\x18\x02 \x01(\x0b\x32\'.hiber.testing.PushModemMessagesRequest\x1ay\n\rMessageToPush\x12\x14\n\x0cmodem_number\x18\x01 \x01(\t\x12\x1e\n\x04time\x18\x02 \x01(\x0b\x32\x10.hiber.Timestamp\x12!\n\x08location\x18\x03 \x01(\x0b\x32\x0f.hiber.Location\x12\x0f\n\x07\x63ontent\x18\x04 \x01(\x0c\"\xaa\x01\n%PushModemMessagesFromDebugPortRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x18\n\x10\x65ncoded_messages\x18\x02 \x03(\t\x1aQ\n\x08Response\x12\x45\n\x07request\x18\x01 \x01(\x0b\x32\x34.hiber.testing.PushModemMessagesFromDebugPortRequest2\x98\x02\n\x0eTestingService\x12n\n\x11PushModemMessages\x12\'.hiber.testing.PushModemMessagesRequest\x1a\x30.hiber.testing.PushModemMessagesRequest.Response\x12\x95\x01\n\x1ePushModemMessagesFromDebugPort\x12\x34.hiber.testing.PushModemMessagesFromDebugPortRequest\x1a=.hiber.testing.PushModemMessagesFromDebugPortRequest.ResponseB4\n\x1dglobal.hiber.api.grpc.testingB\nTestingApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,])
 
@@ -145,13 +145,84 @@ _PUSHMODEMMESSAGESREQUEST = _descriptor.Descriptor(
   serialized_end=359,
 )
 
+
+_PUSHMODEMMESSAGESFROMDEBUGPORTREQUEST_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='hiber.testing.PushModemMessagesFromDebugPortRequest.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='request', full_name='hiber.testing.PushModemMessagesFromDebugPortRequest.Response.request', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=451,
+  serialized_end=532,
+)
+
+_PUSHMODEMMESSAGESFROMDEBUGPORTREQUEST = _descriptor.Descriptor(
+  name='PushModemMessagesFromDebugPortRequest',
+  full_name='hiber.testing.PushModemMessagesFromDebugPortRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organization', full_name='hiber.testing.PushModemMessagesFromDebugPortRequest.organization', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='encoded_messages', full_name='hiber.testing.PushModemMessagesFromDebugPortRequest.encoded_messages', index=1,
+      number=2, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_PUSHMODEMMESSAGESFROMDEBUGPORTREQUEST_RESPONSE, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=362,
+  serialized_end=532,
+)
+
 _PUSHMODEMMESSAGESREQUEST_RESPONSE.fields_by_name['request'].message_type = _PUSHMODEMMESSAGESREQUEST
 _PUSHMODEMMESSAGESREQUEST_RESPONSE.containing_type = _PUSHMODEMMESSAGESREQUEST
 _PUSHMODEMMESSAGESREQUEST_MESSAGETOPUSH.fields_by_name['time'].message_type = base__pb2._TIMESTAMP
 _PUSHMODEMMESSAGESREQUEST_MESSAGETOPUSH.fields_by_name['location'].message_type = base__pb2._LOCATION
 _PUSHMODEMMESSAGESREQUEST_MESSAGETOPUSH.containing_type = _PUSHMODEMMESSAGESREQUEST
 _PUSHMODEMMESSAGESREQUEST.fields_by_name['messages'].message_type = _PUSHMODEMMESSAGESREQUEST_MESSAGETOPUSH
+_PUSHMODEMMESSAGESFROMDEBUGPORTREQUEST_RESPONSE.fields_by_name['request'].message_type = _PUSHMODEMMESSAGESFROMDEBUGPORTREQUEST
+_PUSHMODEMMESSAGESFROMDEBUGPORTREQUEST_RESPONSE.containing_type = _PUSHMODEMMESSAGESFROMDEBUGPORTREQUEST
 DESCRIPTOR.message_types_by_name['PushModemMessagesRequest'] = _PUSHMODEMMESSAGESREQUEST
+DESCRIPTOR.message_types_by_name['PushModemMessagesFromDebugPortRequest'] = _PUSHMODEMMESSAGESFROMDEBUGPORTREQUEST
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 PushModemMessagesRequest = _reflection.GeneratedProtocolMessageType('PushModemMessagesRequest', (_message.Message,), dict(
@@ -177,6 +248,21 @@ _sym_db.RegisterMessage(PushModemMessagesRequest)
 _sym_db.RegisterMessage(PushModemMessagesRequest.Response)
 _sym_db.RegisterMessage(PushModemMessagesRequest.MessageToPush)
 
+PushModemMessagesFromDebugPortRequest = _reflection.GeneratedProtocolMessageType('PushModemMessagesFromDebugPortRequest', (_message.Message,), dict(
+
+  Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
+    DESCRIPTOR = _PUSHMODEMMESSAGESFROMDEBUGPORTREQUEST_RESPONSE,
+    __module__ = 'testing_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.testing.PushModemMessagesFromDebugPortRequest.Response)
+    ))
+  ,
+  DESCRIPTOR = _PUSHMODEMMESSAGESFROMDEBUGPORTREQUEST,
+  __module__ = 'testing_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.testing.PushModemMessagesFromDebugPortRequest)
+  ))
+_sym_db.RegisterMessage(PushModemMessagesFromDebugPortRequest)
+_sym_db.RegisterMessage(PushModemMessagesFromDebugPortRequest.Response)
+
 
 DESCRIPTOR.has_options = True
 DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\035global.hiber.api.grpc.testingB\nTestingApiP\000Z\005hiber'))
@@ -187,8 +273,8 @@ _TESTINGSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=362,
-  serialized_end=490,
+  serialized_start=535,
+  serialized_end=815,
   methods=[
   _descriptor.MethodDescriptor(
     name='PushModemMessages',
@@ -197,6 +283,15 @@ _TESTINGSERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_PUSHMODEMMESSAGESREQUEST,
     output_type=_PUSHMODEMMESSAGESREQUEST_RESPONSE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='PushModemMessagesFromDebugPort',
+    full_name='hiber.testing.TestingService.PushModemMessagesFromDebugPort',
+    index=1,
+    containing_service=None,
+    input_type=_PUSHMODEMMESSAGESFROMDEBUGPORTREQUEST,
+    output_type=_PUSHMODEMMESSAGESFROMDEBUGPORTREQUEST_RESPONSE,
     options=None,
   ),
 ])

@@ -47,12 +47,14 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :hiber_antenna, :enum, 1, "hiber.modem.Modem.Peripherals.HiberAntenna"
     optional :gps, :bool, 2
     map :peripherals, :string, :string, 3
+    optional :custom_antenna, :string, 4
   end
   add_enum "hiber.modem.Modem.Peripherals.HiberAntenna" do
     value :DEFAULT, 0
     value :HIBER_PANDA, 1
     value :HIBER_GRIZZLY, 2
     value :HIBER_BLACK, 3
+    value :CUSTOM, 4
   end
   add_enum "hiber.modem.Modem.Status" do
     value :DEFAULT, 0
@@ -164,6 +166,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     map :add_peripherals, :string, :string, 6
     repeated :remove_peripherals, :string, 7
     optional :pagination, :message, 9, "hiber.Pagination"
+    optional :custom_antenna, :string, 10
   end
   add_message "hiber.modem.UpdatePeripheralsRequest.Response" do
     optional :request, :message, 1, "hiber.modem.UpdatePeripheralsRequest"

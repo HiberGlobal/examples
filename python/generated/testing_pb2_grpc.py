@@ -20,6 +20,11 @@ class TestingServiceStub(object):
         request_serializer=testing__pb2.PushModemMessagesRequest.SerializeToString,
         response_deserializer=testing__pb2.PushModemMessagesRequest.Response.FromString,
         )
+    self.PushModemMessagesFromDebugPort = channel.unary_unary(
+        '/hiber.testing.TestingService/PushModemMessagesFromDebugPort',
+        request_serializer=testing__pb2.PushModemMessagesFromDebugPortRequest.SerializeToString,
+        response_deserializer=testing__pb2.PushModemMessagesFromDebugPortRequest.Response.FromString,
+        )
 
 
 class TestingServiceServicer(object):
@@ -34,6 +39,13 @@ class TestingServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def PushModemMessagesFromDebugPort(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_TestingServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -41,6 +53,11 @@ def add_TestingServiceServicer_to_server(servicer, server):
           servicer.PushModemMessages,
           request_deserializer=testing__pb2.PushModemMessagesRequest.FromString,
           response_serializer=testing__pb2.PushModemMessagesRequest.Response.SerializeToString,
+      ),
+      'PushModemMessagesFromDebugPort': grpc.unary_unary_rpc_method_handler(
+          servicer.PushModemMessagesFromDebugPort,
+          request_deserializer=testing__pb2.PushModemMessagesFromDebugPortRequest.FromString,
+          response_serializer=testing__pb2.PushModemMessagesFromDebugPortRequest.Response.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

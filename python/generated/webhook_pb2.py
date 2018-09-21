@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='webhook.proto',
   package='hiber.webhook',
   syntax='proto3',
-  serialized_pb=_b('\n\rwebhook.proto\x12\rhiber.webhook\x1a\nbase.proto\x1a\ttag.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9d\x04\n\x07Webhook\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x14\n\x0corganization\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x30\n\x04\x64\x61ta\x18\x04 \x01(\x0b\x32\".hiber.webhook.Webhook.WebhookData\x12\x36\n\x07\x66ilters\x18\x05 \x01(\x0b\x32%.hiber.webhook.Webhook.WebhookFilters\x12\x1c\n\x04tags\x18\x06 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\x1d\n\x06health\x18\x07 \x01(\x0e\x32\r.hiber.Health\x1av\n\x0bWebhookData\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x0e\n\x06secret\x18\x02 \x01(\t\x12\x38\n\x0c\x63ontent_type\x18\x03 \x01(\x0e\x32\".hiber.webhook.Webhook.ContentType\x12\x10\n\x08\x64isabled\x18\x04 \x01(\x08\x1a\x8a\x01\n\x0eWebhookFilters\x12)\n\x0b\x65vent_types\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Events\x12+\n\rmodem_numbers\x18\x02 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12 \n\x04tags\x18\x03 \x01(\x0b\x32\x12.hiber.Filter.Tags\"/\n\x0b\x43ontentType\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\x08\n\x04JSON\x10\x01\x12\t\n\x05PROTO\x10\x02\"\xa4\x01\n\x10WebhookSelection\x12\x13\n\x0b\x64\x65scription\x18\x01 \x01(\t\x12\x0b\n\x03url\x18\x02 \x01(\t\x12(\n\x08webhooks\x18\x03 \x01(\x0b\x32\x16.hiber.Filter.Webhooks\x12%\n\x04tags\x18\x04 \x01(\x0b\x32\x17.hiber.tag.TagSelection\x12\x1d\n\x06health\x18\x05 \x03(\x0e\x32\r.hiber.Health\"\xd5\x01\n\x0bWebhookCall\x12\x1e\n\x04time\x18\x01 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x0b\n\x03url\x18\x02 \x01(\t\x12\x38\n\x07headers\x18\x03 \x03(\x0b\x32\'.hiber.webhook.WebhookCall.HeadersEntry\x12\x0c\n\x04\x62ody\x18\x04 \x01(\x0c\x12\x12\n\nsuccessful\x18\x05 \x01(\x08\x12\r\n\x05\x65rror\x18\x06 \x01(\t\x1a.\n\x0cHeadersEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"V\n\x17WebhookHistorySelection\x12\x15\n\ronly_failures\x18\x02 \x01(\x08\x12$\n\ntime_range\x18\x03 \x01(\x0b\x32\x10.hiber.TimeRange\"\xa0\x02\n\x13ListWebhooksRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x32\n\tselection\x18\x02 \x01(\x0b\x32\x1f.hiber.webhook.WebhookSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\x97\x01\n\x08Response\x12(\n\x08webhooks\x18\x01 \x03(\x0b\x32\x16.hiber.webhook.Webhook\x12\x33\n\x07request\x18\x02 \x01(\x0b\x32\".hiber.webhook.ListWebhooksRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xc0\x02\n\x15WebhookHistoryRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x12\n\nwebhook_id\x18\x02 \x01(\x03\x12\x39\n\tselection\x18\x03 \x01(\x0b\x32&.hiber.webhook.WebhookHistorySelection\x12%\n\npagination\x18\x04 \x01(\x0b\x32\x11.hiber.Pagination\x1a\x9a\x01\n\x08Response\x12)\n\x05\x63\x61lls\x18\x01 \x03(\x0b\x32\x1a.hiber.webhook.WebhookCall\x12\x35\n\x07request\x18\x02 \x01(\x0b\x32$.hiber.webhook.WebhookHistoryRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xb9\x01\n\x14\x43reateWebhookRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x30\n\x04\x64\x61ta\x18\x03 \x01(\x0b\x32\".hiber.webhook.Webhook.WebhookData\x12\x36\n\x07\x66ilters\x18\x04 \x01(\x0b\x32%.hiber.webhook.Webhook.WebhookFilters\x12\x0c\n\x04tags\x18\x05 \x03(\x03\";\n\x11GetWebhookRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x14\n\x0corganization\x18\x02 \x01(\tJ\x04\x08\x03\x10\x04\">\n\x14\x45nableWebhookRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x14\n\x0corganization\x18\x02 \x01(\tJ\x04\x08\x03\x10\x04\"?\n\x15\x44isableWebhookRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x14\n\x0corganization\x18\x02 \x01(\tJ\x04\x08\x03\x10\x04\"\xf8\x03\n\x1aUpdateWebhookFilterRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x14\n\x0corganization\x18\x02 \x01(\t\x12L\n\x0c\x65vent_filter\x18\x03 \x01(\x0b\x32\x36.hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents\x12L\n\x0cmodem_filter\x18\x04 \x01(\x0b\x32\x36.hiber.webhook.UpdateWebhookFilterRequest.UpdateModems\x12H\n\ntag_filter\x18\x05 \x01(\x0b\x32\x34.hiber.webhook.UpdateWebhookFilterRequest.UpdateTags\x1a\x44\n\x0cUpdateEvents\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12#\n\x05value\x18\x02 \x01(\x0b\x32\x14.hiber.Filter.Events\x1a\x44\n\x0cUpdateModems\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12#\n\x05value\x18\x02 \x01(\x0b\x32\x14.hiber.Filter.Modems\x1a@\n\nUpdateTags\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12!\n\x05value\x18\x02 \x01(\x0b\x32\x12.hiber.Filter.TagsJ\x04\x08\x06\x10\x07\"\xbb\x02\n\x14UpdateWebhookRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x14\n\x0corganization\x18\x02 \x01(\t\x12\x41\n\x06update\x18\x03 \x01(\x0b\x32\x31.hiber.webhook.UpdateWebhookRequest.UpdateWebhook\x1a\xb7\x01\n\rUpdateWebhook\x12\x0b\n\x03url\x18\x01 \x01(\t\x12,\n\x06secret\x18\x02 \x01(\x0b\x32\x1c.hiber.UpdateClearableString\x12\x38\n\x0c\x63ontent_type\x18\x03 \x01(\x0e\x32\".hiber.webhook.Webhook.ContentType\x12\x31\n\x0b\x64\x65scription\x18\x04 \x01(\x0b\x32\x1c.hiber.UpdateClearableStringJ\x04\x08\x04\x10\x05\"\xaf\x01\n\x18UpdateWebhookTagsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x13\n\x0bwebhook_ids\x18\x02 \x03(\x03\x12,\n\x06update\x18\x03 \x01(\x0b\x32\x1c.hiber.tag.UpdateTagsForItem\x1a\x34\n\x08Response\x12(\n\x08webhooks\x18\x01 \x03(\x0b\x32\x16.hiber.webhook.WebhookJ\x04\x08\x04\x10\x05\"D\n\x14\x44\x65leteWebhookRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x14\n\x0corganization\x18\x02 \x01(\t\x1a\n\n\x08Response2\xc1\x06\n\x0eWebhookService\x12W\n\x04List\x12\".hiber.webhook.ListWebhooksRequest\x1a+.hiber.webhook.ListWebhooksRequest.Response\x12^\n\x07History\x12$.hiber.webhook.WebhookHistoryRequest\x1a-.hiber.webhook.WebhookHistoryRequest.Response\x12\x45\n\x06\x43reate\x12#.hiber.webhook.CreateWebhookRequest\x1a\x16.hiber.webhook.Webhook\x12\x45\n\x06\x45nable\x12#.hiber.webhook.EnableWebhookRequest\x1a\x16.hiber.webhook.Webhook\x12G\n\x07\x44isable\x12$.hiber.webhook.DisableWebhookRequest\x1a\x16.hiber.webhook.Webhook\x12Q\n\x0cUpdateFilter\x12).hiber.webhook.UpdateWebhookFilterRequest\x1a\x16.hiber.webhook.Webhook\x12\x45\n\x06Update\x12#.hiber.webhook.UpdateWebhookRequest\x1a\x16.hiber.webhook.Webhook\x12g\n\nUpdateTags\x12\'.hiber.webhook.UpdateWebhookTagsRequest\x1a\x30.hiber.webhook.UpdateWebhookTagsRequest.Response\x12?\n\x03Get\x12 .hiber.webhook.GetWebhookRequest\x1a\x16.hiber.webhook.Webhook\x12[\n\x06\x44\x65lete\x12#.hiber.webhook.DeleteWebhookRequest\x1a,.hiber.webhook.DeleteWebhookRequest.ResponseB4\n\x1dglobal.hiber.api.grpc.webhookB\nWebhookApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\rwebhook.proto\x12\rhiber.webhook\x1a\nbase.proto\x1a\ttag.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9d\x04\n\x07Webhook\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x14\n\x0corganization\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x30\n\x04\x64\x61ta\x18\x04 \x01(\x0b\x32\".hiber.webhook.Webhook.WebhookData\x12\x36\n\x07\x66ilters\x18\x05 \x01(\x0b\x32%.hiber.webhook.Webhook.WebhookFilters\x12\x1c\n\x04tags\x18\x06 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\x1d\n\x06health\x18\x07 \x01(\x0e\x32\r.hiber.Health\x1av\n\x0bWebhookData\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x0e\n\x06secret\x18\x02 \x01(\t\x12\x38\n\x0c\x63ontent_type\x18\x03 \x01(\x0e\x32\".hiber.webhook.Webhook.ContentType\x12\x10\n\x08\x64isabled\x18\x04 \x01(\x08\x1a\x8a\x01\n\x0eWebhookFilters\x12)\n\x0b\x65vent_types\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Events\x12+\n\rmodem_numbers\x18\x02 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12 \n\x04tags\x18\x03 \x01(\x0b\x32\x12.hiber.Filter.Tags\"/\n\x0b\x43ontentType\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\x08\n\x04JSON\x10\x01\x12\t\n\x05PROTO\x10\x02\"\xa4\x01\n\x10WebhookSelection\x12\x13\n\x0b\x64\x65scription\x18\x01 \x01(\t\x12\x0b\n\x03url\x18\x02 \x01(\t\x12(\n\x08webhooks\x18\x03 \x01(\x0b\x32\x16.hiber.Filter.Webhooks\x12%\n\x04tags\x18\x04 \x01(\x0b\x32\x17.hiber.tag.TagSelection\x12\x1d\n\x06health\x18\x05 \x03(\x0e\x32\r.hiber.Health\"\xd5\x01\n\x0bWebhookCall\x12\x1e\n\x04time\x18\x01 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x0b\n\x03url\x18\x02 \x01(\t\x12\x38\n\x07headers\x18\x03 \x03(\x0b\x32\'.hiber.webhook.WebhookCall.HeadersEntry\x12\x0c\n\x04\x62ody\x18\x04 \x01(\x0c\x12\x12\n\nsuccessful\x18\x05 \x01(\x08\x12\r\n\x05\x65rror\x18\x06 \x01(\t\x1a.\n\x0cHeadersEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"V\n\x17WebhookHistorySelection\x12\x15\n\ronly_failures\x18\x02 \x01(\x08\x12$\n\ntime_range\x18\x03 \x01(\x0b\x32\x10.hiber.TimeRange\"\xa0\x02\n\x13ListWebhooksRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x32\n\tselection\x18\x02 \x01(\x0b\x32\x1f.hiber.webhook.WebhookSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\x97\x01\n\x08Response\x12(\n\x08webhooks\x18\x01 \x03(\x0b\x32\x16.hiber.webhook.Webhook\x12\x33\n\x07request\x18\x02 \x01(\x0b\x32\".hiber.webhook.ListWebhooksRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xc0\x02\n\x15WebhookHistoryRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x12\n\nwebhook_id\x18\x02 \x01(\x03\x12\x39\n\tselection\x18\x03 \x01(\x0b\x32&.hiber.webhook.WebhookHistorySelection\x12%\n\npagination\x18\x04 \x01(\x0b\x32\x11.hiber.Pagination\x1a\x9a\x01\n\x08Response\x12)\n\x05\x63\x61lls\x18\x01 \x03(\x0b\x32\x1a.hiber.webhook.WebhookCall\x12\x35\n\x07request\x18\x02 \x01(\x0b\x32$.hiber.webhook.WebhookHistoryRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xb9\x01\n\x14\x43reateWebhookRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x30\n\x04\x64\x61ta\x18\x03 \x01(\x0b\x32\".hiber.webhook.Webhook.WebhookData\x12\x36\n\x07\x66ilters\x18\x04 \x01(\x0b\x32%.hiber.webhook.Webhook.WebhookFilters\x12\x0c\n\x04tags\x18\x05 \x03(\x03\";\n\x11GetWebhookRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x14\n\x0corganization\x18\x02 \x01(\tJ\x04\x08\x03\x10\x04\">\n\x14\x45nableWebhookRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x14\n\x0corganization\x18\x02 \x01(\tJ\x04\x08\x03\x10\x04\"?\n\x15\x44isableWebhookRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x14\n\x0corganization\x18\x02 \x01(\tJ\x04\x08\x03\x10\x04\"\xf8\x03\n\x1aUpdateWebhookFilterRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x14\n\x0corganization\x18\x02 \x01(\t\x12L\n\x0c\x65vent_filter\x18\x03 \x01(\x0b\x32\x36.hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents\x12L\n\x0cmodem_filter\x18\x04 \x01(\x0b\x32\x36.hiber.webhook.UpdateWebhookFilterRequest.UpdateModems\x12H\n\ntag_filter\x18\x05 \x01(\x0b\x32\x34.hiber.webhook.UpdateWebhookFilterRequest.UpdateTags\x1a\x44\n\x0cUpdateEvents\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12#\n\x05value\x18\x02 \x01(\x0b\x32\x14.hiber.Filter.Events\x1a\x44\n\x0cUpdateModems\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12#\n\x05value\x18\x02 \x01(\x0b\x32\x14.hiber.Filter.Modems\x1a@\n\nUpdateTags\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12!\n\x05value\x18\x02 \x01(\x0b\x32\x12.hiber.Filter.TagsJ\x04\x08\x06\x10\x07\"\xad\x06\n\x14UpdateWebhookRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x14\n\x0corganization\x18\x02 \x01(\t\x12\x41\n\x06update\x18\x03 \x01(\x0b\x32\x31.hiber.webhook.UpdateWebhookRequest.UpdateWebhook\x1a\xa9\x05\n\rUpdateWebhook\x12\x0b\n\x03url\x18\x01 \x01(\t\x12,\n\x06secret\x18\x02 \x01(\x0b\x32\x1c.hiber.UpdateClearableString\x12\x38\n\x0c\x63ontent_type\x18\x03 \x01(\x0e\x32\".hiber.webhook.Webhook.ContentType\x12\x31\n\x0b\x64\x65scription\x18\x04 \x01(\x0b\x32\x1c.hiber.UpdateClearableString\x12T\n\x0c\x65vent_filter\x18\x05 \x01(\x0b\x32>.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents\x12T\n\x0cmodem_filter\x18\x06 \x01(\x0b\x32>.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems\x12P\n\ntag_filter\x18\x07 \x01(\x0b\x32<.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags\x12$\n\x06\x61\x63tive\x18\x08 \x01(\x0b\x32\x14.hiber.UpdateBoolean\x1a\x44\n\x0cUpdateEvents\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12#\n\x05value\x18\x02 \x01(\x0b\x32\x14.hiber.Filter.Events\x1a\x44\n\x0cUpdateModems\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12#\n\x05value\x18\x02 \x01(\x0b\x32\x14.hiber.Filter.Modems\x1a@\n\nUpdateTags\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12!\n\x05value\x18\x02 \x01(\x0b\x32\x12.hiber.Filter.TagsJ\x04\x08\x04\x10\x05\"\xaf\x01\n\x18UpdateWebhookTagsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x13\n\x0bwebhook_ids\x18\x02 \x03(\x03\x12,\n\x06update\x18\x03 \x01(\x0b\x32\x1c.hiber.tag.UpdateTagsForItem\x1a\x34\n\x08Response\x12(\n\x08webhooks\x18\x01 \x03(\x0b\x32\x16.hiber.webhook.WebhookJ\x04\x08\x04\x10\x05\"D\n\x14\x44\x65leteWebhookRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x14\n\x0corganization\x18\x02 \x01(\t\x1a\n\n\x08Response2\xc1\x06\n\x0eWebhookService\x12W\n\x04List\x12\".hiber.webhook.ListWebhooksRequest\x1a+.hiber.webhook.ListWebhooksRequest.Response\x12^\n\x07History\x12$.hiber.webhook.WebhookHistoryRequest\x1a-.hiber.webhook.WebhookHistoryRequest.Response\x12\x45\n\x06\x43reate\x12#.hiber.webhook.CreateWebhookRequest\x1a\x16.hiber.webhook.Webhook\x12\x45\n\x06\x45nable\x12#.hiber.webhook.EnableWebhookRequest\x1a\x16.hiber.webhook.Webhook\x12G\n\x07\x44isable\x12$.hiber.webhook.DisableWebhookRequest\x1a\x16.hiber.webhook.Webhook\x12Q\n\x0cUpdateFilter\x12).hiber.webhook.UpdateWebhookFilterRequest\x1a\x16.hiber.webhook.Webhook\x12\x45\n\x06Update\x12#.hiber.webhook.UpdateWebhookRequest\x1a\x16.hiber.webhook.Webhook\x12g\n\nUpdateTags\x12\'.hiber.webhook.UpdateWebhookTagsRequest\x1a\x30.hiber.webhook.UpdateWebhookTagsRequest.Response\x12?\n\x03Get\x12 .hiber.webhook.GetWebhookRequest\x1a\x16.hiber.webhook.Webhook\x12[\n\x06\x44\x65lete\x12#.hiber.webhook.DeleteWebhookRequest\x1a,.hiber.webhook.DeleteWebhookRequest.ResponseB4\n\x1dglobal.hiber.api.grpc.webhookB\nWebhookApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,tag__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 
@@ -952,6 +952,117 @@ _UPDATEWEBHOOKFILTERREQUEST = _descriptor.Descriptor(
 )
 
 
+_UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK_UPDATEEVENTS = _descriptor.Descriptor(
+  name='UpdateEvents',
+  full_name='hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='updated', full_name='hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents.updated', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents.value', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2390,
+  serialized_end=2458,
+)
+
+_UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK_UPDATEMODEMS = _descriptor.Descriptor(
+  name='UpdateModems',
+  full_name='hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='updated', full_name='hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems.updated', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems.value', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2460,
+  serialized_end=2528,
+)
+
+_UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK_UPDATETAGS = _descriptor.Descriptor(
+  name='UpdateTags',
+  full_name='hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='updated', full_name='hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags.updated', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags.value', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2530,
+  serialized_end=2594,
+)
+
 _UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK = _descriptor.Descriptor(
   name='UpdateWebhook',
   full_name='hiber.webhook.UpdateWebhookRequest.UpdateWebhook',
@@ -987,10 +1098,38 @@ _UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='event_filter', full_name='hiber.webhook.UpdateWebhookRequest.UpdateWebhook.event_filter', index=4,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='modem_filter', full_name='hiber.webhook.UpdateWebhookRequest.UpdateWebhook.modem_filter', index=5,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='tag_filter', full_name='hiber.webhook.UpdateWebhookRequest.UpdateWebhook.tag_filter', index=6,
+      number=7, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='active', full_name='hiber.webhook.UpdateWebhookRequest.UpdateWebhook.active', index=7,
+      number=8, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
-  nested_types=[],
+  nested_types=[_UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK_UPDATEEVENTS, _UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK_UPDATEMODEMS, _UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK_UPDATETAGS, ],
   enum_types=[
   ],
   options=None,
@@ -1000,7 +1139,7 @@ _UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=2729,
-  serialized_end=2912,
+  serialized_end=3410,
 )
 
 _UPDATEWEBHOOKREQUEST = _descriptor.Descriptor(
@@ -1044,7 +1183,7 @@ _UPDATEWEBHOOKREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=2603,
-  serialized_end=2918,
+  serialized_end=3416,
 )
 
 
@@ -1118,8 +1257,8 @@ _UPDATEWEBHOOKTAGSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2921,
-  serialized_end=3096,
+  serialized_start=3419,
+  serialized_end=3594,
 )
 
 
@@ -1179,8 +1318,8 @@ _DELETEWEBHOOKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3098,
-  serialized_end=3166,
+  serialized_start=3596,
+  serialized_end=3664,
 )
 
 _WEBHOOK_WEBHOOKDATA.fields_by_name['content_type'].enum_type = _WEBHOOK_CONTENTTYPE
@@ -1224,9 +1363,19 @@ _UPDATEWEBHOOKFILTERREQUEST_UPDATETAGS.containing_type = _UPDATEWEBHOOKFILTERREQ
 _UPDATEWEBHOOKFILTERREQUEST.fields_by_name['event_filter'].message_type = _UPDATEWEBHOOKFILTERREQUEST_UPDATEEVENTS
 _UPDATEWEBHOOKFILTERREQUEST.fields_by_name['modem_filter'].message_type = _UPDATEWEBHOOKFILTERREQUEST_UPDATEMODEMS
 _UPDATEWEBHOOKFILTERREQUEST.fields_by_name['tag_filter'].message_type = _UPDATEWEBHOOKFILTERREQUEST_UPDATETAGS
+_UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK_UPDATEEVENTS.fields_by_name['value'].message_type = base__pb2._FILTER_EVENTS
+_UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK_UPDATEEVENTS.containing_type = _UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK
+_UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK_UPDATEMODEMS.fields_by_name['value'].message_type = base__pb2._FILTER_MODEMS
+_UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK_UPDATEMODEMS.containing_type = _UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK
+_UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK_UPDATETAGS.fields_by_name['value'].message_type = base__pb2._FILTER_TAGS
+_UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK_UPDATETAGS.containing_type = _UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK
 _UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK.fields_by_name['secret'].message_type = base__pb2._UPDATECLEARABLESTRING
 _UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK.fields_by_name['content_type'].enum_type = _WEBHOOK_CONTENTTYPE
 _UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK.fields_by_name['description'].message_type = base__pb2._UPDATECLEARABLESTRING
+_UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK.fields_by_name['event_filter'].message_type = _UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK_UPDATEEVENTS
+_UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK.fields_by_name['modem_filter'].message_type = _UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK_UPDATEMODEMS
+_UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK.fields_by_name['tag_filter'].message_type = _UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK_UPDATETAGS
+_UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK.fields_by_name['active'].message_type = base__pb2._UPDATEBOOLEAN
 _UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK.containing_type = _UPDATEWEBHOOKREQUEST
 _UPDATEWEBHOOKREQUEST.fields_by_name['update'].message_type = _UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK
 _UPDATEWEBHOOKTAGSREQUEST_RESPONSE.fields_by_name['webhooks'].message_type = _WEBHOOK
@@ -1393,6 +1542,27 @@ _sym_db.RegisterMessage(UpdateWebhookFilterRequest.UpdateTags)
 UpdateWebhookRequest = _reflection.GeneratedProtocolMessageType('UpdateWebhookRequest', (_message.Message,), dict(
 
   UpdateWebhook = _reflection.GeneratedProtocolMessageType('UpdateWebhook', (_message.Message,), dict(
+
+    UpdateEvents = _reflection.GeneratedProtocolMessageType('UpdateEvents', (_message.Message,), dict(
+      DESCRIPTOR = _UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK_UPDATEEVENTS,
+      __module__ = 'webhook_pb2'
+      # @@protoc_insertion_point(class_scope:hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents)
+      ))
+    ,
+
+    UpdateModems = _reflection.GeneratedProtocolMessageType('UpdateModems', (_message.Message,), dict(
+      DESCRIPTOR = _UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK_UPDATEMODEMS,
+      __module__ = 'webhook_pb2'
+      # @@protoc_insertion_point(class_scope:hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems)
+      ))
+    ,
+
+    UpdateTags = _reflection.GeneratedProtocolMessageType('UpdateTags', (_message.Message,), dict(
+      DESCRIPTOR = _UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK_UPDATETAGS,
+      __module__ = 'webhook_pb2'
+      # @@protoc_insertion_point(class_scope:hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags)
+      ))
+    ,
     DESCRIPTOR = _UPDATEWEBHOOKREQUEST_UPDATEWEBHOOK,
     __module__ = 'webhook_pb2'
     # @@protoc_insertion_point(class_scope:hiber.webhook.UpdateWebhookRequest.UpdateWebhook)
@@ -1404,6 +1574,9 @@ UpdateWebhookRequest = _reflection.GeneratedProtocolMessageType('UpdateWebhookRe
   ))
 _sym_db.RegisterMessage(UpdateWebhookRequest)
 _sym_db.RegisterMessage(UpdateWebhookRequest.UpdateWebhook)
+_sym_db.RegisterMessage(UpdateWebhookRequest.UpdateWebhook.UpdateEvents)
+_sym_db.RegisterMessage(UpdateWebhookRequest.UpdateWebhook.UpdateModems)
+_sym_db.RegisterMessage(UpdateWebhookRequest.UpdateWebhook.UpdateTags)
 
 UpdateWebhookTagsRequest = _reflection.GeneratedProtocolMessageType('UpdateWebhookTagsRequest', (_message.Message,), dict(
 
@@ -1447,8 +1620,8 @@ _WEBHOOKSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=3169,
-  serialized_end=4002,
+  serialized_start=3667,
+  serialized_end=4500,
   methods=[
   _descriptor.MethodDescriptor(
     name='List',

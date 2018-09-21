@@ -5,6 +5,28 @@ var grpc = require('grpc');
 var testing_pb = require('./testing_pb.js');
 var base_pb = require('./base_pb.js');
 
+function serialize_hiber_testing_PushModemMessagesFromDebugPortRequest(arg) {
+  if (!(arg instanceof testing_pb.PushModemMessagesFromDebugPortRequest)) {
+    throw new Error('Expected argument of type hiber.testing.PushModemMessagesFromDebugPortRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_testing_PushModemMessagesFromDebugPortRequest(buffer_arg) {
+  return testing_pb.PushModemMessagesFromDebugPortRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_testing_PushModemMessagesFromDebugPortRequest_Response(arg) {
+  if (!(arg instanceof testing_pb.PushModemMessagesFromDebugPortRequest.Response)) {
+    throw new Error('Expected argument of type hiber.testing.PushModemMessagesFromDebugPortRequest.Response');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_testing_PushModemMessagesFromDebugPortRequest_Response(buffer_arg) {
+  return testing_pb.PushModemMessagesFromDebugPortRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_hiber_testing_PushModemMessagesRequest(arg) {
   if (!(arg instanceof testing_pb.PushModemMessagesRequest)) {
     throw new Error('Expected argument of type hiber.testing.PushModemMessagesRequest');
@@ -41,6 +63,17 @@ var TestingServiceService = exports.TestingServiceService = {
     requestDeserialize: deserialize_hiber_testing_PushModemMessagesRequest,
     responseSerialize: serialize_hiber_testing_PushModemMessagesRequest_Response,
     responseDeserialize: deserialize_hiber_testing_PushModemMessagesRequest_Response,
+  },
+  pushModemMessagesFromDebugPort: {
+    path: '/hiber.testing.TestingService/PushModemMessagesFromDebugPort',
+    requestStream: false,
+    responseStream: false,
+    requestType: testing_pb.PushModemMessagesFromDebugPortRequest,
+    responseType: testing_pb.PushModemMessagesFromDebugPortRequest.Response,
+    requestSerialize: serialize_hiber_testing_PushModemMessagesFromDebugPortRequest,
+    requestDeserialize: deserialize_hiber_testing_PushModemMessagesFromDebugPortRequest,
+    responseSerialize: serialize_hiber_testing_PushModemMessagesFromDebugPortRequest_Response,
+    responseDeserialize: deserialize_hiber_testing_PushModemMessagesFromDebugPortRequest_Response,
   },
 };
 

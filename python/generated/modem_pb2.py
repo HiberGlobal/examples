@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='modem.proto',
   package='hiber.modem',
   syntax='proto3',
-  serialized_pb=_b('\n\x0bmodem.proto\x12\x0bhiber.modem\x1a\nbase.proto\x1a\ttag.proto\x1a\x12subscription.proto\"\xcb\n\n\x05Modem\x12\x0e\n\x06number\x18\x01 \x01(\t\x12\x14\n\x0corganization\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12!\n\x08location\x18\x04 \x01(\x0b\x32\x0f.hiber.Location\x12\x32\n\x18last_message_received_at\x18\x05 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x42\n\x13\x61\x63tive_subscription\x18\x06 \x01(\x0b\x32%.hiber.modem.Modem.ActiveSubscription\x12\x33\n\ttechnical\x18\x07 \x01(\x0b\x32 .hiber.modem.Modem.TechnicalData\x12!\n\x19maximum_inactivity_period\x18\x08 \x01(\x05\x12\x1d\n\x06health\x18\t \x01(\x0e\x32\r.hiber.Health\x12\x1c\n\x04tags\x18\n \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\x33\n\x0bperipherals\x18\x0b \x01(\x0b\x32\x1e.hiber.modem.Modem.Peripherals\x12)\n\x06status\x18\x0c \x01(\x0e\x32\x19.hiber.modem.Modem.Status\x12\x30\n\x0bin_transfer\x18\r \x01(\x0b\x32\x1b.hiber.modem.Modem.Transfer\x1a\x90\x01\n\rTechnicalData\x12\x15\n\rhardware_name\x18\x02 \x01(\t\x12\x1d\n\x15\x66irmware_version_name\x18\x03 \x01(\t\x12!\n\x19hardware_production_batch\x18\x06 \x01(\t\x12\x14\n\x0cmanufacturer\x18\x07 \x01(\tJ\x04\x08\x01\x10\x02J\x04\x08\x04\x10\x05J\x04\x08\x05\x10\x06\x1a\xa6\x01\n\x12\x41\x63tiveSubscription\x12:\n\x04type\x18\x03 \x01(\x0e\x32,.hiber.organization.subscription.ServiceType\x12$\n\nstart_date\x18\x04 \x01(\x0b\x32\x10.hiber.Timestamp\x12\"\n\x08\x65nd_date\x18\x05 \x01(\x0b\x32\x10.hiber.TimestampJ\x04\x08\x01\x10\x02J\x04\x08\x02\x10\x03\x1a\x90\x01\n\x08Transfer\x12\x32\n\x06status\x18\x01 \x01(\x0e\x32\".hiber.modem.Modem.Transfer.Status\x12\x12\n\nidentifier\x18\x02 \x01(\t\"<\n\x06Status\x12\x08\n\x04NONE\x10\x00\x12\x0b\n\x07INBOUND\x10\x01\x12\x0c\n\x08OUTBOUND\x10\x02\x12\r\n\tRETURNING\x10\x03\x1a\xaa\x02\n\x0bPeripherals\x12\x42\n\rhiber_antenna\x18\x01 \x01(\x0e\x32+.hiber.modem.Modem.Peripherals.HiberAntenna\x12\x0b\n\x03gps\x18\x02 \x01(\x08\x12\x44\n\x0bperipherals\x18\x03 \x03(\x0b\x32/.hiber.modem.Modem.Peripherals.PeripheralsEntry\x1a\x32\n\x10PeripheralsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"P\n\x0cHiberAntenna\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\x0f\n\x0bHIBER_PANDA\x10\x01\x12\x11\n\rHIBER_GRIZZLY\x10\x02\x12\x0f\n\x0bHIBER_BLACK\x10\x03\"P\n\x06Status\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\x0b\n\x07\x44\x41MAGED\x10\x02\x12\x08\n\x04LOST\x10\x03\x12\x08\n\x04\x44\x45\x41\x44\x10\x04\x12\x0c\n\x08\x44ISABLED\x10\x05\"\xe7\x04\n\x0eModemSelection\x12$\n\x06modems\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12/\n\x0e\x66ilter_by_tags\x18\x02 \x01(\x0b\x32\x17.hiber.tag.TagSelection\x12=\n\x13\x63hild_organizations\x18\x03 \x01(\x0b\x32 .hiber.Filter.ChildOrganizations\x12\x13\n\x0bonly_active\x18\x04 \x01(\x08\x12&\n\x0c\x61\x63tivated_in\x18\x05 \x01(\x0b\x32\x10.hiber.TimeRange\x12G\n\x11with_service_type\x18\x06 \x03(\x0e\x32,.hiber.organization.subscription.ServiceType\x12.\n\x14with_last_message_in\x18\x07 \x01(\x0b\x32\x10.hiber.TimeRange\x12\x18\n\x10\x66ree_text_search\x18\x08 \x01(\t\x12\x1d\n\x06health\x18\t \x03(\x0e\x32\r.hiber.Health\x12)\n\x06status\x18\n \x03(\x0e\x32\x19.hiber.modem.Modem.Status\x12\x38\n\ttransfers\x18\x0b \x01(\x0b\x32%.hiber.modem.ModemSelection.Transfers\x1ak\n\tTransfers\x12\x1d\n\x15transfers_identifiers\x18\x01 \x03(\t\x12\x1e\n\x16include_inbound_modems\x18\x02 \x01(\x08\x12\x1f\n\x17include_outbound_modems\x18\x03 \x01(\x08\"\xb0\x01\n\x0cModemMessage\x12\x14\n\x0cmodem_number\x18\x01 \x01(\t\x12\x0f\n\x07version\x18\x02 \x01(\r\x12!\n\x07sent_at\x18\x03 \x01(\x0b\x32\x10.hiber.Timestamp\x12!\n\x08location\x18\x04 \x01(\x0b\x32\x0f.hiber.Location\x12\x0c\n\x04\x62ody\x18\x05 \x01(\x0c\x12%\n\x0breceived_at\x18\x06 \x01(\x0b\x32\x10.hiber.Timestamp\"\xa2\x01\n\x15ModemMessageSelection\x12$\n\x06modems\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12=\n\x13\x63hild_organizations\x18\x02 \x01(\x0b\x32 .hiber.Filter.ChildOrganizations\x12$\n\ntime_range\x18\x03 \x01(\x0b\x32\x10.hiber.TimeRange\"C\n\x0fGetModemRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x14\n\x0cmodem_number\x18\x02 \x01(\tJ\x04\x08\x03\x10\x04\"\xe2\x03\n\x11ListModemsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12.\n\tselection\x18\x02 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x12\x34\n\x07sort_by\x18\x04 \x01(\x0e\x32#.hiber.modem.ListModemsRequest.Sort\x1a\x8d\x01\n\x08Response\x12\"\n\x06modems\x18\x01 \x03(\x0b\x32\x12.hiber.modem.Modem\x12/\n\x07request\x18\x02 \x01(\x0b\x32\x1e.hiber.modem.ListModemsRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\x93\x01\n\x04Sort\x12\x19\n\x15LAST_MESSAGE_RECEIVED\x10\x00\x12\"\n\x1eLAST_MESSAGE_RECEIVED_INVERTED\x10\x01\x12\x14\n\x10MODEM_NUMBER_ASC\x10\x02\x12\x15\n\x11MODEM_NUMBER_DESC\x10\x03\x12\x0e\n\nSTATUS_ASC\x10\x04\x12\x0f\n\x0bSTATUS_DESC\x10\x05J\x04\x08\x05\x10\x06\"\xae\x02\n\x18ListModemMessagesRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x35\n\tselection\x18\x02 \x01(\x0b\x32\".hiber.modem.ModemMessageSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\x9d\x01\n\x08Response\x12+\n\x08messages\x18\x01 \x03(\x0b\x32\x19.hiber.modem.ModemMessage\x12\x36\n\x07request\x18\x02 \x01(\x0b\x32%.hiber.modem.ListModemMessagesRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xcd\x02\n\x13MessageCountRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x35\n\tselection\x18\x02 \x01(\x0b\x32\".hiber.modem.ModemMessageSelection\x12\x18\n\x10time_zone_offset\x18\x03 \x01(\x05\x1a\xce\x01\n\x08Response\x12U\n\x15message_count_per_day\x18\x01 \x03(\x0b\x32\x36.hiber.modem.MessageCountRequest.Response.MessageCount\x12\x31\n\x07request\x18\x02 \x01(\x0b\x32 .hiber.modem.MessageCountRequest\x1a\x38\n\x0cMessageCount\x12\x19\n\x04\x64\x61te\x18\x01 \x01(\x0b\x32\x0b.hiber.Date\x12\r\n\x05\x63ount\x18\x02 \x01(\x05\"T\n\x12RenameModemRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x14\n\x0cmodem_number\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\tJ\x04\x08\x04\x10\x05\"\xc8\x02\n\x16UpdateModemTagsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12,\n\x06update\x18\x03 \x01(\x0b\x32\x1c.hiber.tag.UpdateTagsForItem\x12.\n\tselection\x18\x05 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12%\n\npagination\x18\x06 \x01(\x0b\x32\x11.hiber.Pagination\x1a\x92\x01\n\x08Response\x12\"\n\x06modems\x18\x01 \x03(\x0b\x32\x12.hiber.modem.Modem\x12\x34\n\x07request\x18\x02 \x01(\x0b\x32#.hiber.modem.UpdateModemTagsRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xe3\x04\n\x18UpdatePeripheralsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12.\n\tselection\x18\x02 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12\x42\n\rhiber_antenna\x18\x03 \x01(\x0e\x32+.hiber.modem.Modem.Peripherals.HiberAntenna\x12!\n\x03gps\x18\x04 \x01(\x0b\x32\x14.hiber.UpdateBoolean\x12/\n\x16hardcoded_gps_location\x18\x05 \x01(\x0b\x32\x0f.hiber.Location\x12R\n\x0f\x61\x64\x64_peripherals\x18\x06 \x03(\x0b\x32\x39.hiber.modem.UpdatePeripheralsRequest.AddPeripheralsEntry\x12\x1a\n\x12remove_peripherals\x18\x07 \x03(\t\x12%\n\npagination\x18\t \x01(\x0b\x32\x11.hiber.Pagination\x1a\x94\x01\n\x08Response\x12\x36\n\x07request\x18\x01 \x01(\x0b\x32%.hiber.modem.UpdatePeripheralsRequest\x12\"\n\x06modems\x18\x02 \x03(\x0b\x32\x12.hiber.modem.Modem\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\x1a\x35\n\x13\x41\x64\x64PeripheralsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01J\x04\x08\x08\x10\t\"\xfc\x02\n\x12LicenseKeysRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12.\n\tselection\x18\x02 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\xf8\x01\n\x08Response\x12\x30\n\x07request\x18\x01 \x01(\x0b\x32\x1f.hiber.modem.LicenseKeysRequest\x12N\n\x0clicense_keys\x18\x02 \x03(\x0b\x32\x38.hiber.modem.LicenseKeysRequest.Response.ModemLicenseKey\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\x1a<\n\x0fModemLicenseKey\x12\x14\n\x0cmodem_number\x18\x01 \x01(\t\x12\x13\n\x0blicense_key\x18\x02 \x01(\t2\xbe\x05\n\x0cModemService\x12\x37\n\x03Get\x12\x1c.hiber.modem.GetModemRequest\x1a\x12.hiber.modem.Modem\x12O\n\x04List\x12\x1e.hiber.modem.ListModemsRequest\x1a\'.hiber.modem.ListModemsRequest.Response\x12\x61\n\x08Messages\x12%.hiber.modem.ListModemMessagesRequest\x1a..hiber.modem.ListModemMessagesRequest.Response\x12[\n\x0cMessageCount\x12 .hiber.modem.MessageCountRequest\x1a).hiber.modem.MessageCountRequest.Response\x12=\n\x06Rename\x12\x1f.hiber.modem.RenameModemRequest\x1a\x12.hiber.modem.Modem\x12_\n\nUpdateTags\x12#.hiber.modem.UpdateModemTagsRequest\x1a,.hiber.modem.UpdateModemTagsRequest.Response\x12j\n\x11UpdatePeripherals\x12%.hiber.modem.UpdatePeripheralsRequest\x1a..hiber.modem.UpdatePeripheralsRequest.Response\x12X\n\x0bLicenseKeys\x12\x1f.hiber.modem.LicenseKeysRequest\x1a(.hiber.modem.LicenseKeysRequest.ResponseB0\n\x1bglobal.hiber.api.grpc.modemB\x08ModemApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\x0bmodem.proto\x12\x0bhiber.modem\x1a\nbase.proto\x1a\ttag.proto\x1a\x12subscription.proto\"\xef\n\n\x05Modem\x12\x0e\n\x06number\x18\x01 \x01(\t\x12\x14\n\x0corganization\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12!\n\x08location\x18\x04 \x01(\x0b\x32\x0f.hiber.Location\x12\x32\n\x18last_message_received_at\x18\x05 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x42\n\x13\x61\x63tive_subscription\x18\x06 \x01(\x0b\x32%.hiber.modem.Modem.ActiveSubscription\x12\x33\n\ttechnical\x18\x07 \x01(\x0b\x32 .hiber.modem.Modem.TechnicalData\x12!\n\x19maximum_inactivity_period\x18\x08 \x01(\x05\x12\x1d\n\x06health\x18\t \x01(\x0e\x32\r.hiber.Health\x12\x1c\n\x04tags\x18\n \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\x33\n\x0bperipherals\x18\x0b \x01(\x0b\x32\x1e.hiber.modem.Modem.Peripherals\x12)\n\x06status\x18\x0c \x01(\x0e\x32\x19.hiber.modem.Modem.Status\x12\x30\n\x0bin_transfer\x18\r \x01(\x0b\x32\x1b.hiber.modem.Modem.Transfer\x1a\x90\x01\n\rTechnicalData\x12\x15\n\rhardware_name\x18\x02 \x01(\t\x12\x1d\n\x15\x66irmware_version_name\x18\x03 \x01(\t\x12!\n\x19hardware_production_batch\x18\x06 \x01(\t\x12\x14\n\x0cmanufacturer\x18\x07 \x01(\tJ\x04\x08\x01\x10\x02J\x04\x08\x04\x10\x05J\x04\x08\x05\x10\x06\x1a\xa6\x01\n\x12\x41\x63tiveSubscription\x12:\n\x04type\x18\x03 \x01(\x0e\x32,.hiber.organization.subscription.ServiceType\x12$\n\nstart_date\x18\x04 \x01(\x0b\x32\x10.hiber.Timestamp\x12\"\n\x08\x65nd_date\x18\x05 \x01(\x0b\x32\x10.hiber.TimestampJ\x04\x08\x01\x10\x02J\x04\x08\x02\x10\x03\x1a\x90\x01\n\x08Transfer\x12\x32\n\x06status\x18\x01 \x01(\x0e\x32\".hiber.modem.Modem.Transfer.Status\x12\x12\n\nidentifier\x18\x02 \x01(\t\"<\n\x06Status\x12\x08\n\x04NONE\x10\x00\x12\x0b\n\x07INBOUND\x10\x01\x12\x0c\n\x08OUTBOUND\x10\x02\x12\r\n\tRETURNING\x10\x03\x1a\xce\x02\n\x0bPeripherals\x12\x42\n\rhiber_antenna\x18\x01 \x01(\x0e\x32+.hiber.modem.Modem.Peripherals.HiberAntenna\x12\x0b\n\x03gps\x18\x02 \x01(\x08\x12\x44\n\x0bperipherals\x18\x03 \x03(\x0b\x32/.hiber.modem.Modem.Peripherals.PeripheralsEntry\x12\x16\n\x0e\x63ustom_antenna\x18\x04 \x01(\t\x1a\x32\n\x10PeripheralsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\\\n\x0cHiberAntenna\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\x0f\n\x0bHIBER_PANDA\x10\x01\x12\x11\n\rHIBER_GRIZZLY\x10\x02\x12\x0f\n\x0bHIBER_BLACK\x10\x03\x12\n\n\x06\x43USTOM\x10\x04\"P\n\x06Status\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\x0b\n\x07\x44\x41MAGED\x10\x02\x12\x08\n\x04LOST\x10\x03\x12\x08\n\x04\x44\x45\x41\x44\x10\x04\x12\x0c\n\x08\x44ISABLED\x10\x05\"\xe7\x04\n\x0eModemSelection\x12$\n\x06modems\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12/\n\x0e\x66ilter_by_tags\x18\x02 \x01(\x0b\x32\x17.hiber.tag.TagSelection\x12=\n\x13\x63hild_organizations\x18\x03 \x01(\x0b\x32 .hiber.Filter.ChildOrganizations\x12\x13\n\x0bonly_active\x18\x04 \x01(\x08\x12&\n\x0c\x61\x63tivated_in\x18\x05 \x01(\x0b\x32\x10.hiber.TimeRange\x12G\n\x11with_service_type\x18\x06 \x03(\x0e\x32,.hiber.organization.subscription.ServiceType\x12.\n\x14with_last_message_in\x18\x07 \x01(\x0b\x32\x10.hiber.TimeRange\x12\x18\n\x10\x66ree_text_search\x18\x08 \x01(\t\x12\x1d\n\x06health\x18\t \x03(\x0e\x32\r.hiber.Health\x12)\n\x06status\x18\n \x03(\x0e\x32\x19.hiber.modem.Modem.Status\x12\x38\n\ttransfers\x18\x0b \x01(\x0b\x32%.hiber.modem.ModemSelection.Transfers\x1ak\n\tTransfers\x12\x1d\n\x15transfers_identifiers\x18\x01 \x03(\t\x12\x1e\n\x16include_inbound_modems\x18\x02 \x01(\x08\x12\x1f\n\x17include_outbound_modems\x18\x03 \x01(\x08\"\xb0\x01\n\x0cModemMessage\x12\x14\n\x0cmodem_number\x18\x01 \x01(\t\x12\x0f\n\x07version\x18\x02 \x01(\r\x12!\n\x07sent_at\x18\x03 \x01(\x0b\x32\x10.hiber.Timestamp\x12!\n\x08location\x18\x04 \x01(\x0b\x32\x0f.hiber.Location\x12\x0c\n\x04\x62ody\x18\x05 \x01(\x0c\x12%\n\x0breceived_at\x18\x06 \x01(\x0b\x32\x10.hiber.Timestamp\"\xa2\x01\n\x15ModemMessageSelection\x12$\n\x06modems\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12=\n\x13\x63hild_organizations\x18\x02 \x01(\x0b\x32 .hiber.Filter.ChildOrganizations\x12$\n\ntime_range\x18\x03 \x01(\x0b\x32\x10.hiber.TimeRange\"C\n\x0fGetModemRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x14\n\x0cmodem_number\x18\x02 \x01(\tJ\x04\x08\x03\x10\x04\"\xe2\x03\n\x11ListModemsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12.\n\tselection\x18\x02 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x12\x34\n\x07sort_by\x18\x04 \x01(\x0e\x32#.hiber.modem.ListModemsRequest.Sort\x1a\x8d\x01\n\x08Response\x12\"\n\x06modems\x18\x01 \x03(\x0b\x32\x12.hiber.modem.Modem\x12/\n\x07request\x18\x02 \x01(\x0b\x32\x1e.hiber.modem.ListModemsRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\x93\x01\n\x04Sort\x12\x19\n\x15LAST_MESSAGE_RECEIVED\x10\x00\x12\"\n\x1eLAST_MESSAGE_RECEIVED_INVERTED\x10\x01\x12\x14\n\x10MODEM_NUMBER_ASC\x10\x02\x12\x15\n\x11MODEM_NUMBER_DESC\x10\x03\x12\x0e\n\nSTATUS_ASC\x10\x04\x12\x0f\n\x0bSTATUS_DESC\x10\x05J\x04\x08\x05\x10\x06\"\xae\x02\n\x18ListModemMessagesRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x35\n\tselection\x18\x02 \x01(\x0b\x32\".hiber.modem.ModemMessageSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\x9d\x01\n\x08Response\x12+\n\x08messages\x18\x01 \x03(\x0b\x32\x19.hiber.modem.ModemMessage\x12\x36\n\x07request\x18\x02 \x01(\x0b\x32%.hiber.modem.ListModemMessagesRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xcd\x02\n\x13MessageCountRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x35\n\tselection\x18\x02 \x01(\x0b\x32\".hiber.modem.ModemMessageSelection\x12\x18\n\x10time_zone_offset\x18\x03 \x01(\x05\x1a\xce\x01\n\x08Response\x12U\n\x15message_count_per_day\x18\x01 \x03(\x0b\x32\x36.hiber.modem.MessageCountRequest.Response.MessageCount\x12\x31\n\x07request\x18\x02 \x01(\x0b\x32 .hiber.modem.MessageCountRequest\x1a\x38\n\x0cMessageCount\x12\x19\n\x04\x64\x61te\x18\x01 \x01(\x0b\x32\x0b.hiber.Date\x12\r\n\x05\x63ount\x18\x02 \x01(\x05\"T\n\x12RenameModemRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x14\n\x0cmodem_number\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\tJ\x04\x08\x04\x10\x05\"\xc8\x02\n\x16UpdateModemTagsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12,\n\x06update\x18\x03 \x01(\x0b\x32\x1c.hiber.tag.UpdateTagsForItem\x12.\n\tselection\x18\x05 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12%\n\npagination\x18\x06 \x01(\x0b\x32\x11.hiber.Pagination\x1a\x92\x01\n\x08Response\x12\"\n\x06modems\x18\x01 \x03(\x0b\x32\x12.hiber.modem.Modem\x12\x34\n\x07request\x18\x02 \x01(\x0b\x32#.hiber.modem.UpdateModemTagsRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xfb\x04\n\x18UpdatePeripheralsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12.\n\tselection\x18\x02 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12\x42\n\rhiber_antenna\x18\x03 \x01(\x0e\x32+.hiber.modem.Modem.Peripherals.HiberAntenna\x12!\n\x03gps\x18\x04 \x01(\x0b\x32\x14.hiber.UpdateBoolean\x12/\n\x16hardcoded_gps_location\x18\x05 \x01(\x0b\x32\x0f.hiber.Location\x12R\n\x0f\x61\x64\x64_peripherals\x18\x06 \x03(\x0b\x32\x39.hiber.modem.UpdatePeripheralsRequest.AddPeripheralsEntry\x12\x1a\n\x12remove_peripherals\x18\x07 \x03(\t\x12%\n\npagination\x18\t \x01(\x0b\x32\x11.hiber.Pagination\x12\x16\n\x0e\x63ustom_antenna\x18\n \x01(\t\x1a\x94\x01\n\x08Response\x12\x36\n\x07request\x18\x01 \x01(\x0b\x32%.hiber.modem.UpdatePeripheralsRequest\x12\"\n\x06modems\x18\x02 \x03(\x0b\x32\x12.hiber.modem.Modem\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\x1a\x35\n\x13\x41\x64\x64PeripheralsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01J\x04\x08\x08\x10\t\"\xfc\x02\n\x12LicenseKeysRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12.\n\tselection\x18\x02 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\xf8\x01\n\x08Response\x12\x30\n\x07request\x18\x01 \x01(\x0b\x32\x1f.hiber.modem.LicenseKeysRequest\x12N\n\x0clicense_keys\x18\x02 \x03(\x0b\x32\x38.hiber.modem.LicenseKeysRequest.Response.ModemLicenseKey\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\x1a<\n\x0fModemLicenseKey\x12\x14\n\x0cmodem_number\x18\x01 \x01(\t\x12\x13\n\x0blicense_key\x18\x02 \x01(\t2\xbe\x05\n\x0cModemService\x12\x37\n\x03Get\x12\x1c.hiber.modem.GetModemRequest\x1a\x12.hiber.modem.Modem\x12O\n\x04List\x12\x1e.hiber.modem.ListModemsRequest\x1a\'.hiber.modem.ListModemsRequest.Response\x12\x61\n\x08Messages\x12%.hiber.modem.ListModemMessagesRequest\x1a..hiber.modem.ListModemMessagesRequest.Response\x12[\n\x0cMessageCount\x12 .hiber.modem.MessageCountRequest\x1a).hiber.modem.MessageCountRequest.Response\x12=\n\x06Rename\x12\x1f.hiber.modem.RenameModemRequest\x1a\x12.hiber.modem.Modem\x12_\n\nUpdateTags\x12#.hiber.modem.UpdateModemTagsRequest\x1a,.hiber.modem.UpdateModemTagsRequest.Response\x12j\n\x11UpdatePeripherals\x12%.hiber.modem.UpdatePeripheralsRequest\x1a..hiber.modem.UpdatePeripheralsRequest.Response\x12X\n\x0bLicenseKeys\x12\x1f.hiber.modem.LicenseKeysRequest\x1a(.hiber.modem.LicenseKeysRequest.ResponseB0\n\x1bglobal.hiber.api.grpc.modemB\x08ModemApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,tag__pb2.DESCRIPTOR,subscription__pb2.DESCRIPTOR,])
 
@@ -80,11 +80,15 @@ _MODEM_PERIPHERALS_HIBERANTENNA = _descriptor.EnumDescriptor(
       name='HIBER_BLACK', index=3, number=3,
       options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='CUSTOM', index=4, number=4,
+      options=None,
+      type=None),
   ],
   containing_type=None,
   options=None,
-  serialized_start=1265,
-  serialized_end=1345,
+  serialized_start=1289,
+  serialized_end=1381,
 )
 _sym_db.RegisterEnumDescriptor(_MODEM_PERIPHERALS_HIBERANTENNA)
 
@@ -121,8 +125,8 @@ _MODEM_STATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1347,
-  serialized_end=1427,
+  serialized_start=1383,
+  serialized_end=1463,
 )
 _sym_db.RegisterEnumDescriptor(_MODEM_STATUS)
 
@@ -159,8 +163,8 @@ _LISTMODEMSREQUEST_SORT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=2790,
-  serialized_end=2937,
+  serialized_start=2826,
+  serialized_end=2973,
 )
 _sym_db.RegisterEnumDescriptor(_LISTMODEMSREQUEST_SORT)
 
@@ -331,8 +335,8 @@ _MODEM_PERIPHERALS_PERIPHERALSENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1213,
-  serialized_end=1263,
+  serialized_start=1237,
+  serialized_end=1287,
 )
 
 _MODEM_PERIPHERALS = _descriptor.Descriptor(
@@ -363,6 +367,13 @@ _MODEM_PERIPHERALS = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='custom_antenna', full_name='hiber.modem.Modem.Peripherals.custom_antenna', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -377,7 +388,7 @@ _MODEM_PERIPHERALS = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=1047,
-  serialized_end=1345,
+  serialized_end=1381,
 )
 
 _MODEM = _descriptor.Descriptor(
@@ -492,7 +503,7 @@ _MODEM = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=72,
-  serialized_end=1427,
+  serialized_end=1463,
 )
 
 
@@ -536,8 +547,8 @@ _MODEMSELECTION_TRANSFERS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1938,
-  serialized_end=2045,
+  serialized_start=1974,
+  serialized_end=2081,
 )
 
 _MODEMSELECTION = _descriptor.Descriptor(
@@ -636,8 +647,8 @@ _MODEMSELECTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1430,
-  serialized_end=2045,
+  serialized_start=1466,
+  serialized_end=2081,
 )
 
 
@@ -702,8 +713,8 @@ _MODEMMESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2048,
-  serialized_end=2224,
+  serialized_start=2084,
+  serialized_end=2260,
 )
 
 
@@ -747,8 +758,8 @@ _MODEMMESSAGESELECTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2227,
-  serialized_end=2389,
+  serialized_start=2263,
+  serialized_end=2425,
 )
 
 
@@ -785,8 +796,8 @@ _GETMODEMREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2391,
-  serialized_end=2458,
+  serialized_start=2427,
+  serialized_end=2494,
 )
 
 
@@ -830,8 +841,8 @@ _LISTMODEMSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2646,
-  serialized_end=2787,
+  serialized_start=2682,
+  serialized_end=2823,
 )
 
 _LISTMODEMSREQUEST = _descriptor.Descriptor(
@@ -882,8 +893,8 @@ _LISTMODEMSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2461,
-  serialized_end=2943,
+  serialized_start=2497,
+  serialized_end=2979,
 )
 
 
@@ -927,8 +938,8 @@ _LISTMODEMMESSAGESREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3091,
-  serialized_end=3248,
+  serialized_start=3127,
+  serialized_end=3284,
 )
 
 _LISTMODEMMESSAGESREQUEST = _descriptor.Descriptor(
@@ -971,8 +982,8 @@ _LISTMODEMMESSAGESREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2946,
-  serialized_end=3248,
+  serialized_start=2982,
+  serialized_end=3284,
 )
 
 
@@ -1009,8 +1020,8 @@ _MESSAGECOUNTREQUEST_RESPONSE_MESSAGECOUNT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3528,
-  serialized_end=3584,
+  serialized_start=3564,
+  serialized_end=3620,
 )
 
 _MESSAGECOUNTREQUEST_RESPONSE = _descriptor.Descriptor(
@@ -1046,8 +1057,8 @@ _MESSAGECOUNTREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3378,
-  serialized_end=3584,
+  serialized_start=3414,
+  serialized_end=3620,
 )
 
 _MESSAGECOUNTREQUEST = _descriptor.Descriptor(
@@ -1090,8 +1101,8 @@ _MESSAGECOUNTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3251,
-  serialized_end=3584,
+  serialized_start=3287,
+  serialized_end=3620,
 )
 
 
@@ -1135,8 +1146,8 @@ _RENAMEMODEMREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3586,
-  serialized_end=3670,
+  serialized_start=3622,
+  serialized_end=3706,
 )
 
 
@@ -1180,8 +1191,8 @@ _UPDATEMODEMTAGSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3855,
-  serialized_end=4001,
+  serialized_start=3891,
+  serialized_end=4037,
 )
 
 _UPDATEMODEMTAGSREQUEST = _descriptor.Descriptor(
@@ -1231,8 +1242,8 @@ _UPDATEMODEMTAGSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3673,
-  serialized_end=4001,
+  serialized_start=3709,
+  serialized_end=4037,
 )
 
 
@@ -1276,8 +1287,8 @@ _UPDATEPERIPHERALSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4406,
-  serialized_end=4554,
+  serialized_start=4466,
+  serialized_end=4614,
 )
 
 _UPDATEPERIPHERALSREQUEST_ADDPERIPHERALSENTRY = _descriptor.Descriptor(
@@ -1313,8 +1324,8 @@ _UPDATEPERIPHERALSREQUEST_ADDPERIPHERALSENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4556,
-  serialized_end=4609,
+  serialized_start=4616,
+  serialized_end=4669,
 )
 
 _UPDATEPERIPHERALSREQUEST = _descriptor.Descriptor(
@@ -1380,6 +1391,13 @@ _UPDATEPERIPHERALSREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='custom_antenna', full_name='hiber.modem.UpdatePeripheralsRequest.custom_antenna', index=8,
+      number=10, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1392,8 +1410,8 @@ _UPDATEPERIPHERALSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4004,
-  serialized_end=4615,
+  serialized_start=4040,
+  serialized_end=4675,
 )
 
 
@@ -1430,8 +1448,8 @@ _LICENSEKEYSREQUEST_RESPONSE_MODEMLICENSEKEY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4938,
-  serialized_end=4998,
+  serialized_start=4998,
+  serialized_end=5058,
 )
 
 _LICENSEKEYSREQUEST_RESPONSE = _descriptor.Descriptor(
@@ -1474,8 +1492,8 @@ _LICENSEKEYSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4750,
-  serialized_end=4998,
+  serialized_start=4810,
+  serialized_end=5058,
 )
 
 _LICENSEKEYSREQUEST = _descriptor.Descriptor(
@@ -1518,8 +1536,8 @@ _LICENSEKEYSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4618,
-  serialized_end=4998,
+  serialized_start=4678,
+  serialized_end=5058,
 )
 
 _MODEM_TECHNICALDATA.containing_type = _MODEM
@@ -1838,8 +1856,8 @@ _MODEMSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=5001,
-  serialized_end=5703,
+  serialized_start=5061,
+  serialized_end=5763,
   methods=[
   _descriptor.MethodDescriptor(
     name='Get',

@@ -19,6 +19,7 @@ var tag_pb = require('./tag_pb.js');
 var token_pb = require('./token_pb.js');
 var user_pb = require('./user_pb.js');
 var webhook_pb = require('./webhook_pb.js');
+goog.exportSymbol('proto.hiber.event.BundledEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event', null, global);
 goog.exportSymbol('proto.hiber.event.Event.ModemEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.ModemEvent.ClaimEvent', null, global);
@@ -54,6 +55,7 @@ goog.exportSymbol('proto.hiber.event.EventSelection', null, global);
 goog.exportSymbol('proto.hiber.event.EventStreamRequest', null, global);
 goog.exportSymbol('proto.hiber.event.ListEventsRequest', null, global);
 goog.exportSymbol('proto.hiber.event.ListEventsRequest.Response', null, global);
+goog.exportSymbol('proto.hiber.event.ListEventsRequest.Response.EventTypeResponse', null, global);
 goog.exportSymbol('proto.hiber.event.ListEventsRequest.Sort', null, global);
 
 /**
@@ -149,6 +151,7 @@ proto.hiber.event.Event.prototype.toObject = function(opt_includeInstance) {
  */
 proto.hiber.event.Event.toObject = function(includeInstance, msg) {
   var f, obj = {
+    isError: jspb.Message.getFieldWithDefault(msg, 1, false),
     modemLocationUpdated: (f = msg.getModemLocationUpdated()) && proto.hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent.toObject(includeInstance, f),
     modemStale: (f = msg.getModemStale()) && proto.hiber.event.Event.ModemEvent.ModemStaleEvent.toObject(includeInstance, f),
     modemMessageReceived: (f = msg.getModemMessageReceived()) && proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent.toObject(includeInstance, f),
@@ -208,6 +211,10 @@ proto.hiber.event.Event.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsError(value);
+      break;
     case 2:
       var value = new proto.hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent;
       reader.readMessage(value,proto.hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent.deserializeBinaryFromReader);
@@ -352,6 +359,13 @@ proto.hiber.event.Event.prototype.serializeBinary = function() {
  */
 proto.hiber.event.Event.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getIsError();
+  if (f) {
+    writer.writeBool(
+      1,
+      f
+    );
+  }
   f = message.getModemLocationUpdated();
   if (f != null) {
     writer.writeMessage(
@@ -7678,12 +7692,12 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.toObject = function(
 proto.hiber.event.Event.WebhookEvent.UpdatedEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
     organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    update: (f = msg.getUpdate()) && webhook_pb.Webhook.toObject(includeInstance, f),
     tagsList: jspb.Message.toObjectList(msg.getTagsList(),
     tag_pb.Tag.toObject, includeInstance),
     title: jspb.Message.getFieldWithDefault(msg, 4, ""),
     description: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f)
+    time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f),
+    update: (f = msg.getUpdate()) && webhook_pb.UpdateWebhookRequest.UpdateWebhook.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -7724,11 +7738,6 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.deserializeBinaryFromReader = 
       var value = /** @type {string} */ (reader.readString());
       msg.setOrganization(value);
       break;
-    case 2:
-      var value = new webhook_pb.Webhook;
-      reader.readMessage(value,webhook_pb.Webhook.deserializeBinaryFromReader);
-      msg.setUpdate(value);
-      break;
     case 3:
       var value = new tag_pb.Tag;
       reader.readMessage(value,tag_pb.Tag.deserializeBinaryFromReader);
@@ -7746,6 +7755,11 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.deserializeBinaryFromReader = 
       var value = new base_pb.Timestamp;
       reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
       msg.setTime(value);
+      break;
+    case 7:
+      var value = new webhook_pb.UpdateWebhookRequest.UpdateWebhook;
+      reader.readMessage(value,webhook_pb.UpdateWebhookRequest.UpdateWebhook.deserializeBinaryFromReader);
+      msg.setUpdate(value);
       break;
     default:
       reader.skipField();
@@ -7783,14 +7797,6 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.serializeBinaryToWriter = func
       f
     );
   }
-  f = message.getUpdate();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      webhook_pb.Webhook.serializeBinaryToWriter
-    );
-  }
   f = message.getTagsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
@@ -7821,6 +7827,14 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.serializeBinaryToWriter = func
       base_pb.Timestamp.serializeBinaryToWriter
     );
   }
+  f = message.getUpdate();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      webhook_pb.UpdateWebhookRequest.UpdateWebhook.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -7836,36 +7850,6 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.getOrganization = fu
 /** @param {string} value */
 proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
-};
-
-
-/**
- * optional hiber.webhook.Webhook update = 2;
- * @return {?proto.hiber.webhook.Webhook}
- */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.getUpdate = function() {
-  return /** @type{?proto.hiber.webhook.Webhook} */ (
-    jspb.Message.getWrapperField(this, webhook_pb.Webhook, 2));
-};
-
-
-/** @param {?proto.hiber.webhook.Webhook|undefined} value */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.setUpdate = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.clearUpdate = function() {
-  this.setUpdate(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.hasUpdate = function() {
-  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -7957,6 +7941,36 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.clearTime = function
  */
 proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.hasTime = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional hiber.webhook.UpdateWebhookRequest.UpdateWebhook update = 7;
+ * @return {?proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook}
+ */
+proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.getUpdate = function() {
+  return /** @type{?proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook} */ (
+    jspb.Message.getWrapperField(this, webhook_pb.UpdateWebhookRequest.UpdateWebhook, 7));
+};
+
+
+/** @param {?proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook|undefined} value */
+proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.setUpdate = function(value) {
+  jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.clearUpdate = function() {
+  this.setUpdate(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.hasUpdate = function() {
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
@@ -9346,6 +9360,23 @@ proto.hiber.event.Event.TokenEvent.TokenExpiredEvent.prototype.hasTime = functio
 
 
 /**
+ * optional bool is_error = 1;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.event.Event.prototype.getIsError = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 1, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.event.Event.prototype.setIsError = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
  * optional ModemEvent.ModemLocationUpdatedEvent modem_location_updated = 2;
  * @return {?proto.hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent}
  */
@@ -10046,6 +10077,273 @@ proto.hiber.event.Event.prototype.hasTokenExpired = function() {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.hiber.event.BundledEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.hiber.event.BundledEvent, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.event.BundledEvent.displayName = 'proto.hiber.event.BundledEvent';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.event.BundledEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.BundledEvent.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.event.BundledEvent} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.BundledEvent.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    type: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    amount: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    title: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    lastEvent: (f = msg.getLastEvent()) && base_pb.Timestamp.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.event.BundledEvent}
+ */
+proto.hiber.event.BundledEvent.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.event.BundledEvent;
+  return proto.hiber.event.BundledEvent.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.event.BundledEvent} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.event.BundledEvent}
+ */
+proto.hiber.event.BundledEvent.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!proto.hiber.EventType} */ (reader.readEnum());
+      msg.setType(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setAmount(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTitle(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
+      break;
+    case 5:
+      var value = new base_pb.Timestamp;
+      reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setLastEvent(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.event.BundledEvent.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.event.BundledEvent.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.event.BundledEvent} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.BundledEvent.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      1,
+      f
+    );
+  }
+  f = message.getAmount();
+  if (f !== 0) {
+    writer.writeInt32(
+      2,
+      f
+    );
+  }
+  f = message.getTitle();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getDescription();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getLastEvent();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      base_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional hiber.EventType type = 1;
+ * @return {!proto.hiber.EventType}
+ */
+proto.hiber.event.BundledEvent.prototype.getType = function() {
+  return /** @type {!proto.hiber.EventType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/** @param {!proto.hiber.EventType} value */
+proto.hiber.event.BundledEvent.prototype.setType = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional int32 amount = 2;
+ * @return {number}
+ */
+proto.hiber.event.BundledEvent.prototype.getAmount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/** @param {number} value */
+proto.hiber.event.BundledEvent.prototype.setAmount = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional string title = 3;
+ * @return {string}
+ */
+proto.hiber.event.BundledEvent.prototype.getTitle = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.BundledEvent.prototype.setTitle = function(value) {
+  jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * optional string description = 4;
+ * @return {string}
+ */
+proto.hiber.event.BundledEvent.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.BundledEvent.prototype.setDescription = function(value) {
+  jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * optional hiber.Timestamp last_event = 5;
+ * @return {?proto.hiber.Timestamp}
+ */
+proto.hiber.event.BundledEvent.prototype.getLastEvent = function() {
+  return /** @type{?proto.hiber.Timestamp} */ (
+    jspb.Message.getWrapperField(this, base_pb.Timestamp, 5));
+};
+
+
+/** @param {?proto.hiber.Timestamp|undefined} value */
+proto.hiber.event.BundledEvent.prototype.setLastEvent = function(value) {
+  jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+proto.hiber.event.BundledEvent.prototype.clearLastEvent = function() {
+  this.setLastEvent(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.BundledEvent.prototype.hasLastEvent = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.hiber.event.EventSelection = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -10087,7 +10385,8 @@ proto.hiber.event.EventSelection.toObject = function(includeInstance, msg) {
     webhooks: (f = msg.getWebhooks()) && base_pb.Filter.Webhooks.toObject(includeInstance, f),
     tags: (f = msg.getTags()) && base_pb.Filter.Tags.toObject(includeInstance, f),
     timeRange: (f = msg.getTimeRange()) && base_pb.TimeRange.toObject(includeInstance, f),
-    errorsOnly: jspb.Message.getFieldWithDefault(msg, 7, false)
+    errorsOnly: jspb.Message.getFieldWithDefault(msg, 7, false),
+    unbundledEvents: jspb.Message.getFieldWithDefault(msg, 8, false)
   };
 
   if (includeInstance) {
@@ -10152,6 +10451,10 @@ proto.hiber.event.EventSelection.deserializeBinaryFromReader = function(msg, rea
     case 7:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setErrorsOnly(value);
+      break;
+    case 8:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setUnbundledEvents(value);
       break;
     default:
       reader.skipField();
@@ -10226,6 +10529,13 @@ proto.hiber.event.EventSelection.serializeBinaryToWriter = function(message, wri
   if (f) {
     writer.writeBool(
       7,
+      f
+    );
+  }
+  f = message.getUnbundledEvents();
+  if (f) {
+    writer.writeBool(
+      8,
       f
     );
   }
@@ -10396,6 +10706,23 @@ proto.hiber.event.EventSelection.prototype.getErrorsOnly = function() {
 /** @param {boolean} value */
 proto.hiber.event.EventSelection.prototype.setErrorsOnly = function(value) {
   jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * optional bool unbundled_events = 8;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.event.EventSelection.prototype.getUnbundledEvents = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 8, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.event.EventSelection.prototype.setUnbundledEvents = function(value) {
+  jspb.Message.setField(this, 8, value);
 };
 
 
@@ -10600,7 +10927,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.hiber.event.ListEventsRequest.Response.repeatedFields_ = [1];
+proto.hiber.event.ListEventsRequest.Response.repeatedFields_ = [4,5];
 
 
 
@@ -10631,10 +10958,11 @@ proto.hiber.event.ListEventsRequest.Response.prototype.toObject = function(opt_i
  */
 proto.hiber.event.ListEventsRequest.Response.toObject = function(includeInstance, msg) {
   var f, obj = {
-    eventsList: jspb.Message.toObjectList(msg.getEventsList(),
-    proto.hiber.event.Event.toObject, includeInstance),
     request: (f = msg.getRequest()) && proto.hiber.event.ListEventsRequest.toObject(includeInstance, f),
-    pagination: (f = msg.getPagination()) && base_pb.Pagination.Result.toObject(includeInstance, f)
+    eventsList: jspb.Message.toObjectList(msg.getEventsList(),
+    proto.hiber.event.BundledEvent.toObject, includeInstance),
+    unbundledEventsList: jspb.Message.toObjectList(msg.getUnbundledEventsList(),
+    proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -10671,20 +10999,20 @@ proto.hiber.event.ListEventsRequest.Response.deserializeBinaryFromReader = funct
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto.hiber.event.Event;
-      reader.readMessage(value,proto.hiber.event.Event.deserializeBinaryFromReader);
-      msg.addEvents(value);
-      break;
     case 2:
       var value = new proto.hiber.event.ListEventsRequest;
       reader.readMessage(value,proto.hiber.event.ListEventsRequest.deserializeBinaryFromReader);
       msg.setRequest(value);
       break;
-    case 3:
-      var value = new base_pb.Pagination.Result;
-      reader.readMessage(value,base_pb.Pagination.Result.deserializeBinaryFromReader);
-      msg.setPagination(value);
+    case 4:
+      var value = new proto.hiber.event.BundledEvent;
+      reader.readMessage(value,proto.hiber.event.BundledEvent.deserializeBinaryFromReader);
+      msg.addEvents(value);
+      break;
+    case 5:
+      var value = new proto.hiber.event.ListEventsRequest.Response.EventTypeResponse;
+      reader.readMessage(value,proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.deserializeBinaryFromReader);
+      msg.addUnbundledEvents(value);
       break;
     default:
       reader.skipField();
@@ -10715,20 +11043,183 @@ proto.hiber.event.ListEventsRequest.Response.prototype.serializeBinary = functio
  */
 proto.hiber.event.ListEventsRequest.Response.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getEventsList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      1,
-      f,
-      proto.hiber.event.Event.serializeBinaryToWriter
-    );
-  }
   f = message.getRequest();
   if (f != null) {
     writer.writeMessage(
       2,
       f,
       proto.hiber.event.ListEventsRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getEventsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      4,
+      f,
+      proto.hiber.event.BundledEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getUnbundledEventsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      5,
+      f,
+      proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.serializeBinaryToWriter
+    );
+  }
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.event.ListEventsRequest.Response.EventTypeResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.repeatedFields_, null);
+};
+goog.inherits(proto.hiber.event.ListEventsRequest.Response.EventTypeResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.displayName = 'proto.hiber.event.ListEventsRequest.Response.EventTypeResponse';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.repeatedFields_ = [2];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.event.ListEventsRequest.Response.EventTypeResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    type: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    unbundledEventsList: jspb.Message.toObjectList(msg.getUnbundledEventsList(),
+    proto.hiber.event.Event.toObject, includeInstance),
+    pagination: (f = msg.getPagination()) && base_pb.Pagination.Result.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.event.ListEventsRequest.Response.EventTypeResponse}
+ */
+proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.event.ListEventsRequest.Response.EventTypeResponse;
+  return proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.event.ListEventsRequest.Response.EventTypeResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.event.ListEventsRequest.Response.EventTypeResponse}
+ */
+proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!proto.hiber.EventType} */ (reader.readEnum());
+      msg.setType(value);
+      break;
+    case 2:
+      var value = new proto.hiber.event.Event;
+      reader.readMessage(value,proto.hiber.event.Event.deserializeBinaryFromReader);
+      msg.addUnbundledEvents(value);
+      break;
+    case 3:
+      var value = new base_pb.Pagination.Result;
+      reader.readMessage(value,base_pb.Pagination.Result.deserializeBinaryFromReader);
+      msg.setPagination(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.event.ListEventsRequest.Response.EventTypeResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      1,
+      f
+    );
+  }
+  f = message.getUnbundledEventsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      2,
+      f,
+      proto.hiber.event.Event.serializeBinaryToWriter
     );
   }
   f = message.getPagination();
@@ -10743,18 +11234,33 @@ proto.hiber.event.ListEventsRequest.Response.serializeBinaryToWriter = function(
 
 
 /**
- * repeated Event events = 1;
+ * optional hiber.EventType type = 1;
+ * @return {!proto.hiber.EventType}
+ */
+proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.prototype.getType = function() {
+  return /** @type {!proto.hiber.EventType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/** @param {!proto.hiber.EventType} value */
+proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.prototype.setType = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * repeated Event unbundled_events = 2;
  * @return {!Array.<!proto.hiber.event.Event>}
  */
-proto.hiber.event.ListEventsRequest.Response.prototype.getEventsList = function() {
+proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.prototype.getUnbundledEventsList = function() {
   return /** @type{!Array.<!proto.hiber.event.Event>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.hiber.event.Event, 1));
+    jspb.Message.getRepeatedWrapperField(this, proto.hiber.event.Event, 2));
 };
 
 
 /** @param {!Array.<!proto.hiber.event.Event>} value */
-proto.hiber.event.ListEventsRequest.Response.prototype.setEventsList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 1, value);
+proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.prototype.setUnbundledEventsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
 
 
@@ -10763,13 +11269,43 @@ proto.hiber.event.ListEventsRequest.Response.prototype.setEventsList = function(
  * @param {number=} opt_index
  * @return {!proto.hiber.event.Event}
  */
-proto.hiber.event.ListEventsRequest.Response.prototype.addEvents = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.hiber.event.Event, opt_index);
+proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.prototype.addUnbundledEvents = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.hiber.event.Event, opt_index);
 };
 
 
-proto.hiber.event.ListEventsRequest.Response.prototype.clearEventsList = function() {
-  this.setEventsList([]);
+proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.prototype.clearUnbundledEventsList = function() {
+  this.setUnbundledEventsList([]);
+};
+
+
+/**
+ * optional hiber.Pagination.Result pagination = 3;
+ * @return {?proto.hiber.Pagination.Result}
+ */
+proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.prototype.getPagination = function() {
+  return /** @type{?proto.hiber.Pagination.Result} */ (
+    jspb.Message.getWrapperField(this, base_pb.Pagination.Result, 3));
+};
+
+
+/** @param {?proto.hiber.Pagination.Result|undefined} value */
+proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.prototype.setPagination = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.prototype.clearPagination = function() {
+  this.setPagination(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.ListEventsRequest.Response.EventTypeResponse.prototype.hasPagination = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -10804,32 +11340,64 @@ proto.hiber.event.ListEventsRequest.Response.prototype.hasRequest = function() {
 
 
 /**
- * optional hiber.Pagination.Result pagination = 3;
- * @return {?proto.hiber.Pagination.Result}
+ * repeated BundledEvent events = 4;
+ * @return {!Array.<!proto.hiber.event.BundledEvent>}
  */
-proto.hiber.event.ListEventsRequest.Response.prototype.getPagination = function() {
-  return /** @type{?proto.hiber.Pagination.Result} */ (
-    jspb.Message.getWrapperField(this, base_pb.Pagination.Result, 3));
+proto.hiber.event.ListEventsRequest.Response.prototype.getEventsList = function() {
+  return /** @type{!Array.<!proto.hiber.event.BundledEvent>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.hiber.event.BundledEvent, 4));
 };
 
 
-/** @param {?proto.hiber.Pagination.Result|undefined} value */
-proto.hiber.event.ListEventsRequest.Response.prototype.setPagination = function(value) {
-  jspb.Message.setWrapperField(this, 3, value);
-};
-
-
-proto.hiber.event.ListEventsRequest.Response.prototype.clearPagination = function() {
-  this.setPagination(undefined);
+/** @param {!Array.<!proto.hiber.event.BundledEvent>} value */
+proto.hiber.event.ListEventsRequest.Response.prototype.setEventsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 4, value);
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {!boolean}
+ * @param {!proto.hiber.event.BundledEvent=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.hiber.event.BundledEvent}
  */
-proto.hiber.event.ListEventsRequest.Response.prototype.hasPagination = function() {
-  return jspb.Message.getField(this, 3) != null;
+proto.hiber.event.ListEventsRequest.Response.prototype.addEvents = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.hiber.event.BundledEvent, opt_index);
+};
+
+
+proto.hiber.event.ListEventsRequest.Response.prototype.clearEventsList = function() {
+  this.setEventsList([]);
+};
+
+
+/**
+ * repeated EventTypeResponse unbundled_events = 5;
+ * @return {!Array.<!proto.hiber.event.ListEventsRequest.Response.EventTypeResponse>}
+ */
+proto.hiber.event.ListEventsRequest.Response.prototype.getUnbundledEventsList = function() {
+  return /** @type{!Array.<!proto.hiber.event.ListEventsRequest.Response.EventTypeResponse>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.hiber.event.ListEventsRequest.Response.EventTypeResponse, 5));
+};
+
+
+/** @param {!Array.<!proto.hiber.event.ListEventsRequest.Response.EventTypeResponse>} value */
+proto.hiber.event.ListEventsRequest.Response.prototype.setUnbundledEventsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 5, value);
+};
+
+
+/**
+ * @param {!proto.hiber.event.ListEventsRequest.Response.EventTypeResponse=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.hiber.event.ListEventsRequest.Response.EventTypeResponse}
+ */
+proto.hiber.event.ListEventsRequest.Response.prototype.addUnbundledEvents = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 5, opt_value, proto.hiber.event.ListEventsRequest.Response.EventTypeResponse, opt_index);
+};
+
+
+proto.hiber.event.ListEventsRequest.Response.prototype.clearUnbundledEventsList = function() {
+  this.setUnbundledEventsList([]);
 };
 
 

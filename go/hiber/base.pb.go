@@ -42,6 +42,7 @@ It has these top-level messages:
 	UpdateSettingsRequest
 	DashboardRequest
 	Event
+	BundledEvent
 	EventSelection
 	ListEventsRequest
 	EventStreamRequest
@@ -97,6 +98,7 @@ It has these top-level messages:
 	UpdateTagRequest
 	DeleteTagRequest
 	PushModemMessagesRequest
+	PushModemMessagesFromDebugPortRequest
 	Token
 	TokenSelection
 	ListTokensRequest

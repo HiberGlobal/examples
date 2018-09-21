@@ -18,6 +18,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :location, :message, 3, "hiber.Location"
     optional :content, :bytes, 4
   end
+  add_message "hiber.testing.PushModemMessagesFromDebugPortRequest" do
+    optional :organization, :string, 1
+    repeated :encoded_messages, :string, 2
+  end
+  add_message "hiber.testing.PushModemMessagesFromDebugPortRequest.Response" do
+    optional :request, :message, 1, "hiber.testing.PushModemMessagesFromDebugPortRequest"
+  end
 end
 
 module Hiber
@@ -25,5 +32,7 @@ module Hiber
     PushModemMessagesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.testing.PushModemMessagesRequest").msgclass
     PushModemMessagesRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.testing.PushModemMessagesRequest.Response").msgclass
     PushModemMessagesRequest::MessageToPush = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.testing.PushModemMessagesRequest.MessageToPush").msgclass
+    PushModemMessagesFromDebugPortRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.testing.PushModemMessagesFromDebugPortRequest").msgclass
+    PushModemMessagesFromDebugPortRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.testing.PushModemMessagesFromDebugPortRequest.Response").msgclass
   end
 end

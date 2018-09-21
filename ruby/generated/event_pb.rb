@@ -13,6 +13,7 @@ require 'user_pb'
 require 'webhook_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.event.Event" do
+    optional :is_error, :bool, 1
     oneof :event do
       optional :modem_location_updated, :message, 2, "hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent"
       optional :modem_stale, :message, 3, "hiber.event.Event.ModemEvent.ModemStaleEvent"
@@ -213,11 +214,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "hiber.event.Event.WebhookEvent.UpdatedEvent" do
     optional :organization, :string, 1
-    optional :update, :message, 2, "hiber.webhook.Webhook"
     repeated :tags, :message, 3, "hiber.tag.Tag"
     optional :title, :string, 4
     optional :description, :string, 5
     optional :time, :message, 6, "hiber.Timestamp"
+    optional :update, :message, 7, "hiber.webhook.UpdateWebhookRequest.UpdateWebhook"
   end
   add_message "hiber.event.Event.WebhookEvent.DeletedEvent" do
     optional :organization, :string, 1
@@ -252,6 +253,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :description, :string, 4
     optional :time, :message, 5, "hiber.Timestamp"
   end
+  add_message "hiber.event.BundledEvent" do
+    optional :type, :enum, 1, "hiber.EventType"
+    optional :amount, :int32, 2
+    optional :title, :string, 3
+    optional :description, :string, 4
+    optional :last_event, :message, 5, "hiber.Timestamp"
+  end
   add_message "hiber.event.EventSelection" do
     optional :events, :message, 1, "hiber.Filter.Events"
     optional :modems, :message, 2, "hiber.Filter.Modems"
@@ -259,6 +267,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :tags, :message, 4, "hiber.Filter.Tags"
     optional :time_range, :message, 6, "hiber.TimeRange"
     optional :errors_only, :bool, 7
+    optional :unbundled_events, :bool, 8
   end
   add_message "hiber.event.ListEventsRequest" do
     optional :organization, :string, 1
@@ -267,8 +276,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :sort, :enum, 4, "hiber.event.ListEventsRequest.Sort"
   end
   add_message "hiber.event.ListEventsRequest.Response" do
-    repeated :events, :message, 1, "hiber.event.Event"
     optional :request, :message, 2, "hiber.event.ListEventsRequest"
+    repeated :events, :message, 4, "hiber.event.BundledEvent"
+    repeated :unbundled_events, :message, 5, "hiber.event.ListEventsRequest.Response.EventTypeResponse"
+  end
+  add_message "hiber.event.ListEventsRequest.Response.EventTypeResponse" do
+    optional :type, :enum, 1, "hiber.EventType"
+    repeated :unbundled_events, :message, 2, "hiber.event.Event"
     optional :pagination, :message, 3, "hiber.Pagination.Result"
   end
   add_enum "hiber.event.ListEventsRequest.Sort" do
@@ -317,9 +331,11 @@ module Hiber
     Event::TokenEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.TokenEvent").msgclass
     Event::TokenEvent::TokenExpiryWarningEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.TokenEvent.TokenExpiryWarningEvent").msgclass
     Event::TokenEvent::TokenExpiredEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.TokenEvent.TokenExpiredEvent").msgclass
+    BundledEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.BundledEvent").msgclass
     EventSelection = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.EventSelection").msgclass
     ListEventsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.ListEventsRequest").msgclass
     ListEventsRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.ListEventsRequest.Response").msgclass
+    ListEventsRequest::Response::EventTypeResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.ListEventsRequest.Response.EventTypeResponse").msgclass
     ListEventsRequest::Sort = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.ListEventsRequest.Sort").enummodule
     EventStreamRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.EventStreamRequest").msgclass
   end

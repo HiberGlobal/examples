@@ -220,7 +220,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.hiber.dashboard.DashboardRequest.Response.repeatedFields_ = [1,2,3,6];
+proto.hiber.dashboard.DashboardRequest.Response.repeatedFields_ = [1,2,3,8];
 
 
 
@@ -259,9 +259,9 @@ proto.hiber.dashboard.DashboardRequest.Response.toObject = function(includeInsta
     modem_pb.MessageCountRequest.Response.MessageCount.toObject, includeInstance),
     modemWarningCount: jspb.Message.getFieldWithDefault(msg, 4, 0),
     modemErrorCount: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    request: (f = msg.getRequest()) && proto.hiber.dashboard.DashboardRequest.toObject(includeInstance, f),
     eventsList: jspb.Message.toObjectList(msg.getEventsList(),
-    event_pb.Event.toObject, includeInstance),
-    request: (f = msg.getRequest()) && proto.hiber.dashboard.DashboardRequest.toObject(includeInstance, f)
+    event_pb.BundledEvent.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -321,15 +321,15 @@ proto.hiber.dashboard.DashboardRequest.Response.deserializeBinaryFromReader = fu
       var value = /** @type {number} */ (reader.readInt32());
       msg.setModemErrorCount(value);
       break;
-    case 6:
-      var value = new event_pb.Event;
-      reader.readMessage(value,event_pb.Event.deserializeBinaryFromReader);
-      msg.addEvents(value);
-      break;
     case 7:
       var value = new proto.hiber.dashboard.DashboardRequest;
       reader.readMessage(value,proto.hiber.dashboard.DashboardRequest.deserializeBinaryFromReader);
       msg.setRequest(value);
+      break;
+    case 8:
+      var value = new event_pb.BundledEvent;
+      reader.readMessage(value,event_pb.BundledEvent.deserializeBinaryFromReader);
+      msg.addEvents(value);
       break;
     default:
       reader.skipField();
@@ -398,20 +398,20 @@ proto.hiber.dashboard.DashboardRequest.Response.serializeBinaryToWriter = functi
       f
     );
   }
-  f = message.getEventsList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      6,
-      f,
-      event_pb.Event.serializeBinaryToWriter
-    );
-  }
   f = message.getRequest();
   if (f != null) {
     writer.writeMessage(
       7,
       f,
       proto.hiber.dashboard.DashboardRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getEventsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      8,
+      f,
+      event_pb.BundledEvent.serializeBinaryToWriter
     );
   }
 };
@@ -541,37 +541,6 @@ proto.hiber.dashboard.DashboardRequest.Response.prototype.setModemErrorCount = f
 
 
 /**
- * repeated hiber.event.Event events = 6;
- * @return {!Array.<!proto.hiber.event.Event>}
- */
-proto.hiber.dashboard.DashboardRequest.Response.prototype.getEventsList = function() {
-  return /** @type{!Array.<!proto.hiber.event.Event>} */ (
-    jspb.Message.getRepeatedWrapperField(this, event_pb.Event, 6));
-};
-
-
-/** @param {!Array.<!proto.hiber.event.Event>} value */
-proto.hiber.dashboard.DashboardRequest.Response.prototype.setEventsList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 6, value);
-};
-
-
-/**
- * @param {!proto.hiber.event.Event=} opt_value
- * @param {number=} opt_index
- * @return {!proto.hiber.event.Event}
- */
-proto.hiber.dashboard.DashboardRequest.Response.prototype.addEvents = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.hiber.event.Event, opt_index);
-};
-
-
-proto.hiber.dashboard.DashboardRequest.Response.prototype.clearEventsList = function() {
-  this.setEventsList([]);
-};
-
-
-/**
  * optional DashboardRequest request = 7;
  * @return {?proto.hiber.dashboard.DashboardRequest}
  */
@@ -598,6 +567,37 @@ proto.hiber.dashboard.DashboardRequest.Response.prototype.clearRequest = functio
  */
 proto.hiber.dashboard.DashboardRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * repeated hiber.event.BundledEvent events = 8;
+ * @return {!Array.<!proto.hiber.event.BundledEvent>}
+ */
+proto.hiber.dashboard.DashboardRequest.Response.prototype.getEventsList = function() {
+  return /** @type{!Array.<!proto.hiber.event.BundledEvent>} */ (
+    jspb.Message.getRepeatedWrapperField(this, event_pb.BundledEvent, 8));
+};
+
+
+/** @param {!Array.<!proto.hiber.event.BundledEvent>} value */
+proto.hiber.dashboard.DashboardRequest.Response.prototype.setEventsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 8, value);
+};
+
+
+/**
+ * @param {!proto.hiber.event.BundledEvent=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.hiber.event.BundledEvent}
+ */
+proto.hiber.dashboard.DashboardRequest.Response.prototype.addEvents = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 8, opt_value, proto.hiber.event.BundledEvent, opt_index);
+};
+
+
+proto.hiber.dashboard.DashboardRequest.Response.prototype.clearEventsList = function() {
+  this.setEventsList([]);
 };
 
 

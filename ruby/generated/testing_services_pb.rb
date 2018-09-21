@@ -18,6 +18,7 @@ module Hiber
         self.service_name = 'hiber.testing.TestingService'
 
         rpc :PushModemMessages, PushModemMessagesRequest, PushModemMessagesRequest::Response
+        rpc :PushModemMessagesFromDebugPort, PushModemMessagesFromDebugPortRequest, PushModemMessagesFromDebugPortRequest::Response
       end
 
       Stub = Service.rpc_stub_class

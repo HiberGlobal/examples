@@ -20,8 +20,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :message_count_per_day, :message, 3, "hiber.modem.MessageCountRequest.Response.MessageCount"
     optional :modem_warning_count, :int32, 4
     optional :modem_error_count, :int32, 5
-    repeated :events, :message, 6, "hiber.event.Event"
     optional :request, :message, 7, "hiber.dashboard.DashboardRequest"
+    repeated :events, :message, 8, "hiber.event.BundledEvent"
   end
 end
 

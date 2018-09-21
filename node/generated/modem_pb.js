@@ -1029,7 +1029,8 @@ proto.hiber.modem.Modem.Peripherals.toObject = function(includeInstance, msg) {
   var f, obj = {
     hiberAntenna: jspb.Message.getFieldWithDefault(msg, 1, 0),
     gps: jspb.Message.getFieldWithDefault(msg, 2, false),
-    peripheralsMap: (f = msg.getPeripheralsMap()) ? f.toObject(includeInstance, undefined) : []
+    peripheralsMap: (f = msg.getPeripheralsMap()) ? f.toObject(includeInstance, undefined) : [],
+    customAntenna: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -1080,6 +1081,10 @@ proto.hiber.modem.Modem.Peripherals.deserializeBinaryFromReader = function(msg, 
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
          });
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCustomAntenna(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1127,6 +1132,13 @@ proto.hiber.modem.Modem.Peripherals.serializeBinaryToWriter = function(message, 
   if (f && f.getLength() > 0) {
     f.serializeBinary(3, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
+  f = message.getCustomAntenna();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
 };
 
 
@@ -1137,7 +1149,8 @@ proto.hiber.modem.Modem.Peripherals.HiberAntenna = {
   DEFAULT: 0,
   HIBER_PANDA: 1,
   HIBER_GRIZZLY: 2,
-  HIBER_BLACK: 3
+  HIBER_BLACK: 3,
+  CUSTOM: 4
 };
 
 /**
@@ -1187,6 +1200,21 @@ proto.hiber.modem.Modem.Peripherals.prototype.getPeripheralsMap = function(opt_n
 
 proto.hiber.modem.Modem.Peripherals.prototype.clearPeripheralsMap = function() {
   this.getPeripheralsMap().clear();
+};
+
+
+/**
+ * optional string custom_antenna = 4;
+ * @return {string}
+ */
+proto.hiber.modem.Modem.Peripherals.prototype.getCustomAntenna = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.modem.Modem.Peripherals.prototype.setCustomAntenna = function(value) {
+  jspb.Message.setField(this, 4, value);
 };
 
 
@@ -5454,7 +5482,8 @@ proto.hiber.modem.UpdatePeripheralsRequest.toObject = function(includeInstance, 
     hardcodedGpsLocation: (f = msg.getHardcodedGpsLocation()) && base_pb.Location.toObject(includeInstance, f),
     addPeripheralsMap: (f = msg.getAddPeripheralsMap()) ? f.toObject(includeInstance, undefined) : [],
     removePeripheralsList: jspb.Message.getRepeatedField(msg, 7),
-    pagination: (f = msg.getPagination()) && base_pb.Pagination.toObject(includeInstance, f)
+    pagination: (f = msg.getPagination()) && base_pb.Pagination.toObject(includeInstance, f),
+    customAntenna: jspb.Message.getFieldWithDefault(msg, 10, "")
   };
 
   if (includeInstance) {
@@ -5528,6 +5557,10 @@ proto.hiber.modem.UpdatePeripheralsRequest.deserializeBinaryFromReader = functio
       var value = new base_pb.Pagination;
       reader.readMessage(value,base_pb.Pagination.deserializeBinaryFromReader);
       msg.setPagination(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCustomAntenna(value);
       break;
     default:
       reader.skipField();
@@ -5613,6 +5646,13 @@ proto.hiber.modem.UpdatePeripheralsRequest.serializeBinaryToWriter = function(me
       9,
       f,
       base_pb.Pagination.serializeBinaryToWriter
+    );
+  }
+  f = message.getCustomAntenna();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
+      f
     );
   }
 };
@@ -6068,6 +6108,21 @@ proto.hiber.modem.UpdatePeripheralsRequest.prototype.clearPagination = function(
  */
 proto.hiber.modem.UpdatePeripheralsRequest.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 9) != null;
+};
+
+
+/**
+ * optional string custom_antenna = 10;
+ * @return {string}
+ */
+proto.hiber.modem.UpdatePeripheralsRequest.prototype.getCustomAntenna = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.modem.UpdatePeripheralsRequest.prototype.setCustomAntenna = function(value) {
+  jspb.Message.setField(this, 10, value);
 };
 
 
