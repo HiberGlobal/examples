@@ -110,7 +110,7 @@ func (m *PushModemMessagesRequest_MessageToPush) GetContent() []byte {
 }
 
 // Push a message using the data gotten from the modem debug port.
-// This means the message is an ecrypted string, which the server can parse.
+// This means the message is an encrypted string, which the server can parse.
 type PushModemMessagesFromDebugPortRequest struct {
 	// Pick the organization to use (/impersonate). If unset, your default organization is used.
 	Organization    string   `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`

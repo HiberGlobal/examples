@@ -50,6 +50,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :INVALID_CONFIGURATION, 2
     value :DAMAGED, 3
     value :DEAD, 4
+    value :MISSING, 5
   end
   add_message "hiber.modem.ModemTransferSelection" do
     repeated :identifiers, :string, 1

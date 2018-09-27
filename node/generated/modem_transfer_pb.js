@@ -948,7 +948,8 @@ proto.hiber.modem.ModemTransferReturnLine.Reason = {
   INVALID_RECIPIENT: 1,
   INVALID_CONFIGURATION: 2,
   DAMAGED: 3,
-  DEAD: 4
+  DEAD: 4,
+  MISSING: 5
 };
 
 /**

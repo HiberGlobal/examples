@@ -11,8 +11,8 @@ It is generated from these files:
 	dashboard.proto
 	event.proto
 	map.proto
-	modem_claim.proto
 	modem.proto
+	modem_claim.proto
 	modem_transfer.proto
 	organization.proto
 	subscription.proto
@@ -50,12 +50,6 @@ It has these top-level messages:
 	GroundStation
 	MapBlock
 	MapRequest
-	ModemClaim
-	ModemClaimSelection
-	ClaimModemRequest
-	ListModemClaimsRequest
-	AcceptModemClaimsRequest
-	RejectModemClaimsRequest
 	Modem
 	ModemSelection
 	ModemMessage
@@ -68,6 +62,12 @@ It has these top-level messages:
 	UpdateModemTagsRequest
 	UpdatePeripheralsRequest
 	LicenseKeysRequest
+	ModemClaim
+	ModemClaimSelection
+	ClaimModemRequest
+	ListModemClaimsRequest
+	AcceptModemClaimsRequest
+	RejectModemClaimsRequest
 	ModemTransfer
 	ModemTransferReturnLine
 	ModemTransferSelection
@@ -376,7 +376,7 @@ func (m *TimeRange) GetEnd() *Timestamp {
 
 // Timestamp type for convenience.
 // Some clients are better at parsing Google's seconds/nanos based timestamp, while others prefer a text-based format.
-// To accomodate this, this Timestamp type supports both.
+// To accommodate this, this Timestamp type supports both.
 // When used as API output, both the timestamp and textual fields will be set. The textual field has the commonly
 // used ISO 8601 format (i.e. "2018-01-01T13:00:00Z").
 // When used an API input, only one of the fields is needed, there is no need to set both. When both are set, the
@@ -407,7 +407,7 @@ func (m *Timestamp) GetTextual() string {
 
 // Date type for convenience.
 // Some clients are better at parsing year, month and day of month as separate fields, while others prefer a
-// text-based format. To accomodate this, this Date type supports both.
+// text-based format. To accommodate this, this Date type supports both.
 // When used as API output, both the int fields and textual fields will be set. The textual field has the commonly
 // used ISO 8601 local date format (i.e. "2018-01-01").
 // When used an API input, either specify the int fields or the textual field. If both are specified, the textual

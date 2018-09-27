@@ -10386,7 +10386,8 @@ proto.hiber.event.EventSelection.toObject = function(includeInstance, msg) {
     tags: (f = msg.getTags()) && base_pb.Filter.Tags.toObject(includeInstance, f),
     timeRange: (f = msg.getTimeRange()) && base_pb.TimeRange.toObject(includeInstance, f),
     errorsOnly: jspb.Message.getFieldWithDefault(msg, 7, false),
-    unbundledEvents: jspb.Message.getFieldWithDefault(msg, 8, false)
+    unbundledEvents: jspb.Message.getFieldWithDefault(msg, 8, false),
+    includeResolvedEvents: jspb.Message.getFieldWithDefault(msg, 9, false)
   };
 
   if (includeInstance) {
@@ -10455,6 +10456,10 @@ proto.hiber.event.EventSelection.deserializeBinaryFromReader = function(msg, rea
     case 8:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setUnbundledEvents(value);
+      break;
+    case 9:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIncludeResolvedEvents(value);
       break;
     default:
       reader.skipField();
@@ -10536,6 +10541,13 @@ proto.hiber.event.EventSelection.serializeBinaryToWriter = function(message, wri
   if (f) {
     writer.writeBool(
       8,
+      f
+    );
+  }
+  f = message.getIncludeResolvedEvents();
+  if (f) {
+    writer.writeBool(
+      9,
       f
     );
   }
@@ -10723,6 +10735,23 @@ proto.hiber.event.EventSelection.prototype.getUnbundledEvents = function() {
 /** @param {boolean} value */
 proto.hiber.event.EventSelection.prototype.setUnbundledEvents = function(value) {
   jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * optional bool include_resolved_events = 9;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.event.EventSelection.prototype.getIncludeResolvedEvents = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 9, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.event.EventSelection.prototype.setIncludeResolvedEvents = function(value) {
+  jspb.Message.setField(this, 9, value);
 };
 
 

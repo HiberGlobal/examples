@@ -268,6 +268,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :time_range, :message, 6, "hiber.TimeRange"
     optional :errors_only, :bool, 7
     optional :unbundled_events, :bool, 8
+    optional :include_resolved_events, :bool, 9
   end
   add_message "hiber.event.ListEventsRequest" do
     optional :organization, :string, 1

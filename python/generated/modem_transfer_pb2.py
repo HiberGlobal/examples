@@ -23,7 +23,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='modem_transfer.proto',
   package='hiber.modem',
   syntax='proto3',
-  serialized_pb=_b('\n\x14modem_transfer.proto\x12\x0bhiber.modem\x1a\nbase.proto\x1a\x12organization.proto\x1a\x0bmodem.proto\x1a\ttag.proto\"\xf9\x04\n\rModemTransfer\x12\x12\n\nidentifier\x18\x01 \x01(\t\x12\x15\n\rmodem_numbers\x18\x02 \x03(\t\x12-\n\x04type\x18\x03 \x01(\x0e\x32\x1f.hiber.modem.ModemTransfer.Type\x12\x31\n\x06status\x18\x04 \x01(\x0e\x32!.hiber.modem.ModemTransfer.Status\x12\x1b\n\x13sender_organization\x18\x05 \x01(\t\x12\x1e\n\x16recipient_organization\x18\x06 \x01(\t\x12\x18\n\x10return_transfers\x18\x07 \x03(\t\x12\x12\n\nreturn_for\x18\x08 \x03(\t\x12\x1c\n\x14tracking_information\x18\t \x01(\t\x12$\n\ncreated_at\x18\n \x01(\x0b\x32\x10.hiber.Timestamp\x12%\n\x0breceived_at\x18\x0b \x01(\x0b\x32\x10.hiber.Timestamp\x12&\n\x0c\x63\x61ncelled_at\x18\x0c \x01(\x0b\x32\x10.hiber.Timestamp\x12)\n\x0fnot_received_at\x18\r \x01(\x0b\x32\x10.hiber.Timestamp\x12)\n\x0freturn_deadline\x18\x0e \x01(\x0b\x32\x10.hiber.Timestamp\x12\x1c\n\x04tags\x18\x0f \x03(\x0b\x32\x0e.hiber.tag.Tag\" \n\x04Type\x12\x0c\n\x08TRANSFER\x10\x00\x12\n\n\x06RETURN\x10\x01\"G\n\x06Status\x12\x0e\n\nIN_TRANSIT\x10\x00\x12\x0c\n\x08RECEIVED\x10\x01\x12\r\n\tCANCELLED\x10\x03\x12\x10\n\x0cNOT_RECEIVED\x10\x04\"\xdd\x02\n\x17ModemTransferReturnLine\x12\x19\n\x11original_transfer\x18\x01 \x01(\t\x12\x17\n\x0freturn_transfer\x18\x02 \x01(\t\x12\x15\n\rmodem_numbers\x18\x03 \x03(\t\x12;\n\x06reason\x18\x04 \x01(\x0e\x32+.hiber.modem.ModemTransferReturnLine.Reason\x12\x0f\n\x07\x63omment\x18\x05 \x01(\t\x12$\n\ncreated_at\x18\x06 \x01(\x0b\x32\x10.hiber.Timestamp\x12%\n\x0breturned_at\x18\x07 \x01(\x0b\x32\x10.hiber.Timestamp\"\\\n\x06Reason\x12\t\n\x05OTHER\x10\x00\x12\x15\n\x11INVALID_RECIPIENT\x10\x01\x12\x19\n\x15INVALID_CONFIGURATION\x10\x02\x12\x0b\n\x07\x44\x41MAGED\x10\x03\x12\x08\n\x04\x44\x45\x41\x44\x10\x04\"\x84\x03\n\x16ModemTransferSelection\x12\x13\n\x0bidentifiers\x18\x01 \x03(\t\x12+\n\x06modems\x18\x02 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12\x0f\n\x07senders\x18\x03 \x03(\t\x12\x12\n\nrecipients\x18\x04 \x03(\t\x12\x33\n\x08statuses\x18\x05 \x03(\x0e\x32!.hiber.modem.ModemTransfer.Status\x12$\n\ncreated_in\x18\x06 \x01(\x0b\x32\x10.hiber.TimeRange\x12%\n\x0breceived_in\x18\x07 \x01(\x0b\x32\x10.hiber.TimeRange\x12)\n\x0fnot_received_in\x18\x08 \x01(\x0b\x32\x10.hiber.TimeRange\x12&\n\x0c\x63\x61ncelled_in\x18\t \x01(\x0b\x32\x10.hiber.TimeRange\x12.\n\x05types\x18\n \x03(\x0e\x32\x1f.hiber.modem.ModemTransfer.Type\"\xd3\x02\n\x15TransferModemsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12.\n\tselection\x18\x02 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12\x1e\n\x16recipient_organization\x18\x03 \x01(\t\x12G\n\x10\x63reate_recipient\x18\x04 \x01(\x0b\x32-.hiber.organization.CreateOrganizationRequest\x12\x1c\n\x14tracking_information\x18\x05 \x01(\t\x1am\n\x08Response\x12\x33\n\x07request\x18\x01 \x01(\x0b\x32\".hiber.modem.TransferModemsRequest\x12,\n\x08transfer\x18\x02 \x01(\x0b\x32\x1a.hiber.modem.ModemTransfer\"\xb3\x02\n\x19ListModemTransfersRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x36\n\tselection\x18\x02 \x01(\x0b\x32#.hiber.modem.ModemTransferSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\xa0\x01\n\x08Response\x12\x37\n\x07request\x18\x01 \x01(\x0b\x32&.hiber.modem.ListModemTransfersRequest\x12-\n\ttransfers\x18\x02 \x03(\x0b\x32\x1a.hiber.modem.ModemTransfer\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xdf\x01\n\x1a\x43\x61ncelModemTransferRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x36\n\tselection\x18\x02 \x01(\x0b\x32#.hiber.modem.ModemTransferSelection\x1as\n\x08Response\x12\x38\n\x07request\x18\x01 \x01(\x0b\x32\'.hiber.modem.CancelModemTransferRequest\x12-\n\tcancelled\x18\x02 \x03(\x0b\x32\x1a.hiber.modem.ModemTransfer\"\xe2\x01\n\x1cReceivedModemTransferRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x36\n\tselection\x18\x02 \x01(\x0b\x32#.hiber.modem.ModemTransferSelection\x1at\n\x08Response\x12:\n\x07request\x18\x01 \x01(\x0b\x32).hiber.modem.ReceivedModemTransferRequest\x12,\n\x08received\x18\x02 \x03(\x0b\x32\x1a.hiber.modem.ModemTransfer\"\xec\x01\n\x1fNotReceivedModemTransferRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x36\n\tselection\x18\x02 \x01(\x0b\x32#.hiber.modem.ModemTransferSelection\x1a{\n\x08Response\x12=\n\x07request\x18\x01 \x01(\x0b\x32,.hiber.modem.NotReceivedModemTransferRequest\x12\x30\n\x0cnot_received\x18\x02 \x03(\x0b\x32\x1a.hiber.modem.ModemTransfer\"\xee\x02\n\x1cPrepareModemForReturnRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x13\n\x0btransfer_id\x18\x02 \x01(\t\x12.\n\tselection\x18\x03 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12;\n\x06reason\x18\x04 \x01(\x0e\x32+.hiber.modem.ModemTransferReturnLine.Reason\x12\x0f\n\x07\x63omment\x18\x05 \x01(\t\x12 \n\x18replace_previous_comment\x18\x06 \x01(\x08\x1a\x82\x01\n\x08Response\x12:\n\x07request\x18\x01 \x01(\x0b\x32).hiber.modem.PrepareModemForReturnRequest\x12:\n\x0cmodem_return\x18\x02 \x01(\x0b\x32$.hiber.modem.ModemTransferReturnLine\"u\n%DeleteModemTransferReturnLinesRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x13\n\x0btransfer_id\x18\x02 \x01(\t\x12\x15\n\rmodem_numbers\x18\x03 \x03(\t\x1a\n\n\x08Response\"\xcd\x02\n#ListModemTransferReturnLinesRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x36\n\tselection\x18\x02 \x01(\x0b\x32#.hiber.modem.ModemTransferSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\xb0\x01\n\x08Response\x12\x41\n\x07request\x18\x01 \x01(\x0b\x32\x30.hiber.modem.ListModemTransferReturnLinesRequest\x12\x33\n\x05lines\x18\x02 \x03(\x0b\x32$.hiber.modem.ModemTransferReturnLine\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xf1\x01\n\x11SendReturnRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x36\n\tselection\x18\x02 \x01(\x0b\x32#.hiber.modem.ModemTransferSelection\x12\x1c\n\x14tracking_information\x18\x03 \x01(\t\x1ap\n\x08Response\x12/\n\x07request\x18\x01 \x01(\x0b\x32\x1e.hiber.modem.SendReturnRequest\x12\x33\n\x0freturn_transfer\x18\x02 \x01(\x0b\x32\x1a.hiber.modem.ModemTransfer2\x98\x04\n\x14ModemTransferService\x12[\n\x08Transfer\x12\".hiber.modem.TransferModemsRequest\x1a+.hiber.modem.TransferModemsRequest.Response\x12_\n\x04List\x12&.hiber.modem.ListModemTransfersRequest\x1a/.hiber.modem.ListModemTransfersRequest.Response\x12\x63\n\x06\x43\x61ncel\x12\'.hiber.modem.CancelModemTransferRequest\x1a\x30.hiber.modem.CancelModemTransferRequest.Response\x12i\n\x08Received\x12).hiber.modem.ReceivedModemTransferRequest\x1a\x32.hiber.modem.ReceivedModemTransferRequest.Response\x12r\n\x0bNotReceived\x12,.hiber.modem.NotReceivedModemTransferRequest\x1a\x35.hiber.modem.NotReceivedModemTransferRequest.Response2\xcc\x03\n\x1aModemTransferReturnService\x12h\n\x07Prepare\x12).hiber.modem.PrepareModemForReturnRequest\x1a\x32.hiber.modem.PrepareModemForReturnRequest.Response\x12t\n\x05Lines\x12\x30.hiber.modem.ListModemTransferReturnLinesRequest\x1a\x39.hiber.modem.ListModemTransferReturnLinesRequest.Response\x12}\n\nDeleteLine\x12\x32.hiber.modem.DeleteModemTransferReturnLinesRequest\x1a;.hiber.modem.DeleteModemTransferReturnLinesRequest.Response\x12O\n\x04Send\x12\x1e.hiber.modem.SendReturnRequest\x1a\'.hiber.modem.SendReturnRequest.ResponseB8\n\x1bglobal.hiber.api.grpc.modemB\x10ModemTransferApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\x14modem_transfer.proto\x12\x0bhiber.modem\x1a\nbase.proto\x1a\x12organization.proto\x1a\x0bmodem.proto\x1a\ttag.proto\"\xf9\x04\n\rModemTransfer\x12\x12\n\nidentifier\x18\x01 \x01(\t\x12\x15\n\rmodem_numbers\x18\x02 \x03(\t\x12-\n\x04type\x18\x03 \x01(\x0e\x32\x1f.hiber.modem.ModemTransfer.Type\x12\x31\n\x06status\x18\x04 \x01(\x0e\x32!.hiber.modem.ModemTransfer.Status\x12\x1b\n\x13sender_organization\x18\x05 \x01(\t\x12\x1e\n\x16recipient_organization\x18\x06 \x01(\t\x12\x18\n\x10return_transfers\x18\x07 \x03(\t\x12\x12\n\nreturn_for\x18\x08 \x03(\t\x12\x1c\n\x14tracking_information\x18\t \x01(\t\x12$\n\ncreated_at\x18\n \x01(\x0b\x32\x10.hiber.Timestamp\x12%\n\x0breceived_at\x18\x0b \x01(\x0b\x32\x10.hiber.Timestamp\x12&\n\x0c\x63\x61ncelled_at\x18\x0c \x01(\x0b\x32\x10.hiber.Timestamp\x12)\n\x0fnot_received_at\x18\r \x01(\x0b\x32\x10.hiber.Timestamp\x12)\n\x0freturn_deadline\x18\x0e \x01(\x0b\x32\x10.hiber.Timestamp\x12\x1c\n\x04tags\x18\x0f \x03(\x0b\x32\x0e.hiber.tag.Tag\" \n\x04Type\x12\x0c\n\x08TRANSFER\x10\x00\x12\n\n\x06RETURN\x10\x01\"G\n\x06Status\x12\x0e\n\nIN_TRANSIT\x10\x00\x12\x0c\n\x08RECEIVED\x10\x01\x12\r\n\tCANCELLED\x10\x03\x12\x10\n\x0cNOT_RECEIVED\x10\x04\"\xea\x02\n\x17ModemTransferReturnLine\x12\x19\n\x11original_transfer\x18\x01 \x01(\t\x12\x17\n\x0freturn_transfer\x18\x02 \x01(\t\x12\x15\n\rmodem_numbers\x18\x03 \x03(\t\x12;\n\x06reason\x18\x04 \x01(\x0e\x32+.hiber.modem.ModemTransferReturnLine.Reason\x12\x0f\n\x07\x63omment\x18\x05 \x01(\t\x12$\n\ncreated_at\x18\x06 \x01(\x0b\x32\x10.hiber.Timestamp\x12%\n\x0breturned_at\x18\x07 \x01(\x0b\x32\x10.hiber.Timestamp\"i\n\x06Reason\x12\t\n\x05OTHER\x10\x00\x12\x15\n\x11INVALID_RECIPIENT\x10\x01\x12\x19\n\x15INVALID_CONFIGURATION\x10\x02\x12\x0b\n\x07\x44\x41MAGED\x10\x03\x12\x08\n\x04\x44\x45\x41\x44\x10\x04\x12\x0b\n\x07MISSING\x10\x05\"\x84\x03\n\x16ModemTransferSelection\x12\x13\n\x0bidentifiers\x18\x01 \x03(\t\x12+\n\x06modems\x18\x02 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12\x0f\n\x07senders\x18\x03 \x03(\t\x12\x12\n\nrecipients\x18\x04 \x03(\t\x12\x33\n\x08statuses\x18\x05 \x03(\x0e\x32!.hiber.modem.ModemTransfer.Status\x12$\n\ncreated_in\x18\x06 \x01(\x0b\x32\x10.hiber.TimeRange\x12%\n\x0breceived_in\x18\x07 \x01(\x0b\x32\x10.hiber.TimeRange\x12)\n\x0fnot_received_in\x18\x08 \x01(\x0b\x32\x10.hiber.TimeRange\x12&\n\x0c\x63\x61ncelled_in\x18\t \x01(\x0b\x32\x10.hiber.TimeRange\x12.\n\x05types\x18\n \x03(\x0e\x32\x1f.hiber.modem.ModemTransfer.Type\"\xd3\x02\n\x15TransferModemsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12.\n\tselection\x18\x02 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12\x1e\n\x16recipient_organization\x18\x03 \x01(\t\x12G\n\x10\x63reate_recipient\x18\x04 \x01(\x0b\x32-.hiber.organization.CreateOrganizationRequest\x12\x1c\n\x14tracking_information\x18\x05 \x01(\t\x1am\n\x08Response\x12\x33\n\x07request\x18\x01 \x01(\x0b\x32\".hiber.modem.TransferModemsRequest\x12,\n\x08transfer\x18\x02 \x01(\x0b\x32\x1a.hiber.modem.ModemTransfer\"\xb3\x02\n\x19ListModemTransfersRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x36\n\tselection\x18\x02 \x01(\x0b\x32#.hiber.modem.ModemTransferSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\xa0\x01\n\x08Response\x12\x37\n\x07request\x18\x01 \x01(\x0b\x32&.hiber.modem.ListModemTransfersRequest\x12-\n\ttransfers\x18\x02 \x03(\x0b\x32\x1a.hiber.modem.ModemTransfer\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xdf\x01\n\x1a\x43\x61ncelModemTransferRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x36\n\tselection\x18\x02 \x01(\x0b\x32#.hiber.modem.ModemTransferSelection\x1as\n\x08Response\x12\x38\n\x07request\x18\x01 \x01(\x0b\x32\'.hiber.modem.CancelModemTransferRequest\x12-\n\tcancelled\x18\x02 \x03(\x0b\x32\x1a.hiber.modem.ModemTransfer\"\xe2\x01\n\x1cReceivedModemTransferRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x36\n\tselection\x18\x02 \x01(\x0b\x32#.hiber.modem.ModemTransferSelection\x1at\n\x08Response\x12:\n\x07request\x18\x01 \x01(\x0b\x32).hiber.modem.ReceivedModemTransferRequest\x12,\n\x08received\x18\x02 \x03(\x0b\x32\x1a.hiber.modem.ModemTransfer\"\xec\x01\n\x1fNotReceivedModemTransferRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x36\n\tselection\x18\x02 \x01(\x0b\x32#.hiber.modem.ModemTransferSelection\x1a{\n\x08Response\x12=\n\x07request\x18\x01 \x01(\x0b\x32,.hiber.modem.NotReceivedModemTransferRequest\x12\x30\n\x0cnot_received\x18\x02 \x03(\x0b\x32\x1a.hiber.modem.ModemTransfer\"\xee\x02\n\x1cPrepareModemForReturnRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x13\n\x0btransfer_id\x18\x02 \x01(\t\x12.\n\tselection\x18\x03 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12;\n\x06reason\x18\x04 \x01(\x0e\x32+.hiber.modem.ModemTransferReturnLine.Reason\x12\x0f\n\x07\x63omment\x18\x05 \x01(\t\x12 \n\x18replace_previous_comment\x18\x06 \x01(\x08\x1a\x82\x01\n\x08Response\x12:\n\x07request\x18\x01 \x01(\x0b\x32).hiber.modem.PrepareModemForReturnRequest\x12:\n\x0cmodem_return\x18\x02 \x01(\x0b\x32$.hiber.modem.ModemTransferReturnLine\"u\n%DeleteModemTransferReturnLinesRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x13\n\x0btransfer_id\x18\x02 \x01(\t\x12\x15\n\rmodem_numbers\x18\x03 \x03(\t\x1a\n\n\x08Response\"\xcd\x02\n#ListModemTransferReturnLinesRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x36\n\tselection\x18\x02 \x01(\x0b\x32#.hiber.modem.ModemTransferSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\xb0\x01\n\x08Response\x12\x41\n\x07request\x18\x01 \x01(\x0b\x32\x30.hiber.modem.ListModemTransferReturnLinesRequest\x12\x33\n\x05lines\x18\x02 \x03(\x0b\x32$.hiber.modem.ModemTransferReturnLine\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xf1\x01\n\x11SendReturnRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x36\n\tselection\x18\x02 \x01(\x0b\x32#.hiber.modem.ModemTransferSelection\x12\x1c\n\x14tracking_information\x18\x03 \x01(\t\x1ap\n\x08Response\x12/\n\x07request\x18\x01 \x01(\x0b\x32\x1e.hiber.modem.SendReturnRequest\x12\x33\n\x0freturn_transfer\x18\x02 \x01(\x0b\x32\x1a.hiber.modem.ModemTransfer2\x98\x04\n\x14ModemTransferService\x12[\n\x08Transfer\x12\".hiber.modem.TransferModemsRequest\x1a+.hiber.modem.TransferModemsRequest.Response\x12_\n\x04List\x12&.hiber.modem.ListModemTransfersRequest\x1a/.hiber.modem.ListModemTransfersRequest.Response\x12\x63\n\x06\x43\x61ncel\x12\'.hiber.modem.CancelModemTransferRequest\x1a\x30.hiber.modem.CancelModemTransferRequest.Response\x12i\n\x08Received\x12).hiber.modem.ReceivedModemTransferRequest\x1a\x32.hiber.modem.ReceivedModemTransferRequest.Response\x12r\n\x0bNotReceived\x12,.hiber.modem.NotReceivedModemTransferRequest\x1a\x35.hiber.modem.NotReceivedModemTransferRequest.Response2\xcc\x03\n\x1aModemTransferReturnService\x12h\n\x07Prepare\x12).hiber.modem.PrepareModemForReturnRequest\x1a\x32.hiber.modem.PrepareModemForReturnRequest.Response\x12t\n\x05Lines\x12\x30.hiber.modem.ListModemTransferReturnLinesRequest\x1a\x39.hiber.modem.ListModemTransferReturnLinesRequest.Response\x12}\n\nDeleteLine\x12\x32.hiber.modem.DeleteModemTransferReturnLinesRequest\x1a;.hiber.modem.DeleteModemTransferReturnLinesRequest.Response\x12O\n\x04Send\x12\x1e.hiber.modem.SendReturnRequest\x1a\'.hiber.modem.SendReturnRequest.ResponseB8\n\x1bglobal.hiber.api.grpc.modemB\x10ModemTransferApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,organization__pb2.DESCRIPTOR,modem__pb2.DESCRIPTOR,tag__pb2.DESCRIPTOR,])
 
@@ -107,11 +107,15 @@ _MODEMTRANSFERRETURNLINE_REASON = _descriptor.EnumDescriptor(
       name='DEAD', index=4, number=4,
       options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='MISSING', index=5, number=5,
+      options=None,
+      type=None),
   ],
   containing_type=None,
   options=None,
   serialized_start=987,
-  serialized_end=1079,
+  serialized_end=1092,
 )
 _sym_db.RegisterEnumDescriptor(_MODEMTRANSFERRETURNLINE_REASON)
 
@@ -317,7 +321,7 @@ _MODEMTRANSFERRETURNLINE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=730,
-  serialized_end=1079,
+  serialized_end=1092,
 )
 
 
@@ -410,8 +414,8 @@ _MODEMTRANSFERSELECTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1082,
-  serialized_end=1470,
+  serialized_start=1095,
+  serialized_end=1483,
 )
 
 
@@ -448,8 +452,8 @@ _TRANSFERMODEMSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1703,
-  serialized_end=1812,
+  serialized_start=1716,
+  serialized_end=1825,
 )
 
 _TRANSFERMODEMSREQUEST = _descriptor.Descriptor(
@@ -506,8 +510,8 @@ _TRANSFERMODEMSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1473,
-  serialized_end=1812,
+  serialized_start=1486,
+  serialized_end=1825,
 )
 
 
@@ -551,8 +555,8 @@ _LISTMODEMTRANSFERSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1962,
-  serialized_end=2122,
+  serialized_start=1975,
+  serialized_end=2135,
 )
 
 _LISTMODEMTRANSFERSREQUEST = _descriptor.Descriptor(
@@ -595,8 +599,8 @@ _LISTMODEMTRANSFERSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1815,
-  serialized_end=2122,
+  serialized_start=1828,
+  serialized_end=2135,
 )
 
 
@@ -633,8 +637,8 @@ _CANCELMODEMTRANSFERREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2233,
-  serialized_end=2348,
+  serialized_start=2246,
+  serialized_end=2361,
 )
 
 _CANCELMODEMTRANSFERREQUEST = _descriptor.Descriptor(
@@ -670,8 +674,8 @@ _CANCELMODEMTRANSFERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2125,
-  serialized_end=2348,
+  serialized_start=2138,
+  serialized_end=2361,
 )
 
 
@@ -708,8 +712,8 @@ _RECEIVEDMODEMTRANSFERREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2461,
-  serialized_end=2577,
+  serialized_start=2474,
+  serialized_end=2590,
 )
 
 _RECEIVEDMODEMTRANSFERREQUEST = _descriptor.Descriptor(
@@ -745,8 +749,8 @@ _RECEIVEDMODEMTRANSFERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2351,
-  serialized_end=2577,
+  serialized_start=2364,
+  serialized_end=2590,
 )
 
 
@@ -783,8 +787,8 @@ _NOTRECEIVEDMODEMTRANSFERREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2693,
-  serialized_end=2816,
+  serialized_start=2706,
+  serialized_end=2829,
 )
 
 _NOTRECEIVEDMODEMTRANSFERREQUEST = _descriptor.Descriptor(
@@ -820,8 +824,8 @@ _NOTRECEIVEDMODEMTRANSFERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2580,
-  serialized_end=2816,
+  serialized_start=2593,
+  serialized_end=2829,
 )
 
 
@@ -858,8 +862,8 @@ _PREPAREMODEMFORRETURNREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3055,
-  serialized_end=3185,
+  serialized_start=3068,
+  serialized_end=3198,
 )
 
 _PREPAREMODEMFORRETURNREQUEST = _descriptor.Descriptor(
@@ -923,8 +927,8 @@ _PREPAREMODEMFORRETURNREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2819,
-  serialized_end=3185,
+  serialized_start=2832,
+  serialized_end=3198,
 )
 
 
@@ -947,8 +951,8 @@ _DELETEMODEMTRANSFERRETURNLINESREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1703,
-  serialized_end=1713,
+  serialized_start=1716,
+  serialized_end=1726,
 )
 
 _DELETEMODEMTRANSFERRETURNLINESREQUEST = _descriptor.Descriptor(
@@ -991,8 +995,8 @@ _DELETEMODEMTRANSFERRETURNLINESREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3187,
-  serialized_end=3304,
+  serialized_start=3200,
+  serialized_end=3317,
 )
 
 
@@ -1036,8 +1040,8 @@ _LISTMODEMTRANSFERRETURNLINESREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3464,
-  serialized_end=3640,
+  serialized_start=3477,
+  serialized_end=3653,
 )
 
 _LISTMODEMTRANSFERRETURNLINESREQUEST = _descriptor.Descriptor(
@@ -1080,8 +1084,8 @@ _LISTMODEMTRANSFERRETURNLINESREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3307,
-  serialized_end=3640,
+  serialized_start=3320,
+  serialized_end=3653,
 )
 
 
@@ -1118,8 +1122,8 @@ _SENDRETURNREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3772,
-  serialized_end=3884,
+  serialized_start=3785,
+  serialized_end=3897,
 )
 
 _SENDRETURNREQUEST = _descriptor.Descriptor(
@@ -1162,8 +1166,8 @@ _SENDRETURNREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3643,
-  serialized_end=3884,
+  serialized_start=3656,
+  serialized_end=3897,
 )
 
 _MODEMTRANSFER.fields_by_name['type'].enum_type = _MODEMTRANSFER_TYPE
@@ -1406,8 +1410,8 @@ _MODEMTRANSFERSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=3887,
-  serialized_end=4423,
+  serialized_start=3900,
+  serialized_end=4436,
   methods=[
   _descriptor.MethodDescriptor(
     name='Transfer',
@@ -1466,8 +1470,8 @@ _MODEMTRANSFERRETURNSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=1,
   options=None,
-  serialized_start=4426,
-  serialized_end=4886,
+  serialized_start=4439,
+  serialized_end=4899,
   methods=[
   _descriptor.MethodDescriptor(
     name='Prepare',
