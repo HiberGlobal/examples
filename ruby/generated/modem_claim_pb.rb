@@ -34,6 +34,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :statuses, :enum, 2, "hiber.modem.ModemClaim.Status"
     optional :created_time_range, :message, 3, "hiber.TimeRange"
     optional :closed_time_range, :message, 4, "hiber.TimeRange"
+    optional :owned_only, :bool, 5
+    optional :claimed_only, :bool, 6
   end
   add_message "hiber.modem.ClaimModemRequest" do
     optional :organization, :string, 1

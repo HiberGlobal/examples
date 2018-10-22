@@ -43,6 +43,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :comment, :string, 5
     optional :created_at, :message, 6, "hiber.Timestamp"
     optional :returned_at, :message, 7, "hiber.Timestamp"
+    optional :return_deadline, :message, 8, "hiber.Timestamp"
   end
   add_enum "hiber.modem.ModemTransferReturnLine.Reason" do
     value :OTHER, 0
@@ -63,6 +64,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :not_received_in, :message, 8, "hiber.TimeRange"
     optional :cancelled_in, :message, 9, "hiber.TimeRange"
     repeated :types, :enum, 10, "hiber.modem.ModemTransfer.Type"
+    optional :inbound_only, :bool, 11
+    optional :outbound_only, :bool, 12
   end
   add_message "hiber.modem.TransferModemsRequest" do
     optional :organization, :string, 1
@@ -70,6 +73,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :recipient_organization, :string, 3
     optional :create_recipient, :message, 4, "hiber.organization.CreateOrganizationRequest"
     optional :tracking_information, :string, 5
+    optional :mark_received_automatically, :bool, 6
   end
   add_message "hiber.modem.TransferModemsRequest.Response" do
     optional :request, :message, 1, "hiber.modem.TransferModemsRequest"
@@ -119,7 +123,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "hiber.modem.PrepareModemForReturnRequest.Response" do
     optional :request, :message, 1, "hiber.modem.PrepareModemForReturnRequest"
-    optional :modem_return, :message, 2, "hiber.modem.ModemTransferReturnLine"
+    repeated :modem_return_lines, :message, 3, "hiber.modem.ModemTransferReturnLine"
   end
   add_message "hiber.modem.DeleteModemTransferReturnLinesRequest" do
     optional :organization, :string, 1

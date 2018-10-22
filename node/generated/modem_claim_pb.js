@@ -495,7 +495,9 @@ proto.hiber.modem.ModemClaimSelection.toObject = function(includeInstance, msg) 
     modems: (f = msg.getModems()) && base_pb.Filter.Modems.toObject(includeInstance, f),
     statusesList: jspb.Message.getRepeatedField(msg, 2),
     createdTimeRange: (f = msg.getCreatedTimeRange()) && base_pb.TimeRange.toObject(includeInstance, f),
-    closedTimeRange: (f = msg.getClosedTimeRange()) && base_pb.TimeRange.toObject(includeInstance, f)
+    closedTimeRange: (f = msg.getClosedTimeRange()) && base_pb.TimeRange.toObject(includeInstance, f),
+    ownedOnly: jspb.Message.getFieldWithDefault(msg, 5, false),
+    claimedOnly: jspb.Message.getFieldWithDefault(msg, 6, false)
   };
 
   if (includeInstance) {
@@ -550,6 +552,14 @@ proto.hiber.modem.ModemClaimSelection.deserializeBinaryFromReader = function(msg
       var value = new base_pb.TimeRange;
       reader.readMessage(value,base_pb.TimeRange.deserializeBinaryFromReader);
       msg.setClosedTimeRange(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setOwnedOnly(value);
+      break;
+    case 6:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setClaimedOnly(value);
       break;
     default:
       reader.skipField();
@@ -609,6 +619,20 @@ proto.hiber.modem.ModemClaimSelection.serializeBinaryToWriter = function(message
       4,
       f,
       base_pb.TimeRange.serializeBinaryToWriter
+    );
+  }
+  f = message.getOwnedOnly();
+  if (f) {
+    writer.writeBool(
+      5,
+      f
+    );
+  }
+  f = message.getClaimedOnly();
+  if (f) {
+    writer.writeBool(
+      6,
+      f
     );
   }
 };
@@ -730,6 +754,40 @@ proto.hiber.modem.ModemClaimSelection.prototype.clearClosedTimeRange = function(
  */
 proto.hiber.modem.ModemClaimSelection.prototype.hasClosedTimeRange = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional bool owned_only = 5;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.modem.ModemClaimSelection.prototype.getOwnedOnly = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 5, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.modem.ModemClaimSelection.prototype.setOwnedOnly = function(value) {
+  jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * optional bool claimed_only = 6;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.modem.ModemClaimSelection.prototype.getClaimedOnly = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 6, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.modem.ModemClaimSelection.prototype.setClaimedOnly = function(value) {
+  jspb.Message.setField(this, 6, value);
 };
 
 

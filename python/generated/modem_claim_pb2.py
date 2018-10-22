@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='modem_claim.proto',
   package='hiber.modem',
   syntax='proto3',
-  serialized_pb=_b('\n\x11modem_claim.proto\x12\x0bhiber.modem\x1a\nbase.proto\x1a\x0bmodem.proto\x1a\ttag.proto\"\xca\x03\n\nModemClaim\x12\x14\n\x0cmodem_number\x18\x01 \x01(\t\x12.\n\x06status\x18\x02 \x01(\x0e\x32\x1e.hiber.modem.ModemClaim.Status\x12;\n\rreject_reason\x18\x03 \x01(\x0e\x32$.hiber.modem.ModemClaim.RejectReason\x12\x16\n\x0ereject_comment\x18\x04 \x01(\t\x12$\n\ncreated_at\x18\x05 \x01(\x0b\x32\x10.hiber.Timestamp\x12#\n\tclosed_at\x18\x06 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x1d\n\x15\x63laiming_organization\x18\x07 \x01(\t\x12\x1c\n\x04tags\x18\x08 \x03(\x0b\x32\x0e.hiber.tag.Tag\".\n\x06Status\x12\x08\n\x04OPEN\x10\x00\x12\x0c\n\x08\x41\x43\x43\x45PTED\x10\x01\x12\x0c\n\x08REJECTED\x10\x02\"i\n\x0cRejectReason\x12\x0b\n\x07NOT_SET\x10\x00\x12\x15\n\x11UNKNOWN_RECIPIENT\x10\x01\x12\x11\n\rINVALID_CLAIM\x10\x02\x12\x17\n\x13TRANSFERRED_INSTEAD\x10\x03\x12\t\n\x05OTHER\x10\x04\"\xc8\x01\n\x13ModemClaimSelection\x12$\n\x06modems\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12\x30\n\x08statuses\x18\x02 \x03(\x0e\x32\x1e.hiber.modem.ModemClaim.Status\x12,\n\x12\x63reated_time_range\x18\x03 \x01(\x0b\x32\x10.hiber.TimeRange\x12+\n\x11\x63losed_time_range\x18\x04 \x01(\x0b\x32\x10.hiber.TimeRange\"\x80\x02\n\x11\x43laimModemRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x39\n\x06\x63laims\x18\x02 \x03(\x0b\x32).hiber.modem.ClaimModemRequest.ClaimModem\x1a\x34\n\nClaimModem\x12\x14\n\x0cmodem_number\x18\x01 \x01(\t\x12\x10\n\x08verifier\x18\x02 \x01(\t\x1a\x64\n\x08Response\x12/\n\x07request\x18\x01 \x01(\x0b\x32\x1e.hiber.modem.ClaimModemRequest\x12\'\n\x06\x63laims\x18\x02 \x03(\x0b\x32\x17.hiber.modem.ModemClaim\"\xa4\x02\n\x16ListModemClaimsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x33\n\tselection\x18\x02 \x01(\x0b\x32 .hiber.modem.ModemClaimSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\x97\x01\n\x08Response\x12\'\n\x06\x63laims\x18\x01 \x03(\x0b\x32\x17.hiber.modem.ModemClaim\x12\x34\n\x07request\x18\x02 \x01(\x0b\x32#.hiber.modem.ListModemClaimsRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xd2\x01\n\x18\x41\x63\x63\x65ptModemClaimsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x33\n\tselection\x18\x02 \x01(\x0b\x32 .hiber.modem.ModemClaimSelection\x1ak\n\x08Response\x12\'\n\x06\x63laims\x18\x01 \x03(\x0b\x32\x17.hiber.modem.ModemClaim\x12\x36\n\x07request\x18\x02 \x01(\x0b\x32%.hiber.modem.AcceptModemClaimsRequest\"\xa0\x02\n\x18RejectModemClaimsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x33\n\tselection\x18\x02 \x01(\x0b\x32 .hiber.modem.ModemClaimSelection\x12\x34\n\x06reason\x18\x03 \x01(\x0e\x32$.hiber.modem.ModemClaim.RejectReason\x12\x16\n\x0ereason_comment\x18\x04 \x01(\t\x1ak\n\x08Response\x12\'\n\x06\x63laims\x18\x01 \x03(\x0b\x32\x17.hiber.modem.ModemClaim\x12\x36\n\x07request\x18\x02 \x01(\x0b\x32%.hiber.modem.RejectModemClaimsRequest2\x94\x03\n\x11ModemClaimService\x12P\n\x05\x43laim\x12\x1e.hiber.modem.ClaimModemRequest\x1a\'.hiber.modem.ClaimModemRequest.Response\x12_\n\nListClaims\x12#.hiber.modem.ListModemClaimsRequest\x1a,.hiber.modem.ListModemClaimsRequest.Response\x12\x65\n\x0c\x41\x63\x63\x65ptClaims\x12%.hiber.modem.AcceptModemClaimsRequest\x1a..hiber.modem.AcceptModemClaimsRequest.Response\x12\x65\n\x0cRejectClaims\x12%.hiber.modem.RejectModemClaimsRequest\x1a..hiber.modem.RejectModemClaimsRequest.ResponseB5\n\x1bglobal.hiber.api.grpc.modemB\rModemClaimApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\x11modem_claim.proto\x12\x0bhiber.modem\x1a\nbase.proto\x1a\x0bmodem.proto\x1a\ttag.proto\"\xca\x03\n\nModemClaim\x12\x14\n\x0cmodem_number\x18\x01 \x01(\t\x12.\n\x06status\x18\x02 \x01(\x0e\x32\x1e.hiber.modem.ModemClaim.Status\x12;\n\rreject_reason\x18\x03 \x01(\x0e\x32$.hiber.modem.ModemClaim.RejectReason\x12\x16\n\x0ereject_comment\x18\x04 \x01(\t\x12$\n\ncreated_at\x18\x05 \x01(\x0b\x32\x10.hiber.Timestamp\x12#\n\tclosed_at\x18\x06 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x1d\n\x15\x63laiming_organization\x18\x07 \x01(\t\x12\x1c\n\x04tags\x18\x08 \x03(\x0b\x32\x0e.hiber.tag.Tag\".\n\x06Status\x12\x08\n\x04OPEN\x10\x00\x12\x0c\n\x08\x41\x43\x43\x45PTED\x10\x01\x12\x0c\n\x08REJECTED\x10\x02\"i\n\x0cRejectReason\x12\x0b\n\x07NOT_SET\x10\x00\x12\x15\n\x11UNKNOWN_RECIPIENT\x10\x01\x12\x11\n\rINVALID_CLAIM\x10\x02\x12\x17\n\x13TRANSFERRED_INSTEAD\x10\x03\x12\t\n\x05OTHER\x10\x04\"\xf2\x01\n\x13ModemClaimSelection\x12$\n\x06modems\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12\x30\n\x08statuses\x18\x02 \x03(\x0e\x32\x1e.hiber.modem.ModemClaim.Status\x12,\n\x12\x63reated_time_range\x18\x03 \x01(\x0b\x32\x10.hiber.TimeRange\x12+\n\x11\x63losed_time_range\x18\x04 \x01(\x0b\x32\x10.hiber.TimeRange\x12\x12\n\nowned_only\x18\x05 \x01(\x08\x12\x14\n\x0c\x63laimed_only\x18\x06 \x01(\x08\"\x80\x02\n\x11\x43laimModemRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x39\n\x06\x63laims\x18\x02 \x03(\x0b\x32).hiber.modem.ClaimModemRequest.ClaimModem\x1a\x34\n\nClaimModem\x12\x14\n\x0cmodem_number\x18\x01 \x01(\t\x12\x10\n\x08verifier\x18\x02 \x01(\t\x1a\x64\n\x08Response\x12/\n\x07request\x18\x01 \x01(\x0b\x32\x1e.hiber.modem.ClaimModemRequest\x12\'\n\x06\x63laims\x18\x02 \x03(\x0b\x32\x17.hiber.modem.ModemClaim\"\xa4\x02\n\x16ListModemClaimsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x33\n\tselection\x18\x02 \x01(\x0b\x32 .hiber.modem.ModemClaimSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\x97\x01\n\x08Response\x12\'\n\x06\x63laims\x18\x01 \x03(\x0b\x32\x17.hiber.modem.ModemClaim\x12\x34\n\x07request\x18\x02 \x01(\x0b\x32#.hiber.modem.ListModemClaimsRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xd2\x01\n\x18\x41\x63\x63\x65ptModemClaimsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x33\n\tselection\x18\x02 \x01(\x0b\x32 .hiber.modem.ModemClaimSelection\x1ak\n\x08Response\x12\'\n\x06\x63laims\x18\x01 \x03(\x0b\x32\x17.hiber.modem.ModemClaim\x12\x36\n\x07request\x18\x02 \x01(\x0b\x32%.hiber.modem.AcceptModemClaimsRequest\"\xa0\x02\n\x18RejectModemClaimsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x33\n\tselection\x18\x02 \x01(\x0b\x32 .hiber.modem.ModemClaimSelection\x12\x34\n\x06reason\x18\x03 \x01(\x0e\x32$.hiber.modem.ModemClaim.RejectReason\x12\x16\n\x0ereason_comment\x18\x04 \x01(\t\x1ak\n\x08Response\x12\'\n\x06\x63laims\x18\x01 \x03(\x0b\x32\x17.hiber.modem.ModemClaim\x12\x36\n\x07request\x18\x02 \x01(\x0b\x32%.hiber.modem.RejectModemClaimsRequest2\x94\x03\n\x11ModemClaimService\x12P\n\x05\x43laim\x12\x1e.hiber.modem.ClaimModemRequest\x1a\'.hiber.modem.ClaimModemRequest.Response\x12_\n\nListClaims\x12#.hiber.modem.ListModemClaimsRequest\x1a,.hiber.modem.ListModemClaimsRequest.Response\x12\x65\n\x0c\x41\x63\x63\x65ptClaims\x12%.hiber.modem.AcceptModemClaimsRequest\x1a..hiber.modem.AcceptModemClaimsRequest.Response\x12\x65\n\x0cRejectClaims\x12%.hiber.modem.RejectModemClaimsRequest\x1a..hiber.modem.RejectModemClaimsRequest.ResponseB5\n\x1bglobal.hiber.api.grpc.modemB\rModemClaimApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,modem__pb2.DESCRIPTOR,tag__pb2.DESCRIPTOR,])
 
@@ -206,6 +206,20 @@ _MODEMCLAIMSELECTION = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='owned_only', full_name='hiber.modem.ModemClaimSelection.owned_only', index=4,
+      number=5, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='claimed_only', full_name='hiber.modem.ModemClaimSelection.claimed_only', index=5,
+      number=6, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -219,7 +233,7 @@ _MODEMCLAIMSELECTION = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=532,
-  serialized_end=732,
+  serialized_end=774,
 )
 
 
@@ -256,8 +270,8 @@ _CLAIMMODEMREQUEST_CLAIMMODEM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=837,
-  serialized_end=889,
+  serialized_start=879,
+  serialized_end=931,
 )
 
 _CLAIMMODEMREQUEST_RESPONSE = _descriptor.Descriptor(
@@ -293,8 +307,8 @@ _CLAIMMODEMREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=891,
-  serialized_end=991,
+  serialized_start=933,
+  serialized_end=1033,
 )
 
 _CLAIMMODEMREQUEST = _descriptor.Descriptor(
@@ -330,8 +344,8 @@ _CLAIMMODEMREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=735,
-  serialized_end=991,
+  serialized_start=777,
+  serialized_end=1033,
 )
 
 
@@ -375,8 +389,8 @@ _LISTMODEMCLAIMSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1135,
-  serialized_end=1286,
+  serialized_start=1177,
+  serialized_end=1328,
 )
 
 _LISTMODEMCLAIMSREQUEST = _descriptor.Descriptor(
@@ -419,8 +433,8 @@ _LISTMODEMCLAIMSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=994,
-  serialized_end=1286,
+  serialized_start=1036,
+  serialized_end=1328,
 )
 
 
@@ -457,8 +471,8 @@ _ACCEPTMODEMCLAIMSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1392,
-  serialized_end=1499,
+  serialized_start=1434,
+  serialized_end=1541,
 )
 
 _ACCEPTMODEMCLAIMSREQUEST = _descriptor.Descriptor(
@@ -494,8 +508,8 @@ _ACCEPTMODEMCLAIMSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1289,
-  serialized_end=1499,
+  serialized_start=1331,
+  serialized_end=1541,
 )
 
 
@@ -532,8 +546,8 @@ _REJECTMODEMCLAIMSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1683,
-  serialized_end=1790,
+  serialized_start=1725,
+  serialized_end=1832,
 )
 
 _REJECTMODEMCLAIMSREQUEST = _descriptor.Descriptor(
@@ -583,8 +597,8 @@ _REJECTMODEMCLAIMSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1502,
-  serialized_end=1790,
+  serialized_start=1544,
+  serialized_end=1832,
 )
 
 _MODEMCLAIM.fields_by_name['status'].enum_type = _MODEMCLAIM_STATUS
@@ -718,8 +732,8 @@ _MODEMCLAIMSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=1793,
-  serialized_end=2197,
+  serialized_start=1835,
+  serialized_end=2239,
   methods=[
   _descriptor.MethodDescriptor(
     name='Claim',

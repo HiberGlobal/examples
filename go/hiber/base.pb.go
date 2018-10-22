@@ -11,8 +11,8 @@ It is generated from these files:
 	dashboard.proto
 	event.proto
 	map.proto
-	modem.proto
 	modem_claim.proto
+	modem.proto
 	modem_transfer.proto
 	organization.proto
 	subscription.proto
@@ -50,6 +50,12 @@ It has these top-level messages:
 	GroundStation
 	MapBlock
 	MapRequest
+	ModemClaim
+	ModemClaimSelection
+	ClaimModemRequest
+	ListModemClaimsRequest
+	AcceptModemClaimsRequest
+	RejectModemClaimsRequest
 	Modem
 	ModemSelection
 	ModemMessage
@@ -62,12 +68,6 @@ It has these top-level messages:
 	UpdateModemTagsRequest
 	UpdatePeripheralsRequest
 	LicenseKeysRequest
-	ModemClaim
-	ModemClaimSelection
-	ClaimModemRequest
-	ListModemClaimsRequest
-	AcceptModemClaimsRequest
-	RejectModemClaimsRequest
 	ModemTransfer
 	ModemTransferReturnLine
 	ModemTransferSelection
