@@ -4,6 +4,8 @@
 require 'google/protobuf'
 
 require 'base_pb'
+require 'organization_pb'
+require 'publisher_pb'
 require 'modem_pb'
 require 'modem_transfer_pb'
 require 'modem_claim_pb'
@@ -24,10 +26,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :user_added, :message, 8, "hiber.event.Event.UserEvent.UserAddedEvent"
       optional :user_removed, :message, 9, "hiber.event.Event.UserEvent.UserRemovedEvent"
       optional :user_access_request, :message, 10, "hiber.event.Event.UserEvent.UserAccessRequestEvent"
-      optional :webhook_created, :message, 11, "hiber.event.Event.WebhookEvent.CreatedEvent"
-      optional :webhook_updated, :message, 12, "hiber.event.Event.WebhookEvent.UpdatedEvent"
-      optional :webhook_deleted, :message, 13, "hiber.event.Event.WebhookEvent.DeletedEvent"
-      optional :webhook_failed, :message, 14, "hiber.event.Event.WebhookEvent.FailedEvent"
       optional :modem_transfer_started, :message, 15, "hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent"
       optional :modem_transfer_cancelled, :message, 16, "hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent"
       optional :modem_transfer_received, :message, 17, "hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent"
@@ -38,6 +36,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :modem_claim_rejected_event, :message, 22, "hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent"
       optional :token_expiry_warning, :message, 23, "hiber.event.Event.TokenEvent.TokenExpiryWarningEvent"
       optional :token_expired, :message, 24, "hiber.event.Event.TokenEvent.TokenExpiredEvent"
+      optional :token_created, :message, 30, "hiber.event.Event.TokenEvent.TokenCreatedEvent"
+      optional :organization_updated, :message, 25, "hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent"
+      optional :publisher_created, :message, 31, "hiber.event.Event.PublisherEvent.CreatedEvent"
+      optional :publisher_updated, :message, 32, "hiber.event.Event.PublisherEvent.UpdatedEvent"
+      optional :publisher_deleted, :message, 33, "hiber.event.Event.PublisherEvent.DeletedEvent"
+      optional :publisher_failed, :message, 34, "hiber.event.Event.PublisherEvent.FailedEvent"
     end
   end
   add_message "hiber.event.Event.ModemEvent" do
@@ -97,7 +101,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent" do
     optional :organization, :string, 1
     optional :modem_number, :string, 2
-    optional :modem_message_id, :int64, 3
+    optional :modem_message_id, :uint64, 3
     optional :time, :message, 4, "hiber.Timestamp"
     optional :reason, :string, 5
     repeated :tags, :message, 6, "hiber.tag.Tag"
@@ -202,42 +206,54 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :title, :string, 4
     optional :description, :string, 5
   end
-  add_message "hiber.event.Event.WebhookEvent" do
+  add_message "hiber.event.Event.PublisherEvent" do
   end
-  add_message "hiber.event.Event.WebhookEvent.CreatedEvent" do
+  add_message "hiber.event.Event.PublisherEvent.CreatedEvent" do
     optional :organization, :string, 1
-    optional :created, :message, 2, "hiber.webhook.Webhook"
+    optional :created, :message, 2, "hiber.publisher.Publisher"
     repeated :tags, :message, 3, "hiber.tag.Tag"
     optional :title, :string, 4
     optional :description, :string, 5
     optional :time, :message, 6, "hiber.Timestamp"
   end
-  add_message "hiber.event.Event.WebhookEvent.UpdatedEvent" do
+  add_message "hiber.event.Event.PublisherEvent.UpdatedEvent" do
     optional :organization, :string, 1
+    optional :updated_description, :message, 2, "hiber.UpdateClearableString"
+    optional :partial_update_data, :message, 3, "hiber.publisher.Publisher.Data"
+    optional :updated_event_filter, :message, 4, "hiber.publisher.UpdatePublisherRequest.UpdateEvents"
+    optional :updated_modem_filter, :message, 5, "hiber.publisher.UpdatePublisherRequest.UpdateModems"
+    optional :updated_tag_filter, :message, 6, "hiber.publisher.UpdatePublisherRequest.UpdateTags"
+    optional :updated_active_state, :message, 7, "hiber.UpdateBoolean"
+    repeated :tags, :message, 8, "hiber.tag.Tag"
+    optional :title, :string, 9
+    optional :description, :string, 10
+    optional :time, :message, 11, "hiber.Timestamp"
+  end
+  add_message "hiber.event.Event.PublisherEvent.DeletedEvent" do
+    optional :organization, :string, 1
+    optional :deleted, :message, 2, "hiber.publisher.Publisher"
     repeated :tags, :message, 3, "hiber.tag.Tag"
     optional :title, :string, 4
     optional :description, :string, 5
     optional :time, :message, 6, "hiber.Timestamp"
-    optional :update, :message, 7, "hiber.webhook.UpdateWebhookRequest.UpdateWebhook"
   end
-  add_message "hiber.event.Event.WebhookEvent.DeletedEvent" do
-    optional :organization, :string, 1
-    optional :deleted, :message, 2, "hiber.webhook.Webhook"
-    repeated :tags, :message, 3, "hiber.tag.Tag"
-    optional :title, :string, 4
-    optional :description, :string, 5
-    optional :time, :message, 6, "hiber.Timestamp"
-  end
-  add_message "hiber.event.Event.WebhookEvent.FailedEvent" do
+  add_message "hiber.event.Event.PublisherEvent.FailedEvent" do
     optional :organization, :string, 1
     optional :reason, :string, 2
-    optional :failed, :message, 3, "hiber.webhook.Webhook"
+    optional :failed, :message, 3, "hiber.publisher.Publisher"
     repeated :tags, :message, 4, "hiber.tag.Tag"
     optional :title, :string, 5
     optional :description, :string, 6
     optional :time, :message, 7, "hiber.Timestamp"
   end
   add_message "hiber.event.Event.TokenEvent" do
+  end
+  add_message "hiber.event.Event.TokenEvent.TokenCreatedEvent" do
+    optional :organization, :string, 1
+    optional :token, :message, 2, "hiber.token.Token"
+    optional :title, :string, 3
+    optional :description, :string, 4
+    optional :time, :message, 5, "hiber.Timestamp"
   end
   add_message "hiber.event.Event.TokenEvent.TokenExpiryWarningEvent" do
     optional :organization, :string, 1
@@ -253,6 +269,21 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :description, :string, 4
     optional :time, :message, 5, "hiber.Timestamp"
   end
+  add_message "hiber.event.Event.OrganizationEvent" do
+  end
+  add_message "hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent" do
+    optional :organization, :string, 1
+    optional :display_name_updated, :string, 2
+    optional :vat_number_updated, :string, 3
+    optional :address_updated, :message, 4, "hiber.organization.Organization.Address"
+    optional :is_business_updated, :message, 5, "hiber.UpdateBoolean"
+    optional :billng_name_updated, :string, 6
+    optional :billing_address_updated, :message, 7, "hiber.organization.Organization.Address"
+    optional :contact_updated, :message, 8, "hiber.organization.Organization.Contact"
+    optional :title, :string, 9
+    optional :description, :string, 10
+    optional :time, :message, 11, "hiber.Timestamp"
+  end
   add_message "hiber.event.BundledEvent" do
     optional :type, :enum, 1, "hiber.EventType"
     optional :amount, :int32, 2
@@ -263,7 +294,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.event.EventSelection" do
     optional :events, :message, 1, "hiber.Filter.Events"
     optional :modems, :message, 2, "hiber.Filter.Modems"
-    optional :webhooks, :message, 3, "hiber.Filter.Webhooks"
+    optional :publishers, :message, 3, "hiber.Filter.Publishers"
     optional :tags, :message, 4, "hiber.Filter.Tags"
     optional :time_range, :message, 6, "hiber.TimeRange"
     optional :errors_only, :bool, 7
@@ -287,8 +318,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :pagination, :message, 3, "hiber.Pagination.Result"
   end
   add_enum "hiber.event.ListEventsRequest.Sort" do
-    value :TIME, 0
-    value :TIME_INVERTED, 1
+    value :TIME_DESCENDING, 0
+    value :TIME_ASCENDING, 1
     value :MODEM_NUMBER_ASC, 2
     value :MODEM_NUMBER_DESC, 3
     value :MODEM_NUMBER_SPECIFIED, 4
@@ -324,14 +355,17 @@ module Hiber
     Event::UserEvent::UserAddedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.UserEvent.UserAddedEvent").msgclass
     Event::UserEvent::UserRemovedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.UserEvent.UserRemovedEvent").msgclass
     Event::UserEvent::UserAccessRequestEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.UserEvent.UserAccessRequestEvent").msgclass
-    Event::WebhookEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.WebhookEvent").msgclass
-    Event::WebhookEvent::CreatedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.WebhookEvent.CreatedEvent").msgclass
-    Event::WebhookEvent::UpdatedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.WebhookEvent.UpdatedEvent").msgclass
-    Event::WebhookEvent::DeletedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.WebhookEvent.DeletedEvent").msgclass
-    Event::WebhookEvent::FailedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.WebhookEvent.FailedEvent").msgclass
+    Event::PublisherEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.PublisherEvent").msgclass
+    Event::PublisherEvent::CreatedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.PublisherEvent.CreatedEvent").msgclass
+    Event::PublisherEvent::UpdatedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.PublisherEvent.UpdatedEvent").msgclass
+    Event::PublisherEvent::DeletedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.PublisherEvent.DeletedEvent").msgclass
+    Event::PublisherEvent::FailedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.PublisherEvent.FailedEvent").msgclass
     Event::TokenEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.TokenEvent").msgclass
+    Event::TokenEvent::TokenCreatedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.TokenEvent.TokenCreatedEvent").msgclass
     Event::TokenEvent::TokenExpiryWarningEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.TokenEvent.TokenExpiryWarningEvent").msgclass
     Event::TokenEvent::TokenExpiredEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.TokenEvent.TokenExpiredEvent").msgclass
+    Event::OrganizationEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.OrganizationEvent").msgclass
+    Event::OrganizationEvent::OrganizationUpdatedEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent").msgclass
     BundledEvent = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.BundledEvent").msgclass
     EventSelection = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.EventSelection").msgclass
     ListEventsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.event.ListEventsRequest").msgclass

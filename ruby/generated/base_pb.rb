@@ -13,6 +13,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :updated, :bool, 1
     optional :value, :string, 2
   end
+  add_message "hiber.UpdateOptionalId" do
+    optional :updated, :bool, 1
+    optional :value, :int64, 2
+  end
   add_message "hiber.UpdateBoolean" do
     optional :updated, :bool, 1
     optional :value, :bool, 2
@@ -39,6 +43,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :center, :message, 1, "hiber.Location"
     optional :bottom_left, :message, 2, "hiber.Location"
     optional :top_right, :message, 4, "hiber.Location"
+  end
+  add_message "hiber.BytesOrHex" do
+    optional :bytes, :bytes, 1
+    optional :hex, :string, 2
   end
   add_message "hiber.Pagination" do
     optional :size, :int32, 1
@@ -80,21 +88,26 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :exclude, :int64, 2
     optional :only_active, :bool, 3
   end
+  add_message "hiber.Filter.Publishers" do
+    repeated :include, :int64, 1
+    repeated :exclude, :int64, 2
+    optional :only_active, :bool, 3
+  end
   add_message "hiber.Filter.Users" do
     repeated :include, :string, 1
     repeated :exclude, :string, 2
   end
   add_enum "hiber.EventType" do
     value :DEFAULT, 0
-    value :WEBHOOK_CREATED, 1
-    value :WEBHOOK_UPDATED, 2
-    value :WEBHOOK_DELETED, 3
+    value :PUBLISHER_CREATED, 1
+    value :PUBLISHER_UPDATED, 2
+    value :PUBLISHER_DELETED, 3
     value :MODEM_LOCATION_UPDATED, 4
     value :MODEM_MESSAGE_RECEIVED, 5
     value :USER_ACCESS_REQUEST, 8
     value :USER_ADDED, 9
     value :USER_REMOVED, 10
-    value :WEBHOOK_FAILED, 11
+    value :PUBLISHER_FAILED, 11
     value :ORGANIZATION_UPDATED, 12
     value :MODEM_MESSAGE_SEQUENCE_SKIP, 13
     value :MODEM_MESSAGE_DELAYED, 14
@@ -108,6 +121,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :MODEM_CLAIM_CREATED, 22
     value :MODEM_CLAIM_ACCEPTED, 23
     value :MODEM_CLAIM_REFUSED, 24
+    value :TOKEN_CREATED, 31
     value :TOKEN_EXPIRY_WARNING, 25
     value :TOKEN_EXPIRED, 26
   end
@@ -121,12 +135,14 @@ end
 module Hiber
   UpdateZeroableInt = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.UpdateZeroableInt").msgclass
   UpdateClearableString = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.UpdateClearableString").msgclass
+  UpdateOptionalId = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.UpdateOptionalId").msgclass
   UpdateBoolean = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.UpdateBoolean").msgclass
   TimeRange = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.TimeRange").msgclass
   Timestamp = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Timestamp").msgclass
   Date = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Date").msgclass
   Location = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Location").msgclass
   Area = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Area").msgclass
+  BytesOrHex = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.BytesOrHex").msgclass
   Pagination = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Pagination").msgclass
   Pagination::Result = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Pagination.Result").msgclass
   Filter = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Filter").msgclass
@@ -136,6 +152,7 @@ module Hiber
   Filter::Modems = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Filter.Modems").msgclass
   Filter::Tags = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Filter.Tags").msgclass
   Filter::Webhooks = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Filter.Webhooks").msgclass
+  Filter::Publishers = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Filter.Publishers").msgclass
   Filter::Users = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Filter.Users").msgclass
   EventType = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.EventType").enummodule
   Health = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Health").enummodule

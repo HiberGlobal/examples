@@ -2357,7 +2357,8 @@ proto.hiber.modem.ModemMessage.toObject = function(includeInstance, msg) {
     sentAt: (f = msg.getSentAt()) && base_pb.Timestamp.toObject(includeInstance, f),
     location: (f = msg.getLocation()) && base_pb.Location.toObject(includeInstance, f),
     body: msg.getBody_asB64(),
-    receivedAt: (f = msg.getReceivedAt()) && base_pb.Timestamp.toObject(includeInstance, f)
+    receivedAt: (f = msg.getReceivedAt()) && base_pb.Timestamp.toObject(includeInstance, f),
+    messageId: jspb.Message.getFieldWithDefault(msg, 7, 0)
   };
 
   if (includeInstance) {
@@ -2420,6 +2421,10 @@ proto.hiber.modem.ModemMessage.deserializeBinaryFromReader = function(msg, reade
       var value = new base_pb.Timestamp;
       reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
       msg.setReceivedAt(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setMessageId(value);
       break;
     default:
       reader.skipField();
@@ -2493,6 +2498,13 @@ proto.hiber.modem.ModemMessage.serializeBinaryToWriter = function(message, write
       6,
       f,
       base_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getMessageId();
+  if (f !== 0) {
+    writer.writeUint64(
+      7,
+      f
     );
   }
 };
@@ -2654,6 +2666,21 @@ proto.hiber.modem.ModemMessage.prototype.clearReceivedAt = function() {
  */
 proto.hiber.modem.ModemMessage.prototype.hasReceivedAt = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional uint64 message_id = 7;
+ * @return {number}
+ */
+proto.hiber.modem.ModemMessage.prototype.getMessageId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/** @param {number} value */
+proto.hiber.modem.ModemMessage.prototype.setMessageId = function(value) {
+  jspb.Message.setField(this, 7, value);
 };
 
 

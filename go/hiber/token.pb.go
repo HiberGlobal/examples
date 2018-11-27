@@ -43,7 +43,7 @@ var TokenPermission_value = map[string]int32{
 func (x TokenPermission) String() string {
 	return proto.EnumName(TokenPermission_name, int32(x))
 }
-func (TokenPermission) EnumDescriptor() ([]byte, []int) { return fileDescriptor12, []int{0} }
+func (TokenPermission) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{0} }
 
 type Token struct {
 	Id           int64             `protobuf:"varint,1,opt,name=id" json:"id,omitempty"`
@@ -57,7 +57,7 @@ type Token struct {
 func (m *Token) Reset()                    { *m = Token{} }
 func (m *Token) String() string            { return proto.CompactTextString(m) }
 func (*Token) ProtoMessage()               {}
-func (*Token) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{0} }
+func (*Token) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{0} }
 
 func (m *Token) GetId() int64 {
 	if m != nil {
@@ -110,7 +110,7 @@ type TokenSelection struct {
 func (m *TokenSelection) Reset()                    { *m = TokenSelection{} }
 func (m *TokenSelection) String() string            { return proto.CompactTextString(m) }
 func (*TokenSelection) ProtoMessage()               {}
-func (*TokenSelection) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{1} }
+func (*TokenSelection) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{1} }
 
 func (m *TokenSelection) GetUsers() *Filter_Users {
 	if m != nil {
@@ -143,7 +143,7 @@ type ListTokensRequest struct {
 func (m *ListTokensRequest) Reset()                    { *m = ListTokensRequest{} }
 func (m *ListTokensRequest) String() string            { return proto.CompactTextString(m) }
 func (*ListTokensRequest) ProtoMessage()               {}
-func (*ListTokensRequest) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{2} }
+func (*ListTokensRequest) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{2} }
 
 func (m *ListTokensRequest) GetOrganization() string {
 	if m != nil {
@@ -175,7 +175,7 @@ type ListTokensRequest_Response struct {
 func (m *ListTokensRequest_Response) Reset()                    { *m = ListTokensRequest_Response{} }
 func (m *ListTokensRequest_Response) String() string            { return proto.CompactTextString(m) }
 func (*ListTokensRequest_Response) ProtoMessage()               {}
-func (*ListTokensRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{2, 0} }
+func (*ListTokensRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{2, 0} }
 
 func (m *ListTokensRequest_Response) GetTokens() []*Token {
 	if m != nil {
@@ -209,7 +209,7 @@ type CreateTokenRequest struct {
 func (m *CreateTokenRequest) Reset()                    { *m = CreateTokenRequest{} }
 func (m *CreateTokenRequest) String() string            { return proto.CompactTextString(m) }
 func (*CreateTokenRequest) ProtoMessage()               {}
-func (*CreateTokenRequest) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{3} }
+func (*CreateTokenRequest) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{3} }
 
 func (m *CreateTokenRequest) GetOrganization() string {
 	if m != nil {
@@ -246,7 +246,7 @@ type CreateTokenRequest_Response struct {
 func (m *CreateTokenRequest_Response) Reset()                    { *m = CreateTokenRequest_Response{} }
 func (m *CreateTokenRequest_Response) String() string            { return proto.CompactTextString(m) }
 func (*CreateTokenRequest_Response) ProtoMessage()               {}
-func (*CreateTokenRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{3, 0} }
+func (*CreateTokenRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{3, 0} }
 
 func (m *CreateTokenRequest_Response) GetToken() string {
 	if m != nil {
@@ -264,7 +264,7 @@ type DeleteTokenRequest struct {
 func (m *DeleteTokenRequest) Reset()                    { *m = DeleteTokenRequest{} }
 func (m *DeleteTokenRequest) String() string            { return proto.CompactTextString(m) }
 func (*DeleteTokenRequest) ProtoMessage()               {}
-func (*DeleteTokenRequest) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{4} }
+func (*DeleteTokenRequest) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{4} }
 
 func (m *DeleteTokenRequest) GetOrganization() string {
 	if m != nil {
@@ -286,7 +286,7 @@ type DeleteTokenRequest_Response struct {
 func (m *DeleteTokenRequest_Response) Reset()                    { *m = DeleteTokenRequest_Response{} }
 func (m *DeleteTokenRequest_Response) String() string            { return proto.CompactTextString(m) }
 func (*DeleteTokenRequest_Response) ProtoMessage()               {}
-func (*DeleteTokenRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{4, 0} }
+func (*DeleteTokenRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{4, 0} }
 
 func init() {
 	proto.RegisterType((*Token)(nil), "hiber.token.Token")
@@ -438,9 +438,9 @@ var _TokenService_serviceDesc = grpc.ServiceDesc{
 	Metadata: "token.proto",
 }
 
-func init() { proto.RegisterFile("token.proto", fileDescriptor12) }
+func init() { proto.RegisterFile("token.proto", fileDescriptor15) }
 
-var fileDescriptor12 = []byte{
+var fileDescriptor15 = []byte{
 	// 602 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xa4, 0x54, 0x4d, 0x6f, 0xd3, 0x40,
 	0x10, 0xad, 0xed, 0x24, 0x4d, 0xc6, 0x25, 0x6d, 0xb7, 0xa0, 0x1a, 0x17, 0x41, 0xe4, 0x4b, 0x4d,

@@ -31,7 +31,7 @@ type MapSelection struct {
 func (m *MapSelection) Reset()                    { *m = MapSelection{} }
 func (m *MapSelection) String() string            { return proto.CompactTextString(m) }
 func (*MapSelection) ProtoMessage()               {}
-func (*MapSelection) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{0} }
+func (*MapSelection) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{0} }
 
 func (m *MapSelection) GetModems() *Filter_Modems {
 	if m != nil {
@@ -69,7 +69,7 @@ type MapSelection_AreaRestriction struct {
 func (m *MapSelection_AreaRestriction) Reset()                    { *m = MapSelection_AreaRestriction{} }
 func (m *MapSelection_AreaRestriction) String() string            { return proto.CompactTextString(m) }
 func (*MapSelection_AreaRestriction) ProtoMessage()               {}
-func (*MapSelection_AreaRestriction) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{0, 0} }
+func (*MapSelection_AreaRestriction) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{0, 0} }
 
 func (m *MapSelection_AreaRestriction) GetBottomLeft() *Location {
 	if m != nil {
@@ -94,7 +94,7 @@ type GroundStation struct {
 func (m *GroundStation) Reset()                    { *m = GroundStation{} }
 func (m *GroundStation) String() string            { return proto.CompactTextString(m) }
 func (*GroundStation) ProtoMessage()               {}
-func (*GroundStation) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{1} }
+func (*GroundStation) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{1} }
 
 func (m *GroundStation) GetLocation() *Location {
 	if m != nil {
@@ -118,7 +118,7 @@ type MapBlock struct {
 func (m *MapBlock) Reset()                    { *m = MapBlock{} }
 func (m *MapBlock) String() string            { return proto.CompactTextString(m) }
 func (*MapBlock) ProtoMessage()               {}
-func (*MapBlock) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{2} }
+func (*MapBlock) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{2} }
 
 func (m *MapBlock) GetArea() *Area {
 	if m != nil {
@@ -157,7 +157,7 @@ type MapRequest struct {
 func (m *MapRequest) Reset()                    { *m = MapRequest{} }
 func (m *MapRequest) String() string            { return proto.CompactTextString(m) }
 func (*MapRequest) ProtoMessage()               {}
-func (*MapRequest) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{3} }
+func (*MapRequest) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{3} }
 
 func (m *MapRequest) GetOrganization() string {
 	if m != nil {
@@ -182,7 +182,7 @@ type MapRequest_Response struct {
 func (m *MapRequest_Response) Reset()                    { *m = MapRequest_Response{} }
 func (m *MapRequest_Response) String() string            { return proto.CompactTextString(m) }
 func (*MapRequest_Response) ProtoMessage()               {}
-func (*MapRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{3, 0} }
+func (*MapRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{3, 0} }
 
 func (m *MapRequest_Response) GetGroundStations() []*GroundStation {
 	if m != nil {
@@ -286,9 +286,9 @@ var _MapService_serviceDesc = grpc.ServiceDesc{
 	Metadata: "map.proto",
 }
 
-func init() { proto.RegisterFile("map.proto", fileDescriptor4) }
+func init() { proto.RegisterFile("map.proto", fileDescriptor6) }
 
-var fileDescriptor4 = []byte{
+var fileDescriptor6 = []byte{
 	// 522 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x74, 0x93, 0xc1, 0x6e, 0xd3, 0x40,
 	0x10, 0x86, 0x71, 0xda, 0x84, 0x64, 0x52, 0x08, 0xda, 0x16, 0x11, 0x72, 0xa0, 0x51, 0x2e, 0x04,

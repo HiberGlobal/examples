@@ -21,6 +21,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :secret, :string, 2
     optional :content_type, :enum, 3, "hiber.webhook.Webhook.ContentType"
     optional :disabled, :bool, 4
+    optional :certificate_id, :int64, 5
   end
   add_message "hiber.webhook.Webhook.WebhookFilters" do
     optional :event_types, :message, 1, "hiber.Filter.Events"
@@ -38,6 +39,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :webhooks, :message, 3, "hiber.Filter.Webhooks"
     optional :tags, :message, 4, "hiber.tag.TagSelection"
     repeated :health, :enum, 5, "hiber.Health"
+    repeated :certificate_ids, :int64, 6
   end
   add_message "hiber.webhook.WebhookCall" do
     optional :time, :message, 1, "hiber.Timestamp"
@@ -78,6 +80,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :data, :message, 3, "hiber.webhook.Webhook.WebhookData"
     optional :filters, :message, 4, "hiber.webhook.Webhook.WebhookFilters"
     repeated :tags, :int64, 5
+    optional :certificate_id, :int64, 6
   end
   add_message "hiber.webhook.GetWebhookRequest" do
     optional :id, :int64, 1
@@ -124,6 +127,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :modem_filter, :message, 6, "hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems"
     optional :tag_filter, :message, 7, "hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags"
     optional :active, :message, 8, "hiber.UpdateBoolean"
+    optional :certificate_id, :message, 9, "hiber.UpdateOptionalId"
   end
   add_message "hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents" do
     optional :updated, :bool, 1

@@ -37,7 +37,7 @@ type DashboardRequest struct {
 func (m *DashboardRequest) Reset()                    { *m = DashboardRequest{} }
 func (m *DashboardRequest) String() string            { return proto.CompactTextString(m) }
 func (*DashboardRequest) ProtoMessage()               {}
-func (*DashboardRequest) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{0} }
+func (*DashboardRequest) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{0} }
 
 func (m *DashboardRequest) GetOrganization() string {
 	if m != nil {
@@ -91,7 +91,7 @@ type DashboardRequest_Response struct {
 func (m *DashboardRequest_Response) Reset()                    { *m = DashboardRequest_Response{} }
 func (m *DashboardRequest_Response) String() string            { return proto.CompactTextString(m) }
 func (*DashboardRequest_Response) ProtoMessage()               {}
-func (*DashboardRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{0, 0} }
+func (*DashboardRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{0, 0} }
 
 func (m *DashboardRequest_Response) GetGroundStations() []*GroundStation {
 	if m != nil {
@@ -219,9 +219,9 @@ var _DashboardService_serviceDesc = grpc.ServiceDesc{
 	Metadata: "dashboard.proto",
 }
 
-func init() { proto.RegisterFile("dashboard.proto", fileDescriptor2) }
+func init() { proto.RegisterFile("dashboard.proto", fileDescriptor3) }
 
-var fileDescriptor2 = []byte{
+var fileDescriptor3 = []byte{
 	// 505 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x84, 0x53, 0x4f, 0x6b, 0xdb, 0x4e,
 	0x10, 0xfd, 0x39, 0x8e, 0xff, 0xad, 0x83, 0xe5, 0xdf, 0x86, 0x10, 0xd5, 0x3d, 0xd4, 0xf5, 0x49,

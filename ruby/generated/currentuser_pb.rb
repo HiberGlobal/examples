@@ -16,6 +16,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.user.CurrentUser.Settings" do
     optional :layout, :enum, 1, "hiber.user.CurrentUser.Settings.Layout"
     optional :map_style, :enum, 2, "hiber.user.CurrentUser.Settings.MapStyle"
+    optional :time_format, :enum, 3, "hiber.user.CurrentUser.Settings.TimeFormat"
+    optional :date_format, :enum, 4, "hiber.user.CurrentUser.Settings.DateFormat"
+    optional :thousands_separators_format, :enum, 5, "hiber.user.CurrentUser.Settings.ThousandsSeparatorsFormat"
   end
   add_enum "hiber.user.CurrentUser.Settings.Layout" do
     value :DEFAULT_LAYOUT, 0
@@ -27,6 +30,22 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :SATELLITE, 1
     value :HIBER_VISION, 2
     value :CLASSIC, 3
+  end
+  add_enum "hiber.user.CurrentUser.Settings.TimeFormat" do
+    value :DEFAULT_TIME_FORMAT, 0
+    value :TWENTYFOUR_HOUR, 1
+    value :TWELVE_HOUR, 2
+  end
+  add_enum "hiber.user.CurrentUser.Settings.DateFormat" do
+    value :DEFAULT_DATE_FORMAT, 0
+    value :DD_MM_YYYY, 1
+    value :MM_DD_YYYY, 2
+    value :YYYY_MM_DD, 3
+  end
+  add_enum "hiber.user.CurrentUser.Settings.ThousandsSeparatorsFormat" do
+    value :DEFAULT_THOUSANDS_SEPARATORS_FORMAT, 0
+    value :PERIOD, 1
+    value :COMMA, 2
   end
   add_message "hiber.user.CurrentUserRequest" do
   end
@@ -64,6 +83,9 @@ module Hiber
     CurrentUser::Settings = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.CurrentUser.Settings").msgclass
     CurrentUser::Settings::Layout = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.CurrentUser.Settings.Layout").enummodule
     CurrentUser::Settings::MapStyle = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.CurrentUser.Settings.MapStyle").enummodule
+    CurrentUser::Settings::TimeFormat = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.CurrentUser.Settings.TimeFormat").enummodule
+    CurrentUser::Settings::DateFormat = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.CurrentUser.Settings.DateFormat").enummodule
+    CurrentUser::Settings::ThousandsSeparatorsFormat = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.CurrentUser.Settings.ThousandsSeparatorsFormat").enummodule
     CurrentUserRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.CurrentUserRequest").msgclass
     RequestAccessRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.RequestAccessRequest").msgclass
     RequestAccessRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.RequestAccessRequest.Response").msgclass

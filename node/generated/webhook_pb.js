@@ -314,7 +314,8 @@ proto.hiber.webhook.Webhook.WebhookData.toObject = function(includeInstance, msg
     url: jspb.Message.getFieldWithDefault(msg, 1, ""),
     secret: jspb.Message.getFieldWithDefault(msg, 2, ""),
     contentType: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    disabled: jspb.Message.getFieldWithDefault(msg, 4, false)
+    disabled: jspb.Message.getFieldWithDefault(msg, 4, false),
+    certificateId: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -366,6 +367,10 @@ proto.hiber.webhook.Webhook.WebhookData.deserializeBinaryFromReader = function(m
     case 4:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setDisabled(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setCertificateId(value);
       break;
     default:
       reader.skipField();
@@ -421,6 +426,13 @@ proto.hiber.webhook.Webhook.WebhookData.serializeBinaryToWriter = function(messa
   if (f) {
     writer.writeBool(
       4,
+      f
+    );
+  }
+  f = message.getCertificateId();
+  if (f !== 0) {
+    writer.writeInt64(
+      5,
       f
     );
   }
@@ -486,6 +498,21 @@ proto.hiber.webhook.Webhook.WebhookData.prototype.getDisabled = function() {
 /** @param {boolean} value */
 proto.hiber.webhook.Webhook.WebhookData.prototype.setDisabled = function(value) {
   jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * optional int64 certificate_id = 5;
+ * @return {number}
+ */
+proto.hiber.webhook.Webhook.WebhookData.prototype.getCertificateId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/** @param {number} value */
+proto.hiber.webhook.Webhook.WebhookData.prototype.setCertificateId = function(value) {
+  jspb.Message.setField(this, 5, value);
 };
 
 
@@ -910,7 +937,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.hiber.webhook.WebhookSelection.repeatedFields_ = [5];
+proto.hiber.webhook.WebhookSelection.repeatedFields_ = [5,6];
 
 
 
@@ -945,7 +972,8 @@ proto.hiber.webhook.WebhookSelection.toObject = function(includeInstance, msg) {
     url: jspb.Message.getFieldWithDefault(msg, 2, ""),
     webhooks: (f = msg.getWebhooks()) && base_pb.Filter.Webhooks.toObject(includeInstance, f),
     tags: (f = msg.getTags()) && tag_pb.TagSelection.toObject(includeInstance, f),
-    healthList: jspb.Message.getRepeatedField(msg, 5)
+    healthList: jspb.Message.getRepeatedField(msg, 5),
+    certificateIdsList: jspb.Message.getRepeatedField(msg, 6)
   };
 
   if (includeInstance) {
@@ -1003,6 +1031,10 @@ proto.hiber.webhook.WebhookSelection.deserializeBinaryFromReader = function(msg,
     case 5:
       var value = /** @type {!Array.<!proto.hiber.Health>} */ (reader.readPackedEnum());
       msg.setHealthList(value);
+      break;
+    case 6:
+      var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
+      msg.setCertificateIdsList(value);
       break;
     default:
       reader.skipField();
@@ -1067,6 +1099,13 @@ proto.hiber.webhook.WebhookSelection.serializeBinaryToWriter = function(message,
   if (f.length > 0) {
     writer.writePackedEnum(
       5,
+      f
+    );
+  }
+  f = message.getCertificateIdsList();
+  if (f.length > 0) {
+    writer.writePackedInt64(
+      6,
       f
     );
   }
@@ -1189,6 +1228,35 @@ proto.hiber.webhook.WebhookSelection.prototype.addHealth = function(value, opt_i
 
 proto.hiber.webhook.WebhookSelection.prototype.clearHealthList = function() {
   this.setHealthList([]);
+};
+
+
+/**
+ * repeated int64 certificate_ids = 6;
+ * @return {!Array.<number>}
+ */
+proto.hiber.webhook.WebhookSelection.prototype.getCertificateIdsList = function() {
+  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 6));
+};
+
+
+/** @param {!Array.<number>} value */
+proto.hiber.webhook.WebhookSelection.prototype.setCertificateIdsList = function(value) {
+  jspb.Message.setField(this, 6, value || []);
+};
+
+
+/**
+ * @param {!number} value
+ * @param {number=} opt_index
+ */
+proto.hiber.webhook.WebhookSelection.prototype.addCertificateIds = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 6, value, opt_index);
+};
+
+
+proto.hiber.webhook.WebhookSelection.prototype.clearCertificateIdsList = function() {
+  this.setCertificateIdsList([]);
 };
 
 
@@ -2759,7 +2827,8 @@ proto.hiber.webhook.CreateWebhookRequest.toObject = function(includeInstance, ms
     description: jspb.Message.getFieldWithDefault(msg, 2, ""),
     data: (f = msg.getData()) && proto.hiber.webhook.Webhook.WebhookData.toObject(includeInstance, f),
     filters: (f = msg.getFilters()) && proto.hiber.webhook.Webhook.WebhookFilters.toObject(includeInstance, f),
-    tagsList: jspb.Message.getRepeatedField(msg, 5)
+    tagsList: jspb.Message.getRepeatedField(msg, 5),
+    certificateId: jspb.Message.getFieldWithDefault(msg, 6, 0)
   };
 
   if (includeInstance) {
@@ -2817,6 +2886,10 @@ proto.hiber.webhook.CreateWebhookRequest.deserializeBinaryFromReader = function(
     case 5:
       var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
       msg.setTagsList(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setCertificateId(value);
       break;
     default:
       reader.skipField();
@@ -2881,6 +2954,13 @@ proto.hiber.webhook.CreateWebhookRequest.serializeBinaryToWriter = function(mess
   if (f.length > 0) {
     writer.writePackedInt64(
       5,
+      f
+    );
+  }
+  f = message.getCertificateId();
+  if (f !== 0) {
+    writer.writeInt64(
+      6,
       f
     );
   }
@@ -3003,6 +3083,21 @@ proto.hiber.webhook.CreateWebhookRequest.prototype.addTags = function(value, opt
 
 proto.hiber.webhook.CreateWebhookRequest.prototype.clearTagsList = function() {
   this.setTagsList([]);
+};
+
+
+/**
+ * optional int64 certificate_id = 6;
+ * @return {number}
+ */
+proto.hiber.webhook.CreateWebhookRequest.prototype.getCertificateId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/** @param {number} value */
+proto.hiber.webhook.CreateWebhookRequest.prototype.setCertificateId = function(value) {
+  jspb.Message.setField(this, 6, value);
 };
 
 
@@ -4585,7 +4680,8 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.toObject = function(inclu
     eventFilter: (f = msg.getEventFilter()) && proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents.toObject(includeInstance, f),
     modemFilter: (f = msg.getModemFilter()) && proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems.toObject(includeInstance, f),
     tagFilter: (f = msg.getTagFilter()) && proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags.toObject(includeInstance, f),
-    active: (f = msg.getActive()) && base_pb.UpdateBoolean.toObject(includeInstance, f)
+    active: (f = msg.getActive()) && base_pb.UpdateBoolean.toObject(includeInstance, f),
+    certificateId: (f = msg.getCertificateId()) && base_pb.UpdateOptionalId.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4659,6 +4755,11 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.deserializeBinaryFromRead
       var value = new base_pb.UpdateBoolean;
       reader.readMessage(value,base_pb.UpdateBoolean.deserializeBinaryFromReader);
       msg.setActive(value);
+      break;
+    case 9:
+      var value = new base_pb.UpdateOptionalId;
+      reader.readMessage(value,base_pb.UpdateOptionalId.deserializeBinaryFromReader);
+      msg.setCertificateId(value);
       break;
     default:
       reader.skipField();
@@ -4749,6 +4850,14 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.serializeBinaryToWriter =
       8,
       f,
       base_pb.UpdateBoolean.serializeBinaryToWriter
+    );
+  }
+  f = message.getCertificateId();
+  if (f != null) {
+    writer.writeMessage(
+      9,
+      f,
+      base_pb.UpdateOptionalId.serializeBinaryToWriter
     );
   }
 };
@@ -5525,6 +5634,36 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.clearActive = f
  */
 proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.hasActive = function() {
   return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * optional hiber.UpdateOptionalId certificate_id = 9;
+ * @return {?proto.hiber.UpdateOptionalId}
+ */
+proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.getCertificateId = function() {
+  return /** @type{?proto.hiber.UpdateOptionalId} */ (
+    jspb.Message.getWrapperField(this, base_pb.UpdateOptionalId, 9));
+};
+
+
+/** @param {?proto.hiber.UpdateOptionalId|undefined} value */
+proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.setCertificateId = function(value) {
+  jspb.Message.setWrapperField(this, 9, value);
+};
+
+
+proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.clearCertificateId = function() {
+  this.setCertificateId(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.hasCertificateId = function() {
+  return jspb.Message.getField(this, 9) != null;
 };
 
 
