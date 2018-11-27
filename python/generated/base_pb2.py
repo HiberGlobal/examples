@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='base.proto',
   package='hiber',
   syntax='proto3',
-  serialized_pb=_b('\n\nbase.proto\x12\x05hiber\x1a\x1fgoogle/protobuf/timestamp.proto\"3\n\x11UpdateZeroableInt\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\r\"7\n\x15UpdateClearableString\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\t\"/\n\rUpdateBoolean\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\x08\"K\n\tTimeRange\x12\x1f\n\x05start\x18\x01 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x1d\n\x03\x65nd\x18\x02 \x01(\x0b\x32\x10.hiber.Timestamp\"K\n\tTimestamp\x12-\n\ttimestamp\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0f\n\x07textual\x18\x04 \x01(\t\"A\n\x04\x44\x61te\x12\x0c\n\x04year\x18\x01 \x01(\r\x12\r\n\x05month\x18\x02 \x01(\r\x12\x0b\n\x03\x64\x61y\x18\x03 \x01(\r\x12\x0f\n\x07textual\x18\x04 \x01(\t\"/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"q\n\x04\x41rea\x12\x1f\n\x06\x63\x65nter\x18\x01 \x01(\x0b\x32\x0f.hiber.Location\x12$\n\x0b\x62ottom_left\x18\x02 \x01(\x0b\x32\x0f.hiber.Location\x12\"\n\ttop_right\x18\x04 \x01(\x0b\x32\x0f.hiber.Location\"\xb9\x01\n\nPagination\x12\x0c\n\x04size\x18\x01 \x01(\x05\x12\x0c\n\x04page\x18\x02 \x01(\x05\x1a\x8e\x01\n\x06Result\x12\x0c\n\x04size\x18\x01 \x01(\x05\x12\x0c\n\x04page\x18\x02 \x01(\x05\x12\r\n\x05total\x18\x03 \x01(\x05\x12\x13\n\x0btotal_pages\x18\x04 \x01(\x05\x12#\n\x08previous\x18\x06 \x01(\x0b\x32\x11.hiber.Pagination\x12\x1f\n\x04next\x18\x07 \x01(\x0b\x32\x11.hiber.Pagination\"\x9c\x03\n\x06\x46ilter\x1aK\n\x12\x43hildOrganizations\x12\x13\n\x0binclude_all\x18\x01 \x01(\x08\x12\x0f\n\x07include\x18\x02 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x03 \x03(\t\x1a\x31\n\rOrganizations\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t\x1aN\n\x06\x45vents\x12!\n\x07include\x18\x01 \x03(\x0e\x32\x10.hiber.EventType\x12!\n\x07\x65xclude\x18\x02 \x03(\x0e\x32\x10.hiber.EventType\x1a*\n\x06Modems\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t\x1a(\n\x04Tags\x12\x0f\n\x07include\x18\x01 \x03(\x03\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\x03\x1a\x41\n\x08Webhooks\x12\x0f\n\x07include\x18\x01 \x03(\x03\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\x03\x12\x13\n\x0bonly_active\x18\x03 \x01(\x08\x1a)\n\x05Users\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t*\x86\x05\n\tEventType\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\x13\n\x0fWEBHOOK_CREATED\x10\x01\x12\x13\n\x0fWEBHOOK_UPDATED\x10\x02\x12\x13\n\x0fWEBHOOK_DELETED\x10\x03\x12\x1a\n\x16MODEM_LOCATION_UPDATED\x10\x04\x12\x1a\n\x16MODEM_MESSAGE_RECEIVED\x10\x05\x12\x17\n\x13USER_ACCESS_REQUEST\x10\x08\x12\x0e\n\nUSER_ADDED\x10\t\x12\x10\n\x0cUSER_REMOVED\x10\n\x12\x12\n\x0eWEBHOOK_FAILED\x10\x0b\x12\x18\n\x14ORGANIZATION_UPDATED\x10\x0c\x12\x1f\n\x1bMODEM_MESSAGE_SEQUENCE_SKIP\x10\r\x12\x19\n\x15MODEM_MESSAGE_DELAYED\x10\x0e\x12\"\n\x1eMODEM_MESSAGE_CANNOT_BE_PARSED\x10\x0f\x12\x0f\n\x0bMODEM_STALE\x10\x10\x12\x1a\n\x16MODEM_TRANSFER_STARTED\x10\x11\x12\x1b\n\x17MODEM_TRANSFER_RECEIVED\x10\x12\x12\x1c\n\x18MODEM_TRANSFER_CANCELLED\x10\x13\x12\x1f\n\x1bMODEM_TRANSFER_NOT_RECEIVED\x10\x14\x12*\n&MODEM_TRANSFER_RETURN_TRANSFER_STARTED\x10\x15\x12\x17\n\x13MODEM_CLAIM_CREATED\x10\x16\x12\x18\n\x14MODEM_CLAIM_ACCEPTED\x10\x17\x12\x17\n\x13MODEM_CLAIM_REFUSED\x10\x18\x12\x18\n\x14TOKEN_EXPIRY_WARNING\x10\x19\x12\x11\n\rTOKEN_EXPIRED\x10\x1a*(\n\x06Health\x12\x06\n\x02OK\x10\x00\x12\x0b\n\x07WARNING\x10\x01\x12\t\n\x05\x45RROR\x10\x02\x42 \n\x15global.hiber.api.grpcP\x01Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\nbase.proto\x12\x05hiber\x1a\x1fgoogle/protobuf/timestamp.proto\"3\n\x11UpdateZeroableInt\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\r\"7\n\x15UpdateClearableString\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\t\"2\n\x10UpdateOptionalId\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\x03\"/\n\rUpdateBoolean\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\x08\"K\n\tTimeRange\x12\x1f\n\x05start\x18\x01 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x1d\n\x03\x65nd\x18\x02 \x01(\x0b\x32\x10.hiber.Timestamp\"K\n\tTimestamp\x12-\n\ttimestamp\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0f\n\x07textual\x18\x04 \x01(\t\"A\n\x04\x44\x61te\x12\x0c\n\x04year\x18\x01 \x01(\r\x12\r\n\x05month\x18\x02 \x01(\r\x12\x0b\n\x03\x64\x61y\x18\x03 \x01(\r\x12\x0f\n\x07textual\x18\x04 \x01(\t\"/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"q\n\x04\x41rea\x12\x1f\n\x06\x63\x65nter\x18\x01 \x01(\x0b\x32\x0f.hiber.Location\x12$\n\x0b\x62ottom_left\x18\x02 \x01(\x0b\x32\x0f.hiber.Location\x12\"\n\ttop_right\x18\x04 \x01(\x0b\x32\x0f.hiber.Location\"(\n\nBytesOrHex\x12\r\n\x05\x62ytes\x18\x01 \x01(\x0c\x12\x0b\n\x03hex\x18\x02 \x01(\t\"\xb9\x01\n\nPagination\x12\x0c\n\x04size\x18\x01 \x01(\x05\x12\x0c\n\x04page\x18\x02 \x01(\x05\x1a\x8e\x01\n\x06Result\x12\x0c\n\x04size\x18\x01 \x01(\x05\x12\x0c\n\x04page\x18\x02 \x01(\x05\x12\r\n\x05total\x18\x03 \x01(\x05\x12\x13\n\x0btotal_pages\x18\x04 \x01(\x05\x12#\n\x08previous\x18\x06 \x01(\x0b\x32\x11.hiber.Pagination\x12\x1f\n\x04next\x18\x07 \x01(\x0b\x32\x11.hiber.Pagination\"\xe1\x03\n\x06\x46ilter\x1aK\n\x12\x43hildOrganizations\x12\x13\n\x0binclude_all\x18\x01 \x01(\x08\x12\x0f\n\x07include\x18\x02 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x03 \x03(\t\x1a\x31\n\rOrganizations\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t\x1aN\n\x06\x45vents\x12!\n\x07include\x18\x01 \x03(\x0e\x32\x10.hiber.EventType\x12!\n\x07\x65xclude\x18\x02 \x03(\x0e\x32\x10.hiber.EventType\x1a*\n\x06Modems\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t\x1a(\n\x04Tags\x12\x0f\n\x07include\x18\x01 \x03(\x03\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\x03\x1a\x41\n\x08Webhooks\x12\x0f\n\x07include\x18\x01 \x03(\x03\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\x03\x12\x13\n\x0bonly_active\x18\x03 \x01(\x08\x1a\x43\n\nPublishers\x12\x0f\n\x07include\x18\x01 \x03(\x03\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\x03\x12\x13\n\x0bonly_active\x18\x03 \x01(\x08\x1a)\n\x05Users\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t*\xa1\x05\n\tEventType\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\x15\n\x11PUBLISHER_CREATED\x10\x01\x12\x15\n\x11PUBLISHER_UPDATED\x10\x02\x12\x15\n\x11PUBLISHER_DELETED\x10\x03\x12\x1a\n\x16MODEM_LOCATION_UPDATED\x10\x04\x12\x1a\n\x16MODEM_MESSAGE_RECEIVED\x10\x05\x12\x17\n\x13USER_ACCESS_REQUEST\x10\x08\x12\x0e\n\nUSER_ADDED\x10\t\x12\x10\n\x0cUSER_REMOVED\x10\n\x12\x14\n\x10PUBLISHER_FAILED\x10\x0b\x12\x18\n\x14ORGANIZATION_UPDATED\x10\x0c\x12\x1f\n\x1bMODEM_MESSAGE_SEQUENCE_SKIP\x10\r\x12\x19\n\x15MODEM_MESSAGE_DELAYED\x10\x0e\x12\"\n\x1eMODEM_MESSAGE_CANNOT_BE_PARSED\x10\x0f\x12\x0f\n\x0bMODEM_STALE\x10\x10\x12\x1a\n\x16MODEM_TRANSFER_STARTED\x10\x11\x12\x1b\n\x17MODEM_TRANSFER_RECEIVED\x10\x12\x12\x1c\n\x18MODEM_TRANSFER_CANCELLED\x10\x13\x12\x1f\n\x1bMODEM_TRANSFER_NOT_RECEIVED\x10\x14\x12*\n&MODEM_TRANSFER_RETURN_TRANSFER_STARTED\x10\x15\x12\x17\n\x13MODEM_CLAIM_CREATED\x10\x16\x12\x18\n\x14MODEM_CLAIM_ACCEPTED\x10\x17\x12\x17\n\x13MODEM_CLAIM_REFUSED\x10\x18\x12\x11\n\rTOKEN_CREATED\x10\x1f\x12\x18\n\x14TOKEN_EXPIRY_WARNING\x10\x19\x12\x11\n\rTOKEN_EXPIRED\x10\x1a*(\n\x06Health\x12\x06\n\x02OK\x10\x00\x12\x0b\n\x07WARNING\x10\x01\x12\t\n\x05\x45RROR\x10\x02\x42 \n\x15global.hiber.api.grpcP\x01Z\x05hiberb\x06proto3')
   ,
   dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 
@@ -36,15 +36,15 @@ _EVENTTYPE = _descriptor.EnumDescriptor(
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='WEBHOOK_CREATED', index=1, number=1,
+      name='PUBLISHER_CREATED', index=1, number=1,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='WEBHOOK_UPDATED', index=2, number=2,
+      name='PUBLISHER_UPDATED', index=2, number=2,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='WEBHOOK_DELETED', index=3, number=3,
+      name='PUBLISHER_DELETED', index=3, number=3,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
@@ -68,7 +68,7 @@ _EVENTTYPE = _descriptor.EnumDescriptor(
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='WEBHOOK_FAILED', index=9, number=11,
+      name='PUBLISHER_FAILED', index=9, number=11,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
@@ -124,18 +124,22 @@ _EVENTTYPE = _descriptor.EnumDescriptor(
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='TOKEN_EXPIRY_WARNING', index=23, number=25,
+      name='TOKEN_CREATED', index=23, number=31,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='TOKEN_EXPIRED', index=24, number=26,
+      name='TOKEN_EXPIRY_WARNING', index=24, number=25,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='TOKEN_EXPIRED', index=25, number=26,
       options=None,
       type=None),
   ],
   containing_type=None,
   options=None,
-  serialized_start=1202,
-  serialized_end=1848,
+  serialized_start=1365,
+  serialized_end=2038,
 )
 _sym_db.RegisterEnumDescriptor(_EVENTTYPE)
 
@@ -161,22 +165,22 @@ _HEALTH = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1850,
-  serialized_end=1890,
+  serialized_start=2040,
+  serialized_end=2080,
 )
 _sym_db.RegisterEnumDescriptor(_HEALTH)
 
 Health = enum_type_wrapper.EnumTypeWrapper(_HEALTH)
 DEFAULT = 0
-WEBHOOK_CREATED = 1
-WEBHOOK_UPDATED = 2
-WEBHOOK_DELETED = 3
+PUBLISHER_CREATED = 1
+PUBLISHER_UPDATED = 2
+PUBLISHER_DELETED = 3
 MODEM_LOCATION_UPDATED = 4
 MODEM_MESSAGE_RECEIVED = 5
 USER_ACCESS_REQUEST = 8
 USER_ADDED = 9
 USER_REMOVED = 10
-WEBHOOK_FAILED = 11
+PUBLISHER_FAILED = 11
 ORGANIZATION_UPDATED = 12
 MODEM_MESSAGE_SEQUENCE_SKIP = 13
 MODEM_MESSAGE_DELAYED = 14
@@ -190,6 +194,7 @@ MODEM_TRANSFER_RETURN_TRANSFER_STARTED = 21
 MODEM_CLAIM_CREATED = 22
 MODEM_CLAIM_ACCEPTED = 23
 MODEM_CLAIM_REFUSED = 24
+TOKEN_CREATED = 31
 TOKEN_EXPIRY_WARNING = 25
 TOKEN_EXPIRED = 26
 OK = 0
@@ -274,6 +279,44 @@ _UPDATECLEARABLESTRING = _descriptor.Descriptor(
 )
 
 
+_UPDATEOPTIONALID = _descriptor.Descriptor(
+  name='UpdateOptionalId',
+  full_name='hiber.UpdateOptionalId',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='updated', full_name='hiber.UpdateOptionalId.updated', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='hiber.UpdateOptionalId.value', index=1,
+      number=2, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=164,
+  serialized_end=214,
+)
+
+
 _UPDATEBOOLEAN = _descriptor.Descriptor(
   name='UpdateBoolean',
   full_name='hiber.UpdateBoolean',
@@ -307,8 +350,8 @@ _UPDATEBOOLEAN = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=164,
-  serialized_end=211,
+  serialized_start=216,
+  serialized_end=263,
 )
 
 
@@ -345,8 +388,8 @@ _TIMERANGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=213,
-  serialized_end=288,
+  serialized_start=265,
+  serialized_end=340,
 )
 
 
@@ -383,8 +426,8 @@ _TIMESTAMP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=290,
-  serialized_end=365,
+  serialized_start=342,
+  serialized_end=417,
 )
 
 
@@ -435,8 +478,8 @@ _DATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=367,
-  serialized_end=432,
+  serialized_start=419,
+  serialized_end=484,
 )
 
 
@@ -473,8 +516,8 @@ _LOCATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=434,
-  serialized_end=481,
+  serialized_start=486,
+  serialized_end=533,
 )
 
 
@@ -518,8 +561,46 @@ _AREA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=483,
-  serialized_end=596,
+  serialized_start=535,
+  serialized_end=648,
+)
+
+
+_BYTESORHEX = _descriptor.Descriptor(
+  name='BytesOrHex',
+  full_name='hiber.BytesOrHex',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='bytes', full_name='hiber.BytesOrHex.bytes', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b(""),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='hex', full_name='hiber.BytesOrHex.hex', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=650,
+  serialized_end=690,
 )
 
 
@@ -584,8 +665,8 @@ _PAGINATION_RESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=642,
-  serialized_end=784,
+  serialized_start=736,
+  serialized_end=878,
 )
 
 _PAGINATION = _descriptor.Descriptor(
@@ -621,8 +702,8 @@ _PAGINATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=599,
-  serialized_end=784,
+  serialized_start=693,
+  serialized_end=878,
 )
 
 
@@ -666,8 +747,8 @@ _FILTER_CHILDORGANIZATIONS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=797,
-  serialized_end=872,
+  serialized_start=891,
+  serialized_end=966,
 )
 
 _FILTER_ORGANIZATIONS = _descriptor.Descriptor(
@@ -703,8 +784,8 @@ _FILTER_ORGANIZATIONS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=874,
-  serialized_end=923,
+  serialized_start=968,
+  serialized_end=1017,
 )
 
 _FILTER_EVENTS = _descriptor.Descriptor(
@@ -740,8 +821,8 @@ _FILTER_EVENTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=925,
-  serialized_end=1003,
+  serialized_start=1019,
+  serialized_end=1097,
 )
 
 _FILTER_MODEMS = _descriptor.Descriptor(
@@ -777,8 +858,8 @@ _FILTER_MODEMS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1005,
-  serialized_end=1047,
+  serialized_start=1099,
+  serialized_end=1141,
 )
 
 _FILTER_TAGS = _descriptor.Descriptor(
@@ -814,8 +895,8 @@ _FILTER_TAGS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1049,
-  serialized_end=1089,
+  serialized_start=1143,
+  serialized_end=1183,
 )
 
 _FILTER_WEBHOOKS = _descriptor.Descriptor(
@@ -858,8 +939,52 @@ _FILTER_WEBHOOKS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1091,
-  serialized_end=1156,
+  serialized_start=1185,
+  serialized_end=1250,
+)
+
+_FILTER_PUBLISHERS = _descriptor.Descriptor(
+  name='Publishers',
+  full_name='hiber.Filter.Publishers',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='include', full_name='hiber.Filter.Publishers.include', index=0,
+      number=1, type=3, cpp_type=2, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='exclude', full_name='hiber.Filter.Publishers.exclude', index=1,
+      number=2, type=3, cpp_type=2, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='only_active', full_name='hiber.Filter.Publishers.only_active', index=2,
+      number=3, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1252,
+  serialized_end=1319,
 )
 
 _FILTER_USERS = _descriptor.Descriptor(
@@ -895,8 +1020,8 @@ _FILTER_USERS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1158,
-  serialized_end=1199,
+  serialized_start=1321,
+  serialized_end=1362,
 )
 
 _FILTER = _descriptor.Descriptor(
@@ -909,7 +1034,7 @@ _FILTER = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_FILTER_CHILDORGANIZATIONS, _FILTER_ORGANIZATIONS, _FILTER_EVENTS, _FILTER_MODEMS, _FILTER_TAGS, _FILTER_WEBHOOKS, _FILTER_USERS, ],
+  nested_types=[_FILTER_CHILDORGANIZATIONS, _FILTER_ORGANIZATIONS, _FILTER_EVENTS, _FILTER_MODEMS, _FILTER_TAGS, _FILTER_WEBHOOKS, _FILTER_PUBLISHERS, _FILTER_USERS, ],
   enum_types=[
   ],
   options=None,
@@ -918,8 +1043,8 @@ _FILTER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=787,
-  serialized_end=1199,
+  serialized_start=881,
+  serialized_end=1362,
 )
 
 _TIMERANGE.fields_by_name['start'].message_type = _TIMESTAMP
@@ -939,15 +1064,18 @@ _FILTER_EVENTS.containing_type = _FILTER
 _FILTER_MODEMS.containing_type = _FILTER
 _FILTER_TAGS.containing_type = _FILTER
 _FILTER_WEBHOOKS.containing_type = _FILTER
+_FILTER_PUBLISHERS.containing_type = _FILTER
 _FILTER_USERS.containing_type = _FILTER
 DESCRIPTOR.message_types_by_name['UpdateZeroableInt'] = _UPDATEZEROABLEINT
 DESCRIPTOR.message_types_by_name['UpdateClearableString'] = _UPDATECLEARABLESTRING
+DESCRIPTOR.message_types_by_name['UpdateOptionalId'] = _UPDATEOPTIONALID
 DESCRIPTOR.message_types_by_name['UpdateBoolean'] = _UPDATEBOOLEAN
 DESCRIPTOR.message_types_by_name['TimeRange'] = _TIMERANGE
 DESCRIPTOR.message_types_by_name['Timestamp'] = _TIMESTAMP
 DESCRIPTOR.message_types_by_name['Date'] = _DATE
 DESCRIPTOR.message_types_by_name['Location'] = _LOCATION
 DESCRIPTOR.message_types_by_name['Area'] = _AREA
+DESCRIPTOR.message_types_by_name['BytesOrHex'] = _BYTESORHEX
 DESCRIPTOR.message_types_by_name['Pagination'] = _PAGINATION
 DESCRIPTOR.message_types_by_name['Filter'] = _FILTER
 DESCRIPTOR.enum_types_by_name['EventType'] = _EVENTTYPE
@@ -967,6 +1095,13 @@ UpdateClearableString = _reflection.GeneratedProtocolMessageType('UpdateClearabl
   # @@protoc_insertion_point(class_scope:hiber.UpdateClearableString)
   ))
 _sym_db.RegisterMessage(UpdateClearableString)
+
+UpdateOptionalId = _reflection.GeneratedProtocolMessageType('UpdateOptionalId', (_message.Message,), dict(
+  DESCRIPTOR = _UPDATEOPTIONALID,
+  __module__ = 'base_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.UpdateOptionalId)
+  ))
+_sym_db.RegisterMessage(UpdateOptionalId)
 
 UpdateBoolean = _reflection.GeneratedProtocolMessageType('UpdateBoolean', (_message.Message,), dict(
   DESCRIPTOR = _UPDATEBOOLEAN,
@@ -1009,6 +1144,13 @@ Area = _reflection.GeneratedProtocolMessageType('Area', (_message.Message,), dic
   # @@protoc_insertion_point(class_scope:hiber.Area)
   ))
 _sym_db.RegisterMessage(Area)
+
+BytesOrHex = _reflection.GeneratedProtocolMessageType('BytesOrHex', (_message.Message,), dict(
+  DESCRIPTOR = _BYTESORHEX,
+  __module__ = 'base_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.BytesOrHex)
+  ))
+_sym_db.RegisterMessage(BytesOrHex)
 
 Pagination = _reflection.GeneratedProtocolMessageType('Pagination', (_message.Message,), dict(
 
@@ -1069,6 +1211,13 @@ Filter = _reflection.GeneratedProtocolMessageType('Filter', (_message.Message,),
     ))
   ,
 
+  Publishers = _reflection.GeneratedProtocolMessageType('Publishers', (_message.Message,), dict(
+    DESCRIPTOR = _FILTER_PUBLISHERS,
+    __module__ = 'base_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.Filter.Publishers)
+    ))
+  ,
+
   Users = _reflection.GeneratedProtocolMessageType('Users', (_message.Message,), dict(
     DESCRIPTOR = _FILTER_USERS,
     __module__ = 'base_pb2'
@@ -1086,6 +1235,7 @@ _sym_db.RegisterMessage(Filter.Events)
 _sym_db.RegisterMessage(Filter.Modems)
 _sym_db.RegisterMessage(Filter.Tags)
 _sym_db.RegisterMessage(Filter.Webhooks)
+_sym_db.RegisterMessage(Filter.Publishers)
 _sym_db.RegisterMessage(Filter.Users)
 
 

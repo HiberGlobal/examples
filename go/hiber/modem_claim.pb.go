@@ -40,7 +40,7 @@ var ModemClaim_Status_value = map[string]int32{
 func (x ModemClaim_Status) String() string {
 	return proto.EnumName(ModemClaim_Status_name, int32(x))
 }
-func (ModemClaim_Status) EnumDescriptor() ([]byte, []int) { return fileDescriptor5, []int{0, 0} }
+func (ModemClaim_Status) EnumDescriptor() ([]byte, []int) { return fileDescriptor7, []int{0, 0} }
 
 type ModemClaim_RejectReason int32
 
@@ -70,7 +70,7 @@ var ModemClaim_RejectReason_value = map[string]int32{
 func (x ModemClaim_RejectReason) String() string {
 	return proto.EnumName(ModemClaim_RejectReason_name, int32(x))
 }
-func (ModemClaim_RejectReason) EnumDescriptor() ([]byte, []int) { return fileDescriptor5, []int{0, 1} }
+func (ModemClaim_RejectReason) EnumDescriptor() ([]byte, []int) { return fileDescriptor7, []int{0, 1} }
 
 type ModemClaim struct {
 	ModemNumber          string                  `protobuf:"bytes,1,opt,name=modem_number,json=modemNumber" json:"modem_number,omitempty"`
@@ -87,7 +87,7 @@ type ModemClaim struct {
 func (m *ModemClaim) Reset()                    { *m = ModemClaim{} }
 func (m *ModemClaim) String() string            { return proto.CompactTextString(m) }
 func (*ModemClaim) ProtoMessage()               {}
-func (*ModemClaim) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{0} }
+func (*ModemClaim) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{0} }
 
 func (m *ModemClaim) GetModemNumber() string {
 	if m != nil {
@@ -157,7 +157,7 @@ type ModemClaimSelection struct {
 func (m *ModemClaimSelection) Reset()                    { *m = ModemClaimSelection{} }
 func (m *ModemClaimSelection) String() string            { return proto.CompactTextString(m) }
 func (*ModemClaimSelection) ProtoMessage()               {}
-func (*ModemClaimSelection) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{1} }
+func (*ModemClaimSelection) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{1} }
 
 func (m *ModemClaimSelection) GetModems() *Filter_Modems {
 	if m != nil {
@@ -210,7 +210,7 @@ type ClaimModemRequest struct {
 func (m *ClaimModemRequest) Reset()                    { *m = ClaimModemRequest{} }
 func (m *ClaimModemRequest) String() string            { return proto.CompactTextString(m) }
 func (*ClaimModemRequest) ProtoMessage()               {}
-func (*ClaimModemRequest) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{2} }
+func (*ClaimModemRequest) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{2} }
 
 func (m *ClaimModemRequest) GetOrganization() string {
 	if m != nil {
@@ -234,7 +234,7 @@ type ClaimModemRequest_ClaimModem struct {
 func (m *ClaimModemRequest_ClaimModem) Reset()                    { *m = ClaimModemRequest_ClaimModem{} }
 func (m *ClaimModemRequest_ClaimModem) String() string            { return proto.CompactTextString(m) }
 func (*ClaimModemRequest_ClaimModem) ProtoMessage()               {}
-func (*ClaimModemRequest_ClaimModem) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{2, 0} }
+func (*ClaimModemRequest_ClaimModem) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{2, 0} }
 
 func (m *ClaimModemRequest_ClaimModem) GetModemNumber() string {
 	if m != nil {
@@ -258,7 +258,7 @@ type ClaimModemRequest_Response struct {
 func (m *ClaimModemRequest_Response) Reset()                    { *m = ClaimModemRequest_Response{} }
 func (m *ClaimModemRequest_Response) String() string            { return proto.CompactTextString(m) }
 func (*ClaimModemRequest_Response) ProtoMessage()               {}
-func (*ClaimModemRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{2, 1} }
+func (*ClaimModemRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{2, 1} }
 
 func (m *ClaimModemRequest_Response) GetRequest() *ClaimModemRequest {
 	if m != nil {
@@ -284,7 +284,7 @@ type ListModemClaimsRequest struct {
 func (m *ListModemClaimsRequest) Reset()                    { *m = ListModemClaimsRequest{} }
 func (m *ListModemClaimsRequest) String() string            { return proto.CompactTextString(m) }
 func (*ListModemClaimsRequest) ProtoMessage()               {}
-func (*ListModemClaimsRequest) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{3} }
+func (*ListModemClaimsRequest) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{3} }
 
 func (m *ListModemClaimsRequest) GetOrganization() string {
 	if m != nil {
@@ -317,7 +317,7 @@ func (m *ListModemClaimsRequest_Response) Reset()         { *m = ListModemClaims
 func (m *ListModemClaimsRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*ListModemClaimsRequest_Response) ProtoMessage()    {}
 func (*ListModemClaimsRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor5, []int{3, 0}
+	return fileDescriptor7, []int{3, 0}
 }
 
 func (m *ListModemClaimsRequest_Response) GetClaims() []*ModemClaim {
@@ -350,7 +350,7 @@ type AcceptModemClaimsRequest struct {
 func (m *AcceptModemClaimsRequest) Reset()                    { *m = AcceptModemClaimsRequest{} }
 func (m *AcceptModemClaimsRequest) String() string            { return proto.CompactTextString(m) }
 func (*AcceptModemClaimsRequest) ProtoMessage()               {}
-func (*AcceptModemClaimsRequest) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{4} }
+func (*AcceptModemClaimsRequest) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{4} }
 
 func (m *AcceptModemClaimsRequest) GetOrganization() string {
 	if m != nil {
@@ -375,7 +375,7 @@ func (m *AcceptModemClaimsRequest_Response) Reset()         { *m = AcceptModemCl
 func (m *AcceptModemClaimsRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*AcceptModemClaimsRequest_Response) ProtoMessage()    {}
 func (*AcceptModemClaimsRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor5, []int{4, 0}
+	return fileDescriptor7, []int{4, 0}
 }
 
 func (m *AcceptModemClaimsRequest_Response) GetClaims() []*ModemClaim {
@@ -403,7 +403,7 @@ type RejectModemClaimsRequest struct {
 func (m *RejectModemClaimsRequest) Reset()                    { *m = RejectModemClaimsRequest{} }
 func (m *RejectModemClaimsRequest) String() string            { return proto.CompactTextString(m) }
 func (*RejectModemClaimsRequest) ProtoMessage()               {}
-func (*RejectModemClaimsRequest) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{5} }
+func (*RejectModemClaimsRequest) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{5} }
 
 func (m *RejectModemClaimsRequest) GetOrganization() string {
 	if m != nil {
@@ -442,7 +442,7 @@ func (m *RejectModemClaimsRequest_Response) Reset()         { *m = RejectModemCl
 func (m *RejectModemClaimsRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*RejectModemClaimsRequest_Response) ProtoMessage()    {}
 func (*RejectModemClaimsRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor5, []int{5, 0}
+	return fileDescriptor7, []int{5, 0}
 }
 
 func (m *RejectModemClaimsRequest_Response) GetClaims() []*ModemClaim {
@@ -654,9 +654,9 @@ var _ModemClaimService_serviceDesc = grpc.ServiceDesc{
 	Metadata: "modem_claim.proto",
 }
 
-func init() { proto.RegisterFile("modem_claim.proto", fileDescriptor5) }
+func init() { proto.RegisterFile("modem_claim.proto", fileDescriptor7) }
 
-var fileDescriptor5 = []byte{
+var fileDescriptor7 = []byte{
 	// 908 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xc4, 0x56, 0xdd, 0x8e, 0xdb, 0x44,
 	0x14, 0x5e, 0x27, 0xd9, 0x6c, 0x72, 0x9c, 0x5d, 0x9c, 0x69, 0x4b, 0x2d, 0x23, 0xaa, 0x60, 0xa8,

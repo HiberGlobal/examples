@@ -15,8 +15,11 @@ goog.exportSymbol('proto.hiber.user.CancelAccessRequestRequest', null, global);
 goog.exportSymbol('proto.hiber.user.CancelAccessRequestRequest.Response', null, global);
 goog.exportSymbol('proto.hiber.user.CurrentUser', null, global);
 goog.exportSymbol('proto.hiber.user.CurrentUser.Settings', null, global);
+goog.exportSymbol('proto.hiber.user.CurrentUser.Settings.DateFormat', null, global);
 goog.exportSymbol('proto.hiber.user.CurrentUser.Settings.Layout', null, global);
 goog.exportSymbol('proto.hiber.user.CurrentUser.Settings.MapStyle', null, global);
+goog.exportSymbol('proto.hiber.user.CurrentUser.Settings.ThousandsSeparatorsFormat', null, global);
+goog.exportSymbol('proto.hiber.user.CurrentUser.Settings.TimeFormat', null, global);
 goog.exportSymbol('proto.hiber.user.CurrentUserRequest', null, global);
 goog.exportSymbol('proto.hiber.user.DeleteCurrentUserRequest', null, global);
 goog.exportSymbol('proto.hiber.user.DeleteCurrentUserRequest.Response', null, global);
@@ -282,7 +285,10 @@ proto.hiber.user.CurrentUser.Settings.prototype.toObject = function(opt_includeI
 proto.hiber.user.CurrentUser.Settings.toObject = function(includeInstance, msg) {
   var f, obj = {
     layout: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    mapStyle: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    mapStyle: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    timeFormat: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    dateFormat: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    thousandsSeparatorsFormat: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -327,6 +333,18 @@ proto.hiber.user.CurrentUser.Settings.deserializeBinaryFromReader = function(msg
       var value = /** @type {!proto.hiber.user.CurrentUser.Settings.MapStyle} */ (reader.readEnum());
       msg.setMapStyle(value);
       break;
+    case 3:
+      var value = /** @type {!proto.hiber.user.CurrentUser.Settings.TimeFormat} */ (reader.readEnum());
+      msg.setTimeFormat(value);
+      break;
+    case 4:
+      var value = /** @type {!proto.hiber.user.CurrentUser.Settings.DateFormat} */ (reader.readEnum());
+      msg.setDateFormat(value);
+      break;
+    case 5:
+      var value = /** @type {!proto.hiber.user.CurrentUser.Settings.ThousandsSeparatorsFormat} */ (reader.readEnum());
+      msg.setThousandsSeparatorsFormat(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -370,6 +388,27 @@ proto.hiber.user.CurrentUser.Settings.serializeBinaryToWriter = function(message
       f
     );
   }
+  f = message.getTimeFormat();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
+      f
+    );
+  }
+  f = message.getDateFormat();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      4,
+      f
+    );
+  }
+  f = message.getThousandsSeparatorsFormat();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      5,
+      f
+    );
+  }
 };
 
 
@@ -390,6 +429,34 @@ proto.hiber.user.CurrentUser.Settings.MapStyle = {
   SATELLITE: 1,
   HIBER_VISION: 2,
   CLASSIC: 3
+};
+
+/**
+ * @enum {number}
+ */
+proto.hiber.user.CurrentUser.Settings.TimeFormat = {
+  DEFAULT_TIME_FORMAT: 0,
+  TWENTYFOUR_HOUR: 1,
+  TWELVE_HOUR: 2
+};
+
+/**
+ * @enum {number}
+ */
+proto.hiber.user.CurrentUser.Settings.DateFormat = {
+  DEFAULT_DATE_FORMAT: 0,
+  DD_MM_YYYY: 1,
+  MM_DD_YYYY: 2,
+  YYYY_MM_DD: 3
+};
+
+/**
+ * @enum {number}
+ */
+proto.hiber.user.CurrentUser.Settings.ThousandsSeparatorsFormat = {
+  DEFAULT_THOUSANDS_SEPARATORS_FORMAT: 0,
+  PERIOD: 1,
+  COMMA: 2
 };
 
 /**
@@ -419,6 +486,51 @@ proto.hiber.user.CurrentUser.Settings.prototype.getMapStyle = function() {
 /** @param {!proto.hiber.user.CurrentUser.Settings.MapStyle} value */
 proto.hiber.user.CurrentUser.Settings.prototype.setMapStyle = function(value) {
   jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional TimeFormat time_format = 3;
+ * @return {!proto.hiber.user.CurrentUser.Settings.TimeFormat}
+ */
+proto.hiber.user.CurrentUser.Settings.prototype.getTimeFormat = function() {
+  return /** @type {!proto.hiber.user.CurrentUser.Settings.TimeFormat} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/** @param {!proto.hiber.user.CurrentUser.Settings.TimeFormat} value */
+proto.hiber.user.CurrentUser.Settings.prototype.setTimeFormat = function(value) {
+  jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * optional DateFormat date_format = 4;
+ * @return {!proto.hiber.user.CurrentUser.Settings.DateFormat}
+ */
+proto.hiber.user.CurrentUser.Settings.prototype.getDateFormat = function() {
+  return /** @type {!proto.hiber.user.CurrentUser.Settings.DateFormat} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/** @param {!proto.hiber.user.CurrentUser.Settings.DateFormat} value */
+proto.hiber.user.CurrentUser.Settings.prototype.setDateFormat = function(value) {
+  jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * optional ThousandsSeparatorsFormat thousands_separators_format = 5;
+ * @return {!proto.hiber.user.CurrentUser.Settings.ThousandsSeparatorsFormat}
+ */
+proto.hiber.user.CurrentUser.Settings.prototype.getThousandsSeparatorsFormat = function() {
+  return /** @type {!proto.hiber.user.CurrentUser.Settings.ThousandsSeparatorsFormat} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/** @param {!proto.hiber.user.CurrentUser.Settings.ThousandsSeparatorsFormat} value */
+proto.hiber.user.CurrentUser.Settings.prototype.setThousandsSeparatorsFormat = function(value) {
+  jspb.Message.setField(this, 5, value);
 };
 
 

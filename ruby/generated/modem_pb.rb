@@ -89,6 +89,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :location, :message, 4, "hiber.Location"
     optional :body, :bytes, 5
     optional :received_at, :message, 6, "hiber.Timestamp"
+    optional :message_id, :uint64, 7
   end
   add_message "hiber.modem.ModemMessageSelection" do
     optional :modems, :message, 1, "hiber.Filter.Modems"

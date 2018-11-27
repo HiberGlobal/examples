@@ -43,7 +43,7 @@ var UserSort_value = map[string]int32{
 func (x UserSort) String() string {
 	return proto.EnumName(UserSort_name, int32(x))
 }
-func (UserSort) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{0} }
+func (UserSort) EnumDescriptor() ([]byte, []int) { return fileDescriptor16, []int{0} }
 
 type User struct {
 	Id    string `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
@@ -54,7 +54,7 @@ type User struct {
 func (m *User) Reset()                    { *m = User{} }
 func (m *User) String() string            { return proto.CompactTextString(m) }
 func (*User) ProtoMessage()               {}
-func (*User) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{0} }
+func (*User) Descriptor() ([]byte, []int) { return fileDescriptor16, []int{0} }
 
 func (m *User) GetId() string {
 	if m != nil {
@@ -85,7 +85,7 @@ type UserSelection struct {
 func (m *UserSelection) Reset()                    { *m = UserSelection{} }
 func (m *UserSelection) String() string            { return proto.CompactTextString(m) }
 func (*UserSelection) ProtoMessage()               {}
-func (*UserSelection) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{1} }
+func (*UserSelection) Descriptor() ([]byte, []int) { return fileDescriptor16, []int{1} }
 
 func (m *UserSelection) GetByEmail() string {
 	if m != nil {
@@ -112,7 +112,7 @@ type ListUsersRequest struct {
 func (m *ListUsersRequest) Reset()                    { *m = ListUsersRequest{} }
 func (m *ListUsersRequest) String() string            { return proto.CompactTextString(m) }
 func (*ListUsersRequest) ProtoMessage()               {}
-func (*ListUsersRequest) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{2} }
+func (*ListUsersRequest) Descriptor() ([]byte, []int) { return fileDescriptor16, []int{2} }
 
 func (m *ListUsersRequest) GetOrganization() string {
 	if m != nil {
@@ -151,7 +151,7 @@ type ListUsersRequest_Response struct {
 func (m *ListUsersRequest_Response) Reset()                    { *m = ListUsersRequest_Response{} }
 func (m *ListUsersRequest_Response) String() string            { return proto.CompactTextString(m) }
 func (*ListUsersRequest_Response) ProtoMessage()               {}
-func (*ListUsersRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{2, 0} }
+func (*ListUsersRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor16, []int{2, 0} }
 
 func (m *ListUsersRequest_Response) GetUsers() []*User {
 	if m != nil {
@@ -185,7 +185,7 @@ type ListAccessRequestsRequest struct {
 func (m *ListAccessRequestsRequest) Reset()                    { *m = ListAccessRequestsRequest{} }
 func (m *ListAccessRequestsRequest) String() string            { return proto.CompactTextString(m) }
 func (*ListAccessRequestsRequest) ProtoMessage()               {}
-func (*ListAccessRequestsRequest) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{3} }
+func (*ListAccessRequestsRequest) Descriptor() ([]byte, []int) { return fileDescriptor16, []int{3} }
 
 func (m *ListAccessRequestsRequest) GetOrganization() string {
 	if m != nil {
@@ -225,7 +225,7 @@ func (m *ListAccessRequestsRequest_Response) Reset()         { *m = ListAccessRe
 func (m *ListAccessRequestsRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*ListAccessRequestsRequest_Response) ProtoMessage()    {}
 func (*ListAccessRequestsRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor13, []int{3, 0}
+	return fileDescriptor16, []int{3, 0}
 }
 
 func (m *ListAccessRequestsRequest_Response) GetUsers() []*User {
@@ -258,7 +258,7 @@ type ApproveUserRequest struct {
 func (m *ApproveUserRequest) Reset()                    { *m = ApproveUserRequest{} }
 func (m *ApproveUserRequest) String() string            { return proto.CompactTextString(m) }
 func (*ApproveUserRequest) ProtoMessage()               {}
-func (*ApproveUserRequest) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{4} }
+func (*ApproveUserRequest) Descriptor() ([]byte, []int) { return fileDescriptor16, []int{4} }
 
 func (m *ApproveUserRequest) GetOrganization() string {
 	if m != nil {
@@ -280,7 +280,7 @@ type ApproveUserRequest_Response struct {
 func (m *ApproveUserRequest_Response) Reset()                    { *m = ApproveUserRequest_Response{} }
 func (m *ApproveUserRequest_Response) String() string            { return proto.CompactTextString(m) }
 func (*ApproveUserRequest_Response) ProtoMessage()               {}
-func (*ApproveUserRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{4, 0} }
+func (*ApproveUserRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor16, []int{4, 0} }
 
 type RemoveUserRequest struct {
 	// Pick the organization to use (/impersonate). If unset, your default organization is used.
@@ -291,7 +291,7 @@ type RemoveUserRequest struct {
 func (m *RemoveUserRequest) Reset()                    { *m = RemoveUserRequest{} }
 func (m *RemoveUserRequest) String() string            { return proto.CompactTextString(m) }
 func (*RemoveUserRequest) ProtoMessage()               {}
-func (*RemoveUserRequest) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{5} }
+func (*RemoveUserRequest) Descriptor() ([]byte, []int) { return fileDescriptor16, []int{5} }
 
 func (m *RemoveUserRequest) GetOrganization() string {
 	if m != nil {
@@ -313,7 +313,7 @@ type RemoveUserRequest_Response struct {
 func (m *RemoveUserRequest_Response) Reset()                    { *m = RemoveUserRequest_Response{} }
 func (m *RemoveUserRequest_Response) String() string            { return proto.CompactTextString(m) }
 func (*RemoveUserRequest_Response) ProtoMessage()               {}
-func (*RemoveUserRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{5, 0} }
+func (*RemoveUserRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor16, []int{5, 0} }
 
 type CreateUserRequest struct {
 	// Pick the organization to use (/impersonate). If unset, your default organization is used.
@@ -326,7 +326,7 @@ type CreateUserRequest struct {
 func (m *CreateUserRequest) Reset()                    { *m = CreateUserRequest{} }
 func (m *CreateUserRequest) String() string            { return proto.CompactTextString(m) }
 func (*CreateUserRequest) ProtoMessage()               {}
-func (*CreateUserRequest) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{6} }
+func (*CreateUserRequest) Descriptor() ([]byte, []int) { return fileDescriptor16, []int{6} }
 
 func (m *CreateUserRequest) GetOrganization() string {
 	if m != nil {
@@ -575,9 +575,9 @@ var _UserService_serviceDesc = grpc.ServiceDesc{
 	Metadata: "user.proto",
 }
 
-func init() { proto.RegisterFile("user.proto", fileDescriptor13) }
+func init() { proto.RegisterFile("user.proto", fileDescriptor16) }
 
-var fileDescriptor13 = []byte{
+var fileDescriptor16 = []byte{
 	// 591 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xdc, 0x55, 0x51, 0x6f, 0x12, 0x4d,
 	0x14, 0xed, 0xee, 0xd2, 0x2e, 0x5c, 0x5a, 0x02, 0x37, 0x4d, 0xba, 0x6c, 0xbe, 0xcf, 0x10, 0x92,

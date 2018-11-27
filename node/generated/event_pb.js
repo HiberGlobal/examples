@@ -12,6 +12,8 @@ var goog = jspb;
 var global = Function('return this')();
 
 var base_pb = require('./base_pb.js');
+var organization_pb = require('./organization_pb.js');
+var publisher_pb = require('./publisher_pb.js');
 var modem_pb = require('./modem_pb.js');
 var modem_transfer_pb = require('./modem_transfer_pb.js');
 var modem_claim_pb = require('./modem_claim_pb.js');
@@ -39,18 +41,21 @@ goog.exportSymbol('proto.hiber.event.Event.ModemTransferEvent.ModemTransferNotRe
 goog.exportSymbol('proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.OrganizationEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.PublisherEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.PublisherEvent.CreatedEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.PublisherEvent.DeletedEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.PublisherEvent.FailedEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.PublisherEvent.UpdatedEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.TokenEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.TokenEvent.TokenCreatedEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.TokenEvent.TokenExpiredEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.TokenEvent.TokenExpiryWarningEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.UserEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.UserEvent.UserAccessRequestEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.UserEvent.UserAddedEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.UserEvent.UserRemovedEvent', null, global);
-goog.exportSymbol('proto.hiber.event.Event.WebhookEvent', null, global);
-goog.exportSymbol('proto.hiber.event.Event.WebhookEvent.CreatedEvent', null, global);
-goog.exportSymbol('proto.hiber.event.Event.WebhookEvent.DeletedEvent', null, global);
-goog.exportSymbol('proto.hiber.event.Event.WebhookEvent.FailedEvent', null, global);
-goog.exportSymbol('proto.hiber.event.Event.WebhookEvent.UpdatedEvent', null, global);
 goog.exportSymbol('proto.hiber.event.EventSelection', null, global);
 goog.exportSymbol('proto.hiber.event.EventStreamRequest', null, global);
 goog.exportSymbol('proto.hiber.event.ListEventsRequest', null, global);
@@ -83,7 +88,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.hiber.event.Event.oneofGroups_ = [[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]];
+proto.hiber.event.Event.oneofGroups_ = [[2,3,4,5,6,7,8,9,10,15,16,17,18,19,20,21,22,23,24,30,25,31,32,33,34]];
 
 /**
  * @enum {number}
@@ -99,10 +104,6 @@ proto.hiber.event.Event.EventCase = {
   USER_ADDED: 8,
   USER_REMOVED: 9,
   USER_ACCESS_REQUEST: 10,
-  WEBHOOK_CREATED: 11,
-  WEBHOOK_UPDATED: 12,
-  WEBHOOK_DELETED: 13,
-  WEBHOOK_FAILED: 14,
   MODEM_TRANSFER_STARTED: 15,
   MODEM_TRANSFER_CANCELLED: 16,
   MODEM_TRANSFER_RECEIVED: 17,
@@ -112,7 +113,13 @@ proto.hiber.event.Event.EventCase = {
   MODEM_CLAIM_ACCEPTED_EVENT: 21,
   MODEM_CLAIM_REJECTED_EVENT: 22,
   TOKEN_EXPIRY_WARNING: 23,
-  TOKEN_EXPIRED: 24
+  TOKEN_EXPIRED: 24,
+  TOKEN_CREATED: 30,
+  ORGANIZATION_UPDATED: 25,
+  PUBLISHER_CREATED: 31,
+  PUBLISHER_UPDATED: 32,
+  PUBLISHER_DELETED: 33,
+  PUBLISHER_FAILED: 34
 };
 
 /**
@@ -161,10 +168,6 @@ proto.hiber.event.Event.toObject = function(includeInstance, msg) {
     userAdded: (f = msg.getUserAdded()) && proto.hiber.event.Event.UserEvent.UserAddedEvent.toObject(includeInstance, f),
     userRemoved: (f = msg.getUserRemoved()) && proto.hiber.event.Event.UserEvent.UserRemovedEvent.toObject(includeInstance, f),
     userAccessRequest: (f = msg.getUserAccessRequest()) && proto.hiber.event.Event.UserEvent.UserAccessRequestEvent.toObject(includeInstance, f),
-    webhookCreated: (f = msg.getWebhookCreated()) && proto.hiber.event.Event.WebhookEvent.CreatedEvent.toObject(includeInstance, f),
-    webhookUpdated: (f = msg.getWebhookUpdated()) && proto.hiber.event.Event.WebhookEvent.UpdatedEvent.toObject(includeInstance, f),
-    webhookDeleted: (f = msg.getWebhookDeleted()) && proto.hiber.event.Event.WebhookEvent.DeletedEvent.toObject(includeInstance, f),
-    webhookFailed: (f = msg.getWebhookFailed()) && proto.hiber.event.Event.WebhookEvent.FailedEvent.toObject(includeInstance, f),
     modemTransferStarted: (f = msg.getModemTransferStarted()) && proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.toObject(includeInstance, f),
     modemTransferCancelled: (f = msg.getModemTransferCancelled()) && proto.hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent.toObject(includeInstance, f),
     modemTransferReceived: (f = msg.getModemTransferReceived()) && proto.hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent.toObject(includeInstance, f),
@@ -174,7 +177,13 @@ proto.hiber.event.Event.toObject = function(includeInstance, msg) {
     modemClaimAcceptedEvent: (f = msg.getModemClaimAcceptedEvent()) && proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimAcceptedEvent.toObject(includeInstance, f),
     modemClaimRejectedEvent: (f = msg.getModemClaimRejectedEvent()) && proto.hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimRejectedEvent.toObject(includeInstance, f),
     tokenExpiryWarning: (f = msg.getTokenExpiryWarning()) && proto.hiber.event.Event.TokenEvent.TokenExpiryWarningEvent.toObject(includeInstance, f),
-    tokenExpired: (f = msg.getTokenExpired()) && proto.hiber.event.Event.TokenEvent.TokenExpiredEvent.toObject(includeInstance, f)
+    tokenExpired: (f = msg.getTokenExpired()) && proto.hiber.event.Event.TokenEvent.TokenExpiredEvent.toObject(includeInstance, f),
+    tokenCreated: (f = msg.getTokenCreated()) && proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.toObject(includeInstance, f),
+    organizationUpdated: (f = msg.getOrganizationUpdated()) && proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.toObject(includeInstance, f),
+    publisherCreated: (f = msg.getPublisherCreated()) && proto.hiber.event.Event.PublisherEvent.CreatedEvent.toObject(includeInstance, f),
+    publisherUpdated: (f = msg.getPublisherUpdated()) && proto.hiber.event.Event.PublisherEvent.UpdatedEvent.toObject(includeInstance, f),
+    publisherDeleted: (f = msg.getPublisherDeleted()) && proto.hiber.event.Event.PublisherEvent.DeletedEvent.toObject(includeInstance, f),
+    publisherFailed: (f = msg.getPublisherFailed()) && proto.hiber.event.Event.PublisherEvent.FailedEvent.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -260,26 +269,6 @@ proto.hiber.event.Event.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,proto.hiber.event.Event.UserEvent.UserAccessRequestEvent.deserializeBinaryFromReader);
       msg.setUserAccessRequest(value);
       break;
-    case 11:
-      var value = new proto.hiber.event.Event.WebhookEvent.CreatedEvent;
-      reader.readMessage(value,proto.hiber.event.Event.WebhookEvent.CreatedEvent.deserializeBinaryFromReader);
-      msg.setWebhookCreated(value);
-      break;
-    case 12:
-      var value = new proto.hiber.event.Event.WebhookEvent.UpdatedEvent;
-      reader.readMessage(value,proto.hiber.event.Event.WebhookEvent.UpdatedEvent.deserializeBinaryFromReader);
-      msg.setWebhookUpdated(value);
-      break;
-    case 13:
-      var value = new proto.hiber.event.Event.WebhookEvent.DeletedEvent;
-      reader.readMessage(value,proto.hiber.event.Event.WebhookEvent.DeletedEvent.deserializeBinaryFromReader);
-      msg.setWebhookDeleted(value);
-      break;
-    case 14:
-      var value = new proto.hiber.event.Event.WebhookEvent.FailedEvent;
-      reader.readMessage(value,proto.hiber.event.Event.WebhookEvent.FailedEvent.deserializeBinaryFromReader);
-      msg.setWebhookFailed(value);
-      break;
     case 15:
       var value = new proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent;
       reader.readMessage(value,proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent.deserializeBinaryFromReader);
@@ -329,6 +318,36 @@ proto.hiber.event.Event.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.hiber.event.Event.TokenEvent.TokenExpiredEvent;
       reader.readMessage(value,proto.hiber.event.Event.TokenEvent.TokenExpiredEvent.deserializeBinaryFromReader);
       msg.setTokenExpired(value);
+      break;
+    case 30:
+      var value = new proto.hiber.event.Event.TokenEvent.TokenCreatedEvent;
+      reader.readMessage(value,proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.deserializeBinaryFromReader);
+      msg.setTokenCreated(value);
+      break;
+    case 25:
+      var value = new proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent;
+      reader.readMessage(value,proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.deserializeBinaryFromReader);
+      msg.setOrganizationUpdated(value);
+      break;
+    case 31:
+      var value = new proto.hiber.event.Event.PublisherEvent.CreatedEvent;
+      reader.readMessage(value,proto.hiber.event.Event.PublisherEvent.CreatedEvent.deserializeBinaryFromReader);
+      msg.setPublisherCreated(value);
+      break;
+    case 32:
+      var value = new proto.hiber.event.Event.PublisherEvent.UpdatedEvent;
+      reader.readMessage(value,proto.hiber.event.Event.PublisherEvent.UpdatedEvent.deserializeBinaryFromReader);
+      msg.setPublisherUpdated(value);
+      break;
+    case 33:
+      var value = new proto.hiber.event.Event.PublisherEvent.DeletedEvent;
+      reader.readMessage(value,proto.hiber.event.Event.PublisherEvent.DeletedEvent.deserializeBinaryFromReader);
+      msg.setPublisherDeleted(value);
+      break;
+    case 34:
+      var value = new proto.hiber.event.Event.PublisherEvent.FailedEvent;
+      reader.readMessage(value,proto.hiber.event.Event.PublisherEvent.FailedEvent.deserializeBinaryFromReader);
+      msg.setPublisherFailed(value);
       break;
     default:
       reader.skipField();
@@ -438,38 +457,6 @@ proto.hiber.event.Event.serializeBinaryToWriter = function(message, writer) {
       proto.hiber.event.Event.UserEvent.UserAccessRequestEvent.serializeBinaryToWriter
     );
   }
-  f = message.getWebhookCreated();
-  if (f != null) {
-    writer.writeMessage(
-      11,
-      f,
-      proto.hiber.event.Event.WebhookEvent.CreatedEvent.serializeBinaryToWriter
-    );
-  }
-  f = message.getWebhookUpdated();
-  if (f != null) {
-    writer.writeMessage(
-      12,
-      f,
-      proto.hiber.event.Event.WebhookEvent.UpdatedEvent.serializeBinaryToWriter
-    );
-  }
-  f = message.getWebhookDeleted();
-  if (f != null) {
-    writer.writeMessage(
-      13,
-      f,
-      proto.hiber.event.Event.WebhookEvent.DeletedEvent.serializeBinaryToWriter
-    );
-  }
-  f = message.getWebhookFailed();
-  if (f != null) {
-    writer.writeMessage(
-      14,
-      f,
-      proto.hiber.event.Event.WebhookEvent.FailedEvent.serializeBinaryToWriter
-    );
-  }
   f = message.getModemTransferStarted();
   if (f != null) {
     writer.writeMessage(
@@ -548,6 +535,54 @@ proto.hiber.event.Event.serializeBinaryToWriter = function(message, writer) {
       24,
       f,
       proto.hiber.event.Event.TokenEvent.TokenExpiredEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getTokenCreated();
+  if (f != null) {
+    writer.writeMessage(
+      30,
+      f,
+      proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getOrganizationUpdated();
+  if (f != null) {
+    writer.writeMessage(
+      25,
+      f,
+      proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getPublisherCreated();
+  if (f != null) {
+    writer.writeMessage(
+      31,
+      f,
+      proto.hiber.event.Event.PublisherEvent.CreatedEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getPublisherUpdated();
+  if (f != null) {
+    writer.writeMessage(
+      32,
+      f,
+      proto.hiber.event.Event.PublisherEvent.UpdatedEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getPublisherDeleted();
+  if (f != null) {
+    writer.writeMessage(
+      33,
+      f,
+      proto.hiber.event.Event.PublisherEvent.DeletedEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getPublisherFailed();
+  if (f != null) {
+    writer.writeMessage(
+      34,
+      f,
+      proto.hiber.event.Event.PublisherEvent.FailedEvent.serializeBinaryToWriter
     );
   }
 };
@@ -2848,7 +2883,7 @@ proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent.
       msg.setModemNumber(value);
       break;
     case 3:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {number} */ (reader.readUint64());
       msg.setModemMessageId(value);
       break;
     case 4:
@@ -2918,7 +2953,7 @@ proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent.
   }
   f = message.getModemMessageId();
   if (f !== 0) {
-    writer.writeInt64(
+    writer.writeUint64(
       3,
       f
     );
@@ -2994,7 +3029,7 @@ proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent.
 
 
 /**
- * optional int64 modem_message_id = 3;
+ * optional uint64 modem_message_id = 3;
  * @return {number}
  */
 proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent.prototype.getModemMessageId = function() {
@@ -7195,12 +7230,12 @@ proto.hiber.event.Event.UserEvent.UserAccessRequestEvent.prototype.setDescriptio
  * @extends {jspb.Message}
  * @constructor
  */
-proto.hiber.event.Event.WebhookEvent = function(opt_data) {
+proto.hiber.event.Event.PublisherEvent = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.hiber.event.Event.WebhookEvent, jspb.Message);
+goog.inherits(proto.hiber.event.Event.PublisherEvent, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.hiber.event.Event.WebhookEvent.displayName = 'proto.hiber.event.Event.WebhookEvent';
+  proto.hiber.event.Event.PublisherEvent.displayName = 'proto.hiber.event.Event.PublisherEvent';
 }
 
 
@@ -7215,8 +7250,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.hiber.event.Event.WebhookEvent.prototype.toObject = function(opt_includeInstance) {
-  return proto.hiber.event.Event.WebhookEvent.toObject(opt_includeInstance, this);
+proto.hiber.event.Event.PublisherEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.PublisherEvent.toObject(opt_includeInstance, this);
 };
 
 
@@ -7225,11 +7260,11 @@ proto.hiber.event.Event.WebhookEvent.prototype.toObject = function(opt_includeIn
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.hiber.event.Event.WebhookEvent} msg The msg instance to transform.
+ * @param {!proto.hiber.event.Event.PublisherEvent} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.hiber.event.Event.WebhookEvent.toObject = function(includeInstance, msg) {
+proto.hiber.event.Event.PublisherEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
 
   };
@@ -7245,23 +7280,23 @@ proto.hiber.event.Event.WebhookEvent.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.hiber.event.Event.WebhookEvent}
+ * @return {!proto.hiber.event.Event.PublisherEvent}
  */
-proto.hiber.event.Event.WebhookEvent.deserializeBinary = function(bytes) {
+proto.hiber.event.Event.PublisherEvent.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.hiber.event.Event.WebhookEvent;
-  return proto.hiber.event.Event.WebhookEvent.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.hiber.event.Event.PublisherEvent;
+  return proto.hiber.event.Event.PublisherEvent.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.hiber.event.Event.WebhookEvent} msg The message object to deserialize into.
+ * @param {!proto.hiber.event.Event.PublisherEvent} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.hiber.event.Event.WebhookEvent}
+ * @return {!proto.hiber.event.Event.PublisherEvent}
  */
-proto.hiber.event.Event.WebhookEvent.deserializeBinaryFromReader = function(msg, reader) {
+proto.hiber.event.Event.PublisherEvent.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -7281,9 +7316,9 @@ proto.hiber.event.Event.WebhookEvent.deserializeBinaryFromReader = function(msg,
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.hiber.event.Event.WebhookEvent.prototype.serializeBinary = function() {
+proto.hiber.event.Event.PublisherEvent.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.hiber.event.Event.WebhookEvent.serializeBinaryToWriter(this, writer);
+  proto.hiber.event.Event.PublisherEvent.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -7291,11 +7326,11 @@ proto.hiber.event.Event.WebhookEvent.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.hiber.event.Event.WebhookEvent} message
+ * @param {!proto.hiber.event.Event.PublisherEvent} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.hiber.event.Event.WebhookEvent.serializeBinaryToWriter = function(message, writer) {
+proto.hiber.event.Event.PublisherEvent.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
 };
 
@@ -7311,19 +7346,19 @@ proto.hiber.event.Event.WebhookEvent.serializeBinaryToWriter = function(message,
  * @extends {jspb.Message}
  * @constructor
  */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.event.Event.WebhookEvent.CreatedEvent.repeatedFields_, null);
+proto.hiber.event.Event.PublisherEvent.CreatedEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.event.Event.PublisherEvent.CreatedEvent.repeatedFields_, null);
 };
-goog.inherits(proto.hiber.event.Event.WebhookEvent.CreatedEvent, jspb.Message);
+goog.inherits(proto.hiber.event.Event.PublisherEvent.CreatedEvent, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.hiber.event.Event.WebhookEvent.CreatedEvent.displayName = 'proto.hiber.event.Event.WebhookEvent.CreatedEvent';
+  proto.hiber.event.Event.PublisherEvent.CreatedEvent.displayName = 'proto.hiber.event.Event.PublisherEvent.CreatedEvent';
 }
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.repeatedFields_ = [3];
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.repeatedFields_ = [3];
 
 
 
@@ -7338,8 +7373,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.toObject = function(opt_includeInstance) {
-  return proto.hiber.event.Event.WebhookEvent.CreatedEvent.toObject(opt_includeInstance, this);
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.PublisherEvent.CreatedEvent.toObject(opt_includeInstance, this);
 };
 
 
@@ -7348,14 +7383,14 @@ proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.toObject = function(
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.hiber.event.Event.WebhookEvent.CreatedEvent} msg The msg instance to transform.
+ * @param {!proto.hiber.event.Event.PublisherEvent.CreatedEvent} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.toObject = function(includeInstance, msg) {
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
     organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    created: (f = msg.getCreated()) && webhook_pb.Webhook.toObject(includeInstance, f),
+    created: (f = msg.getCreated()) && publisher_pb.Publisher.toObject(includeInstance, f),
     tagsList: jspb.Message.toObjectList(msg.getTagsList(),
     tag_pb.Tag.toObject, includeInstance),
     title: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -7374,23 +7409,23 @@ proto.hiber.event.Event.WebhookEvent.CreatedEvent.toObject = function(includeIns
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.hiber.event.Event.WebhookEvent.CreatedEvent}
+ * @return {!proto.hiber.event.Event.PublisherEvent.CreatedEvent}
  */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.deserializeBinary = function(bytes) {
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.hiber.event.Event.WebhookEvent.CreatedEvent;
-  return proto.hiber.event.Event.WebhookEvent.CreatedEvent.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.hiber.event.Event.PublisherEvent.CreatedEvent;
+  return proto.hiber.event.Event.PublisherEvent.CreatedEvent.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.hiber.event.Event.WebhookEvent.CreatedEvent} msg The message object to deserialize into.
+ * @param {!proto.hiber.event.Event.PublisherEvent.CreatedEvent} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.hiber.event.Event.WebhookEvent.CreatedEvent}
+ * @return {!proto.hiber.event.Event.PublisherEvent.CreatedEvent}
  */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.deserializeBinaryFromReader = function(msg, reader) {
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -7402,8 +7437,8 @@ proto.hiber.event.Event.WebhookEvent.CreatedEvent.deserializeBinaryFromReader = 
       msg.setOrganization(value);
       break;
     case 2:
-      var value = new webhook_pb.Webhook;
-      reader.readMessage(value,webhook_pb.Webhook.deserializeBinaryFromReader);
+      var value = new publisher_pb.Publisher;
+      reader.readMessage(value,publisher_pb.Publisher.deserializeBinaryFromReader);
       msg.setCreated(value);
       break;
     case 3:
@@ -7437,9 +7472,9 @@ proto.hiber.event.Event.WebhookEvent.CreatedEvent.deserializeBinaryFromReader = 
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.serializeBinary = function() {
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.hiber.event.Event.WebhookEvent.CreatedEvent.serializeBinaryToWriter(this, writer);
+  proto.hiber.event.Event.PublisherEvent.CreatedEvent.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -7447,11 +7482,11 @@ proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.serializeBinary = fu
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.hiber.event.Event.WebhookEvent.CreatedEvent} message
+ * @param {!proto.hiber.event.Event.PublisherEvent.CreatedEvent} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.serializeBinaryToWriter = function(message, writer) {
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getOrganization();
   if (f.length > 0) {
@@ -7465,7 +7500,7 @@ proto.hiber.event.Event.WebhookEvent.CreatedEvent.serializeBinaryToWriter = func
     writer.writeMessage(
       2,
       f,
-      webhook_pb.Webhook.serializeBinaryToWriter
+      publisher_pb.Publisher.serializeBinaryToWriter
     );
   }
   f = message.getTagsList();
@@ -7505,34 +7540,34 @@ proto.hiber.event.Event.WebhookEvent.CreatedEvent.serializeBinaryToWriter = func
  * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.getOrganization = function() {
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.setOrganization = function(value) {
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
 
 /**
- * optional hiber.webhook.Webhook created = 2;
- * @return {?proto.hiber.webhook.Webhook}
+ * optional hiber.publisher.Publisher created = 2;
+ * @return {?proto.hiber.publisher.Publisher}
  */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.getCreated = function() {
-  return /** @type{?proto.hiber.webhook.Webhook} */ (
-    jspb.Message.getWrapperField(this, webhook_pb.Webhook, 2));
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.prototype.getCreated = function() {
+  return /** @type{?proto.hiber.publisher.Publisher} */ (
+    jspb.Message.getWrapperField(this, publisher_pb.Publisher, 2));
 };
 
 
-/** @param {?proto.hiber.webhook.Webhook|undefined} value */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.setCreated = function(value) {
+/** @param {?proto.hiber.publisher.Publisher|undefined} value */
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.prototype.setCreated = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
 
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.clearCreated = function() {
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.prototype.clearCreated = function() {
   this.setCreated(undefined);
 };
 
@@ -7541,7 +7576,7 @@ proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.clearCreated = funct
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.hasCreated = function() {
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.prototype.hasCreated = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -7550,14 +7585,14 @@ proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.hasCreated = functio
  * repeated hiber.tag.Tag tags = 3;
  * @return {!Array.<!proto.hiber.tag.Tag>}
  */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.getTagsList = function() {
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.prototype.getTagsList = function() {
   return /** @type{!Array.<!proto.hiber.tag.Tag>} */ (
     jspb.Message.getRepeatedWrapperField(this, tag_pb.Tag, 3));
 };
 
 
 /** @param {!Array.<!proto.hiber.tag.Tag>} value */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.setTagsList = function(value) {
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.prototype.setTagsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
 
@@ -7567,12 +7602,12 @@ proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.setTagsList = functi
  * @param {number=} opt_index
  * @return {!proto.hiber.tag.Tag}
  */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.addTags = function(opt_value, opt_index) {
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.prototype.addTags = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.hiber.tag.Tag, opt_index);
 };
 
 
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.clearTagsList = function() {
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.prototype.clearTagsList = function() {
   this.setTagsList([]);
 };
 
@@ -7581,13 +7616,13 @@ proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.clearTagsList = func
  * optional string title = 4;
  * @return {string}
  */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.getTitle = function() {
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.prototype.getTitle = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.setTitle = function(value) {
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.prototype.setTitle = function(value) {
   jspb.Message.setField(this, 4, value);
 };
 
@@ -7596,13 +7631,13 @@ proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.setTitle = function(
  * optional string description = 5;
  * @return {string}
  */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.getDescription = function() {
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.prototype.getDescription = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.setDescription = function(value) {
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.prototype.setDescription = function(value) {
   jspb.Message.setField(this, 5, value);
 };
 
@@ -7611,19 +7646,19 @@ proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.setDescription = fun
  * optional hiber.Timestamp time = 6;
  * @return {?proto.hiber.Timestamp}
  */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.getTime = function() {
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.prototype.getTime = function() {
   return /** @type{?proto.hiber.Timestamp} */ (
     jspb.Message.getWrapperField(this, base_pb.Timestamp, 6));
 };
 
 
 /** @param {?proto.hiber.Timestamp|undefined} value */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.setTime = function(value) {
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.prototype.setTime = function(value) {
   jspb.Message.setWrapperField(this, 6, value);
 };
 
 
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.clearTime = function() {
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.prototype.clearTime = function() {
   this.setTime(undefined);
 };
 
@@ -7632,7 +7667,7 @@ proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.clearTime = function
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.hasTime = function() {
+proto.hiber.event.Event.PublisherEvent.CreatedEvent.prototype.hasTime = function() {
   return jspb.Message.getField(this, 6) != null;
 };
 
@@ -7648,19 +7683,19 @@ proto.hiber.event.Event.WebhookEvent.CreatedEvent.prototype.hasTime = function()
  * @extends {jspb.Message}
  * @constructor
  */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.event.Event.WebhookEvent.UpdatedEvent.repeatedFields_, null);
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.event.Event.PublisherEvent.UpdatedEvent.repeatedFields_, null);
 };
-goog.inherits(proto.hiber.event.Event.WebhookEvent.UpdatedEvent, jspb.Message);
+goog.inherits(proto.hiber.event.Event.PublisherEvent.UpdatedEvent, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.hiber.event.Event.WebhookEvent.UpdatedEvent.displayName = 'proto.hiber.event.Event.WebhookEvent.UpdatedEvent';
+  proto.hiber.event.Event.PublisherEvent.UpdatedEvent.displayName = 'proto.hiber.event.Event.PublisherEvent.UpdatedEvent';
 }
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.repeatedFields_ = [3];
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.repeatedFields_ = [8];
 
 
 
@@ -7675,8 +7710,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.toObject = function(opt_includeInstance) {
-  return proto.hiber.event.Event.WebhookEvent.UpdatedEvent.toObject(opt_includeInstance, this);
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.PublisherEvent.UpdatedEvent.toObject(opt_includeInstance, this);
 };
 
 
@@ -7685,19 +7720,24 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.toObject = function(
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.hiber.event.Event.WebhookEvent.UpdatedEvent} msg The msg instance to transform.
+ * @param {!proto.hiber.event.Event.PublisherEvent.UpdatedEvent} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.toObject = function(includeInstance, msg) {
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
     organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    updatedDescription: (f = msg.getUpdatedDescription()) && base_pb.UpdateClearableString.toObject(includeInstance, f),
+    partialUpdateData: (f = msg.getPartialUpdateData()) && publisher_pb.Publisher.Data.toObject(includeInstance, f),
+    updatedEventFilter: (f = msg.getUpdatedEventFilter()) && publisher_pb.UpdatePublisherRequest.UpdateEvents.toObject(includeInstance, f),
+    updatedModemFilter: (f = msg.getUpdatedModemFilter()) && publisher_pb.UpdatePublisherRequest.UpdateModems.toObject(includeInstance, f),
+    updatedTagFilter: (f = msg.getUpdatedTagFilter()) && publisher_pb.UpdatePublisherRequest.UpdateTags.toObject(includeInstance, f),
+    updatedActiveState: (f = msg.getUpdatedActiveState()) && base_pb.UpdateBoolean.toObject(includeInstance, f),
     tagsList: jspb.Message.toObjectList(msg.getTagsList(),
     tag_pb.Tag.toObject, includeInstance),
-    title: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f),
-    update: (f = msg.getUpdate()) && webhook_pb.UpdateWebhookRequest.UpdateWebhook.toObject(includeInstance, f)
+    title: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -7711,23 +7751,23 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.toObject = function(includeIns
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.hiber.event.Event.WebhookEvent.UpdatedEvent}
+ * @return {!proto.hiber.event.Event.PublisherEvent.UpdatedEvent}
  */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.deserializeBinary = function(bytes) {
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.hiber.event.Event.WebhookEvent.UpdatedEvent;
-  return proto.hiber.event.Event.WebhookEvent.UpdatedEvent.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.hiber.event.Event.PublisherEvent.UpdatedEvent;
+  return proto.hiber.event.Event.PublisherEvent.UpdatedEvent.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.hiber.event.Event.WebhookEvent.UpdatedEvent} msg The message object to deserialize into.
+ * @param {!proto.hiber.event.Event.PublisherEvent.UpdatedEvent} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.hiber.event.Event.WebhookEvent.UpdatedEvent}
+ * @return {!proto.hiber.event.Event.PublisherEvent.UpdatedEvent}
  */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.deserializeBinaryFromReader = function(msg, reader) {
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -7738,28 +7778,53 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.deserializeBinaryFromReader = 
       var value = /** @type {string} */ (reader.readString());
       msg.setOrganization(value);
       break;
+    case 2:
+      var value = new base_pb.UpdateClearableString;
+      reader.readMessage(value,base_pb.UpdateClearableString.deserializeBinaryFromReader);
+      msg.setUpdatedDescription(value);
+      break;
     case 3:
+      var value = new publisher_pb.Publisher.Data;
+      reader.readMessage(value,publisher_pb.Publisher.Data.deserializeBinaryFromReader);
+      msg.setPartialUpdateData(value);
+      break;
+    case 4:
+      var value = new publisher_pb.UpdatePublisherRequest.UpdateEvents;
+      reader.readMessage(value,publisher_pb.UpdatePublisherRequest.UpdateEvents.deserializeBinaryFromReader);
+      msg.setUpdatedEventFilter(value);
+      break;
+    case 5:
+      var value = new publisher_pb.UpdatePublisherRequest.UpdateModems;
+      reader.readMessage(value,publisher_pb.UpdatePublisherRequest.UpdateModems.deserializeBinaryFromReader);
+      msg.setUpdatedModemFilter(value);
+      break;
+    case 6:
+      var value = new publisher_pb.UpdatePublisherRequest.UpdateTags;
+      reader.readMessage(value,publisher_pb.UpdatePublisherRequest.UpdateTags.deserializeBinaryFromReader);
+      msg.setUpdatedTagFilter(value);
+      break;
+    case 7:
+      var value = new base_pb.UpdateBoolean;
+      reader.readMessage(value,base_pb.UpdateBoolean.deserializeBinaryFromReader);
+      msg.setUpdatedActiveState(value);
+      break;
+    case 8:
       var value = new tag_pb.Tag;
       reader.readMessage(value,tag_pb.Tag.deserializeBinaryFromReader);
       msg.addTags(value);
       break;
-    case 4:
+    case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setTitle(value);
       break;
-    case 5:
+    case 10:
       var value = /** @type {string} */ (reader.readString());
       msg.setDescription(value);
       break;
-    case 6:
+    case 11:
       var value = new base_pb.Timestamp;
       reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
       msg.setTime(value);
-      break;
-    case 7:
-      var value = new webhook_pb.UpdateWebhookRequest.UpdateWebhook;
-      reader.readMessage(value,webhook_pb.UpdateWebhookRequest.UpdateWebhook.deserializeBinaryFromReader);
-      msg.setUpdate(value);
       break;
     default:
       reader.skipField();
@@ -7774,9 +7839,9 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.deserializeBinaryFromReader = 
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.serializeBinary = function() {
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.hiber.event.Event.WebhookEvent.UpdatedEvent.serializeBinaryToWriter(this, writer);
+  proto.hiber.event.Event.PublisherEvent.UpdatedEvent.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -7784,11 +7849,11 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.serializeBinary = fu
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.hiber.event.Event.WebhookEvent.UpdatedEvent} message
+ * @param {!proto.hiber.event.Event.PublisherEvent.UpdatedEvent} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.serializeBinaryToWriter = function(message, writer) {
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getOrganization();
   if (f.length > 0) {
@@ -7797,10 +7862,58 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.serializeBinaryToWriter = func
       f
     );
   }
+  f = message.getUpdatedDescription();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      base_pb.UpdateClearableString.serializeBinaryToWriter
+    );
+  }
+  f = message.getPartialUpdateData();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      publisher_pb.Publisher.Data.serializeBinaryToWriter
+    );
+  }
+  f = message.getUpdatedEventFilter();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      publisher_pb.UpdatePublisherRequest.UpdateEvents.serializeBinaryToWriter
+    );
+  }
+  f = message.getUpdatedModemFilter();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      publisher_pb.UpdatePublisherRequest.UpdateModems.serializeBinaryToWriter
+    );
+  }
+  f = message.getUpdatedTagFilter();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      publisher_pb.UpdatePublisherRequest.UpdateTags.serializeBinaryToWriter
+    );
+  }
+  f = message.getUpdatedActiveState();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      base_pb.UpdateBoolean.serializeBinaryToWriter
+    );
+  }
   f = message.getTagsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      3,
+      8,
       f,
       tag_pb.Tag.serializeBinaryToWriter
     );
@@ -7808,31 +7921,23 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.serializeBinaryToWriter = func
   f = message.getTitle();
   if (f.length > 0) {
     writer.writeString(
-      4,
+      9,
       f
     );
   }
   f = message.getDescription();
   if (f.length > 0) {
     writer.writeString(
-      5,
+      10,
       f
     );
   }
   f = message.getTime();
   if (f != null) {
     writer.writeMessage(
-      6,
+      11,
       f,
       base_pb.Timestamp.serializeBinaryToWriter
-    );
-  }
-  f = message.getUpdate();
-  if (f != null) {
-    writer.writeMessage(
-      7,
-      f,
-      webhook_pb.UpdateWebhookRequest.UpdateWebhook.serializeBinaryToWriter
     );
   }
 };
@@ -7842,30 +7947,210 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.serializeBinaryToWriter = func
  * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.getOrganization = function() {
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.setOrganization = function(value) {
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
 
 /**
- * repeated hiber.tag.Tag tags = 3;
+ * optional hiber.UpdateClearableString updated_description = 2;
+ * @return {?proto.hiber.UpdateClearableString}
+ */
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.getUpdatedDescription = function() {
+  return /** @type{?proto.hiber.UpdateClearableString} */ (
+    jspb.Message.getWrapperField(this, base_pb.UpdateClearableString, 2));
+};
+
+
+/** @param {?proto.hiber.UpdateClearableString|undefined} value */
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.setUpdatedDescription = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.clearUpdatedDescription = function() {
+  this.setUpdatedDescription(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.hasUpdatedDescription = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional hiber.publisher.Publisher.Data partial_update_data = 3;
+ * @return {?proto.hiber.publisher.Publisher.Data}
+ */
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.getPartialUpdateData = function() {
+  return /** @type{?proto.hiber.publisher.Publisher.Data} */ (
+    jspb.Message.getWrapperField(this, publisher_pb.Publisher.Data, 3));
+};
+
+
+/** @param {?proto.hiber.publisher.Publisher.Data|undefined} value */
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.setPartialUpdateData = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.clearPartialUpdateData = function() {
+  this.setPartialUpdateData(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.hasPartialUpdateData = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional hiber.publisher.UpdatePublisherRequest.UpdateEvents updated_event_filter = 4;
+ * @return {?proto.hiber.publisher.UpdatePublisherRequest.UpdateEvents}
+ */
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.getUpdatedEventFilter = function() {
+  return /** @type{?proto.hiber.publisher.UpdatePublisherRequest.UpdateEvents} */ (
+    jspb.Message.getWrapperField(this, publisher_pb.UpdatePublisherRequest.UpdateEvents, 4));
+};
+
+
+/** @param {?proto.hiber.publisher.UpdatePublisherRequest.UpdateEvents|undefined} value */
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.setUpdatedEventFilter = function(value) {
+  jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.clearUpdatedEventFilter = function() {
+  this.setUpdatedEventFilter(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.hasUpdatedEventFilter = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional hiber.publisher.UpdatePublisherRequest.UpdateModems updated_modem_filter = 5;
+ * @return {?proto.hiber.publisher.UpdatePublisherRequest.UpdateModems}
+ */
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.getUpdatedModemFilter = function() {
+  return /** @type{?proto.hiber.publisher.UpdatePublisherRequest.UpdateModems} */ (
+    jspb.Message.getWrapperField(this, publisher_pb.UpdatePublisherRequest.UpdateModems, 5));
+};
+
+
+/** @param {?proto.hiber.publisher.UpdatePublisherRequest.UpdateModems|undefined} value */
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.setUpdatedModemFilter = function(value) {
+  jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.clearUpdatedModemFilter = function() {
+  this.setUpdatedModemFilter(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.hasUpdatedModemFilter = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional hiber.publisher.UpdatePublisherRequest.UpdateTags updated_tag_filter = 6;
+ * @return {?proto.hiber.publisher.UpdatePublisherRequest.UpdateTags}
+ */
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.getUpdatedTagFilter = function() {
+  return /** @type{?proto.hiber.publisher.UpdatePublisherRequest.UpdateTags} */ (
+    jspb.Message.getWrapperField(this, publisher_pb.UpdatePublisherRequest.UpdateTags, 6));
+};
+
+
+/** @param {?proto.hiber.publisher.UpdatePublisherRequest.UpdateTags|undefined} value */
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.setUpdatedTagFilter = function(value) {
+  jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.clearUpdatedTagFilter = function() {
+  this.setUpdatedTagFilter(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.hasUpdatedTagFilter = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional hiber.UpdateBoolean updated_active_state = 7;
+ * @return {?proto.hiber.UpdateBoolean}
+ */
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.getUpdatedActiveState = function() {
+  return /** @type{?proto.hiber.UpdateBoolean} */ (
+    jspb.Message.getWrapperField(this, base_pb.UpdateBoolean, 7));
+};
+
+
+/** @param {?proto.hiber.UpdateBoolean|undefined} value */
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.setUpdatedActiveState = function(value) {
+  jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.clearUpdatedActiveState = function() {
+  this.setUpdatedActiveState(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.hasUpdatedActiveState = function() {
+  return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * repeated hiber.tag.Tag tags = 8;
  * @return {!Array.<!proto.hiber.tag.Tag>}
  */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.getTagsList = function() {
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.getTagsList = function() {
   return /** @type{!Array.<!proto.hiber.tag.Tag>} */ (
-    jspb.Message.getRepeatedWrapperField(this, tag_pb.Tag, 3));
+    jspb.Message.getRepeatedWrapperField(this, tag_pb.Tag, 8));
 };
 
 
 /** @param {!Array.<!proto.hiber.tag.Tag>} value */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.setTagsList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 3, value);
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.setTagsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 8, value);
 };
 
 
@@ -7874,63 +8159,63 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.setTagsList = functi
  * @param {number=} opt_index
  * @return {!proto.hiber.tag.Tag}
  */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.addTags = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.hiber.tag.Tag, opt_index);
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.addTags = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 8, opt_value, proto.hiber.tag.Tag, opt_index);
 };
 
 
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.clearTagsList = function() {
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.clearTagsList = function() {
   this.setTagsList([]);
 };
 
 
 /**
- * optional string title = 4;
+ * optional string title = 9;
  * @return {string}
  */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.getTitle = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.getTitle = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.setTitle = function(value) {
-  jspb.Message.setField(this, 4, value);
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.setTitle = function(value) {
+  jspb.Message.setField(this, 9, value);
 };
 
 
 /**
- * optional string description = 5;
+ * optional string description = 10;
  * @return {string}
  */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.getDescription = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.setDescription = function(value) {
-  jspb.Message.setField(this, 5, value);
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.setDescription = function(value) {
+  jspb.Message.setField(this, 10, value);
 };
 
 
 /**
- * optional hiber.Timestamp time = 6;
+ * optional hiber.Timestamp time = 11;
  * @return {?proto.hiber.Timestamp}
  */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.getTime = function() {
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.getTime = function() {
   return /** @type{?proto.hiber.Timestamp} */ (
-    jspb.Message.getWrapperField(this, base_pb.Timestamp, 6));
+    jspb.Message.getWrapperField(this, base_pb.Timestamp, 11));
 };
 
 
 /** @param {?proto.hiber.Timestamp|undefined} value */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.setTime = function(value) {
-  jspb.Message.setWrapperField(this, 6, value);
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.setTime = function(value) {
+  jspb.Message.setWrapperField(this, 11, value);
 };
 
 
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.clearTime = function() {
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.clearTime = function() {
   this.setTime(undefined);
 };
 
@@ -7939,38 +8224,8 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.clearTime = function
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.hasTime = function() {
-  return jspb.Message.getField(this, 6) != null;
-};
-
-
-/**
- * optional hiber.webhook.UpdateWebhookRequest.UpdateWebhook update = 7;
- * @return {?proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook}
- */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.getUpdate = function() {
-  return /** @type{?proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook} */ (
-    jspb.Message.getWrapperField(this, webhook_pb.UpdateWebhookRequest.UpdateWebhook, 7));
-};
-
-
-/** @param {?proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook|undefined} value */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.setUpdate = function(value) {
-  jspb.Message.setWrapperField(this, 7, value);
-};
-
-
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.clearUpdate = function() {
-  this.setUpdate(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.hasUpdate = function() {
-  return jspb.Message.getField(this, 7) != null;
+proto.hiber.event.Event.PublisherEvent.UpdatedEvent.prototype.hasTime = function() {
+  return jspb.Message.getField(this, 11) != null;
 };
 
 
@@ -7985,19 +8240,19 @@ proto.hiber.event.Event.WebhookEvent.UpdatedEvent.prototype.hasUpdate = function
  * @extends {jspb.Message}
  * @constructor
  */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.event.Event.WebhookEvent.DeletedEvent.repeatedFields_, null);
+proto.hiber.event.Event.PublisherEvent.DeletedEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.event.Event.PublisherEvent.DeletedEvent.repeatedFields_, null);
 };
-goog.inherits(proto.hiber.event.Event.WebhookEvent.DeletedEvent, jspb.Message);
+goog.inherits(proto.hiber.event.Event.PublisherEvent.DeletedEvent, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.hiber.event.Event.WebhookEvent.DeletedEvent.displayName = 'proto.hiber.event.Event.WebhookEvent.DeletedEvent';
+  proto.hiber.event.Event.PublisherEvent.DeletedEvent.displayName = 'proto.hiber.event.Event.PublisherEvent.DeletedEvent';
 }
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.repeatedFields_ = [3];
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.repeatedFields_ = [3];
 
 
 
@@ -8012,8 +8267,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.toObject = function(opt_includeInstance) {
-  return proto.hiber.event.Event.WebhookEvent.DeletedEvent.toObject(opt_includeInstance, this);
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.PublisherEvent.DeletedEvent.toObject(opt_includeInstance, this);
 };
 
 
@@ -8022,14 +8277,14 @@ proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.toObject = function(
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.hiber.event.Event.WebhookEvent.DeletedEvent} msg The msg instance to transform.
+ * @param {!proto.hiber.event.Event.PublisherEvent.DeletedEvent} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.toObject = function(includeInstance, msg) {
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
     organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    deleted: (f = msg.getDeleted()) && webhook_pb.Webhook.toObject(includeInstance, f),
+    deleted: (f = msg.getDeleted()) && publisher_pb.Publisher.toObject(includeInstance, f),
     tagsList: jspb.Message.toObjectList(msg.getTagsList(),
     tag_pb.Tag.toObject, includeInstance),
     title: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -8048,23 +8303,23 @@ proto.hiber.event.Event.WebhookEvent.DeletedEvent.toObject = function(includeIns
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.hiber.event.Event.WebhookEvent.DeletedEvent}
+ * @return {!proto.hiber.event.Event.PublisherEvent.DeletedEvent}
  */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.deserializeBinary = function(bytes) {
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.hiber.event.Event.WebhookEvent.DeletedEvent;
-  return proto.hiber.event.Event.WebhookEvent.DeletedEvent.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.hiber.event.Event.PublisherEvent.DeletedEvent;
+  return proto.hiber.event.Event.PublisherEvent.DeletedEvent.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.hiber.event.Event.WebhookEvent.DeletedEvent} msg The message object to deserialize into.
+ * @param {!proto.hiber.event.Event.PublisherEvent.DeletedEvent} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.hiber.event.Event.WebhookEvent.DeletedEvent}
+ * @return {!proto.hiber.event.Event.PublisherEvent.DeletedEvent}
  */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.deserializeBinaryFromReader = function(msg, reader) {
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -8076,8 +8331,8 @@ proto.hiber.event.Event.WebhookEvent.DeletedEvent.deserializeBinaryFromReader = 
       msg.setOrganization(value);
       break;
     case 2:
-      var value = new webhook_pb.Webhook;
-      reader.readMessage(value,webhook_pb.Webhook.deserializeBinaryFromReader);
+      var value = new publisher_pb.Publisher;
+      reader.readMessage(value,publisher_pb.Publisher.deserializeBinaryFromReader);
       msg.setDeleted(value);
       break;
     case 3:
@@ -8111,9 +8366,9 @@ proto.hiber.event.Event.WebhookEvent.DeletedEvent.deserializeBinaryFromReader = 
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.serializeBinary = function() {
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.hiber.event.Event.WebhookEvent.DeletedEvent.serializeBinaryToWriter(this, writer);
+  proto.hiber.event.Event.PublisherEvent.DeletedEvent.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -8121,11 +8376,11 @@ proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.serializeBinary = fu
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.hiber.event.Event.WebhookEvent.DeletedEvent} message
+ * @param {!proto.hiber.event.Event.PublisherEvent.DeletedEvent} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.serializeBinaryToWriter = function(message, writer) {
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getOrganization();
   if (f.length > 0) {
@@ -8139,7 +8394,7 @@ proto.hiber.event.Event.WebhookEvent.DeletedEvent.serializeBinaryToWriter = func
     writer.writeMessage(
       2,
       f,
-      webhook_pb.Webhook.serializeBinaryToWriter
+      publisher_pb.Publisher.serializeBinaryToWriter
     );
   }
   f = message.getTagsList();
@@ -8179,34 +8434,34 @@ proto.hiber.event.Event.WebhookEvent.DeletedEvent.serializeBinaryToWriter = func
  * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.getOrganization = function() {
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.setOrganization = function(value) {
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
 
 /**
- * optional hiber.webhook.Webhook deleted = 2;
- * @return {?proto.hiber.webhook.Webhook}
+ * optional hiber.publisher.Publisher deleted = 2;
+ * @return {?proto.hiber.publisher.Publisher}
  */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.getDeleted = function() {
-  return /** @type{?proto.hiber.webhook.Webhook} */ (
-    jspb.Message.getWrapperField(this, webhook_pb.Webhook, 2));
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.prototype.getDeleted = function() {
+  return /** @type{?proto.hiber.publisher.Publisher} */ (
+    jspb.Message.getWrapperField(this, publisher_pb.Publisher, 2));
 };
 
 
-/** @param {?proto.hiber.webhook.Webhook|undefined} value */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.setDeleted = function(value) {
+/** @param {?proto.hiber.publisher.Publisher|undefined} value */
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.prototype.setDeleted = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
 
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.clearDeleted = function() {
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.prototype.clearDeleted = function() {
   this.setDeleted(undefined);
 };
 
@@ -8215,7 +8470,7 @@ proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.clearDeleted = funct
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.hasDeleted = function() {
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.prototype.hasDeleted = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -8224,14 +8479,14 @@ proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.hasDeleted = functio
  * repeated hiber.tag.Tag tags = 3;
  * @return {!Array.<!proto.hiber.tag.Tag>}
  */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.getTagsList = function() {
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.prototype.getTagsList = function() {
   return /** @type{!Array.<!proto.hiber.tag.Tag>} */ (
     jspb.Message.getRepeatedWrapperField(this, tag_pb.Tag, 3));
 };
 
 
 /** @param {!Array.<!proto.hiber.tag.Tag>} value */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.setTagsList = function(value) {
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.prototype.setTagsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
 
@@ -8241,12 +8496,12 @@ proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.setTagsList = functi
  * @param {number=} opt_index
  * @return {!proto.hiber.tag.Tag}
  */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.addTags = function(opt_value, opt_index) {
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.prototype.addTags = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.hiber.tag.Tag, opt_index);
 };
 
 
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.clearTagsList = function() {
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.prototype.clearTagsList = function() {
   this.setTagsList([]);
 };
 
@@ -8255,13 +8510,13 @@ proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.clearTagsList = func
  * optional string title = 4;
  * @return {string}
  */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.getTitle = function() {
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.prototype.getTitle = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.setTitle = function(value) {
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.prototype.setTitle = function(value) {
   jspb.Message.setField(this, 4, value);
 };
 
@@ -8270,13 +8525,13 @@ proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.setTitle = function(
  * optional string description = 5;
  * @return {string}
  */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.getDescription = function() {
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.prototype.getDescription = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.setDescription = function(value) {
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.prototype.setDescription = function(value) {
   jspb.Message.setField(this, 5, value);
 };
 
@@ -8285,19 +8540,19 @@ proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.setDescription = fun
  * optional hiber.Timestamp time = 6;
  * @return {?proto.hiber.Timestamp}
  */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.getTime = function() {
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.prototype.getTime = function() {
   return /** @type{?proto.hiber.Timestamp} */ (
     jspb.Message.getWrapperField(this, base_pb.Timestamp, 6));
 };
 
 
 /** @param {?proto.hiber.Timestamp|undefined} value */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.setTime = function(value) {
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.prototype.setTime = function(value) {
   jspb.Message.setWrapperField(this, 6, value);
 };
 
 
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.clearTime = function() {
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.prototype.clearTime = function() {
   this.setTime(undefined);
 };
 
@@ -8306,7 +8561,7 @@ proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.clearTime = function
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.hasTime = function() {
+proto.hiber.event.Event.PublisherEvent.DeletedEvent.prototype.hasTime = function() {
   return jspb.Message.getField(this, 6) != null;
 };
 
@@ -8322,19 +8577,19 @@ proto.hiber.event.Event.WebhookEvent.DeletedEvent.prototype.hasTime = function()
  * @extends {jspb.Message}
  * @constructor
  */
-proto.hiber.event.Event.WebhookEvent.FailedEvent = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.event.Event.WebhookEvent.FailedEvent.repeatedFields_, null);
+proto.hiber.event.Event.PublisherEvent.FailedEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.event.Event.PublisherEvent.FailedEvent.repeatedFields_, null);
 };
-goog.inherits(proto.hiber.event.Event.WebhookEvent.FailedEvent, jspb.Message);
+goog.inherits(proto.hiber.event.Event.PublisherEvent.FailedEvent, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.hiber.event.Event.WebhookEvent.FailedEvent.displayName = 'proto.hiber.event.Event.WebhookEvent.FailedEvent';
+  proto.hiber.event.Event.PublisherEvent.FailedEvent.displayName = 'proto.hiber.event.Event.PublisherEvent.FailedEvent';
 }
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.repeatedFields_ = [4];
+proto.hiber.event.Event.PublisherEvent.FailedEvent.repeatedFields_ = [4];
 
 
 
@@ -8349,8 +8604,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.toObject = function(opt_includeInstance) {
-  return proto.hiber.event.Event.WebhookEvent.FailedEvent.toObject(opt_includeInstance, this);
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.PublisherEvent.FailedEvent.toObject(opt_includeInstance, this);
 };
 
 
@@ -8359,15 +8614,15 @@ proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.toObject = function(o
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.hiber.event.Event.WebhookEvent.FailedEvent} msg The msg instance to transform.
+ * @param {!proto.hiber.event.Event.PublisherEvent.FailedEvent} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.toObject = function(includeInstance, msg) {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
     organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     reason: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    failed: (f = msg.getFailed()) && webhook_pb.Webhook.toObject(includeInstance, f),
+    failed: (f = msg.getFailed()) && publisher_pb.Publisher.toObject(includeInstance, f),
     tagsList: jspb.Message.toObjectList(msg.getTagsList(),
     tag_pb.Tag.toObject, includeInstance),
     title: jspb.Message.getFieldWithDefault(msg, 5, ""),
@@ -8386,23 +8641,23 @@ proto.hiber.event.Event.WebhookEvent.FailedEvent.toObject = function(includeInst
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.hiber.event.Event.WebhookEvent.FailedEvent}
+ * @return {!proto.hiber.event.Event.PublisherEvent.FailedEvent}
  */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.deserializeBinary = function(bytes) {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.hiber.event.Event.WebhookEvent.FailedEvent;
-  return proto.hiber.event.Event.WebhookEvent.FailedEvent.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.hiber.event.Event.PublisherEvent.FailedEvent;
+  return proto.hiber.event.Event.PublisherEvent.FailedEvent.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.hiber.event.Event.WebhookEvent.FailedEvent} msg The message object to deserialize into.
+ * @param {!proto.hiber.event.Event.PublisherEvent.FailedEvent} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.hiber.event.Event.WebhookEvent.FailedEvent}
+ * @return {!proto.hiber.event.Event.PublisherEvent.FailedEvent}
  */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.deserializeBinaryFromReader = function(msg, reader) {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -8418,8 +8673,8 @@ proto.hiber.event.Event.WebhookEvent.FailedEvent.deserializeBinaryFromReader = f
       msg.setReason(value);
       break;
     case 3:
-      var value = new webhook_pb.Webhook;
-      reader.readMessage(value,webhook_pb.Webhook.deserializeBinaryFromReader);
+      var value = new publisher_pb.Publisher;
+      reader.readMessage(value,publisher_pb.Publisher.deserializeBinaryFromReader);
       msg.setFailed(value);
       break;
     case 4:
@@ -8453,9 +8708,9 @@ proto.hiber.event.Event.WebhookEvent.FailedEvent.deserializeBinaryFromReader = f
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.serializeBinary = function() {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.hiber.event.Event.WebhookEvent.FailedEvent.serializeBinaryToWriter(this, writer);
+  proto.hiber.event.Event.PublisherEvent.FailedEvent.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -8463,11 +8718,11 @@ proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.serializeBinary = fun
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.hiber.event.Event.WebhookEvent.FailedEvent} message
+ * @param {!proto.hiber.event.Event.PublisherEvent.FailedEvent} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.serializeBinaryToWriter = function(message, writer) {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getOrganization();
   if (f.length > 0) {
@@ -8488,7 +8743,7 @@ proto.hiber.event.Event.WebhookEvent.FailedEvent.serializeBinaryToWriter = funct
     writer.writeMessage(
       3,
       f,
-      webhook_pb.Webhook.serializeBinaryToWriter
+      publisher_pb.Publisher.serializeBinaryToWriter
     );
   }
   f = message.getTagsList();
@@ -8528,13 +8783,13 @@ proto.hiber.event.Event.WebhookEvent.FailedEvent.serializeBinaryToWriter = funct
  * optional string organization = 1;
  * @return {string}
  */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.getOrganization = function() {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.getOrganization = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.setOrganization = function(value) {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.setOrganization = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
@@ -8543,34 +8798,34 @@ proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.setOrganization = fun
  * optional string reason = 2;
  * @return {string}
  */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.getReason = function() {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.getReason = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.setReason = function(value) {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.setReason = function(value) {
   jspb.Message.setField(this, 2, value);
 };
 
 
 /**
- * optional hiber.webhook.Webhook failed = 3;
- * @return {?proto.hiber.webhook.Webhook}
+ * optional hiber.publisher.Publisher failed = 3;
+ * @return {?proto.hiber.publisher.Publisher}
  */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.getFailed = function() {
-  return /** @type{?proto.hiber.webhook.Webhook} */ (
-    jspb.Message.getWrapperField(this, webhook_pb.Webhook, 3));
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.getFailed = function() {
+  return /** @type{?proto.hiber.publisher.Publisher} */ (
+    jspb.Message.getWrapperField(this, publisher_pb.Publisher, 3));
 };
 
 
-/** @param {?proto.hiber.webhook.Webhook|undefined} value */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.setFailed = function(value) {
+/** @param {?proto.hiber.publisher.Publisher|undefined} value */
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.setFailed = function(value) {
   jspb.Message.setWrapperField(this, 3, value);
 };
 
 
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.clearFailed = function() {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.clearFailed = function() {
   this.setFailed(undefined);
 };
 
@@ -8579,7 +8834,7 @@ proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.clearFailed = functio
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.hasFailed = function() {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.hasFailed = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -8588,14 +8843,14 @@ proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.hasFailed = function(
  * repeated hiber.tag.Tag tags = 4;
  * @return {!Array.<!proto.hiber.tag.Tag>}
  */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.getTagsList = function() {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.getTagsList = function() {
   return /** @type{!Array.<!proto.hiber.tag.Tag>} */ (
     jspb.Message.getRepeatedWrapperField(this, tag_pb.Tag, 4));
 };
 
 
 /** @param {!Array.<!proto.hiber.tag.Tag>} value */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.setTagsList = function(value) {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.setTagsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 4, value);
 };
 
@@ -8605,12 +8860,12 @@ proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.setTagsList = functio
  * @param {number=} opt_index
  * @return {!proto.hiber.tag.Tag}
  */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.addTags = function(opt_value, opt_index) {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.addTags = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.hiber.tag.Tag, opt_index);
 };
 
 
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.clearTagsList = function() {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.clearTagsList = function() {
   this.setTagsList([]);
 };
 
@@ -8619,13 +8874,13 @@ proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.clearTagsList = funct
  * optional string title = 5;
  * @return {string}
  */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.getTitle = function() {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.getTitle = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.setTitle = function(value) {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.setTitle = function(value) {
   jspb.Message.setField(this, 5, value);
 };
 
@@ -8634,13 +8889,13 @@ proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.setTitle = function(v
  * optional string description = 6;
  * @return {string}
  */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.getDescription = function() {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.getDescription = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.setDescription = function(value) {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.setDescription = function(value) {
   jspb.Message.setField(this, 6, value);
 };
 
@@ -8649,19 +8904,19 @@ proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.setDescription = func
  * optional hiber.Timestamp time = 7;
  * @return {?proto.hiber.Timestamp}
  */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.getTime = function() {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.getTime = function() {
   return /** @type{?proto.hiber.Timestamp} */ (
     jspb.Message.getWrapperField(this, base_pb.Timestamp, 7));
 };
 
 
 /** @param {?proto.hiber.Timestamp|undefined} value */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.setTime = function(value) {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.setTime = function(value) {
   jspb.Message.setWrapperField(this, 7, value);
 };
 
 
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.clearTime = function() {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.clearTime = function() {
   this.setTime(undefined);
 };
 
@@ -8670,7 +8925,7 @@ proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.clearTime = function(
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.hiber.event.Event.WebhookEvent.FailedEvent.prototype.hasTime = function() {
+proto.hiber.event.Event.PublisherEvent.FailedEvent.prototype.hasTime = function() {
   return jspb.Message.getField(this, 7) != null;
 };
 
@@ -8788,6 +9043,290 @@ proto.hiber.event.Event.TokenEvent.prototype.serializeBinary = function() {
  */
 proto.hiber.event.Event.TokenEvent.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.event.Event.TokenEvent.TokenCreatedEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.hiber.event.Event.TokenEvent.TokenCreatedEvent, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.displayName = 'proto.hiber.event.Event.TokenEvent.TokenCreatedEvent';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.event.Event.TokenEvent.TokenCreatedEvent} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    token: (f = msg.getToken()) && token_pb.Token.toObject(includeInstance, f),
+    title: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.event.Event.TokenEvent.TokenCreatedEvent}
+ */
+proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.event.Event.TokenEvent.TokenCreatedEvent;
+  return proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.event.Event.TokenEvent.TokenCreatedEvent} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.event.Event.TokenEvent.TokenCreatedEvent}
+ */
+proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganization(value);
+      break;
+    case 2:
+      var value = new token_pb.Token;
+      reader.readMessage(value,token_pb.Token.deserializeBinaryFromReader);
+      msg.setToken(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTitle(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
+      break;
+    case 5:
+      var value = new base_pb.Timestamp;
+      reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.event.Event.TokenEvent.TokenCreatedEvent} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOrganization();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getToken();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      token_pb.Token.serializeBinaryToWriter
+    );
+  }
+  f = message.getTitle();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getDescription();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getTime();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      base_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional string organization = 1;
+ * @return {string}
+ */
+proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.prototype.getOrganization = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.prototype.setOrganization = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional hiber.token.Token token = 2;
+ * @return {?proto.hiber.token.Token}
+ */
+proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.prototype.getToken = function() {
+  return /** @type{?proto.hiber.token.Token} */ (
+    jspb.Message.getWrapperField(this, token_pb.Token, 2));
+};
+
+
+/** @param {?proto.hiber.token.Token|undefined} value */
+proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.prototype.setToken = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.prototype.clearToken = function() {
+  this.setToken(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.prototype.hasToken = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional string title = 3;
+ * @return {string}
+ */
+proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.prototype.getTitle = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.prototype.setTitle = function(value) {
+  jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * optional string description = 4;
+ * @return {string}
+ */
+proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.prototype.setDescription = function(value) {
+  jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * optional hiber.Timestamp time = 5;
+ * @return {?proto.hiber.Timestamp}
+ */
+proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.prototype.getTime = function() {
+  return /** @type{?proto.hiber.Timestamp} */ (
+    jspb.Message.getWrapperField(this, base_pb.Timestamp, 5));
+};
+
+
+/** @param {?proto.hiber.Timestamp|undefined} value */
+proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.prototype.setTime = function(value) {
+  jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.prototype.clearTime = function() {
+  this.setTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.prototype.hasTime = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
@@ -9359,6 +9898,619 @@ proto.hiber.event.Event.TokenEvent.TokenExpiredEvent.prototype.hasTime = functio
 };
 
 
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.event.Event.OrganizationEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.hiber.event.Event.OrganizationEvent, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.event.Event.OrganizationEvent.displayName = 'proto.hiber.event.Event.OrganizationEvent';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.event.Event.OrganizationEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.OrganizationEvent.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.event.Event.OrganizationEvent} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.OrganizationEvent.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.event.Event.OrganizationEvent}
+ */
+proto.hiber.event.Event.OrganizationEvent.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.event.Event.OrganizationEvent;
+  return proto.hiber.event.Event.OrganizationEvent.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.event.Event.OrganizationEvent} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.event.Event.OrganizationEvent}
+ */
+proto.hiber.event.Event.OrganizationEvent.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.event.Event.OrganizationEvent.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.event.Event.OrganizationEvent.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.event.Event.OrganizationEvent} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.OrganizationEvent.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.displayName = 'proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    displayNameUpdated: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    vatNumberUpdated: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    addressUpdated: (f = msg.getAddressUpdated()) && organization_pb.Organization.Address.toObject(includeInstance, f),
+    isBusinessUpdated: (f = msg.getIsBusinessUpdated()) && base_pb.UpdateBoolean.toObject(includeInstance, f),
+    billngNameUpdated: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    billingAddressUpdated: (f = msg.getBillingAddressUpdated()) && organization_pb.Organization.Address.toObject(includeInstance, f),
+    contactUpdated: (f = msg.getContactUpdated()) && organization_pb.Organization.Contact.toObject(includeInstance, f),
+    title: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent;
+  return proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganization(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDisplayNameUpdated(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVatNumberUpdated(value);
+      break;
+    case 4:
+      var value = new organization_pb.Organization.Address;
+      reader.readMessage(value,organization_pb.Organization.Address.deserializeBinaryFromReader);
+      msg.setAddressUpdated(value);
+      break;
+    case 5:
+      var value = new base_pb.UpdateBoolean;
+      reader.readMessage(value,base_pb.UpdateBoolean.deserializeBinaryFromReader);
+      msg.setIsBusinessUpdated(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBillngNameUpdated(value);
+      break;
+    case 7:
+      var value = new organization_pb.Organization.Address;
+      reader.readMessage(value,organization_pb.Organization.Address.deserializeBinaryFromReader);
+      msg.setBillingAddressUpdated(value);
+      break;
+    case 8:
+      var value = new organization_pb.Organization.Contact;
+      reader.readMessage(value,organization_pb.Organization.Contact.deserializeBinaryFromReader);
+      msg.setContactUpdated(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTitle(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
+      break;
+    case 11:
+      var value = new base_pb.Timestamp;
+      reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOrganization();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getDisplayNameUpdated();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getVatNumberUpdated();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getAddressUpdated();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      organization_pb.Organization.Address.serializeBinaryToWriter
+    );
+  }
+  f = message.getIsBusinessUpdated();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      base_pb.UpdateBoolean.serializeBinaryToWriter
+    );
+  }
+  f = message.getBillngNameUpdated();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
+  f = message.getBillingAddressUpdated();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      organization_pb.Organization.Address.serializeBinaryToWriter
+    );
+  }
+  f = message.getContactUpdated();
+  if (f != null) {
+    writer.writeMessage(
+      8,
+      f,
+      organization_pb.Organization.Contact.serializeBinaryToWriter
+    );
+  }
+  f = message.getTitle();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
+    );
+  }
+  f = message.getDescription();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
+      f
+    );
+  }
+  f = message.getTime();
+  if (f != null) {
+    writer.writeMessage(
+      11,
+      f,
+      base_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional string organization = 1;
+ * @return {string}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.getOrganization = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.setOrganization = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional string display_name_updated = 2;
+ * @return {string}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.getDisplayNameUpdated = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.setDisplayNameUpdated = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional string vat_number_updated = 3;
+ * @return {string}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.getVatNumberUpdated = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.setVatNumberUpdated = function(value) {
+  jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * optional hiber.organization.Organization.Address address_updated = 4;
+ * @return {?proto.hiber.organization.Organization.Address}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.getAddressUpdated = function() {
+  return /** @type{?proto.hiber.organization.Organization.Address} */ (
+    jspb.Message.getWrapperField(this, organization_pb.Organization.Address, 4));
+};
+
+
+/** @param {?proto.hiber.organization.Organization.Address|undefined} value */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.setAddressUpdated = function(value) {
+  jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.clearAddressUpdated = function() {
+  this.setAddressUpdated(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.hasAddressUpdated = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional hiber.UpdateBoolean is_business_updated = 5;
+ * @return {?proto.hiber.UpdateBoolean}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.getIsBusinessUpdated = function() {
+  return /** @type{?proto.hiber.UpdateBoolean} */ (
+    jspb.Message.getWrapperField(this, base_pb.UpdateBoolean, 5));
+};
+
+
+/** @param {?proto.hiber.UpdateBoolean|undefined} value */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.setIsBusinessUpdated = function(value) {
+  jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.clearIsBusinessUpdated = function() {
+  this.setIsBusinessUpdated(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.hasIsBusinessUpdated = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional string billng_name_updated = 6;
+ * @return {string}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.getBillngNameUpdated = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.setBillngNameUpdated = function(value) {
+  jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * optional hiber.organization.Organization.Address billing_address_updated = 7;
+ * @return {?proto.hiber.organization.Organization.Address}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.getBillingAddressUpdated = function() {
+  return /** @type{?proto.hiber.organization.Organization.Address} */ (
+    jspb.Message.getWrapperField(this, organization_pb.Organization.Address, 7));
+};
+
+
+/** @param {?proto.hiber.organization.Organization.Address|undefined} value */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.setBillingAddressUpdated = function(value) {
+  jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.clearBillingAddressUpdated = function() {
+  this.setBillingAddressUpdated(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.hasBillingAddressUpdated = function() {
+  return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * optional hiber.organization.Organization.Contact contact_updated = 8;
+ * @return {?proto.hiber.organization.Organization.Contact}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.getContactUpdated = function() {
+  return /** @type{?proto.hiber.organization.Organization.Contact} */ (
+    jspb.Message.getWrapperField(this, organization_pb.Organization.Contact, 8));
+};
+
+
+/** @param {?proto.hiber.organization.Organization.Contact|undefined} value */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.setContactUpdated = function(value) {
+  jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.clearContactUpdated = function() {
+  this.setContactUpdated(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.hasContactUpdated = function() {
+  return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * optional string title = 9;
+ * @return {string}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.getTitle = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.setTitle = function(value) {
+  jspb.Message.setField(this, 9, value);
+};
+
+
+/**
+ * optional string description = 10;
+ * @return {string}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.setDescription = function(value) {
+  jspb.Message.setField(this, 10, value);
+};
+
+
+/**
+ * optional hiber.Timestamp time = 11;
+ * @return {?proto.hiber.Timestamp}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.getTime = function() {
+  return /** @type{?proto.hiber.Timestamp} */ (
+    jspb.Message.getWrapperField(this, base_pb.Timestamp, 11));
+};
+
+
+/** @param {?proto.hiber.Timestamp|undefined} value */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.setTime = function(value) {
+  jspb.Message.setWrapperField(this, 11, value);
+};
+
+
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.clearTime = function() {
+  this.setTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.hasTime = function() {
+  return jspb.Message.getField(this, 11) != null;
+};
+
+
 /**
  * optional bool is_error = 1;
  * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
@@ -9643,126 +10795,6 @@ proto.hiber.event.Event.prototype.clearUserAccessRequest = function() {
  */
 proto.hiber.event.Event.prototype.hasUserAccessRequest = function() {
   return jspb.Message.getField(this, 10) != null;
-};
-
-
-/**
- * optional WebhookEvent.CreatedEvent webhook_created = 11;
- * @return {?proto.hiber.event.Event.WebhookEvent.CreatedEvent}
- */
-proto.hiber.event.Event.prototype.getWebhookCreated = function() {
-  return /** @type{?proto.hiber.event.Event.WebhookEvent.CreatedEvent} */ (
-    jspb.Message.getWrapperField(this, proto.hiber.event.Event.WebhookEvent.CreatedEvent, 11));
-};
-
-
-/** @param {?proto.hiber.event.Event.WebhookEvent.CreatedEvent|undefined} value */
-proto.hiber.event.Event.prototype.setWebhookCreated = function(value) {
-  jspb.Message.setOneofWrapperField(this, 11, proto.hiber.event.Event.oneofGroups_[0], value);
-};
-
-
-proto.hiber.event.Event.prototype.clearWebhookCreated = function() {
-  this.setWebhookCreated(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.hiber.event.Event.prototype.hasWebhookCreated = function() {
-  return jspb.Message.getField(this, 11) != null;
-};
-
-
-/**
- * optional WebhookEvent.UpdatedEvent webhook_updated = 12;
- * @return {?proto.hiber.event.Event.WebhookEvent.UpdatedEvent}
- */
-proto.hiber.event.Event.prototype.getWebhookUpdated = function() {
-  return /** @type{?proto.hiber.event.Event.WebhookEvent.UpdatedEvent} */ (
-    jspb.Message.getWrapperField(this, proto.hiber.event.Event.WebhookEvent.UpdatedEvent, 12));
-};
-
-
-/** @param {?proto.hiber.event.Event.WebhookEvent.UpdatedEvent|undefined} value */
-proto.hiber.event.Event.prototype.setWebhookUpdated = function(value) {
-  jspb.Message.setOneofWrapperField(this, 12, proto.hiber.event.Event.oneofGroups_[0], value);
-};
-
-
-proto.hiber.event.Event.prototype.clearWebhookUpdated = function() {
-  this.setWebhookUpdated(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.hiber.event.Event.prototype.hasWebhookUpdated = function() {
-  return jspb.Message.getField(this, 12) != null;
-};
-
-
-/**
- * optional WebhookEvent.DeletedEvent webhook_deleted = 13;
- * @return {?proto.hiber.event.Event.WebhookEvent.DeletedEvent}
- */
-proto.hiber.event.Event.prototype.getWebhookDeleted = function() {
-  return /** @type{?proto.hiber.event.Event.WebhookEvent.DeletedEvent} */ (
-    jspb.Message.getWrapperField(this, proto.hiber.event.Event.WebhookEvent.DeletedEvent, 13));
-};
-
-
-/** @param {?proto.hiber.event.Event.WebhookEvent.DeletedEvent|undefined} value */
-proto.hiber.event.Event.prototype.setWebhookDeleted = function(value) {
-  jspb.Message.setOneofWrapperField(this, 13, proto.hiber.event.Event.oneofGroups_[0], value);
-};
-
-
-proto.hiber.event.Event.prototype.clearWebhookDeleted = function() {
-  this.setWebhookDeleted(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.hiber.event.Event.prototype.hasWebhookDeleted = function() {
-  return jspb.Message.getField(this, 13) != null;
-};
-
-
-/**
- * optional WebhookEvent.FailedEvent webhook_failed = 14;
- * @return {?proto.hiber.event.Event.WebhookEvent.FailedEvent}
- */
-proto.hiber.event.Event.prototype.getWebhookFailed = function() {
-  return /** @type{?proto.hiber.event.Event.WebhookEvent.FailedEvent} */ (
-    jspb.Message.getWrapperField(this, proto.hiber.event.Event.WebhookEvent.FailedEvent, 14));
-};
-
-
-/** @param {?proto.hiber.event.Event.WebhookEvent.FailedEvent|undefined} value */
-proto.hiber.event.Event.prototype.setWebhookFailed = function(value) {
-  jspb.Message.setOneofWrapperField(this, 14, proto.hiber.event.Event.oneofGroups_[0], value);
-};
-
-
-proto.hiber.event.Event.prototype.clearWebhookFailed = function() {
-  this.setWebhookFailed(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.hiber.event.Event.prototype.hasWebhookFailed = function() {
-  return jspb.Message.getField(this, 14) != null;
 };
 
 
@@ -10063,6 +11095,186 @@ proto.hiber.event.Event.prototype.clearTokenExpired = function() {
  */
 proto.hiber.event.Event.prototype.hasTokenExpired = function() {
   return jspb.Message.getField(this, 24) != null;
+};
+
+
+/**
+ * optional TokenEvent.TokenCreatedEvent token_created = 30;
+ * @return {?proto.hiber.event.Event.TokenEvent.TokenCreatedEvent}
+ */
+proto.hiber.event.Event.prototype.getTokenCreated = function() {
+  return /** @type{?proto.hiber.event.Event.TokenEvent.TokenCreatedEvent} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.event.Event.TokenEvent.TokenCreatedEvent, 30));
+};
+
+
+/** @param {?proto.hiber.event.Event.TokenEvent.TokenCreatedEvent|undefined} value */
+proto.hiber.event.Event.prototype.setTokenCreated = function(value) {
+  jspb.Message.setOneofWrapperField(this, 30, proto.hiber.event.Event.oneofGroups_[0], value);
+};
+
+
+proto.hiber.event.Event.prototype.clearTokenCreated = function() {
+  this.setTokenCreated(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.prototype.hasTokenCreated = function() {
+  return jspb.Message.getField(this, 30) != null;
+};
+
+
+/**
+ * optional OrganizationEvent.OrganizationUpdatedEvent organization_updated = 25;
+ * @return {?proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent}
+ */
+proto.hiber.event.Event.prototype.getOrganizationUpdated = function() {
+  return /** @type{?proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent, 25));
+};
+
+
+/** @param {?proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent|undefined} value */
+proto.hiber.event.Event.prototype.setOrganizationUpdated = function(value) {
+  jspb.Message.setOneofWrapperField(this, 25, proto.hiber.event.Event.oneofGroups_[0], value);
+};
+
+
+proto.hiber.event.Event.prototype.clearOrganizationUpdated = function() {
+  this.setOrganizationUpdated(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.prototype.hasOrganizationUpdated = function() {
+  return jspb.Message.getField(this, 25) != null;
+};
+
+
+/**
+ * optional PublisherEvent.CreatedEvent publisher_created = 31;
+ * @return {?proto.hiber.event.Event.PublisherEvent.CreatedEvent}
+ */
+proto.hiber.event.Event.prototype.getPublisherCreated = function() {
+  return /** @type{?proto.hiber.event.Event.PublisherEvent.CreatedEvent} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.event.Event.PublisherEvent.CreatedEvent, 31));
+};
+
+
+/** @param {?proto.hiber.event.Event.PublisherEvent.CreatedEvent|undefined} value */
+proto.hiber.event.Event.prototype.setPublisherCreated = function(value) {
+  jspb.Message.setOneofWrapperField(this, 31, proto.hiber.event.Event.oneofGroups_[0], value);
+};
+
+
+proto.hiber.event.Event.prototype.clearPublisherCreated = function() {
+  this.setPublisherCreated(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.prototype.hasPublisherCreated = function() {
+  return jspb.Message.getField(this, 31) != null;
+};
+
+
+/**
+ * optional PublisherEvent.UpdatedEvent publisher_updated = 32;
+ * @return {?proto.hiber.event.Event.PublisherEvent.UpdatedEvent}
+ */
+proto.hiber.event.Event.prototype.getPublisherUpdated = function() {
+  return /** @type{?proto.hiber.event.Event.PublisherEvent.UpdatedEvent} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.event.Event.PublisherEvent.UpdatedEvent, 32));
+};
+
+
+/** @param {?proto.hiber.event.Event.PublisherEvent.UpdatedEvent|undefined} value */
+proto.hiber.event.Event.prototype.setPublisherUpdated = function(value) {
+  jspb.Message.setOneofWrapperField(this, 32, proto.hiber.event.Event.oneofGroups_[0], value);
+};
+
+
+proto.hiber.event.Event.prototype.clearPublisherUpdated = function() {
+  this.setPublisherUpdated(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.prototype.hasPublisherUpdated = function() {
+  return jspb.Message.getField(this, 32) != null;
+};
+
+
+/**
+ * optional PublisherEvent.DeletedEvent publisher_deleted = 33;
+ * @return {?proto.hiber.event.Event.PublisherEvent.DeletedEvent}
+ */
+proto.hiber.event.Event.prototype.getPublisherDeleted = function() {
+  return /** @type{?proto.hiber.event.Event.PublisherEvent.DeletedEvent} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.event.Event.PublisherEvent.DeletedEvent, 33));
+};
+
+
+/** @param {?proto.hiber.event.Event.PublisherEvent.DeletedEvent|undefined} value */
+proto.hiber.event.Event.prototype.setPublisherDeleted = function(value) {
+  jspb.Message.setOneofWrapperField(this, 33, proto.hiber.event.Event.oneofGroups_[0], value);
+};
+
+
+proto.hiber.event.Event.prototype.clearPublisherDeleted = function() {
+  this.setPublisherDeleted(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.prototype.hasPublisherDeleted = function() {
+  return jspb.Message.getField(this, 33) != null;
+};
+
+
+/**
+ * optional PublisherEvent.FailedEvent publisher_failed = 34;
+ * @return {?proto.hiber.event.Event.PublisherEvent.FailedEvent}
+ */
+proto.hiber.event.Event.prototype.getPublisherFailed = function() {
+  return /** @type{?proto.hiber.event.Event.PublisherEvent.FailedEvent} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.event.Event.PublisherEvent.FailedEvent, 34));
+};
+
+
+/** @param {?proto.hiber.event.Event.PublisherEvent.FailedEvent|undefined} value */
+proto.hiber.event.Event.prototype.setPublisherFailed = function(value) {
+  jspb.Message.setOneofWrapperField(this, 34, proto.hiber.event.Event.oneofGroups_[0], value);
+};
+
+
+proto.hiber.event.Event.prototype.clearPublisherFailed = function() {
+  this.setPublisherFailed(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.prototype.hasPublisherFailed = function() {
+  return jspb.Message.getField(this, 34) != null;
 };
 
 
@@ -10382,7 +11594,7 @@ proto.hiber.event.EventSelection.toObject = function(includeInstance, msg) {
   var f, obj = {
     events: (f = msg.getEvents()) && base_pb.Filter.Events.toObject(includeInstance, f),
     modems: (f = msg.getModems()) && base_pb.Filter.Modems.toObject(includeInstance, f),
-    webhooks: (f = msg.getWebhooks()) && base_pb.Filter.Webhooks.toObject(includeInstance, f),
+    publishers: (f = msg.getPublishers()) && base_pb.Filter.Publishers.toObject(includeInstance, f),
     tags: (f = msg.getTags()) && base_pb.Filter.Tags.toObject(includeInstance, f),
     timeRange: (f = msg.getTimeRange()) && base_pb.TimeRange.toObject(includeInstance, f),
     errorsOnly: jspb.Message.getFieldWithDefault(msg, 7, false),
@@ -10435,9 +11647,9 @@ proto.hiber.event.EventSelection.deserializeBinaryFromReader = function(msg, rea
       msg.setModems(value);
       break;
     case 3:
-      var value = new base_pb.Filter.Webhooks;
-      reader.readMessage(value,base_pb.Filter.Webhooks.deserializeBinaryFromReader);
-      msg.setWebhooks(value);
+      var value = new base_pb.Filter.Publishers;
+      reader.readMessage(value,base_pb.Filter.Publishers.deserializeBinaryFromReader);
+      msg.setPublishers(value);
       break;
     case 4:
       var value = new base_pb.Filter.Tags;
@@ -10506,12 +11718,12 @@ proto.hiber.event.EventSelection.serializeBinaryToWriter = function(message, wri
       base_pb.Filter.Modems.serializeBinaryToWriter
     );
   }
-  f = message.getWebhooks();
+  f = message.getPublishers();
   if (f != null) {
     writer.writeMessage(
       3,
       f,
-      base_pb.Filter.Webhooks.serializeBinaryToWriter
+      base_pb.Filter.Publishers.serializeBinaryToWriter
     );
   }
   f = message.getTags();
@@ -10615,23 +11827,23 @@ proto.hiber.event.EventSelection.prototype.hasModems = function() {
 
 
 /**
- * optional hiber.Filter.Webhooks webhooks = 3;
- * @return {?proto.hiber.Filter.Webhooks}
+ * optional hiber.Filter.Publishers publishers = 3;
+ * @return {?proto.hiber.Filter.Publishers}
  */
-proto.hiber.event.EventSelection.prototype.getWebhooks = function() {
-  return /** @type{?proto.hiber.Filter.Webhooks} */ (
-    jspb.Message.getWrapperField(this, base_pb.Filter.Webhooks, 3));
+proto.hiber.event.EventSelection.prototype.getPublishers = function() {
+  return /** @type{?proto.hiber.Filter.Publishers} */ (
+    jspb.Message.getWrapperField(this, base_pb.Filter.Publishers, 3));
 };
 
 
-/** @param {?proto.hiber.Filter.Webhooks|undefined} value */
-proto.hiber.event.EventSelection.prototype.setWebhooks = function(value) {
+/** @param {?proto.hiber.Filter.Publishers|undefined} value */
+proto.hiber.event.EventSelection.prototype.setPublishers = function(value) {
   jspb.Message.setWrapperField(this, 3, value);
 };
 
 
-proto.hiber.event.EventSelection.prototype.clearWebhooks = function() {
-  this.setWebhooks(undefined);
+proto.hiber.event.EventSelection.prototype.clearPublishers = function() {
+  this.setPublishers(undefined);
 };
 
 
@@ -10639,7 +11851,7 @@ proto.hiber.event.EventSelection.prototype.clearWebhooks = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.hiber.event.EventSelection.prototype.hasWebhooks = function() {
+proto.hiber.event.EventSelection.prototype.hasPublishers = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -10926,8 +12138,8 @@ proto.hiber.event.ListEventsRequest.serializeBinaryToWriter = function(message, 
  * @enum {number}
  */
 proto.hiber.event.ListEventsRequest.Sort = {
-  TIME: 0,
-  TIME_INVERTED: 1,
+  TIME_DESCENDING: 0,
+  TIME_ASCENDING: 1,
   MODEM_NUMBER_ASC: 2,
   MODEM_NUMBER_DESC: 3,
   MODEM_NUMBER_SPECIFIED: 4

@@ -36,7 +36,7 @@ type Organization struct {
 func (m *Organization) Reset()                    { *m = Organization{} }
 func (m *Organization) String() string            { return proto.CompactTextString(m) }
 func (*Organization) ProtoMessage()               {}
-func (*Organization) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{0} }
+func (*Organization) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{0} }
 
 func (m *Organization) GetOrganization() string {
 	if m != nil {
@@ -119,7 +119,7 @@ type Organization_Address struct {
 func (m *Organization_Address) Reset()                    { *m = Organization_Address{} }
 func (m *Organization_Address) String() string            { return proto.CompactTextString(m) }
 func (*Organization_Address) ProtoMessage()               {}
-func (*Organization_Address) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{0, 0} }
+func (*Organization_Address) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{0, 0} }
 
 func (m *Organization_Address) GetLines() []string {
 	if m != nil {
@@ -165,7 +165,7 @@ type Organization_Contact struct {
 func (m *Organization_Contact) Reset()                    { *m = Organization_Contact{} }
 func (m *Organization_Contact) String() string            { return proto.CompactTextString(m) }
 func (*Organization_Contact) ProtoMessage()               {}
-func (*Organization_Contact) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{0, 1} }
+func (*Organization_Contact) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{0, 1} }
 
 func (m *Organization_Contact) GetName() string {
 	if m != nil {
@@ -197,7 +197,7 @@ type OrganizationSelection struct {
 func (m *OrganizationSelection) Reset()                    { *m = OrganizationSelection{} }
 func (m *OrganizationSelection) String() string            { return proto.CompactTextString(m) }
 func (*OrganizationSelection) ProtoMessage()               {}
-func (*OrganizationSelection) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{1} }
+func (*OrganizationSelection) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{1} }
 
 func (m *OrganizationSelection) GetOrganizations() *Filter_Organizations {
 	if m != nil {
@@ -215,7 +215,7 @@ type GetOrganizationRequest struct {
 func (m *GetOrganizationRequest) Reset()                    { *m = GetOrganizationRequest{} }
 func (m *GetOrganizationRequest) String() string            { return proto.CompactTextString(m) }
 func (*GetOrganizationRequest) ProtoMessage()               {}
-func (*GetOrganizationRequest) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{2} }
+func (*GetOrganizationRequest) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{2} }
 
 func (m *GetOrganizationRequest) GetOrganization() string {
 	if m != nil {
@@ -241,7 +241,7 @@ type UpdateOrganizationRequest struct {
 func (m *UpdateOrganizationRequest) Reset()                    { *m = UpdateOrganizationRequest{} }
 func (m *UpdateOrganizationRequest) String() string            { return proto.CompactTextString(m) }
 func (*UpdateOrganizationRequest) ProtoMessage()               {}
-func (*UpdateOrganizationRequest) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{3} }
+func (*UpdateOrganizationRequest) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{3} }
 
 func (m *UpdateOrganizationRequest) GetOrganization() string {
 	if m != nil {
@@ -303,7 +303,7 @@ type OrganizationTreeRequest struct {
 func (m *OrganizationTreeRequest) Reset()                    { *m = OrganizationTreeRequest{} }
 func (m *OrganizationTreeRequest) String() string            { return proto.CompactTextString(m) }
 func (*OrganizationTreeRequest) ProtoMessage()               {}
-func (*OrganizationTreeRequest) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{4} }
+func (*OrganizationTreeRequest) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{4} }
 
 func (m *OrganizationTreeRequest) GetOrganization() string {
 	if m != nil {
@@ -328,7 +328,7 @@ func (m *OrganizationTreeRequest_Response) Reset()         { *m = OrganizationTr
 func (m *OrganizationTreeRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*OrganizationTreeRequest_Response) ProtoMessage()    {}
 func (*OrganizationTreeRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor8, []int{4, 0}
+	return fileDescriptor10, []int{4, 0}
 }
 
 func (m *OrganizationTreeRequest_Response) GetRequest() *OrganizationTreeRequest {
@@ -353,7 +353,7 @@ type OrganizationTree struct {
 func (m *OrganizationTree) Reset()                    { *m = OrganizationTree{} }
 func (m *OrganizationTree) String() string            { return proto.CompactTextString(m) }
 func (*OrganizationTree) ProtoMessage()               {}
-func (*OrganizationTree) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{5} }
+func (*OrganizationTree) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{5} }
 
 func (m *OrganizationTree) GetOrganization() *Organization {
 	if m != nil {
@@ -380,7 +380,7 @@ type ListChildOrganizationsRequest struct {
 func (m *ListChildOrganizationsRequest) Reset()                    { *m = ListChildOrganizationsRequest{} }
 func (m *ListChildOrganizationsRequest) String() string            { return proto.CompactTextString(m) }
 func (*ListChildOrganizationsRequest) ProtoMessage()               {}
-func (*ListChildOrganizationsRequest) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{6} }
+func (*ListChildOrganizationsRequest) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{6} }
 
 func (m *ListChildOrganizationsRequest) GetOrganization() string {
 	if m != nil {
@@ -415,7 +415,7 @@ func (m *ListChildOrganizationsRequest_Response) Reset() {
 func (m *ListChildOrganizationsRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*ListChildOrganizationsRequest_Response) ProtoMessage()    {}
 func (*ListChildOrganizationsRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor8, []int{6, 0}
+	return fileDescriptor10, []int{6, 0}
 }
 
 func (m *ListChildOrganizationsRequest_Response) GetChildOrganizations() []*Organization {
@@ -457,7 +457,7 @@ type CreateOrganizationRequest struct {
 func (m *CreateOrganizationRequest) Reset()                    { *m = CreateOrganizationRequest{} }
 func (m *CreateOrganizationRequest) String() string            { return proto.CompactTextString(m) }
 func (*CreateOrganizationRequest) ProtoMessage()               {}
-func (*CreateOrganizationRequest) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{7} }
+func (*CreateOrganizationRequest) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{7} }
 
 func (m *CreateOrganizationRequest) GetParentOrganization() string {
 	if m != nil {
@@ -530,7 +530,7 @@ type DeleteOrganizationRequest struct {
 func (m *DeleteOrganizationRequest) Reset()                    { *m = DeleteOrganizationRequest{} }
 func (m *DeleteOrganizationRequest) String() string            { return proto.CompactTextString(m) }
 func (*DeleteOrganizationRequest) ProtoMessage()               {}
-func (*DeleteOrganizationRequest) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{8} }
+func (*DeleteOrganizationRequest) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{8} }
 
 func (m *DeleteOrganizationRequest) GetOrganization() string {
 	if m != nil {
@@ -549,7 +549,7 @@ func (m *DeleteOrganizationRequest_Response) Reset()         { *m = DeleteOrgani
 func (m *DeleteOrganizationRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*DeleteOrganizationRequest_Response) ProtoMessage()    {}
 func (*DeleteOrganizationRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor8, []int{8, 0}
+	return fileDescriptor10, []int{8, 0}
 }
 
 func (m *DeleteOrganizationRequest_Response) GetOrganization() string {
@@ -584,7 +584,7 @@ func (m *DeleteOrganizationConfirmationRequest) Reset()         { *m = DeleteOrg
 func (m *DeleteOrganizationConfirmationRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteOrganizationConfirmationRequest) ProtoMessage()    {}
 func (*DeleteOrganizationConfirmationRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor8, []int{9}
+	return fileDescriptor10, []int{9}
 }
 
 func (m *DeleteOrganizationConfirmationRequest) GetOrganization() string {
@@ -612,7 +612,7 @@ func (m *DeleteOrganizationConfirmationRequest_Response) String() string {
 }
 func (*DeleteOrganizationConfirmationRequest_Response) ProtoMessage() {}
 func (*DeleteOrganizationConfirmationRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor8, []int{9, 0}
+	return fileDescriptor10, []int{9, 0}
 }
 
 func init() {
@@ -904,9 +904,9 @@ var _OrganizationService_serviceDesc = grpc.ServiceDesc{
 	Metadata: "organization.proto",
 }
 
-func init() { proto.RegisterFile("organization.proto", fileDescriptor8) }
+func init() { proto.RegisterFile("organization.proto", fileDescriptor10) }
 
-var fileDescriptor8 = []byte{
+var fileDescriptor10 = []byte{
 	// 1002 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xec, 0x57, 0x4d, 0x6f, 0xe3, 0x44,
 	0x18, 0x26, 0x75, 0x9b, 0x8f, 0x37, 0x85, 0x76, 0xa7, 0xec, 0xae, 0xeb, 0xd5, 0x8a, 0x60, 0x81,
