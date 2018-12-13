@@ -320,7 +320,8 @@ type CreateUserRequest struct {
 	Organization string `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
 	Email        string `protobuf:"bytes,2,opt,name=email" json:"email,omitempty"`
 	Name         string `protobuf:"bytes,3,opt,name=name" json:"name,omitempty"`
-	Password     string `protobuf:"bytes,4,opt,name=password" json:"password,omitempty"`
+	// If not given, a random password is generated, and the user needs to reset their password to be able to log in.
+	Password string `protobuf:"bytes,4,opt,name=password" json:"password,omitempty"`
 }
 
 func (m *CreateUserRequest) Reset()                    { *m = CreateUserRequest{} }

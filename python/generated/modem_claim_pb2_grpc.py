@@ -5,8 +5,9 @@ import modem_claim_pb2 as modem__claim__pb2
 
 
 class ModemClaimServiceStub(object):
-  """Claim a modem that you have received, but was not marked as inbound for you.
-  This process requires approval from the previous owner and, as such, will not be instantaneous.
+  """Claim a modem that you have in your pocession, but was not marked as inbound for you.
+  This is only possible for a modem that has not been activated.
+  This process is instantaneous, but the previous owner can reject the claim afterwards.
   """
 
   def __init__(self, channel):
@@ -25,48 +26,23 @@ class ModemClaimServiceStub(object):
         request_serializer=modem__claim__pb2.ListModemClaimsRequest.SerializeToString,
         response_deserializer=modem__claim__pb2.ListModemClaimsRequest.Response.FromString,
         )
-    self.AcceptClaims = channel.unary_unary(
-        '/hiber.modem.ModemClaimService/AcceptClaims',
-        request_serializer=modem__claim__pb2.AcceptModemClaimsRequest.SerializeToString,
-        response_deserializer=modem__claim__pb2.AcceptModemClaimsRequest.Response.FromString,
-        )
-    self.RejectClaims = channel.unary_unary(
-        '/hiber.modem.ModemClaimService/RejectClaims',
-        request_serializer=modem__claim__pb2.RejectModemClaimsRequest.SerializeToString,
-        response_deserializer=modem__claim__pb2.RejectModemClaimsRequest.Response.FromString,
-        )
 
 
 class ModemClaimServiceServicer(object):
-  """Claim a modem that you have received, but was not marked as inbound for you.
-  This process requires approval from the previous owner and, as such, will not be instantaneous.
+  """Claim a modem that you have in your pocession, but was not marked as inbound for you.
+  This is only possible for a modem that has not been activated.
+  This process is instantaneous, but the previous owner can reject the claim afterwards.
   """
 
   def Claim(self, request, context):
-    """Add a claim for a number of modems 
+    """Claim a number of modems. 
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def ListClaims(self, request, context):
-    """List your claims on modems 
-
-    List your modems that have been claimed by another organization 
-    """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def AcceptClaims(self, request, context):
-    """Accept a claim on a selection of your modems 
-    """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def RejectClaims(self, request, context):
-    """Reject a claim on a selection of your modems 
+    """List modems that have been claimed. They are no longer part if your organization. 
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -84,16 +60,6 @@ def add_ModemClaimServiceServicer_to_server(servicer, server):
           servicer.ListClaims,
           request_deserializer=modem__claim__pb2.ListModemClaimsRequest.FromString,
           response_serializer=modem__claim__pb2.ListModemClaimsRequest.Response.SerializeToString,
-      ),
-      'AcceptClaims': grpc.unary_unary_rpc_method_handler(
-          servicer.AcceptClaims,
-          request_deserializer=modem__claim__pb2.AcceptModemClaimsRequest.FromString,
-          response_serializer=modem__claim__pb2.AcceptModemClaimsRequest.Response.SerializeToString,
-      ),
-      'RejectClaims': grpc.unary_unary_rpc_method_handler(
-          servicer.RejectClaims,
-          request_deserializer=modem__claim__pb2.RejectModemClaimsRequest.FromString,
-          response_serializer=modem__claim__pb2.RejectModemClaimsRequest.Response.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

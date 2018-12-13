@@ -99,28 +99,26 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_enum "hiber.EventType" do
     value :DEFAULT, 0
-    value :PUBLISHER_CREATED, 1
-    value :PUBLISHER_UPDATED, 2
-    value :PUBLISHER_DELETED, 3
-    value :MODEM_LOCATION_UPDATED, 4
-    value :MODEM_MESSAGE_RECEIVED, 5
-    value :USER_ACCESS_REQUEST, 8
-    value :USER_ADDED, 9
-    value :USER_REMOVED, 10
-    value :PUBLISHER_FAILED, 11
     value :ORGANIZATION_UPDATED, 12
+    value :MODEM_LOCATION_UPDATED, 4
+    value :MODEM_STALE, 16
+    value :MODEM_MESSAGE_RECEIVED, 5
     value :MODEM_MESSAGE_SEQUENCE_SKIP, 13
     value :MODEM_MESSAGE_DELAYED, 14
     value :MODEM_MESSAGE_CANNOT_BE_PARSED, 15
-    value :MODEM_STALE, 16
     value :MODEM_TRANSFER_STARTED, 17
     value :MODEM_TRANSFER_RECEIVED, 18
     value :MODEM_TRANSFER_CANCELLED, 19
     value :MODEM_TRANSFER_NOT_RECEIVED, 20
     value :MODEM_TRANSFER_RETURN_TRANSFER_STARTED, 21
-    value :MODEM_CLAIM_CREATED, 22
-    value :MODEM_CLAIM_ACCEPTED, 23
-    value :MODEM_CLAIM_REFUSED, 24
+    value :MODEM_CLAIMED, 22
+    value :PUBLISHER_CREATED, 1
+    value :PUBLISHER_UPDATED, 2
+    value :PUBLISHER_DELETED, 3
+    value :PUBLISHER_FAILED, 11
+    value :USER_ACCESS_REQUEST, 8
+    value :USER_ADDED, 9
+    value :USER_REMOVED, 10
     value :TOKEN_CREATED, 31
     value :TOKEN_EXPIRY_WARNING, 25
     value :TOKEN_EXPIRED, 26
