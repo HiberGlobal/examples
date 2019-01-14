@@ -90,10 +90,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :body, :bytes, 5
     optional :received_at, :message, 6, "hiber.Timestamp"
     optional :message_id, :uint64, 7
+    optional :body_bytes, :message, 8, "hiber.BytesOrHex"
   end
   add_message "hiber.modem.ModemMessageSelection" do
     optional :modems, :message, 1, "hiber.Filter.Modems"
-    optional :child_organizations, :message, 2, "hiber.Filter.ChildOrganizations"
     optional :time_range, :message, 3, "hiber.TimeRange"
   end
   add_message "hiber.modem.GetModemRequest" do

@@ -4,6 +4,7 @@
 require 'google/protobuf'
 
 require 'google/protobuf/timestamp_pb'
+require 'permission_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.UpdateZeroableInt" do
     optional :updated, :bool, 1
@@ -97,6 +98,16 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :include, :string, 1
     repeated :exclude, :string, 2
   end
+  add_message "hiber.Filter.OrganizationPermissions" do
+    optional :include_all, :bool, 1
+    repeated :include, :enum, 2, "hiber.OrganizationPermission"
+    repeated :exclude, :enum, 3, "hiber.OrganizationPermission"
+  end
+  add_message "hiber.Filter.UserPermissions" do
+    optional :include_all, :bool, 1
+    repeated :include, :enum, 2, "hiber.UserPermission"
+    repeated :exclude, :enum, 3, "hiber.UserPermission"
+  end
   add_enum "hiber.EventType" do
     value :DEFAULT, 0
     value :ORGANIZATION_UPDATED, 12
@@ -152,6 +163,8 @@ module Hiber
   Filter::Webhooks = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Filter.Webhooks").msgclass
   Filter::Publishers = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Filter.Publishers").msgclass
   Filter::Users = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Filter.Users").msgclass
+  Filter::OrganizationPermissions = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Filter.OrganizationPermissions").msgclass
+  Filter::UserPermissions = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Filter.UserPermissions").msgclass
   EventType = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.EventType").enummodule
   Health = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.Health").enummodule
 end

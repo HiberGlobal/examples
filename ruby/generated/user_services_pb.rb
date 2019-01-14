@@ -20,6 +20,7 @@ module Hiber
         rpc :Approve, ApproveUserRequest, ApproveUserRequest::Response
         rpc :Remove, RemoveUserRequest, RemoveUserRequest::Response
         rpc :CreateUser, CreateUserRequest, User
+        rpc :UpdateUserPermissions, UpdateUserPermissionsRequest, UpdateUserPermissionsRequest::Response
       end
 
       Stub = Service.rpc_stub_class

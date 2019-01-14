@@ -255,7 +255,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :vat_number_updated, :string, 3
     optional :address_updated, :message, 4, "hiber.organization.Organization.Address"
     optional :is_business_updated, :message, 5, "hiber.UpdateBoolean"
-    optional :billng_name_updated, :string, 6
+    optional :billing_name_updated, :string, 6
     optional :billing_address_updated, :message, 7, "hiber.organization.Organization.Address"
     optional :contact_updated, :message, 8, "hiber.organization.Organization.Contact"
     optional :title, :string, 9

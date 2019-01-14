@@ -12,6 +12,7 @@ var goog = jspb;
 var global = Function('return this')();
 
 var base_pb = require('./base_pb.js');
+var permission_pb = require('./permission_pb.js');
 goog.exportSymbol('proto.hiber.user.ApproveUserRequest', null, global);
 goog.exportSymbol('proto.hiber.user.ApproveUserRequest.Response', null, global);
 goog.exportSymbol('proto.hiber.user.CreateUserRequest', null, global);
@@ -21,6 +22,8 @@ goog.exportSymbol('proto.hiber.user.ListUsersRequest', null, global);
 goog.exportSymbol('proto.hiber.user.ListUsersRequest.Response', null, global);
 goog.exportSymbol('proto.hiber.user.RemoveUserRequest', null, global);
 goog.exportSymbol('proto.hiber.user.RemoveUserRequest.Response', null, global);
+goog.exportSymbol('proto.hiber.user.UpdateUserPermissionsRequest', null, global);
+goog.exportSymbol('proto.hiber.user.UpdateUserPermissionsRequest.Response', null, global);
 goog.exportSymbol('proto.hiber.user.User', null, global);
 goog.exportSymbol('proto.hiber.user.UserSelection', null, global);
 goog.exportSymbol('proto.hiber.user.UserSort', null, global);
@@ -73,7 +76,8 @@ proto.hiber.user.User.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     email: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 3, "")
+    name: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    permissions: (f = msg.getPermissions()) && base_pb.Filter.OrganizationPermissions.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -121,6 +125,11 @@ proto.hiber.user.User.deserializeBinaryFromReader = function(msg, reader) {
     case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
+      break;
+    case 4:
+      var value = new base_pb.Filter.OrganizationPermissions;
+      reader.readMessage(value,base_pb.Filter.OrganizationPermissions.deserializeBinaryFromReader);
+      msg.setPermissions(value);
       break;
     default:
       reader.skipField();
@@ -172,6 +181,14 @@ proto.hiber.user.User.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getPermissions();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      base_pb.Filter.OrganizationPermissions.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -217,6 +234,36 @@ proto.hiber.user.User.prototype.getName = function() {
 /** @param {string} value */
 proto.hiber.user.User.prototype.setName = function(value) {
   jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * optional hiber.Filter.OrganizationPermissions permissions = 4;
+ * @return {?proto.hiber.Filter.OrganizationPermissions}
+ */
+proto.hiber.user.User.prototype.getPermissions = function() {
+  return /** @type{?proto.hiber.Filter.OrganizationPermissions} */ (
+    jspb.Message.getWrapperField(this, base_pb.Filter.OrganizationPermissions, 4));
+};
+
+
+/** @param {?proto.hiber.Filter.OrganizationPermissions|undefined} value */
+proto.hiber.user.User.prototype.setPermissions = function(value) {
+  jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+proto.hiber.user.User.prototype.clearPermissions = function() {
+  this.setPermissions(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.user.User.prototype.hasPermissions = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
@@ -1470,7 +1517,8 @@ proto.hiber.user.ApproveUserRequest.prototype.toObject = function(opt_includeIns
 proto.hiber.user.ApproveUserRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    userIdList: jspb.Message.getRepeatedField(msg, 2)
+    userIdList: jspb.Message.getRepeatedField(msg, 2),
+    permissions: (f = msg.getPermissions()) && base_pb.Filter.OrganizationPermissions.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1515,6 +1563,11 @@ proto.hiber.user.ApproveUserRequest.deserializeBinaryFromReader = function(msg, 
       var value = /** @type {string} */ (reader.readString());
       msg.addUserId(value);
       break;
+    case 3:
+      var value = new base_pb.Filter.OrganizationPermissions;
+      reader.readMessage(value,base_pb.Filter.OrganizationPermissions.deserializeBinaryFromReader);
+      msg.setPermissions(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1556,6 +1609,14 @@ proto.hiber.user.ApproveUserRequest.serializeBinaryToWriter = function(message, 
     writer.writeRepeatedString(
       2,
       f
+    );
+  }
+  f = message.getPermissions();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      base_pb.Filter.OrganizationPermissions.serializeBinaryToWriter
     );
   }
 };
@@ -1718,6 +1779,36 @@ proto.hiber.user.ApproveUserRequest.prototype.addUserId = function(value, opt_in
 
 proto.hiber.user.ApproveUserRequest.prototype.clearUserIdList = function() {
   this.setUserIdList([]);
+};
+
+
+/**
+ * optional hiber.Filter.OrganizationPermissions permissions = 3;
+ * @return {?proto.hiber.Filter.OrganizationPermissions}
+ */
+proto.hiber.user.ApproveUserRequest.prototype.getPermissions = function() {
+  return /** @type{?proto.hiber.Filter.OrganizationPermissions} */ (
+    jspb.Message.getWrapperField(this, base_pb.Filter.OrganizationPermissions, 3));
+};
+
+
+/** @param {?proto.hiber.Filter.OrganizationPermissions|undefined} value */
+proto.hiber.user.ApproveUserRequest.prototype.setPermissions = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.hiber.user.ApproveUserRequest.prototype.clearPermissions = function() {
+  this.setPermissions(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.user.ApproveUserRequest.prototype.hasPermissions = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -2077,7 +2168,8 @@ proto.hiber.user.CreateUserRequest.toObject = function(includeInstance, msg) {
     organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     email: jspb.Message.getFieldWithDefault(msg, 2, ""),
     name: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    password: jspb.Message.getFieldWithDefault(msg, 4, "")
+    password: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    permissions: (f = msg.getPermissions()) && base_pb.Filter.OrganizationPermissions.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2129,6 +2221,11 @@ proto.hiber.user.CreateUserRequest.deserializeBinaryFromReader = function(msg, r
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setPassword(value);
+      break;
+    case 5:
+      var value = new base_pb.Filter.OrganizationPermissions;
+      reader.readMessage(value,base_pb.Filter.OrganizationPermissions.deserializeBinaryFromReader);
+      msg.setPermissions(value);
       break;
     default:
       reader.skipField();
@@ -2185,6 +2282,14 @@ proto.hiber.user.CreateUserRequest.serializeBinaryToWriter = function(message, w
     writer.writeString(
       4,
       f
+    );
+  }
+  f = message.getPermissions();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      base_pb.Filter.OrganizationPermissions.serializeBinaryToWriter
     );
   }
 };
@@ -2247,6 +2352,386 @@ proto.hiber.user.CreateUserRequest.prototype.getPassword = function() {
 /** @param {string} value */
 proto.hiber.user.CreateUserRequest.prototype.setPassword = function(value) {
   jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * optional hiber.Filter.OrganizationPermissions permissions = 5;
+ * @return {?proto.hiber.Filter.OrganizationPermissions}
+ */
+proto.hiber.user.CreateUserRequest.prototype.getPermissions = function() {
+  return /** @type{?proto.hiber.Filter.OrganizationPermissions} */ (
+    jspb.Message.getWrapperField(this, base_pb.Filter.OrganizationPermissions, 5));
+};
+
+
+/** @param {?proto.hiber.Filter.OrganizationPermissions|undefined} value */
+proto.hiber.user.CreateUserRequest.prototype.setPermissions = function(value) {
+  jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+proto.hiber.user.CreateUserRequest.prototype.clearPermissions = function() {
+  this.setPermissions(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.user.CreateUserRequest.prototype.hasPermissions = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.user.UpdateUserPermissionsRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.user.UpdateUserPermissionsRequest.repeatedFields_, null);
+};
+goog.inherits(proto.hiber.user.UpdateUserPermissionsRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.user.UpdateUserPermissionsRequest.displayName = 'proto.hiber.user.UpdateUserPermissionsRequest';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.hiber.user.UpdateUserPermissionsRequest.repeatedFields_ = [2];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.user.UpdateUserPermissionsRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.user.UpdateUserPermissionsRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.user.UpdateUserPermissionsRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.user.UpdateUserPermissionsRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    userIdsList: jspb.Message.getRepeatedField(msg, 2),
+    newPermissions: (f = msg.getNewPermissions()) && base_pb.Filter.OrganizationPermissions.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.user.UpdateUserPermissionsRequest}
+ */
+proto.hiber.user.UpdateUserPermissionsRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.user.UpdateUserPermissionsRequest;
+  return proto.hiber.user.UpdateUserPermissionsRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.user.UpdateUserPermissionsRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.user.UpdateUserPermissionsRequest}
+ */
+proto.hiber.user.UpdateUserPermissionsRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganization(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addUserIds(value);
+      break;
+    case 3:
+      var value = new base_pb.Filter.OrganizationPermissions;
+      reader.readMessage(value,base_pb.Filter.OrganizationPermissions.deserializeBinaryFromReader);
+      msg.setNewPermissions(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.user.UpdateUserPermissionsRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.user.UpdateUserPermissionsRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.user.UpdateUserPermissionsRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.user.UpdateUserPermissionsRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOrganization();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getUserIdsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      2,
+      f
+    );
+  }
+  f = message.getNewPermissions();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      base_pb.Filter.OrganizationPermissions.serializeBinaryToWriter
+    );
+  }
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.user.UpdateUserPermissionsRequest.Response = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.hiber.user.UpdateUserPermissionsRequest.Response, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.user.UpdateUserPermissionsRequest.Response.displayName = 'proto.hiber.user.UpdateUserPermissionsRequest.Response';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.user.UpdateUserPermissionsRequest.Response.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.user.UpdateUserPermissionsRequest.Response.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.user.UpdateUserPermissionsRequest.Response} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.user.UpdateUserPermissionsRequest.Response.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.user.UpdateUserPermissionsRequest.Response}
+ */
+proto.hiber.user.UpdateUserPermissionsRequest.Response.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.user.UpdateUserPermissionsRequest.Response;
+  return proto.hiber.user.UpdateUserPermissionsRequest.Response.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.user.UpdateUserPermissionsRequest.Response} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.user.UpdateUserPermissionsRequest.Response}
+ */
+proto.hiber.user.UpdateUserPermissionsRequest.Response.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.user.UpdateUserPermissionsRequest.Response.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.user.UpdateUserPermissionsRequest.Response.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.user.UpdateUserPermissionsRequest.Response} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.user.UpdateUserPermissionsRequest.Response.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+};
+
+
+/**
+ * optional string organization = 1;
+ * @return {string}
+ */
+proto.hiber.user.UpdateUserPermissionsRequest.prototype.getOrganization = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.user.UpdateUserPermissionsRequest.prototype.setOrganization = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * repeated string user_ids = 2;
+ * @return {!Array.<string>}
+ */
+proto.hiber.user.UpdateUserPermissionsRequest.prototype.getUserIdsList = function() {
+  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+
+/** @param {!Array.<string>} value */
+proto.hiber.user.UpdateUserPermissionsRequest.prototype.setUserIdsList = function(value) {
+  jspb.Message.setField(this, 2, value || []);
+};
+
+
+/**
+ * @param {!string} value
+ * @param {number=} opt_index
+ */
+proto.hiber.user.UpdateUserPermissionsRequest.prototype.addUserIds = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+
+proto.hiber.user.UpdateUserPermissionsRequest.prototype.clearUserIdsList = function() {
+  this.setUserIdsList([]);
+};
+
+
+/**
+ * optional hiber.Filter.OrganizationPermissions new_permissions = 3;
+ * @return {?proto.hiber.Filter.OrganizationPermissions}
+ */
+proto.hiber.user.UpdateUserPermissionsRequest.prototype.getNewPermissions = function() {
+  return /** @type{?proto.hiber.Filter.OrganizationPermissions} */ (
+    jspb.Message.getWrapperField(this, base_pb.Filter.OrganizationPermissions, 3));
+};
+
+
+/** @param {?proto.hiber.Filter.OrganizationPermissions|undefined} value */
+proto.hiber.user.UpdateUserPermissionsRequest.prototype.setNewPermissions = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.hiber.user.UpdateUserPermissionsRequest.prototype.clearNewPermissions = function() {
+  this.setNewPermissions(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.user.UpdateUserPermissionsRequest.prototype.hasNewPermissions = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 

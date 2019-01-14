@@ -41,7 +41,7 @@ var Publisher_ContentType_value = map[string]int32{
 func (x Publisher_ContentType) String() string {
 	return proto.EnumName(Publisher_ContentType_name, int32(x))
 }
-func (Publisher_ContentType) EnumDescriptor() ([]byte, []int) { return fileDescriptor11, []int{0, 0} }
+func (Publisher_ContentType) EnumDescriptor() ([]byte, []int) { return fileDescriptor12, []int{0, 0} }
 
 type Publisher_Type int32
 
@@ -62,7 +62,7 @@ var Publisher_Type_value = map[string]int32{
 func (x Publisher_Type) String() string {
 	return proto.EnumName(Publisher_Type_name, int32(x))
 }
-func (Publisher_Type) EnumDescriptor() ([]byte, []int) { return fileDescriptor11, []int{0, 1} }
+func (Publisher_Type) EnumDescriptor() ([]byte, []int) { return fileDescriptor12, []int{0, 1} }
 
 type Publisher_Data_MQTTConfig_QoS int32
 
@@ -93,7 +93,7 @@ func (x Publisher_Data_MQTTConfig_QoS) String() string {
 	return proto.EnumName(Publisher_Data_MQTTConfig_QoS_name, int32(x))
 }
 func (Publisher_Data_MQTTConfig_QoS) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor11, []int{0, 0, 0, 0}
+	return fileDescriptor12, []int{0, 0, 0, 0}
 }
 
 type Publisher struct {
@@ -109,7 +109,7 @@ type Publisher struct {
 func (m *Publisher) Reset()                    { *m = Publisher{} }
 func (m *Publisher) String() string            { return proto.CompactTextString(m) }
 func (*Publisher) ProtoMessage()               {}
-func (*Publisher) Descriptor() ([]byte, []int) { return fileDescriptor11, []int{0} }
+func (*Publisher) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{0} }
 
 func (m *Publisher) GetId() int64 {
 	if m != nil {
@@ -177,7 +177,7 @@ type Publisher_Data struct {
 func (m *Publisher_Data) Reset()                    { *m = Publisher_Data{} }
 func (m *Publisher_Data) String() string            { return proto.CompactTextString(m) }
 func (*Publisher_Data) ProtoMessage()               {}
-func (*Publisher_Data) Descriptor() ([]byte, []int) { return fileDescriptor11, []int{0, 0} }
+func (*Publisher_Data) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{0, 0} }
 
 type isPublisher_Data_Config interface {
 	isPublisher_Data_Config()
@@ -353,7 +353,7 @@ func (m *Publisher_Data_MQTTConfig) Reset()         { *m = Publisher_Data_MQTTCo
 func (m *Publisher_Data_MQTTConfig) String() string { return proto.CompactTextString(m) }
 func (*Publisher_Data_MQTTConfig) ProtoMessage()    {}
 func (*Publisher_Data_MQTTConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor11, []int{0, 0, 0}
+	return fileDescriptor12, []int{0, 0, 0}
 }
 
 func (m *Publisher_Data_MQTTConfig) GetTopic() string {
@@ -400,7 +400,7 @@ func (m *Publisher_Data_HTTPConfig) Reset()         { *m = Publisher_Data_HTTPCo
 func (m *Publisher_Data_HTTPConfig) String() string { return proto.CompactTextString(m) }
 func (*Publisher_Data_HTTPConfig) ProtoMessage()    {}
 func (*Publisher_Data_HTTPConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor11, []int{0, 0, 1}
+	return fileDescriptor12, []int{0, 0, 1}
 }
 
 func (m *Publisher_Data_HTTPConfig) GetSecret() string {
@@ -419,7 +419,7 @@ type Publisher_Filters struct {
 func (m *Publisher_Filters) Reset()                    { *m = Publisher_Filters{} }
 func (m *Publisher_Filters) String() string            { return proto.CompactTextString(m) }
 func (*Publisher_Filters) ProtoMessage()               {}
-func (*Publisher_Filters) Descriptor() ([]byte, []int) { return fileDescriptor11, []int{0, 1} }
+func (*Publisher_Filters) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{0, 1} }
 
 func (m *Publisher_Filters) GetEventTypes() *Filter_Events {
 	if m != nil {
@@ -458,7 +458,7 @@ type PublisherSelection struct {
 func (m *PublisherSelection) Reset()                    { *m = PublisherSelection{} }
 func (m *PublisherSelection) String() string            { return proto.CompactTextString(m) }
 func (*PublisherSelection) ProtoMessage()               {}
-func (*PublisherSelection) Descriptor() ([]byte, []int) { return fileDescriptor11, []int{1} }
+func (*PublisherSelection) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{1} }
 
 func (m *PublisherSelection) GetPublishers() *Filter_Publishers {
 	if m != nil {
@@ -534,7 +534,7 @@ type PublisherCall struct {
 func (m *PublisherCall) Reset()                    { *m = PublisherCall{} }
 func (m *PublisherCall) String() string            { return proto.CompactTextString(m) }
 func (*PublisherCall) ProtoMessage()               {}
-func (*PublisherCall) Descriptor() ([]byte, []int) { return fileDescriptor11, []int{2} }
+func (*PublisherCall) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{2} }
 
 func (m *PublisherCall) GetTime() *Timestamp {
 	if m != nil {
@@ -579,7 +579,7 @@ type PublisherHistorySelection struct {
 func (m *PublisherHistorySelection) Reset()                    { *m = PublisherHistorySelection{} }
 func (m *PublisherHistorySelection) String() string            { return proto.CompactTextString(m) }
 func (*PublisherHistorySelection) ProtoMessage()               {}
-func (*PublisherHistorySelection) Descriptor() ([]byte, []int) { return fileDescriptor11, []int{3} }
+func (*PublisherHistorySelection) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{3} }
 
 func (m *PublisherHistorySelection) GetOnlyFailures() bool {
 	if m != nil {
@@ -605,7 +605,7 @@ type ListPublishersRequest struct {
 func (m *ListPublishersRequest) Reset()                    { *m = ListPublishersRequest{} }
 func (m *ListPublishersRequest) String() string            { return proto.CompactTextString(m) }
 func (*ListPublishersRequest) ProtoMessage()               {}
-func (*ListPublishersRequest) Descriptor() ([]byte, []int) { return fileDescriptor11, []int{4} }
+func (*ListPublishersRequest) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{4} }
 
 func (m *ListPublishersRequest) GetOrganization() string {
 	if m != nil {
@@ -638,7 +638,7 @@ func (m *ListPublishersRequest_Response) Reset()         { *m = ListPublishersRe
 func (m *ListPublishersRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*ListPublishersRequest_Response) ProtoMessage()    {}
 func (*ListPublishersRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor11, []int{4, 0}
+	return fileDescriptor12, []int{4, 0}
 }
 
 func (m *ListPublishersRequest_Response) GetPublishers() []*Publisher {
@@ -673,7 +673,7 @@ type PublisherHistoryRequest struct {
 func (m *PublisherHistoryRequest) Reset()                    { *m = PublisherHistoryRequest{} }
 func (m *PublisherHistoryRequest) String() string            { return proto.CompactTextString(m) }
 func (*PublisherHistoryRequest) ProtoMessage()               {}
-func (*PublisherHistoryRequest) Descriptor() ([]byte, []int) { return fileDescriptor11, []int{5} }
+func (*PublisherHistoryRequest) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{5} }
 
 func (m *PublisherHistoryRequest) GetOrganization() string {
 	if m != nil {
@@ -713,7 +713,7 @@ func (m *PublisherHistoryRequest_Response) Reset()         { *m = PublisherHisto
 func (m *PublisherHistoryRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*PublisherHistoryRequest_Response) ProtoMessage()    {}
 func (*PublisherHistoryRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor11, []int{5, 0}
+	return fileDescriptor12, []int{5, 0}
 }
 
 func (m *PublisherHistoryRequest_Response) GetCalls() []*PublisherCall {
@@ -763,7 +763,7 @@ type CreatePublisherRequest struct {
 func (m *CreatePublisherRequest) Reset()                    { *m = CreatePublisherRequest{} }
 func (m *CreatePublisherRequest) String() string            { return proto.CompactTextString(m) }
 func (*CreatePublisherRequest) ProtoMessage()               {}
-func (*CreatePublisherRequest) Descriptor() ([]byte, []int) { return fileDescriptor11, []int{6} }
+func (*CreatePublisherRequest) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{6} }
 
 type isCreatePublisherRequest_Config interface {
 	isCreatePublisherRequest_Config()
@@ -939,7 +939,7 @@ func (m *CreatePublisherRequest_Response) Reset()         { *m = CreatePublisher
 func (m *CreatePublisherRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*CreatePublisherRequest_Response) ProtoMessage()    {}
 func (*CreatePublisherRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor11, []int{6, 0}
+	return fileDescriptor12, []int{6, 0}
 }
 
 func (m *CreatePublisherRequest_Response) GetCreated() *Publisher {
@@ -965,7 +965,7 @@ type EnablePublisherRequest struct {
 func (m *EnablePublisherRequest) Reset()                    { *m = EnablePublisherRequest{} }
 func (m *EnablePublisherRequest) String() string            { return proto.CompactTextString(m) }
 func (*EnablePublisherRequest) ProtoMessage()               {}
-func (*EnablePublisherRequest) Descriptor() ([]byte, []int) { return fileDescriptor11, []int{7} }
+func (*EnablePublisherRequest) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{7} }
 
 func (m *EnablePublisherRequest) GetOrganization() string {
 	if m != nil {
@@ -991,7 +991,7 @@ func (m *EnablePublisherRequest_Response) Reset()         { *m = EnablePublisher
 func (m *EnablePublisherRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*EnablePublisherRequest_Response) ProtoMessage()    {}
 func (*EnablePublisherRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor11, []int{7, 0}
+	return fileDescriptor12, []int{7, 0}
 }
 
 func (m *EnablePublisherRequest_Response) GetPublishers() []*Publisher {
@@ -1024,7 +1024,7 @@ type DisablePublisherRequest struct {
 func (m *DisablePublisherRequest) Reset()                    { *m = DisablePublisherRequest{} }
 func (m *DisablePublisherRequest) String() string            { return proto.CompactTextString(m) }
 func (*DisablePublisherRequest) ProtoMessage()               {}
-func (*DisablePublisherRequest) Descriptor() ([]byte, []int) { return fileDescriptor11, []int{8} }
+func (*DisablePublisherRequest) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{8} }
 
 func (m *DisablePublisherRequest) GetOrganization() string {
 	if m != nil {
@@ -1050,7 +1050,7 @@ func (m *DisablePublisherRequest_Response) Reset()         { *m = DisablePublish
 func (m *DisablePublisherRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*DisablePublisherRequest_Response) ProtoMessage()    {}
 func (*DisablePublisherRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor11, []int{8, 0}
+	return fileDescriptor12, []int{8, 0}
 }
 
 func (m *DisablePublisherRequest_Response) GetPublishers() []*Publisher {
@@ -1096,7 +1096,7 @@ type UpdatePublisherRequest struct {
 func (m *UpdatePublisherRequest) Reset()                    { *m = UpdatePublisherRequest{} }
 func (m *UpdatePublisherRequest) String() string            { return proto.CompactTextString(m) }
 func (*UpdatePublisherRequest) ProtoMessage()               {}
-func (*UpdatePublisherRequest) Descriptor() ([]byte, []int) { return fileDescriptor11, []int{9} }
+func (*UpdatePublisherRequest) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{9} }
 
 type isUpdatePublisherRequest_Config interface {
 	isUpdatePublisherRequest_Config()
@@ -1287,7 +1287,7 @@ func (m *UpdatePublisherRequest_Response) Reset()         { *m = UpdatePublisher
 func (m *UpdatePublisherRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*UpdatePublisherRequest_Response) ProtoMessage()    {}
 func (*UpdatePublisherRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor11, []int{9, 0}
+	return fileDescriptor12, []int{9, 0}
 }
 
 func (m *UpdatePublisherRequest_Response) GetUpdated() []*Publisher {
@@ -1320,7 +1320,7 @@ func (m *UpdatePublisherRequest_UpdateEvents) Reset()         { *m = UpdatePubli
 func (m *UpdatePublisherRequest_UpdateEvents) String() string { return proto.CompactTextString(m) }
 func (*UpdatePublisherRequest_UpdateEvents) ProtoMessage()    {}
 func (*UpdatePublisherRequest_UpdateEvents) Descriptor() ([]byte, []int) {
-	return fileDescriptor11, []int{9, 1}
+	return fileDescriptor12, []int{9, 1}
 }
 
 func (m *UpdatePublisherRequest_UpdateEvents) GetUpdated() bool {
@@ -1346,7 +1346,7 @@ func (m *UpdatePublisherRequest_UpdateModems) Reset()         { *m = UpdatePubli
 func (m *UpdatePublisherRequest_UpdateModems) String() string { return proto.CompactTextString(m) }
 func (*UpdatePublisherRequest_UpdateModems) ProtoMessage()    {}
 func (*UpdatePublisherRequest_UpdateModems) Descriptor() ([]byte, []int) {
-	return fileDescriptor11, []int{9, 2}
+	return fileDescriptor12, []int{9, 2}
 }
 
 func (m *UpdatePublisherRequest_UpdateModems) GetUpdated() bool {
@@ -1372,7 +1372,7 @@ func (m *UpdatePublisherRequest_UpdateTags) Reset()         { *m = UpdatePublish
 func (m *UpdatePublisherRequest_UpdateTags) String() string { return proto.CompactTextString(m) }
 func (*UpdatePublisherRequest_UpdateTags) ProtoMessage()    {}
 func (*UpdatePublisherRequest_UpdateTags) Descriptor() ([]byte, []int) {
-	return fileDescriptor11, []int{9, 3}
+	return fileDescriptor12, []int{9, 3}
 }
 
 func (m *UpdatePublisherRequest_UpdateTags) GetUpdated() bool {
@@ -1399,7 +1399,7 @@ type UpdatePublisherTagsRequest struct {
 func (m *UpdatePublisherTagsRequest) Reset()                    { *m = UpdatePublisherTagsRequest{} }
 func (m *UpdatePublisherTagsRequest) String() string            { return proto.CompactTextString(m) }
 func (*UpdatePublisherTagsRequest) ProtoMessage()               {}
-func (*UpdatePublisherTagsRequest) Descriptor() ([]byte, []int) { return fileDescriptor11, []int{10} }
+func (*UpdatePublisherTagsRequest) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{10} }
 
 func (m *UpdatePublisherTagsRequest) GetOrganization() string {
 	if m != nil {
@@ -1432,7 +1432,7 @@ func (m *UpdatePublisherTagsRequest_Response) Reset()         { *m = UpdatePubli
 func (m *UpdatePublisherTagsRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*UpdatePublisherTagsRequest_Response) ProtoMessage()    {}
 func (*UpdatePublisherTagsRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor11, []int{10, 0}
+	return fileDescriptor12, []int{10, 0}
 }
 
 func (m *UpdatePublisherTagsRequest_Response) GetPublishers() []*Publisher {
@@ -1465,7 +1465,7 @@ type DeletePublisherRequest struct {
 func (m *DeletePublisherRequest) Reset()                    { *m = DeletePublisherRequest{} }
 func (m *DeletePublisherRequest) String() string            { return proto.CompactTextString(m) }
 func (*DeletePublisherRequest) ProtoMessage()               {}
-func (*DeletePublisherRequest) Descriptor() ([]byte, []int) { return fileDescriptor11, []int{11} }
+func (*DeletePublisherRequest) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{11} }
 
 func (m *DeletePublisherRequest) GetOrganization() string {
 	if m != nil {
@@ -1488,7 +1488,7 @@ func (m *DeletePublisherRequest_Response) Reset()         { *m = DeletePublisher
 func (m *DeletePublisherRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*DeletePublisherRequest_Response) ProtoMessage()    {}
 func (*DeletePublisherRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor11, []int{11, 0}
+	return fileDescriptor12, []int{11, 0}
 }
 
 func init() {
@@ -1827,9 +1827,9 @@ var _PublisherService_serviceDesc = grpc.ServiceDesc{
 	Metadata: "publisher.proto",
 }
 
-func init() { proto.RegisterFile("publisher.proto", fileDescriptor11) }
+func init() { proto.RegisterFile("publisher.proto", fileDescriptor12) }
 
-var fileDescriptor11 = []byte{
+var fileDescriptor12 = []byte{
 	// 1762 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xc4, 0x59, 0x4b, 0x6f, 0x23, 0x4b,
 	0x15, 0x1e, 0xbb, 0xfd, 0x3c, 0xb6, 0x13, 0x4f, 0x31, 0x64, 0x4c, 0x0b, 0xee, 0x04, 0xdf, 0x57,

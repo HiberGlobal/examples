@@ -9252,7 +9252,7 @@ proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.toObject = fu
     vatNumberUpdated: jspb.Message.getFieldWithDefault(msg, 3, ""),
     addressUpdated: (f = msg.getAddressUpdated()) && organization_pb.Organization.Address.toObject(includeInstance, f),
     isBusinessUpdated: (f = msg.getIsBusinessUpdated()) && base_pb.UpdateBoolean.toObject(includeInstance, f),
-    billngNameUpdated: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    billingNameUpdated: jspb.Message.getFieldWithDefault(msg, 6, ""),
     billingAddressUpdated: (f = msg.getBillingAddressUpdated()) && organization_pb.Organization.Address.toObject(includeInstance, f),
     contactUpdated: (f = msg.getContactUpdated()) && organization_pb.Organization.Contact.toObject(includeInstance, f),
     title: jspb.Message.getFieldWithDefault(msg, 9, ""),
@@ -9318,7 +9318,7 @@ proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.deserializeBi
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
-      msg.setBillngNameUpdated(value);
+      msg.setBillingNameUpdated(value);
       break;
     case 7:
       var value = new organization_pb.Organization.Address;
@@ -9409,7 +9409,7 @@ proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.serializeBina
       base_pb.UpdateBoolean.serializeBinaryToWriter
     );
   }
-  f = message.getBillngNameUpdated();
+  f = message.getBillingNameUpdated();
   if (f.length > 0) {
     writer.writeString(
       6,
@@ -9563,16 +9563,16 @@ proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.has
 
 
 /**
- * optional string billng_name_updated = 6;
+ * optional string billing_name_updated = 6;
  * @return {string}
  */
-proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.getBillngNameUpdated = function() {
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.getBillingNameUpdated = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
 
 /** @param {string} value */
-proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.setBillngNameUpdated = function(value) {
+proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.setBillingNameUpdated = function(value) {
   jspb.Message.setField(this, 6, value);
 };
 

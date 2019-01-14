@@ -18,46 +18,20 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-type TokenPermission int32
-
-const (
-	TokenPermission_USER_READ           TokenPermission = 0
-	TokenPermission_USER_ACTION         TokenPermission = 1
-	TokenPermission_ORGANIZATION_READ   TokenPermission = 2
-	TokenPermission_ORGANIZATION_ACTION TokenPermission = 3
-)
-
-var TokenPermission_name = map[int32]string{
-	0: "USER_READ",
-	1: "USER_ACTION",
-	2: "ORGANIZATION_READ",
-	3: "ORGANIZATION_ACTION",
-}
-var TokenPermission_value = map[string]int32{
-	"USER_READ":           0,
-	"USER_ACTION":         1,
-	"ORGANIZATION_READ":   2,
-	"ORGANIZATION_ACTION": 3,
-}
-
-func (x TokenPermission) String() string {
-	return proto.EnumName(TokenPermission_name, int32(x))
-}
-func (TokenPermission) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{0} }
-
 type Token struct {
-	Id           int64             `protobuf:"varint,1,opt,name=id" json:"id,omitempty"`
-	Name         string            `protobuf:"bytes,2,opt,name=name" json:"name,omitempty"`
-	UserId       string            `protobuf:"bytes,3,opt,name=user_id,json=userId" json:"user_id,omitempty"`
-	Organization string            `protobuf:"bytes,4,opt,name=organization" json:"organization,omitempty"`
-	Permissions  []TokenPermission `protobuf:"varint,5,rep,packed,name=permissions,enum=hiber.token.TokenPermission" json:"permissions,omitempty"`
-	ExpiresAt    *Timestamp        `protobuf:"bytes,6,opt,name=expires_at,json=expiresAt" json:"expires_at,omitempty"`
+	Id                      int64                    `protobuf:"varint,1,opt,name=id" json:"id,omitempty"`
+	Name                    string                   `protobuf:"bytes,2,opt,name=name" json:"name,omitempty"`
+	UserId                  string                   `protobuf:"bytes,3,opt,name=user_id,json=userId" json:"user_id,omitempty"`
+	Organization            string                   `protobuf:"bytes,4,opt,name=organization" json:"organization,omitempty"`
+	ExpiresAt               *Timestamp               `protobuf:"bytes,6,opt,name=expires_at,json=expiresAt" json:"expires_at,omitempty"`
+	UserPermissions         []UserPermission         `protobuf:"varint,7,rep,packed,name=user_permissions,json=userPermissions,enum=hiber.UserPermission" json:"user_permissions,omitempty"`
+	OrganizationPermissions []OrganizationPermission `protobuf:"varint,8,rep,packed,name=organization_permissions,json=organizationPermissions,enum=hiber.OrganizationPermission" json:"organization_permissions,omitempty"`
 }
 
 func (m *Token) Reset()                    { *m = Token{} }
 func (m *Token) String() string            { return proto.CompactTextString(m) }
 func (*Token) ProtoMessage()               {}
-func (*Token) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{0} }
+func (*Token) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{0} }
 
 func (m *Token) GetId() int64 {
 	if m != nil {
@@ -87,16 +61,23 @@ func (m *Token) GetOrganization() string {
 	return ""
 }
 
-func (m *Token) GetPermissions() []TokenPermission {
+func (m *Token) GetExpiresAt() *Timestamp {
 	if m != nil {
-		return m.Permissions
+		return m.ExpiresAt
 	}
 	return nil
 }
 
-func (m *Token) GetExpiresAt() *Timestamp {
+func (m *Token) GetUserPermissions() []UserPermission {
 	if m != nil {
-		return m.ExpiresAt
+		return m.UserPermissions
+	}
+	return nil
+}
+
+func (m *Token) GetOrganizationPermissions() []OrganizationPermission {
+	if m != nil {
+		return m.OrganizationPermissions
 	}
 	return nil
 }
@@ -110,7 +91,7 @@ type TokenSelection struct {
 func (m *TokenSelection) Reset()                    { *m = TokenSelection{} }
 func (m *TokenSelection) String() string            { return proto.CompactTextString(m) }
 func (*TokenSelection) ProtoMessage()               {}
-func (*TokenSelection) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{1} }
+func (*TokenSelection) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{1} }
 
 func (m *TokenSelection) GetUsers() *Filter_Users {
 	if m != nil {
@@ -143,7 +124,7 @@ type ListTokensRequest struct {
 func (m *ListTokensRequest) Reset()                    { *m = ListTokensRequest{} }
 func (m *ListTokensRequest) String() string            { return proto.CompactTextString(m) }
 func (*ListTokensRequest) ProtoMessage()               {}
-func (*ListTokensRequest) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{2} }
+func (*ListTokensRequest) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{2} }
 
 func (m *ListTokensRequest) GetOrganization() string {
 	if m != nil {
@@ -175,7 +156,7 @@ type ListTokensRequest_Response struct {
 func (m *ListTokensRequest_Response) Reset()                    { *m = ListTokensRequest_Response{} }
 func (m *ListTokensRequest_Response) String() string            { return proto.CompactTextString(m) }
 func (*ListTokensRequest_Response) ProtoMessage()               {}
-func (*ListTokensRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{2, 0} }
+func (*ListTokensRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{2, 0} }
 
 func (m *ListTokensRequest_Response) GetTokens() []*Token {
 	if m != nil {
@@ -200,16 +181,17 @@ func (m *ListTokensRequest_Response) GetPagination() *Pagination_Result {
 
 type CreateTokenRequest struct {
 	// Pick the organization to use (/impersonate). If unset, your default organization is used.
-	Organization string            `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
-	Name         string            `protobuf:"bytes,2,opt,name=name" json:"name,omitempty"`
-	Permissions  []TokenPermission `protobuf:"varint,3,rep,packed,name=permissions,enum=hiber.token.TokenPermission" json:"permissions,omitempty"`
-	ExpiresAt    *Timestamp        `protobuf:"bytes,4,opt,name=expires_at,json=expiresAt" json:"expires_at,omitempty"`
+	Organization            string                          `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
+	Name                    string                          `protobuf:"bytes,2,opt,name=name" json:"name,omitempty"`
+	ExpiresAt               *Timestamp                      `protobuf:"bytes,4,opt,name=expires_at,json=expiresAt" json:"expires_at,omitempty"`
+	UserPermissions         *Filter_UserPermissions         `protobuf:"bytes,5,opt,name=user_permissions,json=userPermissions" json:"user_permissions,omitempty"`
+	OrganizationPermissions *Filter_OrganizationPermissions `protobuf:"bytes,6,opt,name=organization_permissions,json=organizationPermissions" json:"organization_permissions,omitempty"`
 }
 
 func (m *CreateTokenRequest) Reset()                    { *m = CreateTokenRequest{} }
 func (m *CreateTokenRequest) String() string            { return proto.CompactTextString(m) }
 func (*CreateTokenRequest) ProtoMessage()               {}
-func (*CreateTokenRequest) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{3} }
+func (*CreateTokenRequest) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{3} }
 
 func (m *CreateTokenRequest) GetOrganization() string {
 	if m != nil {
@@ -225,16 +207,23 @@ func (m *CreateTokenRequest) GetName() string {
 	return ""
 }
 
-func (m *CreateTokenRequest) GetPermissions() []TokenPermission {
+func (m *CreateTokenRequest) GetExpiresAt() *Timestamp {
 	if m != nil {
-		return m.Permissions
+		return m.ExpiresAt
 	}
 	return nil
 }
 
-func (m *CreateTokenRequest) GetExpiresAt() *Timestamp {
+func (m *CreateTokenRequest) GetUserPermissions() *Filter_UserPermissions {
 	if m != nil {
-		return m.ExpiresAt
+		return m.UserPermissions
+	}
+	return nil
+}
+
+func (m *CreateTokenRequest) GetOrganizationPermissions() *Filter_OrganizationPermissions {
+	if m != nil {
+		return m.OrganizationPermissions
 	}
 	return nil
 }
@@ -246,7 +235,7 @@ type CreateTokenRequest_Response struct {
 func (m *CreateTokenRequest_Response) Reset()                    { *m = CreateTokenRequest_Response{} }
 func (m *CreateTokenRequest_Response) String() string            { return proto.CompactTextString(m) }
 func (*CreateTokenRequest_Response) ProtoMessage()               {}
-func (*CreateTokenRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{3, 0} }
+func (*CreateTokenRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{3, 0} }
 
 func (m *CreateTokenRequest_Response) GetToken() string {
 	if m != nil {
@@ -264,7 +253,7 @@ type DeleteTokenRequest struct {
 func (m *DeleteTokenRequest) Reset()                    { *m = DeleteTokenRequest{} }
 func (m *DeleteTokenRequest) String() string            { return proto.CompactTextString(m) }
 func (*DeleteTokenRequest) ProtoMessage()               {}
-func (*DeleteTokenRequest) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{4} }
+func (*DeleteTokenRequest) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{4} }
 
 func (m *DeleteTokenRequest) GetOrganization() string {
 	if m != nil {
@@ -286,7 +275,109 @@ type DeleteTokenRequest_Response struct {
 func (m *DeleteTokenRequest_Response) Reset()                    { *m = DeleteTokenRequest_Response{} }
 func (m *DeleteTokenRequest_Response) String() string            { return proto.CompactTextString(m) }
 func (*DeleteTokenRequest_Response) ProtoMessage()               {}
-func (*DeleteTokenRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{4, 0} }
+func (*DeleteTokenRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{4, 0} }
+
+type UpdateTokenOrganizationPermissionsRequest struct {
+	// Pick the organization to use (/impersonate). If unset, your default organization is used.
+	Organization string  `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
+	TokenIds     []int64 `protobuf:"varint,2,rep,packed,name=token_ids,json=tokenIds" json:"token_ids,omitempty"`
+	// The previous permissions are replaced!
+	NewOrganizationPermissions *Filter_OrganizationPermissions `protobuf:"bytes,3,opt,name=new_organization_permissions,json=newOrganizationPermissions" json:"new_organization_permissions,omitempty"`
+}
+
+func (m *UpdateTokenOrganizationPermissionsRequest) Reset() {
+	*m = UpdateTokenOrganizationPermissionsRequest{}
+}
+func (m *UpdateTokenOrganizationPermissionsRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdateTokenOrganizationPermissionsRequest) ProtoMessage()    {}
+func (*UpdateTokenOrganizationPermissionsRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor17, []int{5}
+}
+
+func (m *UpdateTokenOrganizationPermissionsRequest) GetOrganization() string {
+	if m != nil {
+		return m.Organization
+	}
+	return ""
+}
+
+func (m *UpdateTokenOrganizationPermissionsRequest) GetTokenIds() []int64 {
+	if m != nil {
+		return m.TokenIds
+	}
+	return nil
+}
+
+func (m *UpdateTokenOrganizationPermissionsRequest) GetNewOrganizationPermissions() *Filter_OrganizationPermissions {
+	if m != nil {
+		return m.NewOrganizationPermissions
+	}
+	return nil
+}
+
+type UpdateTokenOrganizationPermissionsRequest_Response struct {
+}
+
+func (m *UpdateTokenOrganizationPermissionsRequest_Response) Reset() {
+	*m = UpdateTokenOrganizationPermissionsRequest_Response{}
+}
+func (m *UpdateTokenOrganizationPermissionsRequest_Response) String() string {
+	return proto.CompactTextString(m)
+}
+func (*UpdateTokenOrganizationPermissionsRequest_Response) ProtoMessage() {}
+func (*UpdateTokenOrganizationPermissionsRequest_Response) Descriptor() ([]byte, []int) {
+	return fileDescriptor17, []int{5, 0}
+}
+
+type UpdateTokenUserPermissionsRequest struct {
+	// Pick the organization to use (/impersonate). If unset, your default organization is used.
+	Organization string  `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
+	TokenIds     []int64 `protobuf:"varint,2,rep,packed,name=token_ids,json=tokenIds" json:"token_ids,omitempty"`
+	// The previous permissions are replaced!
+	NewUserPermissions *Filter_UserPermissions `protobuf:"bytes,4,opt,name=new_user_permissions,json=newUserPermissions" json:"new_user_permissions,omitempty"`
+}
+
+func (m *UpdateTokenUserPermissionsRequest) Reset()         { *m = UpdateTokenUserPermissionsRequest{} }
+func (m *UpdateTokenUserPermissionsRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdateTokenUserPermissionsRequest) ProtoMessage()    {}
+func (*UpdateTokenUserPermissionsRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor17, []int{6}
+}
+
+func (m *UpdateTokenUserPermissionsRequest) GetOrganization() string {
+	if m != nil {
+		return m.Organization
+	}
+	return ""
+}
+
+func (m *UpdateTokenUserPermissionsRequest) GetTokenIds() []int64 {
+	if m != nil {
+		return m.TokenIds
+	}
+	return nil
+}
+
+func (m *UpdateTokenUserPermissionsRequest) GetNewUserPermissions() *Filter_UserPermissions {
+	if m != nil {
+		return m.NewUserPermissions
+	}
+	return nil
+}
+
+type UpdateTokenUserPermissionsRequest_Response struct {
+}
+
+func (m *UpdateTokenUserPermissionsRequest_Response) Reset() {
+	*m = UpdateTokenUserPermissionsRequest_Response{}
+}
+func (m *UpdateTokenUserPermissionsRequest_Response) String() string {
+	return proto.CompactTextString(m)
+}
+func (*UpdateTokenUserPermissionsRequest_Response) ProtoMessage() {}
+func (*UpdateTokenUserPermissionsRequest_Response) Descriptor() ([]byte, []int) {
+	return fileDescriptor17, []int{6, 0}
+}
 
 func init() {
 	proto.RegisterType((*Token)(nil), "hiber.token.Token")
@@ -297,7 +388,10 @@ func init() {
 	proto.RegisterType((*CreateTokenRequest_Response)(nil), "hiber.token.CreateTokenRequest.Response")
 	proto.RegisterType((*DeleteTokenRequest)(nil), "hiber.token.DeleteTokenRequest")
 	proto.RegisterType((*DeleteTokenRequest_Response)(nil), "hiber.token.DeleteTokenRequest.Response")
-	proto.RegisterEnum("hiber.token.TokenPermission", TokenPermission_name, TokenPermission_value)
+	proto.RegisterType((*UpdateTokenOrganizationPermissionsRequest)(nil), "hiber.token.UpdateTokenOrganizationPermissionsRequest")
+	proto.RegisterType((*UpdateTokenOrganizationPermissionsRequest_Response)(nil), "hiber.token.UpdateTokenOrganizationPermissionsRequest.Response")
+	proto.RegisterType((*UpdateTokenUserPermissionsRequest)(nil), "hiber.token.UpdateTokenUserPermissionsRequest")
+	proto.RegisterType((*UpdateTokenUserPermissionsRequest_Response)(nil), "hiber.token.UpdateTokenUserPermissionsRequest.Response")
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -314,6 +408,8 @@ type TokenServiceClient interface {
 	List(ctx context.Context, in *ListTokensRequest, opts ...grpc.CallOption) (*ListTokensRequest_Response, error)
 	Create(ctx context.Context, in *CreateTokenRequest, opts ...grpc.CallOption) (*CreateTokenRequest_Response, error)
 	Delete(ctx context.Context, in *DeleteTokenRequest, opts ...grpc.CallOption) (*DeleteTokenRequest_Response, error)
+	UpdateTokenOrganizationPermissions(ctx context.Context, in *UpdateTokenOrganizationPermissionsRequest, opts ...grpc.CallOption) (*UpdateTokenOrganizationPermissionsRequest_Response, error)
+	UpdateTokenUserPermissions(ctx context.Context, in *UpdateTokenUserPermissionsRequest, opts ...grpc.CallOption) (*UpdateTokenUserPermissionsRequest_Response, error)
 }
 
 type tokenServiceClient struct {
@@ -351,12 +447,32 @@ func (c *tokenServiceClient) Delete(ctx context.Context, in *DeleteTokenRequest,
 	return out, nil
 }
 
+func (c *tokenServiceClient) UpdateTokenOrganizationPermissions(ctx context.Context, in *UpdateTokenOrganizationPermissionsRequest, opts ...grpc.CallOption) (*UpdateTokenOrganizationPermissionsRequest_Response, error) {
+	out := new(UpdateTokenOrganizationPermissionsRequest_Response)
+	err := grpc.Invoke(ctx, "/hiber.token.TokenService/UpdateTokenOrganizationPermissions", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tokenServiceClient) UpdateTokenUserPermissions(ctx context.Context, in *UpdateTokenUserPermissionsRequest, opts ...grpc.CallOption) (*UpdateTokenUserPermissionsRequest_Response, error) {
+	out := new(UpdateTokenUserPermissionsRequest_Response)
+	err := grpc.Invoke(ctx, "/hiber.token.TokenService/UpdateTokenUserPermissions", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for TokenService service
 
 type TokenServiceServer interface {
 	List(context.Context, *ListTokensRequest) (*ListTokensRequest_Response, error)
 	Create(context.Context, *CreateTokenRequest) (*CreateTokenRequest_Response, error)
 	Delete(context.Context, *DeleteTokenRequest) (*DeleteTokenRequest_Response, error)
+	UpdateTokenOrganizationPermissions(context.Context, *UpdateTokenOrganizationPermissionsRequest) (*UpdateTokenOrganizationPermissionsRequest_Response, error)
+	UpdateTokenUserPermissions(context.Context, *UpdateTokenUserPermissionsRequest) (*UpdateTokenUserPermissionsRequest_Response, error)
 }
 
 func RegisterTokenServiceServer(s *grpc.Server, srv TokenServiceServer) {
@@ -417,6 +533,42 @@ func _TokenService_Delete_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TokenService_UpdateTokenOrganizationPermissions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateTokenOrganizationPermissionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TokenServiceServer).UpdateTokenOrganizationPermissions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hiber.token.TokenService/UpdateTokenOrganizationPermissions",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TokenServiceServer).UpdateTokenOrganizationPermissions(ctx, req.(*UpdateTokenOrganizationPermissionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TokenService_UpdateTokenUserPermissions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateTokenUserPermissionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TokenServiceServer).UpdateTokenUserPermissions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hiber.token.TokenService/UpdateTokenUserPermissions",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TokenServiceServer).UpdateTokenUserPermissions(ctx, req.(*UpdateTokenUserPermissionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _TokenService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "hiber.token.TokenService",
 	HandlerType: (*TokenServiceServer)(nil),
@@ -433,51 +585,68 @@ var _TokenService_serviceDesc = grpc.ServiceDesc{
 			MethodName: "Delete",
 			Handler:    _TokenService_Delete_Handler,
 		},
+		{
+			MethodName: "UpdateTokenOrganizationPermissions",
+			Handler:    _TokenService_UpdateTokenOrganizationPermissions_Handler,
+		},
+		{
+			MethodName: "UpdateTokenUserPermissions",
+			Handler:    _TokenService_UpdateTokenUserPermissions_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "token.proto",
 }
 
-func init() { proto.RegisterFile("token.proto", fileDescriptor15) }
+func init() { proto.RegisterFile("token.proto", fileDescriptor17) }
 
-var fileDescriptor15 = []byte{
-	// 602 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xa4, 0x54, 0x4d, 0x6f, 0xd3, 0x40,
-	0x10, 0xad, 0xed, 0x24, 0x4d, 0xc6, 0x25, 0x6d, 0xb7, 0xa0, 0x1a, 0x17, 0x41, 0xe4, 0x4b, 0x4d,
-	0x0f, 0x06, 0xcc, 0xa5, 0x5c, 0x90, 0xdc, 0x0f, 0x50, 0x24, 0xd4, 0x56, 0x9b, 0xf4, 0xd2, 0x4b,
-	0xe4, 0xc4, 0xa3, 0xb0, 0xc2, 0xb1, 0x8d, 0xd7, 0x41, 0x15, 0xff, 0x80, 0xbf, 0xc2, 0xcf, 0xe1,
-	0xc6, 0x89, 0xbf, 0x82, 0xbc, 0xeb, 0xba, 0x4e, 0x1c, 0x11, 0x01, 0xb7, 0xee, 0xcc, 0x9b, 0x99,
-	0xf7, 0x5e, 0x9f, 0x03, 0x7a, 0x16, 0x7f, 0xc2, 0xc8, 0x49, 0xd2, 0x38, 0x8b, 0x89, 0xfe, 0x91,
-	0x8d, 0x31, 0x75, 0x44, 0xc9, 0x84, 0xb1, 0xcf, 0x51, 0x36, 0xac, 0x9f, 0x0a, 0x34, 0x87, 0x79,
-	0x95, 0x74, 0x41, 0x65, 0x81, 0xa1, 0xf4, 0x14, 0x5b, 0xa3, 0x2a, 0x0b, 0x08, 0x81, 0x46, 0xe4,
-	0xcf, 0xd0, 0x50, 0x7b, 0x8a, 0xdd, 0xa1, 0xe2, 0x6f, 0xb2, 0x0f, 0x9b, 0x73, 0x8e, 0xe9, 0x88,
-	0x05, 0x86, 0x26, 0xca, 0xad, 0xfc, 0xd9, 0x0f, 0x88, 0x05, 0x5b, 0x71, 0x3a, 0xf5, 0x23, 0xf6,
-	0xd5, 0xcf, 0x58, 0x1c, 0x19, 0x0d, 0xd1, 0x5d, 0xa8, 0x91, 0xb7, 0xa0, 0x27, 0x98, 0xce, 0x18,
-	0xe7, 0x2c, 0x8e, 0xb8, 0xd1, 0xec, 0x69, 0x76, 0xd7, 0x7d, 0xe2, 0x54, 0x98, 0x39, 0x82, 0xc9,
-	0x55, 0x09, 0xa2, 0xd5, 0x01, 0xf2, 0x02, 0x00, 0x6f, 0x13, 0x96, 0x22, 0x1f, 0xf9, 0x99, 0xd1,
-	0xea, 0x29, 0xb6, 0xee, 0xee, 0x14, 0xe3, 0x43, 0x36, 0x43, 0x9e, 0xf9, 0xb3, 0x84, 0x76, 0x0a,
-	0x8c, 0x97, 0x59, 0xb7, 0xd0, 0x15, 0x0b, 0x07, 0x18, 0xe2, 0x44, 0x50, 0x78, 0x0e, 0xcd, 0x9c,
-	0x30, 0x17, 0x32, 0x75, 0x77, 0xaf, 0x98, 0x7e, 0xc7, 0xc2, 0x0c, 0x53, 0xe7, 0x3a, 0x6f, 0x51,
-	0x89, 0x28, 0xe5, 0x6b, 0x15, 0xf9, 0x87, 0xb0, 0xcd, 0xa2, 0x49, 0x38, 0x0f, 0x70, 0x24, 0xaf,
-	0x04, 0x42, 0x68, 0x9b, 0x76, 0x8b, 0xf2, 0xb9, 0xac, 0x5a, 0x3f, 0x54, 0xd8, 0xfd, 0xc0, 0x78,
-	0x26, 0xce, 0x73, 0x8a, 0x9f, 0xe7, 0xc8, 0xb3, 0x9a, 0x49, 0xca, 0x0a, 0x93, 0xde, 0x40, 0x87,
-	0xdf, 0xd1, 0x15, 0xd6, 0xeb, 0xee, 0x41, 0xdd, 0xa2, 0x52, 0x11, 0xbd, 0x47, 0x93, 0x57, 0x00,
-	0x89, 0x3f, 0x65, 0x91, 0x5c, 0xae, 0x89, 0xd9, 0xdd, 0x62, 0xf6, 0xaa, 0x6c, 0xd0, 0x0a, 0xc8,
-	0xfc, 0xae, 0x40, 0x9b, 0x22, 0x4f, 0xe2, 0x88, 0x23, 0x39, 0x82, 0x96, 0x38, 0x91, 0xbb, 0xa3,
-	0xd9, 0xba, 0x4b, 0xea, 0x77, 0x69, 0x81, 0x20, 0xc7, 0xb0, 0x99, 0x4a, 0x55, 0x05, 0xc9, 0xa7,
-	0x0b, 0xe0, 0x9a, 0x76, 0x7a, 0x07, 0x27, 0xc7, 0x2b, 0x58, 0x1a, 0x35, 0x96, 0x0e, 0x45, 0x3e,
-	0x0f, 0xb3, 0x2a, 0x59, 0xeb, 0x97, 0x02, 0xe4, 0x34, 0x45, 0x3f, 0x43, 0xc9, 0xe5, 0x2f, 0x5c,
-	0x5d, 0x95, 0xe5, 0xa5, 0x38, 0x6a, 0xff, 0x17, 0xc7, 0xc6, 0xda, 0x38, 0x9a, 0xbd, 0x8a, 0xd7,
-	0x0f, 0xa1, 0x29, 0x4e, 0x14, 0x6c, 0xe5, 0xc3, 0x1a, 0x01, 0x39, 0xc3, 0x10, 0xff, 0x41, 0xe0,
-	0x63, 0x68, 0x8b, 0x15, 0xf9, 0x97, 0xa9, 0x8a, 0x4f, 0x78, 0x53, 0xbc, 0xfb, 0x81, 0x09, 0xf7,
-	0x67, 0x8f, 0x7c, 0xd8, 0x5e, 0xd2, 0x44, 0x1e, 0x40, 0xe7, 0x7a, 0x70, 0x4e, 0x47, 0xf4, 0xdc,
-	0x3b, 0xdb, 0xd9, 0x20, 0xdb, 0xa0, 0x8b, 0xa7, 0x77, 0x3a, 0xec, 0x5f, 0x5e, 0xec, 0x28, 0xe4,
-	0x11, 0xec, 0x5e, 0xd2, 0xf7, 0xde, 0x45, 0xff, 0xc6, 0xcb, 0x2b, 0x12, 0xa7, 0x92, 0x7d, 0xd8,
-	0x5b, 0x28, 0x17, 0x78, 0xcd, 0xfd, 0xa6, 0xc2, 0x56, 0x91, 0xd1, 0xf4, 0x0b, 0x9b, 0x20, 0xb9,
-	0x84, 0x46, 0x1e, 0x07, 0xb2, 0x26, 0x21, 0xe6, 0xe1, 0x9f, 0xfb, 0x4e, 0xe9, 0xdd, 0x00, 0x5a,
-	0x32, 0x06, 0xe4, 0xd9, 0xc2, 0x48, 0x3d, 0x1b, 0xa6, 0xbd, 0x06, 0xb0, 0xb0, 0x54, 0x5a, 0xbf,
-	0xb4, 0xb4, 0xfe, 0xff, 0x58, 0x5a, 0x5a, 0x07, 0x94, 0x4b, 0x4f, 0x5e, 0xc2, 0xc1, 0x34, 0x8c,
-	0xc7, 0x7e, 0x58, 0x4c, 0xf8, 0x09, 0x73, 0xa6, 0x69, 0x32, 0x91, 0xa3, 0x27, 0x6d, 0x31, 0xe5,
-	0x25, 0xec, 0x6a, 0xe3, 0xa6, 0x29, 0x10, 0xe3, 0x96, 0xf8, 0x55, 0x7e, 0xfd, 0x3b, 0x00, 0x00,
-	0xff, 0xff, 0xa0, 0xf7, 0x01, 0x54, 0xbd, 0x05, 0x00, 0x00,
+var fileDescriptor17 = []byte{
+	// 741 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xac, 0x56, 0xcd, 0x6e, 0xd3, 0x40,
+	0x10, 0xc6, 0x3f, 0x49, 0x9c, 0x49, 0x95, 0xa6, 0x4b, 0x51, 0x8d, 0x4b, 0x21, 0x58, 0x42, 0x4d,
+	0x39, 0x18, 0x08, 0x12, 0x94, 0x13, 0xb4, 0xfc, 0x88, 0x56, 0x48, 0xad, 0xb6, 0xad, 0x84, 0xb8,
+	0x04, 0x27, 0x5e, 0x85, 0x15, 0x8e, 0x6d, 0xbc, 0x0e, 0xad, 0xb8, 0xf3, 0x18, 0xbc, 0x00, 0x37,
+	0xce, 0x9c, 0x78, 0x04, 0x78, 0x03, 0xde, 0x04, 0x79, 0xbd, 0x49, 0xec, 0xd8, 0x69, 0x9a, 0x8a,
+	0x5b, 0x76, 0xf6, 0xdb, 0x6f, 0xbe, 0x99, 0xf9, 0xc6, 0x0a, 0xd4, 0x22, 0xff, 0x23, 0xf1, 0xac,
+	0x20, 0xf4, 0x23, 0x1f, 0xd5, 0x3e, 0xd0, 0x2e, 0x09, 0x2d, 0x1e, 0x32, 0xa0, 0x6b, 0x33, 0x92,
+	0x5c, 0x18, 0x8d, 0x80, 0x84, 0x03, 0xca, 0x18, 0xf5, 0x05, 0xd4, 0xfc, 0x29, 0x43, 0xe9, 0x38,
+	0xc6, 0xa1, 0x3a, 0xc8, 0xd4, 0xd1, 0xa5, 0xa6, 0xd4, 0x52, 0xb0, 0x4c, 0x1d, 0x84, 0x40, 0xf5,
+	0xec, 0x01, 0xd1, 0xe5, 0xa6, 0xd4, 0xaa, 0x62, 0xfe, 0x1b, 0xad, 0x41, 0x65, 0xc8, 0x48, 0xd8,
+	0xa1, 0x8e, 0xae, 0xf0, 0x70, 0x39, 0x3e, 0xee, 0x39, 0xc8, 0x84, 0x25, 0x3f, 0xec, 0xdb, 0x1e,
+	0xfd, 0x62, 0x47, 0xd4, 0xf7, 0x74, 0x95, 0xdf, 0x66, 0x62, 0xe8, 0x1e, 0x00, 0x39, 0x0b, 0x68,
+	0x48, 0x58, 0xc7, 0x8e, 0xf4, 0x72, 0x53, 0x6a, 0xd5, 0xda, 0x0d, 0x2b, 0x91, 0x7a, 0x4c, 0x07,
+	0x84, 0x45, 0xf6, 0x20, 0xc0, 0x55, 0x81, 0xd9, 0x89, 0xd0, 0x33, 0x68, 0xf0, 0x6c, 0x13, 0xd1,
+	0x4c, 0xaf, 0x34, 0x95, 0x56, 0xbd, 0x7d, 0x4d, 0x3c, 0x3b, 0x61, 0x24, 0x3c, 0x1c, 0xdf, 0xe2,
+	0xe5, 0x61, 0xe6, 0xcc, 0xd0, 0x5b, 0xd0, 0xd3, 0x12, 0x32, 0x4c, 0x1a, 0x67, 0xda, 0x10, 0x4c,
+	0x07, 0x29, 0x58, 0x8a, 0x71, 0xcd, 0x2f, 0x8c, 0xb3, 0x7d, 0x55, 0x2b, 0x35, 0xca, 0xe6, 0x19,
+	0xd4, 0x79, 0xf3, 0x8e, 0x88, 0x4b, 0x7a, 0xbc, 0xc8, 0x2d, 0x28, 0xc5, 0x22, 0x18, 0x6f, 0x64,
+	0xad, 0x7d, 0x55, 0xd0, 0xbf, 0xa2, 0x6e, 0x24, 0xf4, 0x32, 0x9c, 0x20, 0xc6, 0x0d, 0x56, 0x52,
+	0x0d, 0xde, 0x84, 0x65, 0xea, 0xf5, 0xdc, 0xa1, 0x43, 0x3a, 0x49, 0x1f, 0x1c, 0xde, 0x4a, 0x0d,
+	0xd7, 0x45, 0xf8, 0x65, 0x12, 0x35, 0xff, 0xc8, 0xb0, 0xf2, 0x86, 0xb2, 0x88, 0xa7, 0x67, 0x98,
+	0x7c, 0x1a, 0x12, 0x16, 0xe5, 0xc6, 0x20, 0x15, 0x8c, 0xe1, 0x09, 0x54, 0xd9, 0x48, 0x2e, 0x1f,
+	0x6e, 0xad, 0xbd, 0x6e, 0xa5, 0x0c, 0x63, 0x65, 0x2b, 0xc2, 0x13, 0x34, 0x7a, 0x00, 0x10, 0xd8,
+	0x7d, 0xea, 0x25, 0xe4, 0x0a, 0x7f, 0xbb, 0x22, 0xde, 0x1e, 0x8e, 0x2f, 0x70, 0x0a, 0x64, 0x7c,
+	0x97, 0x40, 0xc3, 0x84, 0x05, 0xbe, 0xc7, 0x08, 0xba, 0x0b, 0x65, 0x9e, 0x22, 0xee, 0x8e, 0xd2,
+	0xaa, 0xb5, 0x51, 0x3e, 0x2f, 0x16, 0x08, 0xb4, 0x0d, 0x95, 0x30, 0xa9, 0x4a, 0x88, 0xbc, 0x99,
+	0x01, 0xe7, 0x6a, 0xc7, 0x23, 0x38, 0xda, 0x2e, 0x50, 0xa9, 0xe7, 0x54, 0x5a, 0x98, 0xb0, 0xa1,
+	0x1b, 0xa5, 0xc5, 0x9a, 0xbf, 0x65, 0x40, 0xcf, 0x43, 0x62, 0x47, 0x24, 0xd1, 0xb2, 0x40, 0x57,
+	0x8b, 0xb6, 0x25, 0x6b, 0x78, 0x75, 0xbe, 0xe1, 0x5f, 0x17, 0x18, 0xbe, 0xc4, 0x9f, 0x6d, 0xe4,
+	0x7d, 0x94, 0x72, 0x63, 0xde, 0xf8, 0xef, 0xcf, 0x31, 0x7e, 0xb2, 0x79, 0x77, 0xb2, 0x8c, 0xc5,
+	0xfe, 0x67, 0x33, 0x17, 0xc0, 0x68, 0xa6, 0xe6, 0xba, 0x0a, 0x25, 0x3e, 0x15, 0xd1, 0x99, 0xe4,
+	0xb0, 0xaf, 0x6a, 0x4a, 0x43, 0x35, 0x3b, 0x80, 0x5e, 0x10, 0x97, 0x5c, 0xa2, 0xa5, 0xd7, 0x41,
+	0xe3, 0x44, 0xf1, 0xd7, 0x46, 0xe6, 0x9f, 0xa5, 0x0a, 0x3f, 0xef, 0x39, 0x06, 0x4c, 0x92, 0x9b,
+	0x7f, 0x25, 0xd8, 0x3a, 0x09, 0x9c, 0xd1, 0xd0, 0x66, 0x15, 0xb2, 0x40, 0xe2, 0x75, 0xa8, 0x8e,
+	0x12, 0x33, 0x5d, 0x6e, 0x2a, 0x2d, 0x05, 0x6b, 0x22, 0x33, 0x43, 0x7d, 0xb8, 0xe1, 0x91, 0xd3,
+	0xce, 0xcc, 0xee, 0x2a, 0x8b, 0x74, 0xd7, 0xf0, 0xc8, 0xe9, 0x8c, 0xbb, 0x4c, 0x8d, 0xbf, 0x24,
+	0xb8, 0x9d, 0xaa, 0x71, 0x7a, 0xfc, 0xff, 0xab, 0xb6, 0x03, 0x58, 0x8d, 0x6b, 0xcb, 0x79, 0x50,
+	0xbd, 0x88, 0x07, 0x91, 0x47, 0x4e, 0xa7, 0x62, 0xe9, 0x1a, 0xda, 0x3f, 0x54, 0x58, 0x12, 0x9f,
+	0x96, 0xf0, 0x33, 0xed, 0x11, 0x74, 0x00, 0x6a, 0xbc, 0xc5, 0x68, 0xce, 0x62, 0x1b, 0x9b, 0xe7,
+	0xdf, 0x5b, 0x63, 0x1b, 0x1e, 0x41, 0x39, 0xd9, 0x5e, 0x74, 0x2b, 0xf3, 0x24, 0xbf, 0xd2, 0x46,
+	0x6b, 0x0e, 0x20, 0x43, 0x9a, 0xf8, 0x77, 0x8a, 0x34, 0x6f, 0xea, 0x29, 0xd2, 0x3c, 0x60, 0x42,
+	0xfa, 0x4d, 0x02, 0x73, 0xbe, 0x67, 0xd1, 0xa3, 0x0c, 0xe1, 0x85, 0x4d, 0x6e, 0x3c, 0xbd, 0xdc,
+	0xbb, 0x89, 0xbe, 0xaf, 0x12, 0x18, 0xb3, 0xfd, 0x86, 0xac, 0x59, 0xfc, 0xc5, 0xc6, 0x34, 0x1e,
+	0x2f, 0x86, 0x1f, 0xeb, 0xd8, 0xbd, 0x0f, 0xeb, 0x7d, 0xd7, 0xef, 0xda, 0xae, 0x20, 0xb0, 0x03,
+	0x6a, 0xf5, 0xc3, 0xa0, 0x97, 0x30, 0xed, 0x6a, 0x9c, 0x64, 0x27, 0xa0, 0x87, 0x57, 0xde, 0x95,
+	0x38, 0xa2, 0x5b, 0xe6, 0x7f, 0x6b, 0x1e, 0xfe, 0x0b, 0x00, 0x00, 0xff, 0xff, 0x70, 0x70, 0x84,
+	0x6c, 0x10, 0x09, 0x00, 0x00,
 }

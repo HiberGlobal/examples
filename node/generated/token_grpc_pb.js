@@ -4,6 +4,7 @@
 var grpc = require('grpc');
 var token_pb = require('./token_pb.js');
 var base_pb = require('./base_pb.js');
+var permission_pb = require('./permission_pb.js');
 
 function serialize_hiber_token_CreateTokenRequest(arg) {
   if (!(arg instanceof token_pb.CreateTokenRequest)) {
@@ -71,6 +72,50 @@ function deserialize_hiber_token_ListTokensRequest_Response(buffer_arg) {
   return token_pb.ListTokensRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_hiber_token_UpdateTokenOrganizationPermissionsRequest(arg) {
+  if (!(arg instanceof token_pb.UpdateTokenOrganizationPermissionsRequest)) {
+    throw new Error('Expected argument of type hiber.token.UpdateTokenOrganizationPermissionsRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_token_UpdateTokenOrganizationPermissionsRequest(buffer_arg) {
+  return token_pb.UpdateTokenOrganizationPermissionsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_token_UpdateTokenOrganizationPermissionsRequest_Response(arg) {
+  if (!(arg instanceof token_pb.UpdateTokenOrganizationPermissionsRequest.Response)) {
+    throw new Error('Expected argument of type hiber.token.UpdateTokenOrganizationPermissionsRequest.Response');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_token_UpdateTokenOrganizationPermissionsRequest_Response(buffer_arg) {
+  return token_pb.UpdateTokenOrganizationPermissionsRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_token_UpdateTokenUserPermissionsRequest(arg) {
+  if (!(arg instanceof token_pb.UpdateTokenUserPermissionsRequest)) {
+    throw new Error('Expected argument of type hiber.token.UpdateTokenUserPermissionsRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_token_UpdateTokenUserPermissionsRequest(buffer_arg) {
+  return token_pb.UpdateTokenUserPermissionsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_token_UpdateTokenUserPermissionsRequest_Response(arg) {
+  if (!(arg instanceof token_pb.UpdateTokenUserPermissionsRequest.Response)) {
+    throw new Error('Expected argument of type hiber.token.UpdateTokenUserPermissionsRequest.Response');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_token_UpdateTokenUserPermissionsRequest_Response(buffer_arg) {
+  return token_pb.UpdateTokenUserPermissionsRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 var TokenServiceService = exports.TokenServiceService = {
   list: {
@@ -105,6 +150,28 @@ var TokenServiceService = exports.TokenServiceService = {
     requestDeserialize: deserialize_hiber_token_DeleteTokenRequest,
     responseSerialize: serialize_hiber_token_DeleteTokenRequest_Response,
     responseDeserialize: deserialize_hiber_token_DeleteTokenRequest_Response,
+  },
+  updateTokenOrganizationPermissions: {
+    path: '/hiber.token.TokenService/UpdateTokenOrganizationPermissions',
+    requestStream: false,
+    responseStream: false,
+    requestType: token_pb.UpdateTokenOrganizationPermissionsRequest,
+    responseType: token_pb.UpdateTokenOrganizationPermissionsRequest.Response,
+    requestSerialize: serialize_hiber_token_UpdateTokenOrganizationPermissionsRequest,
+    requestDeserialize: deserialize_hiber_token_UpdateTokenOrganizationPermissionsRequest,
+    responseSerialize: serialize_hiber_token_UpdateTokenOrganizationPermissionsRequest_Response,
+    responseDeserialize: deserialize_hiber_token_UpdateTokenOrganizationPermissionsRequest_Response,
+  },
+  updateTokenUserPermissions: {
+    path: '/hiber.token.TokenService/UpdateTokenUserPermissions',
+    requestStream: false,
+    responseStream: false,
+    requestType: token_pb.UpdateTokenUserPermissionsRequest,
+    responseType: token_pb.UpdateTokenUserPermissionsRequest.Response,
+    requestSerialize: serialize_hiber_token_UpdateTokenUserPermissionsRequest,
+    requestDeserialize: deserialize_hiber_token_UpdateTokenUserPermissionsRequest,
+    responseSerialize: serialize_hiber_token_UpdateTokenUserPermissionsRequest_Response,
+    responseDeserialize: deserialize_hiber_token_UpdateTokenUserPermissionsRequest_Response,
   },
 };
 

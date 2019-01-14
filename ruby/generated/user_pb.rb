@@ -4,11 +4,13 @@
 require 'google/protobuf'
 
 require 'base_pb'
+require 'permission_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.user.User" do
     optional :id, :string, 1
     optional :email, :string, 2
     optional :name, :string, 3
+    optional :permissions, :message, 4, "hiber.Filter.OrganizationPermissions"
   end
   add_message "hiber.user.UserSelection" do
     optional :by_email, :string, 1
@@ -39,6 +41,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.user.ApproveUserRequest" do
     optional :organization, :string, 1
     repeated :user_id, :string, 2
+    optional :permissions, :message, 3, "hiber.Filter.OrganizationPermissions"
   end
   add_message "hiber.user.ApproveUserRequest.Response" do
   end
@@ -53,6 +56,14 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :email, :string, 2
     optional :name, :string, 3
     optional :password, :string, 4
+    optional :permissions, :message, 5, "hiber.Filter.OrganizationPermissions"
+  end
+  add_message "hiber.user.UpdateUserPermissionsRequest" do
+    optional :organization, :string, 1
+    repeated :user_ids, :string, 2
+    optional :new_permissions, :message, 3, "hiber.Filter.OrganizationPermissions"
+  end
+  add_message "hiber.user.UpdateUserPermissionsRequest.Response" do
   end
   add_enum "hiber.user.UserSort" do
     value :EMAIL_ASC, 0
@@ -75,6 +86,8 @@ module Hiber
     RemoveUserRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.RemoveUserRequest").msgclass
     RemoveUserRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.RemoveUserRequest.Response").msgclass
     CreateUserRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.CreateUserRequest").msgclass
+    UpdateUserPermissionsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.UpdateUserPermissionsRequest").msgclass
+    UpdateUserPermissionsRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.UpdateUserPermissionsRequest.Response").msgclass
     UserSort = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.UserSort").enummodule
   end
 end

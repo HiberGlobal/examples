@@ -4,6 +4,7 @@
 var grpc = require('grpc');
 var user_pb = require('./user_pb.js');
 var base_pb = require('./base_pb.js');
+var permission_pb = require('./permission_pb.js');
 
 function serialize_hiber_user_ApproveUserRequest(arg) {
   if (!(arg instanceof user_pb.ApproveUserRequest)) {
@@ -104,6 +105,28 @@ function deserialize_hiber_user_RemoveUserRequest_Response(buffer_arg) {
   return user_pb.RemoveUserRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_hiber_user_UpdateUserPermissionsRequest(arg) {
+  if (!(arg instanceof user_pb.UpdateUserPermissionsRequest)) {
+    throw new Error('Expected argument of type hiber.user.UpdateUserPermissionsRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_user_UpdateUserPermissionsRequest(buffer_arg) {
+  return user_pb.UpdateUserPermissionsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_user_UpdateUserPermissionsRequest_Response(arg) {
+  if (!(arg instanceof user_pb.UpdateUserPermissionsRequest.Response)) {
+    throw new Error('Expected argument of type hiber.user.UpdateUserPermissionsRequest.Response');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_user_UpdateUserPermissionsRequest_Response(buffer_arg) {
+  return user_pb.UpdateUserPermissionsRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_hiber_user_User(arg) {
   if (!(arg instanceof user_pb.User)) {
     throw new Error('Expected argument of type hiber.user.User');
@@ -171,6 +194,17 @@ var UserServiceService = exports.UserServiceService = {
     requestDeserialize: deserialize_hiber_user_CreateUserRequest,
     responseSerialize: serialize_hiber_user_User,
     responseDeserialize: deserialize_hiber_user_User,
+  },
+  updateUserPermissions: {
+    path: '/hiber.user.UserService/UpdateUserPermissions',
+    requestStream: false,
+    responseStream: false,
+    requestType: user_pb.UpdateUserPermissionsRequest,
+    responseType: user_pb.UpdateUserPermissionsRequest.Response,
+    requestSerialize: serialize_hiber_user_UpdateUserPermissionsRequest,
+    requestDeserialize: deserialize_hiber_user_UpdateUserPermissionsRequest,
+    responseSerialize: serialize_hiber_user_UpdateUserPermissionsRequest_Response,
+    responseDeserialize: deserialize_hiber_user_UpdateUserPermissionsRequest_Response,
   },
 };
 

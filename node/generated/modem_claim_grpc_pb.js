@@ -52,7 +52,7 @@ function deserialize_hiber_modem_ListModemClaimsRequest_Response(buffer_arg) {
 }
 
 
-// Claim a modem that you have in your pocession, but was not marked as inbound for you.
+// Claim a modem that you have in your possession, but was not marked as inbound for you.
 // This is only possible for a modem that has not been activated.
 // This process is instantaneous, but the previous owner can reject the claim afterwards.
 var ModemClaimServiceService = exports.ModemClaimServiceService = {

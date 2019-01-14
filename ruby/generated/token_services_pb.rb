@@ -18,6 +18,8 @@ module Hiber
         rpc :List, ListTokensRequest, ListTokensRequest::Response
         rpc :Create, CreateTokenRequest, CreateTokenRequest::Response
         rpc :Delete, DeleteTokenRequest, DeleteTokenRequest::Response
+        rpc :UpdateTokenOrganizationPermissions, UpdateTokenOrganizationPermissionsRequest, UpdateTokenOrganizationPermissionsRequest::Response
+        rpc :UpdateTokenUserPermissions, UpdateTokenUserPermissionsRequest, UpdateTokenUserPermissionsRequest::Response
       end
 
       Stub = Service.rpc_stub_class

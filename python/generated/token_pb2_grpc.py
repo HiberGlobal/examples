@@ -29,6 +29,16 @@ class TokenServiceStub(object):
         request_serializer=token__pb2.DeleteTokenRequest.SerializeToString,
         response_deserializer=token__pb2.DeleteTokenRequest.Response.FromString,
         )
+    self.UpdateTokenOrganizationPermissions = channel.unary_unary(
+        '/hiber.token.TokenService/UpdateTokenOrganizationPermissions',
+        request_serializer=token__pb2.UpdateTokenOrganizationPermissionsRequest.SerializeToString,
+        response_deserializer=token__pb2.UpdateTokenOrganizationPermissionsRequest.Response.FromString,
+        )
+    self.UpdateTokenUserPermissions = channel.unary_unary(
+        '/hiber.token.TokenService/UpdateTokenUserPermissions',
+        request_serializer=token__pb2.UpdateTokenUserPermissionsRequest.SerializeToString,
+        response_deserializer=token__pb2.UpdateTokenUserPermissionsRequest.Response.FromString,
+        )
 
 
 class TokenServiceServicer(object):
@@ -56,6 +66,20 @@ class TokenServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def UpdateTokenOrganizationPermissions(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def UpdateTokenUserPermissions(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_TokenServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -73,6 +97,16 @@ def add_TokenServiceServicer_to_server(servicer, server):
           servicer.Delete,
           request_deserializer=token__pb2.DeleteTokenRequest.FromString,
           response_serializer=token__pb2.DeleteTokenRequest.Response.SerializeToString,
+      ),
+      'UpdateTokenOrganizationPermissions': grpc.unary_unary_rpc_method_handler(
+          servicer.UpdateTokenOrganizationPermissions,
+          request_deserializer=token__pb2.UpdateTokenOrganizationPermissionsRequest.FromString,
+          response_serializer=token__pb2.UpdateTokenOrganizationPermissionsRequest.Response.SerializeToString,
+      ),
+      'UpdateTokenUserPermissions': grpc.unary_unary_rpc_method_handler(
+          servicer.UpdateTokenUserPermissions,
+          request_deserializer=token__pb2.UpdateTokenUserPermissionsRequest.FromString,
+          response_serializer=token__pb2.UpdateTokenUserPermissionsRequest.Response.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

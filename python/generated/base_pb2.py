@@ -15,15 +15,16 @@ _sym_db = _symbol_database.Default()
 
 
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
+import permission_pb2 as permission__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='base.proto',
   package='hiber',
   syntax='proto3',
-  serialized_pb=_b('\n\nbase.proto\x12\x05hiber\x1a\x1fgoogle/protobuf/timestamp.proto\"3\n\x11UpdateZeroableInt\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\r\"7\n\x15UpdateClearableString\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\t\"2\n\x10UpdateOptionalId\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\x03\"/\n\rUpdateBoolean\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\x08\"K\n\tTimeRange\x12\x1f\n\x05start\x18\x01 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x1d\n\x03\x65nd\x18\x02 \x01(\x0b\x32\x10.hiber.Timestamp\"K\n\tTimestamp\x12-\n\ttimestamp\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0f\n\x07textual\x18\x04 \x01(\t\"A\n\x04\x44\x61te\x12\x0c\n\x04year\x18\x01 \x01(\r\x12\r\n\x05month\x18\x02 \x01(\r\x12\x0b\n\x03\x64\x61y\x18\x03 \x01(\r\x12\x0f\n\x07textual\x18\x04 \x01(\t\"/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"q\n\x04\x41rea\x12\x1f\n\x06\x63\x65nter\x18\x01 \x01(\x0b\x32\x0f.hiber.Location\x12$\n\x0b\x62ottom_left\x18\x02 \x01(\x0b\x32\x0f.hiber.Location\x12\"\n\ttop_right\x18\x04 \x01(\x0b\x32\x0f.hiber.Location\"(\n\nBytesOrHex\x12\r\n\x05\x62ytes\x18\x01 \x01(\x0c\x12\x0b\n\x03hex\x18\x02 \x01(\t\"\xb9\x01\n\nPagination\x12\x0c\n\x04size\x18\x01 \x01(\x05\x12\x0c\n\x04page\x18\x02 \x01(\x05\x1a\x8e\x01\n\x06Result\x12\x0c\n\x04size\x18\x01 \x01(\x05\x12\x0c\n\x04page\x18\x02 \x01(\x05\x12\r\n\x05total\x18\x03 \x01(\x05\x12\x13\n\x0btotal_pages\x18\x04 \x01(\x05\x12#\n\x08previous\x18\x06 \x01(\x0b\x32\x11.hiber.Pagination\x12\x1f\n\x04next\x18\x07 \x01(\x0b\x32\x11.hiber.Pagination\"\xe1\x03\n\x06\x46ilter\x1aK\n\x12\x43hildOrganizations\x12\x13\n\x0binclude_all\x18\x01 \x01(\x08\x12\x0f\n\x07include\x18\x02 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x03 \x03(\t\x1a\x31\n\rOrganizations\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t\x1aN\n\x06\x45vents\x12!\n\x07include\x18\x01 \x03(\x0e\x32\x10.hiber.EventType\x12!\n\x07\x65xclude\x18\x02 \x03(\x0e\x32\x10.hiber.EventType\x1a*\n\x06Modems\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t\x1a(\n\x04Tags\x12\x0f\n\x07include\x18\x01 \x03(\x03\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\x03\x1a\x41\n\x08Webhooks\x12\x0f\n\x07include\x18\x01 \x03(\x03\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\x03\x12\x13\n\x0bonly_active\x18\x03 \x01(\x08\x1a\x43\n\nPublishers\x12\x0f\n\x07include\x18\x01 \x03(\x03\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\x03\x12\x13\n\x0bonly_active\x18\x03 \x01(\x08\x1a)\n\x05Users\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t*\xe8\x04\n\tEventType\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\x18\n\x14ORGANIZATION_UPDATED\x10\x0c\x12\x1a\n\x16MODEM_LOCATION_UPDATED\x10\x04\x12\x0f\n\x0bMODEM_STALE\x10\x10\x12\x1a\n\x16MODEM_MESSAGE_RECEIVED\x10\x05\x12\x1f\n\x1bMODEM_MESSAGE_SEQUENCE_SKIP\x10\r\x12\x19\n\x15MODEM_MESSAGE_DELAYED\x10\x0e\x12\"\n\x1eMODEM_MESSAGE_CANNOT_BE_PARSED\x10\x0f\x12\x1a\n\x16MODEM_TRANSFER_STARTED\x10\x11\x12\x1b\n\x17MODEM_TRANSFER_RECEIVED\x10\x12\x12\x1c\n\x18MODEM_TRANSFER_CANCELLED\x10\x13\x12\x1f\n\x1bMODEM_TRANSFER_NOT_RECEIVED\x10\x14\x12*\n&MODEM_TRANSFER_RETURN_TRANSFER_STARTED\x10\x15\x12\x11\n\rMODEM_CLAIMED\x10\x16\x12\x15\n\x11PUBLISHER_CREATED\x10\x01\x12\x15\n\x11PUBLISHER_UPDATED\x10\x02\x12\x15\n\x11PUBLISHER_DELETED\x10\x03\x12\x14\n\x10PUBLISHER_FAILED\x10\x0b\x12\x17\n\x13USER_ACCESS_REQUEST\x10\x08\x12\x0e\n\nUSER_ADDED\x10\t\x12\x10\n\x0cUSER_REMOVED\x10\n\x12\x11\n\rTOKEN_CREATED\x10\x1f\x12\x18\n\x14TOKEN_EXPIRY_WARNING\x10\x19\x12\x11\n\rTOKEN_EXPIRED\x10\x1a*(\n\x06Health\x12\x06\n\x02OK\x10\x00\x12\x0b\n\x07WARNING\x10\x01\x12\t\n\x05\x45RROR\x10\x02\x42 \n\x15global.hiber.api.grpcP\x01Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\nbase.proto\x12\x05hiber\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x10permission.proto\"3\n\x11UpdateZeroableInt\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\r\"7\n\x15UpdateClearableString\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\t\"2\n\x10UpdateOptionalId\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\x03\"/\n\rUpdateBoolean\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\x08\"K\n\tTimeRange\x12\x1f\n\x05start\x18\x01 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x1d\n\x03\x65nd\x18\x02 \x01(\x0b\x32\x10.hiber.Timestamp\"K\n\tTimestamp\x12-\n\ttimestamp\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0f\n\x07textual\x18\x04 \x01(\t\"A\n\x04\x44\x61te\x12\x0c\n\x04year\x18\x01 \x01(\r\x12\r\n\x05month\x18\x02 \x01(\r\x12\x0b\n\x03\x64\x61y\x18\x03 \x01(\r\x12\x0f\n\x07textual\x18\x04 \x01(\t\"/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"q\n\x04\x41rea\x12\x1f\n\x06\x63\x65nter\x18\x01 \x01(\x0b\x32\x0f.hiber.Location\x12$\n\x0b\x62ottom_left\x18\x02 \x01(\x0b\x32\x0f.hiber.Location\x12\"\n\ttop_right\x18\x04 \x01(\x0b\x32\x0f.hiber.Location\"(\n\nBytesOrHex\x12\r\n\x05\x62ytes\x18\x01 \x01(\x0c\x12\x0b\n\x03hex\x18\x02 \x01(\t\"\xb9\x01\n\nPagination\x12\x0c\n\x04size\x18\x01 \x01(\x05\x12\x0c\n\x04page\x18\x02 \x01(\x05\x1a\x8e\x01\n\x06Result\x12\x0c\n\x04size\x18\x01 \x01(\x05\x12\x0c\n\x04page\x18\x02 \x01(\x05\x12\r\n\x05total\x18\x03 \x01(\x05\x12\x13\n\x0btotal_pages\x18\x04 \x01(\x05\x12#\n\x08previous\x18\x06 \x01(\x0b\x32\x11.hiber.Pagination\x12\x1f\n\x04next\x18\x07 \x01(\x0b\x32\x11.hiber.Pagination\"\xea\x05\n\x06\x46ilter\x1aK\n\x12\x43hildOrganizations\x12\x13\n\x0binclude_all\x18\x01 \x01(\x08\x12\x0f\n\x07include\x18\x02 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x03 \x03(\t\x1a\x31\n\rOrganizations\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t\x1aN\n\x06\x45vents\x12!\n\x07include\x18\x01 \x03(\x0e\x32\x10.hiber.EventType\x12!\n\x07\x65xclude\x18\x02 \x03(\x0e\x32\x10.hiber.EventType\x1a*\n\x06Modems\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t\x1a(\n\x04Tags\x12\x0f\n\x07include\x18\x01 \x03(\x03\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\x03\x1a\x41\n\x08Webhooks\x12\x0f\n\x07include\x18\x01 \x03(\x03\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\x03\x12\x13\n\x0bonly_active\x18\x03 \x01(\x08\x1a\x43\n\nPublishers\x12\x0f\n\x07include\x18\x01 \x03(\x03\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\x03\x12\x13\n\x0bonly_active\x18\x03 \x01(\x08\x1a)\n\x05Users\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t\x1a\x8e\x01\n\x17OrganizationPermissions\x12\x13\n\x0binclude_all\x18\x01 \x01(\x08\x12.\n\x07include\x18\x02 \x03(\x0e\x32\x1d.hiber.OrganizationPermission\x12.\n\x07\x65xclude\x18\x03 \x03(\x0e\x32\x1d.hiber.OrganizationPermission\x1av\n\x0fUserPermissions\x12\x13\n\x0binclude_all\x18\x01 \x01(\x08\x12&\n\x07include\x18\x02 \x03(\x0e\x32\x15.hiber.UserPermission\x12&\n\x07\x65xclude\x18\x03 \x03(\x0e\x32\x15.hiber.UserPermission*\xe8\x04\n\tEventType\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\x18\n\x14ORGANIZATION_UPDATED\x10\x0c\x12\x1a\n\x16MODEM_LOCATION_UPDATED\x10\x04\x12\x0f\n\x0bMODEM_STALE\x10\x10\x12\x1a\n\x16MODEM_MESSAGE_RECEIVED\x10\x05\x12\x1f\n\x1bMODEM_MESSAGE_SEQUENCE_SKIP\x10\r\x12\x19\n\x15MODEM_MESSAGE_DELAYED\x10\x0e\x12\"\n\x1eMODEM_MESSAGE_CANNOT_BE_PARSED\x10\x0f\x12\x1a\n\x16MODEM_TRANSFER_STARTED\x10\x11\x12\x1b\n\x17MODEM_TRANSFER_RECEIVED\x10\x12\x12\x1c\n\x18MODEM_TRANSFER_CANCELLED\x10\x13\x12\x1f\n\x1bMODEM_TRANSFER_NOT_RECEIVED\x10\x14\x12*\n&MODEM_TRANSFER_RETURN_TRANSFER_STARTED\x10\x15\x12\x11\n\rMODEM_CLAIMED\x10\x16\x12\x15\n\x11PUBLISHER_CREATED\x10\x01\x12\x15\n\x11PUBLISHER_UPDATED\x10\x02\x12\x15\n\x11PUBLISHER_DELETED\x10\x03\x12\x14\n\x10PUBLISHER_FAILED\x10\x0b\x12\x17\n\x13USER_ACCESS_REQUEST\x10\x08\x12\x0e\n\nUSER_ADDED\x10\t\x12\x10\n\x0cUSER_REMOVED\x10\n\x12\x11\n\rTOKEN_CREATED\x10\x1f\x12\x18\n\x14TOKEN_EXPIRY_WARNING\x10\x19\x12\x11\n\rTOKEN_EXPIRED\x10\x1a*(\n\x06Health\x12\x06\n\x02OK\x10\x00\x12\x0b\n\x07WARNING\x10\x01\x12\t\n\x05\x45RROR\x10\x02\x42 \n\x15global.hiber.api.grpcP\x01Z\x05hiberb\x06proto3')
   ,
-  dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
+  dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,permission__pb2.DESCRIPTOR,])
 
 _EVENTTYPE = _descriptor.EnumDescriptor(
   name='EventType',
@@ -130,8 +131,8 @@ _EVENTTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1365,
-  serialized_end=1981,
+  serialized_start=1648,
+  serialized_end=2264,
 )
 _sym_db.RegisterEnumDescriptor(_EVENTTYPE)
 
@@ -157,8 +158,8 @@ _HEALTH = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1983,
-  serialized_end=2023,
+  serialized_start=2266,
+  serialized_end=2306,
 )
 _sym_db.RegisterEnumDescriptor(_HEALTH)
 
@@ -226,8 +227,8 @@ _UPDATEZEROABLEINT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=54,
-  serialized_end=105,
+  serialized_start=72,
+  serialized_end=123,
 )
 
 
@@ -264,8 +265,8 @@ _UPDATECLEARABLESTRING = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=107,
-  serialized_end=162,
+  serialized_start=125,
+  serialized_end=180,
 )
 
 
@@ -302,8 +303,8 @@ _UPDATEOPTIONALID = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=164,
-  serialized_end=214,
+  serialized_start=182,
+  serialized_end=232,
 )
 
 
@@ -340,8 +341,8 @@ _UPDATEBOOLEAN = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=216,
-  serialized_end=263,
+  serialized_start=234,
+  serialized_end=281,
 )
 
 
@@ -378,8 +379,8 @@ _TIMERANGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=265,
-  serialized_end=340,
+  serialized_start=283,
+  serialized_end=358,
 )
 
 
@@ -416,8 +417,8 @@ _TIMESTAMP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=342,
-  serialized_end=417,
+  serialized_start=360,
+  serialized_end=435,
 )
 
 
@@ -468,8 +469,8 @@ _DATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=419,
-  serialized_end=484,
+  serialized_start=437,
+  serialized_end=502,
 )
 
 
@@ -506,8 +507,8 @@ _LOCATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=486,
-  serialized_end=533,
+  serialized_start=504,
+  serialized_end=551,
 )
 
 
@@ -551,8 +552,8 @@ _AREA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=535,
-  serialized_end=648,
+  serialized_start=553,
+  serialized_end=666,
 )
 
 
@@ -589,8 +590,8 @@ _BYTESORHEX = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=650,
-  serialized_end=690,
+  serialized_start=668,
+  serialized_end=708,
 )
 
 
@@ -655,8 +656,8 @@ _PAGINATION_RESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=736,
-  serialized_end=878,
+  serialized_start=754,
+  serialized_end=896,
 )
 
 _PAGINATION = _descriptor.Descriptor(
@@ -692,8 +693,8 @@ _PAGINATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=693,
-  serialized_end=878,
+  serialized_start=711,
+  serialized_end=896,
 )
 
 
@@ -737,8 +738,8 @@ _FILTER_CHILDORGANIZATIONS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=891,
-  serialized_end=966,
+  serialized_start=909,
+  serialized_end=984,
 )
 
 _FILTER_ORGANIZATIONS = _descriptor.Descriptor(
@@ -774,8 +775,8 @@ _FILTER_ORGANIZATIONS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=968,
-  serialized_end=1017,
+  serialized_start=986,
+  serialized_end=1035,
 )
 
 _FILTER_EVENTS = _descriptor.Descriptor(
@@ -811,8 +812,8 @@ _FILTER_EVENTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1019,
-  serialized_end=1097,
+  serialized_start=1037,
+  serialized_end=1115,
 )
 
 _FILTER_MODEMS = _descriptor.Descriptor(
@@ -848,8 +849,8 @@ _FILTER_MODEMS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1099,
-  serialized_end=1141,
+  serialized_start=1117,
+  serialized_end=1159,
 )
 
 _FILTER_TAGS = _descriptor.Descriptor(
@@ -885,8 +886,8 @@ _FILTER_TAGS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1143,
-  serialized_end=1183,
+  serialized_start=1161,
+  serialized_end=1201,
 )
 
 _FILTER_WEBHOOKS = _descriptor.Descriptor(
@@ -929,8 +930,8 @@ _FILTER_WEBHOOKS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1185,
-  serialized_end=1250,
+  serialized_start=1203,
+  serialized_end=1268,
 )
 
 _FILTER_PUBLISHERS = _descriptor.Descriptor(
@@ -973,8 +974,8 @@ _FILTER_PUBLISHERS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1252,
-  serialized_end=1319,
+  serialized_start=1270,
+  serialized_end=1337,
 )
 
 _FILTER_USERS = _descriptor.Descriptor(
@@ -1010,8 +1011,96 @@ _FILTER_USERS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1321,
-  serialized_end=1362,
+  serialized_start=1339,
+  serialized_end=1380,
+)
+
+_FILTER_ORGANIZATIONPERMISSIONS = _descriptor.Descriptor(
+  name='OrganizationPermissions',
+  full_name='hiber.Filter.OrganizationPermissions',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='include_all', full_name='hiber.Filter.OrganizationPermissions.include_all', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='include', full_name='hiber.Filter.OrganizationPermissions.include', index=1,
+      number=2, type=14, cpp_type=8, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='exclude', full_name='hiber.Filter.OrganizationPermissions.exclude', index=2,
+      number=3, type=14, cpp_type=8, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1383,
+  serialized_end=1525,
+)
+
+_FILTER_USERPERMISSIONS = _descriptor.Descriptor(
+  name='UserPermissions',
+  full_name='hiber.Filter.UserPermissions',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='include_all', full_name='hiber.Filter.UserPermissions.include_all', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='include', full_name='hiber.Filter.UserPermissions.include', index=1,
+      number=2, type=14, cpp_type=8, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='exclude', full_name='hiber.Filter.UserPermissions.exclude', index=2,
+      number=3, type=14, cpp_type=8, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1527,
+  serialized_end=1645,
 )
 
 _FILTER = _descriptor.Descriptor(
@@ -1024,7 +1113,7 @@ _FILTER = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_FILTER_CHILDORGANIZATIONS, _FILTER_ORGANIZATIONS, _FILTER_EVENTS, _FILTER_MODEMS, _FILTER_TAGS, _FILTER_WEBHOOKS, _FILTER_PUBLISHERS, _FILTER_USERS, ],
+  nested_types=[_FILTER_CHILDORGANIZATIONS, _FILTER_ORGANIZATIONS, _FILTER_EVENTS, _FILTER_MODEMS, _FILTER_TAGS, _FILTER_WEBHOOKS, _FILTER_PUBLISHERS, _FILTER_USERS, _FILTER_ORGANIZATIONPERMISSIONS, _FILTER_USERPERMISSIONS, ],
   enum_types=[
   ],
   options=None,
@@ -1033,8 +1122,8 @@ _FILTER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=881,
-  serialized_end=1362,
+  serialized_start=899,
+  serialized_end=1645,
 )
 
 _TIMERANGE.fields_by_name['start'].message_type = _TIMESTAMP
@@ -1056,6 +1145,12 @@ _FILTER_TAGS.containing_type = _FILTER
 _FILTER_WEBHOOKS.containing_type = _FILTER
 _FILTER_PUBLISHERS.containing_type = _FILTER
 _FILTER_USERS.containing_type = _FILTER
+_FILTER_ORGANIZATIONPERMISSIONS.fields_by_name['include'].enum_type = permission__pb2._ORGANIZATIONPERMISSION
+_FILTER_ORGANIZATIONPERMISSIONS.fields_by_name['exclude'].enum_type = permission__pb2._ORGANIZATIONPERMISSION
+_FILTER_ORGANIZATIONPERMISSIONS.containing_type = _FILTER
+_FILTER_USERPERMISSIONS.fields_by_name['include'].enum_type = permission__pb2._USERPERMISSION
+_FILTER_USERPERMISSIONS.fields_by_name['exclude'].enum_type = permission__pb2._USERPERMISSION
+_FILTER_USERPERMISSIONS.containing_type = _FILTER
 DESCRIPTOR.message_types_by_name['UpdateZeroableInt'] = _UPDATEZEROABLEINT
 DESCRIPTOR.message_types_by_name['UpdateClearableString'] = _UPDATECLEARABLESTRING
 DESCRIPTOR.message_types_by_name['UpdateOptionalId'] = _UPDATEOPTIONALID
@@ -1214,6 +1309,20 @@ Filter = _reflection.GeneratedProtocolMessageType('Filter', (_message.Message,),
     # @@protoc_insertion_point(class_scope:hiber.Filter.Users)
     ))
   ,
+
+  OrganizationPermissions = _reflection.GeneratedProtocolMessageType('OrganizationPermissions', (_message.Message,), dict(
+    DESCRIPTOR = _FILTER_ORGANIZATIONPERMISSIONS,
+    __module__ = 'base_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.Filter.OrganizationPermissions)
+    ))
+  ,
+
+  UserPermissions = _reflection.GeneratedProtocolMessageType('UserPermissions', (_message.Message,), dict(
+    DESCRIPTOR = _FILTER_USERPERMISSIONS,
+    __module__ = 'base_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.Filter.UserPermissions)
+    ))
+  ,
   DESCRIPTOR = _FILTER,
   __module__ = 'base_pb2'
   # @@protoc_insertion_point(class_scope:hiber.Filter)
@@ -1227,6 +1336,8 @@ _sym_db.RegisterMessage(Filter.Tags)
 _sym_db.RegisterMessage(Filter.Webhooks)
 _sym_db.RegisterMessage(Filter.Publishers)
 _sym_db.RegisterMessage(Filter.Users)
+_sym_db.RegisterMessage(Filter.OrganizationPermissions)
+_sym_db.RegisterMessage(Filter.UserPermissions)
 
 
 DESCRIPTOR.has_options = True
