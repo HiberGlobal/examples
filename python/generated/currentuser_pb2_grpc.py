@@ -45,6 +45,11 @@ class CurrentUserServiceStub(object):
         request_serializer=currentuser__pb2.UpdateSettingsRequest.SerializeToString,
         response_deserializer=currentuser__pb2.UpdateSettingsRequest.Response.FromString,
         )
+    self.AccessibleOrganizations = channel.unary_unary(
+        '/hiber.user.CurrentUserService/AccessibleOrganizations',
+        request_serializer=currentuser__pb2.AccessibleOrganizationsRequest.SerializeToString,
+        response_deserializer=currentuser__pb2.AccessibleOrganizationsRequest.Response.FromString,
+        )
 
 
 class CurrentUserServiceServicer(object):
@@ -94,6 +99,13 @@ class CurrentUserServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def AccessibleOrganizations(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_CurrentUserServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -126,6 +138,11 @@ def add_CurrentUserServiceServicer_to_server(servicer, server):
           servicer.UpdateSettings,
           request_deserializer=currentuser__pb2.UpdateSettingsRequest.FromString,
           response_serializer=currentuser__pb2.UpdateSettingsRequest.Response.SerializeToString,
+      ),
+      'AccessibleOrganizations': grpc.unary_unary_rpc_method_handler(
+          servicer.AccessibleOrganizations,
+          request_deserializer=currentuser__pb2.AccessibleOrganizationsRequest.FromString,
+          response_serializer=currentuser__pb2.AccessibleOrganizationsRequest.Response.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

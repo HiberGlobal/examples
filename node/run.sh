@@ -2,11 +2,15 @@
 
 set -e
 
+SCRIPT_DIR=`dirname "$0"`
+
 function finish {
   echo "Killing mock server..."
   docker rm -f node-example-server
 }
 trap finish EXIT
+
+cd ${SCRIPT_DIR}
 
 echo "Starting mock server..."
 docker run -id -p9090:9090 --name node-example-server hiberglobal/mock-server

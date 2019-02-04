@@ -7,16 +7,20 @@ require 'base_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.map.MapSelection" do
     optional :modems, :message, 1, "hiber.Filter.Modems"
-    optional :child_organizations, :message, 2, "hiber.Filter.ChildOrganizations"
     optional :level, :int32, 3
     optional :area, :message, 4, "hiber.map.MapSelection.AreaRestriction"
+    optional :shape, :message, 5, "hiber.map.MapSelection.ShapeRestriction"
   end
   add_message "hiber.map.MapSelection.AreaRestriction" do
     optional :bottom_left, :message, 1, "hiber.Location"
     optional :top_right, :message, 2, "hiber.Location"
   end
+  add_message "hiber.map.MapSelection.ShapeRestriction" do
+    repeated :path, :message, 1, "hiber.Location"
+  end
   add_message "hiber.map.GroundStation" do
     optional :location, :message, 1, "hiber.Location"
+    optional :name, :string, 2
   end
   add_message "hiber.map.MapBlock" do
     optional :area, :message, 1, "hiber.Area"
@@ -27,6 +31,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.map.MapRequest" do
     optional :organization, :string, 1
     optional :selection, :message, 2, "hiber.map.MapSelection"
+    optional :child_organizations, :message, 3, "hiber.Filter.ChildOrganizations"
   end
   add_message "hiber.map.MapRequest.Response" do
     repeated :ground_stations, :message, 1, "hiber.map.GroundStation"
@@ -39,6 +44,7 @@ module Hiber
   module Map
     MapSelection = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.map.MapSelection").msgclass
     MapSelection::AreaRestriction = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.map.MapSelection.AreaRestriction").msgclass
+    MapSelection::ShapeRestriction = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.map.MapSelection.ShapeRestriction").msgclass
     GroundStation = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.map.GroundStation").msgclass
     MapBlock = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.map.MapBlock").msgclass
     MapRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.map.MapRequest").msgclass

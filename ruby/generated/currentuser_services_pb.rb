@@ -23,6 +23,7 @@ module Hiber
         rpc :DeleteCurrentUser, DeleteCurrentUserRequest, DeleteCurrentUserRequest::Response
         rpc :UpdateDefaultOrganization, UpdateDefaultOrganizationRequest, UpdateDefaultOrganizationRequest::Response
         rpc :UpdateSettings, UpdateSettingsRequest, UpdateSettingsRequest::Response
+        rpc :AccessibleOrganizations, AccessibleOrganizationsRequest, AccessibleOrganizationsRequest::Response
       end
 
       Stub = Service.rpc_stub_class

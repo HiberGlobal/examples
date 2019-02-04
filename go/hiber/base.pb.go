@@ -53,6 +53,7 @@ It has these top-level messages:
 	DeleteCurrentUserRequest
 	UpdateDefaultOrganizationRequest
 	UpdateSettingsRequest
+	AccessibleOrganizationsRequest
 	DashboardRequest
 	Event
 	BundledEvent

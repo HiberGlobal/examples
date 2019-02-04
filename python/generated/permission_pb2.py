@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='permission.proto',
   package='hiber',
   syntax='proto3',
-  serialized_pb=_b('\n\x10permission.proto\x12\x05hiber*\xb5\x03\n\x16OrganizationPermission\x12\x16\n\x12PERMISSION_DEFAULT\x10\x00\x12\x17\n\x13ORGANIZATION_CREATE\x10\x01\x12\x17\n\x13ORGANIZATION_UPDATE\x10\x02\x12\x17\n\x13ORGANIZATION_DELETE\x10\x03\x12\n\n\x06MODEMS\x10\n\x12\x11\n\rMODEMS_UPDATE\x10\x0b\x12\x17\n\x13MODEMS_LICENSE_KEYS\x10\x0c\x12\x12\n\x0eMODEM_MESSAGES\x10\x0f\x12%\n!MODEM_MESSAGES_SEND_TEST_MESSAGES\x10\x10\x12\x13\n\x0fMODEM_TRANSFERS\x10\x14\x12\x18\n\x14MODEM_TRANSFERS_SEND\x10\x15\x12\x1b\n\x17MODEM_TRANSFERS_PROCESS\x10\x16\x12\x0f\n\x0bMODEM_CLAIM\x10\x19\x12\t\n\x05USERS\x10\x1e\x12\x10\n\x0cUSERS_MANAGE\x10\x1f\x12\x0e\n\nPUBLISHERS\x10#\x12\n\n\x06TOKENS\x10$\x12\x10\n\x0c\x43\x45RTIFICATES\x10&\x12\x17\n\x13\x43\x45RTIFICATES_MANAGE\x10\'\"\x04\x08%\x10%*F\n\x0eUserPermission\x12\x08\n\x04READ\x10\x00\x12\n\n\x06UPDATE\x10\x01\x12\x12\n\x0eREQUEST_ACCESS\x10\x02\x12\n\n\x06\x44\x45LETE\x10\x03\x42 \n\x15global.hiber.api.grpcP\x01Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\x10permission.proto\x12\x05hiber*\xaf\x03\n\x16OrganizationPermission\x12\x16\n\x12PERMISSION_DEFAULT\x10\x00\x12\x17\n\x13ORGANIZATION_CREATE\x10\x01\x12\x17\n\x13ORGANIZATION_UPDATE\x10\x02\x12\x17\n\x13ORGANIZATION_DELETE\x10\x03\x12\n\n\x06MODEMS\x10\n\x12\x11\n\rMODEMS_UPDATE\x10\x0b\x12\x17\n\x13MODEMS_LICENSE_KEYS\x10\x0c\x12\x12\n\x0eMODEM_MESSAGES\x10\x0f\x12%\n!MODEM_MESSAGES_SEND_TEST_MESSAGES\x10\x10\x12\x13\n\x0fMODEM_TRANSFERS\x10\x14\x12\x18\n\x14MODEM_TRANSFERS_SEND\x10\x15\x12\x1b\n\x17MODEM_TRANSFERS_PROCESS\x10\x16\x12\x0f\n\x0bMODEM_CLAIM\x10\x19\x12\t\n\x05USERS\x10\x1e\x12\x10\n\x0cUSERS_MANAGE\x10\x1f\x12\x0e\n\nPUBLISHERS\x10#\x12\n\n\x06TOKENS\x10$\x12\x10\n\x0c\x43\x45RTIFICATES\x10&\x12\x17\n\x13\x43\x45RTIFICATES_MANAGE\x10\'*F\n\x0eUserPermission\x12\x08\n\x04READ\x10\x00\x12\n\n\x06UPDATE\x10\x01\x12\x12\n\x0eREQUEST_ACCESS\x10\x02\x12\n\n\x06\x44\x45LETE\x10\x03\x42 \n\x15global.hiber.api.grpcP\x01Z\x05hiberb\x06proto3')
 )
 
 _ORGANIZATIONPERMISSION = _descriptor.EnumDescriptor(
@@ -109,7 +109,7 @@ _ORGANIZATIONPERMISSION = _descriptor.EnumDescriptor(
   containing_type=None,
   options=None,
   serialized_start=28,
-  serialized_end=465,
+  serialized_end=459,
 )
 _sym_db.RegisterEnumDescriptor(_ORGANIZATIONPERMISSION)
 
@@ -139,8 +139,8 @@ _USERPERMISSION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=467,
-  serialized_end=537,
+  serialized_start=461,
+  serialized_end=531,
 )
 _sym_db.RegisterEnumDescriptor(_USERPERMISSION)
 

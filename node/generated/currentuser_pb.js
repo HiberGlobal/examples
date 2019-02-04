@@ -11,6 +11,9 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
+var base_pb = require('./base_pb.js');
+goog.exportSymbol('proto.hiber.user.AccessibleOrganizationsRequest', null, global);
+goog.exportSymbol('proto.hiber.user.AccessibleOrganizationsRequest.Response', null, global);
 goog.exportSymbol('proto.hiber.user.CancelAccessRequestRequest', null, global);
 goog.exportSymbol('proto.hiber.user.CancelAccessRequestRequest.Response', null, global);
 goog.exportSymbol('proto.hiber.user.CurrentUser', null, global);
@@ -89,7 +92,10 @@ proto.hiber.user.CurrentUser.toObject = function(includeInstance, msg) {
     organizationsList: jspb.Message.getRepeatedField(msg, 4),
     defaultOrganization: jspb.Message.getFieldWithDefault(msg, 5, ""),
     requestedOrganizationsList: jspb.Message.getRepeatedField(msg, 6),
-    settings: (f = msg.getSettings()) && proto.hiber.user.CurrentUser.Settings.toObject(includeInstance, f)
+    settings: (f = msg.getSettings()) && proto.hiber.user.CurrentUser.Settings.toObject(includeInstance, f),
+    currentOrganization: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    currentOrganizationPermissions: (f = msg.getCurrentOrganizationPermissions()) && base_pb.Filter.OrganizationPermissions.toObject(includeInstance, f),
+    userPermissions: (f = msg.getUserPermissions()) && base_pb.Filter.UserPermissions.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -154,6 +160,20 @@ proto.hiber.user.CurrentUser.deserializeBinaryFromReader = function(msg, reader)
       var value = new proto.hiber.user.CurrentUser.Settings;
       reader.readMessage(value,proto.hiber.user.CurrentUser.Settings.deserializeBinaryFromReader);
       msg.setSettings(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCurrentOrganization(value);
+      break;
+    case 9:
+      var value = new base_pb.Filter.OrganizationPermissions;
+      reader.readMessage(value,base_pb.Filter.OrganizationPermissions.deserializeBinaryFromReader);
+      msg.setCurrentOrganizationPermissions(value);
+      break;
+    case 10:
+      var value = new base_pb.Filter.UserPermissions;
+      reader.readMessage(value,base_pb.Filter.UserPermissions.deserializeBinaryFromReader);
+      msg.setUserPermissions(value);
       break;
     default:
       reader.skipField();
@@ -232,6 +252,29 @@ proto.hiber.user.CurrentUser.serializeBinaryToWriter = function(message, writer)
       7,
       f,
       proto.hiber.user.CurrentUser.Settings.serializeBinaryToWriter
+    );
+  }
+  f = message.getCurrentOrganization();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
+  f = message.getCurrentOrganizationPermissions();
+  if (f != null) {
+    writer.writeMessage(
+      9,
+      f,
+      base_pb.Filter.OrganizationPermissions.serializeBinaryToWriter
+    );
+  }
+  f = message.getUserPermissions();
+  if (f != null) {
+    writer.writeMessage(
+      10,
+      f,
+      base_pb.Filter.UserPermissions.serializeBinaryToWriter
     );
   }
 };
@@ -679,6 +722,81 @@ proto.hiber.user.CurrentUser.prototype.clearSettings = function() {
  */
 proto.hiber.user.CurrentUser.prototype.hasSettings = function() {
   return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * optional string current_organization = 8;
+ * @return {string}
+ */
+proto.hiber.user.CurrentUser.prototype.getCurrentOrganization = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.user.CurrentUser.prototype.setCurrentOrganization = function(value) {
+  jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * optional hiber.Filter.OrganizationPermissions current_organization_permissions = 9;
+ * @return {?proto.hiber.Filter.OrganizationPermissions}
+ */
+proto.hiber.user.CurrentUser.prototype.getCurrentOrganizationPermissions = function() {
+  return /** @type{?proto.hiber.Filter.OrganizationPermissions} */ (
+    jspb.Message.getWrapperField(this, base_pb.Filter.OrganizationPermissions, 9));
+};
+
+
+/** @param {?proto.hiber.Filter.OrganizationPermissions|undefined} value */
+proto.hiber.user.CurrentUser.prototype.setCurrentOrganizationPermissions = function(value) {
+  jspb.Message.setWrapperField(this, 9, value);
+};
+
+
+proto.hiber.user.CurrentUser.prototype.clearCurrentOrganizationPermissions = function() {
+  this.setCurrentOrganizationPermissions(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.user.CurrentUser.prototype.hasCurrentOrganizationPermissions = function() {
+  return jspb.Message.getField(this, 9) != null;
+};
+
+
+/**
+ * optional hiber.Filter.UserPermissions user_permissions = 10;
+ * @return {?proto.hiber.Filter.UserPermissions}
+ */
+proto.hiber.user.CurrentUser.prototype.getUserPermissions = function() {
+  return /** @type{?proto.hiber.Filter.UserPermissions} */ (
+    jspb.Message.getWrapperField(this, base_pb.Filter.UserPermissions, 10));
+};
+
+
+/** @param {?proto.hiber.Filter.UserPermissions|undefined} value */
+proto.hiber.user.CurrentUser.prototype.setUserPermissions = function(value) {
+  jspb.Message.setWrapperField(this, 10, value);
+};
+
+
+proto.hiber.user.CurrentUser.prototype.clearUserPermissions = function() {
+  this.setUserPermissions(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.user.CurrentUser.prototype.hasUserPermissions = function() {
+  return jspb.Message.getField(this, 10) != null;
 };
 
 
@@ -2145,6 +2263,285 @@ proto.hiber.user.UpdateSettingsRequest.prototype.clearUpdateSettings = function(
  */
 proto.hiber.user.UpdateSettingsRequest.prototype.hasUpdateSettings = function() {
   return jspb.Message.getField(this, 1) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.user.AccessibleOrganizationsRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.hiber.user.AccessibleOrganizationsRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.user.AccessibleOrganizationsRequest.displayName = 'proto.hiber.user.AccessibleOrganizationsRequest';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.user.AccessibleOrganizationsRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.user.AccessibleOrganizationsRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.user.AccessibleOrganizationsRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.user.AccessibleOrganizationsRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.user.AccessibleOrganizationsRequest}
+ */
+proto.hiber.user.AccessibleOrganizationsRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.user.AccessibleOrganizationsRequest;
+  return proto.hiber.user.AccessibleOrganizationsRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.user.AccessibleOrganizationsRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.user.AccessibleOrganizationsRequest}
+ */
+proto.hiber.user.AccessibleOrganizationsRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.user.AccessibleOrganizationsRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.user.AccessibleOrganizationsRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.user.AccessibleOrganizationsRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.user.AccessibleOrganizationsRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.user.AccessibleOrganizationsRequest.Response = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.user.AccessibleOrganizationsRequest.Response.repeatedFields_, null);
+};
+goog.inherits(proto.hiber.user.AccessibleOrganizationsRequest.Response, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.user.AccessibleOrganizationsRequest.Response.displayName = 'proto.hiber.user.AccessibleOrganizationsRequest.Response';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.hiber.user.AccessibleOrganizationsRequest.Response.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.user.AccessibleOrganizationsRequest.Response.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.user.AccessibleOrganizationsRequest.Response.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.user.AccessibleOrganizationsRequest.Response} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.user.AccessibleOrganizationsRequest.Response.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    organizationsList: jspb.Message.getRepeatedField(msg, 1)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.user.AccessibleOrganizationsRequest.Response}
+ */
+proto.hiber.user.AccessibleOrganizationsRequest.Response.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.user.AccessibleOrganizationsRequest.Response;
+  return proto.hiber.user.AccessibleOrganizationsRequest.Response.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.user.AccessibleOrganizationsRequest.Response} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.user.AccessibleOrganizationsRequest.Response}
+ */
+proto.hiber.user.AccessibleOrganizationsRequest.Response.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addOrganizations(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.user.AccessibleOrganizationsRequest.Response.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.user.AccessibleOrganizationsRequest.Response.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.user.AccessibleOrganizationsRequest.Response} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.user.AccessibleOrganizationsRequest.Response.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOrganizationsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * repeated string organizations = 1;
+ * @return {!Array.<string>}
+ */
+proto.hiber.user.AccessibleOrganizationsRequest.Response.prototype.getOrganizationsList = function() {
+  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 1));
+};
+
+
+/** @param {!Array.<string>} value */
+proto.hiber.user.AccessibleOrganizationsRequest.Response.prototype.setOrganizationsList = function(value) {
+  jspb.Message.setField(this, 1, value || []);
+};
+
+
+/**
+ * @param {!string} value
+ * @param {number=} opt_index
+ */
+proto.hiber.user.AccessibleOrganizationsRequest.Response.prototype.addOrganizations = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 1, value, opt_index);
+};
+
+
+proto.hiber.user.AccessibleOrganizationsRequest.Response.prototype.clearOrganizationsList = function() {
+  this.setOrganizationsList([]);
 };
 
 

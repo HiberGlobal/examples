@@ -1575,7 +1575,6 @@ proto.hiber.modem.ModemSelection.toObject = function(includeInstance, msg) {
   var f, obj = {
     modems: (f = msg.getModems()) && base_pb.Filter.Modems.toObject(includeInstance, f),
     filterByTags: (f = msg.getFilterByTags()) && tag_pb.TagSelection.toObject(includeInstance, f),
-    childOrganizations: (f = msg.getChildOrganizations()) && base_pb.Filter.ChildOrganizations.toObject(includeInstance, f),
     onlyActive: jspb.Message.getFieldWithDefault(msg, 4, false),
     activatedIn: (f = msg.getActivatedIn()) && base_pb.TimeRange.toObject(includeInstance, f),
     withServiceTypeList: jspb.Message.getRepeatedField(msg, 6),
@@ -1629,11 +1628,6 @@ proto.hiber.modem.ModemSelection.deserializeBinaryFromReader = function(msg, rea
       var value = new tag_pb.TagSelection;
       reader.readMessage(value,tag_pb.TagSelection.deserializeBinaryFromReader);
       msg.setFilterByTags(value);
-      break;
-    case 3:
-      var value = new base_pb.Filter.ChildOrganizations;
-      reader.readMessage(value,base_pb.Filter.ChildOrganizations.deserializeBinaryFromReader);
-      msg.setChildOrganizations(value);
       break;
     case 4:
       var value = /** @type {boolean} */ (reader.readBool());
@@ -1713,14 +1707,6 @@ proto.hiber.modem.ModemSelection.serializeBinaryToWriter = function(message, wri
       2,
       f,
       tag_pb.TagSelection.serializeBinaryToWriter
-    );
-  }
-  f = message.getChildOrganizations();
-  if (f != null) {
-    writer.writeMessage(
-      3,
-      f,
-      base_pb.Filter.ChildOrganizations.serializeBinaryToWriter
     );
   }
   f = message.getOnlyActive();
@@ -1839,9 +1825,7 @@ proto.hiber.modem.ModemSelection.Transfers.prototype.toObject = function(opt_inc
  */
 proto.hiber.modem.ModemSelection.Transfers.toObject = function(includeInstance, msg) {
   var f, obj = {
-    transfersIdentifiersList: jspb.Message.getRepeatedField(msg, 1),
-    includeInboundModems: jspb.Message.getFieldWithDefault(msg, 2, false),
-    includeOutboundModems: jspb.Message.getFieldWithDefault(msg, 3, false)
+    transfersIdentifiersList: jspb.Message.getRepeatedField(msg, 1)
   };
 
   if (includeInstance) {
@@ -1882,14 +1866,6 @@ proto.hiber.modem.ModemSelection.Transfers.deserializeBinaryFromReader = functio
       var value = /** @type {string} */ (reader.readString());
       msg.addTransfersIdentifiers(value);
       break;
-    case 2:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIncludeInboundModems(value);
-      break;
-    case 3:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIncludeOutboundModems(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -1926,20 +1902,6 @@ proto.hiber.modem.ModemSelection.Transfers.serializeBinaryToWriter = function(me
       f
     );
   }
-  f = message.getIncludeInboundModems();
-  if (f) {
-    writer.writeBool(
-      2,
-      f
-    );
-  }
-  f = message.getIncludeOutboundModems();
-  if (f) {
-    writer.writeBool(
-      3,
-      f
-    );
-  }
 };
 
 
@@ -1969,40 +1931,6 @@ proto.hiber.modem.ModemSelection.Transfers.prototype.addTransfersIdentifiers = f
 
 proto.hiber.modem.ModemSelection.Transfers.prototype.clearTransfersIdentifiersList = function() {
   this.setTransfersIdentifiersList([]);
-};
-
-
-/**
- * optional bool include_inbound_modems = 2;
- * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
- * You should avoid comparisons like {@code val === true/false} in those cases.
- * @return {boolean}
- */
-proto.hiber.modem.ModemSelection.Transfers.prototype.getIncludeInboundModems = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 2, false));
-};
-
-
-/** @param {boolean} value */
-proto.hiber.modem.ModemSelection.Transfers.prototype.setIncludeInboundModems = function(value) {
-  jspb.Message.setField(this, 2, value);
-};
-
-
-/**
- * optional bool include_outbound_modems = 3;
- * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
- * You should avoid comparisons like {@code val === true/false} in those cases.
- * @return {boolean}
- */
-proto.hiber.modem.ModemSelection.Transfers.prototype.getIncludeOutboundModems = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 3, false));
-};
-
-
-/** @param {boolean} value */
-proto.hiber.modem.ModemSelection.Transfers.prototype.setIncludeOutboundModems = function(value) {
-  jspb.Message.setField(this, 3, value);
 };
 
 
@@ -2063,36 +1991,6 @@ proto.hiber.modem.ModemSelection.prototype.clearFilterByTags = function() {
  */
 proto.hiber.modem.ModemSelection.prototype.hasFilterByTags = function() {
   return jspb.Message.getField(this, 2) != null;
-};
-
-
-/**
- * optional hiber.Filter.ChildOrganizations child_organizations = 3;
- * @return {?proto.hiber.Filter.ChildOrganizations}
- */
-proto.hiber.modem.ModemSelection.prototype.getChildOrganizations = function() {
-  return /** @type{?proto.hiber.Filter.ChildOrganizations} */ (
-    jspb.Message.getWrapperField(this, base_pb.Filter.ChildOrganizations, 3));
-};
-
-
-/** @param {?proto.hiber.Filter.ChildOrganizations|undefined} value */
-proto.hiber.modem.ModemSelection.prototype.setChildOrganizations = function(value) {
-  jspb.Message.setWrapperField(this, 3, value);
-};
-
-
-proto.hiber.modem.ModemSelection.prototype.clearChildOrganizations = function() {
-  this.setChildOrganizations(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.hiber.modem.ModemSelection.prototype.hasChildOrganizations = function() {
-  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -2979,7 +2877,8 @@ proto.hiber.modem.GetModemRequest.prototype.toObject = function(opt_includeInsta
 proto.hiber.modem.GetModemRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    modemNumber: jspb.Message.getFieldWithDefault(msg, 2, "")
+    modemNumber: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    childOrganizations: (f = msg.getChildOrganizations()) && base_pb.Filter.ChildOrganizations.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3024,6 +2923,11 @@ proto.hiber.modem.GetModemRequest.deserializeBinaryFromReader = function(msg, re
       var value = /** @type {string} */ (reader.readString());
       msg.setModemNumber(value);
       break;
+    case 4:
+      var value = new base_pb.Filter.ChildOrganizations;
+      reader.readMessage(value,base_pb.Filter.ChildOrganizations.deserializeBinaryFromReader);
+      msg.setChildOrganizations(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -3067,6 +2971,14 @@ proto.hiber.modem.GetModemRequest.serializeBinaryToWriter = function(message, wr
       f
     );
   }
+  f = message.getChildOrganizations();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      base_pb.Filter.ChildOrganizations.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -3097,6 +3009,36 @@ proto.hiber.modem.GetModemRequest.prototype.getModemNumber = function() {
 /** @param {string} value */
 proto.hiber.modem.GetModemRequest.prototype.setModemNumber = function(value) {
   jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional hiber.Filter.ChildOrganizations child_organizations = 4;
+ * @return {?proto.hiber.Filter.ChildOrganizations}
+ */
+proto.hiber.modem.GetModemRequest.prototype.getChildOrganizations = function() {
+  return /** @type{?proto.hiber.Filter.ChildOrganizations} */ (
+    jspb.Message.getWrapperField(this, base_pb.Filter.ChildOrganizations, 4));
+};
+
+
+/** @param {?proto.hiber.Filter.ChildOrganizations|undefined} value */
+proto.hiber.modem.GetModemRequest.prototype.setChildOrganizations = function(value) {
+  jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+proto.hiber.modem.GetModemRequest.prototype.clearChildOrganizations = function() {
+  this.setChildOrganizations(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.modem.GetModemRequest.prototype.hasChildOrganizations = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
@@ -3150,7 +3092,10 @@ proto.hiber.modem.ListModemsRequest.toObject = function(includeInstance, msg) {
     organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     selection: (f = msg.getSelection()) && proto.hiber.modem.ModemSelection.toObject(includeInstance, f),
     pagination: (f = msg.getPagination()) && base_pb.Pagination.toObject(includeInstance, f),
-    sortBy: jspb.Message.getFieldWithDefault(msg, 4, 0)
+    sortBy: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    includeInboundModems: jspb.Message.getFieldWithDefault(msg, 6, false),
+    includeOutboundModems: jspb.Message.getFieldWithDefault(msg, 7, false),
+    childOrganizations: (f = msg.getChildOrganizations()) && base_pb.Filter.ChildOrganizations.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3204,6 +3149,19 @@ proto.hiber.modem.ListModemsRequest.deserializeBinaryFromReader = function(msg, 
     case 4:
       var value = /** @type {!proto.hiber.modem.ListModemsRequest.Sort} */ (reader.readEnum());
       msg.setSortBy(value);
+      break;
+    case 6:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIncludeInboundModems(value);
+      break;
+    case 7:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIncludeOutboundModems(value);
+      break;
+    case 8:
+      var value = new base_pb.Filter.ChildOrganizations;
+      reader.readMessage(value,base_pb.Filter.ChildOrganizations.deserializeBinaryFromReader);
+      msg.setChildOrganizations(value);
       break;
     default:
       reader.skipField();
@@ -3262,6 +3220,28 @@ proto.hiber.modem.ListModemsRequest.serializeBinaryToWriter = function(message, 
     writer.writeEnum(
       4,
       f
+    );
+  }
+  f = message.getIncludeInboundModems();
+  if (f) {
+    writer.writeBool(
+      6,
+      f
+    );
+  }
+  f = message.getIncludeOutboundModems();
+  if (f) {
+    writer.writeBool(
+      7,
+      f
+    );
+  }
+  f = message.getChildOrganizations();
+  if (f != null) {
+    writer.writeMessage(
+      8,
+      f,
+      base_pb.Filter.ChildOrganizations.serializeBinaryToWriter
     );
   }
 };
@@ -3622,6 +3602,70 @@ proto.hiber.modem.ListModemsRequest.prototype.getSortBy = function() {
 /** @param {!proto.hiber.modem.ListModemsRequest.Sort} value */
 proto.hiber.modem.ListModemsRequest.prototype.setSortBy = function(value) {
   jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * optional bool include_inbound_modems = 6;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.modem.ListModemsRequest.prototype.getIncludeInboundModems = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 6, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.modem.ListModemsRequest.prototype.setIncludeInboundModems = function(value) {
+  jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * optional bool include_outbound_modems = 7;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.modem.ListModemsRequest.prototype.getIncludeOutboundModems = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 7, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.modem.ListModemsRequest.prototype.setIncludeOutboundModems = function(value) {
+  jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * optional hiber.Filter.ChildOrganizations child_organizations = 8;
+ * @return {?proto.hiber.Filter.ChildOrganizations}
+ */
+proto.hiber.modem.ListModemsRequest.prototype.getChildOrganizations = function() {
+  return /** @type{?proto.hiber.Filter.ChildOrganizations} */ (
+    jspb.Message.getWrapperField(this, base_pb.Filter.ChildOrganizations, 8));
+};
+
+
+/** @param {?proto.hiber.Filter.ChildOrganizations|undefined} value */
+proto.hiber.modem.ListModemsRequest.prototype.setChildOrganizations = function(value) {
+  jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+proto.hiber.modem.ListModemsRequest.prototype.clearChildOrganizations = function() {
+  this.setChildOrganizations(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.modem.ListModemsRequest.prototype.hasChildOrganizations = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 

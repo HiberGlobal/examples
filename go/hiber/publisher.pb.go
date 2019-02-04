@@ -956,6 +956,7 @@ func (m *CreatePublisherRequest_Response) GetRequest() *CreatePublisherRequest {
 	return nil
 }
 
+// Enable a disabled publisher or re-enable a publisher that's failed and is in cooldown.
 type EnablePublisherRequest struct {
 	// Pick the organization to use (/impersonate). If unset, your default organization is used.
 	Organization string              `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`

@@ -2,6 +2,8 @@
 
 set -e
 
+SCRIPT_DIR=`dirname "$0"`
+
 function finish {
   echo "Killing mock server..."
   docker rm -f ruby-example-server
@@ -11,6 +13,8 @@ trap finish EXIT
 echo "Starting mock server..."
 docker run -id -p9090:9090 --name ruby-example-server hiberglobal/mock-server
 echo "Mock server running on port 9090"
+
+cd ${SCRIPT_DIR}
 
 gem install bundler
 bundle install

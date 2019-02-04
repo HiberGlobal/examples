@@ -3,6 +3,29 @@
 'use strict';
 var grpc = require('grpc');
 var currentuser_pb = require('./currentuser_pb.js');
+var base_pb = require('./base_pb.js');
+
+function serialize_hiber_user_AccessibleOrganizationsRequest(arg) {
+  if (!(arg instanceof currentuser_pb.AccessibleOrganizationsRequest)) {
+    throw new Error('Expected argument of type hiber.user.AccessibleOrganizationsRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_user_AccessibleOrganizationsRequest(buffer_arg) {
+  return currentuser_pb.AccessibleOrganizationsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_user_AccessibleOrganizationsRequest_Response(arg) {
+  if (!(arg instanceof currentuser_pb.AccessibleOrganizationsRequest.Response)) {
+    throw new Error('Expected argument of type hiber.user.AccessibleOrganizationsRequest.Response');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_user_AccessibleOrganizationsRequest_Response(buffer_arg) {
+  return currentuser_pb.AccessibleOrganizationsRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
+}
 
 function serialize_hiber_user_CancelAccessRequestRequest(arg) {
   if (!(arg instanceof currentuser_pb.CancelAccessRequestRequest)) {
@@ -205,6 +228,17 @@ var CurrentUserServiceService = exports.CurrentUserServiceService = {
     requestDeserialize: deserialize_hiber_user_UpdateSettingsRequest,
     responseSerialize: serialize_hiber_user_UpdateSettingsRequest_Response,
     responseDeserialize: deserialize_hiber_user_UpdateSettingsRequest_Response,
+  },
+  accessibleOrganizations: {
+    path: '/hiber.user.CurrentUserService/AccessibleOrganizations',
+    requestStream: false,
+    responseStream: false,
+    requestType: currentuser_pb.AccessibleOrganizationsRequest,
+    responseType: currentuser_pb.AccessibleOrganizationsRequest.Response,
+    requestSerialize: serialize_hiber_user_AccessibleOrganizationsRequest,
+    requestDeserialize: deserialize_hiber_user_AccessibleOrganizationsRequest,
+    responseSerialize: serialize_hiber_user_AccessibleOrganizationsRequest_Response,
+    responseDeserialize: deserialize_hiber_user_AccessibleOrganizationsRequest_Response,
   },
 };
 

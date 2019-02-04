@@ -2,11 +2,15 @@
 
 set -e
 
+SCRIPT_DIR=`dirname "$0"`
+
 function finish {
   echo "Killing mock server..."
   docker rm -f java-example-server
 }
 trap finish EXIT
+
+cd ${SCRIPT_DIR}
 
 ./gradlew build
 

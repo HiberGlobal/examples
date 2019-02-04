@@ -67,7 +67,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.modem.ModemSelection" do
     optional :modems, :message, 1, "hiber.Filter.Modems"
     optional :filter_by_tags, :message, 2, "hiber.tag.TagSelection"
-    optional :child_organizations, :message, 3, "hiber.Filter.ChildOrganizations"
     optional :only_active, :bool, 4
     optional :activated_in, :message, 5, "hiber.TimeRange"
     repeated :with_service_type, :enum, 6, "hiber.organization.subscription.ServiceType"
@@ -79,8 +78,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "hiber.modem.ModemSelection.Transfers" do
     repeated :transfers_identifiers, :string, 1
-    optional :include_inbound_modems, :bool, 2
-    optional :include_outbound_modems, :bool, 3
   end
   add_message "hiber.modem.ModemMessage" do
     optional :modem_number, :string, 1
@@ -99,12 +96,16 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.modem.GetModemRequest" do
     optional :organization, :string, 1
     optional :modem_number, :string, 2
+    optional :child_organizations, :message, 4, "hiber.Filter.ChildOrganizations"
   end
   add_message "hiber.modem.ListModemsRequest" do
     optional :organization, :string, 1
     optional :selection, :message, 2, "hiber.modem.ModemSelection"
     optional :pagination, :message, 3, "hiber.Pagination"
     optional :sort_by, :enum, 4, "hiber.modem.ListModemsRequest.Sort"
+    optional :include_inbound_modems, :bool, 6
+    optional :include_outbound_modems, :bool, 7
+    optional :child_organizations, :message, 8, "hiber.Filter.ChildOrganizations"
   end
   add_message "hiber.modem.ListModemsRequest.Response" do
     repeated :modems, :message, 1, "hiber.modem.Modem"

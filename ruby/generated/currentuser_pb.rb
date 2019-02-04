@@ -3,6 +3,7 @@
 
 require 'google/protobuf'
 
+require 'base_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.user.CurrentUser" do
     optional :id, :string, 1
@@ -12,6 +13,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :default_organization, :string, 5
     repeated :requested_organizations, :string, 6
     optional :settings, :message, 7, "hiber.user.CurrentUser.Settings"
+    optional :current_organization, :string, 8
+    optional :current_organization_permissions, :message, 9, "hiber.Filter.OrganizationPermissions"
+    optional :user_permissions, :message, 10, "hiber.Filter.UserPermissions"
   end
   add_message "hiber.user.CurrentUser.Settings" do
     optional :layout, :enum, 1, "hiber.user.CurrentUser.Settings.Layout"
@@ -75,6 +79,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "hiber.user.UpdateSettingsRequest.Response" do
     optional :settings, :message, 1, "hiber.user.CurrentUser.Settings"
   end
+  add_message "hiber.user.AccessibleOrganizationsRequest" do
+  end
+  add_message "hiber.user.AccessibleOrganizationsRequest.Response" do
+    repeated :organizations, :string, 1
+  end
 end
 
 module Hiber
@@ -97,5 +106,7 @@ module Hiber
     UpdateDefaultOrganizationRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.UpdateDefaultOrganizationRequest.Response").msgclass
     UpdateSettingsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.UpdateSettingsRequest").msgclass
     UpdateSettingsRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.UpdateSettingsRequest.Response").msgclass
+    AccessibleOrganizationsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.AccessibleOrganizationsRequest").msgclass
+    AccessibleOrganizationsRequest::Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("hiber.user.AccessibleOrganizationsRequest.Response").msgclass
   end
 end
