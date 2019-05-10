@@ -1,4 +1,0 @@
-dependencies {
-  compile project(':api:public')
-  grpc.each { compile it.value }
-}

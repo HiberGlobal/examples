@@ -1,0 +1,20 @@
+
+sourceSets.main.proto {
+  srcDir(".")
+  exclude '**/build/**'
+}
+sourceSets.main.java {
+  srcDir "${projectDir}/build/generated/source/proto/main/java"
+  srcDir "${projectDir}/build/generated/source/proto/main/grpc"
+}
+
+idea.module {
+  generatedSourceDirs += files("${projectDir}/build/generated/source/proto/main/java")
+  generatedSourceDirs += files("${projectDir}/build/generated/source/proto/main/grpc")
+}
+
+protobuf {
+  protoc { artifact = "com.google.protobuf:protoc:${rootProject.ext.protocVersion}" }
+  plugins { grpc { artifact = "io.grpc:protoc-gen-grpc-java:${rootProject.ext.grpcVersion}" } }
+  generateProtoTasks { all()*.plugins { grpc { option 'enable_deprecated=false' } } }
+}

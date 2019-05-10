@@ -4,7 +4,7 @@ import global.hiber.api.grpc.testing.TestingApi
 import global.hiber.api.grpc.testing.TestingServiceGrpc
 import io.grpc.stub.StreamObserver
 
-class TestingGrpcController : TestingServiceGrpc.TestingServiceImplBase(), GrpcController {
+object TestingGrpcController : TestingServiceGrpc.TestingServiceImplBase(), GrpcController {
 
   override fun pushModemMessages(
     request: TestingApi.PushModemMessagesRequest,

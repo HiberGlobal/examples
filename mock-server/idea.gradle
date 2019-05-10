@@ -1,0 +1,11 @@
+apply plugin: 'idea'
+
+kotlin {
+  sourceSets.all {
+    languageSettings {
+      useExperimentalAnnotation("kotlin.contracts.ExperimentalContracts")
+      useExperimentalAnnotation("kotlinx.coroutines.ExperimentalCoroutinesApi")
+      useExperimentalAnnotation("kotlinx.coroutines.ObsoleteCoroutinesApi")
+    }
+  }
+}

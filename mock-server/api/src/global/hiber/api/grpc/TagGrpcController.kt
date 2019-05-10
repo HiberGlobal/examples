@@ -1,17 +1,12 @@
 package global.hiber.api.grpc
 
+import global.hiber.api.grpc.data.tag
 import global.hiber.api.grpc.tag.TagApi
 import global.hiber.api.grpc.tag.TagServiceGrpc
 import io.grpc.stub.StreamObserver
 
-val tag = TagApi.Tag.newBuilder().apply {
-  id = 1L
-  label = TagApi.Tag.Label.newBuilder().apply {
-    name = "example-tag"
-  }.build()
-}.build()
+object TagGrpcController : TagServiceGrpc.TagServiceImplBase(), GrpcController {
 
-class TagGrpcController : TagServiceGrpc.TagServiceImplBase(), GrpcController {
   override fun list(request: TagApi.ListTagsRequest, response: StreamObserver<TagApi.ListTagsRequest.Response>) =
     response.unary { TagApi.ListTagsRequest.Response.newBuilder().setRequest(request).addTags(tag).build() }
 

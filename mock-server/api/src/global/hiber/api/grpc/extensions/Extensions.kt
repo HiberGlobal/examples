@@ -5,7 +5,6 @@ import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
-
 val Instant?.asGrpc: Timestamp
   get() = when (this) {
     null -> Timestamp.getDefaultInstance()

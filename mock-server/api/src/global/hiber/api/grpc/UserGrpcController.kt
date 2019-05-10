@@ -1,20 +1,17 @@
 package global.hiber.api.grpc
 
+import global.hiber.api.grpc.data.user
 import global.hiber.api.grpc.user.UserApi
 import global.hiber.api.grpc.user.UserServiceGrpc
 import io.grpc.stub.StreamObserver
 
 
-class UserGrpcController : UserServiceGrpc.UserServiceImplBase(), GrpcController {
+object UserGrpcController : UserServiceGrpc.UserServiceImplBase(), GrpcController {
 
   override fun list(request: UserApi.ListUsersRequest, response: StreamObserver<UserApi.ListUsersRequest.Response>) =
     response.unary {
       UserApi.ListUsersRequest.Response.newBuilder().apply {
-        addUsers(UserApi.User.newBuilder().apply {
-          id = "example-user"
-          name = "example-user"
-          email = "example@example.example"
-        }.build())
+        addUsers(user)
         pagination = Pagination.Result.newBuilder().apply {
           size = 1
           total = 1
@@ -29,11 +26,7 @@ class UserGrpcController : UserServiceGrpc.UserServiceImplBase(), GrpcController
     response: StreamObserver<UserApi.ListAccessRequestsRequest.Response>
   ) = response.unary {
     UserApi.ListAccessRequestsRequest.Response.newBuilder().apply {
-      addUsers(UserApi.User.newBuilder().apply {
-        id = "example-user"
-        name = "example-user"
-        email = "example@example.example"
-      }.build())
+      addUsers(user)
       pagination = Pagination.Result.newBuilder().apply {
         size = 1
         total = 1
@@ -61,4 +54,29 @@ class UserGrpcController : UserServiceGrpc.UserServiceImplBase(), GrpcController
         name = request.name
       }.build()
     }
+
+  override fun createUsers(
+    request: UserApi.CreateUsersRequest,
+    response: StreamObserver<UserApi.CreateUsersRequest.Response>
+  ) = response.unary {
+    UserApi.CreateUsersRequest.Response.newBuilder().addAllUsers(
+      request.usersList.map {
+        UserApi.User.newBuilder().apply {
+          id = "example-user-${it.email}"
+          email = it.email
+          name = it.name
+        }.build()
+      }
+    ).build()
+  }
+
+  override fun resetPassword(
+    request: UserApi.ResetUserPasswordRequest,
+    response: StreamObserver<UserApi.ResetUserPasswordRequest.Response>
+  ) = response.unary { UserApi.ResetUserPasswordRequest.Response.getDefaultInstance() }
+
+  override fun updateUserPermissions(
+    request: UserApi.UpdateUserPermissionsRequest,
+    response: StreamObserver<UserApi.UpdateUserPermissionsRequest.Response>
+  ) = response.unary { UserApi.UpdateUserPermissionsRequest.Response.getDefaultInstance() }
 }

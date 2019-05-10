@@ -1,26 +1,19 @@
 package global.hiber.api.grpc
 
-import global.hiber.api.grpc.extensions.asGrpc
+import global.hiber.api.grpc.data.token
 import global.hiber.api.grpc.token.TokenApi
 import global.hiber.api.grpc.token.TokenServiceGrpc
 import io.grpc.stub.StreamObserver
-import java.time.Instant
 
 
-class TokenGrpcController : TokenServiceGrpc.TokenServiceImplBase(), GrpcController {
+object TokenGrpcController : TokenServiceGrpc.TokenServiceImplBase(), GrpcController {
 
   override fun list(
     request: TokenApi.ListTokensRequest,
     response: StreamObserver<TokenApi.ListTokensRequest.Response>
   ) = response.unary {
     TokenApi.ListTokensRequest.Response.newBuilder().apply {
-      addTokens(TokenApi.Token.newBuilder().apply {
-        organization = "example-organization"
-        expiresAt = Instant.now().plusSeconds(3600).asGrpc
-        id = 1
-        name = "example-token"
-        userId = "example-user"
-      }.build())
+      addTokens(token)
       pagination = global.hiber.api.grpc.Pagination.Result.newBuilder().apply {
         size = 1
         total = 1
@@ -39,4 +32,18 @@ class TokenGrpcController : TokenServiceGrpc.TokenServiceImplBase(), GrpcControl
     request: TokenApi.DeleteTokenRequest,
     response: StreamObserver<TokenApi.DeleteTokenRequest.Response>
   ) = response.unary { TokenApi.DeleteTokenRequest.Response.getDefaultInstance() }
+
+  override fun updateTokenOrganizationPermissions(
+    request: TokenApi.UpdateTokenOrganizationPermissionsRequest,
+    response: StreamObserver<TokenApi.UpdateTokenOrganizationPermissionsRequest.Response>
+  ) =response.unary {
+    TokenApi.UpdateTokenOrganizationPermissionsRequest.Response.getDefaultInstance()
+  }
+
+  override fun updateTokenUserPermissions(
+    request: TokenApi.UpdateTokenUserPermissionsRequest,
+    response: StreamObserver<TokenApi.UpdateTokenUserPermissionsRequest.Response>
+  ) =response.unary {
+    TokenApi.UpdateTokenUserPermissionsRequest.Response.getDefaultInstance()
+  }
 }

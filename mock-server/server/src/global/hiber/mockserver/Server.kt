@@ -27,20 +27,27 @@ class MockServer {
   private val tokenInterceptor = GrpcTokenInterceptor()
   private val services: Set<BindableService> =
     setOf(
-      OrganizationGrpcController(),
-      TagGrpcController(),
-      MapGrpcController(),
-      ModemGrpcController(),
-      WebhooksGrpcController(),
-      DashboardGrpcController(),
-      TestingGrpcController(),
-      EventGrpcController(),
-      UserGrpcController(),
-      CurrentUserGrpcController(),
-      TokenGrpcController()
+      CurrentUserGrpcController,
+      ModemGrpcController,
+      OrganizationGrpcController,
+      SingleSignOnGrpcController,
+      TestingGrpcController,
+      WebhooksGrpcController,
+      DashboardGrpcController,
+      MapGrpcController,
+      ModemTransferGrpcController,
+      PublisherGrpcController,
+      StatusGrpcController,
+      TokenGrpcController,
+      EventGrpcController,
+      ModemClaimGrpcController,
+      ModemTransferReturnGrpcController,
+      SatelliteGrpcController,
+      TagGrpcController,
+      UserGrpcController
     )
 
-  val mockServer: Server = ServerBuilder
+  private val mockServer: Server = ServerBuilder
     .forPort(9090)
     .intercept(tokenInterceptor)
     .run { services.fold(this) { serverBuilder, service -> serverBuilder.addService(service) } }
@@ -58,6 +65,6 @@ class MockServer {
   }
 }
 
-fun main(args: Array<String>) {
+fun main() {
   MockServer().start()
 }

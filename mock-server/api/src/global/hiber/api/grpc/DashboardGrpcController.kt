@@ -5,7 +5,7 @@ import global.hiber.api.grpc.dashboard.DashboardServiceGrpc
 import io.grpc.stub.StreamObserver
 
 
-class DashboardGrpcController : DashboardServiceGrpc.DashboardServiceImplBase(), GrpcController {
+object DashboardGrpcController : DashboardServiceGrpc.DashboardServiceImplBase(), GrpcController {
 
   override fun dashboard(
     request: DashboardApi.DashboardRequest,
