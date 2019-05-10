@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='base.proto',
   package='hiber',
   syntax='proto3',
-  serialized_pb=_b('\n\nbase.proto\x12\x05hiber\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x10permission.proto\"3\n\x11UpdateZeroableInt\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\r\"7\n\x15UpdateClearableString\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\t\"2\n\x10UpdateOptionalId\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\x03\"/\n\rUpdateBoolean\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\x08\"K\n\tTimeRange\x12\x1f\n\x05start\x18\x01 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x1d\n\x03\x65nd\x18\x02 \x01(\x0b\x32\x10.hiber.Timestamp\"K\n\tTimestamp\x12-\n\ttimestamp\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0f\n\x07textual\x18\x04 \x01(\t\"A\n\x04\x44\x61te\x12\x0c\n\x04year\x18\x01 \x01(\r\x12\r\n\x05month\x18\x02 \x01(\r\x12\x0b\n\x03\x64\x61y\x18\x03 \x01(\r\x12\x0f\n\x07textual\x18\x04 \x01(\t\"/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"q\n\x04\x41rea\x12\x1f\n\x06\x63\x65nter\x18\x01 \x01(\x0b\x32\x0f.hiber.Location\x12$\n\x0b\x62ottom_left\x18\x02 \x01(\x0b\x32\x0f.hiber.Location\x12\"\n\ttop_right\x18\x04 \x01(\x0b\x32\x0f.hiber.Location\"(\n\nBytesOrHex\x12\r\n\x05\x62ytes\x18\x01 \x01(\x0c\x12\x0b\n\x03hex\x18\x02 \x01(\t\"\xb9\x01\n\nPagination\x12\x0c\n\x04size\x18\x01 \x01(\x05\x12\x0c\n\x04page\x18\x02 \x01(\x05\x1a\x8e\x01\n\x06Result\x12\x0c\n\x04size\x18\x01 \x01(\x05\x12\x0c\n\x04page\x18\x02 \x01(\x05\x12\r\n\x05total\x18\x03 \x01(\x05\x12\x13\n\x0btotal_pages\x18\x04 \x01(\x05\x12#\n\x08previous\x18\x06 \x01(\x0b\x32\x11.hiber.Pagination\x12\x1f\n\x04next\x18\x07 \x01(\x0b\x32\x11.hiber.Pagination\"\xea\x05\n\x06\x46ilter\x1aK\n\x12\x43hildOrganizations\x12\x13\n\x0binclude_all\x18\x01 \x01(\x08\x12\x0f\n\x07include\x18\x02 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x03 \x03(\t\x1a\x31\n\rOrganizations\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t\x1aN\n\x06\x45vents\x12!\n\x07include\x18\x01 \x03(\x0e\x32\x10.hiber.EventType\x12!\n\x07\x65xclude\x18\x02 \x03(\x0e\x32\x10.hiber.EventType\x1a*\n\x06Modems\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t\x1a(\n\x04Tags\x12\x0f\n\x07include\x18\x01 \x03(\x03\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\x03\x1a\x41\n\x08Webhooks\x12\x0f\n\x07include\x18\x01 \x03(\x03\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\x03\x12\x13\n\x0bonly_active\x18\x03 \x01(\x08\x1a\x43\n\nPublishers\x12\x0f\n\x07include\x18\x01 \x03(\x03\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\x03\x12\x13\n\x0bonly_active\x18\x03 \x01(\x08\x1a)\n\x05Users\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t\x1a\x8e\x01\n\x17OrganizationPermissions\x12\x13\n\x0binclude_all\x18\x01 \x01(\x08\x12.\n\x07include\x18\x02 \x03(\x0e\x32\x1d.hiber.OrganizationPermission\x12.\n\x07\x65xclude\x18\x03 \x03(\x0e\x32\x1d.hiber.OrganizationPermission\x1av\n\x0fUserPermissions\x12\x13\n\x0binclude_all\x18\x01 \x01(\x08\x12&\n\x07include\x18\x02 \x03(\x0e\x32\x15.hiber.UserPermission\x12&\n\x07\x65xclude\x18\x03 \x03(\x0e\x32\x15.hiber.UserPermission*\xe8\x04\n\tEventType\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\x18\n\x14ORGANIZATION_UPDATED\x10\x0c\x12\x1a\n\x16MODEM_LOCATION_UPDATED\x10\x04\x12\x0f\n\x0bMODEM_STALE\x10\x10\x12\x1a\n\x16MODEM_MESSAGE_RECEIVED\x10\x05\x12\x1f\n\x1bMODEM_MESSAGE_SEQUENCE_SKIP\x10\r\x12\x19\n\x15MODEM_MESSAGE_DELAYED\x10\x0e\x12\"\n\x1eMODEM_MESSAGE_CANNOT_BE_PARSED\x10\x0f\x12\x1a\n\x16MODEM_TRANSFER_STARTED\x10\x11\x12\x1b\n\x17MODEM_TRANSFER_RECEIVED\x10\x12\x12\x1c\n\x18MODEM_TRANSFER_CANCELLED\x10\x13\x12\x1f\n\x1bMODEM_TRANSFER_NOT_RECEIVED\x10\x14\x12*\n&MODEM_TRANSFER_RETURN_TRANSFER_STARTED\x10\x15\x12\x11\n\rMODEM_CLAIMED\x10\x16\x12\x15\n\x11PUBLISHER_CREATED\x10\x01\x12\x15\n\x11PUBLISHER_UPDATED\x10\x02\x12\x15\n\x11PUBLISHER_DELETED\x10\x03\x12\x14\n\x10PUBLISHER_FAILED\x10\x0b\x12\x17\n\x13USER_ACCESS_REQUEST\x10\x08\x12\x0e\n\nUSER_ADDED\x10\t\x12\x10\n\x0cUSER_REMOVED\x10\n\x12\x11\n\rTOKEN_CREATED\x10\x1f\x12\x18\n\x14TOKEN_EXPIRY_WARNING\x10\x19\x12\x11\n\rTOKEN_EXPIRED\x10\x1a*(\n\x06Health\x12\x06\n\x02OK\x10\x00\x12\x0b\n\x07WARNING\x10\x01\x12\t\n\x05\x45RROR\x10\x02\x42 \n\x15global.hiber.api.grpcP\x01Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\nbase.proto\x12\x05hiber\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x10permission.proto\"3\n\x11UpdateZeroableInt\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\r\"7\n\x15UpdateClearableString\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\t\"2\n\x10UpdateOptionalId\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\x03\"/\n\rUpdateBoolean\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12\r\n\x05value\x18\x02 \x01(\x08\"K\n\tTimeRange\x12\x1f\n\x05start\x18\x01 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x1d\n\x03\x65nd\x18\x02 \x01(\x0b\x32\x10.hiber.Timestamp\"K\n\tTimestamp\x12-\n\ttimestamp\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0f\n\x07textual\x18\x04 \x01(\t\"A\n\x04\x44\x61te\x12\x0c\n\x04year\x18\x01 \x01(\r\x12\r\n\x05month\x18\x02 \x01(\r\x12\x0b\n\x03\x64\x61y\x18\x03 \x01(\r\x12\x0f\n\x07textual\x18\x04 \x01(\t\"/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"q\n\x04\x41rea\x12\x1f\n\x06\x63\x65nter\x18\x01 \x01(\x0b\x32\x0f.hiber.Location\x12$\n\x0b\x62ottom_left\x18\x02 \x01(\x0b\x32\x0f.hiber.Location\x12\"\n\ttop_right\x18\x04 \x01(\x0b\x32\x0f.hiber.Location\"&\n\x05Shape\x12\x1d\n\x04path\x18\x01 \x03(\x0b\x32\x0f.hiber.Location\"M\n\x11LocationSelection\x12\x1a\n\x05\x61reas\x18\x01 \x03(\x0b\x32\x0b.hiber.Area\x12\x1c\n\x06shapes\x18\x02 \x03(\x0b\x32\x0c.hiber.Shape\"(\n\nBytesOrHex\x12\r\n\x05\x62ytes\x18\x01 \x01(\x0c\x12\x0b\n\x03hex\x18\x02 \x01(\t\"\xb9\x01\n\nPagination\x12\x0c\n\x04size\x18\x01 \x01(\x05\x12\x0c\n\x04page\x18\x02 \x01(\x05\x1a\x8e\x01\n\x06Result\x12\x0c\n\x04size\x18\x01 \x01(\x05\x12\x0c\n\x04page\x18\x02 \x01(\x05\x12\r\n\x05total\x18\x03 \x01(\x05\x12\x13\n\x0btotal_pages\x18\x04 \x01(\x05\x12#\n\x08previous\x18\x06 \x01(\x0b\x32\x11.hiber.Pagination\x12\x1f\n\x04next\x18\x07 \x01(\x0b\x32\x11.hiber.Pagination\"\xea\x05\n\x06\x46ilter\x1aK\n\x12\x43hildOrganizations\x12\x13\n\x0binclude_all\x18\x01 \x01(\x08\x12\x0f\n\x07include\x18\x02 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x03 \x03(\t\x1a\x31\n\rOrganizations\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t\x1aN\n\x06\x45vents\x12!\n\x07include\x18\x01 \x03(\x0e\x32\x10.hiber.EventType\x12!\n\x07\x65xclude\x18\x02 \x03(\x0e\x32\x10.hiber.EventType\x1a*\n\x06Modems\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t\x1a(\n\x04Tags\x12\x0f\n\x07include\x18\x01 \x03(\x03\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\x03\x1a\x41\n\x08Webhooks\x12\x0f\n\x07include\x18\x01 \x03(\x03\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\x03\x12\x13\n\x0bonly_active\x18\x03 \x01(\x08\x1a\x43\n\nPublishers\x12\x0f\n\x07include\x18\x01 \x03(\x03\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\x03\x12\x13\n\x0bonly_active\x18\x03 \x01(\x08\x1a)\n\x05Users\x12\x0f\n\x07include\x18\x01 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x02 \x03(\t\x1a\x8e\x01\n\x17OrganizationPermissions\x12\x13\n\x0binclude_all\x18\x01 \x01(\x08\x12.\n\x07include\x18\x02 \x03(\x0e\x32\x1d.hiber.OrganizationPermission\x12.\n\x07\x65xclude\x18\x03 \x03(\x0e\x32\x1d.hiber.OrganizationPermission\x1av\n\x0fUserPermissions\x12\x13\n\x0binclude_all\x18\x01 \x01(\x08\x12&\n\x07include\x18\x02 \x03(\x0e\x32\x15.hiber.UserPermission\x12&\n\x07\x65xclude\x18\x03 \x03(\x0e\x32\x15.hiber.UserPermission*\x90\x05\n\tEventType\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\x18\n\x14ORGANIZATION_UPDATED\x10\x0c\x12\x1a\n\x16MODEM_LOCATION_UPDATED\x10\x04\x12\x13\n\x0fMODEM_ACTIVATED\x10!\x12\x0f\n\x0bMODEM_STALE\x10\x10\x12\x1a\n\x16MODEM_MESSAGE_RECEIVED\x10\x05\x12\x1f\n\x1bMODEM_MESSAGE_SEQUENCE_SKIP\x10\r\x12\x19\n\x15MODEM_MESSAGE_DELAYED\x10\x0e\x12\"\n\x1eMODEM_MESSAGE_CANNOT_BE_PARSED\x10\x0f\x12\x1a\n\x16MODEM_TRANSFER_STARTED\x10\x11\x12\x1b\n\x17MODEM_TRANSFER_RECEIVED\x10\x12\x12\x1c\n\x18MODEM_TRANSFER_CANCELLED\x10\x13\x12\x1f\n\x1bMODEM_TRANSFER_NOT_RECEIVED\x10\x14\x12*\n&MODEM_TRANSFER_RETURN_TRANSFER_STARTED\x10\x15\x12\x11\n\rMODEM_CLAIMED\x10\x16\x12\x15\n\x11PUBLISHER_CREATED\x10\x01\x12\x15\n\x11PUBLISHER_UPDATED\x10\x02\x12\x15\n\x11PUBLISHER_DELETED\x10\x03\x12\x14\n\x10PUBLISHER_FAILED\x10\x0b\x12\x17\n\x13USER_ACCESS_REQUEST\x10\x08\x12\x0e\n\nUSER_ADDED\x10\t\x12\x10\n\x0cUSER_REMOVED\x10\n\x12\x11\n\rTOKEN_CREATED\x10\x1f\x12\x18\n\x14TOKEN_EXPIRY_WARNING\x10\x19\x12\x11\n\rTOKEN_EXPIRED\x10\x1a\x12\x11\n\rTOKEN_DELETED\x10 *(\n\x06Health\x12\x06\n\x02OK\x10\x00\x12\x0b\n\x07WARNING\x10\x01\x12\t\n\x05\x45RROR\x10\x02\x42 \n\x15global.hiber.api.grpcP\x01Z\x05hiberb\x06proto3')
   ,
   dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,permission__pb2.DESCRIPTOR,])
 
@@ -45,94 +45,102 @@ _EVENTTYPE = _descriptor.EnumDescriptor(
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='MODEM_STALE', index=3, number=16,
+      name='MODEM_ACTIVATED', index=3, number=33,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='MODEM_MESSAGE_RECEIVED', index=4, number=5,
+      name='MODEM_STALE', index=4, number=16,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='MODEM_MESSAGE_SEQUENCE_SKIP', index=5, number=13,
+      name='MODEM_MESSAGE_RECEIVED', index=5, number=5,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='MODEM_MESSAGE_DELAYED', index=6, number=14,
+      name='MODEM_MESSAGE_SEQUENCE_SKIP', index=6, number=13,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='MODEM_MESSAGE_CANNOT_BE_PARSED', index=7, number=15,
+      name='MODEM_MESSAGE_DELAYED', index=7, number=14,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='MODEM_TRANSFER_STARTED', index=8, number=17,
+      name='MODEM_MESSAGE_CANNOT_BE_PARSED', index=8, number=15,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='MODEM_TRANSFER_RECEIVED', index=9, number=18,
+      name='MODEM_TRANSFER_STARTED', index=9, number=17,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='MODEM_TRANSFER_CANCELLED', index=10, number=19,
+      name='MODEM_TRANSFER_RECEIVED', index=10, number=18,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='MODEM_TRANSFER_NOT_RECEIVED', index=11, number=20,
+      name='MODEM_TRANSFER_CANCELLED', index=11, number=19,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='MODEM_TRANSFER_RETURN_TRANSFER_STARTED', index=12, number=21,
+      name='MODEM_TRANSFER_NOT_RECEIVED', index=12, number=20,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='MODEM_CLAIMED', index=13, number=22,
+      name='MODEM_TRANSFER_RETURN_TRANSFER_STARTED', index=13, number=21,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='PUBLISHER_CREATED', index=14, number=1,
+      name='MODEM_CLAIMED', index=14, number=22,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='PUBLISHER_UPDATED', index=15, number=2,
+      name='PUBLISHER_CREATED', index=15, number=1,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='PUBLISHER_DELETED', index=16, number=3,
+      name='PUBLISHER_UPDATED', index=16, number=2,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='PUBLISHER_FAILED', index=17, number=11,
+      name='PUBLISHER_DELETED', index=17, number=3,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='USER_ACCESS_REQUEST', index=18, number=8,
+      name='PUBLISHER_FAILED', index=18, number=11,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='USER_ADDED', index=19, number=9,
+      name='USER_ACCESS_REQUEST', index=19, number=8,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='USER_REMOVED', index=20, number=10,
+      name='USER_ADDED', index=20, number=9,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='TOKEN_CREATED', index=21, number=31,
+      name='USER_REMOVED', index=21, number=10,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='TOKEN_EXPIRY_WARNING', index=22, number=25,
+      name='TOKEN_CREATED', index=22, number=31,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='TOKEN_EXPIRED', index=23, number=26,
+      name='TOKEN_EXPIRY_WARNING', index=23, number=25,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='TOKEN_EXPIRED', index=24, number=26,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='TOKEN_DELETED', index=25, number=32,
       options=None,
       type=None),
   ],
   containing_type=None,
   options=None,
-  serialized_start=1648,
-  serialized_end=2264,
+  serialized_start=1767,
+  serialized_end=2423,
 )
 _sym_db.RegisterEnumDescriptor(_EVENTTYPE)
 
@@ -158,8 +166,8 @@ _HEALTH = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=2266,
-  serialized_end=2306,
+  serialized_start=2425,
+  serialized_end=2465,
 )
 _sym_db.RegisterEnumDescriptor(_HEALTH)
 
@@ -167,6 +175,7 @@ Health = enum_type_wrapper.EnumTypeWrapper(_HEALTH)
 DEFAULT = 0
 ORGANIZATION_UPDATED = 12
 MODEM_LOCATION_UPDATED = 4
+MODEM_ACTIVATED = 33
 MODEM_STALE = 16
 MODEM_MESSAGE_RECEIVED = 5
 MODEM_MESSAGE_SEQUENCE_SKIP = 13
@@ -188,6 +197,7 @@ USER_REMOVED = 10
 TOKEN_CREATED = 31
 TOKEN_EXPIRY_WARNING = 25
 TOKEN_EXPIRED = 26
+TOKEN_DELETED = 32
 OK = 0
 WARNING = 1
 ERROR = 2
@@ -557,6 +567,75 @@ _AREA = _descriptor.Descriptor(
 )
 
 
+_SHAPE = _descriptor.Descriptor(
+  name='Shape',
+  full_name='hiber.Shape',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='path', full_name='hiber.Shape.path', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=668,
+  serialized_end=706,
+)
+
+
+_LOCATIONSELECTION = _descriptor.Descriptor(
+  name='LocationSelection',
+  full_name='hiber.LocationSelection',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='areas', full_name='hiber.LocationSelection.areas', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='shapes', full_name='hiber.LocationSelection.shapes', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=708,
+  serialized_end=785,
+)
+
+
 _BYTESORHEX = _descriptor.Descriptor(
   name='BytesOrHex',
   full_name='hiber.BytesOrHex',
@@ -590,8 +669,8 @@ _BYTESORHEX = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=668,
-  serialized_end=708,
+  serialized_start=787,
+  serialized_end=827,
 )
 
 
@@ -656,8 +735,8 @@ _PAGINATION_RESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=754,
-  serialized_end=896,
+  serialized_start=873,
+  serialized_end=1015,
 )
 
 _PAGINATION = _descriptor.Descriptor(
@@ -693,8 +772,8 @@ _PAGINATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=711,
-  serialized_end=896,
+  serialized_start=830,
+  serialized_end=1015,
 )
 
 
@@ -738,8 +817,8 @@ _FILTER_CHILDORGANIZATIONS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=909,
-  serialized_end=984,
+  serialized_start=1028,
+  serialized_end=1103,
 )
 
 _FILTER_ORGANIZATIONS = _descriptor.Descriptor(
@@ -775,8 +854,8 @@ _FILTER_ORGANIZATIONS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=986,
-  serialized_end=1035,
+  serialized_start=1105,
+  serialized_end=1154,
 )
 
 _FILTER_EVENTS = _descriptor.Descriptor(
@@ -812,8 +891,8 @@ _FILTER_EVENTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1037,
-  serialized_end=1115,
+  serialized_start=1156,
+  serialized_end=1234,
 )
 
 _FILTER_MODEMS = _descriptor.Descriptor(
@@ -849,8 +928,8 @@ _FILTER_MODEMS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1117,
-  serialized_end=1159,
+  serialized_start=1236,
+  serialized_end=1278,
 )
 
 _FILTER_TAGS = _descriptor.Descriptor(
@@ -886,8 +965,8 @@ _FILTER_TAGS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1161,
-  serialized_end=1201,
+  serialized_start=1280,
+  serialized_end=1320,
 )
 
 _FILTER_WEBHOOKS = _descriptor.Descriptor(
@@ -930,8 +1009,8 @@ _FILTER_WEBHOOKS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1203,
-  serialized_end=1268,
+  serialized_start=1322,
+  serialized_end=1387,
 )
 
 _FILTER_PUBLISHERS = _descriptor.Descriptor(
@@ -974,8 +1053,8 @@ _FILTER_PUBLISHERS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1270,
-  serialized_end=1337,
+  serialized_start=1389,
+  serialized_end=1456,
 )
 
 _FILTER_USERS = _descriptor.Descriptor(
@@ -1011,8 +1090,8 @@ _FILTER_USERS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1339,
-  serialized_end=1380,
+  serialized_start=1458,
+  serialized_end=1499,
 )
 
 _FILTER_ORGANIZATIONPERMISSIONS = _descriptor.Descriptor(
@@ -1055,8 +1134,8 @@ _FILTER_ORGANIZATIONPERMISSIONS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1383,
-  serialized_end=1525,
+  serialized_start=1502,
+  serialized_end=1644,
 )
 
 _FILTER_USERPERMISSIONS = _descriptor.Descriptor(
@@ -1099,8 +1178,8 @@ _FILTER_USERPERMISSIONS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1527,
-  serialized_end=1645,
+  serialized_start=1646,
+  serialized_end=1764,
 )
 
 _FILTER = _descriptor.Descriptor(
@@ -1122,8 +1201,8 @@ _FILTER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=899,
-  serialized_end=1645,
+  serialized_start=1018,
+  serialized_end=1764,
 )
 
 _TIMERANGE.fields_by_name['start'].message_type = _TIMESTAMP
@@ -1132,6 +1211,9 @@ _TIMESTAMP.fields_by_name['timestamp'].message_type = google_dot_protobuf_dot_ti
 _AREA.fields_by_name['center'].message_type = _LOCATION
 _AREA.fields_by_name['bottom_left'].message_type = _LOCATION
 _AREA.fields_by_name['top_right'].message_type = _LOCATION
+_SHAPE.fields_by_name['path'].message_type = _LOCATION
+_LOCATIONSELECTION.fields_by_name['areas'].message_type = _AREA
+_LOCATIONSELECTION.fields_by_name['shapes'].message_type = _SHAPE
 _PAGINATION_RESULT.fields_by_name['previous'].message_type = _PAGINATION
 _PAGINATION_RESULT.fields_by_name['next'].message_type = _PAGINATION
 _PAGINATION_RESULT.containing_type = _PAGINATION
@@ -1160,6 +1242,8 @@ DESCRIPTOR.message_types_by_name['Timestamp'] = _TIMESTAMP
 DESCRIPTOR.message_types_by_name['Date'] = _DATE
 DESCRIPTOR.message_types_by_name['Location'] = _LOCATION
 DESCRIPTOR.message_types_by_name['Area'] = _AREA
+DESCRIPTOR.message_types_by_name['Shape'] = _SHAPE
+DESCRIPTOR.message_types_by_name['LocationSelection'] = _LOCATIONSELECTION
 DESCRIPTOR.message_types_by_name['BytesOrHex'] = _BYTESORHEX
 DESCRIPTOR.message_types_by_name['Pagination'] = _PAGINATION
 DESCRIPTOR.message_types_by_name['Filter'] = _FILTER
@@ -1229,6 +1313,20 @@ Area = _reflection.GeneratedProtocolMessageType('Area', (_message.Message,), dic
   # @@protoc_insertion_point(class_scope:hiber.Area)
   ))
 _sym_db.RegisterMessage(Area)
+
+Shape = _reflection.GeneratedProtocolMessageType('Shape', (_message.Message,), dict(
+  DESCRIPTOR = _SHAPE,
+  __module__ = 'base_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.Shape)
+  ))
+_sym_db.RegisterMessage(Shape)
+
+LocationSelection = _reflection.GeneratedProtocolMessageType('LocationSelection', (_message.Message,), dict(
+  DESCRIPTOR = _LOCATIONSELECTION,
+  __module__ = 'base_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.LocationSelection)
+  ))
+_sym_db.RegisterMessage(LocationSelection)
 
 BytesOrHex = _reflection.GeneratedProtocolMessageType('BytesOrHex', (_message.Message,), dict(
   DESCRIPTOR = _BYTESORHEX,

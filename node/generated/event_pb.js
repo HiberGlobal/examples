@@ -31,6 +31,7 @@ goog.exportSymbol('proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageC
 goog.exportSymbol('proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDelayedEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDroppedEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.ModemEvent.ModemActivatedEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.ModemEvent.ModemStaleEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.ModemTransferEvent', null, global);
@@ -48,6 +49,7 @@ goog.exportSymbol('proto.hiber.event.Event.PublisherEvent.FailedEvent', null, gl
 goog.exportSymbol('proto.hiber.event.Event.PublisherEvent.UpdatedEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.TokenEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.TokenEvent.TokenCreatedEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.TokenEvent.TokenDeletedEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.TokenEvent.TokenExpiredEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.TokenEvent.TokenExpiryWarningEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.UserEvent', null, global);
@@ -86,7 +88,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.hiber.event.Event.oneofGroups_ = [[2,3,4,5,6,7,8,9,10,15,16,17,18,19,20,23,24,30,25,31,32,33,34]];
+proto.hiber.event.Event.oneofGroups_ = [[2,36,3,4,5,6,7,8,9,10,15,16,17,18,19,20,23,24,30,35,25,31,32,33,34]];
 
 /**
  * @enum {number}
@@ -94,6 +96,7 @@ proto.hiber.event.Event.oneofGroups_ = [[2,3,4,5,6,7,8,9,10,15,16,17,18,19,20,23
 proto.hiber.event.Event.EventCase = {
   EVENT_NOT_SET: 0,
   MODEM_LOCATION_UPDATED: 2,
+  MODEM_ACTIVATED: 36,
   MODEM_STALE: 3,
   MODEM_MESSAGE_RECEIVED: 4,
   MODEM_MESSAGE_DROPPED: 5,
@@ -111,6 +114,7 @@ proto.hiber.event.Event.EventCase = {
   TOKEN_EXPIRY_WARNING: 23,
   TOKEN_EXPIRED: 24,
   TOKEN_CREATED: 30,
+  TOKEN_DELETED: 35,
   ORGANIZATION_UPDATED: 25,
   PUBLISHER_CREATED: 31,
   PUBLISHER_UPDATED: 32,
@@ -156,6 +160,7 @@ proto.hiber.event.Event.toObject = function(includeInstance, msg) {
   var f, obj = {
     isError: jspb.Message.getFieldWithDefault(msg, 1, false),
     modemLocationUpdated: (f = msg.getModemLocationUpdated()) && proto.hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent.toObject(includeInstance, f),
+    modemActivated: (f = msg.getModemActivated()) && proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.toObject(includeInstance, f),
     modemStale: (f = msg.getModemStale()) && proto.hiber.event.Event.ModemEvent.ModemStaleEvent.toObject(includeInstance, f),
     modemMessageReceived: (f = msg.getModemMessageReceived()) && proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent.toObject(includeInstance, f),
     modemMessageDropped: (f = msg.getModemMessageDropped()) && proto.hiber.event.Event.ModemEvent.MessageEvent.ModemMessageDroppedEvent.toObject(includeInstance, f),
@@ -173,6 +178,7 @@ proto.hiber.event.Event.toObject = function(includeInstance, msg) {
     tokenExpiryWarning: (f = msg.getTokenExpiryWarning()) && proto.hiber.event.Event.TokenEvent.TokenExpiryWarningEvent.toObject(includeInstance, f),
     tokenExpired: (f = msg.getTokenExpired()) && proto.hiber.event.Event.TokenEvent.TokenExpiredEvent.toObject(includeInstance, f),
     tokenCreated: (f = msg.getTokenCreated()) && proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.toObject(includeInstance, f),
+    tokenDeleted: (f = msg.getTokenDeleted()) && proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.toObject(includeInstance, f),
     organizationUpdated: (f = msg.getOrganizationUpdated()) && proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.toObject(includeInstance, f),
     publisherCreated: (f = msg.getPublisherCreated()) && proto.hiber.event.Event.PublisherEvent.CreatedEvent.toObject(includeInstance, f),
     publisherUpdated: (f = msg.getPublisherUpdated()) && proto.hiber.event.Event.PublisherEvent.UpdatedEvent.toObject(includeInstance, f),
@@ -222,6 +228,11 @@ proto.hiber.event.Event.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent;
       reader.readMessage(value,proto.hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent.deserializeBinaryFromReader);
       msg.setModemLocationUpdated(value);
+      break;
+    case 36:
+      var value = new proto.hiber.event.Event.ModemEvent.ModemActivatedEvent;
+      reader.readMessage(value,proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.deserializeBinaryFromReader);
+      msg.setModemActivated(value);
       break;
     case 3:
       var value = new proto.hiber.event.Event.ModemEvent.ModemStaleEvent;
@@ -308,6 +319,11 @@ proto.hiber.event.Event.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.deserializeBinaryFromReader);
       msg.setTokenCreated(value);
       break;
+    case 35:
+      var value = new proto.hiber.event.Event.TokenEvent.TokenDeletedEvent;
+      reader.readMessage(value,proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.deserializeBinaryFromReader);
+      msg.setTokenDeleted(value);
+      break;
     case 25:
       var value = new proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent;
       reader.readMessage(value,proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.deserializeBinaryFromReader);
@@ -375,6 +391,14 @@ proto.hiber.event.Event.serializeBinaryToWriter = function(message, writer) {
       2,
       f,
       proto.hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getModemActivated();
+  if (f != null) {
+    writer.writeMessage(
+      36,
+      f,
+      proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.serializeBinaryToWriter
     );
   }
   f = message.getModemStale();
@@ -511,6 +535,14 @@ proto.hiber.event.Event.serializeBinaryToWriter = function(message, writer) {
       30,
       f,
       proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getTokenDeleted();
+  if (f != null) {
+    writer.writeMessage(
+      35,
+      f,
+      proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.serializeBinaryToWriter
     );
   }
   f = message.getOrganizationUpdated();
@@ -1424,6 +1456,353 @@ proto.hiber.event.Event.ModemEvent.ModemStaleEvent.prototype.getDescription = fu
 /** @param {string} value */
 proto.hiber.event.Event.ModemEvent.ModemStaleEvent.prototype.setDescription = function(value) {
   jspb.Message.setField(this, 8, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.repeatedFields_, null);
+};
+goog.inherits(proto.hiber.event.Event.ModemEvent.ModemActivatedEvent, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.displayName = 'proto.hiber.event.Event.ModemEvent.ModemActivatedEvent';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.repeatedFields_ = [7];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.event.Event.ModemEvent.ModemActivatedEvent} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    modemNumber: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    messageId: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f),
+    tagsList: jspb.Message.toObjectList(msg.getTagsList(),
+    tag_pb.Tag.toObject, includeInstance),
+    title: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 9, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.event.Event.ModemEvent.ModemActivatedEvent}
+ */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.event.Event.ModemEvent.ModemActivatedEvent;
+  return proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.event.Event.ModemEvent.ModemActivatedEvent} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.event.Event.ModemEvent.ModemActivatedEvent}
+ */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganization(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setModemNumber(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setMessageId(value);
+      break;
+    case 4:
+      var value = new base_pb.Timestamp;
+      reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
+      break;
+    case 7:
+      var value = new tag_pb.Tag;
+      reader.readMessage(value,tag_pb.Tag.deserializeBinaryFromReader);
+      msg.addTags(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTitle(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.event.Event.ModemEvent.ModemActivatedEvent} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOrganization();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getModemNumber();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getMessageId();
+  if (f !== 0) {
+    writer.writeUint64(
+      3,
+      f
+    );
+  }
+  f = message.getTime();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      base_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getTagsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      7,
+      f,
+      tag_pb.Tag.serializeBinaryToWriter
+    );
+  }
+  f = message.getTitle();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
+  f = message.getDescription();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string organization = 1;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.prototype.getOrganization = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.prototype.setOrganization = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional string modem_number = 2;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.prototype.getModemNumber = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.prototype.setModemNumber = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional uint64 message_id = 3;
+ * @return {number}
+ */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.prototype.getMessageId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/** @param {number} value */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.prototype.setMessageId = function(value) {
+  jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * optional hiber.Timestamp time = 4;
+ * @return {?proto.hiber.Timestamp}
+ */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.prototype.getTime = function() {
+  return /** @type{?proto.hiber.Timestamp} */ (
+    jspb.Message.getWrapperField(this, base_pb.Timestamp, 4));
+};
+
+
+/** @param {?proto.hiber.Timestamp|undefined} value */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.prototype.setTime = function(value) {
+  jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.prototype.clearTime = function() {
+  this.setTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.prototype.hasTime = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * repeated hiber.tag.Tag tags = 7;
+ * @return {!Array.<!proto.hiber.tag.Tag>}
+ */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.prototype.getTagsList = function() {
+  return /** @type{!Array.<!proto.hiber.tag.Tag>} */ (
+    jspb.Message.getRepeatedWrapperField(this, tag_pb.Tag, 7));
+};
+
+
+/** @param {!Array.<!proto.hiber.tag.Tag>} value */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.prototype.setTagsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 7, value);
+};
+
+
+/**
+ * @param {!proto.hiber.tag.Tag=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.hiber.tag.Tag}
+ */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.prototype.addTags = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 7, opt_value, proto.hiber.tag.Tag, opt_index);
+};
+
+
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.prototype.clearTagsList = function() {
+  this.setTagsList([]);
+};
+
+
+/**
+ * optional string title = 8;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.prototype.getTitle = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.prototype.setTitle = function(value) {
+  jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * optional string description = 9;
+ * @return {string}
+ */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.ModemEvent.ModemActivatedEvent.prototype.setDescription = function(value) {
+  jspb.Message.setField(this, 9, value);
 };
 
 
@@ -9095,6 +9474,290 @@ proto.hiber.event.Event.TokenEvent.TokenExpiredEvent.prototype.hasTime = functio
  * @extends {jspb.Message}
  * @constructor
  */
+proto.hiber.event.Event.TokenEvent.TokenDeletedEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.hiber.event.Event.TokenEvent.TokenDeletedEvent, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.displayName = 'proto.hiber.event.Event.TokenEvent.TokenDeletedEvent';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.event.Event.TokenEvent.TokenDeletedEvent} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    token: (f = msg.getToken()) && token_pb.Token.toObject(includeInstance, f),
+    title: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.event.Event.TokenEvent.TokenDeletedEvent}
+ */
+proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.event.Event.TokenEvent.TokenDeletedEvent;
+  return proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.event.Event.TokenEvent.TokenDeletedEvent} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.event.Event.TokenEvent.TokenDeletedEvent}
+ */
+proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganization(value);
+      break;
+    case 2:
+      var value = new token_pb.Token;
+      reader.readMessage(value,token_pb.Token.deserializeBinaryFromReader);
+      msg.setToken(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTitle(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
+      break;
+    case 5:
+      var value = new base_pb.Timestamp;
+      reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.event.Event.TokenEvent.TokenDeletedEvent} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOrganization();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getToken();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      token_pb.Token.serializeBinaryToWriter
+    );
+  }
+  f = message.getTitle();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getDescription();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getTime();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      base_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional string organization = 1;
+ * @return {string}
+ */
+proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.prototype.getOrganization = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.prototype.setOrganization = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional hiber.token.Token token = 2;
+ * @return {?proto.hiber.token.Token}
+ */
+proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.prototype.getToken = function() {
+  return /** @type{?proto.hiber.token.Token} */ (
+    jspb.Message.getWrapperField(this, token_pb.Token, 2));
+};
+
+
+/** @param {?proto.hiber.token.Token|undefined} value */
+proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.prototype.setToken = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.prototype.clearToken = function() {
+  this.setToken(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.prototype.hasToken = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional string title = 3;
+ * @return {string}
+ */
+proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.prototype.getTitle = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.prototype.setTitle = function(value) {
+  jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * optional string description = 4;
+ * @return {string}
+ */
+proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.prototype.setDescription = function(value) {
+  jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * optional hiber.Timestamp time = 5;
+ * @return {?proto.hiber.Timestamp}
+ */
+proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.prototype.getTime = function() {
+  return /** @type{?proto.hiber.Timestamp} */ (
+    jspb.Message.getWrapperField(this, base_pb.Timestamp, 5));
+};
+
+
+/** @param {?proto.hiber.Timestamp|undefined} value */
+proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.prototype.setTime = function(value) {
+  jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.prototype.clearTime = function() {
+  this.setTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.prototype.hasTime = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.hiber.event.Event.OrganizationEvent = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -9745,6 +10408,36 @@ proto.hiber.event.Event.prototype.hasModemLocationUpdated = function() {
 
 
 /**
+ * optional ModemEvent.ModemActivatedEvent modem_activated = 36;
+ * @return {?proto.hiber.event.Event.ModemEvent.ModemActivatedEvent}
+ */
+proto.hiber.event.Event.prototype.getModemActivated = function() {
+  return /** @type{?proto.hiber.event.Event.ModemEvent.ModemActivatedEvent} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.event.Event.ModemEvent.ModemActivatedEvent, 36));
+};
+
+
+/** @param {?proto.hiber.event.Event.ModemEvent.ModemActivatedEvent|undefined} value */
+proto.hiber.event.Event.prototype.setModemActivated = function(value) {
+  jspb.Message.setOneofWrapperField(this, 36, proto.hiber.event.Event.oneofGroups_[0], value);
+};
+
+
+proto.hiber.event.Event.prototype.clearModemActivated = function() {
+  this.setModemActivated(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.prototype.hasModemActivated = function() {
+  return jspb.Message.getField(this, 36) != null;
+};
+
+
+/**
  * optional ModemEvent.ModemStaleEvent modem_stale = 3;
  * @return {?proto.hiber.event.Event.ModemEvent.ModemStaleEvent}
  */
@@ -10251,6 +10944,36 @@ proto.hiber.event.Event.prototype.clearTokenCreated = function() {
  */
 proto.hiber.event.Event.prototype.hasTokenCreated = function() {
   return jspb.Message.getField(this, 30) != null;
+};
+
+
+/**
+ * optional TokenEvent.TokenDeletedEvent token_deleted = 35;
+ * @return {?proto.hiber.event.Event.TokenEvent.TokenDeletedEvent}
+ */
+proto.hiber.event.Event.prototype.getTokenDeleted = function() {
+  return /** @type{?proto.hiber.event.Event.TokenEvent.TokenDeletedEvent} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.event.Event.TokenEvent.TokenDeletedEvent, 35));
+};
+
+
+/** @param {?proto.hiber.event.Event.TokenEvent.TokenDeletedEvent|undefined} value */
+proto.hiber.event.Event.prototype.setTokenDeleted = function(value) {
+  jspb.Message.setOneofWrapperField(this, 35, proto.hiber.event.Event.oneofGroups_[0], value);
+};
+
+
+proto.hiber.event.Event.prototype.clearTokenDeleted = function() {
+  this.setTokenDeleted(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.prototype.hasTokenDeleted = function() {
+  return jspb.Message.getField(this, 35) != null;
 };
 
 

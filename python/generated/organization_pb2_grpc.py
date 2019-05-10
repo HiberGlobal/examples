@@ -50,6 +50,11 @@ class OrganizationServiceStub(object):
         request_serializer=organization__pb2.ListChildOrganizationsRequest.SerializeToString,
         response_deserializer=organization__pb2.ListChildOrganizationsRequest.Response.FromString,
         )
+    self.ValidateCreationToken = channel.unary_unary(
+        '/hiber.organization.OrganizationService/ValidateCreationToken',
+        request_serializer=organization__pb2.ValidateOrganizationCreationTokenRequest.SerializeToString,
+        response_deserializer=organization__pb2.ValidateOrganizationCreationTokenRequest.Response.FromString,
+        )
 
 
 class OrganizationServiceServicer(object):
@@ -106,6 +111,13 @@ class OrganizationServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def ValidateCreationToken(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_OrganizationServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -143,6 +155,11 @@ def add_OrganizationServiceServicer_to_server(servicer, server):
           servicer.ListChildOrganizations,
           request_deserializer=organization__pb2.ListChildOrganizationsRequest.FromString,
           response_serializer=organization__pb2.ListChildOrganizationsRequest.Response.SerializeToString,
+      ),
+      'ValidateCreationToken': grpc.unary_unary_rpc_method_handler(
+          servicer.ValidateCreationToken,
+          request_deserializer=organization__pb2.ValidateOrganizationCreationTokenRequest.FromString,
+          response_serializer=organization__pb2.ValidateOrganizationCreationTokenRequest.Response.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

@@ -1428,7 +1428,8 @@ proto.hiber.status.StatusRequest.Response.toObject = function(includeInstance, m
     groundStations: (f = msg.getGroundStations()) && proto.hiber.status.NetworkStatus.toObject(includeInstance, f),
     globalAreasList: jspb.Message.toObjectList(msg.getGlobalAreasList(),
     proto.hiber.status.AreaStatus.toObject, includeInstance),
-    organization: (f = msg.getOrganization()) && proto.hiber.status.OrganizationStatus.toObject(includeInstance, f)
+    organization: (f = msg.getOrganization()) && proto.hiber.status.OrganizationStatus.toObject(includeInstance, f),
+    server: (f = msg.getServer()) && proto.hiber.status.NetworkStatus.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1489,6 +1490,11 @@ proto.hiber.status.StatusRequest.Response.deserializeBinaryFromReader = function
       var value = new proto.hiber.status.OrganizationStatus;
       reader.readMessage(value,proto.hiber.status.OrganizationStatus.deserializeBinaryFromReader);
       msg.setOrganization(value);
+      break;
+    case 6:
+      var value = new proto.hiber.status.NetworkStatus;
+      reader.readMessage(value,proto.hiber.status.NetworkStatus.deserializeBinaryFromReader);
+      msg.setServer(value);
       break;
     default:
       reader.skipField();
@@ -1557,6 +1563,14 @@ proto.hiber.status.StatusRequest.Response.serializeBinaryToWriter = function(mes
       5,
       f,
       proto.hiber.status.OrganizationStatus.serializeBinaryToWriter
+    );
+  }
+  f = message.getServer();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      proto.hiber.status.NetworkStatus.serializeBinaryToWriter
     );
   }
 };
@@ -1710,6 +1724,36 @@ proto.hiber.status.StatusRequest.Response.prototype.clearOrganization = function
  */
 proto.hiber.status.StatusRequest.Response.prototype.hasOrganization = function() {
   return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional NetworkStatus server = 6;
+ * @return {?proto.hiber.status.NetworkStatus}
+ */
+proto.hiber.status.StatusRequest.Response.prototype.getServer = function() {
+  return /** @type{?proto.hiber.status.NetworkStatus} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.status.NetworkStatus, 6));
+};
+
+
+/** @param {?proto.hiber.status.NetworkStatus|undefined} value */
+proto.hiber.status.StatusRequest.Response.prototype.setServer = function(value) {
+  jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+proto.hiber.status.StatusRequest.Response.prototype.clearServer = function() {
+  this.setServer(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.status.StatusRequest.Response.prototype.hasServer = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 

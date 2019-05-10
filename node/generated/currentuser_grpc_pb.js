@@ -137,31 +137,31 @@ function deserialize_hiber_user_UpdateDefaultOrganizationRequest_Response(buffer
   return currentuser_pb.UpdateDefaultOrganizationRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_hiber_user_UpdateSettingsRequest(arg) {
-  if (!(arg instanceof currentuser_pb.UpdateSettingsRequest)) {
-    throw new Error('Expected argument of type hiber.user.UpdateSettingsRequest');
+function serialize_hiber_user_UpdateMissionControlSettingsRequest(arg) {
+  if (!(arg instanceof currentuser_pb.UpdateMissionControlSettingsRequest)) {
+    throw new Error('Expected argument of type hiber.user.UpdateMissionControlSettingsRequest');
   }
   return new Buffer(arg.serializeBinary());
 }
 
-function deserialize_hiber_user_UpdateSettingsRequest(buffer_arg) {
-  return currentuser_pb.UpdateSettingsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_hiber_user_UpdateMissionControlSettingsRequest(buffer_arg) {
+  return currentuser_pb.UpdateMissionControlSettingsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_hiber_user_UpdateSettingsRequest_Response(arg) {
-  if (!(arg instanceof currentuser_pb.UpdateSettingsRequest.Response)) {
-    throw new Error('Expected argument of type hiber.user.UpdateSettingsRequest.Response');
+function serialize_hiber_user_UpdateMissionControlSettingsRequest_Response(arg) {
+  if (!(arg instanceof currentuser_pb.UpdateMissionControlSettingsRequest.Response)) {
+    throw new Error('Expected argument of type hiber.user.UpdateMissionControlSettingsRequest.Response');
   }
   return new Buffer(arg.serializeBinary());
 }
 
-function deserialize_hiber_user_UpdateSettingsRequest_Response(buffer_arg) {
-  return currentuser_pb.UpdateSettingsRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_hiber_user_UpdateMissionControlSettingsRequest_Response(buffer_arg) {
+  return currentuser_pb.UpdateMissionControlSettingsRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 
-// Calls related to the current user. Typically, a newly created organization only has access to these calls, all
-// other require an organization to be linked.
+// Calls related to the current user. Typically, a newly created user only has access to these calls, all
+// others require an organization to be linked.
 var CurrentUserServiceService = exports.CurrentUserServiceService = {
   currentUser: {
     path: '/hiber.user.CurrentUserService/CurrentUser',
@@ -218,16 +218,16 @@ var CurrentUserServiceService = exports.CurrentUserServiceService = {
     responseSerialize: serialize_hiber_user_UpdateDefaultOrganizationRequest_Response,
     responseDeserialize: deserialize_hiber_user_UpdateDefaultOrganizationRequest_Response,
   },
-  updateSettings: {
-    path: '/hiber.user.CurrentUserService/UpdateSettings',
+  updateMissionControlSettings: {
+    path: '/hiber.user.CurrentUserService/UpdateMissionControlSettings',
     requestStream: false,
     responseStream: false,
-    requestType: currentuser_pb.UpdateSettingsRequest,
-    responseType: currentuser_pb.UpdateSettingsRequest.Response,
-    requestSerialize: serialize_hiber_user_UpdateSettingsRequest,
-    requestDeserialize: deserialize_hiber_user_UpdateSettingsRequest,
-    responseSerialize: serialize_hiber_user_UpdateSettingsRequest_Response,
-    responseDeserialize: deserialize_hiber_user_UpdateSettingsRequest_Response,
+    requestType: currentuser_pb.UpdateMissionControlSettingsRequest,
+    responseType: currentuser_pb.UpdateMissionControlSettingsRequest.Response,
+    requestSerialize: serialize_hiber_user_UpdateMissionControlSettingsRequest,
+    requestDeserialize: deserialize_hiber_user_UpdateMissionControlSettingsRequest,
+    responseSerialize: serialize_hiber_user_UpdateMissionControlSettingsRequest_Response,
+    responseDeserialize: deserialize_hiber_user_UpdateMissionControlSettingsRequest_Response,
   },
   accessibleOrganizations: {
     path: '/hiber.user.CurrentUserService/AccessibleOrganizations',

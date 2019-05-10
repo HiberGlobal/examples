@@ -14,6 +14,16 @@ class MapServiceStub(object):
     Args:
       channel: A grpc.Channel.
     """
+    self.TileMap = channel.unary_unary(
+        '/hiber.map.MapService/TileMap',
+        request_serializer=map__pb2.TileMapRequest.SerializeToString,
+        response_deserializer=map__pb2.TileMapRequest.Response.FromString,
+        )
+    self.Satellites = channel.unary_unary(
+        '/hiber.map.MapService/Satellites',
+        request_serializer=map__pb2.SatellitesRequest.SerializeToString,
+        response_deserializer=map__pb2.SatellitesRequest.Response.FromString,
+        )
     self.Map = channel.unary_unary(
         '/hiber.map.MapService/Map',
         request_serializer=map__pb2.MapRequest.SerializeToString,
@@ -25,9 +35,24 @@ class MapServiceServicer(object):
   """Map of modems, in different map levels to enable data to be displayed efficiently
   """
 
-  def Map(self, request, context):
+  def TileMap(self, request, context):
     # missing associated documentation comment in .proto file
     pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Satellites(self, request, context):
+    """This call has been deprecated in favour of the Path (ListSatellitesPathRequest) call in SatelliteService.
+    It will be removed in a future version.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Map(self, request, context):
+    """This is the old map request. It has been deprecated and will be removed in a future version. 
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
@@ -35,6 +60,16 @@ class MapServiceServicer(object):
 
 def add_MapServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
+      'TileMap': grpc.unary_unary_rpc_method_handler(
+          servicer.TileMap,
+          request_deserializer=map__pb2.TileMapRequest.FromString,
+          response_serializer=map__pb2.TileMapRequest.Response.SerializeToString,
+      ),
+      'Satellites': grpc.unary_unary_rpc_method_handler(
+          servicer.Satellites,
+          request_deserializer=map__pb2.SatellitesRequest.FromString,
+          response_serializer=map__pb2.SatellitesRequest.Response.SerializeToString,
+      ),
       'Map': grpc.unary_unary_rpc_method_handler(
           servicer.Map,
           request_deserializer=map__pb2.MapRequest.FromString,

@@ -39,6 +39,16 @@ class UserServiceStub(object):
         request_serializer=user__pb2.CreateUserRequest.SerializeToString,
         response_deserializer=user__pb2.User.FromString,
         )
+    self.CreateUsers = channel.unary_unary(
+        '/hiber.user.UserService/CreateUsers',
+        request_serializer=user__pb2.CreateUsersRequest.SerializeToString,
+        response_deserializer=user__pb2.CreateUsersRequest.Response.FromString,
+        )
+    self.ResetPassword = channel.unary_unary(
+        '/hiber.user.UserService/ResetPassword',
+        request_serializer=user__pb2.ResetUserPasswordRequest.SerializeToString,
+        response_deserializer=user__pb2.ResetUserPasswordRequest.Response.FromString,
+        )
     self.UpdateUserPermissions = channel.unary_unary(
         '/hiber.user.UserService/UpdateUserPermissions',
         request_serializer=user__pb2.UpdateUserPermissionsRequest.SerializeToString,
@@ -85,6 +95,20 @@ class UserServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def CreateUsers(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def ResetPassword(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
   def UpdateUserPermissions(self, request, context):
     # missing associated documentation comment in .proto file
     pass
@@ -119,6 +143,16 @@ def add_UserServiceServicer_to_server(servicer, server):
           servicer.CreateUser,
           request_deserializer=user__pb2.CreateUserRequest.FromString,
           response_serializer=user__pb2.User.SerializeToString,
+      ),
+      'CreateUsers': grpc.unary_unary_rpc_method_handler(
+          servicer.CreateUsers,
+          request_deserializer=user__pb2.CreateUsersRequest.FromString,
+          response_serializer=user__pb2.CreateUsersRequest.Response.SerializeToString,
+      ),
+      'ResetPassword': grpc.unary_unary_rpc_method_handler(
+          servicer.ResetPassword,
+          request_deserializer=user__pb2.ResetUserPasswordRequest.FromString,
+          response_serializer=user__pb2.ResetUserPasswordRequest.Response.SerializeToString,
       ),
       'UpdateUserPermissions': grpc.unary_unary_rpc_method_handler(
           servicer.UpdateUserPermissions,

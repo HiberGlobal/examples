@@ -5,8 +5,8 @@ import currentuser_pb2 as currentuser__pb2
 
 
 class CurrentUserServiceStub(object):
-  """Calls related to the current user. Typically, a newly created organization only has access to these calls, all
-  other require an organization to be linked.
+  """Calls related to the current user. Typically, a newly created user only has access to these calls, all
+  others require an organization to be linked.
   """
 
   def __init__(self, channel):
@@ -40,10 +40,10 @@ class CurrentUserServiceStub(object):
         request_serializer=currentuser__pb2.UpdateDefaultOrganizationRequest.SerializeToString,
         response_deserializer=currentuser__pb2.UpdateDefaultOrganizationRequest.Response.FromString,
         )
-    self.UpdateSettings = channel.unary_unary(
-        '/hiber.user.CurrentUserService/UpdateSettings',
-        request_serializer=currentuser__pb2.UpdateSettingsRequest.SerializeToString,
-        response_deserializer=currentuser__pb2.UpdateSettingsRequest.Response.FromString,
+    self.UpdateMissionControlSettings = channel.unary_unary(
+        '/hiber.user.CurrentUserService/UpdateMissionControlSettings',
+        request_serializer=currentuser__pb2.UpdateMissionControlSettingsRequest.SerializeToString,
+        response_deserializer=currentuser__pb2.UpdateMissionControlSettingsRequest.Response.FromString,
         )
     self.AccessibleOrganizations = channel.unary_unary(
         '/hiber.user.CurrentUserService/AccessibleOrganizations',
@@ -53,8 +53,8 @@ class CurrentUserServiceStub(object):
 
 
 class CurrentUserServiceServicer(object):
-  """Calls related to the current user. Typically, a newly created organization only has access to these calls, all
-  other require an organization to be linked.
+  """Calls related to the current user. Typically, a newly created user only has access to these calls, all
+  others require an organization to be linked.
   """
 
   def CurrentUser(self, request, context):
@@ -92,7 +92,7 @@ class CurrentUserServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def UpdateSettings(self, request, context):
+  def UpdateMissionControlSettings(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -134,10 +134,10 @@ def add_CurrentUserServiceServicer_to_server(servicer, server):
           request_deserializer=currentuser__pb2.UpdateDefaultOrganizationRequest.FromString,
           response_serializer=currentuser__pb2.UpdateDefaultOrganizationRequest.Response.SerializeToString,
       ),
-      'UpdateSettings': grpc.unary_unary_rpc_method_handler(
-          servicer.UpdateSettings,
-          request_deserializer=currentuser__pb2.UpdateSettingsRequest.FromString,
-          response_serializer=currentuser__pb2.UpdateSettingsRequest.Response.SerializeToString,
+      'UpdateMissionControlSettings': grpc.unary_unary_rpc_method_handler(
+          servicer.UpdateMissionControlSettings,
+          request_deserializer=currentuser__pb2.UpdateMissionControlSettingsRequest.FromString,
+          response_serializer=currentuser__pb2.UpdateMissionControlSettingsRequest.Response.SerializeToString,
       ),
       'AccessibleOrganizations': grpc.unary_unary_rpc_method_handler(
           servicer.AccessibleOrganizations,

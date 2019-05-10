@@ -14,17 +14,510 @@ _sym_db = _symbol_database.Default()
 
 
 import base_pb2 as base__pb2
+import modem_pb2 as modem__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='map.proto',
   package='hiber.map',
   syntax='proto3',
-  serialized_pb=_b('\n\tmap.proto\x12\thiber.map\x1a\nbase.proto\"\xc9\x02\n\x0cMapSelection\x12$\n\x06modems\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12\r\n\x05level\x18\x03 \x01(\x05\x12\x35\n\x04\x61rea\x18\x04 \x01(\x0b\x32\'.hiber.map.MapSelection.AreaRestriction\x12\x37\n\x05shape\x18\x05 \x01(\x0b\x32(.hiber.map.MapSelection.ShapeRestriction\x1a[\n\x0f\x41reaRestriction\x12$\n\x0b\x62ottom_left\x18\x01 \x01(\x0b\x32\x0f.hiber.Location\x12\"\n\ttop_right\x18\x02 \x01(\x0b\x32\x0f.hiber.Location\x1a\x31\n\x10ShapeRestriction\x12\x1d\n\x04path\x18\x01 \x03(\x0b\x32\x0f.hiber.LocationJ\x04\x08\x02\x10\x03\"@\n\rGroundStation\x12!\n\x08location\x18\x01 \x01(\x0b\x32\x0f.hiber.Location\x12\x0c\n\x04name\x18\x02 \x01(\t\"i\n\x08MapBlock\x12\x19\n\x04\x61rea\x18\x01 \x01(\x0b\x32\x0b.hiber.Area\x12\x13\n\x0bmodem_count\x18\x02 \x01(\x05\x12\x13\n\x0b\x65rror_count\x18\x03 \x01(\x05\x12\x18\n\x10\x65rror_percentage\x18\x04 \x01(\x02\"\x9e\x02\n\nMapRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12*\n\tselection\x18\x02 \x01(\x0b\x32\x17.hiber.map.MapSelection\x12=\n\x13\x63hild_organizations\x18\x03 \x01(\x0b\x32 .hiber.Filter.ChildOrganizations\x1a\x8e\x01\n\x08Response\x12\x31\n\x0fground_stations\x18\x01 \x03(\x0b\x32\x18.hiber.map.GroundStation\x12\'\n\nmap_blocks\x18\x02 \x03(\x0b\x32\x13.hiber.map.MapBlock\x12&\n\x07request\x18\x04 \x01(\x0b\x32\x15.hiber.map.MapRequest2J\n\nMapService\x12<\n\x03Map\x12\x15.hiber.map.MapRequest\x1a\x1e.hiber.map.MapRequest.ResponseB,\n\x19global.hiber.api.grpc.mapB\x06MapApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\tmap.proto\x12\thiber.map\x1a\nbase.proto\x1a\x0bmodem.proto\"@\n\rGroundStation\x12!\n\x08location\x18\x01 \x01(\x0b\x32\x0f.hiber.Location\x12\x0c\n\x04name\x18\x02 \x01(\t\"&\n\x0eTileCoordinate\x12\t\n\x01x\x18\x01 \x01(\x05\x12\t\n\x01y\x18\x02 \x01(\x05\"\xbf\x02\n\x0bMapTileItem\x12\'\n\x04tile\x18\x01 \x01(\x0b\x32\x19.hiber.map.TileCoordinate\x12*\n\x07in_tile\x18\x02 \x01(\x0b\x32\x19.hiber.map.TileCoordinate\x12-\n\x05modem\x18\x03 \x01(\x0b\x32\x1c.hiber.map.MapTileItem.ModemH\x00\x12\x33\n\x0bmodem_group\x18\x04 \x01(\x0b\x32\x1c.hiber.map.MapTileItem.GroupH\x00\x1a:\n\x05Modem\x12\x0e\n\x06number\x18\x01 \x01(\t\x12!\n\x08location\x18\x02 \x01(\x0b\x32\x0f.hiber.Location\x1a\x31\n\x05Group\x12\r\n\x05\x63ount\x18\x01 \x01(\x05\x12\x19\n\x04\x61rea\x18\x02 \x01(\x0b\x32\x0b.hiber.AreaB\x08\n\x06modems\"\xf9\x03\n\x0eTileMapRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12+\n\tselection\x18\x02 \x01(\x0b\x32\x18.hiber.LocationSelection\x12\r\n\x05level\x18\x03 \x01(\x05\x12\x34\n\x0fmodem_selection\x18\x04 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12\x1a\n\x12include_satellites\x18\x05 \x01(\x08\x12\x1f\n\x17include_ground_stations\x18\x06 \x01(\x08\x12\x32\n\x07\x64\x65nsity\x18\x07 \x01(\x0e\x32!.hiber.map.TileMapRequest.Density\x1a\xbe\x01\n\x08Response\x12\x31\n\x0fground_stations\x18\x01 \x03(\x0b\x32\x18.hiber.map.GroundStation\x12)\n\tmap_items\x18\x02 \x03(\x0b\x32\x16.hiber.map.MapTileItem\x12*\n\x07request\x18\x04 \x01(\x0b\x32\x19.hiber.map.TileMapRequest\x12(\n\nsatellites\x18\x05 \x03(\x0b\x32\x14.hiber.map.Satellite\"-\n\x07\x44\x65nsity\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\t\n\x05\x44\x45NSE\x10\x01\x12\n\n\x06SPARSE\x10\x02\"\xaa\x01\n\tSatellite\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x30\n\tpositions\x18\x03 \x03(\x0b\x32\x1d.hiber.map.Satellite.Position\x1aM\n\x08Position\x12\x1e\n\x04time\x18\x01 \x01(\x0b\x32\x10.hiber.Timestamp\x12!\n\x08location\x18\x02 \x01(\x0b\x32\x0f.hiber.Location:\x02\x18\x01\"M\n\x11SatellitesRequest\x1a\x34\n\x08Response\x12(\n\nsatellites\x18\x01 \x03(\x0b\x32\x14.hiber.map.Satellite:\x02\x18\x01\"\xcd\x02\n\x0cMapSelection\x12$\n\x06modems\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12\r\n\x05level\x18\x03 \x01(\x05\x12\x35\n\x04\x61rea\x18\x04 \x01(\x0b\x32\'.hiber.map.MapSelection.AreaRestriction\x12\x37\n\x05shape\x18\x05 \x01(\x0b\x32(.hiber.map.MapSelection.ShapeRestriction\x1a[\n\x0f\x41reaRestriction\x12$\n\x0b\x62ottom_left\x18\x01 \x01(\x0b\x32\x0f.hiber.Location\x12\"\n\ttop_right\x18\x02 \x01(\x0b\x32\x0f.hiber.Location\x1a\x31\n\x10ShapeRestriction\x12\x1d\n\x04path\x18\x01 \x03(\x0b\x32\x0f.hiber.Location:\x02\x18\x01J\x04\x08\x02\x10\x03\"m\n\x08MapBlock\x12\x19\n\x04\x61rea\x18\x01 \x01(\x0b\x32\x0b.hiber.Area\x12\x13\n\x0bmodem_count\x18\x02 \x01(\x05\x12\x13\n\x0b\x65rror_count\x18\x03 \x01(\x05\x12\x18\n\x10\x65rror_percentage\x18\x04 \x01(\x02:\x02\x18\x01\"\x93\x02\n\nMapRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12*\n\tselection\x18\x02 \x01(\x0b\x32\x17.hiber.map.MapSelection\x1a\xb8\x01\n\x08Response\x12\x31\n\x0fground_stations\x18\x01 \x03(\x0b\x32\x18.hiber.map.GroundStation\x12\'\n\nmap_blocks\x18\x02 \x03(\x0b\x32\x13.hiber.map.MapBlock\x12&\n\x07request\x18\x04 \x01(\x0b\x32\x15.hiber.map.MapRequest\x12(\n\nsatellites\x18\x05 \x03(\x0b\x32\x14.hiber.map.Satellite:\x02\x18\x01J\x04\x08\x03\x10\x04\x32\xf1\x01\n\nMapService\x12H\n\x07TileMap\x12\x19.hiber.map.TileMapRequest\x1a\".hiber.map.TileMapRequest.Response\x12V\n\nSatellites\x12\x1c.hiber.map.SatellitesRequest\x1a%.hiber.map.SatellitesRequest.Response\"\x03\x88\x02\x01\x12\x41\n\x03Map\x12\x15.hiber.map.MapRequest\x1a\x1e.hiber.map.MapRequest.Response\"\x03\x88\x02\x01\x42,\n\x19global.hiber.api.grpc.mapB\x06MapApiP\x00Z\x05hiberb\x06proto3')
   ,
-  dependencies=[base__pb2.DESCRIPTOR,])
+  dependencies=[base__pb2.DESCRIPTOR,modem__pb2.DESCRIPTOR,])
 
 
+
+_TILEMAPREQUEST_DENSITY = _descriptor.EnumDescriptor(
+  name='Density',
+  full_name='hiber.map.TileMapRequest.Density',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='DEFAULT', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='DENSE', index=1, number=1,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='SPARSE', index=2, number=2,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=938,
+  serialized_end=983,
+)
+_sym_db.RegisterEnumDescriptor(_TILEMAPREQUEST_DENSITY)
+
+
+_GROUNDSTATION = _descriptor.Descriptor(
+  name='GroundStation',
+  full_name='hiber.map.GroundStation',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='location', full_name='hiber.map.GroundStation.location', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='name', full_name='hiber.map.GroundStation.name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=49,
+  serialized_end=113,
+)
+
+
+_TILECOORDINATE = _descriptor.Descriptor(
+  name='TileCoordinate',
+  full_name='hiber.map.TileCoordinate',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='x', full_name='hiber.map.TileCoordinate.x', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='y', full_name='hiber.map.TileCoordinate.y', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=115,
+  serialized_end=153,
+)
+
+
+_MAPTILEITEM_MODEM = _descriptor.Descriptor(
+  name='Modem',
+  full_name='hiber.map.MapTileItem.Modem',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='number', full_name='hiber.map.MapTileItem.Modem.number', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='location', full_name='hiber.map.MapTileItem.Modem.location', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=356,
+  serialized_end=414,
+)
+
+_MAPTILEITEM_GROUP = _descriptor.Descriptor(
+  name='Group',
+  full_name='hiber.map.MapTileItem.Group',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='count', full_name='hiber.map.MapTileItem.Group.count', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='area', full_name='hiber.map.MapTileItem.Group.area', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=416,
+  serialized_end=465,
+)
+
+_MAPTILEITEM = _descriptor.Descriptor(
+  name='MapTileItem',
+  full_name='hiber.map.MapTileItem',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='tile', full_name='hiber.map.MapTileItem.tile', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='in_tile', full_name='hiber.map.MapTileItem.in_tile', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='modem', full_name='hiber.map.MapTileItem.modem', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='modem_group', full_name='hiber.map.MapTileItem.modem_group', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_MAPTILEITEM_MODEM, _MAPTILEITEM_GROUP, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+    _descriptor.OneofDescriptor(
+      name='modems', full_name='hiber.map.MapTileItem.modems',
+      index=0, containing_type=None, fields=[]),
+  ],
+  serialized_start=156,
+  serialized_end=475,
+)
+
+
+_TILEMAPREQUEST_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='hiber.map.TileMapRequest.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='ground_stations', full_name='hiber.map.TileMapRequest.Response.ground_stations', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='map_items', full_name='hiber.map.TileMapRequest.Response.map_items', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='request', full_name='hiber.map.TileMapRequest.Response.request', index=2,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='satellites', full_name='hiber.map.TileMapRequest.Response.satellites', index=3,
+      number=5, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=746,
+  serialized_end=936,
+)
+
+_TILEMAPREQUEST = _descriptor.Descriptor(
+  name='TileMapRequest',
+  full_name='hiber.map.TileMapRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organization', full_name='hiber.map.TileMapRequest.organization', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='selection', full_name='hiber.map.TileMapRequest.selection', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='level', full_name='hiber.map.TileMapRequest.level', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='modem_selection', full_name='hiber.map.TileMapRequest.modem_selection', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='include_satellites', full_name='hiber.map.TileMapRequest.include_satellites', index=4,
+      number=5, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='include_ground_stations', full_name='hiber.map.TileMapRequest.include_ground_stations', index=5,
+      number=6, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='density', full_name='hiber.map.TileMapRequest.density', index=6,
+      number=7, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_TILEMAPREQUEST_RESPONSE, ],
+  enum_types=[
+    _TILEMAPREQUEST_DENSITY,
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=478,
+  serialized_end=983,
+)
+
+
+_SATELLITE_POSITION = _descriptor.Descriptor(
+  name='Position',
+  full_name='hiber.map.Satellite.Position',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='time', full_name='hiber.map.Satellite.Position.time', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='location', full_name='hiber.map.Satellite.Position.location', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1075,
+  serialized_end=1152,
+)
+
+_SATELLITE = _descriptor.Descriptor(
+  name='Satellite',
+  full_name='hiber.map.Satellite',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='hiber.map.Satellite.id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='name', full_name='hiber.map.Satellite.name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='positions', full_name='hiber.map.Satellite.positions', index=2,
+      number=3, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_SATELLITE_POSITION, ],
+  enum_types=[
+  ],
+  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001')),
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=986,
+  serialized_end=1156,
+)
+
+
+_SATELLITESREQUEST_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='hiber.map.SatellitesRequest.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='satellites', full_name='hiber.map.SatellitesRequest.Response.satellites', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1179,
+  serialized_end=1231,
+)
+
+_SATELLITESREQUEST = _descriptor.Descriptor(
+  name='SatellitesRequest',
+  full_name='hiber.map.SatellitesRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[_SATELLITESREQUEST_RESPONSE, ],
+  enum_types=[
+  ],
+  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001')),
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1158,
+  serialized_end=1235,
+)
 
 
 _MAPSELECTION_AREARESTRICTION = _descriptor.Descriptor(
@@ -60,8 +553,8 @@ _MAPSELECTION_AREARESTRICTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=218,
-  serialized_end=309,
+  serialized_start=1419,
+  serialized_end=1510,
 )
 
 _MAPSELECTION_SHAPERESTRICTION = _descriptor.Descriptor(
@@ -90,8 +583,8 @@ _MAPSELECTION_SHAPERESTRICTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=311,
-  serialized_end=360,
+  serialized_start=1512,
+  serialized_end=1561,
 )
 
 _MAPSELECTION = _descriptor.Descriptor(
@@ -135,52 +628,14 @@ _MAPSELECTION = _descriptor.Descriptor(
   nested_types=[_MAPSELECTION_AREARESTRICTION, _MAPSELECTION_SHAPERESTRICTION, ],
   enum_types=[
   ],
-  options=None,
+  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001')),
   is_extendable=False,
   syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=37,
-  serialized_end=366,
-)
-
-
-_GROUNDSTATION = _descriptor.Descriptor(
-  name='GroundStation',
-  full_name='hiber.map.GroundStation',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='location', full_name='hiber.map.GroundStation.location', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='name', full_name='hiber.map.GroundStation.name', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=368,
-  serialized_end=432,
+  serialized_start=1238,
+  serialized_end=1571,
 )
 
 
@@ -225,14 +680,14 @@ _MAPBLOCK = _descriptor.Descriptor(
   nested_types=[],
   enum_types=[
   ],
-  options=None,
+  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001')),
   is_extendable=False,
   syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=434,
-  serialized_end=539,
+  serialized_start=1573,
+  serialized_end=1682,
 )
 
 
@@ -264,6 +719,13 @@ _MAPREQUEST_RESPONSE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='satellites', full_name='hiber.map.MapRequest.Response.satellites', index=3,
+      number=5, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -276,8 +738,8 @@ _MAPREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=686,
-  serialized_end=828,
+  serialized_start=1766,
+  serialized_end=1950,
 )
 
 _MAPREQUEST = _descriptor.Descriptor(
@@ -301,29 +763,52 @@ _MAPREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='child_organizations', full_name='hiber.map.MapRequest.child_organizations', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
   nested_types=[_MAPREQUEST_RESPONSE, ],
   enum_types=[
   ],
-  options=None,
+  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001')),
   is_extendable=False,
   syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=542,
-  serialized_end=828,
+  serialized_start=1685,
+  serialized_end=1960,
 )
 
+_GROUNDSTATION.fields_by_name['location'].message_type = base__pb2._LOCATION
+_MAPTILEITEM_MODEM.fields_by_name['location'].message_type = base__pb2._LOCATION
+_MAPTILEITEM_MODEM.containing_type = _MAPTILEITEM
+_MAPTILEITEM_GROUP.fields_by_name['area'].message_type = base__pb2._AREA
+_MAPTILEITEM_GROUP.containing_type = _MAPTILEITEM
+_MAPTILEITEM.fields_by_name['tile'].message_type = _TILECOORDINATE
+_MAPTILEITEM.fields_by_name['in_tile'].message_type = _TILECOORDINATE
+_MAPTILEITEM.fields_by_name['modem'].message_type = _MAPTILEITEM_MODEM
+_MAPTILEITEM.fields_by_name['modem_group'].message_type = _MAPTILEITEM_GROUP
+_MAPTILEITEM.oneofs_by_name['modems'].fields.append(
+  _MAPTILEITEM.fields_by_name['modem'])
+_MAPTILEITEM.fields_by_name['modem'].containing_oneof = _MAPTILEITEM.oneofs_by_name['modems']
+_MAPTILEITEM.oneofs_by_name['modems'].fields.append(
+  _MAPTILEITEM.fields_by_name['modem_group'])
+_MAPTILEITEM.fields_by_name['modem_group'].containing_oneof = _MAPTILEITEM.oneofs_by_name['modems']
+_TILEMAPREQUEST_RESPONSE.fields_by_name['ground_stations'].message_type = _GROUNDSTATION
+_TILEMAPREQUEST_RESPONSE.fields_by_name['map_items'].message_type = _MAPTILEITEM
+_TILEMAPREQUEST_RESPONSE.fields_by_name['request'].message_type = _TILEMAPREQUEST
+_TILEMAPREQUEST_RESPONSE.fields_by_name['satellites'].message_type = _SATELLITE
+_TILEMAPREQUEST_RESPONSE.containing_type = _TILEMAPREQUEST
+_TILEMAPREQUEST.fields_by_name['selection'].message_type = base__pb2._LOCATIONSELECTION
+_TILEMAPREQUEST.fields_by_name['modem_selection'].message_type = modem__pb2._MODEMSELECTION
+_TILEMAPREQUEST.fields_by_name['density'].enum_type = _TILEMAPREQUEST_DENSITY
+_TILEMAPREQUEST_DENSITY.containing_type = _TILEMAPREQUEST
+_SATELLITE_POSITION.fields_by_name['time'].message_type = base__pb2._TIMESTAMP
+_SATELLITE_POSITION.fields_by_name['location'].message_type = base__pb2._LOCATION
+_SATELLITE_POSITION.containing_type = _SATELLITE
+_SATELLITE.fields_by_name['positions'].message_type = _SATELLITE_POSITION
+_SATELLITESREQUEST_RESPONSE.fields_by_name['satellites'].message_type = _SATELLITE
+_SATELLITESREQUEST_RESPONSE.containing_type = _SATELLITESREQUEST
 _MAPSELECTION_AREARESTRICTION.fields_by_name['bottom_left'].message_type = base__pb2._LOCATION
 _MAPSELECTION_AREARESTRICTION.fields_by_name['top_right'].message_type = base__pb2._LOCATION
 _MAPSELECTION_AREARESTRICTION.containing_type = _MAPSELECTION
@@ -332,19 +817,105 @@ _MAPSELECTION_SHAPERESTRICTION.containing_type = _MAPSELECTION
 _MAPSELECTION.fields_by_name['modems'].message_type = base__pb2._FILTER_MODEMS
 _MAPSELECTION.fields_by_name['area'].message_type = _MAPSELECTION_AREARESTRICTION
 _MAPSELECTION.fields_by_name['shape'].message_type = _MAPSELECTION_SHAPERESTRICTION
-_GROUNDSTATION.fields_by_name['location'].message_type = base__pb2._LOCATION
 _MAPBLOCK.fields_by_name['area'].message_type = base__pb2._AREA
 _MAPREQUEST_RESPONSE.fields_by_name['ground_stations'].message_type = _GROUNDSTATION
 _MAPREQUEST_RESPONSE.fields_by_name['map_blocks'].message_type = _MAPBLOCK
 _MAPREQUEST_RESPONSE.fields_by_name['request'].message_type = _MAPREQUEST
+_MAPREQUEST_RESPONSE.fields_by_name['satellites'].message_type = _SATELLITE
 _MAPREQUEST_RESPONSE.containing_type = _MAPREQUEST
 _MAPREQUEST.fields_by_name['selection'].message_type = _MAPSELECTION
-_MAPREQUEST.fields_by_name['child_organizations'].message_type = base__pb2._FILTER_CHILDORGANIZATIONS
-DESCRIPTOR.message_types_by_name['MapSelection'] = _MAPSELECTION
 DESCRIPTOR.message_types_by_name['GroundStation'] = _GROUNDSTATION
+DESCRIPTOR.message_types_by_name['TileCoordinate'] = _TILECOORDINATE
+DESCRIPTOR.message_types_by_name['MapTileItem'] = _MAPTILEITEM
+DESCRIPTOR.message_types_by_name['TileMapRequest'] = _TILEMAPREQUEST
+DESCRIPTOR.message_types_by_name['Satellite'] = _SATELLITE
+DESCRIPTOR.message_types_by_name['SatellitesRequest'] = _SATELLITESREQUEST
+DESCRIPTOR.message_types_by_name['MapSelection'] = _MAPSELECTION
 DESCRIPTOR.message_types_by_name['MapBlock'] = _MAPBLOCK
 DESCRIPTOR.message_types_by_name['MapRequest'] = _MAPREQUEST
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+GroundStation = _reflection.GeneratedProtocolMessageType('GroundStation', (_message.Message,), dict(
+  DESCRIPTOR = _GROUNDSTATION,
+  __module__ = 'map_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.map.GroundStation)
+  ))
+_sym_db.RegisterMessage(GroundStation)
+
+TileCoordinate = _reflection.GeneratedProtocolMessageType('TileCoordinate', (_message.Message,), dict(
+  DESCRIPTOR = _TILECOORDINATE,
+  __module__ = 'map_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.map.TileCoordinate)
+  ))
+_sym_db.RegisterMessage(TileCoordinate)
+
+MapTileItem = _reflection.GeneratedProtocolMessageType('MapTileItem', (_message.Message,), dict(
+
+  Modem = _reflection.GeneratedProtocolMessageType('Modem', (_message.Message,), dict(
+    DESCRIPTOR = _MAPTILEITEM_MODEM,
+    __module__ = 'map_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.map.MapTileItem.Modem)
+    ))
+  ,
+
+  Group = _reflection.GeneratedProtocolMessageType('Group', (_message.Message,), dict(
+    DESCRIPTOR = _MAPTILEITEM_GROUP,
+    __module__ = 'map_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.map.MapTileItem.Group)
+    ))
+  ,
+  DESCRIPTOR = _MAPTILEITEM,
+  __module__ = 'map_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.map.MapTileItem)
+  ))
+_sym_db.RegisterMessage(MapTileItem)
+_sym_db.RegisterMessage(MapTileItem.Modem)
+_sym_db.RegisterMessage(MapTileItem.Group)
+
+TileMapRequest = _reflection.GeneratedProtocolMessageType('TileMapRequest', (_message.Message,), dict(
+
+  Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
+    DESCRIPTOR = _TILEMAPREQUEST_RESPONSE,
+    __module__ = 'map_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.map.TileMapRequest.Response)
+    ))
+  ,
+  DESCRIPTOR = _TILEMAPREQUEST,
+  __module__ = 'map_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.map.TileMapRequest)
+  ))
+_sym_db.RegisterMessage(TileMapRequest)
+_sym_db.RegisterMessage(TileMapRequest.Response)
+
+Satellite = _reflection.GeneratedProtocolMessageType('Satellite', (_message.Message,), dict(
+
+  Position = _reflection.GeneratedProtocolMessageType('Position', (_message.Message,), dict(
+    DESCRIPTOR = _SATELLITE_POSITION,
+    __module__ = 'map_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.map.Satellite.Position)
+    ))
+  ,
+  DESCRIPTOR = _SATELLITE,
+  __module__ = 'map_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.map.Satellite)
+  ))
+_sym_db.RegisterMessage(Satellite)
+_sym_db.RegisterMessage(Satellite.Position)
+
+SatellitesRequest = _reflection.GeneratedProtocolMessageType('SatellitesRequest', (_message.Message,), dict(
+
+  Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
+    DESCRIPTOR = _SATELLITESREQUEST_RESPONSE,
+    __module__ = 'map_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.map.SatellitesRequest.Response)
+    ))
+  ,
+  DESCRIPTOR = _SATELLITESREQUEST,
+  __module__ = 'map_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.map.SatellitesRequest)
+  ))
+_sym_db.RegisterMessage(SatellitesRequest)
+_sym_db.RegisterMessage(SatellitesRequest.Response)
 
 MapSelection = _reflection.GeneratedProtocolMessageType('MapSelection', (_message.Message,), dict(
 
@@ -368,13 +939,6 @@ MapSelection = _reflection.GeneratedProtocolMessageType('MapSelection', (_messag
 _sym_db.RegisterMessage(MapSelection)
 _sym_db.RegisterMessage(MapSelection.AreaRestriction)
 _sym_db.RegisterMessage(MapSelection.ShapeRestriction)
-
-GroundStation = _reflection.GeneratedProtocolMessageType('GroundStation', (_message.Message,), dict(
-  DESCRIPTOR = _GROUNDSTATION,
-  __module__ = 'map_pb2'
-  # @@protoc_insertion_point(class_scope:hiber.map.GroundStation)
-  ))
-_sym_db.RegisterMessage(GroundStation)
 
 MapBlock = _reflection.GeneratedProtocolMessageType('MapBlock', (_message.Message,), dict(
   DESCRIPTOR = _MAPBLOCK,
@@ -401,6 +965,16 @@ _sym_db.RegisterMessage(MapRequest.Response)
 
 DESCRIPTOR.has_options = True
 DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\031global.hiber.api.grpc.mapB\006MapApiP\000Z\005hiber'))
+_SATELLITE.has_options = True
+_SATELLITE._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001'))
+_SATELLITESREQUEST.has_options = True
+_SATELLITESREQUEST._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001'))
+_MAPSELECTION.has_options = True
+_MAPSELECTION._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001'))
+_MAPBLOCK.has_options = True
+_MAPBLOCK._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001'))
+_MAPREQUEST.has_options = True
+_MAPREQUEST._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001'))
 
 _MAPSERVICE = _descriptor.ServiceDescriptor(
   name='MapService',
@@ -408,17 +982,35 @@ _MAPSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=830,
-  serialized_end=904,
+  serialized_start=1963,
+  serialized_end=2204,
   methods=[
+  _descriptor.MethodDescriptor(
+    name='TileMap',
+    full_name='hiber.map.MapService.TileMap',
+    index=0,
+    containing_service=None,
+    input_type=_TILEMAPREQUEST,
+    output_type=_TILEMAPREQUEST_RESPONSE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='Satellites',
+    full_name='hiber.map.MapService.Satellites',
+    index=1,
+    containing_service=None,
+    input_type=_SATELLITESREQUEST,
+    output_type=_SATELLITESREQUEST_RESPONSE,
+    options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\210\002\001')),
+  ),
   _descriptor.MethodDescriptor(
     name='Map',
     full_name='hiber.map.MapService.Map',
-    index=0,
+    index=2,
     containing_service=None,
     input_type=_MAPREQUEST,
     output_type=_MAPREQUEST_RESPONSE,
-    options=None,
+    options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\210\002\001')),
   ),
 ])
 _sym_db.RegisterServiceDescriptor(_MAPSERVICE)

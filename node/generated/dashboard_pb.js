@@ -67,7 +67,8 @@ proto.hiber.dashboard.DashboardRequest.toObject = function(includeInstance, msg)
     selection: (f = msg.getSelection()) && map_pb.MapSelection.toObject(includeInstance, f),
     messageCountSelection: (f = msg.getMessageCountSelection()) && modem_pb.ModemMessageSelection.toObject(includeInstance, f),
     eventSelection: (f = msg.getEventSelection()) && event_pb.EventSelection.toObject(includeInstance, f),
-    timeZoneOffset: jspb.Message.getFieldWithDefault(msg, 5, 0)
+    timeZoneOffset: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    timeZone: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -126,6 +127,10 @@ proto.hiber.dashboard.DashboardRequest.deserializeBinaryFromReader = function(ms
     case 5:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setTimeZoneOffset(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTimeZone(value);
       break;
     default:
       reader.skipField();
@@ -194,6 +199,13 @@ proto.hiber.dashboard.DashboardRequest.serializeBinaryToWriter = function(messag
       f
     );
   }
+  f = message.getTimeZone();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
 };
 
 
@@ -220,7 +232,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.hiber.dashboard.DashboardRequest.Response.repeatedFields_ = [1,2,3,8];
+proto.hiber.dashboard.DashboardRequest.Response.repeatedFields_ = [1,2,3,8,9];
 
 
 
@@ -261,7 +273,9 @@ proto.hiber.dashboard.DashboardRequest.Response.toObject = function(includeInsta
     modemErrorCount: jspb.Message.getFieldWithDefault(msg, 5, 0),
     request: (f = msg.getRequest()) && proto.hiber.dashboard.DashboardRequest.toObject(includeInstance, f),
     eventsList: jspb.Message.toObjectList(msg.getEventsList(),
-    event_pb.BundledEvent.toObject, includeInstance)
+    event_pb.BundledEvent.toObject, includeInstance),
+    satellitesList: jspb.Message.toObjectList(msg.getSatellitesList(),
+    map_pb.Satellite.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -330,6 +344,11 @@ proto.hiber.dashboard.DashboardRequest.Response.deserializeBinaryFromReader = fu
       var value = new event_pb.BundledEvent;
       reader.readMessage(value,event_pb.BundledEvent.deserializeBinaryFromReader);
       msg.addEvents(value);
+      break;
+    case 9:
+      var value = new map_pb.Satellite;
+      reader.readMessage(value,map_pb.Satellite.deserializeBinaryFromReader);
+      msg.addSatellites(value);
       break;
     default:
       reader.skipField();
@@ -412,6 +431,14 @@ proto.hiber.dashboard.DashboardRequest.Response.serializeBinaryToWriter = functi
       8,
       f,
       event_pb.BundledEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getSatellitesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      9,
+      f,
+      map_pb.Satellite.serializeBinaryToWriter
     );
   }
 };
@@ -602,6 +629,37 @@ proto.hiber.dashboard.DashboardRequest.Response.prototype.clearEventsList = func
 
 
 /**
+ * repeated hiber.map.Satellite satellites = 9;
+ * @return {!Array.<!proto.hiber.map.Satellite>}
+ */
+proto.hiber.dashboard.DashboardRequest.Response.prototype.getSatellitesList = function() {
+  return /** @type{!Array.<!proto.hiber.map.Satellite>} */ (
+    jspb.Message.getRepeatedWrapperField(this, map_pb.Satellite, 9));
+};
+
+
+/** @param {!Array.<!proto.hiber.map.Satellite>} value */
+proto.hiber.dashboard.DashboardRequest.Response.prototype.setSatellitesList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 9, value);
+};
+
+
+/**
+ * @param {!proto.hiber.map.Satellite=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.hiber.map.Satellite}
+ */
+proto.hiber.dashboard.DashboardRequest.Response.prototype.addSatellites = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 9, opt_value, proto.hiber.map.Satellite, opt_index);
+};
+
+
+proto.hiber.dashboard.DashboardRequest.Response.prototype.clearSatellitesList = function() {
+  this.setSatellitesList([]);
+};
+
+
+/**
  * optional string organization = 1;
  * @return {string}
  */
@@ -718,6 +776,21 @@ proto.hiber.dashboard.DashboardRequest.prototype.getTimeZoneOffset = function() 
 /** @param {number} value */
 proto.hiber.dashboard.DashboardRequest.prototype.setTimeZoneOffset = function(value) {
   jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * optional string time_zone = 6;
+ * @return {string}
+ */
+proto.hiber.dashboard.DashboardRequest.prototype.getTimeZone = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.dashboard.DashboardRequest.prototype.setTimeZone = function(value) {
+  jspb.Message.setField(this, 6, value);
 };
 
 

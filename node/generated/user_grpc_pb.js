@@ -39,6 +39,28 @@ function deserialize_hiber_user_CreateUserRequest(buffer_arg) {
   return user_pb.CreateUserRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_hiber_user_CreateUsersRequest(arg) {
+  if (!(arg instanceof user_pb.CreateUsersRequest)) {
+    throw new Error('Expected argument of type hiber.user.CreateUsersRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_user_CreateUsersRequest(buffer_arg) {
+  return user_pb.CreateUsersRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_user_CreateUsersRequest_Response(arg) {
+  if (!(arg instanceof user_pb.CreateUsersRequest.Response)) {
+    throw new Error('Expected argument of type hiber.user.CreateUsersRequest.Response');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_user_CreateUsersRequest_Response(buffer_arg) {
+  return user_pb.CreateUsersRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_hiber_user_ListAccessRequestsRequest(arg) {
   if (!(arg instanceof user_pb.ListAccessRequestsRequest)) {
     throw new Error('Expected argument of type hiber.user.ListAccessRequestsRequest');
@@ -103,6 +125,28 @@ function serialize_hiber_user_RemoveUserRequest_Response(arg) {
 
 function deserialize_hiber_user_RemoveUserRequest_Response(buffer_arg) {
   return user_pb.RemoveUserRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_user_ResetUserPasswordRequest(arg) {
+  if (!(arg instanceof user_pb.ResetUserPasswordRequest)) {
+    throw new Error('Expected argument of type hiber.user.ResetUserPasswordRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_user_ResetUserPasswordRequest(buffer_arg) {
+  return user_pb.ResetUserPasswordRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_user_ResetUserPasswordRequest_Response(arg) {
+  if (!(arg instanceof user_pb.ResetUserPasswordRequest.Response)) {
+    throw new Error('Expected argument of type hiber.user.ResetUserPasswordRequest.Response');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_user_ResetUserPasswordRequest_Response(buffer_arg) {
+  return user_pb.ResetUserPasswordRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_hiber_user_UpdateUserPermissionsRequest(arg) {
@@ -194,6 +238,28 @@ var UserServiceService = exports.UserServiceService = {
     requestDeserialize: deserialize_hiber_user_CreateUserRequest,
     responseSerialize: serialize_hiber_user_User,
     responseDeserialize: deserialize_hiber_user_User,
+  },
+  createUsers: {
+    path: '/hiber.user.UserService/CreateUsers',
+    requestStream: false,
+    responseStream: false,
+    requestType: user_pb.CreateUsersRequest,
+    responseType: user_pb.CreateUsersRequest.Response,
+    requestSerialize: serialize_hiber_user_CreateUsersRequest,
+    requestDeserialize: deserialize_hiber_user_CreateUsersRequest,
+    responseSerialize: serialize_hiber_user_CreateUsersRequest_Response,
+    responseDeserialize: deserialize_hiber_user_CreateUsersRequest_Response,
+  },
+  resetPassword: {
+    path: '/hiber.user.UserService/ResetPassword',
+    requestStream: false,
+    responseStream: false,
+    requestType: user_pb.ResetUserPasswordRequest,
+    responseType: user_pb.ResetUserPasswordRequest.Response,
+    requestSerialize: serialize_hiber_user_ResetUserPasswordRequest,
+    requestDeserialize: deserialize_hiber_user_ResetUserPasswordRequest,
+    responseSerialize: serialize_hiber_user_ResetUserPasswordRequest_Response,
+    responseDeserialize: deserialize_hiber_user_ResetUserPasswordRequest_Response,
   },
   updateUserPermissions: {
     path: '/hiber.user.UserService/UpdateUserPermissions',

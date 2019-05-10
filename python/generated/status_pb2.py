@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='status.proto',
   package='hiber.status',
   syntax='proto3',
-  serialized_pb=_b('\n\x0cstatus.proto\x12\x0chiber.status\x1a\nbase.proto\"g\n\rNetworkStatus\x12\x1d\n\x06health\x18\x01 \x01(\x0e\x32\r.hiber.Health\x12\x0f\n\x07message\x18\x02 \x01(\t\x12&\n\x0clast_updated\x18\x03 \x01(\x0b\x32\x10.hiber.Timestamp\"\x7f\n\nAreaStatus\x12\x19\n\x04\x61rea\x18\x01 \x01(\x0b\x32\x0b.hiber.Area\x12\x1d\n\x06health\x18\x02 \x01(\x0e\x32\r.hiber.Health\x12\x0f\n\x07message\x18\x03 \x01(\t\x12&\n\x0clast_updated\x18\x04 \x01(\x0b\x32\x10.hiber.Timestamp\"\xbb\x03\n\x12OrganizationStatus\x12\x1d\n\x06health\x18\x01 \x01(\x0e\x32\r.hiber.Health\x12\x1d\n\x06modems\x18\x02 \x01(\x0e\x32\r.hiber.Health\x12!\n\npublishers\x18\x03 \x01(\x0e\x32\r.hiber.Health\x12\x45\n\x0frelevant_modems\x18\x04 \x03(\x0b\x32,.hiber.status.OrganizationStatus.ModemStatus\x12M\n\x13relevant_publishers\x18\x05 \x03(\x0b\x32\x30.hiber.status.OrganizationStatus.PublisherStatus\x1aT\n\x0bModemStatus\x12\x14\n\x0cmodem_number\x18\x01 \x01(\t\x12\x1d\n\x06health\x18\x02 \x01(\x0e\x32\r.hiber.Health\x12\x10\n\x08messages\x18\x03 \x03(\t\x1aX\n\x0fPublisherStatus\x12\x14\n\x0cpublisher_id\x18\x01 \x01(\x03\x12\x1d\n\x06health\x18\x02 \x01(\x0e\x32\r.hiber.Health\x12\x10\n\x08messages\x18\x03 \x03(\t\"\xe3\x02\n\rStatusRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x16\n\x0einclude_modems\x18\x02 \x01(\x08\x12\x1a\n\x12include_publishers\x18\x03 \x01(\x08\x1a\x87\x02\n\x08Response\x12,\n\x07request\x18\x01 \x01(\x0b\x32\x1b.hiber.status.StatusRequest\x12/\n\nsatellites\x18\x02 \x01(\x0b\x32\x1b.hiber.status.NetworkStatus\x12\x34\n\x0fground_stations\x18\x03 \x01(\x0b\x32\x1b.hiber.status.NetworkStatus\x12.\n\x0cglobal_areas\x18\x04 \x03(\x0b\x32\x18.hiber.status.AreaStatus\x12\x36\n\x0corganization\x18\x05 \x01(\x0b\x32 .hiber.status.OrganizationStatus2\\\n\rStatusService\x12K\n\x06Status\x12\x1b.hiber.status.StatusRequest\x1a$.hiber.status.StatusRequest.ResponseB2\n\x1cglobal.hiber.api.grpc.statusB\tStatusApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\x0cstatus.proto\x12\x0chiber.status\x1a\nbase.proto\"g\n\rNetworkStatus\x12\x1d\n\x06health\x18\x01 \x01(\x0e\x32\r.hiber.Health\x12\x0f\n\x07message\x18\x02 \x01(\t\x12&\n\x0clast_updated\x18\x03 \x01(\x0b\x32\x10.hiber.Timestamp\"\x7f\n\nAreaStatus\x12\x19\n\x04\x61rea\x18\x01 \x01(\x0b\x32\x0b.hiber.Area\x12\x1d\n\x06health\x18\x02 \x01(\x0e\x32\r.hiber.Health\x12\x0f\n\x07message\x18\x03 \x01(\t\x12&\n\x0clast_updated\x18\x04 \x01(\x0b\x32\x10.hiber.Timestamp\"\xbb\x03\n\x12OrganizationStatus\x12\x1d\n\x06health\x18\x01 \x01(\x0e\x32\r.hiber.Health\x12\x1d\n\x06modems\x18\x02 \x01(\x0e\x32\r.hiber.Health\x12!\n\npublishers\x18\x03 \x01(\x0e\x32\r.hiber.Health\x12\x45\n\x0frelevant_modems\x18\x04 \x03(\x0b\x32,.hiber.status.OrganizationStatus.ModemStatus\x12M\n\x13relevant_publishers\x18\x05 \x03(\x0b\x32\x30.hiber.status.OrganizationStatus.PublisherStatus\x1aT\n\x0bModemStatus\x12\x14\n\x0cmodem_number\x18\x01 \x01(\t\x12\x1d\n\x06health\x18\x02 \x01(\x0e\x32\r.hiber.Health\x12\x10\n\x08messages\x18\x03 \x03(\t\x1aX\n\x0fPublisherStatus\x12\x14\n\x0cpublisher_id\x18\x01 \x01(\x03\x12\x1d\n\x06health\x18\x02 \x01(\x0e\x32\r.hiber.Health\x12\x10\n\x08messages\x18\x03 \x03(\t\"\x90\x03\n\rStatusRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x16\n\x0einclude_modems\x18\x02 \x01(\x08\x12\x1a\n\x12include_publishers\x18\x03 \x01(\x08\x1a\xb4\x02\n\x08Response\x12,\n\x07request\x18\x01 \x01(\x0b\x32\x1b.hiber.status.StatusRequest\x12/\n\nsatellites\x18\x02 \x01(\x0b\x32\x1b.hiber.status.NetworkStatus\x12\x34\n\x0fground_stations\x18\x03 \x01(\x0b\x32\x1b.hiber.status.NetworkStatus\x12.\n\x0cglobal_areas\x18\x04 \x03(\x0b\x32\x18.hiber.status.AreaStatus\x12\x36\n\x0corganization\x18\x05 \x01(\x0b\x32 .hiber.status.OrganizationStatus\x12+\n\x06server\x18\x06 \x01(\x0b\x32\x1b.hiber.status.NetworkStatus2\\\n\rStatusService\x12K\n\x06Status\x12\x1b.hiber.status.StatusRequest\x1a$.hiber.status.StatusRequest.ResponseB2\n\x1cglobal.hiber.api.grpc.statusB\tStatusApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,])
 
@@ -313,6 +313,13 @@ _STATUSREQUEST_RESPONSE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='server', full_name='hiber.status.StatusRequest.Response.server', index=5,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -326,7 +333,7 @@ _STATUSREQUEST_RESPONSE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=815,
-  serialized_end=1078,
+  serialized_end=1123,
 )
 
 _STATUSREQUEST = _descriptor.Descriptor(
@@ -370,7 +377,7 @@ _STATUSREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=723,
-  serialized_end=1078,
+  serialized_end=1123,
 )
 
 _NETWORKSTATUS.fields_by_name['health'].enum_type = base__pb2._HEALTH
@@ -392,6 +399,7 @@ _STATUSREQUEST_RESPONSE.fields_by_name['satellites'].message_type = _NETWORKSTAT
 _STATUSREQUEST_RESPONSE.fields_by_name['ground_stations'].message_type = _NETWORKSTATUS
 _STATUSREQUEST_RESPONSE.fields_by_name['global_areas'].message_type = _AREASTATUS
 _STATUSREQUEST_RESPONSE.fields_by_name['organization'].message_type = _ORGANIZATIONSTATUS
+_STATUSREQUEST_RESPONSE.fields_by_name['server'].message_type = _NETWORKSTATUS
 _STATUSREQUEST_RESPONSE.containing_type = _STATUSREQUEST
 DESCRIPTOR.message_types_by_name['NetworkStatus'] = _NETWORKSTATUS
 DESCRIPTOR.message_types_by_name['AreaStatus'] = _AREASTATUS
@@ -461,8 +469,8 @@ _STATUSSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=1080,
-  serialized_end=1172,
+  serialized_start=1125,
+  serialized_end=1217,
   methods=[
   _descriptor.MethodDescriptor(
     name='Status',

@@ -1802,7 +1802,8 @@ proto.hiber.modem.TransferModemsRequest.toObject = function(includeInstance, msg
     recipientOrganization: jspb.Message.getFieldWithDefault(msg, 3, ""),
     createRecipient: (f = msg.getCreateRecipient()) && organization_pb.CreateOrganizationRequest.toObject(includeInstance, f),
     trackingInformation: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    markReceivedAutomatically: jspb.Message.getFieldWithDefault(msg, 6, false)
+    markReceivedAutomatically: jspb.Message.getFieldWithDefault(msg, 6, false),
+    allowGatewaysAndExternalDevices: jspb.Message.getFieldWithDefault(msg, 7, false)
   };
 
   if (includeInstance) {
@@ -1864,6 +1865,10 @@ proto.hiber.modem.TransferModemsRequest.deserializeBinaryFromReader = function(m
     case 6:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setMarkReceivedAutomatically(value);
+      break;
+    case 7:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setAllowGatewaysAndExternalDevices(value);
       break;
     default:
       reader.skipField();
@@ -1935,6 +1940,13 @@ proto.hiber.modem.TransferModemsRequest.serializeBinaryToWriter = function(messa
   if (f) {
     writer.writeBool(
       6,
+      f
+    );
+  }
+  f = message.getAllowGatewaysAndExternalDevices();
+  if (f) {
+    writer.writeBool(
+      7,
       f
     );
   }
@@ -2263,6 +2275,23 @@ proto.hiber.modem.TransferModemsRequest.prototype.getMarkReceivedAutomatically =
 /** @param {boolean} value */
 proto.hiber.modem.TransferModemsRequest.prototype.setMarkReceivedAutomatically = function(value) {
   jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * optional bool allow_gateways_and_external_devices = 7;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.modem.TransferModemsRequest.prototype.getAllowGatewaysAndExternalDevices = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 7, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.modem.TransferModemsRequest.prototype.setAllowGatewaysAndExternalDevices = function(value) {
+  jspb.Message.setField(this, 7, value);
 };
 
 

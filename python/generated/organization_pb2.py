@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='organization.proto',
   package='hiber.organization',
   syntax='proto3',
-  serialized_pb=_b('\n\x12organization.proto\x12\x12hiber.organization\x1a\nbase.proto\"\xad\x04\n\x0cOrganization\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12\x12\n\nvat_number\x18\x03 \x01(\t\x12\x39\n\x07\x61\x64\x64ress\x18\x04 \x01(\x0b\x32(.hiber.organization.Organization.Address\x12\x14\n\x0c\x62illing_name\x18\x05 \x01(\t\x12\x41\n\x0f\x62illing_address\x18\x06 \x01(\x0b\x32(.hiber.organization.Organization.Address\x12\x39\n\x07\x63ontact\x18\x07 \x01(\x0b\x32(.hiber.organization.Organization.Contact\x12\x31\n\x17\x63ontract_signature_date\x18\x08 \x01(\x0b\x32\x10.hiber.Timestamp\x12$\n\ncreated_at\x18\t \x01(\x0b\x32\x10.hiber.Timestamp\x12$\n\nupdated_at\x18\n \x01(\x0b\x32\x10.hiber.Timestamp\x1aX\n\x07\x41\x64\x64ress\x12\r\n\x05lines\x18\x01 \x03(\t\x12\x10\n\x08zip_code\x18\x02 \x01(\t\x12\x0c\n\x04\x63ity\x18\x03 \x01(\t\x12\r\n\x05state\x18\x04 \x01(\t\x12\x0f\n\x07\x63ountry\x18\x05 \x01(\t\x1a\x35\n\x07\x43ontact\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\r\n\x05phone\x18\x03 \x01(\t\"K\n\x15OrganizationSelection\x12\x32\n\rorganizations\x18\x01 \x01(\x0b\x32\x1b.hiber.Filter.Organizations\".\n\x16GetOrganizationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\"\xaa\x02\n\x19UpdateOrganizationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12\x12\n\nvat_number\x18\x03 \x01(\t\x12\x39\n\x07\x61\x64\x64ress\x18\x04 \x01(\x0b\x32(.hiber.organization.Organization.Address\x12\x14\n\x0c\x62illing_name\x18\x05 \x01(\t\x12\x41\n\x0f\x62illing_address\x18\x06 \x01(\x0b\x32(.hiber.organization.Organization.Address\x12\x39\n\x07\x63ontact\x18\x07 \x01(\x0b\x32(.hiber.organization.Organization.Contact\"\xeb\x01\n\x17OrganizationTreeRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12<\n\tselection\x18\x02 \x01(\x0b\x32).hiber.organization.OrganizationSelection\x1a|\n\x08Response\x12<\n\x07request\x18\x01 \x01(\x0b\x32+.hiber.organization.OrganizationTreeRequest\x12\x32\n\x04tree\x18\x02 \x01(\x0b\x32$.hiber.organization.OrganizationTree\"\x82\x01\n\x10OrganizationTree\x12\x36\n\x0corganization\x18\x01 \x01(\x0b\x32 .hiber.organization.Organization\x12\x36\n\x08\x63hildren\x18\x03 \x03(\x0b\x32$.hiber.organization.OrganizationTree\"\xd8\x02\n\x1dListChildOrganizationsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12<\n\tselection\x18\x02 \x01(\x0b\x32).hiber.organization.OrganizationSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\xbb\x01\n\x08Response\x12=\n\x13\x63hild_organizations\x18\x01 \x03(\x0b\x32 .hiber.organization.Organization\x12\x42\n\x07request\x18\x02 \x01(\x0b\x32\x31.hiber.organization.ListChildOrganizationsRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xe0\x02\n\x19\x43reateOrganizationRequest\x12\x1b\n\x13parent_organization\x18\x01 \x01(\t\x12\x18\n\x10new_organization\x18\x02 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x03 \x01(\t\x12\x13\n\x0bis_business\x18\x04 \x01(\x08\x12\x12\n\nvat_number\x18\x05 \x01(\t\x12\x39\n\x07\x61\x64\x64ress\x18\x06 \x01(\x0b\x32(.hiber.organization.Organization.Address\x12\x14\n\x0c\x62illing_name\x18\x07 \x01(\t\x12\x41\n\x0f\x62illing_address\x18\x08 \x01(\x0b\x32(.hiber.organization.Organization.Address\x12\x39\n\x07\x63ontact\x18\t \x01(\x0b\x32(.hiber.organization.Organization.Contact\"\xba\x01\n\x19\x44\x65leteOrganizationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x1a\x86\x01\n\x08Response\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x19\n\x11\x63onfirmation_code\x18\x02 \x01(\t\x12I\n\x1borganizations_to_be_deleted\x18\x03 \x01(\x0b\x32$.hiber.organization.OrganizationTree\"d\n%DeleteOrganizationConfirmationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x19\n\x11\x63onfirmation_code\x18\x02 \x01(\t\x1a\n\n\x08Response2\x9c\x06\n\x13OrganizationService\x12Y\n\x06\x43reate\x12-.hiber.organization.CreateOrganizationRequest\x1a .hiber.organization.Organization\x12S\n\x03Get\x12*.hiber.organization.GetOrganizationRequest\x1a .hiber.organization.Organization\x12Y\n\x06Update\x12-.hiber.organization.UpdateOrganizationRequest\x1a .hiber.organization.Organization\x12o\n\x06\x44\x65lete\x12-.hiber.organization.DeleteOrganizationRequest\x1a\x36.hiber.organization.DeleteOrganizationRequest.Response\x12\x93\x01\n\x12\x44\x65leteConfirmation\x12\x39.hiber.organization.DeleteOrganizationConfirmationRequest\x1a\x42.hiber.organization.DeleteOrganizationConfirmationRequest.Response\x12i\n\x04Tree\x12+.hiber.organization.OrganizationTreeRequest\x1a\x34.hiber.organization.OrganizationTreeRequest.Response\x12\x87\x01\n\x16ListChildOrganizations\x12\x31.hiber.organization.ListChildOrganizationsRequest\x1a:.hiber.organization.ListChildOrganizationsRequest.ResponseB>\n\"global.hiber.api.grpc.organizationB\x0fOrganizationApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\x12organization.proto\x12\x12hiber.organization\x1a\nbase.proto\"\xad\x04\n\x0cOrganization\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12\x12\n\nvat_number\x18\x03 \x01(\t\x12\x39\n\x07\x61\x64\x64ress\x18\x04 \x01(\x0b\x32(.hiber.organization.Organization.Address\x12\x14\n\x0c\x62illing_name\x18\x05 \x01(\t\x12\x41\n\x0f\x62illing_address\x18\x06 \x01(\x0b\x32(.hiber.organization.Organization.Address\x12\x39\n\x07\x63ontact\x18\x07 \x01(\x0b\x32(.hiber.organization.Organization.Contact\x12\x31\n\x17\x63ontract_signature_date\x18\x08 \x01(\x0b\x32\x10.hiber.Timestamp\x12$\n\ncreated_at\x18\t \x01(\x0b\x32\x10.hiber.Timestamp\x12$\n\nupdated_at\x18\n \x01(\x0b\x32\x10.hiber.Timestamp\x1aX\n\x07\x41\x64\x64ress\x12\r\n\x05lines\x18\x01 \x03(\t\x12\x10\n\x08zip_code\x18\x02 \x01(\t\x12\x0c\n\x04\x63ity\x18\x03 \x01(\t\x12\r\n\x05state\x18\x04 \x01(\t\x12\x0f\n\x07\x63ountry\x18\x05 \x01(\t\x1a\x35\n\x07\x43ontact\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\r\n\x05phone\x18\x03 \x01(\t\"K\n\x15OrganizationSelection\x12\x32\n\rorganizations\x18\x01 \x01(\x0b\x32\x1b.hiber.Filter.Organizations\".\n\x16GetOrganizationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\"\xaa\x02\n\x19UpdateOrganizationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12\x12\n\nvat_number\x18\x03 \x01(\t\x12\x39\n\x07\x61\x64\x64ress\x18\x04 \x01(\x0b\x32(.hiber.organization.Organization.Address\x12\x14\n\x0c\x62illing_name\x18\x05 \x01(\t\x12\x41\n\x0f\x62illing_address\x18\x06 \x01(\x0b\x32(.hiber.organization.Organization.Address\x12\x39\n\x07\x63ontact\x18\x07 \x01(\x0b\x32(.hiber.organization.Organization.Contact\"\xeb\x01\n\x17OrganizationTreeRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12<\n\tselection\x18\x02 \x01(\x0b\x32).hiber.organization.OrganizationSelection\x1a|\n\x08Response\x12<\n\x07request\x18\x01 \x01(\x0b\x32+.hiber.organization.OrganizationTreeRequest\x12\x32\n\x04tree\x18\x02 \x01(\x0b\x32$.hiber.organization.OrganizationTree\"\x82\x01\n\x10OrganizationTree\x12\x36\n\x0corganization\x18\x01 \x01(\x0b\x32 .hiber.organization.Organization\x12\x36\n\x08\x63hildren\x18\x03 \x03(\x0b\x32$.hiber.organization.OrganizationTree\"\xd8\x02\n\x1dListChildOrganizationsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12<\n\tselection\x18\x02 \x01(\x0b\x32).hiber.organization.OrganizationSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\xbb\x01\n\x08Response\x12=\n\x13\x63hild_organizations\x18\x01 \x03(\x0b\x32 .hiber.organization.Organization\x12\x42\n\x07request\x18\x02 \x01(\x0b\x32\x31.hiber.organization.ListChildOrganizationsRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\x85\x03\n\x19\x43reateOrganizationRequest\x12\x1b\n\x13parent_organization\x18\x01 \x01(\t\x12\x18\n\x10new_organization\x18\x02 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x03 \x01(\t\x12\x13\n\x0bis_business\x18\x04 \x01(\x08\x12\x12\n\nvat_number\x18\x05 \x01(\t\x12\x39\n\x07\x61\x64\x64ress\x18\x06 \x01(\x0b\x32(.hiber.organization.Organization.Address\x12\x14\n\x0c\x62illing_name\x18\x07 \x01(\t\x12\x41\n\x0f\x62illing_address\x18\x08 \x01(\x0b\x32(.hiber.organization.Organization.Address\x12\x39\n\x07\x63ontact\x18\t \x01(\x0b\x32(.hiber.organization.Organization.Contact\x12#\n\x1borganization_creation_token\x18\n \x01(\t\"\xf8\x01\n\x19\x44\x65leteOrganizationRequest\x12\x1b\n\x13parent_organization\x18\x01 \x01(\t\x12\x1e\n\x16organization_to_delete\x18\x02 \x01(\t\x1a\x9d\x01\n\x08Response\x12\x1e\n\x16organization_to_delete\x18\x01 \x01(\t\x12\x16\n\x0e\x64\x65letion_token\x18\x02 \x01(\t\x12I\n\x1borganizations_to_be_deleted\x18\x03 \x01(\x0b\x32$.hiber.organization.OrganizationTree\x12\x0e\n\x06modems\x18\x04 \x03(\t\"\x88\x01\n%DeleteOrganizationConfirmationRequest\x12\x1b\n\x13parent_organization\x18\x01 \x01(\t\x12\x1e\n\x16organization_to_delete\x18\x03 \x01(\t\x12\x16\n\x0e\x64\x65letion_token\x18\x02 \x01(\t\x1a\n\n\x08Response\"j\n(ValidateOrganizationCreationTokenRequest\x12#\n\x1borganization_creation_token\x18\x01 \x01(\t\x1a\x19\n\x08Response\x12\r\n\x05valid\x18\x01 \x01(\x08\x32\xbb\x07\n\x13OrganizationService\x12Y\n\x06\x43reate\x12-.hiber.organization.CreateOrganizationRequest\x1a .hiber.organization.Organization\x12S\n\x03Get\x12*.hiber.organization.GetOrganizationRequest\x1a .hiber.organization.Organization\x12Y\n\x06Update\x12-.hiber.organization.UpdateOrganizationRequest\x1a .hiber.organization.Organization\x12o\n\x06\x44\x65lete\x12-.hiber.organization.DeleteOrganizationRequest\x1a\x36.hiber.organization.DeleteOrganizationRequest.Response\x12\x93\x01\n\x12\x44\x65leteConfirmation\x12\x39.hiber.organization.DeleteOrganizationConfirmationRequest\x1a\x42.hiber.organization.DeleteOrganizationConfirmationRequest.Response\x12i\n\x04Tree\x12+.hiber.organization.OrganizationTreeRequest\x1a\x34.hiber.organization.OrganizationTreeRequest.Response\x12\x87\x01\n\x16ListChildOrganizations\x12\x31.hiber.organization.ListChildOrganizationsRequest\x1a:.hiber.organization.ListChildOrganizationsRequest.Response\x12\x9c\x01\n\x15ValidateCreationToken\x12<.hiber.organization.ValidateOrganizationCreationTokenRequest\x1a\x45.hiber.organization.ValidateOrganizationCreationTokenRequest.ResponseB>\n\"global.hiber.api.grpc.organizationB\x0fOrganizationApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,])
 
@@ -630,6 +630,13 @@ _CREATEORGANIZATIONREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='organization_creation_token', full_name='hiber.organization.CreateOrganizationRequest.organization_creation_token', index=9,
+      number=10, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -643,7 +650,7 @@ _CREATEORGANIZATIONREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=1759,
-  serialized_end=2111,
+  serialized_end=2148,
 )
 
 
@@ -655,14 +662,14 @@ _DELETEORGANIZATIONREQUEST_RESPONSE = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='organization', full_name='hiber.organization.DeleteOrganizationRequest.Response.organization', index=0,
+      name='organization_to_delete', full_name='hiber.organization.DeleteOrganizationRequest.Response.organization_to_delete', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='confirmation_code', full_name='hiber.organization.DeleteOrganizationRequest.Response.confirmation_code', index=1,
+      name='deletion_token', full_name='hiber.organization.DeleteOrganizationRequest.Response.deletion_token', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -675,6 +682,13 @@ _DELETEORGANIZATIONREQUEST_RESPONSE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='modems', full_name='hiber.organization.DeleteOrganizationRequest.Response.modems', index=3,
+      number=4, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -687,8 +701,8 @@ _DELETEORGANIZATIONREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2166,
-  serialized_end=2300,
+  serialized_start=2242,
+  serialized_end=2399,
 )
 
 _DELETEORGANIZATIONREQUEST = _descriptor.Descriptor(
@@ -699,8 +713,15 @@ _DELETEORGANIZATIONREQUEST = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='organization', full_name='hiber.organization.DeleteOrganizationRequest.organization', index=0,
+      name='parent_organization', full_name='hiber.organization.DeleteOrganizationRequest.parent_organization', index=0,
       number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='organization_to_delete', full_name='hiber.organization.DeleteOrganizationRequest.organization_to_delete', index=1,
+      number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -717,8 +738,8 @@ _DELETEORGANIZATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2114,
-  serialized_end=2300,
+  serialized_start=2151,
+  serialized_end=2399,
 )
 
 
@@ -753,14 +774,21 @@ _DELETEORGANIZATIONCONFIRMATIONREQUEST = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='organization', full_name='hiber.organization.DeleteOrganizationConfirmationRequest.organization', index=0,
+      name='parent_organization', full_name='hiber.organization.DeleteOrganizationConfirmationRequest.parent_organization', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='confirmation_code', full_name='hiber.organization.DeleteOrganizationConfirmationRequest.confirmation_code', index=1,
+      name='organization_to_delete', full_name='hiber.organization.DeleteOrganizationConfirmationRequest.organization_to_delete', index=1,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='deletion_token', full_name='hiber.organization.DeleteOrganizationConfirmationRequest.deletion_token', index=2,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -778,8 +806,69 @@ _DELETEORGANIZATIONCONFIRMATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2302,
-  serialized_end=2402,
+  serialized_start=2402,
+  serialized_end=2538,
+)
+
+
+_VALIDATEORGANIZATIONCREATIONTOKENREQUEST_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='hiber.organization.ValidateOrganizationCreationTokenRequest.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='valid', full_name='hiber.organization.ValidateOrganizationCreationTokenRequest.Response.valid', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2621,
+  serialized_end=2646,
+)
+
+_VALIDATEORGANIZATIONCREATIONTOKENREQUEST = _descriptor.Descriptor(
+  name='ValidateOrganizationCreationTokenRequest',
+  full_name='hiber.organization.ValidateOrganizationCreationTokenRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organization_creation_token', full_name='hiber.organization.ValidateOrganizationCreationTokenRequest.organization_creation_token', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_VALIDATEORGANIZATIONCREATIONTOKENREQUEST_RESPONSE, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2540,
+  serialized_end=2646,
 )
 
 _ORGANIZATION_ADDRESS.containing_type = _ORGANIZATION
@@ -812,6 +901,7 @@ _CREATEORGANIZATIONREQUEST.fields_by_name['contact'].message_type = _ORGANIZATIO
 _DELETEORGANIZATIONREQUEST_RESPONSE.fields_by_name['organizations_to_be_deleted'].message_type = _ORGANIZATIONTREE
 _DELETEORGANIZATIONREQUEST_RESPONSE.containing_type = _DELETEORGANIZATIONREQUEST
 _DELETEORGANIZATIONCONFIRMATIONREQUEST_RESPONSE.containing_type = _DELETEORGANIZATIONCONFIRMATIONREQUEST
+_VALIDATEORGANIZATIONCREATIONTOKENREQUEST_RESPONSE.containing_type = _VALIDATEORGANIZATIONCREATIONTOKENREQUEST
 DESCRIPTOR.message_types_by_name['Organization'] = _ORGANIZATION
 DESCRIPTOR.message_types_by_name['OrganizationSelection'] = _ORGANIZATIONSELECTION
 DESCRIPTOR.message_types_by_name['GetOrganizationRequest'] = _GETORGANIZATIONREQUEST
@@ -822,6 +912,7 @@ DESCRIPTOR.message_types_by_name['ListChildOrganizationsRequest'] = _LISTCHILDOR
 DESCRIPTOR.message_types_by_name['CreateOrganizationRequest'] = _CREATEORGANIZATIONREQUEST
 DESCRIPTOR.message_types_by_name['DeleteOrganizationRequest'] = _DELETEORGANIZATIONREQUEST
 DESCRIPTOR.message_types_by_name['DeleteOrganizationConfirmationRequest'] = _DELETEORGANIZATIONCONFIRMATIONREQUEST
+DESCRIPTOR.message_types_by_name['ValidateOrganizationCreationTokenRequest'] = _VALIDATEORGANIZATIONCREATIONTOKENREQUEST
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Organization = _reflection.GeneratedProtocolMessageType('Organization', (_message.Message,), dict(
@@ -942,6 +1033,21 @@ DeleteOrganizationConfirmationRequest = _reflection.GeneratedProtocolMessageType
 _sym_db.RegisterMessage(DeleteOrganizationConfirmationRequest)
 _sym_db.RegisterMessage(DeleteOrganizationConfirmationRequest.Response)
 
+ValidateOrganizationCreationTokenRequest = _reflection.GeneratedProtocolMessageType('ValidateOrganizationCreationTokenRequest', (_message.Message,), dict(
+
+  Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
+    DESCRIPTOR = _VALIDATEORGANIZATIONCREATIONTOKENREQUEST_RESPONSE,
+    __module__ = 'organization_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.organization.ValidateOrganizationCreationTokenRequest.Response)
+    ))
+  ,
+  DESCRIPTOR = _VALIDATEORGANIZATIONCREATIONTOKENREQUEST,
+  __module__ = 'organization_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.organization.ValidateOrganizationCreationTokenRequest)
+  ))
+_sym_db.RegisterMessage(ValidateOrganizationCreationTokenRequest)
+_sym_db.RegisterMessage(ValidateOrganizationCreationTokenRequest.Response)
+
 
 DESCRIPTOR.has_options = True
 DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\"global.hiber.api.grpc.organizationB\017OrganizationApiP\000Z\005hiber'))
@@ -952,8 +1058,8 @@ _ORGANIZATIONSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=2405,
-  serialized_end=3201,
+  serialized_start=2649,
+  serialized_end=3604,
   methods=[
   _descriptor.MethodDescriptor(
     name='Create',
@@ -1016,6 +1122,15 @@ _ORGANIZATIONSERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_LISTCHILDORGANIZATIONSREQUEST,
     output_type=_LISTCHILDORGANIZATIONSREQUEST_RESPONSE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='ValidateCreationToken',
+    full_name='hiber.organization.OrganizationService.ValidateCreationToken',
+    index=7,
+    containing_service=None,
+    input_type=_VALIDATEORGANIZATIONCREATIONTOKENREQUEST,
+    output_type=_VALIDATEORGANIZATIONCREATIONTOKENREQUEST_RESPONSE,
     options=None,
   ),
 ])

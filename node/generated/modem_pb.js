@@ -66,7 +66,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.hiber.modem.Modem.repeatedFields_ = [10];
+proto.hiber.modem.Modem.repeatedFields_ = [10,23];
 
 
 
@@ -102,15 +102,19 @@ proto.hiber.modem.Modem.toObject = function(includeInstance, msg) {
     name: jspb.Message.getFieldWithDefault(msg, 3, ""),
     location: (f = msg.getLocation()) && base_pb.Location.toObject(includeInstance, f),
     lastMessageReceivedAt: (f = msg.getLastMessageReceivedAt()) && base_pb.Timestamp.toObject(includeInstance, f),
-    activeSubscription: (f = msg.getActiveSubscription()) && proto.hiber.modem.Modem.ActiveSubscription.toObject(includeInstance, f),
-    technical: (f = msg.getTechnical()) && proto.hiber.modem.Modem.TechnicalData.toObject(includeInstance, f),
     maximumInactivityPeriod: jspb.Message.getFieldWithDefault(msg, 8, 0),
     health: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    status: jspb.Message.getFieldWithDefault(msg, 12, 0),
+    activeSubscription: (f = msg.getActiveSubscription()) && proto.hiber.modem.Modem.ActiveSubscription.toObject(includeInstance, f),
+    technical: (f = msg.getTechnical()) && proto.hiber.modem.Modem.TechnicalData.toObject(includeInstance, f),
+    peripherals: (f = msg.getPeripherals()) && proto.hiber.modem.Modem.Peripherals.toObject(includeInstance, f),
+    inTransfer: (f = msg.getInTransfer()) && proto.hiber.modem.Modem.Transfer.toObject(includeInstance, f),
     tagsList: jspb.Message.toObjectList(msg.getTagsList(),
     tag_pb.Tag.toObject, includeInstance),
-    peripherals: (f = msg.getPeripherals()) && proto.hiber.modem.Modem.Peripherals.toObject(includeInstance, f),
-    status: jspb.Message.getFieldWithDefault(msg, 12, 0),
-    inTransfer: (f = msg.getInTransfer()) && proto.hiber.modem.Modem.Transfer.toObject(includeInstance, f)
+    isGateway: jspb.Message.getFieldWithDefault(msg, 20, false),
+    isDeviceConnectedToGateway: jspb.Message.getFieldWithDefault(msg, 21, false),
+    connectedToGateway: jspb.Message.getFieldWithDefault(msg, 22, ""),
+    externalDeviceIdsList: jspb.Message.getRepeatedField(msg, 23)
   };
 
   if (includeInstance) {
@@ -169,6 +173,18 @@ proto.hiber.modem.Modem.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
       msg.setLastMessageReceivedAt(value);
       break;
+    case 8:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setMaximumInactivityPeriod(value);
+      break;
+    case 9:
+      var value = /** @type {!proto.hiber.Health} */ (reader.readEnum());
+      msg.setHealth(value);
+      break;
+    case 12:
+      var value = /** @type {!proto.hiber.modem.Modem.Status} */ (reader.readEnum());
+      msg.setStatus(value);
+      break;
     case 6:
       var value = new proto.hiber.modem.Modem.ActiveSubscription;
       reader.readMessage(value,proto.hiber.modem.Modem.ActiveSubscription.deserializeBinaryFromReader);
@@ -179,32 +195,36 @@ proto.hiber.modem.Modem.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,proto.hiber.modem.Modem.TechnicalData.deserializeBinaryFromReader);
       msg.setTechnical(value);
       break;
-    case 8:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setMaximumInactivityPeriod(value);
+    case 11:
+      var value = new proto.hiber.modem.Modem.Peripherals;
+      reader.readMessage(value,proto.hiber.modem.Modem.Peripherals.deserializeBinaryFromReader);
+      msg.setPeripherals(value);
       break;
-    case 9:
-      var value = /** @type {!proto.hiber.Health} */ (reader.readEnum());
-      msg.setHealth(value);
+    case 13:
+      var value = new proto.hiber.modem.Modem.Transfer;
+      reader.readMessage(value,proto.hiber.modem.Modem.Transfer.deserializeBinaryFromReader);
+      msg.setInTransfer(value);
       break;
     case 10:
       var value = new tag_pb.Tag;
       reader.readMessage(value,tag_pb.Tag.deserializeBinaryFromReader);
       msg.addTags(value);
       break;
-    case 11:
-      var value = new proto.hiber.modem.Modem.Peripherals;
-      reader.readMessage(value,proto.hiber.modem.Modem.Peripherals.deserializeBinaryFromReader);
-      msg.setPeripherals(value);
+    case 20:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsGateway(value);
       break;
-    case 12:
-      var value = /** @type {!proto.hiber.modem.Modem.Status} */ (reader.readEnum());
-      msg.setStatus(value);
+    case 21:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsDeviceConnectedToGateway(value);
       break;
-    case 13:
-      var value = new proto.hiber.modem.Modem.Transfer;
-      reader.readMessage(value,proto.hiber.modem.Modem.Transfer.deserializeBinaryFromReader);
-      msg.setInTransfer(value);
+    case 22:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setConnectedToGateway(value);
+      break;
+    case 23:
+      var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
+      msg.setExternalDeviceIdsList(value);
       break;
     default:
       reader.skipField();
@@ -272,6 +292,27 @@ proto.hiber.modem.Modem.serializeBinaryToWriter = function(message, writer) {
       base_pb.Timestamp.serializeBinaryToWriter
     );
   }
+  f = message.getMaximumInactivityPeriod();
+  if (f !== 0) {
+    writer.writeInt32(
+      8,
+      f
+    );
+  }
+  f = message.getHealth();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      9,
+      f
+    );
+  }
+  f = message.getStatus();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      12,
+      f
+    );
+  }
   f = message.getActiveSubscription();
   if (f != null) {
     writer.writeMessage(
@@ -288,18 +329,20 @@ proto.hiber.modem.Modem.serializeBinaryToWriter = function(message, writer) {
       proto.hiber.modem.Modem.TechnicalData.serializeBinaryToWriter
     );
   }
-  f = message.getMaximumInactivityPeriod();
-  if (f !== 0) {
-    writer.writeInt32(
-      8,
-      f
+  f = message.getPeripherals();
+  if (f != null) {
+    writer.writeMessage(
+      11,
+      f,
+      proto.hiber.modem.Modem.Peripherals.serializeBinaryToWriter
     );
   }
-  f = message.getHealth();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      9,
-      f
+  f = message.getInTransfer();
+  if (f != null) {
+    writer.writeMessage(
+      13,
+      f,
+      proto.hiber.modem.Modem.Transfer.serializeBinaryToWriter
     );
   }
   f = message.getTagsList();
@@ -310,27 +353,32 @@ proto.hiber.modem.Modem.serializeBinaryToWriter = function(message, writer) {
       tag_pb.Tag.serializeBinaryToWriter
     );
   }
-  f = message.getPeripherals();
-  if (f != null) {
-    writer.writeMessage(
-      11,
-      f,
-      proto.hiber.modem.Modem.Peripherals.serializeBinaryToWriter
-    );
-  }
-  f = message.getStatus();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      12,
+  f = message.getIsGateway();
+  if (f) {
+    writer.writeBool(
+      20,
       f
     );
   }
-  f = message.getInTransfer();
-  if (f != null) {
-    writer.writeMessage(
-      13,
-      f,
-      proto.hiber.modem.Modem.Transfer.serializeBinaryToWriter
+  f = message.getIsDeviceConnectedToGateway();
+  if (f) {
+    writer.writeBool(
+      21,
+      f
+    );
+  }
+  f = message.getConnectedToGateway();
+  if (f.length > 0) {
+    writer.writeString(
+      22,
+      f
+    );
+  }
+  f = message.getExternalDeviceIdsList();
+  if (f.length > 0) {
+    writer.writePackedInt64(
+      23,
+      f
     );
   }
 };
@@ -1324,6 +1372,51 @@ proto.hiber.modem.Modem.prototype.hasLastMessageReceivedAt = function() {
 
 
 /**
+ * optional int32 maximum_inactivity_period = 8;
+ * @return {number}
+ */
+proto.hiber.modem.Modem.prototype.getMaximumInactivityPeriod = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/** @param {number} value */
+proto.hiber.modem.Modem.prototype.setMaximumInactivityPeriod = function(value) {
+  jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * optional hiber.Health health = 9;
+ * @return {!proto.hiber.Health}
+ */
+proto.hiber.modem.Modem.prototype.getHealth = function() {
+  return /** @type {!proto.hiber.Health} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+};
+
+
+/** @param {!proto.hiber.Health} value */
+proto.hiber.modem.Modem.prototype.setHealth = function(value) {
+  jspb.Message.setField(this, 9, value);
+};
+
+
+/**
+ * optional Status status = 12;
+ * @return {!proto.hiber.modem.Modem.Status}
+ */
+proto.hiber.modem.Modem.prototype.getStatus = function() {
+  return /** @type {!proto.hiber.modem.Modem.Status} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
+};
+
+
+/** @param {!proto.hiber.modem.Modem.Status} value */
+proto.hiber.modem.Modem.prototype.setStatus = function(value) {
+  jspb.Message.setField(this, 12, value);
+};
+
+
+/**
  * optional ActiveSubscription active_subscription = 6;
  * @return {?proto.hiber.modem.Modem.ActiveSubscription}
  */
@@ -1384,32 +1477,62 @@ proto.hiber.modem.Modem.prototype.hasTechnical = function() {
 
 
 /**
- * optional int32 maximum_inactivity_period = 8;
- * @return {number}
+ * optional Peripherals peripherals = 11;
+ * @return {?proto.hiber.modem.Modem.Peripherals}
  */
-proto.hiber.modem.Modem.prototype.getMaximumInactivityPeriod = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+proto.hiber.modem.Modem.prototype.getPeripherals = function() {
+  return /** @type{?proto.hiber.modem.Modem.Peripherals} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.modem.Modem.Peripherals, 11));
 };
 
 
-/** @param {number} value */
-proto.hiber.modem.Modem.prototype.setMaximumInactivityPeriod = function(value) {
-  jspb.Message.setField(this, 8, value);
+/** @param {?proto.hiber.modem.Modem.Peripherals|undefined} value */
+proto.hiber.modem.Modem.prototype.setPeripherals = function(value) {
+  jspb.Message.setWrapperField(this, 11, value);
+};
+
+
+proto.hiber.modem.Modem.prototype.clearPeripherals = function() {
+  this.setPeripherals(undefined);
 };
 
 
 /**
- * optional hiber.Health health = 9;
- * @return {!proto.hiber.Health}
+ * Returns whether this field is set.
+ * @return {!boolean}
  */
-proto.hiber.modem.Modem.prototype.getHealth = function() {
-  return /** @type {!proto.hiber.Health} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+proto.hiber.modem.Modem.prototype.hasPeripherals = function() {
+  return jspb.Message.getField(this, 11) != null;
 };
 
 
-/** @param {!proto.hiber.Health} value */
-proto.hiber.modem.Modem.prototype.setHealth = function(value) {
-  jspb.Message.setField(this, 9, value);
+/**
+ * optional Transfer in_transfer = 13;
+ * @return {?proto.hiber.modem.Modem.Transfer}
+ */
+proto.hiber.modem.Modem.prototype.getInTransfer = function() {
+  return /** @type{?proto.hiber.modem.Modem.Transfer} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.modem.Modem.Transfer, 13));
+};
+
+
+/** @param {?proto.hiber.modem.Modem.Transfer|undefined} value */
+proto.hiber.modem.Modem.prototype.setInTransfer = function(value) {
+  jspb.Message.setWrapperField(this, 13, value);
+};
+
+
+proto.hiber.modem.Modem.prototype.clearInTransfer = function() {
+  this.setInTransfer(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.modem.Modem.prototype.hasInTransfer = function() {
+  return jspb.Message.getField(this, 13) != null;
 };
 
 
@@ -1445,77 +1568,80 @@ proto.hiber.modem.Modem.prototype.clearTagsList = function() {
 
 
 /**
- * optional Peripherals peripherals = 11;
- * @return {?proto.hiber.modem.Modem.Peripherals}
+ * optional bool is_gateway = 20;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
  */
-proto.hiber.modem.Modem.prototype.getPeripherals = function() {
-  return /** @type{?proto.hiber.modem.Modem.Peripherals} */ (
-    jspb.Message.getWrapperField(this, proto.hiber.modem.Modem.Peripherals, 11));
+proto.hiber.modem.Modem.prototype.getIsGateway = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 20, false));
 };
 
 
-/** @param {?proto.hiber.modem.Modem.Peripherals|undefined} value */
-proto.hiber.modem.Modem.prototype.setPeripherals = function(value) {
-  jspb.Message.setWrapperField(this, 11, value);
-};
-
-
-proto.hiber.modem.Modem.prototype.clearPeripherals = function() {
-  this.setPeripherals(undefined);
+/** @param {boolean} value */
+proto.hiber.modem.Modem.prototype.setIsGateway = function(value) {
+  jspb.Message.setField(this, 20, value);
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {!boolean}
+ * optional bool is_device_connected_to_gateway = 21;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
  */
-proto.hiber.modem.Modem.prototype.hasPeripherals = function() {
-  return jspb.Message.getField(this, 11) != null;
+proto.hiber.modem.Modem.prototype.getIsDeviceConnectedToGateway = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 21, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.modem.Modem.prototype.setIsDeviceConnectedToGateway = function(value) {
+  jspb.Message.setField(this, 21, value);
 };
 
 
 /**
- * optional Status status = 12;
- * @return {!proto.hiber.modem.Modem.Status}
+ * optional string connected_to_gateway = 22;
+ * @return {string}
  */
-proto.hiber.modem.Modem.prototype.getStatus = function() {
-  return /** @type {!proto.hiber.modem.Modem.Status} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
+proto.hiber.modem.Modem.prototype.getConnectedToGateway = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 22, ""));
 };
 
 
-/** @param {!proto.hiber.modem.Modem.Status} value */
-proto.hiber.modem.Modem.prototype.setStatus = function(value) {
-  jspb.Message.setField(this, 12, value);
+/** @param {string} value */
+proto.hiber.modem.Modem.prototype.setConnectedToGateway = function(value) {
+  jspb.Message.setField(this, 22, value);
 };
 
 
 /**
- * optional Transfer in_transfer = 13;
- * @return {?proto.hiber.modem.Modem.Transfer}
+ * repeated int64 external_device_ids = 23;
+ * @return {!Array.<number>}
  */
-proto.hiber.modem.Modem.prototype.getInTransfer = function() {
-  return /** @type{?proto.hiber.modem.Modem.Transfer} */ (
-    jspb.Message.getWrapperField(this, proto.hiber.modem.Modem.Transfer, 13));
+proto.hiber.modem.Modem.prototype.getExternalDeviceIdsList = function() {
+  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 23));
 };
 
 
-/** @param {?proto.hiber.modem.Modem.Transfer|undefined} value */
-proto.hiber.modem.Modem.prototype.setInTransfer = function(value) {
-  jspb.Message.setWrapperField(this, 13, value);
-};
-
-
-proto.hiber.modem.Modem.prototype.clearInTransfer = function() {
-  this.setInTransfer(undefined);
+/** @param {!Array.<number>} value */
+proto.hiber.modem.Modem.prototype.setExternalDeviceIdsList = function(value) {
+  jspb.Message.setField(this, 23, value || []);
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {!boolean}
+ * @param {!number} value
+ * @param {number=} opt_index
  */
-proto.hiber.modem.Modem.prototype.hasInTransfer = function() {
-  return jspb.Message.getField(this, 13) != null;
+proto.hiber.modem.Modem.prototype.addExternalDeviceIds = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 23, value, opt_index);
+};
+
+
+proto.hiber.modem.Modem.prototype.clearExternalDeviceIdsList = function() {
+  this.setExternalDeviceIdsList([]);
 };
 
 
@@ -1542,7 +1668,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.hiber.modem.ModemSelection.repeatedFields_ = [6,9,10];
+proto.hiber.modem.ModemSelection.repeatedFields_ = [6,9,10,15];
 
 
 
@@ -1574,15 +1700,19 @@ proto.hiber.modem.ModemSelection.prototype.toObject = function(opt_includeInstan
 proto.hiber.modem.ModemSelection.toObject = function(includeInstance, msg) {
   var f, obj = {
     modems: (f = msg.getModems()) && base_pb.Filter.Modems.toObject(includeInstance, f),
-    filterByTags: (f = msg.getFilterByTags()) && tag_pb.TagSelection.toObject(includeInstance, f),
+    freeTextSearch: jspb.Message.getFieldWithDefault(msg, 8, ""),
     onlyActive: jspb.Message.getFieldWithDefault(msg, 4, false),
     activatedIn: (f = msg.getActivatedIn()) && base_pb.TimeRange.toObject(includeInstance, f),
-    withServiceTypeList: jspb.Message.getRepeatedField(msg, 6),
     withLastMessageIn: (f = msg.getWithLastMessageIn()) && base_pb.TimeRange.toObject(includeInstance, f),
-    freeTextSearch: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    withServiceTypeList: jspb.Message.getRepeatedField(msg, 6),
     healthList: jspb.Message.getRepeatedField(msg, 9),
     statusList: jspb.Message.getRepeatedField(msg, 10),
-    transfers: (f = msg.getTransfers()) && proto.hiber.modem.ModemSelection.Transfers.toObject(includeInstance, f)
+    transfers: (f = msg.getTransfers()) && proto.hiber.modem.ModemSelection.Transfers.toObject(includeInstance, f),
+    onlyGateways: jspb.Message.getFieldWithDefault(msg, 12, false),
+    onlyHasExternalDeviceIds: jspb.Message.getFieldWithDefault(msg, 13, false),
+    connectedToGateways: (f = msg.getConnectedToGateways()) && base_pb.Filter.Modems.toObject(includeInstance, f),
+    externalDeviceIdsList: jspb.Message.getRepeatedField(msg, 15),
+    filterByTags: (f = msg.getFilterByTags()) && tag_pb.TagSelection.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1624,10 +1754,9 @@ proto.hiber.modem.ModemSelection.deserializeBinaryFromReader = function(msg, rea
       reader.readMessage(value,base_pb.Filter.Modems.deserializeBinaryFromReader);
       msg.setModems(value);
       break;
-    case 2:
-      var value = new tag_pb.TagSelection;
-      reader.readMessage(value,tag_pb.TagSelection.deserializeBinaryFromReader);
-      msg.setFilterByTags(value);
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFreeTextSearch(value);
       break;
     case 4:
       var value = /** @type {boolean} */ (reader.readBool());
@@ -1638,18 +1767,14 @@ proto.hiber.modem.ModemSelection.deserializeBinaryFromReader = function(msg, rea
       reader.readMessage(value,base_pb.TimeRange.deserializeBinaryFromReader);
       msg.setActivatedIn(value);
       break;
-    case 6:
-      var value = /** @type {!Array.<!proto.hiber.organization.subscription.ServiceType>} */ (reader.readPackedEnum());
-      msg.setWithServiceTypeList(value);
-      break;
     case 7:
       var value = new base_pb.TimeRange;
       reader.readMessage(value,base_pb.TimeRange.deserializeBinaryFromReader);
       msg.setWithLastMessageIn(value);
       break;
-    case 8:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setFreeTextSearch(value);
+    case 6:
+      var value = /** @type {!Array.<!proto.hiber.organization.subscription.ServiceType>} */ (reader.readPackedEnum());
+      msg.setWithServiceTypeList(value);
       break;
     case 9:
       var value = /** @type {!Array.<!proto.hiber.Health>} */ (reader.readPackedEnum());
@@ -1663,6 +1788,28 @@ proto.hiber.modem.ModemSelection.deserializeBinaryFromReader = function(msg, rea
       var value = new proto.hiber.modem.ModemSelection.Transfers;
       reader.readMessage(value,proto.hiber.modem.ModemSelection.Transfers.deserializeBinaryFromReader);
       msg.setTransfers(value);
+      break;
+    case 12:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setOnlyGateways(value);
+      break;
+    case 13:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setOnlyHasExternalDeviceIds(value);
+      break;
+    case 14:
+      var value = new base_pb.Filter.Modems;
+      reader.readMessage(value,base_pb.Filter.Modems.deserializeBinaryFromReader);
+      msg.setConnectedToGateways(value);
+      break;
+    case 15:
+      var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
+      msg.setExternalDeviceIdsList(value);
+      break;
+    case 2:
+      var value = new tag_pb.TagSelection;
+      reader.readMessage(value,tag_pb.TagSelection.deserializeBinaryFromReader);
+      msg.setFilterByTags(value);
       break;
     default:
       reader.skipField();
@@ -1701,12 +1848,11 @@ proto.hiber.modem.ModemSelection.serializeBinaryToWriter = function(message, wri
       base_pb.Filter.Modems.serializeBinaryToWriter
     );
   }
-  f = message.getFilterByTags();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      tag_pb.TagSelection.serializeBinaryToWriter
+  f = message.getFreeTextSearch();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
     );
   }
   f = message.getOnlyActive();
@@ -1724,13 +1870,6 @@ proto.hiber.modem.ModemSelection.serializeBinaryToWriter = function(message, wri
       base_pb.TimeRange.serializeBinaryToWriter
     );
   }
-  f = message.getWithServiceTypeList();
-  if (f.length > 0) {
-    writer.writePackedEnum(
-      6,
-      f
-    );
-  }
   f = message.getWithLastMessageIn();
   if (f != null) {
     writer.writeMessage(
@@ -1739,10 +1878,10 @@ proto.hiber.modem.ModemSelection.serializeBinaryToWriter = function(message, wri
       base_pb.TimeRange.serializeBinaryToWriter
     );
   }
-  f = message.getFreeTextSearch();
+  f = message.getWithServiceTypeList();
   if (f.length > 0) {
-    writer.writeString(
-      8,
+    writer.writePackedEnum(
+      6,
       f
     );
   }
@@ -1766,6 +1905,43 @@ proto.hiber.modem.ModemSelection.serializeBinaryToWriter = function(message, wri
       11,
       f,
       proto.hiber.modem.ModemSelection.Transfers.serializeBinaryToWriter
+    );
+  }
+  f = message.getOnlyGateways();
+  if (f) {
+    writer.writeBool(
+      12,
+      f
+    );
+  }
+  f = message.getOnlyHasExternalDeviceIds();
+  if (f) {
+    writer.writeBool(
+      13,
+      f
+    );
+  }
+  f = message.getConnectedToGateways();
+  if (f != null) {
+    writer.writeMessage(
+      14,
+      f,
+      base_pb.Filter.Modems.serializeBinaryToWriter
+    );
+  }
+  f = message.getExternalDeviceIdsList();
+  if (f.length > 0) {
+    writer.writePackedInt64(
+      15,
+      f
+    );
+  }
+  f = message.getFilterByTags();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      tag_pb.TagSelection.serializeBinaryToWriter
     );
   }
 };
@@ -1965,32 +2141,17 @@ proto.hiber.modem.ModemSelection.prototype.hasModems = function() {
 
 
 /**
- * optional hiber.tag.TagSelection filter_by_tags = 2;
- * @return {?proto.hiber.tag.TagSelection}
+ * optional string free_text_search = 8;
+ * @return {string}
  */
-proto.hiber.modem.ModemSelection.prototype.getFilterByTags = function() {
-  return /** @type{?proto.hiber.tag.TagSelection} */ (
-    jspb.Message.getWrapperField(this, tag_pb.TagSelection, 2));
+proto.hiber.modem.ModemSelection.prototype.getFreeTextSearch = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
 
-/** @param {?proto.hiber.tag.TagSelection|undefined} value */
-proto.hiber.modem.ModemSelection.prototype.setFilterByTags = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-proto.hiber.modem.ModemSelection.prototype.clearFilterByTags = function() {
-  this.setFilterByTags(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.hiber.modem.ModemSelection.prototype.hasFilterByTags = function() {
-  return jspb.Message.getField(this, 2) != null;
+/** @param {string} value */
+proto.hiber.modem.ModemSelection.prototype.setFreeTextSearch = function(value) {
+  jspb.Message.setField(this, 8, value);
 };
 
 
@@ -2042,35 +2203,6 @@ proto.hiber.modem.ModemSelection.prototype.hasActivatedIn = function() {
 
 
 /**
- * repeated hiber.organization.subscription.ServiceType with_service_type = 6;
- * @return {!Array.<!proto.hiber.organization.subscription.ServiceType>}
- */
-proto.hiber.modem.ModemSelection.prototype.getWithServiceTypeList = function() {
-  return /** @type {!Array.<!proto.hiber.organization.subscription.ServiceType>} */ (jspb.Message.getRepeatedField(this, 6));
-};
-
-
-/** @param {!Array.<!proto.hiber.organization.subscription.ServiceType>} value */
-proto.hiber.modem.ModemSelection.prototype.setWithServiceTypeList = function(value) {
-  jspb.Message.setField(this, 6, value || []);
-};
-
-
-/**
- * @param {!proto.hiber.organization.subscription.ServiceType} value
- * @param {number=} opt_index
- */
-proto.hiber.modem.ModemSelection.prototype.addWithServiceType = function(value, opt_index) {
-  jspb.Message.addToRepeatedField(this, 6, value, opt_index);
-};
-
-
-proto.hiber.modem.ModemSelection.prototype.clearWithServiceTypeList = function() {
-  this.setWithServiceTypeList([]);
-};
-
-
-/**
  * optional hiber.TimeRange with_last_message_in = 7;
  * @return {?proto.hiber.TimeRange}
  */
@@ -2101,17 +2233,31 @@ proto.hiber.modem.ModemSelection.prototype.hasWithLastMessageIn = function() {
 
 
 /**
- * optional string free_text_search = 8;
- * @return {string}
+ * repeated hiber.organization.subscription.ServiceType with_service_type = 6;
+ * @return {!Array.<!proto.hiber.organization.subscription.ServiceType>}
  */
-proto.hiber.modem.ModemSelection.prototype.getFreeTextSearch = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+proto.hiber.modem.ModemSelection.prototype.getWithServiceTypeList = function() {
+  return /** @type {!Array.<!proto.hiber.organization.subscription.ServiceType>} */ (jspb.Message.getRepeatedField(this, 6));
 };
 
 
-/** @param {string} value */
-proto.hiber.modem.ModemSelection.prototype.setFreeTextSearch = function(value) {
-  jspb.Message.setField(this, 8, value);
+/** @param {!Array.<!proto.hiber.organization.subscription.ServiceType>} value */
+proto.hiber.modem.ModemSelection.prototype.setWithServiceTypeList = function(value) {
+  jspb.Message.setField(this, 6, value || []);
+};
+
+
+/**
+ * @param {!proto.hiber.organization.subscription.ServiceType} value
+ * @param {number=} opt_index
+ */
+proto.hiber.modem.ModemSelection.prototype.addWithServiceType = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 6, value, opt_index);
+};
+
+
+proto.hiber.modem.ModemSelection.prototype.clearWithServiceTypeList = function() {
+  this.setWithServiceTypeList([]);
 };
 
 
@@ -2200,6 +2346,129 @@ proto.hiber.modem.ModemSelection.prototype.clearTransfers = function() {
  */
 proto.hiber.modem.ModemSelection.prototype.hasTransfers = function() {
   return jspb.Message.getField(this, 11) != null;
+};
+
+
+/**
+ * optional bool only_gateways = 12;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.modem.ModemSelection.prototype.getOnlyGateways = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 12, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.modem.ModemSelection.prototype.setOnlyGateways = function(value) {
+  jspb.Message.setField(this, 12, value);
+};
+
+
+/**
+ * optional bool only_has_external_device_ids = 13;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.modem.ModemSelection.prototype.getOnlyHasExternalDeviceIds = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 13, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.modem.ModemSelection.prototype.setOnlyHasExternalDeviceIds = function(value) {
+  jspb.Message.setField(this, 13, value);
+};
+
+
+/**
+ * optional hiber.Filter.Modems connected_to_gateways = 14;
+ * @return {?proto.hiber.Filter.Modems}
+ */
+proto.hiber.modem.ModemSelection.prototype.getConnectedToGateways = function() {
+  return /** @type{?proto.hiber.Filter.Modems} */ (
+    jspb.Message.getWrapperField(this, base_pb.Filter.Modems, 14));
+};
+
+
+/** @param {?proto.hiber.Filter.Modems|undefined} value */
+proto.hiber.modem.ModemSelection.prototype.setConnectedToGateways = function(value) {
+  jspb.Message.setWrapperField(this, 14, value);
+};
+
+
+proto.hiber.modem.ModemSelection.prototype.clearConnectedToGateways = function() {
+  this.setConnectedToGateways(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.modem.ModemSelection.prototype.hasConnectedToGateways = function() {
+  return jspb.Message.getField(this, 14) != null;
+};
+
+
+/**
+ * repeated int64 external_device_ids = 15;
+ * @return {!Array.<number>}
+ */
+proto.hiber.modem.ModemSelection.prototype.getExternalDeviceIdsList = function() {
+  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 15));
+};
+
+
+/** @param {!Array.<number>} value */
+proto.hiber.modem.ModemSelection.prototype.setExternalDeviceIdsList = function(value) {
+  jspb.Message.setField(this, 15, value || []);
+};
+
+
+/**
+ * @param {!number} value
+ * @param {number=} opt_index
+ */
+proto.hiber.modem.ModemSelection.prototype.addExternalDeviceIds = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 15, value, opt_index);
+};
+
+
+proto.hiber.modem.ModemSelection.prototype.clearExternalDeviceIdsList = function() {
+  this.setExternalDeviceIdsList([]);
+};
+
+
+/**
+ * optional hiber.tag.TagSelection filter_by_tags = 2;
+ * @return {?proto.hiber.tag.TagSelection}
+ */
+proto.hiber.modem.ModemSelection.prototype.getFilterByTags = function() {
+  return /** @type{?proto.hiber.tag.TagSelection} */ (
+    jspb.Message.getWrapperField(this, tag_pb.TagSelection, 2));
+};
+
+
+/** @param {?proto.hiber.tag.TagSelection|undefined} value */
+proto.hiber.modem.ModemSelection.prototype.setFilterByTags = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.hiber.modem.ModemSelection.prototype.clearFilterByTags = function() {
+  this.setFilterByTags(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.modem.ModemSelection.prototype.hasFilterByTags = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -3095,7 +3364,8 @@ proto.hiber.modem.ListModemsRequest.toObject = function(includeInstance, msg) {
     sortBy: jspb.Message.getFieldWithDefault(msg, 4, 0),
     includeInboundModems: jspb.Message.getFieldWithDefault(msg, 6, false),
     includeOutboundModems: jspb.Message.getFieldWithDefault(msg, 7, false),
-    childOrganizations: (f = msg.getChildOrganizations()) && base_pb.Filter.ChildOrganizations.toObject(includeInstance, f)
+    childOrganizations: (f = msg.getChildOrganizations()) && base_pb.Filter.ChildOrganizations.toObject(includeInstance, f),
+    locationSelection: (f = msg.getLocationSelection()) && base_pb.LocationSelection.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3162,6 +3432,11 @@ proto.hiber.modem.ListModemsRequest.deserializeBinaryFromReader = function(msg, 
       var value = new base_pb.Filter.ChildOrganizations;
       reader.readMessage(value,base_pb.Filter.ChildOrganizations.deserializeBinaryFromReader);
       msg.setChildOrganizations(value);
+      break;
+    case 9:
+      var value = new base_pb.LocationSelection;
+      reader.readMessage(value,base_pb.LocationSelection.deserializeBinaryFromReader);
+      msg.setLocationSelection(value);
       break;
     default:
       reader.skipField();
@@ -3242,6 +3517,14 @@ proto.hiber.modem.ListModemsRequest.serializeBinaryToWriter = function(message, 
       8,
       f,
       base_pb.Filter.ChildOrganizations.serializeBinaryToWriter
+    );
+  }
+  f = message.getLocationSelection();
+  if (f != null) {
+    writer.writeMessage(
+      9,
+      f,
+      base_pb.LocationSelection.serializeBinaryToWriter
     );
   }
 };
@@ -3666,6 +3949,36 @@ proto.hiber.modem.ListModemsRequest.prototype.clearChildOrganizations = function
  */
 proto.hiber.modem.ListModemsRequest.prototype.hasChildOrganizations = function() {
   return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * optional hiber.LocationSelection location_selection = 9;
+ * @return {?proto.hiber.LocationSelection}
+ */
+proto.hiber.modem.ListModemsRequest.prototype.getLocationSelection = function() {
+  return /** @type{?proto.hiber.LocationSelection} */ (
+    jspb.Message.getWrapperField(this, base_pb.LocationSelection, 9));
+};
+
+
+/** @param {?proto.hiber.LocationSelection|undefined} value */
+proto.hiber.modem.ListModemsRequest.prototype.setLocationSelection = function(value) {
+  jspb.Message.setWrapperField(this, 9, value);
+};
+
+
+proto.hiber.modem.ListModemsRequest.prototype.clearLocationSelection = function() {
+  this.setLocationSelection(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.modem.ListModemsRequest.prototype.hasLocationSelection = function() {
+  return jspb.Message.getField(this, 9) != null;
 };
 
 
@@ -4204,7 +4517,8 @@ proto.hiber.modem.MessageCountRequest.toObject = function(includeInstance, msg) 
   var f, obj = {
     organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     selection: (f = msg.getSelection()) && proto.hiber.modem.ModemMessageSelection.toObject(includeInstance, f),
-    timeZoneOffset: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    timeZoneOffset: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    timeZone: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -4250,9 +4564,13 @@ proto.hiber.modem.MessageCountRequest.deserializeBinaryFromReader = function(msg
       reader.readMessage(value,proto.hiber.modem.ModemMessageSelection.deserializeBinaryFromReader);
       msg.setSelection(value);
       break;
-    case 3:
+    case 5:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setTimeZoneOffset(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTimeZone(value);
       break;
     default:
       reader.skipField();
@@ -4301,7 +4619,14 @@ proto.hiber.modem.MessageCountRequest.serializeBinaryToWriter = function(message
   f = message.getTimeZoneOffset();
   if (f !== 0) {
     writer.writeInt32(
-      3,
+      5,
+      f
+    );
+  }
+  f = message.getTimeZone();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
       f
     );
   }
@@ -4752,17 +5077,32 @@ proto.hiber.modem.MessageCountRequest.prototype.hasSelection = function() {
 
 
 /**
- * optional int32 time_zone_offset = 3;
+ * optional int32 time_zone_offset = 5;
  * @return {number}
  */
 proto.hiber.modem.MessageCountRequest.prototype.getTimeZoneOffset = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
 
 /** @param {number} value */
 proto.hiber.modem.MessageCountRequest.prototype.setTimeZoneOffset = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * optional string time_zone = 6;
+ * @return {string}
+ */
+proto.hiber.modem.MessageCountRequest.prototype.getTimeZone = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.modem.MessageCountRequest.prototype.setTimeZone = function(value) {
+  jspb.Message.setField(this, 6, value);
 };
 
 

@@ -137,6 +137,28 @@ function deserialize_hiber_organization_UpdateOrganizationRequest(buffer_arg) {
   return organization_pb.UpdateOrganizationRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_hiber_organization_ValidateOrganizationCreationTokenRequest(arg) {
+  if (!(arg instanceof organization_pb.ValidateOrganizationCreationTokenRequest)) {
+    throw new Error('Expected argument of type hiber.organization.ValidateOrganizationCreationTokenRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_organization_ValidateOrganizationCreationTokenRequest(buffer_arg) {
+  return organization_pb.ValidateOrganizationCreationTokenRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_organization_ValidateOrganizationCreationTokenRequest_Response(arg) {
+  if (!(arg instanceof organization_pb.ValidateOrganizationCreationTokenRequest.Response)) {
+    throw new Error('Expected argument of type hiber.organization.ValidateOrganizationCreationTokenRequest.Response');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_organization_ValidateOrganizationCreationTokenRequest_Response(buffer_arg) {
+  return organization_pb.ValidateOrganizationCreationTokenRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 // Organization-related api calls. Currently limited to your own organization; we'll add more for creating and managing
 // sub-organizations later.
@@ -217,6 +239,17 @@ var OrganizationServiceService = exports.OrganizationServiceService = {
     requestDeserialize: deserialize_hiber_organization_ListChildOrganizationsRequest,
     responseSerialize: serialize_hiber_organization_ListChildOrganizationsRequest_Response,
     responseDeserialize: deserialize_hiber_organization_ListChildOrganizationsRequest_Response,
+  },
+  validateCreationToken: {
+    path: '/hiber.organization.OrganizationService/ValidateCreationToken',
+    requestStream: false,
+    responseStream: false,
+    requestType: organization_pb.ValidateOrganizationCreationTokenRequest,
+    responseType: organization_pb.ValidateOrganizationCreationTokenRequest.Response,
+    requestSerialize: serialize_hiber_organization_ValidateOrganizationCreationTokenRequest,
+    requestDeserialize: deserialize_hiber_organization_ValidateOrganizationCreationTokenRequest,
+    responseSerialize: serialize_hiber_organization_ValidateOrganizationCreationTokenRequest_Response,
+    responseDeserialize: deserialize_hiber_organization_ValidateOrganizationCreationTokenRequest_Response,
   },
 };
 
