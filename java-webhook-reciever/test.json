@@ -1,0 +1,34 @@
+{
+  "modemMessageReceived": {
+    "organization": "hiber",
+    "modemNumber": "EE5D 0F2E",
+    "message": {
+      "modemNumber": "EE5D 0F2E",
+      "version": 1,
+      "sentAt": {
+        "timestamp": "2019-05-13T13:40:08.924Z",
+        "textual": "2019-05-13T13:40:08.924Z"
+      },
+      "location": {
+        "latitude": 13.19775,
+        "longitude": 139.14925
+      },
+      "body": "dGVzdCBldmVudCAtMjk1ODkxMTU0",
+      "receivedAt": {
+        "timestamp": "2019-05-13T13:40:08.938512Z",
+        "textual": "2019-05-13T13:40:08.938512Z"
+      },
+      "messageId": "4",
+      "bodyBytes": {
+        "bytes": "dGVzdCBldmVudCAtMjk1ODkxMTU0",
+        "hex": "74657374206576656E74202D323935383931313534"
+      }
+    },
+    "title": "New message for modem EE5D 0F2E was received.",
+    "description": "A new message was received and decrypted at 2019-05-13T13:40:08.938512Z.",
+    "time": {
+      "timestamp": "2019-05-13T13:40:08.938512Z",
+      "textual": "2019-05-13T13:40:08.938512Z"
+    }
+  }
+}
