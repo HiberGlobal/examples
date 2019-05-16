@@ -53,7 +53,7 @@ public class SimpleServerExample {
         hmac.init(new SecretKeySpec(secret, "HmacSHA256"));
         byte[] expectedSignature = hmac.doFinal(body);
         String expectedSignatureString = DatatypeConverter.printHexBinary(expectedSignature);
-        System.out.println("\n\nExpecting signature (utf8):");
+        System.out.println("\n\nExpecting signature (hex):");
         System.out.println(expectedSignatureString);
 
         if (expectedSignatureString.equals(signature)) {
