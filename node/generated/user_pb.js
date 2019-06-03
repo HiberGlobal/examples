@@ -283,12 +283,19 @@ proto.hiber.user.User.prototype.hasPermissions = function() {
  * @constructor
  */
 proto.hiber.user.UserSelection = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.user.UserSelection.repeatedFields_, null);
 };
 goog.inherits(proto.hiber.user.UserSelection, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.hiber.user.UserSelection.displayName = 'proto.hiber.user.UserSelection';
 }
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.hiber.user.UserSelection.repeatedFields_ = [3];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -318,6 +325,7 @@ proto.hiber.user.UserSelection.prototype.toObject = function(opt_includeInstance
  */
 proto.hiber.user.UserSelection.toObject = function(includeInstance, msg) {
   var f, obj = {
+    userIdsList: jspb.Message.getRepeatedField(msg, 3),
     byEmail: jspb.Message.getFieldWithDefault(msg, 1, ""),
     byName: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
@@ -356,6 +364,10 @@ proto.hiber.user.UserSelection.deserializeBinaryFromReader = function(msg, reade
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addUserIds(value);
+      break;
     case 1:
       var value = /** @type {string} */ (reader.readString());
       msg.setByEmail(value);
@@ -393,6 +405,13 @@ proto.hiber.user.UserSelection.prototype.serializeBinary = function() {
  */
 proto.hiber.user.UserSelection.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getUserIdsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      3,
+      f
+    );
+  }
   f = message.getByEmail();
   if (f.length > 0) {
     writer.writeString(
@@ -407,6 +426,35 @@ proto.hiber.user.UserSelection.serializeBinaryToWriter = function(message, write
       f
     );
   }
+};
+
+
+/**
+ * repeated string user_ids = 3;
+ * @return {!Array.<string>}
+ */
+proto.hiber.user.UserSelection.prototype.getUserIdsList = function() {
+  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 3));
+};
+
+
+/** @param {!Array.<string>} value */
+proto.hiber.user.UserSelection.prototype.setUserIdsList = function(value) {
+  jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {!string} value
+ * @param {number=} opt_index
+ */
+proto.hiber.user.UserSelection.prototype.addUserIds = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+proto.hiber.user.UserSelection.prototype.clearUserIdsList = function() {
+  this.setUserIdsList([]);
 };
 
 

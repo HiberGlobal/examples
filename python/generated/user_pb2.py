@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='user.proto',
   package='hiber.user',
   syntax='proto3',
-  serialized_pb=_b('\n\nuser.proto\x12\nhiber.user\x1a\nbase.proto\x1a\x10permission.proto\"k\n\x04User\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12:\n\x0bpermissions\x18\x04 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\"2\n\rUserSelection\x12\x10\n\x08\x62y_email\x18\x01 \x01(\t\x12\x0f\n\x07\x62y_name\x18\x02 \x01(\t\"\xac\x02\n\x10ListUsersRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12,\n\tselection\x18\x02 \x01(\x0b\x32\x19.hiber.user.UserSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x12\"\n\x04sort\x18\x04 \x01(\x0e\x32\x14.hiber.user.UserSort\x1a\x88\x01\n\x08Response\x12\x1f\n\x05users\x18\x01 \x03(\x0b\x32\x10.hiber.user.User\x12-\n\x07request\x18\x02 \x01(\x0b\x32\x1c.hiber.user.ListUsersRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xbe\x02\n\x19ListAccessRequestsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12,\n\tselection\x18\x02 \x01(\x0b\x32\x19.hiber.user.UserSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x12\"\n\x04sort\x18\x04 \x01(\x0e\x32\x14.hiber.user.UserSort\x1a\x91\x01\n\x08Response\x12\x1f\n\x05users\x18\x01 \x03(\x0b\x32\x10.hiber.user.User\x12\x36\n\x07request\x18\x02 \x01(\x0b\x32%.hiber.user.ListAccessRequestsRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\x83\x01\n\x12\x41pproveUserRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x03(\t\x12:\n\x0bpermissions\x18\x03 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x1a\n\n\x08Response\"F\n\x11RemoveUserRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x03(\t\x1a\n\n\x08Response\"\xd6\x01\n\x11\x43reateUserRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x10\n\x08password\x18\x04 \x01(\t\x12:\n\x0bpermissions\x18\x05 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x12\x1e\n\x16send_verification_mail\x18\x06 \x01(\x08\x12 \n\x18send_password_reset_mail\x18\x07 \x01(\x08\"\x83\x02\n\x12\x43reateUsersRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12,\n\x05users\x18\x02 \x03(\x0b\x32\x1d.hiber.user.CreateUserRequest\x12:\n\x0bpermissions\x18\x03 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x12\x1e\n\x16send_verification_mail\x18\x04 \x01(\x08\x12 \n\x18send_password_reset_mail\x18\x05 \x01(\x08\x1a+\n\x08Response\x12\x1f\n\x05users\x18\x01 \x03(\x0b\x32\x10.hiber.user.User\"M\n\x18ResetUserPasswordRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x1a\n\n\x08Response\"\x92\x01\n\x1cUpdateUserPermissionsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x10\n\x08user_ids\x18\x02 \x03(\t\x12>\n\x0fnew_permissions\x18\x03 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x1a\n\n\x08Response*F\n\x08UserSort\x12\r\n\tEMAIL_ASC\x10\x00\x12\x0e\n\nEMAIL_DESC\x10\x01\x12\x0c\n\x08NAME_ASC\x10\x02\x12\r\n\tNAME_DESC\x10\x03\x32\xdf\x05\n\x0bUserService\x12K\n\x04List\x12\x1c.hiber.user.ListUsersRequest\x1a%.hiber.user.ListUsersRequest.Response\x12k\n\x12ListAccessRequests\x12%.hiber.user.ListAccessRequestsRequest\x1a..hiber.user.ListAccessRequestsRequest.Response\x12R\n\x07\x41pprove\x12\x1e.hiber.user.ApproveUserRequest\x1a\'.hiber.user.ApproveUserRequest.Response\x12O\n\x06Remove\x12\x1d.hiber.user.RemoveUserRequest\x1a&.hiber.user.RemoveUserRequest.Response\x12=\n\nCreateUser\x12\x1d.hiber.user.CreateUserRequest\x1a\x10.hiber.user.User\x12V\n\x0b\x43reateUsers\x12\x1e.hiber.user.CreateUsersRequest\x1a\'.hiber.user.CreateUsersRequest.Response\x12\x64\n\rResetPassword\x12$.hiber.user.ResetUserPasswordRequest\x1a-.hiber.user.ResetUserPasswordRequest.Response\x12t\n\x15UpdateUserPermissions\x12(.hiber.user.UpdateUserPermissionsRequest\x1a\x31.hiber.user.UpdateUserPermissionsRequest.ResponseB.\n\x1aglobal.hiber.api.grpc.userB\x07UserApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\nuser.proto\x12\nhiber.user\x1a\nbase.proto\x1a\x10permission.proto\"k\n\x04User\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12:\n\x0bpermissions\x18\x04 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\"D\n\rUserSelection\x12\x10\n\x08user_ids\x18\x03 \x03(\t\x12\x10\n\x08\x62y_email\x18\x01 \x01(\t\x12\x0f\n\x07\x62y_name\x18\x02 \x01(\t\"\xac\x02\n\x10ListUsersRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12,\n\tselection\x18\x02 \x01(\x0b\x32\x19.hiber.user.UserSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x12\"\n\x04sort\x18\x04 \x01(\x0e\x32\x14.hiber.user.UserSort\x1a\x88\x01\n\x08Response\x12\x1f\n\x05users\x18\x01 \x03(\x0b\x32\x10.hiber.user.User\x12-\n\x07request\x18\x02 \x01(\x0b\x32\x1c.hiber.user.ListUsersRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xbe\x02\n\x19ListAccessRequestsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12,\n\tselection\x18\x02 \x01(\x0b\x32\x19.hiber.user.UserSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x12\"\n\x04sort\x18\x04 \x01(\x0e\x32\x14.hiber.user.UserSort\x1a\x91\x01\n\x08Response\x12\x1f\n\x05users\x18\x01 \x03(\x0b\x32\x10.hiber.user.User\x12\x36\n\x07request\x18\x02 \x01(\x0b\x32%.hiber.user.ListAccessRequestsRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\x83\x01\n\x12\x41pproveUserRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x03(\t\x12:\n\x0bpermissions\x18\x03 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x1a\n\n\x08Response\"F\n\x11RemoveUserRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x03(\t\x1a\n\n\x08Response\"\xd6\x01\n\x11\x43reateUserRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x10\n\x08password\x18\x04 \x01(\t\x12:\n\x0bpermissions\x18\x05 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x12\x1e\n\x16send_verification_mail\x18\x06 \x01(\x08\x12 \n\x18send_password_reset_mail\x18\x07 \x01(\x08\"\x83\x02\n\x12\x43reateUsersRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12,\n\x05users\x18\x02 \x03(\x0b\x32\x1d.hiber.user.CreateUserRequest\x12:\n\x0bpermissions\x18\x03 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x12\x1e\n\x16send_verification_mail\x18\x04 \x01(\x08\x12 \n\x18send_password_reset_mail\x18\x05 \x01(\x08\x1a+\n\x08Response\x12\x1f\n\x05users\x18\x01 \x03(\x0b\x32\x10.hiber.user.User\"M\n\x18ResetUserPasswordRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x1a\n\n\x08Response\"\x92\x01\n\x1cUpdateUserPermissionsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x10\n\x08user_ids\x18\x02 \x03(\t\x12>\n\x0fnew_permissions\x18\x03 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x1a\n\n\x08Response*F\n\x08UserSort\x12\r\n\tEMAIL_ASC\x10\x00\x12\x0e\n\nEMAIL_DESC\x10\x01\x12\x0c\n\x08NAME_ASC\x10\x02\x12\r\n\tNAME_DESC\x10\x03\x32\xdf\x05\n\x0bUserService\x12K\n\x04List\x12\x1c.hiber.user.ListUsersRequest\x1a%.hiber.user.ListUsersRequest.Response\x12k\n\x12ListAccessRequests\x12%.hiber.user.ListAccessRequestsRequest\x1a..hiber.user.ListAccessRequestsRequest.Response\x12R\n\x07\x41pprove\x12\x1e.hiber.user.ApproveUserRequest\x1a\'.hiber.user.ApproveUserRequest.Response\x12O\n\x06Remove\x12\x1d.hiber.user.RemoveUserRequest\x1a&.hiber.user.RemoveUserRequest.Response\x12=\n\nCreateUser\x12\x1d.hiber.user.CreateUserRequest\x1a\x10.hiber.user.User\x12V\n\x0b\x43reateUsers\x12\x1e.hiber.user.CreateUsersRequest\x1a\'.hiber.user.CreateUsersRequest.Response\x12\x64\n\rResetPassword\x12$.hiber.user.ResetUserPasswordRequest\x1a-.hiber.user.ResetUserPasswordRequest.Response\x12t\n\x15UpdateUserPermissions\x12(.hiber.user.UpdateUserPermissionsRequest\x1a\x31.hiber.user.UpdateUserPermissionsRequest.ResponseB.\n\x1aglobal.hiber.api.grpc.userB\x07UserApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,permission__pb2.DESCRIPTOR,])
 
@@ -51,8 +51,8 @@ _USERSORT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1754,
-  serialized_end=1824,
+  serialized_start=1772,
+  serialized_end=1842,
 )
 _sym_db.RegisterEnumDescriptor(_USERSORT)
 
@@ -124,14 +124,21 @@ _USERSELECTION = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='by_email', full_name='hiber.user.UserSelection.by_email', index=0,
+      name='user_ids', full_name='hiber.user.UserSelection.user_ids', index=0,
+      number=3, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='by_email', full_name='hiber.user.UserSelection.by_email', index=1,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='by_name', full_name='hiber.user.UserSelection.by_name', index=1,
+      name='by_name', full_name='hiber.user.UserSelection.by_name', index=2,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -150,7 +157,7 @@ _USERSELECTION = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=165,
-  serialized_end=215,
+  serialized_end=233,
 )
 
 
@@ -194,8 +201,8 @@ _LISTUSERSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=382,
-  serialized_end=518,
+  serialized_start=400,
+  serialized_end=536,
 )
 
 _LISTUSERSREQUEST = _descriptor.Descriptor(
@@ -245,8 +252,8 @@ _LISTUSERSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=218,
-  serialized_end=518,
+  serialized_start=236,
+  serialized_end=536,
 )
 
 
@@ -290,8 +297,8 @@ _LISTACCESSREQUESTSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=694,
-  serialized_end=839,
+  serialized_start=712,
+  serialized_end=857,
 )
 
 _LISTACCESSREQUESTSREQUEST = _descriptor.Descriptor(
@@ -341,8 +348,8 @@ _LISTACCESSREQUESTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=521,
-  serialized_end=839,
+  serialized_start=539,
+  serialized_end=857,
 )
 
 
@@ -365,8 +372,8 @@ _APPROVEUSERREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=382,
-  serialized_end=392,
+  serialized_start=400,
+  serialized_end=410,
 )
 
 _APPROVEUSERREQUEST = _descriptor.Descriptor(
@@ -409,8 +416,8 @@ _APPROVEUSERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=842,
-  serialized_end=973,
+  serialized_start=860,
+  serialized_end=991,
 )
 
 
@@ -433,8 +440,8 @@ _REMOVEUSERREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=382,
-  serialized_end=392,
+  serialized_start=400,
+  serialized_end=410,
 )
 
 _REMOVEUSERREQUEST = _descriptor.Descriptor(
@@ -470,8 +477,8 @@ _REMOVEUSERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=975,
-  serialized_end=1045,
+  serialized_start=993,
+  serialized_end=1063,
 )
 
 
@@ -543,8 +550,8 @@ _CREATEUSERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1048,
-  serialized_end=1262,
+  serialized_start=1066,
+  serialized_end=1280,
 )
 
 
@@ -574,8 +581,8 @@ _CREATEUSERSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=382,
-  serialized_end=425,
+  serialized_start=400,
+  serialized_end=443,
 )
 
 _CREATEUSERSREQUEST = _descriptor.Descriptor(
@@ -632,8 +639,8 @@ _CREATEUSERSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1265,
-  serialized_end=1524,
+  serialized_start=1283,
+  serialized_end=1542,
 )
 
 
@@ -656,8 +663,8 @@ _RESETUSERPASSWORDREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=382,
-  serialized_end=392,
+  serialized_start=400,
+  serialized_end=410,
 )
 
 _RESETUSERPASSWORDREQUEST = _descriptor.Descriptor(
@@ -693,8 +700,8 @@ _RESETUSERPASSWORDREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1526,
-  serialized_end=1603,
+  serialized_start=1544,
+  serialized_end=1621,
 )
 
 
@@ -717,8 +724,8 @@ _UPDATEUSERPERMISSIONSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=382,
-  serialized_end=392,
+  serialized_start=400,
+  serialized_end=410,
 )
 
 _UPDATEUSERPERMISSIONSREQUEST = _descriptor.Descriptor(
@@ -761,8 +768,8 @@ _UPDATEUSERPERMISSIONSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1606,
-  serialized_end=1752,
+  serialized_start=1624,
+  serialized_end=1770,
 )
 
 _USER.fields_by_name['permissions'].message_type = base__pb2._FILTER_ORGANIZATIONPERMISSIONS
@@ -940,8 +947,8 @@ _USERSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=1827,
-  serialized_end=2562,
+  serialized_start=1845,
+  serialized_end=2580,
   methods=[
   _descriptor.MethodDescriptor(
     name='List',

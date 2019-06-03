@@ -24,6 +24,11 @@ class SatelliteServiceStub(object):
         request_serializer=satellite__pb2.ListSatellitesPathRequest.SerializeToString,
         response_deserializer=satellite__pb2.ListSatellitesPathRequest.Response.FromString,
         )
+    self.Passes = channel.unary_unary(
+        '/hiber.satellite.SatelliteService/Passes',
+        request_serializer=satellite__pb2.ListSatellitesPassesRequest.SerializeToString,
+        response_deserializer=satellite__pb2.ListSatellitesPassesRequest.Response.FromString,
+        )
 
 
 class SatelliteServiceServicer(object):
@@ -44,6 +49,13 @@ class SatelliteServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def Passes(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_SatelliteServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -56,6 +68,11 @@ def add_SatelliteServiceServicer_to_server(servicer, server):
           servicer.Path,
           request_deserializer=satellite__pb2.ListSatellitesPathRequest.FromString,
           response_serializer=satellite__pb2.ListSatellitesPathRequest.Response.SerializeToString,
+      ),
+      'Passes': grpc.unary_unary_rpc_method_handler(
+          servicer.Passes,
+          request_deserializer=satellite__pb2.ListSatellitesPassesRequest.FromString,
+          response_serializer=satellite__pb2.ListSatellitesPassesRequest.Response.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

@@ -12,8 +12,8 @@ It is generated from these files:
 	event.proto
 	integration_aws_iot.proto
 	map.proto
-	modem.proto
 	modem_claim.proto
+	modem.proto
 	modem_transfer.proto
 	organization.proto
 	permission.proto
@@ -78,6 +78,10 @@ It has these top-level messages:
 	MapSelection
 	MapBlock
 	MapRequest
+	ModemClaim
+	ModemClaimSelection
+	ClaimModemRequest
+	ListModemClaimsRequest
 	Modem
 	ModemSelection
 	ModemMessage
@@ -90,10 +94,6 @@ It has these top-level messages:
 	UpdateModemTagsRequest
 	UpdatePeripheralsRequest
 	LicenseKeysRequest
-	ModemClaim
-	ModemClaimSelection
-	ClaimModemRequest
-	ListModemClaimsRequest
 	ModemTransfer
 	ModemTransferReturnLine
 	ModemTransferSelection
@@ -131,9 +131,11 @@ It has these top-level messages:
 	DeletePublisherRequest
 	SatelliteInformation
 	SatellitePath
+	SatellitePasses
 	SatelliteSelection
 	ListSatellitesRequest
 	ListSatellitesPathRequest
+	ListSatellitesPassesRequest
 	ZendeskTokenRequest
 	NetworkStatus
 	AreaStatus

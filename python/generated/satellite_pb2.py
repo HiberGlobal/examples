@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='satellite.proto',
   package='hiber.satellite',
   syntax='proto3',
-  serialized_pb=_b('\n\x0fsatellite.proto\x12\x0fhiber.satellite\x1a\nbase.proto\"d\n\x14SatelliteInformation\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12%\n\x0blaunched_at\x18\x03 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x0b\n\x03tle\x18\x04 \x03(\t\"\xbe\x01\n\rSatellitePath\x12\x14\n\x0csatellite_id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12:\n\tpositions\x18\x03 \x03(\x0b\x32\'.hiber.satellite.SatellitePath.Position\x1aM\n\x08Position\x12\x1e\n\x04time\x18\x01 \x01(\x0b\x32\x10.hiber.Timestamp\x12!\n\x08location\x18\x02 \x01(\x0b\x32\x0f.hiber.Location\"1\n\x12SatelliteSelection\x12\x0b\n\x03ids\x18\x01 \x03(\x05\x12\x0e\n\x06search\x18\x02 \x01(\t\"\xcf\x01\n\x15ListSatellitesRequest\x12\x36\n\tselection\x18\x01 \x01(\x0b\x32#.hiber.satellite.SatelliteSelection\x1a~\n\x08Response\x12\x39\n\nsatellites\x18\x01 \x03(\x0b\x32%.hiber.satellite.SatelliteInformation\x12\x37\n\x07request\x18\x02 \x01(\x0b\x32&.hiber.satellite.ListSatellitesRequest\"\xd4\x01\n\x19ListSatellitesPathRequest\x12\x36\n\tselection\x18\x01 \x01(\x0b\x32#.hiber.satellite.SatelliteSelection\x1a\x7f\n\x08Response\x12\x36\n\x0esatellite_path\x18\x01 \x03(\x0b\x32\x1e.hiber.satellite.SatellitePath\x12;\n\x07request\x18\x02 \x01(\x0b\x32*.hiber.satellite.ListSatellitesPathRequest2\xdc\x01\n\x10SatelliteService\x12_\n\x04List\x12&.hiber.satellite.ListSatellitesRequest\x1a/.hiber.satellite.ListSatellitesRequest.Response\x12g\n\x04Path\x12*.hiber.satellite.ListSatellitesPathRequest\x1a\x33.hiber.satellite.ListSatellitesPathRequest.ResponseB8\n\x1fglobal.hiber.api.grpc.satelliteB\x0cSatelliteApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\x0fsatellite.proto\x12\x0fhiber.satellite\x1a\nbase.proto\"d\n\x14SatelliteInformation\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12%\n\x0blaunched_at\x18\x03 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x0b\n\x03tle\x18\x04 \x03(\t\"\xbe\x01\n\rSatellitePath\x12\x14\n\x0csatellite_id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12:\n\tpositions\x18\x03 \x03(\x0b\x32\'.hiber.satellite.SatellitePath.Position\x1aM\n\x08Position\x12\x1e\n\x04time\x18\x01 \x01(\x0b\x32\x10.hiber.Timestamp\x12!\n\x08location\x18\x02 \x01(\x0b\x32\x0f.hiber.Location\"\xad\x02\n\x0fSatellitePasses\x12\x14\n\x0csatellite_id\x18\x01 \x01(\x05\x12!\n\x08location\x18\x02 \x01(\x0b\x32\x0f.hiber.Location\x12\x14\n\x0cmodem_number\x18\x03 \x01(\t\x12\x35\n\x06passes\x18\x04 \x03(\x0b\x32%.hiber.satellite.SatellitePasses.Pass\x1a\x93\x01\n\x04Pass\x12\x1e\n\x04time\x18\x01 \x01(\x0b\x32\x10.hiber.TimeRange\x12*\n\x10\x63losest_approach\x18\x02 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x15\n\rmax_elevation\x18\x03 \x01(\x02\x12\x13\n\x0b\x61os_azimuth\x18\x04 \x01(\x05\x12\x13\n\x0blos_azimuth\x18\x05 \x01(\x05\"1\n\x12SatelliteSelection\x12\x0b\n\x03ids\x18\x01 \x03(\x05\x12\x0e\n\x06search\x18\x02 \x01(\t\"\xcf\x01\n\x15ListSatellitesRequest\x12\x36\n\tselection\x18\x01 \x01(\x0b\x32#.hiber.satellite.SatelliteSelection\x1a~\n\x08Response\x12\x39\n\nsatellites\x18\x01 \x03(\x0b\x32%.hiber.satellite.SatelliteInformation\x12\x37\n\x07request\x18\x02 \x01(\x0b\x32&.hiber.satellite.ListSatellitesRequest\"\xd4\x01\n\x19ListSatellitesPathRequest\x12\x36\n\tselection\x18\x01 \x01(\x0b\x32#.hiber.satellite.SatelliteSelection\x1a\x7f\n\x08Response\x12\x36\n\x0esatellite_path\x18\x01 \x03(\x0b\x32\x1e.hiber.satellite.SatellitePath\x12;\n\x07request\x18\x02 \x01(\x0b\x32*.hiber.satellite.ListSatellitesPathRequest\"\xc9\x02\n\x1bListSatellitesPassesRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x36\n\tselection\x18\x02 \x01(\x0b\x32#.hiber.satellite.SatelliteSelection\x12$\n\ntime_range\x18\x03 \x01(\x0b\x32\x10.hiber.TimeRange\x12\"\n\tlocations\x18\x04 \x03(\x0b\x32\x0f.hiber.Location\x12\x15\n\rmodem_numbers\x18\x05 \x03(\t\x1a{\n\x08Response\x12\x30\n\x06passes\x18\x01 \x03(\x0b\x32 .hiber.satellite.SatellitePasses\x12=\n\x07request\x18\x02 \x01(\x0b\x32,.hiber.satellite.ListSatellitesPassesRequest2\xcb\x02\n\x10SatelliteService\x12_\n\x04List\x12&.hiber.satellite.ListSatellitesRequest\x1a/.hiber.satellite.ListSatellitesRequest.Response\x12g\n\x04Path\x12*.hiber.satellite.ListSatellitesPathRequest\x1a\x33.hiber.satellite.ListSatellitesPathRequest.Response\x12m\n\x06Passes\x12,.hiber.satellite.ListSatellitesPassesRequest\x1a\x35.hiber.satellite.ListSatellitesPassesRequest.ResponseB8\n\x1fglobal.hiber.api.grpc.satelliteB\x0cSatelliteApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,])
 
@@ -161,6 +161,116 @@ _SATELLITEPATH = _descriptor.Descriptor(
 )
 
 
+_SATELLITEPASSES_PASS = _descriptor.Descriptor(
+  name='Pass',
+  full_name='hiber.satellite.SatellitePasses.Pass',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='time', full_name='hiber.satellite.SatellitePasses.Pass.time', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='closest_approach', full_name='hiber.satellite.SatellitePasses.Pass.closest_approach', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='max_elevation', full_name='hiber.satellite.SatellitePasses.Pass.max_elevation', index=2,
+      number=3, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='aos_azimuth', full_name='hiber.satellite.SatellitePasses.Pass.aos_azimuth', index=3,
+      number=4, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='los_azimuth', full_name='hiber.satellite.SatellitePasses.Pass.los_azimuth', index=4,
+      number=5, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=498,
+  serialized_end=645,
+)
+
+_SATELLITEPASSES = _descriptor.Descriptor(
+  name='SatellitePasses',
+  full_name='hiber.satellite.SatellitePasses',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='satellite_id', full_name='hiber.satellite.SatellitePasses.satellite_id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='location', full_name='hiber.satellite.SatellitePasses.location', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='modem_number', full_name='hiber.satellite.SatellitePasses.modem_number', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='passes', full_name='hiber.satellite.SatellitePasses.passes', index=3,
+      number=4, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_SATELLITEPASSES_PASS, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=344,
+  serialized_end=645,
+)
+
+
 _SATELLITESELECTION = _descriptor.Descriptor(
   name='SatelliteSelection',
   full_name='hiber.satellite.SatelliteSelection',
@@ -194,8 +304,8 @@ _SATELLITESELECTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=343,
-  serialized_end=392,
+  serialized_start=647,
+  serialized_end=696,
 )
 
 
@@ -232,8 +342,8 @@ _LISTSATELLITESREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=476,
-  serialized_end=602,
+  serialized_start=780,
+  serialized_end=906,
 )
 
 _LISTSATELLITESREQUEST = _descriptor.Descriptor(
@@ -262,8 +372,8 @@ _LISTSATELLITESREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=395,
-  serialized_end=602,
+  serialized_start=699,
+  serialized_end=906,
 )
 
 
@@ -300,8 +410,8 @@ _LISTSATELLITESPATHREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=690,
-  serialized_end=817,
+  serialized_start=994,
+  serialized_end=1121,
 )
 
 _LISTSATELLITESPATHREQUEST = _descriptor.Descriptor(
@@ -330,8 +440,104 @@ _LISTSATELLITESPATHREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=605,
-  serialized_end=817,
+  serialized_start=909,
+  serialized_end=1121,
+)
+
+
+_LISTSATELLITESPASSESREQUEST_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='hiber.satellite.ListSatellitesPassesRequest.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='passes', full_name='hiber.satellite.ListSatellitesPassesRequest.Response.passes', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='request', full_name='hiber.satellite.ListSatellitesPassesRequest.Response.request', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1330,
+  serialized_end=1453,
+)
+
+_LISTSATELLITESPASSESREQUEST = _descriptor.Descriptor(
+  name='ListSatellitesPassesRequest',
+  full_name='hiber.satellite.ListSatellitesPassesRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organization', full_name='hiber.satellite.ListSatellitesPassesRequest.organization', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='selection', full_name='hiber.satellite.ListSatellitesPassesRequest.selection', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='time_range', full_name='hiber.satellite.ListSatellitesPassesRequest.time_range', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='locations', full_name='hiber.satellite.ListSatellitesPassesRequest.locations', index=3,
+      number=4, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='modem_numbers', full_name='hiber.satellite.ListSatellitesPassesRequest.modem_numbers', index=4,
+      number=5, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_LISTSATELLITESPASSESREQUEST_RESPONSE, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1124,
+  serialized_end=1453,
 )
 
 _SATELLITEINFORMATION.fields_by_name['launched_at'].message_type = base__pb2._TIMESTAMP
@@ -339,6 +545,11 @@ _SATELLITEPATH_POSITION.fields_by_name['time'].message_type = base__pb2._TIMESTA
 _SATELLITEPATH_POSITION.fields_by_name['location'].message_type = base__pb2._LOCATION
 _SATELLITEPATH_POSITION.containing_type = _SATELLITEPATH
 _SATELLITEPATH.fields_by_name['positions'].message_type = _SATELLITEPATH_POSITION
+_SATELLITEPASSES_PASS.fields_by_name['time'].message_type = base__pb2._TIMERANGE
+_SATELLITEPASSES_PASS.fields_by_name['closest_approach'].message_type = base__pb2._TIMESTAMP
+_SATELLITEPASSES_PASS.containing_type = _SATELLITEPASSES
+_SATELLITEPASSES.fields_by_name['location'].message_type = base__pb2._LOCATION
+_SATELLITEPASSES.fields_by_name['passes'].message_type = _SATELLITEPASSES_PASS
 _LISTSATELLITESREQUEST_RESPONSE.fields_by_name['satellites'].message_type = _SATELLITEINFORMATION
 _LISTSATELLITESREQUEST_RESPONSE.fields_by_name['request'].message_type = _LISTSATELLITESREQUEST
 _LISTSATELLITESREQUEST_RESPONSE.containing_type = _LISTSATELLITESREQUEST
@@ -347,11 +558,19 @@ _LISTSATELLITESPATHREQUEST_RESPONSE.fields_by_name['satellite_path'].message_typ
 _LISTSATELLITESPATHREQUEST_RESPONSE.fields_by_name['request'].message_type = _LISTSATELLITESPATHREQUEST
 _LISTSATELLITESPATHREQUEST_RESPONSE.containing_type = _LISTSATELLITESPATHREQUEST
 _LISTSATELLITESPATHREQUEST.fields_by_name['selection'].message_type = _SATELLITESELECTION
+_LISTSATELLITESPASSESREQUEST_RESPONSE.fields_by_name['passes'].message_type = _SATELLITEPASSES
+_LISTSATELLITESPASSESREQUEST_RESPONSE.fields_by_name['request'].message_type = _LISTSATELLITESPASSESREQUEST
+_LISTSATELLITESPASSESREQUEST_RESPONSE.containing_type = _LISTSATELLITESPASSESREQUEST
+_LISTSATELLITESPASSESREQUEST.fields_by_name['selection'].message_type = _SATELLITESELECTION
+_LISTSATELLITESPASSESREQUEST.fields_by_name['time_range'].message_type = base__pb2._TIMERANGE
+_LISTSATELLITESPASSESREQUEST.fields_by_name['locations'].message_type = base__pb2._LOCATION
 DESCRIPTOR.message_types_by_name['SatelliteInformation'] = _SATELLITEINFORMATION
 DESCRIPTOR.message_types_by_name['SatellitePath'] = _SATELLITEPATH
+DESCRIPTOR.message_types_by_name['SatellitePasses'] = _SATELLITEPASSES
 DESCRIPTOR.message_types_by_name['SatelliteSelection'] = _SATELLITESELECTION
 DESCRIPTOR.message_types_by_name['ListSatellitesRequest'] = _LISTSATELLITESREQUEST
 DESCRIPTOR.message_types_by_name['ListSatellitesPathRequest'] = _LISTSATELLITESPATHREQUEST
+DESCRIPTOR.message_types_by_name['ListSatellitesPassesRequest'] = _LISTSATELLITESPASSESREQUEST
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 SatelliteInformation = _reflection.GeneratedProtocolMessageType('SatelliteInformation', (_message.Message,), dict(
@@ -375,6 +594,21 @@ SatellitePath = _reflection.GeneratedProtocolMessageType('SatellitePath', (_mess
   ))
 _sym_db.RegisterMessage(SatellitePath)
 _sym_db.RegisterMessage(SatellitePath.Position)
+
+SatellitePasses = _reflection.GeneratedProtocolMessageType('SatellitePasses', (_message.Message,), dict(
+
+  Pass = _reflection.GeneratedProtocolMessageType('Pass', (_message.Message,), dict(
+    DESCRIPTOR = _SATELLITEPASSES_PASS,
+    __module__ = 'satellite_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.satellite.SatellitePasses.Pass)
+    ))
+  ,
+  DESCRIPTOR = _SATELLITEPASSES,
+  __module__ = 'satellite_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.satellite.SatellitePasses)
+  ))
+_sym_db.RegisterMessage(SatellitePasses)
+_sym_db.RegisterMessage(SatellitePasses.Pass)
 
 SatelliteSelection = _reflection.GeneratedProtocolMessageType('SatelliteSelection', (_message.Message,), dict(
   DESCRIPTOR = _SATELLITESELECTION,
@@ -413,6 +647,21 @@ ListSatellitesPathRequest = _reflection.GeneratedProtocolMessageType('ListSatell
 _sym_db.RegisterMessage(ListSatellitesPathRequest)
 _sym_db.RegisterMessage(ListSatellitesPathRequest.Response)
 
+ListSatellitesPassesRequest = _reflection.GeneratedProtocolMessageType('ListSatellitesPassesRequest', (_message.Message,), dict(
+
+  Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
+    DESCRIPTOR = _LISTSATELLITESPASSESREQUEST_RESPONSE,
+    __module__ = 'satellite_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.satellite.ListSatellitesPassesRequest.Response)
+    ))
+  ,
+  DESCRIPTOR = _LISTSATELLITESPASSESREQUEST,
+  __module__ = 'satellite_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.satellite.ListSatellitesPassesRequest)
+  ))
+_sym_db.RegisterMessage(ListSatellitesPassesRequest)
+_sym_db.RegisterMessage(ListSatellitesPassesRequest.Response)
+
 
 DESCRIPTOR.has_options = True
 DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\037global.hiber.api.grpc.satelliteB\014SatelliteApiP\000Z\005hiber'))
@@ -423,8 +672,8 @@ _SATELLITESERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=820,
-  serialized_end=1040,
+  serialized_start=1456,
+  serialized_end=1787,
   methods=[
   _descriptor.MethodDescriptor(
     name='List',
@@ -442,6 +691,15 @@ _SATELLITESERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_LISTSATELLITESPATHREQUEST,
     output_type=_LISTSATELLITESPATHREQUEST_RESPONSE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='Passes',
+    full_name='hiber.satellite.SatelliteService.Passes',
+    index=2,
+    containing_service=None,
+    input_type=_LISTSATELLITESPASSESREQUEST,
+    output_type=_LISTSATELLITESPASSESREQUEST_RESPONSE,
     options=None,
   ),
 ])

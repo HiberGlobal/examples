@@ -109,6 +109,9 @@ func (m *Webhook) GetHealth() Health {
 type Webhook_WebhookData struct {
 	Url string `protobuf:"bytes,1,opt,name=url" json:"url,omitempty"`
 	// Used to generate the HMAC-SHA256 header on every webhook call, which you can use to verify the message.
+	// The HMAC-SHA256 header is calculated with the message body and this secret.
+	// There are many examples of how to do this in different languages, for example:
+	// https://github.com/danharper/hmac-examples
 	Secret        string              `protobuf:"bytes,2,opt,name=secret" json:"secret,omitempty"`
 	ContentType   Webhook_ContentType `protobuf:"varint,3,opt,name=content_type,json=contentType,enum=hiber.webhook.Webhook_ContentType" json:"content_type,omitempty"`
 	Disabled      bool                `protobuf:"varint,4,opt,name=disabled" json:"disabled,omitempty"`

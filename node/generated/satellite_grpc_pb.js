@@ -5,6 +5,28 @@ var grpc = require('grpc');
 var satellite_pb = require('./satellite_pb.js');
 var base_pb = require('./base_pb.js');
 
+function serialize_hiber_satellite_ListSatellitesPassesRequest(arg) {
+  if (!(arg instanceof satellite_pb.ListSatellitesPassesRequest)) {
+    throw new Error('Expected argument of type hiber.satellite.ListSatellitesPassesRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_satellite_ListSatellitesPassesRequest(buffer_arg) {
+  return satellite_pb.ListSatellitesPassesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_satellite_ListSatellitesPassesRequest_Response(arg) {
+  if (!(arg instanceof satellite_pb.ListSatellitesPassesRequest.Response)) {
+    throw new Error('Expected argument of type hiber.satellite.ListSatellitesPassesRequest.Response');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_satellite_ListSatellitesPassesRequest_Response(buffer_arg) {
+  return satellite_pb.ListSatellitesPassesRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_hiber_satellite_ListSatellitesPathRequest(arg) {
   if (!(arg instanceof satellite_pb.ListSatellitesPathRequest)) {
     throw new Error('Expected argument of type hiber.satellite.ListSatellitesPathRequest');
@@ -72,6 +94,17 @@ var SatelliteServiceService = exports.SatelliteServiceService = {
     requestDeserialize: deserialize_hiber_satellite_ListSatellitesPathRequest,
     responseSerialize: serialize_hiber_satellite_ListSatellitesPathRequest_Response,
     responseDeserialize: deserialize_hiber_satellite_ListSatellitesPathRequest_Response,
+  },
+  passes: {
+    path: '/hiber.satellite.SatelliteService/Passes',
+    requestStream: false,
+    responseStream: false,
+    requestType: satellite_pb.ListSatellitesPassesRequest,
+    responseType: satellite_pb.ListSatellitesPassesRequest.Response,
+    requestSerialize: serialize_hiber_satellite_ListSatellitesPassesRequest,
+    requestDeserialize: deserialize_hiber_satellite_ListSatellitesPassesRequest,
+    responseSerialize: serialize_hiber_satellite_ListSatellitesPassesRequest_Response,
+    responseDeserialize: deserialize_hiber_satellite_ListSatellitesPassesRequest_Response,
   },
 };
 
