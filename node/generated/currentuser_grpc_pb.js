@@ -5,6 +5,28 @@ var grpc = require('grpc');
 var currentuser_pb = require('./currentuser_pb.js');
 var base_pb = require('./base_pb.js');
 
+function serialize_hiber_user_AcceptTermsAndConditionsRequest(arg) {
+  if (!(arg instanceof currentuser_pb.AcceptTermsAndConditionsRequest)) {
+    throw new Error('Expected argument of type hiber.user.AcceptTermsAndConditionsRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_user_AcceptTermsAndConditionsRequest(buffer_arg) {
+  return currentuser_pb.AcceptTermsAndConditionsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_user_AcceptTermsAndConditionsRequest_Response(arg) {
+  if (!(arg instanceof currentuser_pb.AcceptTermsAndConditionsRequest.Response)) {
+    throw new Error('Expected argument of type hiber.user.AcceptTermsAndConditionsRequest.Response');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_hiber_user_AcceptTermsAndConditionsRequest_Response(buffer_arg) {
+  return currentuser_pb.AcceptTermsAndConditionsRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_hiber_user_AccessibleOrganizationsRequest(arg) {
   if (!(arg instanceof currentuser_pb.AccessibleOrganizationsRequest)) {
     throw new Error('Expected argument of type hiber.user.AccessibleOrganizationsRequest');
@@ -228,6 +250,17 @@ var CurrentUserServiceService = exports.CurrentUserServiceService = {
     requestDeserialize: deserialize_hiber_user_UpdateMissionControlSettingsRequest,
     responseSerialize: serialize_hiber_user_UpdateMissionControlSettingsRequest_Response,
     responseDeserialize: deserialize_hiber_user_UpdateMissionControlSettingsRequest_Response,
+  },
+  acceptTermsAndConditions: {
+    path: '/hiber.user.CurrentUserService/AcceptTermsAndConditions',
+    requestStream: false,
+    responseStream: false,
+    requestType: currentuser_pb.AcceptTermsAndConditionsRequest,
+    responseType: currentuser_pb.AcceptTermsAndConditionsRequest.Response,
+    requestSerialize: serialize_hiber_user_AcceptTermsAndConditionsRequest,
+    requestDeserialize: deserialize_hiber_user_AcceptTermsAndConditionsRequest,
+    responseSerialize: serialize_hiber_user_AcceptTermsAndConditionsRequest_Response,
+    responseDeserialize: deserialize_hiber_user_AcceptTermsAndConditionsRequest_Response,
   },
   accessibleOrganizations: {
     path: '/hiber.user.CurrentUserService/AccessibleOrganizations',

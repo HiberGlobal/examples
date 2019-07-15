@@ -103,7 +103,8 @@ proto.hiber.webhook.Webhook.toObject = function(includeInstance, msg) {
     filters: (f = msg.getFilters()) && proto.hiber.webhook.Webhook.WebhookFilters.toObject(includeInstance, f),
     tagsList: jspb.Message.toObjectList(msg.getTagsList(),
     tag_pb.Tag.toObject, includeInstance),
-    health: jspb.Message.getFieldWithDefault(msg, 7, 0)
+    health: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    inCooldownUntil: (f = msg.getInCooldownUntil()) && base_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -170,6 +171,11 @@ proto.hiber.webhook.Webhook.deserializeBinaryFromReader = function(msg, reader) 
     case 7:
       var value = /** @type {!proto.hiber.Health} */ (reader.readEnum());
       msg.setHealth(value);
+      break;
+    case 8:
+      var value = new base_pb.Timestamp;
+      reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setInCooldownUntil(value);
       break;
     default:
       reader.skipField();
@@ -250,6 +256,14 @@ proto.hiber.webhook.Webhook.serializeBinaryToWriter = function(message, writer) 
     writer.writeEnum(
       7,
       f
+    );
+  }
+  f = message.getInCooldownUntil();
+  if (f != null) {
+    writer.writeMessage(
+      8,
+      f,
+      base_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -911,6 +925,36 @@ proto.hiber.webhook.Webhook.prototype.getHealth = function() {
 /** @param {!proto.hiber.Health} value */
 proto.hiber.webhook.Webhook.prototype.setHealth = function(value) {
   jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * optional hiber.Timestamp in_cooldown_until = 8;
+ * @return {?proto.hiber.Timestamp}
+ */
+proto.hiber.webhook.Webhook.prototype.getInCooldownUntil = function() {
+  return /** @type{?proto.hiber.Timestamp} */ (
+    jspb.Message.getWrapperField(this, base_pb.Timestamp, 8));
+};
+
+
+/** @param {?proto.hiber.Timestamp|undefined} value */
+proto.hiber.webhook.Webhook.prototype.setInCooldownUntil = function(value) {
+  jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+proto.hiber.webhook.Webhook.prototype.clearInCooldownUntil = function() {
+  this.setInCooldownUntil(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.webhook.Webhook.prototype.hasInCooldownUntil = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 

@@ -101,7 +101,10 @@ proto.hiber.modem.Modem.toObject = function(includeInstance, msg) {
     organization: jspb.Message.getFieldWithDefault(msg, 2, ""),
     name: jspb.Message.getFieldWithDefault(msg, 3, ""),
     location: (f = msg.getLocation()) && base_pb.Location.toObject(includeInstance, f),
+    lastMessageId: jspb.Message.getFieldWithDefault(msg, 16, 0),
     lastMessageReceivedAt: (f = msg.getLastMessageReceivedAt()) && base_pb.Timestamp.toObject(includeInstance, f),
+    lastMessageSentAt: (f = msg.getLastMessageSentAt()) && base_pb.Timestamp.toObject(includeInstance, f),
+    lastMessagePayload: (f = msg.getLastMessagePayload()) && base_pb.BytesOrHex.toObject(includeInstance, f),
     maximumInactivityPeriod: jspb.Message.getFieldWithDefault(msg, 8, 0),
     health: jspb.Message.getFieldWithDefault(msg, 9, 0),
     status: jspb.Message.getFieldWithDefault(msg, 12, 0),
@@ -168,10 +171,24 @@ proto.hiber.modem.Modem.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,base_pb.Location.deserializeBinaryFromReader);
       msg.setLocation(value);
       break;
+    case 16:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setLastMessageId(value);
+      break;
     case 5:
       var value = new base_pb.Timestamp;
       reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
       msg.setLastMessageReceivedAt(value);
+      break;
+    case 14:
+      var value = new base_pb.Timestamp;
+      reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setLastMessageSentAt(value);
+      break;
+    case 15:
+      var value = new base_pb.BytesOrHex;
+      reader.readMessage(value,base_pb.BytesOrHex.deserializeBinaryFromReader);
+      msg.setLastMessagePayload(value);
       break;
     case 8:
       var value = /** @type {number} */ (reader.readInt32());
@@ -284,12 +301,35 @@ proto.hiber.modem.Modem.serializeBinaryToWriter = function(message, writer) {
       base_pb.Location.serializeBinaryToWriter
     );
   }
+  f = message.getLastMessageId();
+  if (f !== 0) {
+    writer.writeUint64(
+      16,
+      f
+    );
+  }
   f = message.getLastMessageReceivedAt();
   if (f != null) {
     writer.writeMessage(
       5,
       f,
       base_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getLastMessageSentAt();
+  if (f != null) {
+    writer.writeMessage(
+      14,
+      f,
+      base_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getLastMessagePayload();
+  if (f != null) {
+    writer.writeMessage(
+      15,
+      f,
+      base_pb.BytesOrHex.serializeBinaryToWriter
     );
   }
   f = message.getMaximumInactivityPeriod();
@@ -1342,6 +1382,21 @@ proto.hiber.modem.Modem.prototype.hasLocation = function() {
 
 
 /**
+ * optional uint64 last_message_id = 16;
+ * @return {number}
+ */
+proto.hiber.modem.Modem.prototype.getLastMessageId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 16, 0));
+};
+
+
+/** @param {number} value */
+proto.hiber.modem.Modem.prototype.setLastMessageId = function(value) {
+  jspb.Message.setField(this, 16, value);
+};
+
+
+/**
  * optional hiber.Timestamp last_message_received_at = 5;
  * @return {?proto.hiber.Timestamp}
  */
@@ -1368,6 +1423,66 @@ proto.hiber.modem.Modem.prototype.clearLastMessageReceivedAt = function() {
  */
 proto.hiber.modem.Modem.prototype.hasLastMessageReceivedAt = function() {
   return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional hiber.Timestamp last_message_sent_at = 14;
+ * @return {?proto.hiber.Timestamp}
+ */
+proto.hiber.modem.Modem.prototype.getLastMessageSentAt = function() {
+  return /** @type{?proto.hiber.Timestamp} */ (
+    jspb.Message.getWrapperField(this, base_pb.Timestamp, 14));
+};
+
+
+/** @param {?proto.hiber.Timestamp|undefined} value */
+proto.hiber.modem.Modem.prototype.setLastMessageSentAt = function(value) {
+  jspb.Message.setWrapperField(this, 14, value);
+};
+
+
+proto.hiber.modem.Modem.prototype.clearLastMessageSentAt = function() {
+  this.setLastMessageSentAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.modem.Modem.prototype.hasLastMessageSentAt = function() {
+  return jspb.Message.getField(this, 14) != null;
+};
+
+
+/**
+ * optional hiber.BytesOrHex last_message_payload = 15;
+ * @return {?proto.hiber.BytesOrHex}
+ */
+proto.hiber.modem.Modem.prototype.getLastMessagePayload = function() {
+  return /** @type{?proto.hiber.BytesOrHex} */ (
+    jspb.Message.getWrapperField(this, base_pb.BytesOrHex, 15));
+};
+
+
+/** @param {?proto.hiber.BytesOrHex|undefined} value */
+proto.hiber.modem.Modem.prototype.setLastMessagePayload = function(value) {
+  jspb.Message.setWrapperField(this, 15, value);
+};
+
+
+proto.hiber.modem.Modem.prototype.clearLastMessagePayload = function() {
+  this.setLastMessagePayload(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.modem.Modem.prototype.hasLastMessagePayload = function() {
+  return jspb.Message.getField(this, 15) != null;
 };
 
 
@@ -2526,7 +2641,8 @@ proto.hiber.modem.ModemMessage.toObject = function(includeInstance, msg) {
     body: msg.getBody_asB64(),
     receivedAt: (f = msg.getReceivedAt()) && base_pb.Timestamp.toObject(includeInstance, f),
     messageId: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    bodyBytes: (f = msg.getBodyBytes()) && base_pb.BytesOrHex.toObject(includeInstance, f)
+    bodyBytes: (f = msg.getBodyBytes()) && base_pb.BytesOrHex.toObject(includeInstance, f),
+    isTest: jspb.Message.getFieldWithDefault(msg, 9, false)
   };
 
   if (includeInstance) {
@@ -2598,6 +2714,10 @@ proto.hiber.modem.ModemMessage.deserializeBinaryFromReader = function(msg, reade
       var value = new base_pb.BytesOrHex;
       reader.readMessage(value,base_pb.BytesOrHex.deserializeBinaryFromReader);
       msg.setBodyBytes(value);
+      break;
+    case 9:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsTest(value);
       break;
     default:
       reader.skipField();
@@ -2686,6 +2806,13 @@ proto.hiber.modem.ModemMessage.serializeBinaryToWriter = function(message, write
       8,
       f,
       base_pb.BytesOrHex.serializeBinaryToWriter
+    );
+  }
+  f = message.getIsTest();
+  if (f) {
+    writer.writeBool(
+      9,
+      f
     );
   }
 };
@@ -2892,6 +3019,23 @@ proto.hiber.modem.ModemMessage.prototype.clearBodyBytes = function() {
  */
 proto.hiber.modem.ModemMessage.prototype.hasBodyBytes = function() {
   return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * optional bool is_test = 9;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.modem.ModemMessage.prototype.getIsTest = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 9, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.modem.ModemMessage.prototype.setIsTest = function(value) {
+  jspb.Message.setField(this, 9, value);
 };
 
 

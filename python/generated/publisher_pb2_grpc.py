@@ -5,8 +5,9 @@ import publisher_pb2 as publisher__pb2
 
 
 class PublisherServiceStub(object):
-  # missing associated documentation comment in .proto file
-  pass
+  """The publisher service is deprecated. It will be replaced with specific APIs, like the WebhookService
+  a specific MQTT publisher API, and more publisher implementations.
+  """
 
   def __init__(self, channel):
     """Constructor.
@@ -57,8 +58,9 @@ class PublisherServiceStub(object):
 
 
 class PublisherServiceServicer(object):
-  # missing associated documentation comment in .proto file
-  pass
+  """The publisher service is deprecated. It will be replaced with specific APIs, like the WebhookService
+  a specific MQTT publisher API, and more publisher implementations.
+  """
 
   def List(self, request, context):
     # missing associated documentation comment in .proto file

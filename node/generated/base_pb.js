@@ -5115,7 +5115,9 @@ proto.hiber.Filter.UserPermissions.prototype.clearExcludeList = function() {
  */
 proto.hiber.EventType = {
   DEFAULT: 0,
+  ORGANIZATION_CREATED: 34,
   ORGANIZATION_UPDATED: 12,
+  ORGANIZATION_DELETED: 35,
   MODEM_LOCATION_UPDATED: 4,
   MODEM_ACTIVATED: 33,
   MODEM_STALE: 16,

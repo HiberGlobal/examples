@@ -45,6 +45,11 @@ class CurrentUserServiceStub(object):
         request_serializer=currentuser__pb2.UpdateMissionControlSettingsRequest.SerializeToString,
         response_deserializer=currentuser__pb2.UpdateMissionControlSettingsRequest.Response.FromString,
         )
+    self.AcceptTermsAndConditions = channel.unary_unary(
+        '/hiber.user.CurrentUserService/AcceptTermsAndConditions',
+        request_serializer=currentuser__pb2.AcceptTermsAndConditionsRequest.SerializeToString,
+        response_deserializer=currentuser__pb2.AcceptTermsAndConditionsRequest.Response.FromString,
+        )
     self.AccessibleOrganizations = channel.unary_unary(
         '/hiber.user.CurrentUserService/AccessibleOrganizations',
         request_serializer=currentuser__pb2.AccessibleOrganizationsRequest.SerializeToString,
@@ -99,6 +104,13 @@ class CurrentUserServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def AcceptTermsAndConditions(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
   def AccessibleOrganizations(self, request, context):
     # missing associated documentation comment in .proto file
     pass
@@ -138,6 +150,11 @@ def add_CurrentUserServiceServicer_to_server(servicer, server):
           servicer.UpdateMissionControlSettings,
           request_deserializer=currentuser__pb2.UpdateMissionControlSettingsRequest.FromString,
           response_serializer=currentuser__pb2.UpdateMissionControlSettingsRequest.Response.SerializeToString,
+      ),
+      'AcceptTermsAndConditions': grpc.unary_unary_rpc_method_handler(
+          servicer.AcceptTermsAndConditions,
+          request_deserializer=currentuser__pb2.AcceptTermsAndConditionsRequest.FromString,
+          response_serializer=currentuser__pb2.AcceptTermsAndConditionsRequest.Response.SerializeToString,
       ),
       'AccessibleOrganizations': grpc.unary_unary_rpc_method_handler(
           servicer.AccessibleOrganizations,

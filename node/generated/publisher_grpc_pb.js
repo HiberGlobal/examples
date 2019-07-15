@@ -184,6 +184,8 @@ function deserialize_hiber_publisher_UpdatePublisherTagsRequest_Response(buffer_
 }
 
 
+// The publisher service is deprecated. It will be replaced with specific APIs, like the WebhookService
+// a specific MQTT publisher API, and more publisher implementations.
 var PublisherServiceService = exports.PublisherServiceService = {
   list: {
     path: '/hiber.publisher.PublisherService/List',

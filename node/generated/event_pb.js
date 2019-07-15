@@ -41,6 +41,8 @@ goog.exportSymbol('proto.hiber.event.Event.ModemTransferEvent.ModemTransferRecei
 goog.exportSymbol('proto.hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.OrganizationEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent', null, global);
+goog.exportSymbol('proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.PublisherEvent', null, global);
 goog.exportSymbol('proto.hiber.event.Event.PublisherEvent.CreatedEvent', null, global);
@@ -88,7 +90,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.hiber.event.Event.oneofGroups_ = [[2,36,3,4,5,6,7,8,9,10,15,16,17,18,19,20,23,24,30,35,25,31,32,33,34]];
+proto.hiber.event.Event.oneofGroups_ = [[2,36,3,4,5,6,7,8,9,10,15,16,17,18,19,20,23,24,30,35,37,25,38,31,32,33,34]];
 
 /**
  * @enum {number}
@@ -115,7 +117,9 @@ proto.hiber.event.Event.EventCase = {
   TOKEN_EXPIRED: 24,
   TOKEN_CREATED: 30,
   TOKEN_DELETED: 35,
+  ORGANIZATION_CREATED: 37,
   ORGANIZATION_UPDATED: 25,
+  ORGANIZATION_DELETED: 38,
   PUBLISHER_CREATED: 31,
   PUBLISHER_UPDATED: 32,
   PUBLISHER_DELETED: 33,
@@ -179,7 +183,9 @@ proto.hiber.event.Event.toObject = function(includeInstance, msg) {
     tokenExpired: (f = msg.getTokenExpired()) && proto.hiber.event.Event.TokenEvent.TokenExpiredEvent.toObject(includeInstance, f),
     tokenCreated: (f = msg.getTokenCreated()) && proto.hiber.event.Event.TokenEvent.TokenCreatedEvent.toObject(includeInstance, f),
     tokenDeleted: (f = msg.getTokenDeleted()) && proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.toObject(includeInstance, f),
+    organizationCreated: (f = msg.getOrganizationCreated()) && proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.toObject(includeInstance, f),
     organizationUpdated: (f = msg.getOrganizationUpdated()) && proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.toObject(includeInstance, f),
+    organizationDeleted: (f = msg.getOrganizationDeleted()) && proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.toObject(includeInstance, f),
     publisherCreated: (f = msg.getPublisherCreated()) && proto.hiber.event.Event.PublisherEvent.CreatedEvent.toObject(includeInstance, f),
     publisherUpdated: (f = msg.getPublisherUpdated()) && proto.hiber.event.Event.PublisherEvent.UpdatedEvent.toObject(includeInstance, f),
     publisherDeleted: (f = msg.getPublisherDeleted()) && proto.hiber.event.Event.PublisherEvent.DeletedEvent.toObject(includeInstance, f),
@@ -324,10 +330,20 @@ proto.hiber.event.Event.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.deserializeBinaryFromReader);
       msg.setTokenDeleted(value);
       break;
+    case 37:
+      var value = new proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent;
+      reader.readMessage(value,proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.deserializeBinaryFromReader);
+      msg.setOrganizationCreated(value);
+      break;
     case 25:
       var value = new proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent;
       reader.readMessage(value,proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.deserializeBinaryFromReader);
       msg.setOrganizationUpdated(value);
+      break;
+    case 38:
+      var value = new proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent;
+      reader.readMessage(value,proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.deserializeBinaryFromReader);
+      msg.setOrganizationDeleted(value);
       break;
     case 31:
       var value = new proto.hiber.event.Event.PublisherEvent.CreatedEvent;
@@ -545,12 +561,28 @@ proto.hiber.event.Event.serializeBinaryToWriter = function(message, writer) {
       proto.hiber.event.Event.TokenEvent.TokenDeletedEvent.serializeBinaryToWriter
     );
   }
+  f = message.getOrganizationCreated();
+  if (f != null) {
+    writer.writeMessage(
+      37,
+      f,
+      proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.serializeBinaryToWriter
+    );
+  }
   f = message.getOrganizationUpdated();
   if (f != null) {
     writer.writeMessage(
       25,
       f,
       proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getOrganizationDeleted();
+  if (f != null) {
+    writer.writeMessage(
+      38,
+      f,
+      proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.serializeBinaryToWriter
     );
   }
   f = message.getPublisherCreated();
@@ -9874,6 +9906,290 @@ proto.hiber.event.Event.OrganizationEvent.serializeBinaryToWriter = function(mes
  * @extends {jspb.Message}
  * @constructor
  */
+proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.displayName = 'proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    parentOrganization: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    created: (f = msg.getCreated()) && organization_pb.Organization.toObject(includeInstance, f),
+    title: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent;
+  return proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setParentOrganization(value);
+      break;
+    case 2:
+      var value = new organization_pb.Organization;
+      reader.readMessage(value,organization_pb.Organization.deserializeBinaryFromReader);
+      msg.setCreated(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTitle(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
+      break;
+    case 11:
+      var value = new base_pb.Timestamp;
+      reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getParentOrganization();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getCreated();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      organization_pb.Organization.serializeBinaryToWriter
+    );
+  }
+  f = message.getTitle();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
+    );
+  }
+  f = message.getDescription();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
+      f
+    );
+  }
+  f = message.getTime();
+  if (f != null) {
+    writer.writeMessage(
+      11,
+      f,
+      base_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional string parent_organization = 1;
+ * @return {string}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.prototype.getParentOrganization = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.prototype.setParentOrganization = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional hiber.organization.Organization created = 2;
+ * @return {?proto.hiber.organization.Organization}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.prototype.getCreated = function() {
+  return /** @type{?proto.hiber.organization.Organization} */ (
+    jspb.Message.getWrapperField(this, organization_pb.Organization, 2));
+};
+
+
+/** @param {?proto.hiber.organization.Organization|undefined} value */
+proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.prototype.setCreated = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.prototype.clearCreated = function() {
+  this.setCreated(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.prototype.hasCreated = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional string title = 9;
+ * @return {string}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.prototype.getTitle = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.prototype.setTitle = function(value) {
+  jspb.Message.setField(this, 9, value);
+};
+
+
+/**
+ * optional string description = 10;
+ * @return {string}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.prototype.setDescription = function(value) {
+  jspb.Message.setField(this, 10, value);
+};
+
+
+/**
+ * optional hiber.Timestamp time = 11;
+ * @return {?proto.hiber.Timestamp}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.prototype.getTime = function() {
+  return /** @type{?proto.hiber.Timestamp} */ (
+    jspb.Message.getWrapperField(this, base_pb.Timestamp, 11));
+};
+
+
+/** @param {?proto.hiber.Timestamp|undefined} value */
+proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.prototype.setTime = function(value) {
+  jspb.Message.setWrapperField(this, 11, value);
+};
+
+
+proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.prototype.clearTime = function() {
+  this.setTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent.prototype.hasTime = function() {
+  return jspb.Message.getField(this, 11) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -10357,6 +10673,273 @@ proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.cle
  */
 proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent.prototype.hasTime = function() {
   return jspb.Message.getField(this, 11) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.displayName = 'proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    parentOrganization: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    deletedOrganization: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    title: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent;
+  return proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setParentOrganization(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDeletedOrganization(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTitle(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
+      break;
+    case 5:
+      var value = new base_pb.Timestamp;
+      reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getParentOrganization();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getDeletedOrganization();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getTitle();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getDescription();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getTime();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      base_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional string parent_organization = 1;
+ * @return {string}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.prototype.getParentOrganization = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.prototype.setParentOrganization = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional string deleted_organization = 2;
+ * @return {string}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.prototype.getDeletedOrganization = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.prototype.setDeletedOrganization = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional string title = 3;
+ * @return {string}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.prototype.getTitle = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.prototype.setTitle = function(value) {
+  jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * optional string description = 4;
+ * @return {string}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.prototype.setDescription = function(value) {
+  jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * optional hiber.Timestamp time = 5;
+ * @return {?proto.hiber.Timestamp}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.prototype.getTime = function() {
+  return /** @type{?proto.hiber.Timestamp} */ (
+    jspb.Message.getWrapperField(this, base_pb.Timestamp, 5));
+};
+
+
+/** @param {?proto.hiber.Timestamp|undefined} value */
+proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.prototype.setTime = function(value) {
+  jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.prototype.clearTime = function() {
+  this.setTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent.prototype.hasTime = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
@@ -10978,6 +11561,36 @@ proto.hiber.event.Event.prototype.hasTokenDeleted = function() {
 
 
 /**
+ * optional OrganizationEvent.OrganizationCreatedEvent organization_created = 37;
+ * @return {?proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent}
+ */
+proto.hiber.event.Event.prototype.getOrganizationCreated = function() {
+  return /** @type{?proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent, 37));
+};
+
+
+/** @param {?proto.hiber.event.Event.OrganizationEvent.OrganizationCreatedEvent|undefined} value */
+proto.hiber.event.Event.prototype.setOrganizationCreated = function(value) {
+  jspb.Message.setOneofWrapperField(this, 37, proto.hiber.event.Event.oneofGroups_[0], value);
+};
+
+
+proto.hiber.event.Event.prototype.clearOrganizationCreated = function() {
+  this.setOrganizationCreated(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.prototype.hasOrganizationCreated = function() {
+  return jspb.Message.getField(this, 37) != null;
+};
+
+
+/**
  * optional OrganizationEvent.OrganizationUpdatedEvent organization_updated = 25;
  * @return {?proto.hiber.event.Event.OrganizationEvent.OrganizationUpdatedEvent}
  */
@@ -11004,6 +11617,36 @@ proto.hiber.event.Event.prototype.clearOrganizationUpdated = function() {
  */
 proto.hiber.event.Event.prototype.hasOrganizationUpdated = function() {
   return jspb.Message.getField(this, 25) != null;
+};
+
+
+/**
+ * optional OrganizationEvent.OrganizationDeletedEvent organization_deleted = 38;
+ * @return {?proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent}
+ */
+proto.hiber.event.Event.prototype.getOrganizationDeleted = function() {
+  return /** @type{?proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent, 38));
+};
+
+
+/** @param {?proto.hiber.event.Event.OrganizationEvent.OrganizationDeletedEvent|undefined} value */
+proto.hiber.event.Event.prototype.setOrganizationDeleted = function(value) {
+  jspb.Message.setOneofWrapperField(this, 38, proto.hiber.event.Event.oneofGroups_[0], value);
+};
+
+
+proto.hiber.event.Event.prototype.clearOrganizationDeleted = function() {
+  this.setOrganizationDeleted(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hiber.event.Event.prototype.hasOrganizationDeleted = function() {
+  return jspb.Message.getField(this, 38) != null;
 };
 
 
