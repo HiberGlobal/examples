@@ -11,7 +11,7 @@ function serialize_hiber_modem_ClaimModemRequest(arg) {
   if (!(arg instanceof modem_claim_pb.ClaimModemRequest)) {
     throw new Error('Expected argument of type hiber.modem.ClaimModemRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_modem_ClaimModemRequest(buffer_arg) {
@@ -22,7 +22,7 @@ function serialize_hiber_modem_ClaimModemRequest_Response(arg) {
   if (!(arg instanceof modem_claim_pb.ClaimModemRequest.Response)) {
     throw new Error('Expected argument of type hiber.modem.ClaimModemRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_modem_ClaimModemRequest_Response(buffer_arg) {
@@ -33,7 +33,7 @@ function serialize_hiber_modem_ListModemClaimsRequest(arg) {
   if (!(arg instanceof modem_claim_pb.ListModemClaimsRequest)) {
     throw new Error('Expected argument of type hiber.modem.ListModemClaimsRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_modem_ListModemClaimsRequest(buffer_arg) {
@@ -44,7 +44,7 @@ function serialize_hiber_modem_ListModemClaimsRequest_Response(arg) {
   if (!(arg instanceof modem_claim_pb.ListModemClaimsRequest.Response)) {
     throw new Error('Expected argument of type hiber.modem.ListModemClaimsRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_modem_ListModemClaimsRequest_Response(buffer_arg) {
@@ -57,7 +57,7 @@ function deserialize_hiber_modem_ListModemClaimsRequest_Response(buffer_arg) {
 // This process is instantaneous, but the previous owner can reject the claim afterwards.
 var ModemClaimServiceService = exports.ModemClaimServiceService = {
   // Claim a number of modems. 
-  claim: {
+claim: {
     path: '/hiber.modem.ModemClaimService/Claim',
     requestStream: false,
     responseStream: false,
@@ -69,7 +69,7 @@ var ModemClaimServiceService = exports.ModemClaimServiceService = {
     responseDeserialize: deserialize_hiber_modem_ClaimModemRequest_Response,
   },
   // List modems that have been claimed. They are no longer part if your organization. 
-  listClaims: {
+listClaims: {
     path: '/hiber.modem.ModemClaimService/ListClaims',
     requestStream: false,
     responseStream: false,

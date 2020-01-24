@@ -12,7 +12,9 @@ var goog = jspb;
 var global = Function('return this')();
 
 var base_pb = require('./base_pb.js');
+goog.object.extend(proto, base_pb);
 var modem_pb = require('./modem_pb.js');
+goog.object.extend(proto, modem_pb);
 goog.exportSymbol('proto.hiber.map.GroundStation', null, global);
 goog.exportSymbol('proto.hiber.map.MapBlock', null, global);
 goog.exportSymbol('proto.hiber.map.MapRequest', null, global);
@@ -195,7 +197,7 @@ proto.hiber.map.GroundStation.prototype.clearLocation = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.map.GroundStation.prototype.hasLocation = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -213,7 +215,7 @@ proto.hiber.map.GroundStation.prototype.getName = function() {
 
 /** @param {string} value */
 proto.hiber.map.GroundStation.prototype.setName = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -367,7 +369,7 @@ proto.hiber.map.TileCoordinate.prototype.getX = function() {
 
 /** @param {number} value */
 proto.hiber.map.TileCoordinate.prototype.setX = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -382,7 +384,7 @@ proto.hiber.map.TileCoordinate.prototype.getY = function() {
 
 /** @param {number} value */
 proto.hiber.map.TileCoordinate.prototype.setY = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -735,7 +737,7 @@ proto.hiber.map.MapTileItem.Modem.prototype.getNumber = function() {
 
 /** @param {string} value */
 proto.hiber.map.MapTileItem.Modem.prototype.setNumber = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -762,7 +764,7 @@ proto.hiber.map.MapTileItem.Modem.prototype.clearLocation = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.map.MapTileItem.Modem.prototype.hasLocation = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -921,7 +923,7 @@ proto.hiber.map.MapTileItem.Group.prototype.getCount = function() {
 
 /** @param {number} value */
 proto.hiber.map.MapTileItem.Group.prototype.setCount = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -948,7 +950,7 @@ proto.hiber.map.MapTileItem.Group.prototype.clearArea = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.map.MapTileItem.Group.prototype.hasArea = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -978,7 +980,7 @@ proto.hiber.map.MapTileItem.prototype.clearTile = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.map.MapTileItem.prototype.hasTile = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -1008,7 +1010,7 @@ proto.hiber.map.MapTileItem.prototype.clearInTile = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.map.MapTileItem.prototype.hasInTile = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1038,7 +1040,7 @@ proto.hiber.map.MapTileItem.prototype.clearModem = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.map.MapTileItem.prototype.hasModem = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -1068,7 +1070,7 @@ proto.hiber.map.MapTileItem.prototype.clearModemGroup = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.map.MapTileItem.prototype.hasModemGroup = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -1128,7 +1130,8 @@ proto.hiber.map.TileMapRequest.toObject = function(includeInstance, msg) {
     modemSelection: (f = msg.getModemSelection()) && modem_pb.ModemSelection.toObject(includeInstance, f),
     includeSatellites: jspb.Message.getFieldWithDefault(msg, 5, false),
     includeGroundStations: jspb.Message.getFieldWithDefault(msg, 6, false),
-    density: jspb.Message.getFieldWithDefault(msg, 7, 0)
+    density: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    childOrganizations: (f = msg.getChildOrganizations()) && base_pb.Filter.ChildOrganizations.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1194,6 +1197,11 @@ proto.hiber.map.TileMapRequest.deserializeBinaryFromReader = function(msg, reade
     case 7:
       var value = /** @type {!proto.hiber.map.TileMapRequest.Density} */ (reader.readEnum());
       msg.setDensity(value);
+      break;
+    case 8:
+      var value = new base_pb.Filter.ChildOrganizations;
+      reader.readMessage(value,base_pb.Filter.ChildOrganizations.deserializeBinaryFromReader);
+      msg.setChildOrganizations(value);
       break;
     default:
       reader.skipField();
@@ -1273,6 +1281,14 @@ proto.hiber.map.TileMapRequest.serializeBinaryToWriter = function(message, write
     writer.writeEnum(
       7,
       f
+    );
+  }
+  f = message.getChildOrganizations();
+  if (f != null) {
+    writer.writeMessage(
+      8,
+      f,
+      base_pb.Filter.ChildOrganizations.serializeBinaryToWriter
     );
   }
 };
@@ -1470,15 +1486,15 @@ proto.hiber.map.TileMapRequest.Response.serializeBinaryToWriter = function(messa
 
 /**
  * repeated GroundStation ground_stations = 1;
- * @return {!Array.<!proto.hiber.map.GroundStation>}
+ * @return {!Array<!proto.hiber.map.GroundStation>}
  */
 proto.hiber.map.TileMapRequest.Response.prototype.getGroundStationsList = function() {
-  return /** @type{!Array.<!proto.hiber.map.GroundStation>} */ (
+  return /** @type{!Array<!proto.hiber.map.GroundStation>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.map.GroundStation, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.map.GroundStation>} value */
+/** @param {!Array<!proto.hiber.map.GroundStation>} value */
 proto.hiber.map.TileMapRequest.Response.prototype.setGroundStationsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -1501,15 +1517,15 @@ proto.hiber.map.TileMapRequest.Response.prototype.clearGroundStationsList = func
 
 /**
  * repeated MapTileItem map_items = 2;
- * @return {!Array.<!proto.hiber.map.MapTileItem>}
+ * @return {!Array<!proto.hiber.map.MapTileItem>}
  */
 proto.hiber.map.TileMapRequest.Response.prototype.getMapItemsList = function() {
-  return /** @type{!Array.<!proto.hiber.map.MapTileItem>} */ (
+  return /** @type{!Array<!proto.hiber.map.MapTileItem>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.map.MapTileItem, 2));
 };
 
 
-/** @param {!Array.<!proto.hiber.map.MapTileItem>} value */
+/** @param {!Array<!proto.hiber.map.MapTileItem>} value */
 proto.hiber.map.TileMapRequest.Response.prototype.setMapItemsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
@@ -1553,7 +1569,7 @@ proto.hiber.map.TileMapRequest.Response.prototype.clearRequest = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.map.TileMapRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -1562,15 +1578,15 @@ proto.hiber.map.TileMapRequest.Response.prototype.hasRequest = function() {
 
 /**
  * repeated Satellite satellites = 5;
- * @return {!Array.<!proto.hiber.map.Satellite>}
+ * @return {!Array<!proto.hiber.map.Satellite>}
  */
 proto.hiber.map.TileMapRequest.Response.prototype.getSatellitesList = function() {
-  return /** @type{!Array.<!proto.hiber.map.Satellite>} */ (
+  return /** @type{!Array<!proto.hiber.map.Satellite>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.map.Satellite, 5));
 };
 
 
-/** @param {!Array.<!proto.hiber.map.Satellite>} value */
+/** @param {!Array<!proto.hiber.map.Satellite>} value */
 proto.hiber.map.TileMapRequest.Response.prototype.setSatellitesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 5, value);
 };
@@ -1602,7 +1618,7 @@ proto.hiber.map.TileMapRequest.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.map.TileMapRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1629,7 +1645,7 @@ proto.hiber.map.TileMapRequest.prototype.clearSelection = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.map.TileMapRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1647,7 +1663,7 @@ proto.hiber.map.TileMapRequest.prototype.getLevel = function() {
 
 /** @param {number} value */
 proto.hiber.map.TileMapRequest.prototype.setLevel = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -1674,7 +1690,7 @@ proto.hiber.map.TileMapRequest.prototype.clearModemSelection = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.map.TileMapRequest.prototype.hasModemSelection = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -1694,7 +1710,7 @@ proto.hiber.map.TileMapRequest.prototype.getIncludeSatellites = function() {
 
 /** @param {boolean} value */
 proto.hiber.map.TileMapRequest.prototype.setIncludeSatellites = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 
@@ -1711,7 +1727,7 @@ proto.hiber.map.TileMapRequest.prototype.getIncludeGroundStations = function() {
 
 /** @param {boolean} value */
 proto.hiber.map.TileMapRequest.prototype.setIncludeGroundStations = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
@@ -1726,7 +1742,37 @@ proto.hiber.map.TileMapRequest.prototype.getDensity = function() {
 
 /** @param {!proto.hiber.map.TileMapRequest.Density} value */
 proto.hiber.map.TileMapRequest.prototype.setDensity = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3EnumField(this, 7, value);
+};
+
+
+/**
+ * optional hiber.Filter.ChildOrganizations child_organizations = 8;
+ * @return {?proto.hiber.Filter.ChildOrganizations}
+ */
+proto.hiber.map.TileMapRequest.prototype.getChildOrganizations = function() {
+  return /** @type{?proto.hiber.Filter.ChildOrganizations} */ (
+    jspb.Message.getWrapperField(this, base_pb.Filter.ChildOrganizations, 8));
+};
+
+
+/** @param {?proto.hiber.Filter.ChildOrganizations|undefined} value */
+proto.hiber.map.TileMapRequest.prototype.setChildOrganizations = function(value) {
+  jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+proto.hiber.map.TileMapRequest.prototype.clearChildOrganizations = function() {
+  this.setChildOrganizations(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.hiber.map.TileMapRequest.prototype.hasChildOrganizations = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
@@ -2057,7 +2103,7 @@ proto.hiber.map.Satellite.Position.prototype.clearTime = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.map.Satellite.Position.prototype.hasTime = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -2087,7 +2133,7 @@ proto.hiber.map.Satellite.Position.prototype.clearLocation = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.map.Satellite.Position.prototype.hasLocation = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2105,7 +2151,7 @@ proto.hiber.map.Satellite.prototype.getId = function() {
 
 /** @param {number} value */
 proto.hiber.map.Satellite.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -2120,21 +2166,21 @@ proto.hiber.map.Satellite.prototype.getName = function() {
 
 /** @param {string} value */
 proto.hiber.map.Satellite.prototype.setName = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
  * repeated Position positions = 3;
- * @return {!Array.<!proto.hiber.map.Satellite.Position>}
+ * @return {!Array<!proto.hiber.map.Satellite.Position>}
  */
 proto.hiber.map.Satellite.prototype.getPositionsList = function() {
-  return /** @type{!Array.<!proto.hiber.map.Satellite.Position>} */ (
+  return /** @type{!Array<!proto.hiber.map.Satellite.Position>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.map.Satellite.Position, 3));
 };
 
 
-/** @param {!Array.<!proto.hiber.map.Satellite.Position>} value */
+/** @param {!Array<!proto.hiber.map.Satellite.Position>} value */
 proto.hiber.map.Satellite.prototype.setPositionsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
@@ -2410,15 +2456,15 @@ proto.hiber.map.SatellitesRequest.Response.serializeBinaryToWriter = function(me
 
 /**
  * repeated Satellite satellites = 1;
- * @return {!Array.<!proto.hiber.map.Satellite>}
+ * @return {!Array<!proto.hiber.map.Satellite>}
  */
 proto.hiber.map.SatellitesRequest.Response.prototype.getSatellitesList = function() {
-  return /** @type{!Array.<!proto.hiber.map.Satellite>} */ (
+  return /** @type{!Array<!proto.hiber.map.Satellite>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.map.Satellite, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.map.Satellite>} value */
+/** @param {!Array<!proto.hiber.map.Satellite>} value */
 proto.hiber.map.SatellitesRequest.Response.prototype.setSatellitesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -2774,7 +2820,7 @@ proto.hiber.map.MapSelection.AreaRestriction.prototype.clearBottomLeft = functio
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.map.MapSelection.AreaRestriction.prototype.hasBottomLeft = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -2804,7 +2850,7 @@ proto.hiber.map.MapSelection.AreaRestriction.prototype.clearTopRight = function(
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.map.MapSelection.AreaRestriction.prototype.hasTopRight = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2950,15 +2996,15 @@ proto.hiber.map.MapSelection.ShapeRestriction.serializeBinaryToWriter = function
 
 /**
  * repeated hiber.Location path = 1;
- * @return {!Array.<!proto.hiber.Location>}
+ * @return {!Array<!proto.hiber.Location>}
  */
 proto.hiber.map.MapSelection.ShapeRestriction.prototype.getPathList = function() {
-  return /** @type{!Array.<!proto.hiber.Location>} */ (
+  return /** @type{!Array<!proto.hiber.Location>} */ (
     jspb.Message.getRepeatedWrapperField(this, base_pb.Location, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.Location>} value */
+/** @param {!Array<!proto.hiber.Location>} value */
 proto.hiber.map.MapSelection.ShapeRestriction.prototype.setPathList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -3002,7 +3048,7 @@ proto.hiber.map.MapSelection.prototype.clearModems = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.map.MapSelection.prototype.hasModems = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -3020,7 +3066,7 @@ proto.hiber.map.MapSelection.prototype.getLevel = function() {
 
 /** @param {number} value */
 proto.hiber.map.MapSelection.prototype.setLevel = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -3047,7 +3093,7 @@ proto.hiber.map.MapSelection.prototype.clearArea = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.map.MapSelection.prototype.hasArea = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -3077,7 +3123,7 @@ proto.hiber.map.MapSelection.prototype.clearShape = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.map.MapSelection.prototype.hasShape = function() {
   return jspb.Message.getField(this, 5) != null;
@@ -3272,7 +3318,7 @@ proto.hiber.map.MapBlock.prototype.clearArea = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.map.MapBlock.prototype.hasArea = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -3290,7 +3336,7 @@ proto.hiber.map.MapBlock.prototype.getModemCount = function() {
 
 /** @param {number} value */
 proto.hiber.map.MapBlock.prototype.setModemCount = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -3305,7 +3351,7 @@ proto.hiber.map.MapBlock.prototype.getErrorCount = function() {
 
 /** @param {number} value */
 proto.hiber.map.MapBlock.prototype.setErrorCount = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -3320,7 +3366,7 @@ proto.hiber.map.MapBlock.prototype.getErrorPercentage = function() {
 
 /** @param {number} value */
 proto.hiber.map.MapBlock.prototype.setErrorPercentage = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3FloatField(this, 4, value);
 };
 
 
@@ -3648,15 +3694,15 @@ proto.hiber.map.MapRequest.Response.serializeBinaryToWriter = function(message, 
 
 /**
  * repeated GroundStation ground_stations = 1;
- * @return {!Array.<!proto.hiber.map.GroundStation>}
+ * @return {!Array<!proto.hiber.map.GroundStation>}
  */
 proto.hiber.map.MapRequest.Response.prototype.getGroundStationsList = function() {
-  return /** @type{!Array.<!proto.hiber.map.GroundStation>} */ (
+  return /** @type{!Array<!proto.hiber.map.GroundStation>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.map.GroundStation, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.map.GroundStation>} value */
+/** @param {!Array<!proto.hiber.map.GroundStation>} value */
 proto.hiber.map.MapRequest.Response.prototype.setGroundStationsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -3679,15 +3725,15 @@ proto.hiber.map.MapRequest.Response.prototype.clearGroundStationsList = function
 
 /**
  * repeated MapBlock map_blocks = 2;
- * @return {!Array.<!proto.hiber.map.MapBlock>}
+ * @return {!Array<!proto.hiber.map.MapBlock>}
  */
 proto.hiber.map.MapRequest.Response.prototype.getMapBlocksList = function() {
-  return /** @type{!Array.<!proto.hiber.map.MapBlock>} */ (
+  return /** @type{!Array<!proto.hiber.map.MapBlock>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.map.MapBlock, 2));
 };
 
 
-/** @param {!Array.<!proto.hiber.map.MapBlock>} value */
+/** @param {!Array<!proto.hiber.map.MapBlock>} value */
 proto.hiber.map.MapRequest.Response.prototype.setMapBlocksList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
@@ -3731,7 +3777,7 @@ proto.hiber.map.MapRequest.Response.prototype.clearRequest = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.map.MapRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -3740,15 +3786,15 @@ proto.hiber.map.MapRequest.Response.prototype.hasRequest = function() {
 
 /**
  * repeated Satellite satellites = 5;
- * @return {!Array.<!proto.hiber.map.Satellite>}
+ * @return {!Array<!proto.hiber.map.Satellite>}
  */
 proto.hiber.map.MapRequest.Response.prototype.getSatellitesList = function() {
-  return /** @type{!Array.<!proto.hiber.map.Satellite>} */ (
+  return /** @type{!Array<!proto.hiber.map.Satellite>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.map.Satellite, 5));
 };
 
 
-/** @param {!Array.<!proto.hiber.map.Satellite>} value */
+/** @param {!Array<!proto.hiber.map.Satellite>} value */
 proto.hiber.map.MapRequest.Response.prototype.setSatellitesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 5, value);
 };
@@ -3780,7 +3826,7 @@ proto.hiber.map.MapRequest.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.map.MapRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -3807,7 +3853,7 @@ proto.hiber.map.MapRequest.prototype.clearSelection = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.map.MapRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;

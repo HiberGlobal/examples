@@ -9,7 +9,7 @@ function serialize_hiber_tag_CreateTagRequest(arg) {
   if (!(arg instanceof tag_pb.CreateTagRequest)) {
     throw new Error('Expected argument of type hiber.tag.CreateTagRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_tag_CreateTagRequest(buffer_arg) {
@@ -20,7 +20,7 @@ function serialize_hiber_tag_DeleteTagRequest(arg) {
   if (!(arg instanceof tag_pb.DeleteTagRequest)) {
     throw new Error('Expected argument of type hiber.tag.DeleteTagRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_tag_DeleteTagRequest(buffer_arg) {
@@ -31,7 +31,7 @@ function serialize_hiber_tag_DeleteTagRequest_Response(arg) {
   if (!(arg instanceof tag_pb.DeleteTagRequest.Response)) {
     throw new Error('Expected argument of type hiber.tag.DeleteTagRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_tag_DeleteTagRequest_Response(buffer_arg) {
@@ -42,7 +42,7 @@ function serialize_hiber_tag_ListTagsRequest(arg) {
   if (!(arg instanceof tag_pb.ListTagsRequest)) {
     throw new Error('Expected argument of type hiber.tag.ListTagsRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_tag_ListTagsRequest(buffer_arg) {
@@ -53,7 +53,7 @@ function serialize_hiber_tag_ListTagsRequest_Response(arg) {
   if (!(arg instanceof tag_pb.ListTagsRequest.Response)) {
     throw new Error('Expected argument of type hiber.tag.ListTagsRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_tag_ListTagsRequest_Response(buffer_arg) {
@@ -64,7 +64,7 @@ function serialize_hiber_tag_Tag(arg) {
   if (!(arg instanceof tag_pb.Tag)) {
     throw new Error('Expected argument of type hiber.tag.Tag');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_tag_Tag(buffer_arg) {
@@ -75,7 +75,7 @@ function serialize_hiber_tag_UpdateTagRequest(arg) {
   if (!(arg instanceof tag_pb.UpdateTagRequest)) {
     throw new Error('Expected argument of type hiber.tag.UpdateTagRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_tag_UpdateTagRequest(buffer_arg) {

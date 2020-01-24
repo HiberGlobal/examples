@@ -12,6 +12,7 @@ var goog = jspb;
 var global = Function('return this')();
 
 var base_pb = require('./base_pb.js');
+goog.object.extend(proto, base_pb);
 goog.exportSymbol('proto.hiber.organization.CreateOrganizationRequest', null, global);
 goog.exportSymbol('proto.hiber.organization.DeleteOrganizationConfirmationRequest', null, global);
 goog.exportSymbol('proto.hiber.organization.DeleteOrganizationConfirmationRequest.Response', null, global);
@@ -461,21 +462,21 @@ proto.hiber.organization.Organization.Address.serializeBinaryToWriter = function
 
 /**
  * repeated string lines = 1;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.organization.Organization.Address.prototype.getLinesList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.organization.Organization.Address.prototype.setLinesList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.organization.Organization.Address.prototype.addLines = function(value, opt_index) {
@@ -499,7 +500,7 @@ proto.hiber.organization.Organization.Address.prototype.getZipCode = function() 
 
 /** @param {string} value */
 proto.hiber.organization.Organization.Address.prototype.setZipCode = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -514,7 +515,7 @@ proto.hiber.organization.Organization.Address.prototype.getCity = function() {
 
 /** @param {string} value */
 proto.hiber.organization.Organization.Address.prototype.setCity = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -529,7 +530,7 @@ proto.hiber.organization.Organization.Address.prototype.getState = function() {
 
 /** @param {string} value */
 proto.hiber.organization.Organization.Address.prototype.setState = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -544,7 +545,7 @@ proto.hiber.organization.Organization.Address.prototype.getCountry = function() 
 
 /** @param {string} value */
 proto.hiber.organization.Organization.Address.prototype.setCountry = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -710,7 +711,7 @@ proto.hiber.organization.Organization.Contact.prototype.getName = function() {
 
 /** @param {string} value */
 proto.hiber.organization.Organization.Contact.prototype.setName = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -725,7 +726,7 @@ proto.hiber.organization.Organization.Contact.prototype.getEmail = function() {
 
 /** @param {string} value */
 proto.hiber.organization.Organization.Contact.prototype.setEmail = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -740,7 +741,7 @@ proto.hiber.organization.Organization.Contact.prototype.getPhone = function() {
 
 /** @param {string} value */
 proto.hiber.organization.Organization.Contact.prototype.setPhone = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -755,7 +756,7 @@ proto.hiber.organization.Organization.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.organization.Organization.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -770,7 +771,7 @@ proto.hiber.organization.Organization.prototype.getDisplayName = function() {
 
 /** @param {string} value */
 proto.hiber.organization.Organization.prototype.setDisplayName = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -785,7 +786,7 @@ proto.hiber.organization.Organization.prototype.getVatNumber = function() {
 
 /** @param {string} value */
 proto.hiber.organization.Organization.prototype.setVatNumber = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -812,7 +813,7 @@ proto.hiber.organization.Organization.prototype.clearAddress = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.Organization.prototype.hasAddress = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -830,7 +831,7 @@ proto.hiber.organization.Organization.prototype.getBillingName = function() {
 
 /** @param {string} value */
 proto.hiber.organization.Organization.prototype.setBillingName = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -857,7 +858,7 @@ proto.hiber.organization.Organization.prototype.clearBillingAddress = function()
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.Organization.prototype.hasBillingAddress = function() {
   return jspb.Message.getField(this, 6) != null;
@@ -887,7 +888,7 @@ proto.hiber.organization.Organization.prototype.clearContact = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.Organization.prototype.hasContact = function() {
   return jspb.Message.getField(this, 7) != null;
@@ -917,7 +918,7 @@ proto.hiber.organization.Organization.prototype.clearContractSignatureDate = fun
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.Organization.prototype.hasContractSignatureDate = function() {
   return jspb.Message.getField(this, 8) != null;
@@ -947,7 +948,7 @@ proto.hiber.organization.Organization.prototype.clearCreatedAt = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.Organization.prototype.hasCreatedAt = function() {
   return jspb.Message.getField(this, 9) != null;
@@ -977,7 +978,7 @@ proto.hiber.organization.Organization.prototype.clearUpdatedAt = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.Organization.prototype.hasUpdatedAt = function() {
   return jspb.Message.getField(this, 10) != null;
@@ -1031,7 +1032,8 @@ proto.hiber.organization.OrganizationSelection.prototype.toObject = function(opt
  */
 proto.hiber.organization.OrganizationSelection.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizations: (f = msg.getOrganizations()) && base_pb.Filter.Organizations.toObject(includeInstance, f)
+    organizations: (f = msg.getOrganizations()) && base_pb.Filter.Organizations.toObject(includeInstance, f),
+    search: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1073,6 +1075,10 @@ proto.hiber.organization.OrganizationSelection.deserializeBinaryFromReader = fun
       reader.readMessage(value,base_pb.Filter.Organizations.deserializeBinaryFromReader);
       msg.setOrganizations(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSearch(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1110,6 +1116,13 @@ proto.hiber.organization.OrganizationSelection.serializeBinaryToWriter = functio
       base_pb.Filter.Organizations.serializeBinaryToWriter
     );
   }
+  f = message.getSearch();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -1136,10 +1149,25 @@ proto.hiber.organization.OrganizationSelection.prototype.clearOrganizations = fu
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.OrganizationSelection.prototype.hasOrganizations = function() {
   return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional string search = 2;
+ * @return {string}
+ */
+proto.hiber.organization.OrganizationSelection.prototype.getSearch = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.organization.OrganizationSelection.prototype.setSearch = function(value) {
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -1281,7 +1309,7 @@ proto.hiber.organization.GetOrganizationRequest.prototype.getOrganization = func
 
 /** @param {string} value */
 proto.hiber.organization.GetOrganizationRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1501,7 +1529,7 @@ proto.hiber.organization.UpdateOrganizationRequest.prototype.getOrganization = f
 
 /** @param {string} value */
 proto.hiber.organization.UpdateOrganizationRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1516,7 +1544,7 @@ proto.hiber.organization.UpdateOrganizationRequest.prototype.getDisplayName = fu
 
 /** @param {string} value */
 proto.hiber.organization.UpdateOrganizationRequest.prototype.setDisplayName = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -1531,7 +1559,7 @@ proto.hiber.organization.UpdateOrganizationRequest.prototype.getVatNumber = func
 
 /** @param {string} value */
 proto.hiber.organization.UpdateOrganizationRequest.prototype.setVatNumber = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -1558,7 +1586,7 @@ proto.hiber.organization.UpdateOrganizationRequest.prototype.clearAddress = func
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.UpdateOrganizationRequest.prototype.hasAddress = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -1576,7 +1604,7 @@ proto.hiber.organization.UpdateOrganizationRequest.prototype.getBillingName = fu
 
 /** @param {string} value */
 proto.hiber.organization.UpdateOrganizationRequest.prototype.setBillingName = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -1603,7 +1631,7 @@ proto.hiber.organization.UpdateOrganizationRequest.prototype.clearBillingAddress
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.UpdateOrganizationRequest.prototype.hasBillingAddress = function() {
   return jspb.Message.getField(this, 6) != null;
@@ -1633,7 +1661,7 @@ proto.hiber.organization.UpdateOrganizationRequest.prototype.clearContact = func
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.UpdateOrganizationRequest.prototype.hasContact = function() {
   return jspb.Message.getField(this, 7) != null;
@@ -1947,7 +1975,7 @@ proto.hiber.organization.OrganizationTreeRequest.Response.prototype.clearRequest
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.OrganizationTreeRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -1977,7 +2005,7 @@ proto.hiber.organization.OrganizationTreeRequest.Response.prototype.clearTree = 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.OrganizationTreeRequest.Response.prototype.hasTree = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1995,7 +2023,7 @@ proto.hiber.organization.OrganizationTreeRequest.prototype.getOrganization = fun
 
 /** @param {string} value */
 proto.hiber.organization.OrganizationTreeRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -2022,7 +2050,7 @@ proto.hiber.organization.OrganizationTreeRequest.prototype.clearSelection = func
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.OrganizationTreeRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2203,7 +2231,7 @@ proto.hiber.organization.OrganizationTree.prototype.clearOrganization = function
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.OrganizationTree.prototype.hasOrganization = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -2212,15 +2240,15 @@ proto.hiber.organization.OrganizationTree.prototype.hasOrganization = function()
 
 /**
  * repeated OrganizationTree children = 3;
- * @return {!Array.<!proto.hiber.organization.OrganizationTree>}
+ * @return {!Array<!proto.hiber.organization.OrganizationTree>}
  */
 proto.hiber.organization.OrganizationTree.prototype.getChildrenList = function() {
-  return /** @type{!Array.<!proto.hiber.organization.OrganizationTree>} */ (
+  return /** @type{!Array<!proto.hiber.organization.OrganizationTree>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.organization.OrganizationTree, 3));
 };
 
 
-/** @param {!Array.<!proto.hiber.organization.OrganizationTree>} value */
+/** @param {!Array<!proto.hiber.organization.OrganizationTree>} value */
 proto.hiber.organization.OrganizationTree.prototype.setChildrenList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
@@ -2290,7 +2318,8 @@ proto.hiber.organization.ListChildOrganizationsRequest.toObject = function(inclu
   var f, obj = {
     organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     selection: (f = msg.getSelection()) && proto.hiber.organization.OrganizationSelection.toObject(includeInstance, f),
-    pagination: (f = msg.getPagination()) && base_pb.Pagination.toObject(includeInstance, f)
+    pagination: (f = msg.getPagination()) && base_pb.Pagination.toObject(includeInstance, f),
+    includeDetails: jspb.Message.getFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -2340,6 +2369,10 @@ proto.hiber.organization.ListChildOrganizationsRequest.deserializeBinaryFromRead
       var value = new base_pb.Pagination;
       reader.readMessage(value,base_pb.Pagination.deserializeBinaryFromReader);
       msg.setPagination(value);
+      break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIncludeDetails(value);
       break;
     default:
       reader.skipField();
@@ -2391,6 +2424,13 @@ proto.hiber.organization.ListChildOrganizationsRequest.serializeBinaryToWriter =
       3,
       f,
       base_pb.Pagination.serializeBinaryToWriter
+    );
+  }
+  f = message.getIncludeDetails();
+  if (f) {
+    writer.writeBool(
+      4,
+      f
     );
   }
 };
@@ -2563,15 +2603,15 @@ proto.hiber.organization.ListChildOrganizationsRequest.Response.serializeBinaryT
 
 /**
  * repeated Organization child_organizations = 1;
- * @return {!Array.<!proto.hiber.organization.Organization>}
+ * @return {!Array<!proto.hiber.organization.Organization>}
  */
 proto.hiber.organization.ListChildOrganizationsRequest.Response.prototype.getChildOrganizationsList = function() {
-  return /** @type{!Array.<!proto.hiber.organization.Organization>} */ (
+  return /** @type{!Array<!proto.hiber.organization.Organization>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.organization.Organization, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.organization.Organization>} value */
+/** @param {!Array<!proto.hiber.organization.Organization>} value */
 proto.hiber.organization.ListChildOrganizationsRequest.Response.prototype.setChildOrganizationsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -2615,7 +2655,7 @@ proto.hiber.organization.ListChildOrganizationsRequest.Response.prototype.clearR
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.ListChildOrganizationsRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2645,7 +2685,7 @@ proto.hiber.organization.ListChildOrganizationsRequest.Response.prototype.clearP
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.ListChildOrganizationsRequest.Response.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -2663,7 +2703,7 @@ proto.hiber.organization.ListChildOrganizationsRequest.prototype.getOrganization
 
 /** @param {string} value */
 proto.hiber.organization.ListChildOrganizationsRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -2690,7 +2730,7 @@ proto.hiber.organization.ListChildOrganizationsRequest.prototype.clearSelection 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.ListChildOrganizationsRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2720,10 +2760,27 @@ proto.hiber.organization.ListChildOrganizationsRequest.prototype.clearPagination
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.ListChildOrganizationsRequest.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional bool include_details = 4;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.organization.ListChildOrganizationsRequest.prototype.getIncludeDetails = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 4, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.organization.ListChildOrganizationsRequest.prototype.setIncludeDetails = function(value) {
+  jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
@@ -2979,7 +3036,7 @@ proto.hiber.organization.CreateOrganizationRequest.prototype.getParentOrganizati
 
 /** @param {string} value */
 proto.hiber.organization.CreateOrganizationRequest.prototype.setParentOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -2994,7 +3051,7 @@ proto.hiber.organization.CreateOrganizationRequest.prototype.getNewOrganization 
 
 /** @param {string} value */
 proto.hiber.organization.CreateOrganizationRequest.prototype.setNewOrganization = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -3009,7 +3066,7 @@ proto.hiber.organization.CreateOrganizationRequest.prototype.getDisplayName = fu
 
 /** @param {string} value */
 proto.hiber.organization.CreateOrganizationRequest.prototype.setDisplayName = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -3026,7 +3083,7 @@ proto.hiber.organization.CreateOrganizationRequest.prototype.getIsBusiness = fun
 
 /** @param {boolean} value */
 proto.hiber.organization.CreateOrganizationRequest.prototype.setIsBusiness = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
@@ -3041,7 +3098,7 @@ proto.hiber.organization.CreateOrganizationRequest.prototype.getVatNumber = func
 
 /** @param {string} value */
 proto.hiber.organization.CreateOrganizationRequest.prototype.setVatNumber = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -3068,7 +3125,7 @@ proto.hiber.organization.CreateOrganizationRequest.prototype.clearAddress = func
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.CreateOrganizationRequest.prototype.hasAddress = function() {
   return jspb.Message.getField(this, 6) != null;
@@ -3086,7 +3143,7 @@ proto.hiber.organization.CreateOrganizationRequest.prototype.getBillingName = fu
 
 /** @param {string} value */
 proto.hiber.organization.CreateOrganizationRequest.prototype.setBillingName = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
@@ -3113,7 +3170,7 @@ proto.hiber.organization.CreateOrganizationRequest.prototype.clearBillingAddress
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.CreateOrganizationRequest.prototype.hasBillingAddress = function() {
   return jspb.Message.getField(this, 8) != null;
@@ -3143,7 +3200,7 @@ proto.hiber.organization.CreateOrganizationRequest.prototype.clearContact = func
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.CreateOrganizationRequest.prototype.hasContact = function() {
   return jspb.Message.getField(this, 9) != null;
@@ -3161,7 +3218,7 @@ proto.hiber.organization.CreateOrganizationRequest.prototype.getOrganizationCrea
 
 /** @param {string} value */
 proto.hiber.organization.CreateOrganizationRequest.prototype.setOrganizationCreationToken = function(value) {
-  jspb.Message.setField(this, 10, value);
+  jspb.Message.setProto3StringField(this, 10, value);
 };
 
 
@@ -3487,7 +3544,7 @@ proto.hiber.organization.DeleteOrganizationRequest.Response.prototype.getOrganiz
 
 /** @param {string} value */
 proto.hiber.organization.DeleteOrganizationRequest.Response.prototype.setOrganizationToDelete = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -3502,7 +3559,7 @@ proto.hiber.organization.DeleteOrganizationRequest.Response.prototype.getDeletio
 
 /** @param {string} value */
 proto.hiber.organization.DeleteOrganizationRequest.Response.prototype.setDeletionToken = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -3529,7 +3586,7 @@ proto.hiber.organization.DeleteOrganizationRequest.Response.prototype.clearOrgan
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.organization.DeleteOrganizationRequest.Response.prototype.hasOrganizationsToBeDeleted = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -3538,21 +3595,21 @@ proto.hiber.organization.DeleteOrganizationRequest.Response.prototype.hasOrganiz
 
 /**
  * repeated string modems = 4;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.organization.DeleteOrganizationRequest.Response.prototype.getModemsList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 4));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.organization.DeleteOrganizationRequest.Response.prototype.setModemsList = function(value) {
   jspb.Message.setField(this, 4, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.organization.DeleteOrganizationRequest.Response.prototype.addModems = function(value, opt_index) {
@@ -3576,7 +3633,7 @@ proto.hiber.organization.DeleteOrganizationRequest.prototype.getParentOrganizati
 
 /** @param {string} value */
 proto.hiber.organization.DeleteOrganizationRequest.prototype.setParentOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -3591,7 +3648,7 @@ proto.hiber.organization.DeleteOrganizationRequest.prototype.getOrganizationToDe
 
 /** @param {string} value */
 proto.hiber.organization.DeleteOrganizationRequest.prototype.setOrganizationToDelete = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -3873,7 +3930,7 @@ proto.hiber.organization.DeleteOrganizationConfirmationRequest.prototype.getPare
 
 /** @param {string} value */
 proto.hiber.organization.DeleteOrganizationConfirmationRequest.prototype.setParentOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -3888,7 +3945,7 @@ proto.hiber.organization.DeleteOrganizationConfirmationRequest.prototype.getOrga
 
 /** @param {string} value */
 proto.hiber.organization.DeleteOrganizationConfirmationRequest.prototype.setOrganizationToDelete = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -3903,7 +3960,7 @@ proto.hiber.organization.DeleteOrganizationConfirmationRequest.prototype.getDele
 
 /** @param {string} value */
 proto.hiber.organization.DeleteOrganizationConfirmationRequest.prototype.setDeletionToken = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -4174,7 +4231,7 @@ proto.hiber.organization.ValidateOrganizationCreationTokenRequest.Response.proto
 
 /** @param {boolean} value */
 proto.hiber.organization.ValidateOrganizationCreationTokenRequest.Response.prototype.setValid = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
@@ -4189,7 +4246,7 @@ proto.hiber.organization.ValidateOrganizationCreationTokenRequest.prototype.getO
 
 /** @param {string} value */
 proto.hiber.organization.ValidateOrganizationCreationTokenRequest.prototype.setOrganizationCreationToken = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 

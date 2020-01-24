@@ -45,6 +45,16 @@ class ModemServiceStub(object):
         request_serializer=modem__pb2.UpdateModemTagsRequest.SerializeToString,
         response_deserializer=modem__pb2.UpdateModemTagsRequest.Response.FromString,
         )
+    self.UpdateNotes = channel.unary_unary(
+        '/hiber.modem.ModemService/UpdateNotes',
+        request_serializer=modem__pb2.UpdateModemNotesRequest.SerializeToString,
+        response_deserializer=modem__pb2.UpdateModemNotesRequest.Response.FromString,
+        )
+    self.UpdateSecureNotes = channel.unary_unary(
+        '/hiber.modem.ModemService/UpdateSecureNotes',
+        request_serializer=modem__pb2.UpdateModemSecureNotesRequest.SerializeToString,
+        response_deserializer=modem__pb2.UpdateModemSecureNotesRequest.Response.FromString,
+        )
     self.UpdatePeripherals = channel.unary_unary(
         '/hiber.modem.ModemService/UpdatePeripherals',
         request_serializer=modem__pb2.UpdatePeripheralsRequest.SerializeToString,
@@ -104,6 +114,20 @@ class ModemServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def UpdateNotes(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def UpdateSecureNotes(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
   def UpdatePeripherals(self, request, context):
     # missing associated documentation comment in .proto file
     pass
@@ -150,6 +174,16 @@ def add_ModemServiceServicer_to_server(servicer, server):
           servicer.UpdateTags,
           request_deserializer=modem__pb2.UpdateModemTagsRequest.FromString,
           response_serializer=modem__pb2.UpdateModemTagsRequest.Response.SerializeToString,
+      ),
+      'UpdateNotes': grpc.unary_unary_rpc_method_handler(
+          servicer.UpdateNotes,
+          request_deserializer=modem__pb2.UpdateModemNotesRequest.FromString,
+          response_serializer=modem__pb2.UpdateModemNotesRequest.Response.SerializeToString,
+      ),
+      'UpdateSecureNotes': grpc.unary_unary_rpc_method_handler(
+          servicer.UpdateSecureNotes,
+          request_deserializer=modem__pb2.UpdateModemSecureNotesRequest.FromString,
+          response_serializer=modem__pb2.UpdateModemSecureNotesRequest.Response.SerializeToString,
       ),
       'UpdatePeripherals': grpc.unary_unary_rpc_method_handler(
           servicer.UpdatePeripherals,

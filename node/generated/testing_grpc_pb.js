@@ -9,7 +9,7 @@ function serialize_hiber_testing_PushModemMessagesFromDebugPortRequest(arg) {
   if (!(arg instanceof testing_pb.PushModemMessagesFromDebugPortRequest)) {
     throw new Error('Expected argument of type hiber.testing.PushModemMessagesFromDebugPortRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_testing_PushModemMessagesFromDebugPortRequest(buffer_arg) {
@@ -20,7 +20,7 @@ function serialize_hiber_testing_PushModemMessagesFromDebugPortRequest_Response(
   if (!(arg instanceof testing_pb.PushModemMessagesFromDebugPortRequest.Response)) {
     throw new Error('Expected argument of type hiber.testing.PushModemMessagesFromDebugPortRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_testing_PushModemMessagesFromDebugPortRequest_Response(buffer_arg) {
@@ -31,7 +31,7 @@ function serialize_hiber_testing_PushModemMessagesRequest(arg) {
   if (!(arg instanceof testing_pb.PushModemMessagesRequest)) {
     throw new Error('Expected argument of type hiber.testing.PushModemMessagesRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_testing_PushModemMessagesRequest(buffer_arg) {
@@ -42,7 +42,7 @@ function serialize_hiber_testing_PushModemMessagesRequest_Response(arg) {
   if (!(arg instanceof testing_pb.PushModemMessagesRequest.Response)) {
     throw new Error('Expected argument of type hiber.testing.PushModemMessagesRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_testing_PushModemMessagesRequest_Response(buffer_arg) {

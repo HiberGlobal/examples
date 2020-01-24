@@ -12,6 +12,7 @@ var goog = jspb;
 var global = Function('return this')();
 
 var base_pb = require('./base_pb.js');
+goog.object.extend(proto, base_pb);
 goog.exportSymbol('proto.hiber.tag.CreateTagRequest', null, global);
 goog.exportSymbol('proto.hiber.tag.DeleteTagRequest', null, global);
 goog.exportSymbol('proto.hiber.tag.DeleteTagRequest.Response', null, global);
@@ -301,7 +302,7 @@ proto.hiber.tag.Tag.Label.prototype.getName = function() {
 
 /** @param {string} value */
 proto.hiber.tag.Tag.Label.prototype.setName = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -316,7 +317,7 @@ proto.hiber.tag.Tag.prototype.getId = function() {
 
 /** @param {number} value */
 proto.hiber.tag.Tag.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -343,7 +344,7 @@ proto.hiber.tag.Tag.prototype.clearLabel = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.tag.Tag.prototype.hasLabel = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -512,21 +513,21 @@ proto.hiber.tag.TagSelection.serializeBinaryToWriter = function(message, writer)
 
 /**
  * repeated string search = 1;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.tag.TagSelection.prototype.getSearchList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.tag.TagSelection.prototype.setSearchList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.tag.TagSelection.prototype.addSearch = function(value, opt_index) {
@@ -541,21 +542,21 @@ proto.hiber.tag.TagSelection.prototype.clearSearchList = function() {
 
 /**
  * repeated string names = 2;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.tag.TagSelection.prototype.getNamesList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 2));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.tag.TagSelection.prototype.setNamesList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.tag.TagSelection.prototype.addNames = function(value, opt_index) {
@@ -591,7 +592,7 @@ proto.hiber.tag.TagSelection.prototype.clearFilter = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.tag.TagSelection.prototype.hasFilter = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -693,11 +694,11 @@ proto.hiber.tag.UpdateTagsForItem.deserializeBinaryFromReader = function(msg, re
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
+      var value = /** @type {!Array<number>} */ (reader.readPackedInt64());
       msg.setTagIdsToAddList(value);
       break;
     case 2:
-      var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
+      var value = /** @type {!Array<number>} */ (reader.readPackedInt64());
       msg.setTagIdsToRemoveList(value);
       break;
     case 3:
@@ -761,21 +762,21 @@ proto.hiber.tag.UpdateTagsForItem.serializeBinaryToWriter = function(message, wr
 
 /**
  * repeated int64 tag_ids_to_add = 1;
- * @return {!Array.<number>}
+ * @return {!Array<number>}
  */
 proto.hiber.tag.UpdateTagsForItem.prototype.getTagIdsToAddList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
-/** @param {!Array.<number>} value */
+/** @param {!Array<number>} value */
 proto.hiber.tag.UpdateTagsForItem.prototype.setTagIdsToAddList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!number} value
+ * @param {number} value
  * @param {number=} opt_index
  */
 proto.hiber.tag.UpdateTagsForItem.prototype.addTagIdsToAdd = function(value, opt_index) {
@@ -790,21 +791,21 @@ proto.hiber.tag.UpdateTagsForItem.prototype.clearTagIdsToAddList = function() {
 
 /**
  * repeated int64 tag_ids_to_remove = 2;
- * @return {!Array.<number>}
+ * @return {!Array<number>}
  */
 proto.hiber.tag.UpdateTagsForItem.prototype.getTagIdsToRemoveList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 2));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
-/** @param {!Array.<number>} value */
+/** @param {!Array<number>} value */
 proto.hiber.tag.UpdateTagsForItem.prototype.setTagIdsToRemoveList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
 
 
 /**
- * @param {!number} value
+ * @param {number} value
  * @param {number=} opt_index
  */
 proto.hiber.tag.UpdateTagsForItem.prototype.addTagIdsToRemove = function(value, opt_index) {
@@ -819,15 +820,15 @@ proto.hiber.tag.UpdateTagsForItem.prototype.clearTagIdsToRemoveList = function()
 
 /**
  * repeated Tag.Label new_tags_to_add = 3;
- * @return {!Array.<!proto.hiber.tag.Tag.Label>}
+ * @return {!Array<!proto.hiber.tag.Tag.Label>}
  */
 proto.hiber.tag.UpdateTagsForItem.prototype.getNewTagsToAddList = function() {
-  return /** @type{!Array.<!proto.hiber.tag.Tag.Label>} */ (
+  return /** @type{!Array<!proto.hiber.tag.Tag.Label>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.tag.Tag.Label, 3));
 };
 
 
-/** @param {!Array.<!proto.hiber.tag.Tag.Label>} value */
+/** @param {!Array<!proto.hiber.tag.Tag.Label>} value */
 proto.hiber.tag.UpdateTagsForItem.prototype.setNewTagsToAddList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
@@ -1121,13 +1122,13 @@ proto.hiber.tag.ListTagsRequest.Response.deserializeBinaryFromReader = function(
     case 3:
       var value = msg.getTagModemCountMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readInt64, jspb.BinaryReader.prototype.readInt32);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readInt64, jspb.BinaryReader.prototype.readInt32, null, 0);
          });
       break;
     case 4:
       var value = msg.getTagWebhookCountMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readInt64, jspb.BinaryReader.prototype.readInt32);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readInt64, jspb.BinaryReader.prototype.readInt32, null, 0);
          });
       break;
     default:
@@ -1188,15 +1189,15 @@ proto.hiber.tag.ListTagsRequest.Response.serializeBinaryToWriter = function(mess
 
 /**
  * repeated Tag tags = 1;
- * @return {!Array.<!proto.hiber.tag.Tag>}
+ * @return {!Array<!proto.hiber.tag.Tag>}
  */
 proto.hiber.tag.ListTagsRequest.Response.prototype.getTagsList = function() {
-  return /** @type{!Array.<!proto.hiber.tag.Tag>} */ (
+  return /** @type{!Array<!proto.hiber.tag.Tag>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.tag.Tag, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.tag.Tag>} value */
+/** @param {!Array<!proto.hiber.tag.Tag>} value */
 proto.hiber.tag.ListTagsRequest.Response.prototype.setTagsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -1240,7 +1241,7 @@ proto.hiber.tag.ListTagsRequest.Response.prototype.clearRequest = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.tag.ListTagsRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1294,7 +1295,7 @@ proto.hiber.tag.ListTagsRequest.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.tag.ListTagsRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1321,7 +1322,7 @@ proto.hiber.tag.ListTagsRequest.prototype.clearSelection = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.tag.ListTagsRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1341,7 +1342,7 @@ proto.hiber.tag.ListTagsRequest.prototype.getModemCount = function() {
 
 /** @param {boolean} value */
 proto.hiber.tag.ListTagsRequest.prototype.setModemCount = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
@@ -1358,7 +1359,7 @@ proto.hiber.tag.ListTagsRequest.prototype.getWebhookCount = function() {
 
 /** @param {boolean} value */
 proto.hiber.tag.ListTagsRequest.prototype.setWebhookCount = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
@@ -1514,7 +1515,7 @@ proto.hiber.tag.CreateTagRequest.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.tag.CreateTagRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1541,7 +1542,7 @@ proto.hiber.tag.CreateTagRequest.prototype.clearCreate = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.tag.CreateTagRequest.prototype.hasCreate = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1712,7 +1713,7 @@ proto.hiber.tag.UpdateTagRequest.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.tag.UpdateTagRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1727,7 +1728,7 @@ proto.hiber.tag.UpdateTagRequest.prototype.getId = function() {
 
 /** @param {number} value */
 proto.hiber.tag.UpdateTagRequest.prototype.setId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -1754,7 +1755,7 @@ proto.hiber.tag.UpdateTagRequest.prototype.clearUpdate = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.tag.UpdateTagRequest.prototype.hasUpdate = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -2027,7 +2028,7 @@ proto.hiber.tag.DeleteTagRequest.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.tag.DeleteTagRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -2042,7 +2043,7 @@ proto.hiber.tag.DeleteTagRequest.prototype.getId = function() {
 
 /** @param {number} value */
 proto.hiber.tag.DeleteTagRequest.prototype.setId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 

@@ -11,7 +11,7 @@ function serialize_hiber_webhook_CreateWebhookRequest(arg) {
   if (!(arg instanceof webhook_pb.CreateWebhookRequest)) {
     throw new Error('Expected argument of type hiber.webhook.CreateWebhookRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_webhook_CreateWebhookRequest(buffer_arg) {
@@ -22,7 +22,7 @@ function serialize_hiber_webhook_DeleteWebhookRequest(arg) {
   if (!(arg instanceof webhook_pb.DeleteWebhookRequest)) {
     throw new Error('Expected argument of type hiber.webhook.DeleteWebhookRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_webhook_DeleteWebhookRequest(buffer_arg) {
@@ -33,7 +33,7 @@ function serialize_hiber_webhook_DeleteWebhookRequest_Response(arg) {
   if (!(arg instanceof webhook_pb.DeleteWebhookRequest.Response)) {
     throw new Error('Expected argument of type hiber.webhook.DeleteWebhookRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_webhook_DeleteWebhookRequest_Response(buffer_arg) {
@@ -44,7 +44,7 @@ function serialize_hiber_webhook_DisableWebhookRequest(arg) {
   if (!(arg instanceof webhook_pb.DisableWebhookRequest)) {
     throw new Error('Expected argument of type hiber.webhook.DisableWebhookRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_webhook_DisableWebhookRequest(buffer_arg) {
@@ -55,7 +55,7 @@ function serialize_hiber_webhook_EnableWebhookRequest(arg) {
   if (!(arg instanceof webhook_pb.EnableWebhookRequest)) {
     throw new Error('Expected argument of type hiber.webhook.EnableWebhookRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_webhook_EnableWebhookRequest(buffer_arg) {
@@ -66,7 +66,7 @@ function serialize_hiber_webhook_GetWebhookRequest(arg) {
   if (!(arg instanceof webhook_pb.GetWebhookRequest)) {
     throw new Error('Expected argument of type hiber.webhook.GetWebhookRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_webhook_GetWebhookRequest(buffer_arg) {
@@ -77,7 +77,7 @@ function serialize_hiber_webhook_ListWebhooksRequest(arg) {
   if (!(arg instanceof webhook_pb.ListWebhooksRequest)) {
     throw new Error('Expected argument of type hiber.webhook.ListWebhooksRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_webhook_ListWebhooksRequest(buffer_arg) {
@@ -88,7 +88,7 @@ function serialize_hiber_webhook_ListWebhooksRequest_Response(arg) {
   if (!(arg instanceof webhook_pb.ListWebhooksRequest.Response)) {
     throw new Error('Expected argument of type hiber.webhook.ListWebhooksRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_webhook_ListWebhooksRequest_Response(buffer_arg) {
@@ -99,7 +99,7 @@ function serialize_hiber_webhook_UpdateWebhookFilterRequest(arg) {
   if (!(arg instanceof webhook_pb.UpdateWebhookFilterRequest)) {
     throw new Error('Expected argument of type hiber.webhook.UpdateWebhookFilterRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_webhook_UpdateWebhookFilterRequest(buffer_arg) {
@@ -110,7 +110,7 @@ function serialize_hiber_webhook_UpdateWebhookRequest(arg) {
   if (!(arg instanceof webhook_pb.UpdateWebhookRequest)) {
     throw new Error('Expected argument of type hiber.webhook.UpdateWebhookRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_webhook_UpdateWebhookRequest(buffer_arg) {
@@ -121,7 +121,7 @@ function serialize_hiber_webhook_UpdateWebhookTagsRequest(arg) {
   if (!(arg instanceof webhook_pb.UpdateWebhookTagsRequest)) {
     throw new Error('Expected argument of type hiber.webhook.UpdateWebhookTagsRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_webhook_UpdateWebhookTagsRequest(buffer_arg) {
@@ -132,7 +132,7 @@ function serialize_hiber_webhook_UpdateWebhookTagsRequest_Response(arg) {
   if (!(arg instanceof webhook_pb.UpdateWebhookTagsRequest.Response)) {
     throw new Error('Expected argument of type hiber.webhook.UpdateWebhookTagsRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_webhook_UpdateWebhookTagsRequest_Response(buffer_arg) {
@@ -143,7 +143,7 @@ function serialize_hiber_webhook_Webhook(arg) {
   if (!(arg instanceof webhook_pb.Webhook)) {
     throw new Error('Expected argument of type hiber.webhook.Webhook');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_webhook_Webhook(buffer_arg) {
@@ -154,7 +154,7 @@ function serialize_hiber_webhook_WebhookHistoryRequest(arg) {
   if (!(arg instanceof webhook_pb.WebhookHistoryRequest)) {
     throw new Error('Expected argument of type hiber.webhook.WebhookHistoryRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_webhook_WebhookHistoryRequest(buffer_arg) {
@@ -165,7 +165,7 @@ function serialize_hiber_webhook_WebhookHistoryRequest_Response(arg) {
   if (!(arg instanceof webhook_pb.WebhookHistoryRequest.Response)) {
     throw new Error('Expected argument of type hiber.webhook.WebhookHistoryRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_webhook_WebhookHistoryRequest_Response(buffer_arg) {

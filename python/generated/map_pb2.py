@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='map.proto',
   package='hiber.map',
   syntax='proto3',
-  serialized_pb=_b('\n\tmap.proto\x12\thiber.map\x1a\nbase.proto\x1a\x0bmodem.proto\"@\n\rGroundStation\x12!\n\x08location\x18\x01 \x01(\x0b\x32\x0f.hiber.Location\x12\x0c\n\x04name\x18\x02 \x01(\t\"&\n\x0eTileCoordinate\x12\t\n\x01x\x18\x01 \x01(\x05\x12\t\n\x01y\x18\x02 \x01(\x05\"\xbf\x02\n\x0bMapTileItem\x12\'\n\x04tile\x18\x01 \x01(\x0b\x32\x19.hiber.map.TileCoordinate\x12*\n\x07in_tile\x18\x02 \x01(\x0b\x32\x19.hiber.map.TileCoordinate\x12-\n\x05modem\x18\x03 \x01(\x0b\x32\x1c.hiber.map.MapTileItem.ModemH\x00\x12\x33\n\x0bmodem_group\x18\x04 \x01(\x0b\x32\x1c.hiber.map.MapTileItem.GroupH\x00\x1a:\n\x05Modem\x12\x0e\n\x06number\x18\x01 \x01(\t\x12!\n\x08location\x18\x02 \x01(\x0b\x32\x0f.hiber.Location\x1a\x31\n\x05Group\x12\r\n\x05\x63ount\x18\x01 \x01(\x05\x12\x19\n\x04\x61rea\x18\x02 \x01(\x0b\x32\x0b.hiber.AreaB\x08\n\x06modems\"\xf9\x03\n\x0eTileMapRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12+\n\tselection\x18\x02 \x01(\x0b\x32\x18.hiber.LocationSelection\x12\r\n\x05level\x18\x03 \x01(\x05\x12\x34\n\x0fmodem_selection\x18\x04 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12\x1a\n\x12include_satellites\x18\x05 \x01(\x08\x12\x1f\n\x17include_ground_stations\x18\x06 \x01(\x08\x12\x32\n\x07\x64\x65nsity\x18\x07 \x01(\x0e\x32!.hiber.map.TileMapRequest.Density\x1a\xbe\x01\n\x08Response\x12\x31\n\x0fground_stations\x18\x01 \x03(\x0b\x32\x18.hiber.map.GroundStation\x12)\n\tmap_items\x18\x02 \x03(\x0b\x32\x16.hiber.map.MapTileItem\x12*\n\x07request\x18\x04 \x01(\x0b\x32\x19.hiber.map.TileMapRequest\x12(\n\nsatellites\x18\x05 \x03(\x0b\x32\x14.hiber.map.Satellite\"-\n\x07\x44\x65nsity\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\t\n\x05\x44\x45NSE\x10\x01\x12\n\n\x06SPARSE\x10\x02\"\xaa\x01\n\tSatellite\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x30\n\tpositions\x18\x03 \x03(\x0b\x32\x1d.hiber.map.Satellite.Position\x1aM\n\x08Position\x12\x1e\n\x04time\x18\x01 \x01(\x0b\x32\x10.hiber.Timestamp\x12!\n\x08location\x18\x02 \x01(\x0b\x32\x0f.hiber.Location:\x02\x18\x01\"M\n\x11SatellitesRequest\x1a\x34\n\x08Response\x12(\n\nsatellites\x18\x01 \x03(\x0b\x32\x14.hiber.map.Satellite:\x02\x18\x01\"\xcd\x02\n\x0cMapSelection\x12$\n\x06modems\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12\r\n\x05level\x18\x03 \x01(\x05\x12\x35\n\x04\x61rea\x18\x04 \x01(\x0b\x32\'.hiber.map.MapSelection.AreaRestriction\x12\x37\n\x05shape\x18\x05 \x01(\x0b\x32(.hiber.map.MapSelection.ShapeRestriction\x1a[\n\x0f\x41reaRestriction\x12$\n\x0b\x62ottom_left\x18\x01 \x01(\x0b\x32\x0f.hiber.Location\x12\"\n\ttop_right\x18\x02 \x01(\x0b\x32\x0f.hiber.Location\x1a\x31\n\x10ShapeRestriction\x12\x1d\n\x04path\x18\x01 \x03(\x0b\x32\x0f.hiber.Location:\x02\x18\x01J\x04\x08\x02\x10\x03\"m\n\x08MapBlock\x12\x19\n\x04\x61rea\x18\x01 \x01(\x0b\x32\x0b.hiber.Area\x12\x13\n\x0bmodem_count\x18\x02 \x01(\x05\x12\x13\n\x0b\x65rror_count\x18\x03 \x01(\x05\x12\x18\n\x10\x65rror_percentage\x18\x04 \x01(\x02:\x02\x18\x01\"\x93\x02\n\nMapRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12*\n\tselection\x18\x02 \x01(\x0b\x32\x17.hiber.map.MapSelection\x1a\xb8\x01\n\x08Response\x12\x31\n\x0fground_stations\x18\x01 \x03(\x0b\x32\x18.hiber.map.GroundStation\x12\'\n\nmap_blocks\x18\x02 \x03(\x0b\x32\x13.hiber.map.MapBlock\x12&\n\x07request\x18\x04 \x01(\x0b\x32\x15.hiber.map.MapRequest\x12(\n\nsatellites\x18\x05 \x03(\x0b\x32\x14.hiber.map.Satellite:\x02\x18\x01J\x04\x08\x03\x10\x04\x32\xf1\x01\n\nMapService\x12H\n\x07TileMap\x12\x19.hiber.map.TileMapRequest\x1a\".hiber.map.TileMapRequest.Response\x12V\n\nSatellites\x12\x1c.hiber.map.SatellitesRequest\x1a%.hiber.map.SatellitesRequest.Response\"\x03\x88\x02\x01\x12\x41\n\x03Map\x12\x15.hiber.map.MapRequest\x1a\x1e.hiber.map.MapRequest.Response\"\x03\x88\x02\x01\x42,\n\x19global.hiber.api.grpc.mapB\x06MapApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\tmap.proto\x12\thiber.map\x1a\nbase.proto\x1a\x0bmodem.proto\"@\n\rGroundStation\x12!\n\x08location\x18\x01 \x01(\x0b\x32\x0f.hiber.Location\x12\x0c\n\x04name\x18\x02 \x01(\t\"&\n\x0eTileCoordinate\x12\t\n\x01x\x18\x01 \x01(\x05\x12\t\n\x01y\x18\x02 \x01(\x05\"\xbf\x02\n\x0bMapTileItem\x12\'\n\x04tile\x18\x01 \x01(\x0b\x32\x19.hiber.map.TileCoordinate\x12*\n\x07in_tile\x18\x02 \x01(\x0b\x32\x19.hiber.map.TileCoordinate\x12-\n\x05modem\x18\x03 \x01(\x0b\x32\x1c.hiber.map.MapTileItem.ModemH\x00\x12\x33\n\x0bmodem_group\x18\x04 \x01(\x0b\x32\x1c.hiber.map.MapTileItem.GroupH\x00\x1a:\n\x05Modem\x12\x0e\n\x06number\x18\x01 \x01(\t\x12!\n\x08location\x18\x02 \x01(\x0b\x32\x0f.hiber.Location\x1a\x31\n\x05Group\x12\r\n\x05\x63ount\x18\x01 \x01(\x05\x12\x19\n\x04\x61rea\x18\x02 \x01(\x0b\x32\x0b.hiber.AreaB\x08\n\x06modems\"\xb8\x04\n\x0eTileMapRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12+\n\tselection\x18\x02 \x01(\x0b\x32\x18.hiber.LocationSelection\x12\r\n\x05level\x18\x03 \x01(\x05\x12\x34\n\x0fmodem_selection\x18\x04 \x01(\x0b\x32\x1b.hiber.modem.ModemSelection\x12\x1a\n\x12include_satellites\x18\x05 \x01(\x08\x12\x1f\n\x17include_ground_stations\x18\x06 \x01(\x08\x12\x32\n\x07\x64\x65nsity\x18\x07 \x01(\x0e\x32!.hiber.map.TileMapRequest.Density\x12=\n\x13\x63hild_organizations\x18\x08 \x01(\x0b\x32 .hiber.Filter.ChildOrganizations\x1a\xbe\x01\n\x08Response\x12\x31\n\x0fground_stations\x18\x01 \x03(\x0b\x32\x18.hiber.map.GroundStation\x12)\n\tmap_items\x18\x02 \x03(\x0b\x32\x16.hiber.map.MapTileItem\x12*\n\x07request\x18\x04 \x01(\x0b\x32\x19.hiber.map.TileMapRequest\x12(\n\nsatellites\x18\x05 \x03(\x0b\x32\x14.hiber.map.Satellite\"-\n\x07\x44\x65nsity\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\t\n\x05\x44\x45NSE\x10\x01\x12\n\n\x06SPARSE\x10\x02\"\xaa\x01\n\tSatellite\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x30\n\tpositions\x18\x03 \x03(\x0b\x32\x1d.hiber.map.Satellite.Position\x1aM\n\x08Position\x12\x1e\n\x04time\x18\x01 \x01(\x0b\x32\x10.hiber.Timestamp\x12!\n\x08location\x18\x02 \x01(\x0b\x32\x0f.hiber.Location:\x02\x18\x01\"M\n\x11SatellitesRequest\x1a\x34\n\x08Response\x12(\n\nsatellites\x18\x01 \x03(\x0b\x32\x14.hiber.map.Satellite:\x02\x18\x01\"\xcd\x02\n\x0cMapSelection\x12$\n\x06modems\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12\r\n\x05level\x18\x03 \x01(\x05\x12\x35\n\x04\x61rea\x18\x04 \x01(\x0b\x32\'.hiber.map.MapSelection.AreaRestriction\x12\x37\n\x05shape\x18\x05 \x01(\x0b\x32(.hiber.map.MapSelection.ShapeRestriction\x1a[\n\x0f\x41reaRestriction\x12$\n\x0b\x62ottom_left\x18\x01 \x01(\x0b\x32\x0f.hiber.Location\x12\"\n\ttop_right\x18\x02 \x01(\x0b\x32\x0f.hiber.Location\x1a\x31\n\x10ShapeRestriction\x12\x1d\n\x04path\x18\x01 \x03(\x0b\x32\x0f.hiber.Location:\x02\x18\x01J\x04\x08\x02\x10\x03\"m\n\x08MapBlock\x12\x19\n\x04\x61rea\x18\x01 \x01(\x0b\x32\x0b.hiber.Area\x12\x13\n\x0bmodem_count\x18\x02 \x01(\x05\x12\x13\n\x0b\x65rror_count\x18\x03 \x01(\x05\x12\x18\n\x10\x65rror_percentage\x18\x04 \x01(\x02:\x02\x18\x01\"\x93\x02\n\nMapRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12*\n\tselection\x18\x02 \x01(\x0b\x32\x17.hiber.map.MapSelection\x1a\xb8\x01\n\x08Response\x12\x31\n\x0fground_stations\x18\x01 \x03(\x0b\x32\x18.hiber.map.GroundStation\x12\'\n\nmap_blocks\x18\x02 \x03(\x0b\x32\x13.hiber.map.MapBlock\x12&\n\x07request\x18\x04 \x01(\x0b\x32\x15.hiber.map.MapRequest\x12(\n\nsatellites\x18\x05 \x03(\x0b\x32\x14.hiber.map.Satellite:\x02\x18\x01J\x04\x08\x03\x10\x04\x32\xf1\x01\n\nMapService\x12H\n\x07TileMap\x12\x19.hiber.map.TileMapRequest\x1a\".hiber.map.TileMapRequest.Response\x12V\n\nSatellites\x12\x1c.hiber.map.SatellitesRequest\x1a%.hiber.map.SatellitesRequest.Response\"\x03\x88\x02\x01\x12\x41\n\x03Map\x12\x15.hiber.map.MapRequest\x1a\x1e.hiber.map.MapRequest.Response\"\x03\x88\x02\x01\x42,\n\x19global.hiber.api.grpc.mapB\x06MapApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,modem__pb2.DESCRIPTOR,])
 
@@ -48,8 +48,8 @@ _TILEMAPREQUEST_DENSITY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=938,
-  serialized_end=983,
+  serialized_start=1001,
+  serialized_end=1046,
 )
 _sym_db.RegisterEnumDescriptor(_TILEMAPREQUEST_DENSITY)
 
@@ -306,8 +306,8 @@ _TILEMAPREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=746,
-  serialized_end=936,
+  serialized_start=809,
+  serialized_end=999,
 )
 
 _TILEMAPREQUEST = _descriptor.Descriptor(
@@ -366,6 +366,13 @@ _TILEMAPREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='child_organizations', full_name='hiber.map.TileMapRequest.child_organizations', index=7,
+      number=8, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -380,7 +387,7 @@ _TILEMAPREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=478,
-  serialized_end=983,
+  serialized_end=1046,
 )
 
 
@@ -417,8 +424,8 @@ _SATELLITE_POSITION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1075,
-  serialized_end=1152,
+  serialized_start=1138,
+  serialized_end=1215,
 )
 
 _SATELLITE = _descriptor.Descriptor(
@@ -461,8 +468,8 @@ _SATELLITE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=986,
-  serialized_end=1156,
+  serialized_start=1049,
+  serialized_end=1219,
 )
 
 
@@ -492,8 +499,8 @@ _SATELLITESREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1179,
-  serialized_end=1231,
+  serialized_start=1242,
+  serialized_end=1294,
 )
 
 _SATELLITESREQUEST = _descriptor.Descriptor(
@@ -515,8 +522,8 @@ _SATELLITESREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1158,
-  serialized_end=1235,
+  serialized_start=1221,
+  serialized_end=1298,
 )
 
 
@@ -553,8 +560,8 @@ _MAPSELECTION_AREARESTRICTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1419,
-  serialized_end=1510,
+  serialized_start=1482,
+  serialized_end=1573,
 )
 
 _MAPSELECTION_SHAPERESTRICTION = _descriptor.Descriptor(
@@ -583,8 +590,8 @@ _MAPSELECTION_SHAPERESTRICTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1512,
-  serialized_end=1561,
+  serialized_start=1575,
+  serialized_end=1624,
 )
 
 _MAPSELECTION = _descriptor.Descriptor(
@@ -634,8 +641,8 @@ _MAPSELECTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1238,
-  serialized_end=1571,
+  serialized_start=1301,
+  serialized_end=1634,
 )
 
 
@@ -686,8 +693,8 @@ _MAPBLOCK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1573,
-  serialized_end=1682,
+  serialized_start=1636,
+  serialized_end=1745,
 )
 
 
@@ -738,8 +745,8 @@ _MAPREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1766,
-  serialized_end=1950,
+  serialized_start=1829,
+  serialized_end=2013,
 )
 
 _MAPREQUEST = _descriptor.Descriptor(
@@ -775,8 +782,8 @@ _MAPREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1685,
-  serialized_end=1960,
+  serialized_start=1748,
+  serialized_end=2023,
 )
 
 _GROUNDSTATION.fields_by_name['location'].message_type = base__pb2._LOCATION
@@ -802,6 +809,7 @@ _TILEMAPREQUEST_RESPONSE.containing_type = _TILEMAPREQUEST
 _TILEMAPREQUEST.fields_by_name['selection'].message_type = base__pb2._LOCATIONSELECTION
 _TILEMAPREQUEST.fields_by_name['modem_selection'].message_type = modem__pb2._MODEMSELECTION
 _TILEMAPREQUEST.fields_by_name['density'].enum_type = _TILEMAPREQUEST_DENSITY
+_TILEMAPREQUEST.fields_by_name['child_organizations'].message_type = base__pb2._FILTER_CHILDORGANIZATIONS
 _TILEMAPREQUEST_DENSITY.containing_type = _TILEMAPREQUEST
 _SATELLITE_POSITION.fields_by_name['time'].message_type = base__pb2._TIMESTAMP
 _SATELLITE_POSITION.fields_by_name['location'].message_type = base__pb2._LOCATION
@@ -982,8 +990,8 @@ _MAPSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=1963,
-  serialized_end=2204,
+  serialized_start=2026,
+  serialized_end=2267,
   methods=[
   _descriptor.MethodDescriptor(
     name='TileMap',

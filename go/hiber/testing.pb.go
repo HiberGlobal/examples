@@ -30,7 +30,7 @@ type PushModemMessagesRequest struct {
 func (m *PushModemMessagesRequest) Reset()                    { *m = PushModemMessagesRequest{} }
 func (m *PushModemMessagesRequest) String() string            { return proto.CompactTextString(m) }
 func (*PushModemMessagesRequest) ProtoMessage()               {}
-func (*PushModemMessagesRequest) Descriptor() ([]byte, []int) { return fileDescriptor18, []int{0} }
+func (*PushModemMessagesRequest) Descriptor() ([]byte, []int) { return fileDescriptor22, []int{0} }
 
 func (m *PushModemMessagesRequest) GetOrganization() string {
 	if m != nil {
@@ -54,7 +54,7 @@ func (m *PushModemMessagesRequest_Response) Reset()         { *m = PushModemMess
 func (m *PushModemMessagesRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*PushModemMessagesRequest_Response) ProtoMessage()    {}
 func (*PushModemMessagesRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor18, []int{0, 0}
+	return fileDescriptor22, []int{0, 0}
 }
 
 func (m *PushModemMessagesRequest_Response) GetRequest() *PushModemMessagesRequest {
@@ -77,7 +77,7 @@ func (m *PushModemMessagesRequest_MessageToPush) Reset() {
 func (m *PushModemMessagesRequest_MessageToPush) String() string { return proto.CompactTextString(m) }
 func (*PushModemMessagesRequest_MessageToPush) ProtoMessage()    {}
 func (*PushModemMessagesRequest_MessageToPush) Descriptor() ([]byte, []int) {
-	return fileDescriptor18, []int{0, 1}
+	return fileDescriptor22, []int{0, 1}
 }
 
 func (m *PushModemMessagesRequest_MessageToPush) GetModemNumber() string {
@@ -120,7 +120,7 @@ func (m *PushModemMessagesFromDebugPortRequest) Reset()         { *m = PushModem
 func (m *PushModemMessagesFromDebugPortRequest) String() string { return proto.CompactTextString(m) }
 func (*PushModemMessagesFromDebugPortRequest) ProtoMessage()    {}
 func (*PushModemMessagesFromDebugPortRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor18, []int{1}
+	return fileDescriptor22, []int{1}
 }
 
 func (m *PushModemMessagesFromDebugPortRequest) GetOrganization() string {
@@ -149,7 +149,7 @@ func (m *PushModemMessagesFromDebugPortRequest_Response) String() string {
 }
 func (*PushModemMessagesFromDebugPortRequest_Response) ProtoMessage() {}
 func (*PushModemMessagesFromDebugPortRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor18, []int{1, 0}
+	return fileDescriptor22, []int{1, 0}
 }
 
 func (m *PushModemMessagesFromDebugPortRequest_Response) GetRequest() *PushModemMessagesFromDebugPortRequest {
@@ -272,9 +272,9 @@ var _TestingService_serviceDesc = grpc.ServiceDesc{
 	Metadata: "testing.proto",
 }
 
-func init() { proto.RegisterFile("testing.proto", fileDescriptor18) }
+func init() { proto.RegisterFile("testing.proto", fileDescriptor22) }
 
-var fileDescriptor18 = []byte{
+var fileDescriptor22 = []byte{
 	// 405 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x53, 0x4d, 0x8f, 0xd3, 0x30,
 	0x14, 0xc4, 0xed, 0xc2, 0x76, 0x5f, 0x5b, 0x76, 0xf1, 0x29, 0x8a, 0x04, 0x0a, 0x15, 0x88, 0x20,

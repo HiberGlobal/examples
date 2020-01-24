@@ -12,8 +12,11 @@ var goog = jspb;
 var global = Function('return this')();
 
 var map_pb = require('./map_pb.js');
+goog.object.extend(proto, map_pb);
 var modem_pb = require('./modem_pb.js');
+goog.object.extend(proto, modem_pb);
 var event_pb = require('./event_pb.js');
+goog.object.extend(proto, event_pb);
 goog.exportSymbol('proto.hiber.dashboard.DashboardRequest', null, global);
 goog.exportSymbol('proto.hiber.dashboard.DashboardRequest.Response', null, global);
 
@@ -446,15 +449,15 @@ proto.hiber.dashboard.DashboardRequest.Response.serializeBinaryToWriter = functi
 
 /**
  * repeated hiber.map.GroundStation ground_stations = 1;
- * @return {!Array.<!proto.hiber.map.GroundStation>}
+ * @return {!Array<!proto.hiber.map.GroundStation>}
  */
 proto.hiber.dashboard.DashboardRequest.Response.prototype.getGroundStationsList = function() {
-  return /** @type{!Array.<!proto.hiber.map.GroundStation>} */ (
+  return /** @type{!Array<!proto.hiber.map.GroundStation>} */ (
     jspb.Message.getRepeatedWrapperField(this, map_pb.GroundStation, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.map.GroundStation>} value */
+/** @param {!Array<!proto.hiber.map.GroundStation>} value */
 proto.hiber.dashboard.DashboardRequest.Response.prototype.setGroundStationsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -477,15 +480,15 @@ proto.hiber.dashboard.DashboardRequest.Response.prototype.clearGroundStationsLis
 
 /**
  * repeated hiber.map.MapBlock map_blocks = 2;
- * @return {!Array.<!proto.hiber.map.MapBlock>}
+ * @return {!Array<!proto.hiber.map.MapBlock>}
  */
 proto.hiber.dashboard.DashboardRequest.Response.prototype.getMapBlocksList = function() {
-  return /** @type{!Array.<!proto.hiber.map.MapBlock>} */ (
+  return /** @type{!Array<!proto.hiber.map.MapBlock>} */ (
     jspb.Message.getRepeatedWrapperField(this, map_pb.MapBlock, 2));
 };
 
 
-/** @param {!Array.<!proto.hiber.map.MapBlock>} value */
+/** @param {!Array<!proto.hiber.map.MapBlock>} value */
 proto.hiber.dashboard.DashboardRequest.Response.prototype.setMapBlocksList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
@@ -508,15 +511,15 @@ proto.hiber.dashboard.DashboardRequest.Response.prototype.clearMapBlocksList = f
 
 /**
  * repeated hiber.modem.MessageCountRequest.Response.MessageCount message_count_per_day = 3;
- * @return {!Array.<!proto.hiber.modem.MessageCountRequest.Response.MessageCount>}
+ * @return {!Array<!proto.hiber.modem.MessageCountRequest.Response.MessageCount>}
  */
 proto.hiber.dashboard.DashboardRequest.Response.prototype.getMessageCountPerDayList = function() {
-  return /** @type{!Array.<!proto.hiber.modem.MessageCountRequest.Response.MessageCount>} */ (
+  return /** @type{!Array<!proto.hiber.modem.MessageCountRequest.Response.MessageCount>} */ (
     jspb.Message.getRepeatedWrapperField(this, modem_pb.MessageCountRequest.Response.MessageCount, 3));
 };
 
 
-/** @param {!Array.<!proto.hiber.modem.MessageCountRequest.Response.MessageCount>} value */
+/** @param {!Array<!proto.hiber.modem.MessageCountRequest.Response.MessageCount>} value */
 proto.hiber.dashboard.DashboardRequest.Response.prototype.setMessageCountPerDayList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
@@ -548,7 +551,7 @@ proto.hiber.dashboard.DashboardRequest.Response.prototype.getModemWarningCount =
 
 /** @param {number} value */
 proto.hiber.dashboard.DashboardRequest.Response.prototype.setModemWarningCount = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
@@ -563,7 +566,7 @@ proto.hiber.dashboard.DashboardRequest.Response.prototype.getModemErrorCount = f
 
 /** @param {number} value */
 proto.hiber.dashboard.DashboardRequest.Response.prototype.setModemErrorCount = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
@@ -590,7 +593,7 @@ proto.hiber.dashboard.DashboardRequest.Response.prototype.clearRequest = functio
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.dashboard.DashboardRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 7) != null;
@@ -599,15 +602,15 @@ proto.hiber.dashboard.DashboardRequest.Response.prototype.hasRequest = function(
 
 /**
  * repeated hiber.event.BundledEvent events = 8;
- * @return {!Array.<!proto.hiber.event.BundledEvent>}
+ * @return {!Array<!proto.hiber.event.BundledEvent>}
  */
 proto.hiber.dashboard.DashboardRequest.Response.prototype.getEventsList = function() {
-  return /** @type{!Array.<!proto.hiber.event.BundledEvent>} */ (
+  return /** @type{!Array<!proto.hiber.event.BundledEvent>} */ (
     jspb.Message.getRepeatedWrapperField(this, event_pb.BundledEvent, 8));
 };
 
 
-/** @param {!Array.<!proto.hiber.event.BundledEvent>} value */
+/** @param {!Array<!proto.hiber.event.BundledEvent>} value */
 proto.hiber.dashboard.DashboardRequest.Response.prototype.setEventsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 8, value);
 };
@@ -630,15 +633,15 @@ proto.hiber.dashboard.DashboardRequest.Response.prototype.clearEventsList = func
 
 /**
  * repeated hiber.map.Satellite satellites = 9;
- * @return {!Array.<!proto.hiber.map.Satellite>}
+ * @return {!Array<!proto.hiber.map.Satellite>}
  */
 proto.hiber.dashboard.DashboardRequest.Response.prototype.getSatellitesList = function() {
-  return /** @type{!Array.<!proto.hiber.map.Satellite>} */ (
+  return /** @type{!Array<!proto.hiber.map.Satellite>} */ (
     jspb.Message.getRepeatedWrapperField(this, map_pb.Satellite, 9));
 };
 
 
-/** @param {!Array.<!proto.hiber.map.Satellite>} value */
+/** @param {!Array<!proto.hiber.map.Satellite>} value */
 proto.hiber.dashboard.DashboardRequest.Response.prototype.setSatellitesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 9, value);
 };
@@ -670,7 +673,7 @@ proto.hiber.dashboard.DashboardRequest.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.dashboard.DashboardRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -697,7 +700,7 @@ proto.hiber.dashboard.DashboardRequest.prototype.clearSelection = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.dashboard.DashboardRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -727,7 +730,7 @@ proto.hiber.dashboard.DashboardRequest.prototype.clearMessageCountSelection = fu
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.dashboard.DashboardRequest.prototype.hasMessageCountSelection = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -757,7 +760,7 @@ proto.hiber.dashboard.DashboardRequest.prototype.clearEventSelection = function(
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.dashboard.DashboardRequest.prototype.hasEventSelection = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -775,7 +778,7 @@ proto.hiber.dashboard.DashboardRequest.prototype.getTimeZoneOffset = function() 
 
 /** @param {number} value */
 proto.hiber.dashboard.DashboardRequest.prototype.setTimeZoneOffset = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
@@ -790,7 +793,7 @@ proto.hiber.dashboard.DashboardRequest.prototype.getTimeZone = function() {
 
 /** @param {string} value */
 proto.hiber.dashboard.DashboardRequest.prototype.setTimeZone = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3StringField(this, 6, value);
 };
 
 

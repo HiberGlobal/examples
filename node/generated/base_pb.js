@@ -12,7 +12,9 @@ var goog = jspb;
 var global = Function('return this')();
 
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
+goog.object.extend(proto, google_protobuf_timestamp_pb);
 var permission_pb = require('./permission_pb.js');
+goog.object.extend(proto, permission_pb);
 goog.exportSymbol('proto.hiber.Area', null, global);
 goog.exportSymbol('proto.hiber.BytesOrHex', null, global);
 goog.exportSymbol('proto.hiber.Date', null, global);
@@ -20,11 +22,14 @@ goog.exportSymbol('proto.hiber.EventType', null, global);
 goog.exportSymbol('proto.hiber.Filter', null, global);
 goog.exportSymbol('proto.hiber.Filter.ChildOrganizations', null, global);
 goog.exportSymbol('proto.hiber.Filter.Events', null, global);
+goog.exportSymbol('proto.hiber.Filter.Events.Update', null, global);
 goog.exportSymbol('proto.hiber.Filter.Modems', null, global);
+goog.exportSymbol('proto.hiber.Filter.Modems.Update', null, global);
 goog.exportSymbol('proto.hiber.Filter.OrganizationPermissions', null, global);
 goog.exportSymbol('proto.hiber.Filter.Organizations', null, global);
 goog.exportSymbol('proto.hiber.Filter.Publishers', null, global);
 goog.exportSymbol('proto.hiber.Filter.Tags', null, global);
+goog.exportSymbol('proto.hiber.Filter.Tags.Update', null, global);
 goog.exportSymbol('proto.hiber.Filter.UserPermissions', null, global);
 goog.exportSymbol('proto.hiber.Filter.Users', null, global);
 goog.exportSymbol('proto.hiber.Filter.Webhooks', null, global);
@@ -192,7 +197,7 @@ proto.hiber.UpdateZeroableInt.prototype.getUpdated = function() {
 
 /** @param {boolean} value */
 proto.hiber.UpdateZeroableInt.prototype.setUpdated = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
@@ -207,7 +212,7 @@ proto.hiber.UpdateZeroableInt.prototype.getValue = function() {
 
 /** @param {number} value */
 proto.hiber.UpdateZeroableInt.prototype.setValue = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -363,7 +368,7 @@ proto.hiber.UpdateClearableString.prototype.getUpdated = function() {
 
 /** @param {boolean} value */
 proto.hiber.UpdateClearableString.prototype.setUpdated = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
@@ -378,7 +383,7 @@ proto.hiber.UpdateClearableString.prototype.getValue = function() {
 
 /** @param {string} value */
 proto.hiber.UpdateClearableString.prototype.setValue = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -534,7 +539,7 @@ proto.hiber.UpdateOptionalId.prototype.getUpdated = function() {
 
 /** @param {boolean} value */
 proto.hiber.UpdateOptionalId.prototype.setUpdated = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
@@ -549,7 +554,7 @@ proto.hiber.UpdateOptionalId.prototype.getValue = function() {
 
 /** @param {number} value */
 proto.hiber.UpdateOptionalId.prototype.setValue = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -705,7 +710,7 @@ proto.hiber.UpdateBoolean.prototype.getUpdated = function() {
 
 /** @param {boolean} value */
 proto.hiber.UpdateBoolean.prototype.setUpdated = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
@@ -722,7 +727,7 @@ proto.hiber.UpdateBoolean.prototype.getValue = function() {
 
 /** @param {boolean} value */
 proto.hiber.UpdateBoolean.prototype.setValue = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 
@@ -892,7 +897,7 @@ proto.hiber.TimeRange.prototype.clearStart = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.TimeRange.prototype.hasStart = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -922,7 +927,7 @@ proto.hiber.TimeRange.prototype.clearEnd = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.TimeRange.prototype.hasEnd = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1093,7 +1098,7 @@ proto.hiber.Timestamp.prototype.clearTimestamp = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.Timestamp.prototype.hasTimestamp = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -1111,7 +1116,7 @@ proto.hiber.Timestamp.prototype.getTextual = function() {
 
 /** @param {string} value */
 proto.hiber.Timestamp.prototype.setTextual = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -1289,7 +1294,7 @@ proto.hiber.Date.prototype.getYear = function() {
 
 /** @param {number} value */
 proto.hiber.Date.prototype.setYear = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -1304,7 +1309,7 @@ proto.hiber.Date.prototype.getMonth = function() {
 
 /** @param {number} value */
 proto.hiber.Date.prototype.setMonth = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -1319,7 +1324,7 @@ proto.hiber.Date.prototype.getDay = function() {
 
 /** @param {number} value */
 proto.hiber.Date.prototype.setDay = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -1334,7 +1339,7 @@ proto.hiber.Date.prototype.getTextual = function() {
 
 /** @param {string} value */
 proto.hiber.Date.prototype.setTextual = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -1488,7 +1493,7 @@ proto.hiber.Location.prototype.getLatitude = function() {
 
 /** @param {number} value */
 proto.hiber.Location.prototype.setLatitude = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3FloatField(this, 1, value);
 };
 
 
@@ -1503,7 +1508,7 @@ proto.hiber.Location.prototype.getLongitude = function() {
 
 /** @param {number} value */
 proto.hiber.Location.prototype.setLongitude = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3FloatField(this, 2, value);
 };
 
 
@@ -1687,7 +1692,7 @@ proto.hiber.Area.prototype.clearCenter = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.Area.prototype.hasCenter = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -1717,7 +1722,7 @@ proto.hiber.Area.prototype.clearBottomLeft = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.Area.prototype.hasBottomLeft = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1747,7 +1752,7 @@ proto.hiber.Area.prototype.clearTopRight = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.Area.prototype.hasTopRight = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -1893,15 +1898,15 @@ proto.hiber.Shape.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * repeated Location path = 1;
- * @return {!Array.<!proto.hiber.Location>}
+ * @return {!Array<!proto.hiber.Location>}
  */
 proto.hiber.Shape.prototype.getPathList = function() {
-  return /** @type{!Array.<!proto.hiber.Location>} */ (
+  return /** @type{!Array<!proto.hiber.Location>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.Location, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.Location>} value */
+/** @param {!Array<!proto.hiber.Location>} value */
 proto.hiber.Shape.prototype.setPathList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -2076,15 +2081,15 @@ proto.hiber.LocationSelection.serializeBinaryToWriter = function(message, writer
 
 /**
  * repeated Area areas = 1;
- * @return {!Array.<!proto.hiber.Area>}
+ * @return {!Array<!proto.hiber.Area>}
  */
 proto.hiber.LocationSelection.prototype.getAreasList = function() {
-  return /** @type{!Array.<!proto.hiber.Area>} */ (
+  return /** @type{!Array<!proto.hiber.Area>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.Area, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.Area>} value */
+/** @param {!Array<!proto.hiber.Area>} value */
 proto.hiber.LocationSelection.prototype.setAreasList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -2107,15 +2112,15 @@ proto.hiber.LocationSelection.prototype.clearAreasList = function() {
 
 /**
  * repeated Shape shapes = 2;
- * @return {!Array.<!proto.hiber.Shape>}
+ * @return {!Array<!proto.hiber.Shape>}
  */
 proto.hiber.LocationSelection.prototype.getShapesList = function() {
-  return /** @type{!Array.<!proto.hiber.Shape>} */ (
+  return /** @type{!Array<!proto.hiber.Shape>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.Shape, 2));
 };
 
 
-/** @param {!Array.<!proto.hiber.Shape>} value */
+/** @param {!Array<!proto.hiber.Shape>} value */
 proto.hiber.LocationSelection.prototype.setShapesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
@@ -2310,7 +2315,7 @@ proto.hiber.BytesOrHex.prototype.getBytes_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.hiber.BytesOrHex.prototype.setBytes = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BytesField(this, 1, value);
 };
 
 
@@ -2325,7 +2330,7 @@ proto.hiber.BytesOrHex.prototype.getHex = function() {
 
 /** @param {string} value */
 proto.hiber.BytesOrHex.prototype.setHex = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -2670,7 +2675,7 @@ proto.hiber.Pagination.Result.prototype.getSize = function() {
 
 /** @param {number} value */
 proto.hiber.Pagination.Result.prototype.setSize = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -2685,7 +2690,7 @@ proto.hiber.Pagination.Result.prototype.getPage = function() {
 
 /** @param {number} value */
 proto.hiber.Pagination.Result.prototype.setPage = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -2700,7 +2705,7 @@ proto.hiber.Pagination.Result.prototype.getTotal = function() {
 
 /** @param {number} value */
 proto.hiber.Pagination.Result.prototype.setTotal = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -2715,7 +2720,7 @@ proto.hiber.Pagination.Result.prototype.getTotalPages = function() {
 
 /** @param {number} value */
 proto.hiber.Pagination.Result.prototype.setTotalPages = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
@@ -2742,7 +2747,7 @@ proto.hiber.Pagination.Result.prototype.clearPrevious = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.Pagination.Result.prototype.hasPrevious = function() {
   return jspb.Message.getField(this, 6) != null;
@@ -2772,7 +2777,7 @@ proto.hiber.Pagination.Result.prototype.clearNext = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.Pagination.Result.prototype.hasNext = function() {
   return jspb.Message.getField(this, 7) != null;
@@ -2790,7 +2795,7 @@ proto.hiber.Pagination.prototype.getSize = function() {
 
 /** @param {number} value */
 proto.hiber.Pagination.prototype.setSize = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -2805,7 +2810,7 @@ proto.hiber.Pagination.prototype.getPage = function() {
 
 /** @param {number} value */
 proto.hiber.Pagination.prototype.setPage = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -3096,27 +3101,27 @@ proto.hiber.Filter.ChildOrganizations.prototype.getIncludeAll = function() {
 
 /** @param {boolean} value */
 proto.hiber.Filter.ChildOrganizations.prototype.setIncludeAll = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
 /**
  * repeated string include = 2;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.Filter.ChildOrganizations.prototype.getIncludeList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 2));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.Filter.ChildOrganizations.prototype.setIncludeList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.Filter.ChildOrganizations.prototype.addInclude = function(value, opt_index) {
@@ -3131,21 +3136,21 @@ proto.hiber.Filter.ChildOrganizations.prototype.clearIncludeList = function() {
 
 /**
  * repeated string exclude = 3;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.Filter.ChildOrganizations.prototype.getExcludeList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 3));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.Filter.ChildOrganizations.prototype.setExcludeList = function(value) {
   jspb.Message.setField(this, 3, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.Filter.ChildOrganizations.prototype.addExclude = function(value, opt_index) {
@@ -3306,21 +3311,21 @@ proto.hiber.Filter.Organizations.serializeBinaryToWriter = function(message, wri
 
 /**
  * repeated string include = 1;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.Filter.Organizations.prototype.getIncludeList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.Filter.Organizations.prototype.setIncludeList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.Filter.Organizations.prototype.addInclude = function(value, opt_index) {
@@ -3335,21 +3340,21 @@ proto.hiber.Filter.Organizations.prototype.clearIncludeList = function() {
 
 /**
  * repeated string exclude = 2;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.Filter.Organizations.prototype.getExcludeList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 2));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.Filter.Organizations.prototype.setExcludeList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.Filter.Organizations.prototype.addExclude = function(value, opt_index) {
@@ -3455,11 +3460,11 @@ proto.hiber.Filter.Events.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!Array.<!proto.hiber.EventType>} */ (reader.readPackedEnum());
+      var value = /** @type {!Array<!proto.hiber.EventType>} */ (reader.readPackedEnum());
       msg.setIncludeList(value);
       break;
     case 2:
-      var value = /** @type {!Array.<!proto.hiber.EventType>} */ (reader.readPackedEnum());
+      var value = /** @type {!Array<!proto.hiber.EventType>} */ (reader.readPackedEnum());
       msg.setExcludeList(value);
       break;
     default:
@@ -3508,16 +3513,204 @@ proto.hiber.Filter.Events.serializeBinaryToWriter = function(message, writer) {
 };
 
 
+
 /**
- * repeated EventType include = 1;
- * @return {!Array.<!proto.hiber.EventType>}
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
  */
-proto.hiber.Filter.Events.prototype.getIncludeList = function() {
-  return /** @type {!Array.<!proto.hiber.EventType>} */ (jspb.Message.getRepeatedField(this, 1));
+proto.hiber.Filter.Events.Update = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.hiber.Filter.Events.Update, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.Filter.Events.Update.displayName = 'proto.hiber.Filter.Events.Update';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.Filter.Events.Update.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.Filter.Events.Update.toObject(opt_includeInstance, this);
 };
 
 
-/** @param {!Array.<!proto.hiber.EventType>} value */
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.Filter.Events.Update} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.Filter.Events.Update.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    updated: jspb.Message.getFieldWithDefault(msg, 1, false),
+    value: (f = msg.getValue()) && proto.hiber.Filter.Events.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.Filter.Events.Update}
+ */
+proto.hiber.Filter.Events.Update.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.Filter.Events.Update;
+  return proto.hiber.Filter.Events.Update.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.Filter.Events.Update} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.Filter.Events.Update}
+ */
+proto.hiber.Filter.Events.Update.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setUpdated(value);
+      break;
+    case 2:
+      var value = new proto.hiber.Filter.Events;
+      reader.readMessage(value,proto.hiber.Filter.Events.deserializeBinaryFromReader);
+      msg.setValue(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.Filter.Events.Update.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.Filter.Events.Update.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.Filter.Events.Update} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.Filter.Events.Update.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getUpdated();
+  if (f) {
+    writer.writeBool(
+      1,
+      f
+    );
+  }
+  f = message.getValue();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.hiber.Filter.Events.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional bool updated = 1;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.Filter.Events.Update.prototype.getUpdated = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 1, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.Filter.Events.Update.prototype.setUpdated = function(value) {
+  jspb.Message.setProto3BooleanField(this, 1, value);
+};
+
+
+/**
+ * optional Events value = 2;
+ * @return {?proto.hiber.Filter.Events}
+ */
+proto.hiber.Filter.Events.Update.prototype.getValue = function() {
+  return /** @type{?proto.hiber.Filter.Events} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.Filter.Events, 2));
+};
+
+
+/** @param {?proto.hiber.Filter.Events|undefined} value */
+proto.hiber.Filter.Events.Update.prototype.setValue = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.hiber.Filter.Events.Update.prototype.clearValue = function() {
+  this.setValue(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.hiber.Filter.Events.Update.prototype.hasValue = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * repeated EventType include = 1;
+ * @return {!Array<!proto.hiber.EventType>}
+ */
+proto.hiber.Filter.Events.prototype.getIncludeList = function() {
+  return /** @type {!Array<!proto.hiber.EventType>} */ (jspb.Message.getRepeatedField(this, 1));
+};
+
+
+/** @param {!Array<!proto.hiber.EventType>} value */
 proto.hiber.Filter.Events.prototype.setIncludeList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
@@ -3539,14 +3732,14 @@ proto.hiber.Filter.Events.prototype.clearIncludeList = function() {
 
 /**
  * repeated EventType exclude = 2;
- * @return {!Array.<!proto.hiber.EventType>}
+ * @return {!Array<!proto.hiber.EventType>}
  */
 proto.hiber.Filter.Events.prototype.getExcludeList = function() {
-  return /** @type {!Array.<!proto.hiber.EventType>} */ (jspb.Message.getRepeatedField(this, 2));
+  return /** @type {!Array<!proto.hiber.EventType>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
-/** @param {!Array.<!proto.hiber.EventType>} value */
+/** @param {!Array<!proto.hiber.EventType>} value */
 proto.hiber.Filter.Events.prototype.setExcludeList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
@@ -3712,23 +3905,211 @@ proto.hiber.Filter.Modems.serializeBinaryToWriter = function(message, writer) {
 };
 
 
+
 /**
- * repeated string include = 1;
- * @return {!Array.<string>}
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
  */
-proto.hiber.Filter.Modems.prototype.getIncludeList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 1));
+proto.hiber.Filter.Modems.Update = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.hiber.Filter.Modems.Update, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.Filter.Modems.Update.displayName = 'proto.hiber.Filter.Modems.Update';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.Filter.Modems.Update.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.Filter.Modems.Update.toObject(opt_includeInstance, this);
 };
 
 
-/** @param {!Array.<string>} value */
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.Filter.Modems.Update} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.Filter.Modems.Update.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    updated: jspb.Message.getFieldWithDefault(msg, 1, false),
+    value: (f = msg.getValue()) && proto.hiber.Filter.Modems.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.Filter.Modems.Update}
+ */
+proto.hiber.Filter.Modems.Update.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.Filter.Modems.Update;
+  return proto.hiber.Filter.Modems.Update.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.Filter.Modems.Update} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.Filter.Modems.Update}
+ */
+proto.hiber.Filter.Modems.Update.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setUpdated(value);
+      break;
+    case 2:
+      var value = new proto.hiber.Filter.Modems;
+      reader.readMessage(value,proto.hiber.Filter.Modems.deserializeBinaryFromReader);
+      msg.setValue(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.Filter.Modems.Update.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.Filter.Modems.Update.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.Filter.Modems.Update} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.Filter.Modems.Update.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getUpdated();
+  if (f) {
+    writer.writeBool(
+      1,
+      f
+    );
+  }
+  f = message.getValue();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.hiber.Filter.Modems.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional bool updated = 1;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.Filter.Modems.Update.prototype.getUpdated = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 1, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.Filter.Modems.Update.prototype.setUpdated = function(value) {
+  jspb.Message.setProto3BooleanField(this, 1, value);
+};
+
+
+/**
+ * optional Modems value = 2;
+ * @return {?proto.hiber.Filter.Modems}
+ */
+proto.hiber.Filter.Modems.Update.prototype.getValue = function() {
+  return /** @type{?proto.hiber.Filter.Modems} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.Filter.Modems, 2));
+};
+
+
+/** @param {?proto.hiber.Filter.Modems|undefined} value */
+proto.hiber.Filter.Modems.Update.prototype.setValue = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.hiber.Filter.Modems.Update.prototype.clearValue = function() {
+  this.setValue(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.hiber.Filter.Modems.Update.prototype.hasValue = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * repeated string include = 1;
+ * @return {!Array<string>}
+ */
+proto.hiber.Filter.Modems.prototype.getIncludeList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
+};
+
+
+/** @param {!Array<string>} value */
 proto.hiber.Filter.Modems.prototype.setIncludeList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.Filter.Modems.prototype.addInclude = function(value, opt_index) {
@@ -3743,21 +4124,21 @@ proto.hiber.Filter.Modems.prototype.clearIncludeList = function() {
 
 /**
  * repeated string exclude = 2;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.Filter.Modems.prototype.getExcludeList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 2));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.Filter.Modems.prototype.setExcludeList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.Filter.Modems.prototype.addExclude = function(value, opt_index) {
@@ -3863,11 +4244,11 @@ proto.hiber.Filter.Tags.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
+      var value = /** @type {!Array<number>} */ (reader.readPackedInt64());
       msg.setIncludeList(value);
       break;
     case 2:
-      var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
+      var value = /** @type {!Array<number>} */ (reader.readPackedInt64());
       msg.setExcludeList(value);
       break;
     default:
@@ -3916,23 +4297,211 @@ proto.hiber.Filter.Tags.serializeBinaryToWriter = function(message, writer) {
 };
 
 
+
 /**
- * repeated int64 include = 1;
- * @return {!Array.<number>}
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
  */
-proto.hiber.Filter.Tags.prototype.getIncludeList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 1));
+proto.hiber.Filter.Tags.Update = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.hiber.Filter.Tags.Update, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.Filter.Tags.Update.displayName = 'proto.hiber.Filter.Tags.Update';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.Filter.Tags.Update.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.Filter.Tags.Update.toObject(opt_includeInstance, this);
 };
 
 
-/** @param {!Array.<number>} value */
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.Filter.Tags.Update} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.Filter.Tags.Update.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    updated: jspb.Message.getFieldWithDefault(msg, 1, false),
+    value: (f = msg.getValue()) && proto.hiber.Filter.Tags.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.Filter.Tags.Update}
+ */
+proto.hiber.Filter.Tags.Update.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.Filter.Tags.Update;
+  return proto.hiber.Filter.Tags.Update.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.Filter.Tags.Update} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.Filter.Tags.Update}
+ */
+proto.hiber.Filter.Tags.Update.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setUpdated(value);
+      break;
+    case 2:
+      var value = new proto.hiber.Filter.Tags;
+      reader.readMessage(value,proto.hiber.Filter.Tags.deserializeBinaryFromReader);
+      msg.setValue(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.Filter.Tags.Update.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.Filter.Tags.Update.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.Filter.Tags.Update} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.Filter.Tags.Update.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getUpdated();
+  if (f) {
+    writer.writeBool(
+      1,
+      f
+    );
+  }
+  f = message.getValue();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.hiber.Filter.Tags.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional bool updated = 1;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.Filter.Tags.Update.prototype.getUpdated = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 1, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.Filter.Tags.Update.prototype.setUpdated = function(value) {
+  jspb.Message.setProto3BooleanField(this, 1, value);
+};
+
+
+/**
+ * optional Tags value = 2;
+ * @return {?proto.hiber.Filter.Tags}
+ */
+proto.hiber.Filter.Tags.Update.prototype.getValue = function() {
+  return /** @type{?proto.hiber.Filter.Tags} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.Filter.Tags, 2));
+};
+
+
+/** @param {?proto.hiber.Filter.Tags|undefined} value */
+proto.hiber.Filter.Tags.Update.prototype.setValue = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.hiber.Filter.Tags.Update.prototype.clearValue = function() {
+  this.setValue(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.hiber.Filter.Tags.Update.prototype.hasValue = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * repeated int64 include = 1;
+ * @return {!Array<number>}
+ */
+proto.hiber.Filter.Tags.prototype.getIncludeList = function() {
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 1));
+};
+
+
+/** @param {!Array<number>} value */
 proto.hiber.Filter.Tags.prototype.setIncludeList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!number} value
+ * @param {number} value
  * @param {number=} opt_index
  */
 proto.hiber.Filter.Tags.prototype.addInclude = function(value, opt_index) {
@@ -3947,21 +4516,21 @@ proto.hiber.Filter.Tags.prototype.clearIncludeList = function() {
 
 /**
  * repeated int64 exclude = 2;
- * @return {!Array.<number>}
+ * @return {!Array<number>}
  */
 proto.hiber.Filter.Tags.prototype.getExcludeList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 2));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
-/** @param {!Array.<number>} value */
+/** @param {!Array<number>} value */
 proto.hiber.Filter.Tags.prototype.setExcludeList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
 
 
 /**
- * @param {!number} value
+ * @param {number} value
  * @param {number=} opt_index
  */
 proto.hiber.Filter.Tags.prototype.addExclude = function(value, opt_index) {
@@ -4068,11 +4637,11 @@ proto.hiber.Filter.Webhooks.deserializeBinaryFromReader = function(msg, reader) 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
+      var value = /** @type {!Array<number>} */ (reader.readPackedInt64());
       msg.setIncludeList(value);
       break;
     case 2:
-      var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
+      var value = /** @type {!Array<number>} */ (reader.readPackedInt64());
       msg.setExcludeList(value);
       break;
     case 3:
@@ -4134,21 +4703,21 @@ proto.hiber.Filter.Webhooks.serializeBinaryToWriter = function(message, writer) 
 
 /**
  * repeated int64 include = 1;
- * @return {!Array.<number>}
+ * @return {!Array<number>}
  */
 proto.hiber.Filter.Webhooks.prototype.getIncludeList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
-/** @param {!Array.<number>} value */
+/** @param {!Array<number>} value */
 proto.hiber.Filter.Webhooks.prototype.setIncludeList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!number} value
+ * @param {number} value
  * @param {number=} opt_index
  */
 proto.hiber.Filter.Webhooks.prototype.addInclude = function(value, opt_index) {
@@ -4163,21 +4732,21 @@ proto.hiber.Filter.Webhooks.prototype.clearIncludeList = function() {
 
 /**
  * repeated int64 exclude = 2;
- * @return {!Array.<number>}
+ * @return {!Array<number>}
  */
 proto.hiber.Filter.Webhooks.prototype.getExcludeList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 2));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
-/** @param {!Array.<number>} value */
+/** @param {!Array<number>} value */
 proto.hiber.Filter.Webhooks.prototype.setExcludeList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
 
 
 /**
- * @param {!number} value
+ * @param {number} value
  * @param {number=} opt_index
  */
 proto.hiber.Filter.Webhooks.prototype.addExclude = function(value, opt_index) {
@@ -4203,7 +4772,7 @@ proto.hiber.Filter.Webhooks.prototype.getOnlyActive = function() {
 
 /** @param {boolean} value */
 proto.hiber.Filter.Webhooks.prototype.setOnlyActive = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
@@ -4301,11 +4870,11 @@ proto.hiber.Filter.Publishers.deserializeBinaryFromReader = function(msg, reader
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
+      var value = /** @type {!Array<number>} */ (reader.readPackedInt64());
       msg.setIncludeList(value);
       break;
     case 2:
-      var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
+      var value = /** @type {!Array<number>} */ (reader.readPackedInt64());
       msg.setExcludeList(value);
       break;
     case 3:
@@ -4367,21 +4936,21 @@ proto.hiber.Filter.Publishers.serializeBinaryToWriter = function(message, writer
 
 /**
  * repeated int64 include = 1;
- * @return {!Array.<number>}
+ * @return {!Array<number>}
  */
 proto.hiber.Filter.Publishers.prototype.getIncludeList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
-/** @param {!Array.<number>} value */
+/** @param {!Array<number>} value */
 proto.hiber.Filter.Publishers.prototype.setIncludeList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!number} value
+ * @param {number} value
  * @param {number=} opt_index
  */
 proto.hiber.Filter.Publishers.prototype.addInclude = function(value, opt_index) {
@@ -4396,21 +4965,21 @@ proto.hiber.Filter.Publishers.prototype.clearIncludeList = function() {
 
 /**
  * repeated int64 exclude = 2;
- * @return {!Array.<number>}
+ * @return {!Array<number>}
  */
 proto.hiber.Filter.Publishers.prototype.getExcludeList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 2));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
-/** @param {!Array.<number>} value */
+/** @param {!Array<number>} value */
 proto.hiber.Filter.Publishers.prototype.setExcludeList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
 
 
 /**
- * @param {!number} value
+ * @param {number} value
  * @param {number=} opt_index
  */
 proto.hiber.Filter.Publishers.prototype.addExclude = function(value, opt_index) {
@@ -4436,7 +5005,7 @@ proto.hiber.Filter.Publishers.prototype.getOnlyActive = function() {
 
 /** @param {boolean} value */
 proto.hiber.Filter.Publishers.prototype.setOnlyActive = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
@@ -4588,21 +5157,21 @@ proto.hiber.Filter.Users.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * repeated string include = 1;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.Filter.Users.prototype.getIncludeList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.Filter.Users.prototype.setIncludeList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.Filter.Users.prototype.addInclude = function(value, opt_index) {
@@ -4617,21 +5186,21 @@ proto.hiber.Filter.Users.prototype.clearIncludeList = function() {
 
 /**
  * repeated string exclude = 2;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.Filter.Users.prototype.getExcludeList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 2));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.Filter.Users.prototype.setExcludeList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.Filter.Users.prototype.addExclude = function(value, opt_index) {
@@ -4742,11 +5311,11 @@ proto.hiber.Filter.OrganizationPermissions.deserializeBinaryFromReader = functio
       msg.setIncludeAll(value);
       break;
     case 2:
-      var value = /** @type {!Array.<!proto.hiber.OrganizationPermission>} */ (reader.readPackedEnum());
+      var value = /** @type {!Array<!proto.hiber.OrganizationPermission>} */ (reader.readPackedEnum());
       msg.setIncludeList(value);
       break;
     case 3:
-      var value = /** @type {!Array.<!proto.hiber.OrganizationPermission>} */ (reader.readPackedEnum());
+      var value = /** @type {!Array<!proto.hiber.OrganizationPermission>} */ (reader.readPackedEnum());
       msg.setExcludeList(value);
       break;
     default:
@@ -4815,20 +5384,20 @@ proto.hiber.Filter.OrganizationPermissions.prototype.getIncludeAll = function() 
 
 /** @param {boolean} value */
 proto.hiber.Filter.OrganizationPermissions.prototype.setIncludeAll = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
 /**
  * repeated OrganizationPermission include = 2;
- * @return {!Array.<!proto.hiber.OrganizationPermission>}
+ * @return {!Array<!proto.hiber.OrganizationPermission>}
  */
 proto.hiber.Filter.OrganizationPermissions.prototype.getIncludeList = function() {
-  return /** @type {!Array.<!proto.hiber.OrganizationPermission>} */ (jspb.Message.getRepeatedField(this, 2));
+  return /** @type {!Array<!proto.hiber.OrganizationPermission>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
-/** @param {!Array.<!proto.hiber.OrganizationPermission>} value */
+/** @param {!Array<!proto.hiber.OrganizationPermission>} value */
 proto.hiber.Filter.OrganizationPermissions.prototype.setIncludeList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
@@ -4850,14 +5419,14 @@ proto.hiber.Filter.OrganizationPermissions.prototype.clearIncludeList = function
 
 /**
  * repeated OrganizationPermission exclude = 3;
- * @return {!Array.<!proto.hiber.OrganizationPermission>}
+ * @return {!Array<!proto.hiber.OrganizationPermission>}
  */
 proto.hiber.Filter.OrganizationPermissions.prototype.getExcludeList = function() {
-  return /** @type {!Array.<!proto.hiber.OrganizationPermission>} */ (jspb.Message.getRepeatedField(this, 3));
+  return /** @type {!Array<!proto.hiber.OrganizationPermission>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
 
-/** @param {!Array.<!proto.hiber.OrganizationPermission>} value */
+/** @param {!Array<!proto.hiber.OrganizationPermission>} value */
 proto.hiber.Filter.OrganizationPermissions.prototype.setExcludeList = function(value) {
   jspb.Message.setField(this, 3, value || []);
 };
@@ -4975,11 +5544,11 @@ proto.hiber.Filter.UserPermissions.deserializeBinaryFromReader = function(msg, r
       msg.setIncludeAll(value);
       break;
     case 2:
-      var value = /** @type {!Array.<!proto.hiber.UserPermission>} */ (reader.readPackedEnum());
+      var value = /** @type {!Array<!proto.hiber.UserPermission>} */ (reader.readPackedEnum());
       msg.setIncludeList(value);
       break;
     case 3:
-      var value = /** @type {!Array.<!proto.hiber.UserPermission>} */ (reader.readPackedEnum());
+      var value = /** @type {!Array<!proto.hiber.UserPermission>} */ (reader.readPackedEnum());
       msg.setExcludeList(value);
       break;
     default:
@@ -5048,20 +5617,20 @@ proto.hiber.Filter.UserPermissions.prototype.getIncludeAll = function() {
 
 /** @param {boolean} value */
 proto.hiber.Filter.UserPermissions.prototype.setIncludeAll = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
 /**
  * repeated UserPermission include = 2;
- * @return {!Array.<!proto.hiber.UserPermission>}
+ * @return {!Array<!proto.hiber.UserPermission>}
  */
 proto.hiber.Filter.UserPermissions.prototype.getIncludeList = function() {
-  return /** @type {!Array.<!proto.hiber.UserPermission>} */ (jspb.Message.getRepeatedField(this, 2));
+  return /** @type {!Array<!proto.hiber.UserPermission>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
-/** @param {!Array.<!proto.hiber.UserPermission>} value */
+/** @param {!Array<!proto.hiber.UserPermission>} value */
 proto.hiber.Filter.UserPermissions.prototype.setIncludeList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
@@ -5083,14 +5652,14 @@ proto.hiber.Filter.UserPermissions.prototype.clearIncludeList = function() {
 
 /**
  * repeated UserPermission exclude = 3;
- * @return {!Array.<!proto.hiber.UserPermission>}
+ * @return {!Array<!proto.hiber.UserPermission>}
  */
 proto.hiber.Filter.UserPermissions.prototype.getExcludeList = function() {
-  return /** @type {!Array.<!proto.hiber.UserPermission>} */ (jspb.Message.getRepeatedField(this, 3));
+  return /** @type {!Array<!proto.hiber.UserPermission>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
 
-/** @param {!Array.<!proto.hiber.UserPermission>} value */
+/** @param {!Array<!proto.hiber.UserPermission>} value */
 proto.hiber.Filter.UserPermissions.prototype.setExcludeList = function(value) {
   jspb.Message.setField(this, 3, value || []);
 };
@@ -5118,6 +5687,7 @@ proto.hiber.EventType = {
   ORGANIZATION_CREATED: 34,
   ORGANIZATION_UPDATED: 12,
   ORGANIZATION_DELETED: 35,
+  MODEM_UPDATED: 36,
   MODEM_LOCATION_UPDATED: 4,
   MODEM_ACTIVATED: 33,
   MODEM_STALE: 16,
@@ -5134,8 +5704,10 @@ proto.hiber.EventType = {
   PUBLISHER_CREATED: 1,
   PUBLISHER_UPDATED: 2,
   PUBLISHER_DELETED: 3,
+  PUBLISHER_AUTO_DISABLED: 37,
   PUBLISHER_FAILED: 11,
   USER_ACCESS_REQUEST: 8,
+  USER_INVITED: 38,
   USER_ADDED: 9,
   USER_REMOVED: 10,
   TOKEN_CREATED: 31,

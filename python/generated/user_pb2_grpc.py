@@ -34,6 +34,16 @@ class UserServiceStub(object):
         request_serializer=user__pb2.RemoveUserRequest.SerializeToString,
         response_deserializer=user__pb2.RemoveUserRequest.Response.FromString,
         )
+    self.Invite = channel.unary_unary(
+        '/hiber.user.UserService/Invite',
+        request_serializer=user__pb2.InviteUserRequest.SerializeToString,
+        response_deserializer=user__pb2.InviteUserRequest.Response.FromString,
+        )
+    self.ListInvitations = channel.unary_unary(
+        '/hiber.user.UserService/ListInvitations',
+        request_serializer=user__pb2.ListInvitationsRequest.SerializeToString,
+        response_deserializer=user__pb2.ListInvitationsRequest.Response.FromString,
+        )
     self.CreateUser = channel.unary_unary(
         '/hiber.user.UserService/CreateUser',
         request_serializer=user__pb2.CreateUserRequest.SerializeToString,
@@ -53,6 +63,26 @@ class UserServiceStub(object):
         '/hiber.user.UserService/UpdateUserPermissions',
         request_serializer=user__pb2.UpdateUserPermissionsRequest.SerializeToString,
         response_deserializer=user__pb2.UpdateUserPermissionsRequest.Response.FromString,
+        )
+    self.GetUserValidation = channel.unary_unary(
+        '/hiber.user.UserService/GetUserValidation',
+        request_serializer=user__pb2.GetUserValidationRequest.SerializeToString,
+        response_deserializer=user__pb2.UserValidation.FromString,
+        )
+    self.UpdateUserValidation = channel.unary_unary(
+        '/hiber.user.UserService/UpdateUserValidation',
+        request_serializer=user__pb2.UpdateUserValidationRequest.SerializeToString,
+        response_deserializer=user__pb2.UserValidation.FromString,
+        )
+    self.TestUserValidation = channel.unary_unary(
+        '/hiber.user.UserService/TestUserValidation',
+        request_serializer=user__pb2.TestUserValidationRequest.SerializeToString,
+        response_deserializer=user__pb2.TestUserValidationRequest.Response.FromString,
+        )
+    self.Activity = channel.unary_unary(
+        '/hiber.user.UserService/Activity',
+        request_serializer=user__pb2.UserActivitySummaryRequest.SerializeToString,
+        response_deserializer=user__pb2.UserActivitySummaryRequest.Response.FromString,
         )
 
 
@@ -88,6 +118,20 @@ class UserServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def Invite(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def ListInvitations(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
   def CreateUser(self, request, context):
     # missing associated documentation comment in .proto file
     pass
@@ -110,6 +154,34 @@ class UserServiceServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def UpdateUserPermissions(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetUserValidation(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def UpdateUserValidation(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def TestUserValidation(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Activity(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -139,6 +211,16 @@ def add_UserServiceServicer_to_server(servicer, server):
           request_deserializer=user__pb2.RemoveUserRequest.FromString,
           response_serializer=user__pb2.RemoveUserRequest.Response.SerializeToString,
       ),
+      'Invite': grpc.unary_unary_rpc_method_handler(
+          servicer.Invite,
+          request_deserializer=user__pb2.InviteUserRequest.FromString,
+          response_serializer=user__pb2.InviteUserRequest.Response.SerializeToString,
+      ),
+      'ListInvitations': grpc.unary_unary_rpc_method_handler(
+          servicer.ListInvitations,
+          request_deserializer=user__pb2.ListInvitationsRequest.FromString,
+          response_serializer=user__pb2.ListInvitationsRequest.Response.SerializeToString,
+      ),
       'CreateUser': grpc.unary_unary_rpc_method_handler(
           servicer.CreateUser,
           request_deserializer=user__pb2.CreateUserRequest.FromString,
@@ -158,6 +240,26 @@ def add_UserServiceServicer_to_server(servicer, server):
           servicer.UpdateUserPermissions,
           request_deserializer=user__pb2.UpdateUserPermissionsRequest.FromString,
           response_serializer=user__pb2.UpdateUserPermissionsRequest.Response.SerializeToString,
+      ),
+      'GetUserValidation': grpc.unary_unary_rpc_method_handler(
+          servicer.GetUserValidation,
+          request_deserializer=user__pb2.GetUserValidationRequest.FromString,
+          response_serializer=user__pb2.UserValidation.SerializeToString,
+      ),
+      'UpdateUserValidation': grpc.unary_unary_rpc_method_handler(
+          servicer.UpdateUserValidation,
+          request_deserializer=user__pb2.UpdateUserValidationRequest.FromString,
+          response_serializer=user__pb2.UserValidation.SerializeToString,
+      ),
+      'TestUserValidation': grpc.unary_unary_rpc_method_handler(
+          servicer.TestUserValidation,
+          request_deserializer=user__pb2.TestUserValidationRequest.FromString,
+          response_serializer=user__pb2.TestUserValidationRequest.Response.SerializeToString,
+      ),
+      'Activity': grpc.unary_unary_rpc_method_handler(
+          servicer.Activity,
+          request_deserializer=user__pb2.UserActivitySummaryRequest.FromString,
+          response_serializer=user__pb2.UserActivitySummaryRequest.Response.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

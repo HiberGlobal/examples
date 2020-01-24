@@ -15,16 +15,15 @@ _sym_db = _symbol_database.Default()
 
 import base_pb2 as base__pb2
 import certificate_pb2 as certificate__pb2
-import publisher_pb2 as publisher__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='integration_aws_iot.proto',
   package='hiber.integration.awsiot',
   syntax='proto3',
-  serialized_pb=_b('\n\x19integration_aws_iot.proto\x12\x18hiber.integration.awsiot\x1a\nbase.proto\x1a\x11\x63\x65rtificate.proto\x1a\x0fpublisher.proto\"\xda\x01\n\x13\x41WSIoTConfiguration\x12\x14\n\x0cpublisher_id\x18\x01 \x01(\x03\x12\x0b\n\x03url\x18\x02 \x01(\t\x12$\n\x06modems\x18\x03 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12\x16\n\x0e\x63\x65rtificate_id\x18\x04 \x01(\x03\x12\x18\n\x10\x63\x65rtificate_name\x18\x05 \x01(\t\x12\x19\n\x11\x63\x61_certificate_id\x18\x06 \x01(\x03\x12\x1b\n\x13\x63\x61_certificate_name\x18\x07 \x01(\t\x12\x10\n\x08\x64isabled\x18\x08 \x01(\x08\"\xa9\x03\n\"InitializeAWSIoTIntegrationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x13\n\x0b\x61ws_iot_url\x18\x02 \x01(\t\x12\x1f\n\x17\x65xisting_certificate_id\x18\x03 \x01(\x03\x12G\n\x12upload_certificate\x18\x04 \x01(\x0b\x32+.hiber.certificate.UploadCertificateRequest\x12$\n\x06modems\x18\x05 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12\x1e\n\x16mqtt_client_identifier\x18\x06 \x01(\t\x1a\xa7\x01\n\x08Response\x12L\n\x15\x61ws_iot_configuration\x18\x01 \x01(\x0b\x32-.hiber.integration.awsiot.AWSIoTConfiguration\x12M\n\x07request\x18\x02 \x01(\x0b\x32<.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest\"\x97\x01\n%AWSIoTIntegrationConfigurationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x1aX\n\x08Response\x12L\n\x15\x61ws_iot_configuration\x18\x01 \x01(\x0b\x32-.hiber.integration.awsiot.AWSIoTConfiguration\"\x90\x01\n\x1e\x45nableAWSIoTIntegrationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x1aX\n\x08Response\x12L\n\x15\x61ws_iot_configuration\x18\x01 \x01(\x0b\x32-.hiber.integration.awsiot.AWSIoTConfiguration\"\x91\x01\n\x1f\x44isableAWSIoTIntegrationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x1aX\n\x08Response\x12L\n\x15\x61ws_iot_configuration\x18\x01 \x01(\x0b\x32-.hiber.integration.awsiot.AWSIoTConfiguration\"\x89\x03\n+UpdateAWSIoTIntegrationConfigurationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x13\n\x0b\x61ws_iot_url\x18\x02 \x01(\t\x12\x16\n\x0e\x63\x65rtificate_id\x18\x03 \x01(\x03\x12\x44\n\x06modems\x18\x04 \x01(\x0b\x32\x34.hiber.publisher.UpdatePublisherRequest.UpdateModems\x12\x1e\n\x16mqtt_client_identifier\x18\x05 \x01(\t\x1a\xb0\x01\n\x08Response\x12L\n\x15\x61ws_iot_configuration\x18\x01 \x01(\x0b\x32-.hiber.integration.awsiot.AWSIoTConfiguration\x12V\n\x07request\x18\x02 \x01(\x0b\x32\x45.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest2\x82\x06\n\rAWSIoTService\x12\x91\x01\n\nInitialize\x12<.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest\x1a\x45.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest.Response\x12\x9a\x01\n\rConfiguration\x12?.hiber.integration.awsiot.AWSIoTIntegrationConfigurationRequest\x1aH.hiber.integration.awsiot.AWSIoTIntegrationConfigurationRequest.Response\x12\x85\x01\n\x06\x45nable\x12\x38.hiber.integration.awsiot.EnableAWSIoTIntegrationRequest\x1a\x41.hiber.integration.awsiot.EnableAWSIoTIntegrationRequest.Response\x12\x88\x01\n\x07\x44isable\x12\x39.hiber.integration.awsiot.DisableAWSIoTIntegrationRequest\x1a\x42.hiber.integration.awsiot.DisableAWSIoTIntegrationRequest.Response\x12\xac\x01\n\x13UpdateConfiguration\x12\x45.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest\x1aN.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.ResponseB>\n(global.hiber.api.grpc.integration.awsiotB\tAWSIoTApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\x19integration_aws_iot.proto\x12\x18hiber.integration.awsiot\x1a\nbase.proto\x1a\x11\x63\x65rtificate.proto\"\xfa\x01\n\x13\x41WSIoTConfiguration\x12\x14\n\x0cpublisher_id\x18\x01 \x01(\x03\x12\x0b\n\x03url\x18\x02 \x01(\t\x12$\n\x06modems\x18\x03 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12\x16\n\x0e\x63\x65rtificate_id\x18\x04 \x01(\x03\x12\x18\n\x10\x63\x65rtificate_name\x18\x05 \x01(\t\x12\x19\n\x11\x63\x61_certificate_id\x18\x06 \x01(\x03\x12\x1b\n\x13\x63\x61_certificate_name\x18\x07 \x01(\t\x12\x10\n\x08\x64isabled\x18\x08 \x01(\x08\x12\x1e\n\x16mqtt_client_identifier\x18\t \x01(\t\"\xa9\x03\n\"InitializeAWSIoTIntegrationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x13\n\x0b\x61ws_iot_url\x18\x02 \x01(\t\x12\x1f\n\x17\x65xisting_certificate_id\x18\x03 \x01(\x03\x12G\n\x12upload_certificate\x18\x04 \x01(\x0b\x32+.hiber.certificate.UploadCertificateRequest\x12$\n\x06modems\x18\x05 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12\x1e\n\x16mqtt_client_identifier\x18\x06 \x01(\t\x1a\xa7\x01\n\x08Response\x12L\n\x15\x61ws_iot_configuration\x18\x01 \x01(\x0b\x32-.hiber.integration.awsiot.AWSIoTConfiguration\x12M\n\x07request\x18\x02 \x01(\x0b\x32<.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest\"\x97\x01\n%AWSIoTIntegrationConfigurationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x1aX\n\x08Response\x12L\n\x15\x61ws_iot_configuration\x18\x01 \x01(\x0b\x32-.hiber.integration.awsiot.AWSIoTConfiguration\"\x90\x01\n\x1e\x45nableAWSIoTIntegrationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x1aX\n\x08Response\x12L\n\x15\x61ws_iot_configuration\x18\x01 \x01(\x0b\x32-.hiber.integration.awsiot.AWSIoTConfiguration\"\x91\x01\n\x1f\x44isableAWSIoTIntegrationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x1aX\n\x08Response\x12L\n\x15\x61ws_iot_configuration\x18\x01 \x01(\x0b\x32-.hiber.integration.awsiot.AWSIoTConfiguration\"\xf6\x02\n+UpdateAWSIoTIntegrationConfigurationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x13\n\x0b\x61ws_iot_url\x18\x02 \x01(\t\x12\x16\n\x0e\x63\x65rtificate_id\x18\x03 \x01(\x03\x12+\n\x06modems\x18\x06 \x01(\x0b\x32\x1b.hiber.Filter.Modems.Update\x12\x1e\n\x16mqtt_client_identifier\x18\x05 \x01(\t\x1a\xb0\x01\n\x08Response\x12L\n\x15\x61ws_iot_configuration\x18\x01 \x01(\x0b\x32-.hiber.integration.awsiot.AWSIoTConfiguration\x12V\n\x07request\x18\x02 \x01(\x0b\x32\x45.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequestJ\x04\x08\x04\x10\x05\x32\x82\x06\n\rAWSIoTService\x12\x91\x01\n\nInitialize\x12<.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest\x1a\x45.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest.Response\x12\x9a\x01\n\rConfiguration\x12?.hiber.integration.awsiot.AWSIoTIntegrationConfigurationRequest\x1aH.hiber.integration.awsiot.AWSIoTIntegrationConfigurationRequest.Response\x12\x85\x01\n\x06\x45nable\x12\x38.hiber.integration.awsiot.EnableAWSIoTIntegrationRequest\x1a\x41.hiber.integration.awsiot.EnableAWSIoTIntegrationRequest.Response\x12\x88\x01\n\x07\x44isable\x12\x39.hiber.integration.awsiot.DisableAWSIoTIntegrationRequest\x1a\x42.hiber.integration.awsiot.DisableAWSIoTIntegrationRequest.Response\x12\xac\x01\n\x13UpdateConfiguration\x12\x45.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest\x1aN.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.ResponseB>\n(global.hiber.api.grpc.integration.awsiotB\tAWSIoTApiP\x00Z\x05hiberb\x06proto3')
   ,
-  dependencies=[base__pb2.DESCRIPTOR,certificate__pb2.DESCRIPTOR,publisher__pb2.DESCRIPTOR,])
+  dependencies=[base__pb2.DESCRIPTOR,certificate__pb2.DESCRIPTOR,])
 
 
 
@@ -92,6 +91,13 @@ _AWSIOTCONFIGURATION = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='mqtt_client_identifier', full_name='hiber.integration.awsiot.AWSIoTConfiguration.mqtt_client_identifier', index=8,
+      number=9, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -104,8 +110,8 @@ _AWSIOTCONFIGURATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=104,
-  serialized_end=322,
+  serialized_start=87,
+  serialized_end=337,
 )
 
 
@@ -142,8 +148,8 @@ _INITIALIZEAWSIOTINTEGRATIONREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=583,
-  serialized_end=750,
+  serialized_start=598,
+  serialized_end=765,
 )
 
 _INITIALIZEAWSIOTINTEGRATIONREQUEST = _descriptor.Descriptor(
@@ -207,8 +213,8 @@ _INITIALIZEAWSIOTINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=325,
-  serialized_end=750,
+  serialized_start=340,
+  serialized_end=765,
 )
 
 
@@ -238,8 +244,8 @@ _AWSIOTINTEGRATIONCONFIGURATIONREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=583,
-  serialized_end=671,
+  serialized_start=598,
+  serialized_end=686,
 )
 
 _AWSIOTINTEGRATIONCONFIGURATIONREQUEST = _descriptor.Descriptor(
@@ -268,8 +274,8 @@ _AWSIOTINTEGRATIONCONFIGURATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=753,
-  serialized_end=904,
+  serialized_start=768,
+  serialized_end=919,
 )
 
 
@@ -299,8 +305,8 @@ _ENABLEAWSIOTINTEGRATIONREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=583,
-  serialized_end=671,
+  serialized_start=598,
+  serialized_end=686,
 )
 
 _ENABLEAWSIOTINTEGRATIONREQUEST = _descriptor.Descriptor(
@@ -329,8 +335,8 @@ _ENABLEAWSIOTINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=907,
-  serialized_end=1051,
+  serialized_start=922,
+  serialized_end=1066,
 )
 
 
@@ -360,8 +366,8 @@ _DISABLEAWSIOTINTEGRATIONREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=583,
-  serialized_end=671,
+  serialized_start=598,
+  serialized_end=686,
 )
 
 _DISABLEAWSIOTINTEGRATIONREQUEST = _descriptor.Descriptor(
@@ -390,8 +396,8 @@ _DISABLEAWSIOTINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1054,
-  serialized_end=1199,
+  serialized_start=1069,
+  serialized_end=1214,
 )
 
 
@@ -428,8 +434,8 @@ _UPDATEAWSIOTINTEGRATIONCONFIGURATIONREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1419,
-  serialized_end=1595,
+  serialized_start=1409,
+  serialized_end=1585,
 )
 
 _UPDATEAWSIOTINTEGRATIONCONFIGURATIONREQUEST = _descriptor.Descriptor(
@@ -462,7 +468,7 @@ _UPDATEAWSIOTINTEGRATIONCONFIGURATIONREQUEST = _descriptor.Descriptor(
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='modems', full_name='hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.modems', index=3,
-      number=4, type=11, cpp_type=10, label=1,
+      number=6, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -486,8 +492,8 @@ _UPDATEAWSIOTINTEGRATIONCONFIGURATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1202,
-  serialized_end=1595,
+  serialized_start=1217,
+  serialized_end=1591,
 )
 
 _AWSIOTCONFIGURATION.fields_by_name['modems'].message_type = base__pb2._FILTER_MODEMS
@@ -505,7 +511,7 @@ _DISABLEAWSIOTINTEGRATIONREQUEST_RESPONSE.containing_type = _DISABLEAWSIOTINTEGR
 _UPDATEAWSIOTINTEGRATIONCONFIGURATIONREQUEST_RESPONSE.fields_by_name['aws_iot_configuration'].message_type = _AWSIOTCONFIGURATION
 _UPDATEAWSIOTINTEGRATIONCONFIGURATIONREQUEST_RESPONSE.fields_by_name['request'].message_type = _UPDATEAWSIOTINTEGRATIONCONFIGURATIONREQUEST
 _UPDATEAWSIOTINTEGRATIONCONFIGURATIONREQUEST_RESPONSE.containing_type = _UPDATEAWSIOTINTEGRATIONCONFIGURATIONREQUEST
-_UPDATEAWSIOTINTEGRATIONCONFIGURATIONREQUEST.fields_by_name['modems'].message_type = publisher__pb2._UPDATEPUBLISHERREQUEST_UPDATEMODEMS
+_UPDATEAWSIOTINTEGRATIONCONFIGURATIONREQUEST.fields_by_name['modems'].message_type = base__pb2._FILTER_MODEMS_UPDATE
 DESCRIPTOR.message_types_by_name['AWSIoTConfiguration'] = _AWSIOTCONFIGURATION
 DESCRIPTOR.message_types_by_name['InitializeAWSIoTIntegrationRequest'] = _INITIALIZEAWSIOTINTEGRATIONREQUEST
 DESCRIPTOR.message_types_by_name['AWSIoTIntegrationConfigurationRequest'] = _AWSIOTINTEGRATIONCONFIGURATIONREQUEST
@@ -606,8 +612,8 @@ _AWSIOTSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=1598,
-  serialized_end=2368,
+  serialized_start=1594,
+  serialized_end=2364,
   methods=[
   _descriptor.MethodDescriptor(
     name='Initialize',

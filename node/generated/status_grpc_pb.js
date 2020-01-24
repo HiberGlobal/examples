@@ -9,7 +9,7 @@ function serialize_hiber_status_StatusRequest(arg) {
   if (!(arg instanceof status_pb.StatusRequest)) {
     throw new Error('Expected argument of type hiber.status.StatusRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_status_StatusRequest(buffer_arg) {
@@ -20,7 +20,7 @@ function serialize_hiber_status_StatusRequest_Response(arg) {
   if (!(arg instanceof status_pb.StatusRequest.Response)) {
     throw new Error('Expected argument of type hiber.status.StatusRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_status_StatusRequest_Response(buffer_arg) {

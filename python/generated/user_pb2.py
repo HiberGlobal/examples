@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='user.proto',
   package='hiber.user',
   syntax='proto3',
-  serialized_pb=_b('\n\nuser.proto\x12\nhiber.user\x1a\nbase.proto\x1a\x10permission.proto\"k\n\x04User\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12:\n\x0bpermissions\x18\x04 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\"D\n\rUserSelection\x12\x10\n\x08user_ids\x18\x03 \x03(\t\x12\x10\n\x08\x62y_email\x18\x01 \x01(\t\x12\x0f\n\x07\x62y_name\x18\x02 \x01(\t\"\xac\x02\n\x10ListUsersRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12,\n\tselection\x18\x02 \x01(\x0b\x32\x19.hiber.user.UserSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x12\"\n\x04sort\x18\x04 \x01(\x0e\x32\x14.hiber.user.UserSort\x1a\x88\x01\n\x08Response\x12\x1f\n\x05users\x18\x01 \x03(\x0b\x32\x10.hiber.user.User\x12-\n\x07request\x18\x02 \x01(\x0b\x32\x1c.hiber.user.ListUsersRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xbe\x02\n\x19ListAccessRequestsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12,\n\tselection\x18\x02 \x01(\x0b\x32\x19.hiber.user.UserSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x12\"\n\x04sort\x18\x04 \x01(\x0e\x32\x14.hiber.user.UserSort\x1a\x91\x01\n\x08Response\x12\x1f\n\x05users\x18\x01 \x03(\x0b\x32\x10.hiber.user.User\x12\x36\n\x07request\x18\x02 \x01(\x0b\x32%.hiber.user.ListAccessRequestsRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\x83\x01\n\x12\x41pproveUserRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x03(\t\x12:\n\x0bpermissions\x18\x03 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x1a\n\n\x08Response\"F\n\x11RemoveUserRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x03(\t\x1a\n\n\x08Response\"\xd6\x01\n\x11\x43reateUserRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x10\n\x08password\x18\x04 \x01(\t\x12:\n\x0bpermissions\x18\x05 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x12\x1e\n\x16send_verification_mail\x18\x06 \x01(\x08\x12 \n\x18send_password_reset_mail\x18\x07 \x01(\x08\"\x83\x02\n\x12\x43reateUsersRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12,\n\x05users\x18\x02 \x03(\x0b\x32\x1d.hiber.user.CreateUserRequest\x12:\n\x0bpermissions\x18\x03 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x12\x1e\n\x16send_verification_mail\x18\x04 \x01(\x08\x12 \n\x18send_password_reset_mail\x18\x05 \x01(\x08\x1a+\n\x08Response\x12\x1f\n\x05users\x18\x01 \x03(\x0b\x32\x10.hiber.user.User\"M\n\x18ResetUserPasswordRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x1a\n\n\x08Response\"\x92\x01\n\x1cUpdateUserPermissionsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x10\n\x08user_ids\x18\x02 \x03(\t\x12>\n\x0fnew_permissions\x18\x03 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x1a\n\n\x08Response*F\n\x08UserSort\x12\r\n\tEMAIL_ASC\x10\x00\x12\x0e\n\nEMAIL_DESC\x10\x01\x12\x0c\n\x08NAME_ASC\x10\x02\x12\r\n\tNAME_DESC\x10\x03\x32\xdf\x05\n\x0bUserService\x12K\n\x04List\x12\x1c.hiber.user.ListUsersRequest\x1a%.hiber.user.ListUsersRequest.Response\x12k\n\x12ListAccessRequests\x12%.hiber.user.ListAccessRequestsRequest\x1a..hiber.user.ListAccessRequestsRequest.Response\x12R\n\x07\x41pprove\x12\x1e.hiber.user.ApproveUserRequest\x1a\'.hiber.user.ApproveUserRequest.Response\x12O\n\x06Remove\x12\x1d.hiber.user.RemoveUserRequest\x1a&.hiber.user.RemoveUserRequest.Response\x12=\n\nCreateUser\x12\x1d.hiber.user.CreateUserRequest\x1a\x10.hiber.user.User\x12V\n\x0b\x43reateUsers\x12\x1e.hiber.user.CreateUsersRequest\x1a\'.hiber.user.CreateUsersRequest.Response\x12\x64\n\rResetPassword\x12$.hiber.user.ResetUserPasswordRequest\x1a-.hiber.user.ResetUserPasswordRequest.Response\x12t\n\x15UpdateUserPermissions\x12(.hiber.user.UpdateUserPermissionsRequest\x1a\x31.hiber.user.UpdateUserPermissionsRequest.ResponseB.\n\x1aglobal.hiber.api.grpc.userB\x07UserApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\nuser.proto\x12\nhiber.user\x1a\nbase.proto\x1a\x10permission.proto\"k\n\x04User\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12:\n\x0bpermissions\x18\x04 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\"D\n\rUserSelection\x12\x10\n\x08user_ids\x18\x03 \x03(\t\x12\x10\n\x08\x62y_email\x18\x01 \x01(\t\x12\x0f\n\x07\x62y_name\x18\x02 \x01(\t\"0\n\x0eUserValidation\x12\x1e\n\x16\x65mail_validation_regex\x18\x01 \x01(\t\"\xac\x02\n\x10ListUsersRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12,\n\tselection\x18\x02 \x01(\x0b\x32\x19.hiber.user.UserSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x12\"\n\x04sort\x18\x04 \x01(\x0e\x32\x14.hiber.user.UserSort\x1a\x88\x01\n\x08Response\x12\x1f\n\x05users\x18\x01 \x03(\x0b\x32\x10.hiber.user.User\x12-\n\x07request\x18\x02 \x01(\x0b\x32\x1c.hiber.user.ListUsersRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xbe\x02\n\x19ListAccessRequestsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12,\n\tselection\x18\x02 \x01(\x0b\x32\x19.hiber.user.UserSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x12\"\n\x04sort\x18\x04 \x01(\x0e\x32\x14.hiber.user.UserSort\x1a\x91\x01\n\x08Response\x12\x1f\n\x05users\x18\x01 \x03(\x0b\x32\x10.hiber.user.User\x12\x36\n\x07request\x18\x02 \x01(\x0b\x32%.hiber.user.ListAccessRequestsRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xab\x01\n\x12\x41pproveUserRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x10\n\x08user_ids\x18\x02 \x03(\t\x12:\n\x0bpermissions\x18\x03 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x12%\n\x1doverride_allow_no_permissions\x18\x04 \x01(\x08\x1a\n\n\x08Response\"G\n\x11RemoveUserRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x10\n\x08user_ids\x18\x02 \x03(\t\x1a\n\n\x08Response\"Z\n\x16ListInvitationsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x0e\n\x06search\x18\x02 \x01(\t\x1a\x1a\n\x08Response\x12\x0e\n\x06\x65mails\x18\x01 \x03(\t\"\xb6\x01\n\x11InviteUserRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\r\n\x05retry\x18\x03 \x01(\x08\x12:\n\x0bpermissions\x18\x04 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x12%\n\x1doverride_allow_no_permissions\x18\x05 \x01(\x08\x1a\n\n\x08Response\"\x9b\x02\n\x11\x43reateUserRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x10\n\x08password\x18\x04 \x01(\t\x12:\n\x0bpermissions\x18\x05 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x12\x1e\n\x16send_verification_mail\x18\x06 \x01(\x08\x12 \n\x18send_password_reset_mail\x18\x07 \x01(\x08\x12\x1c\n\x14\x61llow_invite_instead\x18\x08 \x01(\x08\x12%\n\x1doverride_allow_no_permissions\x18\t \x01(\x08\"\x83\x02\n\x12\x43reateUsersRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12,\n\x05users\x18\x02 \x03(\x0b\x32\x1d.hiber.user.CreateUserRequest\x12:\n\x0bpermissions\x18\x03 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x12\x1e\n\x16send_verification_mail\x18\x04 \x01(\x08\x12 \n\x18send_password_reset_mail\x18\x05 \x01(\x08\x1a+\n\x08Response\x12\x1f\n\x05users\x18\x01 \x03(\x0b\x32\x10.hiber.user.User\"M\n\x18ResetUserPasswordRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x1a\n\n\x08Response\"\xb9\x01\n\x1cUpdateUserPermissionsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x10\n\x08user_ids\x18\x02 \x03(\t\x12>\n\x0fnew_permissions\x18\x03 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x12%\n\x1doverride_allow_no_permissions\x18\x04 \x01(\x08\x1a\n\n\x08Response\"0\n\x18GetUserValidationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\"q\n\x1bUpdateUserValidationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12<\n\x16\x65mail_validation_regex\x18\x02 \x01(\x0b\x32\x1c.hiber.UpdateClearableString\"\xc9\x01\n\x19TestUserValidationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12.\n\tselection\x18\x02 \x01(\x0b\x32\x19.hiber.user.UserSelectionH\x00\x12\x17\n\remail_address\x18\x03 \x01(\tH\x00\x12\x35\n\x11\x63ustom_validation\x18\x04 \x01(\x0b\x32\x1a.hiber.user.UserValidation\x1a\n\n\x08ResponseB\n\n\x08validate\"\x86\x03\n\x1aUserActivitySummaryRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x12\x1a\n\x05\x64\x61tes\x18\x03 \x03(\x0b\x32\x0b.hiber.Date\x12=\n\x13\x63hild_organizations\x18\x04 \x01(\x0b\x32 .hiber.Filter.ChildOrganizations\x1a\xe5\x01\n\x08Response\x12V\n\tsummaries\x18\x01 \x03(\x0b\x32\x43.hiber.user.UserActivitySummaryRequest.Response.UserActivitySummary\x1a\x80\x01\n\x13UserActivitySummary\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x12\x19\n\x04\x64\x61te\x18\x03 \x01(\x0b\x32\x0b.hiber.Date\x12\x0f\n\x07\x61\x63tions\x18\x04 \x03(\t\x12\x16\n\x0etotal_requests\x18\x05 \x01(\r*F\n\x08UserSort\x12\r\n\tEMAIL_ASC\x10\x00\x12\x0e\n\nEMAIL_DESC\x10\x01\x12\x0c\n\x08NAME_ASC\x10\x02\x12\r\n\tNAME_DESC\x10\x03\x32\x9a\n\n\x0bUserService\x12K\n\x04List\x12\x1c.hiber.user.ListUsersRequest\x1a%.hiber.user.ListUsersRequest.Response\x12k\n\x12ListAccessRequests\x12%.hiber.user.ListAccessRequestsRequest\x1a..hiber.user.ListAccessRequestsRequest.Response\x12R\n\x07\x41pprove\x12\x1e.hiber.user.ApproveUserRequest\x1a\'.hiber.user.ApproveUserRequest.Response\x12O\n\x06Remove\x12\x1d.hiber.user.RemoveUserRequest\x1a&.hiber.user.RemoveUserRequest.Response\x12O\n\x06Invite\x12\x1d.hiber.user.InviteUserRequest\x1a&.hiber.user.InviteUserRequest.Response\x12\x62\n\x0fListInvitations\x12\".hiber.user.ListInvitationsRequest\x1a+.hiber.user.ListInvitationsRequest.Response\x12=\n\nCreateUser\x12\x1d.hiber.user.CreateUserRequest\x1a\x10.hiber.user.User\x12V\n\x0b\x43reateUsers\x12\x1e.hiber.user.CreateUsersRequest\x1a\'.hiber.user.CreateUsersRequest.Response\x12\x64\n\rResetPassword\x12$.hiber.user.ResetUserPasswordRequest\x1a-.hiber.user.ResetUserPasswordRequest.Response\x12t\n\x15UpdateUserPermissions\x12(.hiber.user.UpdateUserPermissionsRequest\x1a\x31.hiber.user.UpdateUserPermissionsRequest.Response\x12U\n\x11GetUserValidation\x12$.hiber.user.GetUserValidationRequest\x1a\x1a.hiber.user.UserValidation\x12[\n\x14UpdateUserValidation\x12\'.hiber.user.UpdateUserValidationRequest\x1a\x1a.hiber.user.UserValidation\x12k\n\x12TestUserValidation\x12%.hiber.user.TestUserValidationRequest\x1a..hiber.user.TestUserValidationRequest.Response\x12\x63\n\x08\x41\x63tivity\x12&.hiber.user.UserActivitySummaryRequest\x1a/.hiber.user.UserActivitySummaryRequest.ResponseB.\n\x1aglobal.hiber.api.grpc.userB\x07UserApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,permission__pb2.DESCRIPTOR,])
 
@@ -51,8 +51,8 @@ _USERSORT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1772,
-  serialized_end=1842,
+  serialized_start=3010,
+  serialized_end=3080,
 )
 _sym_db.RegisterEnumDescriptor(_USERSORT)
 
@@ -161,6 +161,37 @@ _USERSELECTION = _descriptor.Descriptor(
 )
 
 
+_USERVALIDATION = _descriptor.Descriptor(
+  name='UserValidation',
+  full_name='hiber.user.UserValidation',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='email_validation_regex', full_name='hiber.user.UserValidation.email_validation_regex', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=235,
+  serialized_end=283,
+)
+
+
 _LISTUSERSREQUEST_RESPONSE = _descriptor.Descriptor(
   name='Response',
   full_name='hiber.user.ListUsersRequest.Response',
@@ -201,8 +232,8 @@ _LISTUSERSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=400,
-  serialized_end=536,
+  serialized_start=450,
+  serialized_end=586,
 )
 
 _LISTUSERSREQUEST = _descriptor.Descriptor(
@@ -252,8 +283,8 @@ _LISTUSERSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=236,
-  serialized_end=536,
+  serialized_start=286,
+  serialized_end=586,
 )
 
 
@@ -297,8 +328,8 @@ _LISTACCESSREQUESTSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=712,
-  serialized_end=857,
+  serialized_start=762,
+  serialized_end=907,
 )
 
 _LISTACCESSREQUESTSREQUEST = _descriptor.Descriptor(
@@ -348,8 +379,8 @@ _LISTACCESSREQUESTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=539,
-  serialized_end=857,
+  serialized_start=589,
+  serialized_end=907,
 )
 
 
@@ -372,8 +403,8 @@ _APPROVEUSERREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=400,
-  serialized_end=410,
+  serialized_start=450,
+  serialized_end=460,
 )
 
 _APPROVEUSERREQUEST = _descriptor.Descriptor(
@@ -391,7 +422,7 @@ _APPROVEUSERREQUEST = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='user_id', full_name='hiber.user.ApproveUserRequest.user_id', index=1,
+      name='user_ids', full_name='hiber.user.ApproveUserRequest.user_ids', index=1,
       number=2, type=9, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -401,6 +432,13 @@ _APPROVEUSERREQUEST = _descriptor.Descriptor(
       name='permissions', full_name='hiber.user.ApproveUserRequest.permissions', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='override_allow_no_permissions', full_name='hiber.user.ApproveUserRequest.override_allow_no_permissions', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
@@ -416,8 +454,8 @@ _APPROVEUSERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=860,
-  serialized_end=991,
+  serialized_start=910,
+  serialized_end=1081,
 )
 
 
@@ -440,8 +478,8 @@ _REMOVEUSERREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=400,
-  serialized_end=410,
+  serialized_start=450,
+  serialized_end=460,
 )
 
 _REMOVEUSERREQUEST = _descriptor.Descriptor(
@@ -459,7 +497,7 @@ _REMOVEUSERREQUEST = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='user_id', full_name='hiber.user.RemoveUserRequest.user_id', index=1,
+      name='user_ids', full_name='hiber.user.RemoveUserRequest.user_ids', index=1,
       number=2, type=9, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -477,8 +515,158 @@ _REMOVEUSERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=993,
-  serialized_end=1063,
+  serialized_start=1083,
+  serialized_end=1154,
+)
+
+
+_LISTINVITATIONSREQUEST_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='hiber.user.ListInvitationsRequest.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='emails', full_name='hiber.user.ListInvitationsRequest.Response.emails', index=0,
+      number=1, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1220,
+  serialized_end=1246,
+)
+
+_LISTINVITATIONSREQUEST = _descriptor.Descriptor(
+  name='ListInvitationsRequest',
+  full_name='hiber.user.ListInvitationsRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organization', full_name='hiber.user.ListInvitationsRequest.organization', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='search', full_name='hiber.user.ListInvitationsRequest.search', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_LISTINVITATIONSREQUEST_RESPONSE, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1156,
+  serialized_end=1246,
+)
+
+
+_INVITEUSERREQUEST_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='hiber.user.InviteUserRequest.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=450,
+  serialized_end=460,
+)
+
+_INVITEUSERREQUEST = _descriptor.Descriptor(
+  name='InviteUserRequest',
+  full_name='hiber.user.InviteUserRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organization', full_name='hiber.user.InviteUserRequest.organization', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='email', full_name='hiber.user.InviteUserRequest.email', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='retry', full_name='hiber.user.InviteUserRequest.retry', index=2,
+      number=3, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='permissions', full_name='hiber.user.InviteUserRequest.permissions', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='override_allow_no_permissions', full_name='hiber.user.InviteUserRequest.override_allow_no_permissions', index=4,
+      number=5, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_INVITEUSERREQUEST_RESPONSE, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1249,
+  serialized_end=1431,
 )
 
 
@@ -538,6 +726,20 @@ _CREATEUSERREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='allow_invite_instead', full_name='hiber.user.CreateUserRequest.allow_invite_instead', index=7,
+      number=8, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='override_allow_no_permissions', full_name='hiber.user.CreateUserRequest.override_allow_no_permissions', index=8,
+      number=9, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -550,8 +752,8 @@ _CREATEUSERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1066,
-  serialized_end=1280,
+  serialized_start=1434,
+  serialized_end=1717,
 )
 
 
@@ -581,8 +783,8 @@ _CREATEUSERSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=400,
-  serialized_end=443,
+  serialized_start=450,
+  serialized_end=493,
 )
 
 _CREATEUSERSREQUEST = _descriptor.Descriptor(
@@ -639,8 +841,8 @@ _CREATEUSERSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1283,
-  serialized_end=1542,
+  serialized_start=1720,
+  serialized_end=1979,
 )
 
 
@@ -663,8 +865,8 @@ _RESETUSERPASSWORDREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=400,
-  serialized_end=410,
+  serialized_start=450,
+  serialized_end=460,
 )
 
 _RESETUSERPASSWORDREQUEST = _descriptor.Descriptor(
@@ -700,8 +902,8 @@ _RESETUSERPASSWORDREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1544,
-  serialized_end=1621,
+  serialized_start=1981,
+  serialized_end=2058,
 )
 
 
@@ -724,8 +926,8 @@ _UPDATEUSERPERMISSIONSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=400,
-  serialized_end=410,
+  serialized_start=450,
+  serialized_end=460,
 )
 
 _UPDATEUSERPERMISSIONSREQUEST = _descriptor.Descriptor(
@@ -756,6 +958,13 @@ _UPDATEUSERPERMISSIONSREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='override_allow_no_permissions', full_name='hiber.user.UpdateUserPermissionsRequest.override_allow_no_permissions', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -768,8 +977,295 @@ _UPDATEUSERPERMISSIONSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1624,
-  serialized_end=1770,
+  serialized_start=2061,
+  serialized_end=2246,
+)
+
+
+_GETUSERVALIDATIONREQUEST = _descriptor.Descriptor(
+  name='GetUserValidationRequest',
+  full_name='hiber.user.GetUserValidationRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organization', full_name='hiber.user.GetUserValidationRequest.organization', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2248,
+  serialized_end=2296,
+)
+
+
+_UPDATEUSERVALIDATIONREQUEST = _descriptor.Descriptor(
+  name='UpdateUserValidationRequest',
+  full_name='hiber.user.UpdateUserValidationRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organization', full_name='hiber.user.UpdateUserValidationRequest.organization', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='email_validation_regex', full_name='hiber.user.UpdateUserValidationRequest.email_validation_regex', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2298,
+  serialized_end=2411,
+)
+
+
+_TESTUSERVALIDATIONREQUEST_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='hiber.user.TestUserValidationRequest.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=450,
+  serialized_end=460,
+)
+
+_TESTUSERVALIDATIONREQUEST = _descriptor.Descriptor(
+  name='TestUserValidationRequest',
+  full_name='hiber.user.TestUserValidationRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organization', full_name='hiber.user.TestUserValidationRequest.organization', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='selection', full_name='hiber.user.TestUserValidationRequest.selection', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='email_address', full_name='hiber.user.TestUserValidationRequest.email_address', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='custom_validation', full_name='hiber.user.TestUserValidationRequest.custom_validation', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_TESTUSERVALIDATIONREQUEST_RESPONSE, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+    _descriptor.OneofDescriptor(
+      name='validate', full_name='hiber.user.TestUserValidationRequest.validate',
+      index=0, containing_type=None, fields=[]),
+  ],
+  serialized_start=2414,
+  serialized_end=2615,
+)
+
+
+_USERACTIVITYSUMMARYREQUEST_RESPONSE_USERACTIVITYSUMMARY = _descriptor.Descriptor(
+  name='UserActivitySummary',
+  full_name='hiber.user.UserActivitySummaryRequest.Response.UserActivitySummary',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organization', full_name='hiber.user.UserActivitySummaryRequest.Response.UserActivitySummary.organization', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='user_id', full_name='hiber.user.UserActivitySummaryRequest.Response.UserActivitySummary.user_id', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='date', full_name='hiber.user.UserActivitySummaryRequest.Response.UserActivitySummary.date', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='actions', full_name='hiber.user.UserActivitySummaryRequest.Response.UserActivitySummary.actions', index=3,
+      number=4, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='total_requests', full_name='hiber.user.UserActivitySummaryRequest.Response.UserActivitySummary.total_requests', index=4,
+      number=5, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2880,
+  serialized_end=3008,
+)
+
+_USERACTIVITYSUMMARYREQUEST_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='hiber.user.UserActivitySummaryRequest.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='summaries', full_name='hiber.user.UserActivitySummaryRequest.Response.summaries', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_USERACTIVITYSUMMARYREQUEST_RESPONSE_USERACTIVITYSUMMARY, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2779,
+  serialized_end=3008,
+)
+
+_USERACTIVITYSUMMARYREQUEST = _descriptor.Descriptor(
+  name='UserActivitySummaryRequest',
+  full_name='hiber.user.UserActivitySummaryRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organization', full_name='hiber.user.UserActivitySummaryRequest.organization', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='user_id', full_name='hiber.user.UserActivitySummaryRequest.user_id', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='dates', full_name='hiber.user.UserActivitySummaryRequest.dates', index=2,
+      number=3, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='child_organizations', full_name='hiber.user.UserActivitySummaryRequest.child_organizations', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_USERACTIVITYSUMMARYREQUEST_RESPONSE, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2618,
+  serialized_end=3008,
 )
 
 _USER.fields_by_name['permissions'].message_type = base__pb2._FILTER_ORGANIZATIONPERMISSIONS
@@ -790,6 +1286,9 @@ _LISTACCESSREQUESTSREQUEST.fields_by_name['sort'].enum_type = _USERSORT
 _APPROVEUSERREQUEST_RESPONSE.containing_type = _APPROVEUSERREQUEST
 _APPROVEUSERREQUEST.fields_by_name['permissions'].message_type = base__pb2._FILTER_ORGANIZATIONPERMISSIONS
 _REMOVEUSERREQUEST_RESPONSE.containing_type = _REMOVEUSERREQUEST
+_LISTINVITATIONSREQUEST_RESPONSE.containing_type = _LISTINVITATIONSREQUEST
+_INVITEUSERREQUEST_RESPONSE.containing_type = _INVITEUSERREQUEST
+_INVITEUSERREQUEST.fields_by_name['permissions'].message_type = base__pb2._FILTER_ORGANIZATIONPERMISSIONS
 _CREATEUSERREQUEST.fields_by_name['permissions'].message_type = base__pb2._FILTER_ORGANIZATIONPERMISSIONS
 _CREATEUSERSREQUEST_RESPONSE.fields_by_name['users'].message_type = _USER
 _CREATEUSERSREQUEST_RESPONSE.containing_type = _CREATEUSERSREQUEST
@@ -798,16 +1297,39 @@ _CREATEUSERSREQUEST.fields_by_name['permissions'].message_type = base__pb2._FILT
 _RESETUSERPASSWORDREQUEST_RESPONSE.containing_type = _RESETUSERPASSWORDREQUEST
 _UPDATEUSERPERMISSIONSREQUEST_RESPONSE.containing_type = _UPDATEUSERPERMISSIONSREQUEST
 _UPDATEUSERPERMISSIONSREQUEST.fields_by_name['new_permissions'].message_type = base__pb2._FILTER_ORGANIZATIONPERMISSIONS
+_UPDATEUSERVALIDATIONREQUEST.fields_by_name['email_validation_regex'].message_type = base__pb2._UPDATECLEARABLESTRING
+_TESTUSERVALIDATIONREQUEST_RESPONSE.containing_type = _TESTUSERVALIDATIONREQUEST
+_TESTUSERVALIDATIONREQUEST.fields_by_name['selection'].message_type = _USERSELECTION
+_TESTUSERVALIDATIONREQUEST.fields_by_name['custom_validation'].message_type = _USERVALIDATION
+_TESTUSERVALIDATIONREQUEST.oneofs_by_name['validate'].fields.append(
+  _TESTUSERVALIDATIONREQUEST.fields_by_name['selection'])
+_TESTUSERVALIDATIONREQUEST.fields_by_name['selection'].containing_oneof = _TESTUSERVALIDATIONREQUEST.oneofs_by_name['validate']
+_TESTUSERVALIDATIONREQUEST.oneofs_by_name['validate'].fields.append(
+  _TESTUSERVALIDATIONREQUEST.fields_by_name['email_address'])
+_TESTUSERVALIDATIONREQUEST.fields_by_name['email_address'].containing_oneof = _TESTUSERVALIDATIONREQUEST.oneofs_by_name['validate']
+_USERACTIVITYSUMMARYREQUEST_RESPONSE_USERACTIVITYSUMMARY.fields_by_name['date'].message_type = base__pb2._DATE
+_USERACTIVITYSUMMARYREQUEST_RESPONSE_USERACTIVITYSUMMARY.containing_type = _USERACTIVITYSUMMARYREQUEST_RESPONSE
+_USERACTIVITYSUMMARYREQUEST_RESPONSE.fields_by_name['summaries'].message_type = _USERACTIVITYSUMMARYREQUEST_RESPONSE_USERACTIVITYSUMMARY
+_USERACTIVITYSUMMARYREQUEST_RESPONSE.containing_type = _USERACTIVITYSUMMARYREQUEST
+_USERACTIVITYSUMMARYREQUEST.fields_by_name['dates'].message_type = base__pb2._DATE
+_USERACTIVITYSUMMARYREQUEST.fields_by_name['child_organizations'].message_type = base__pb2._FILTER_CHILDORGANIZATIONS
 DESCRIPTOR.message_types_by_name['User'] = _USER
 DESCRIPTOR.message_types_by_name['UserSelection'] = _USERSELECTION
+DESCRIPTOR.message_types_by_name['UserValidation'] = _USERVALIDATION
 DESCRIPTOR.message_types_by_name['ListUsersRequest'] = _LISTUSERSREQUEST
 DESCRIPTOR.message_types_by_name['ListAccessRequestsRequest'] = _LISTACCESSREQUESTSREQUEST
 DESCRIPTOR.message_types_by_name['ApproveUserRequest'] = _APPROVEUSERREQUEST
 DESCRIPTOR.message_types_by_name['RemoveUserRequest'] = _REMOVEUSERREQUEST
+DESCRIPTOR.message_types_by_name['ListInvitationsRequest'] = _LISTINVITATIONSREQUEST
+DESCRIPTOR.message_types_by_name['InviteUserRequest'] = _INVITEUSERREQUEST
 DESCRIPTOR.message_types_by_name['CreateUserRequest'] = _CREATEUSERREQUEST
 DESCRIPTOR.message_types_by_name['CreateUsersRequest'] = _CREATEUSERSREQUEST
 DESCRIPTOR.message_types_by_name['ResetUserPasswordRequest'] = _RESETUSERPASSWORDREQUEST
 DESCRIPTOR.message_types_by_name['UpdateUserPermissionsRequest'] = _UPDATEUSERPERMISSIONSREQUEST
+DESCRIPTOR.message_types_by_name['GetUserValidationRequest'] = _GETUSERVALIDATIONREQUEST
+DESCRIPTOR.message_types_by_name['UpdateUserValidationRequest'] = _UPDATEUSERVALIDATIONREQUEST
+DESCRIPTOR.message_types_by_name['TestUserValidationRequest'] = _TESTUSERVALIDATIONREQUEST
+DESCRIPTOR.message_types_by_name['UserActivitySummaryRequest'] = _USERACTIVITYSUMMARYREQUEST
 DESCRIPTOR.enum_types_by_name['UserSort'] = _USERSORT
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -824,6 +1346,13 @@ UserSelection = _reflection.GeneratedProtocolMessageType('UserSelection', (_mess
   # @@protoc_insertion_point(class_scope:hiber.user.UserSelection)
   ))
 _sym_db.RegisterMessage(UserSelection)
+
+UserValidation = _reflection.GeneratedProtocolMessageType('UserValidation', (_message.Message,), dict(
+  DESCRIPTOR = _USERVALIDATION,
+  __module__ = 'user_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.user.UserValidation)
+  ))
+_sym_db.RegisterMessage(UserValidation)
 
 ListUsersRequest = _reflection.GeneratedProtocolMessageType('ListUsersRequest', (_message.Message,), dict(
 
@@ -885,6 +1414,36 @@ RemoveUserRequest = _reflection.GeneratedProtocolMessageType('RemoveUserRequest'
 _sym_db.RegisterMessage(RemoveUserRequest)
 _sym_db.RegisterMessage(RemoveUserRequest.Response)
 
+ListInvitationsRequest = _reflection.GeneratedProtocolMessageType('ListInvitationsRequest', (_message.Message,), dict(
+
+  Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
+    DESCRIPTOR = _LISTINVITATIONSREQUEST_RESPONSE,
+    __module__ = 'user_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.user.ListInvitationsRequest.Response)
+    ))
+  ,
+  DESCRIPTOR = _LISTINVITATIONSREQUEST,
+  __module__ = 'user_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.user.ListInvitationsRequest)
+  ))
+_sym_db.RegisterMessage(ListInvitationsRequest)
+_sym_db.RegisterMessage(ListInvitationsRequest.Response)
+
+InviteUserRequest = _reflection.GeneratedProtocolMessageType('InviteUserRequest', (_message.Message,), dict(
+
+  Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
+    DESCRIPTOR = _INVITEUSERREQUEST_RESPONSE,
+    __module__ = 'user_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.user.InviteUserRequest.Response)
+    ))
+  ,
+  DESCRIPTOR = _INVITEUSERREQUEST,
+  __module__ = 'user_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.user.InviteUserRequest)
+  ))
+_sym_db.RegisterMessage(InviteUserRequest)
+_sym_db.RegisterMessage(InviteUserRequest.Response)
+
 CreateUserRequest = _reflection.GeneratedProtocolMessageType('CreateUserRequest', (_message.Message,), dict(
   DESCRIPTOR = _CREATEUSERREQUEST,
   __module__ = 'user_pb2'
@@ -937,6 +1496,58 @@ UpdateUserPermissionsRequest = _reflection.GeneratedProtocolMessageType('UpdateU
 _sym_db.RegisterMessage(UpdateUserPermissionsRequest)
 _sym_db.RegisterMessage(UpdateUserPermissionsRequest.Response)
 
+GetUserValidationRequest = _reflection.GeneratedProtocolMessageType('GetUserValidationRequest', (_message.Message,), dict(
+  DESCRIPTOR = _GETUSERVALIDATIONREQUEST,
+  __module__ = 'user_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.user.GetUserValidationRequest)
+  ))
+_sym_db.RegisterMessage(GetUserValidationRequest)
+
+UpdateUserValidationRequest = _reflection.GeneratedProtocolMessageType('UpdateUserValidationRequest', (_message.Message,), dict(
+  DESCRIPTOR = _UPDATEUSERVALIDATIONREQUEST,
+  __module__ = 'user_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.user.UpdateUserValidationRequest)
+  ))
+_sym_db.RegisterMessage(UpdateUserValidationRequest)
+
+TestUserValidationRequest = _reflection.GeneratedProtocolMessageType('TestUserValidationRequest', (_message.Message,), dict(
+
+  Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
+    DESCRIPTOR = _TESTUSERVALIDATIONREQUEST_RESPONSE,
+    __module__ = 'user_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.user.TestUserValidationRequest.Response)
+    ))
+  ,
+  DESCRIPTOR = _TESTUSERVALIDATIONREQUEST,
+  __module__ = 'user_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.user.TestUserValidationRequest)
+  ))
+_sym_db.RegisterMessage(TestUserValidationRequest)
+_sym_db.RegisterMessage(TestUserValidationRequest.Response)
+
+UserActivitySummaryRequest = _reflection.GeneratedProtocolMessageType('UserActivitySummaryRequest', (_message.Message,), dict(
+
+  Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
+
+    UserActivitySummary = _reflection.GeneratedProtocolMessageType('UserActivitySummary', (_message.Message,), dict(
+      DESCRIPTOR = _USERACTIVITYSUMMARYREQUEST_RESPONSE_USERACTIVITYSUMMARY,
+      __module__ = 'user_pb2'
+      # @@protoc_insertion_point(class_scope:hiber.user.UserActivitySummaryRequest.Response.UserActivitySummary)
+      ))
+    ,
+    DESCRIPTOR = _USERACTIVITYSUMMARYREQUEST_RESPONSE,
+    __module__ = 'user_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.user.UserActivitySummaryRequest.Response)
+    ))
+  ,
+  DESCRIPTOR = _USERACTIVITYSUMMARYREQUEST,
+  __module__ = 'user_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.user.UserActivitySummaryRequest)
+  ))
+_sym_db.RegisterMessage(UserActivitySummaryRequest)
+_sym_db.RegisterMessage(UserActivitySummaryRequest.Response)
+_sym_db.RegisterMessage(UserActivitySummaryRequest.Response.UserActivitySummary)
+
 
 DESCRIPTOR.has_options = True
 DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\032global.hiber.api.grpc.userB\007UserApiP\000Z\005hiber'))
@@ -947,8 +1558,8 @@ _USERSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=1845,
-  serialized_end=2580,
+  serialized_start=3083,
+  serialized_end=4389,
   methods=[
   _descriptor.MethodDescriptor(
     name='List',
@@ -987,9 +1598,27 @@ _USERSERVICE = _descriptor.ServiceDescriptor(
     options=None,
   ),
   _descriptor.MethodDescriptor(
+    name='Invite',
+    full_name='hiber.user.UserService.Invite',
+    index=4,
+    containing_service=None,
+    input_type=_INVITEUSERREQUEST,
+    output_type=_INVITEUSERREQUEST_RESPONSE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='ListInvitations',
+    full_name='hiber.user.UserService.ListInvitations',
+    index=5,
+    containing_service=None,
+    input_type=_LISTINVITATIONSREQUEST,
+    output_type=_LISTINVITATIONSREQUEST_RESPONSE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
     name='CreateUser',
     full_name='hiber.user.UserService.CreateUser',
-    index=4,
+    index=6,
     containing_service=None,
     input_type=_CREATEUSERREQUEST,
     output_type=_USER,
@@ -998,7 +1627,7 @@ _USERSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='CreateUsers',
     full_name='hiber.user.UserService.CreateUsers',
-    index=5,
+    index=7,
     containing_service=None,
     input_type=_CREATEUSERSREQUEST,
     output_type=_CREATEUSERSREQUEST_RESPONSE,
@@ -1007,7 +1636,7 @@ _USERSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='ResetPassword',
     full_name='hiber.user.UserService.ResetPassword',
-    index=6,
+    index=8,
     containing_service=None,
     input_type=_RESETUSERPASSWORDREQUEST,
     output_type=_RESETUSERPASSWORDREQUEST_RESPONSE,
@@ -1016,10 +1645,46 @@ _USERSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='UpdateUserPermissions',
     full_name='hiber.user.UserService.UpdateUserPermissions',
-    index=7,
+    index=9,
     containing_service=None,
     input_type=_UPDATEUSERPERMISSIONSREQUEST,
     output_type=_UPDATEUSERPERMISSIONSREQUEST_RESPONSE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetUserValidation',
+    full_name='hiber.user.UserService.GetUserValidation',
+    index=10,
+    containing_service=None,
+    input_type=_GETUSERVALIDATIONREQUEST,
+    output_type=_USERVALIDATION,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='UpdateUserValidation',
+    full_name='hiber.user.UserService.UpdateUserValidation',
+    index=11,
+    containing_service=None,
+    input_type=_UPDATEUSERVALIDATIONREQUEST,
+    output_type=_USERVALIDATION,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='TestUserValidation',
+    full_name='hiber.user.UserService.TestUserValidation',
+    index=12,
+    containing_service=None,
+    input_type=_TESTUSERVALIDATIONREQUEST,
+    output_type=_TESTUSERVALIDATIONREQUEST_RESPONSE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='Activity',
+    full_name='hiber.user.UserService.Activity',
+    index=13,
+    containing_service=None,
+    input_type=_USERACTIVITYSUMMARYREQUEST,
+    output_type=_USERACTIVITYSUMMARYREQUEST_RESPONSE,
     options=None,
   ),
 ])

@@ -12,6 +12,7 @@ var goog = jspb;
 var global = Function('return this')();
 
 var base_pb = require('./base_pb.js');
+goog.object.extend(proto, base_pb);
 goog.exportSymbol('proto.hiber.satellite.ListSatellitesPassesRequest', null, global);
 goog.exportSymbol('proto.hiber.satellite.ListSatellitesPassesRequest.Response', null, global);
 goog.exportSymbol('proto.hiber.satellite.ListSatellitesPathRequest', null, global);
@@ -207,7 +208,7 @@ proto.hiber.satellite.SatelliteInformation.prototype.getId = function() {
 
 /** @param {number} value */
 proto.hiber.satellite.SatelliteInformation.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -222,7 +223,7 @@ proto.hiber.satellite.SatelliteInformation.prototype.getName = function() {
 
 /** @param {string} value */
 proto.hiber.satellite.SatelliteInformation.prototype.setName = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -249,7 +250,7 @@ proto.hiber.satellite.SatelliteInformation.prototype.clearLaunchedAt = function(
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.satellite.SatelliteInformation.prototype.hasLaunchedAt = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -258,21 +259,21 @@ proto.hiber.satellite.SatelliteInformation.prototype.hasLaunchedAt = function() 
 
 /**
  * repeated string tle = 4;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.satellite.SatelliteInformation.prototype.getTleList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 4));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.satellite.SatelliteInformation.prototype.setTleList = function(value) {
   jspb.Message.setField(this, 4, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.satellite.SatelliteInformation.prototype.addTle = function(value, opt_index) {
@@ -612,7 +613,7 @@ proto.hiber.satellite.SatellitePath.Position.prototype.clearTime = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.satellite.SatellitePath.Position.prototype.hasTime = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -642,7 +643,7 @@ proto.hiber.satellite.SatellitePath.Position.prototype.clearLocation = function(
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.satellite.SatellitePath.Position.prototype.hasLocation = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -660,7 +661,7 @@ proto.hiber.satellite.SatellitePath.prototype.getSatelliteId = function() {
 
 /** @param {number} value */
 proto.hiber.satellite.SatellitePath.prototype.setSatelliteId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -675,21 +676,21 @@ proto.hiber.satellite.SatellitePath.prototype.getName = function() {
 
 /** @param {string} value */
 proto.hiber.satellite.SatellitePath.prototype.setName = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
  * repeated Position positions = 3;
- * @return {!Array.<!proto.hiber.satellite.SatellitePath.Position>}
+ * @return {!Array<!proto.hiber.satellite.SatellitePath.Position>}
  */
 proto.hiber.satellite.SatellitePath.prototype.getPositionsList = function() {
-  return /** @type{!Array.<!proto.hiber.satellite.SatellitePath.Position>} */ (
+  return /** @type{!Array<!proto.hiber.satellite.SatellitePath.Position>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.satellite.SatellitePath.Position, 3));
 };
 
 
-/** @param {!Array.<!proto.hiber.satellite.SatellitePath.Position>} value */
+/** @param {!Array<!proto.hiber.satellite.SatellitePath.Position>} value */
 proto.hiber.satellite.SatellitePath.prototype.setPositionsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
@@ -1087,7 +1088,7 @@ proto.hiber.satellite.SatellitePasses.Pass.prototype.clearTime = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.satellite.SatellitePasses.Pass.prototype.hasTime = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -1117,7 +1118,7 @@ proto.hiber.satellite.SatellitePasses.Pass.prototype.clearClosestApproach = func
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.satellite.SatellitePasses.Pass.prototype.hasClosestApproach = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1135,7 +1136,7 @@ proto.hiber.satellite.SatellitePasses.Pass.prototype.getMaxElevation = function(
 
 /** @param {number} value */
 proto.hiber.satellite.SatellitePasses.Pass.prototype.setMaxElevation = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3FloatField(this, 3, value);
 };
 
 
@@ -1150,7 +1151,7 @@ proto.hiber.satellite.SatellitePasses.Pass.prototype.getAosAzimuth = function() 
 
 /** @param {number} value */
 proto.hiber.satellite.SatellitePasses.Pass.prototype.setAosAzimuth = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
@@ -1165,7 +1166,7 @@ proto.hiber.satellite.SatellitePasses.Pass.prototype.getLosAzimuth = function() 
 
 /** @param {number} value */
 proto.hiber.satellite.SatellitePasses.Pass.prototype.setLosAzimuth = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
@@ -1180,7 +1181,7 @@ proto.hiber.satellite.SatellitePasses.prototype.getSatelliteId = function() {
 
 /** @param {number} value */
 proto.hiber.satellite.SatellitePasses.prototype.setSatelliteId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -1207,7 +1208,7 @@ proto.hiber.satellite.SatellitePasses.prototype.clearLocation = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.satellite.SatellitePasses.prototype.hasLocation = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1225,21 +1226,21 @@ proto.hiber.satellite.SatellitePasses.prototype.getModemNumber = function() {
 
 /** @param {string} value */
 proto.hiber.satellite.SatellitePasses.prototype.setModemNumber = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
  * repeated Pass passes = 4;
- * @return {!Array.<!proto.hiber.satellite.SatellitePasses.Pass>}
+ * @return {!Array<!proto.hiber.satellite.SatellitePasses.Pass>}
  */
 proto.hiber.satellite.SatellitePasses.prototype.getPassesList = function() {
-  return /** @type{!Array.<!proto.hiber.satellite.SatellitePasses.Pass>} */ (
+  return /** @type{!Array<!proto.hiber.satellite.SatellitePasses.Pass>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.satellite.SatellitePasses.Pass, 4));
 };
 
 
-/** @param {!Array.<!proto.hiber.satellite.SatellitePasses.Pass>} value */
+/** @param {!Array<!proto.hiber.satellite.SatellitePasses.Pass>} value */
 proto.hiber.satellite.SatellitePasses.prototype.setPassesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 4, value);
 };
@@ -1353,7 +1354,7 @@ proto.hiber.satellite.SatelliteSelection.deserializeBinaryFromReader = function(
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!Array.<number>} */ (reader.readPackedInt32());
+      var value = /** @type {!Array<number>} */ (reader.readPackedInt32());
       msg.setIdsList(value);
       break;
     case 2:
@@ -1408,21 +1409,21 @@ proto.hiber.satellite.SatelliteSelection.serializeBinaryToWriter = function(mess
 
 /**
  * repeated int32 ids = 1;
- * @return {!Array.<number>}
+ * @return {!Array<number>}
  */
 proto.hiber.satellite.SatelliteSelection.prototype.getIdsList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
-/** @param {!Array.<number>} value */
+/** @param {!Array<number>} value */
 proto.hiber.satellite.SatelliteSelection.prototype.setIdsList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!number} value
+ * @param {number} value
  * @param {number=} opt_index
  */
 proto.hiber.satellite.SatelliteSelection.prototype.addIds = function(value, opt_index) {
@@ -1446,7 +1447,7 @@ proto.hiber.satellite.SatelliteSelection.prototype.getSearch = function() {
 
 /** @param {string} value */
 proto.hiber.satellite.SatelliteSelection.prototype.setSearch = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -1732,15 +1733,15 @@ proto.hiber.satellite.ListSatellitesRequest.Response.serializeBinaryToWriter = f
 
 /**
  * repeated SatelliteInformation satellites = 1;
- * @return {!Array.<!proto.hiber.satellite.SatelliteInformation>}
+ * @return {!Array<!proto.hiber.satellite.SatelliteInformation>}
  */
 proto.hiber.satellite.ListSatellitesRequest.Response.prototype.getSatellitesList = function() {
-  return /** @type{!Array.<!proto.hiber.satellite.SatelliteInformation>} */ (
+  return /** @type{!Array<!proto.hiber.satellite.SatelliteInformation>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.satellite.SatelliteInformation, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.satellite.SatelliteInformation>} value */
+/** @param {!Array<!proto.hiber.satellite.SatelliteInformation>} value */
 proto.hiber.satellite.ListSatellitesRequest.Response.prototype.setSatellitesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -1784,7 +1785,7 @@ proto.hiber.satellite.ListSatellitesRequest.Response.prototype.clearRequest = fu
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.satellite.ListSatellitesRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1814,7 +1815,7 @@ proto.hiber.satellite.ListSatellitesRequest.prototype.clearSelection = function(
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.satellite.ListSatellitesRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -2103,15 +2104,15 @@ proto.hiber.satellite.ListSatellitesPathRequest.Response.serializeBinaryToWriter
 
 /**
  * repeated SatellitePath satellite_path = 1;
- * @return {!Array.<!proto.hiber.satellite.SatellitePath>}
+ * @return {!Array<!proto.hiber.satellite.SatellitePath>}
  */
 proto.hiber.satellite.ListSatellitesPathRequest.Response.prototype.getSatellitePathList = function() {
-  return /** @type{!Array.<!proto.hiber.satellite.SatellitePath>} */ (
+  return /** @type{!Array<!proto.hiber.satellite.SatellitePath>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.satellite.SatellitePath, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.satellite.SatellitePath>} value */
+/** @param {!Array<!proto.hiber.satellite.SatellitePath>} value */
 proto.hiber.satellite.ListSatellitesPathRequest.Response.prototype.setSatellitePathList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -2155,7 +2156,7 @@ proto.hiber.satellite.ListSatellitesPathRequest.Response.prototype.clearRequest 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.satellite.ListSatellitesPathRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2185,7 +2186,7 @@ proto.hiber.satellite.ListSatellitesPathRequest.prototype.clearSelection = funct
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.satellite.ListSatellitesPathRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -2534,15 +2535,15 @@ proto.hiber.satellite.ListSatellitesPassesRequest.Response.serializeBinaryToWrit
 
 /**
  * repeated SatellitePasses passes = 1;
- * @return {!Array.<!proto.hiber.satellite.SatellitePasses>}
+ * @return {!Array<!proto.hiber.satellite.SatellitePasses>}
  */
 proto.hiber.satellite.ListSatellitesPassesRequest.Response.prototype.getPassesList = function() {
-  return /** @type{!Array.<!proto.hiber.satellite.SatellitePasses>} */ (
+  return /** @type{!Array<!proto.hiber.satellite.SatellitePasses>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.satellite.SatellitePasses, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.satellite.SatellitePasses>} value */
+/** @param {!Array<!proto.hiber.satellite.SatellitePasses>} value */
 proto.hiber.satellite.ListSatellitesPassesRequest.Response.prototype.setPassesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -2586,7 +2587,7 @@ proto.hiber.satellite.ListSatellitesPassesRequest.Response.prototype.clearReques
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.satellite.ListSatellitesPassesRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2604,7 +2605,7 @@ proto.hiber.satellite.ListSatellitesPassesRequest.prototype.getOrganization = fu
 
 /** @param {string} value */
 proto.hiber.satellite.ListSatellitesPassesRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -2631,7 +2632,7 @@ proto.hiber.satellite.ListSatellitesPassesRequest.prototype.clearSelection = fun
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.satellite.ListSatellitesPassesRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2661,7 +2662,7 @@ proto.hiber.satellite.ListSatellitesPassesRequest.prototype.clearTimeRange = fun
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.satellite.ListSatellitesPassesRequest.prototype.hasTimeRange = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -2670,15 +2671,15 @@ proto.hiber.satellite.ListSatellitesPassesRequest.prototype.hasTimeRange = funct
 
 /**
  * repeated hiber.Location locations = 4;
- * @return {!Array.<!proto.hiber.Location>}
+ * @return {!Array<!proto.hiber.Location>}
  */
 proto.hiber.satellite.ListSatellitesPassesRequest.prototype.getLocationsList = function() {
-  return /** @type{!Array.<!proto.hiber.Location>} */ (
+  return /** @type{!Array<!proto.hiber.Location>} */ (
     jspb.Message.getRepeatedWrapperField(this, base_pb.Location, 4));
 };
 
 
-/** @param {!Array.<!proto.hiber.Location>} value */
+/** @param {!Array<!proto.hiber.Location>} value */
 proto.hiber.satellite.ListSatellitesPassesRequest.prototype.setLocationsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 4, value);
 };
@@ -2701,21 +2702,21 @@ proto.hiber.satellite.ListSatellitesPassesRequest.prototype.clearLocationsList =
 
 /**
  * repeated string modem_numbers = 5;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.satellite.ListSatellitesPassesRequest.prototype.getModemNumbersList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 5));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 5));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.satellite.ListSatellitesPassesRequest.prototype.setModemNumbersList = function(value) {
   jspb.Message.setField(this, 5, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.satellite.ListSatellitesPassesRequest.prototype.addModemNumbers = function(value, opt_index) {

@@ -3,13 +3,12 @@
 'use strict';
 var grpc = require('grpc');
 var sso_pb = require('./sso_pb.js');
-var base_pb = require('./base_pb.js');
 
 function serialize_hiber_sso_ZendeskTokenRequest(arg) {
   if (!(arg instanceof sso_pb.ZendeskTokenRequest)) {
     throw new Error('Expected argument of type hiber.sso.ZendeskTokenRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_sso_ZendeskTokenRequest(buffer_arg) {
@@ -20,7 +19,7 @@ function serialize_hiber_sso_ZendeskTokenRequest_Response(arg) {
   if (!(arg instanceof sso_pb.ZendeskTokenRequest.Response)) {
     throw new Error('Expected argument of type hiber.sso.ZendeskTokenRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_sso_ZendeskTokenRequest_Response(buffer_arg) {
@@ -31,7 +30,7 @@ function deserialize_hiber_sso_ZendeskTokenRequest_Response(buffer_arg) {
 // Single sign on support service. 
 var SingleSignOnServiceService = exports.SingleSignOnServiceService = {
   // Zendesk SSO using custom JWT 
-  zendesk: {
+zendesk: {
     path: '/hiber.sso.SingleSignOnService/Zendesk',
     requestStream: false,
     responseStream: false,

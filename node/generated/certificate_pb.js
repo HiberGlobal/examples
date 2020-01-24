@@ -12,6 +12,7 @@ var goog = jspb;
 var global = Function('return this')();
 
 var base_pb = require('./base_pb.js');
+goog.object.extend(proto, base_pb);
 goog.exportSymbol('proto.hiber.certificate.Certificate', null, global);
 goog.exportSymbol('proto.hiber.certificate.CertificateSelection', null, global);
 goog.exportSymbol('proto.hiber.certificate.DeleteCertificateRequest', null, global);
@@ -223,7 +224,7 @@ proto.hiber.certificate.Certificate.prototype.getId = function() {
 
 /** @param {number} value */
 proto.hiber.certificate.Certificate.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -238,7 +239,7 @@ proto.hiber.certificate.Certificate.prototype.getName = function() {
 
 /** @param {string} value */
 proto.hiber.certificate.Certificate.prototype.setName = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -265,7 +266,7 @@ proto.hiber.certificate.Certificate.prototype.clearCertificate = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.certificate.Certificate.prototype.hasCertificate = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -285,7 +286,7 @@ proto.hiber.certificate.Certificate.prototype.getHasPrivateKey = function() {
 
 /** @param {boolean} value */
 proto.hiber.certificate.Certificate.prototype.setHasPrivateKey = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
@@ -300,7 +301,7 @@ proto.hiber.certificate.Certificate.prototype.getCaCertificateName = function() 
 
 /** @param {string} value */
 proto.hiber.certificate.Certificate.prototype.setCaCertificateName = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -315,7 +316,7 @@ proto.hiber.certificate.Certificate.prototype.getCaCertificateId = function() {
 
 /** @param {number} value */
 proto.hiber.certificate.Certificate.prototype.setCaCertificateId = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
@@ -413,7 +414,7 @@ proto.hiber.certificate.CertificateSelection.deserializeBinaryFromReader = funct
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
+      var value = /** @type {!Array<number>} */ (reader.readPackedInt64());
       msg.setCertificateIdsList(value);
       break;
     case 2:
@@ -421,7 +422,7 @@ proto.hiber.certificate.CertificateSelection.deserializeBinaryFromReader = funct
       msg.setSearch(value);
       break;
     case 3:
-      var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
+      var value = /** @type {!Array<number>} */ (reader.readPackedInt64());
       msg.setCaCertificateIdsList(value);
       break;
     default:
@@ -479,21 +480,21 @@ proto.hiber.certificate.CertificateSelection.serializeBinaryToWriter = function(
 
 /**
  * repeated int64 certificate_ids = 1;
- * @return {!Array.<number>}
+ * @return {!Array<number>}
  */
 proto.hiber.certificate.CertificateSelection.prototype.getCertificateIdsList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
-/** @param {!Array.<number>} value */
+/** @param {!Array<number>} value */
 proto.hiber.certificate.CertificateSelection.prototype.setCertificateIdsList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!number} value
+ * @param {number} value
  * @param {number=} opt_index
  */
 proto.hiber.certificate.CertificateSelection.prototype.addCertificateIds = function(value, opt_index) {
@@ -517,27 +518,27 @@ proto.hiber.certificate.CertificateSelection.prototype.getSearch = function() {
 
 /** @param {string} value */
 proto.hiber.certificate.CertificateSelection.prototype.setSearch = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
  * repeated int64 ca_certificate_ids = 3;
- * @return {!Array.<number>}
+ * @return {!Array<number>}
  */
 proto.hiber.certificate.CertificateSelection.prototype.getCaCertificateIdsList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 3));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
 
-/** @param {!Array.<number>} value */
+/** @param {!Array<number>} value */
 proto.hiber.certificate.CertificateSelection.prototype.setCaCertificateIdsList = function(value) {
   jspb.Message.setField(this, 3, value || []);
 };
 
 
 /**
- * @param {!number} value
+ * @param {number} value
  * @param {number=} opt_index
  */
 proto.hiber.certificate.CertificateSelection.prototype.addCaCertificateIds = function(value, opt_index) {
@@ -599,7 +600,8 @@ proto.hiber.certificate.ListCertificatesRequest.toObject = function(includeInsta
   var f, obj = {
     organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     selection: (f = msg.getSelection()) && proto.hiber.certificate.CertificateSelection.toObject(includeInstance, f),
-    pagination: (f = msg.getPagination()) && base_pb.Pagination.toObject(includeInstance, f)
+    pagination: (f = msg.getPagination()) && base_pb.Pagination.toObject(includeInstance, f),
+    includeCertificateContentInResponse: jspb.Message.getFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -649,6 +651,10 @@ proto.hiber.certificate.ListCertificatesRequest.deserializeBinaryFromReader = fu
       var value = new base_pb.Pagination;
       reader.readMessage(value,base_pb.Pagination.deserializeBinaryFromReader);
       msg.setPagination(value);
+      break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIncludeCertificateContentInResponse(value);
       break;
     default:
       reader.skipField();
@@ -700,6 +706,13 @@ proto.hiber.certificate.ListCertificatesRequest.serializeBinaryToWriter = functi
       3,
       f,
       base_pb.Pagination.serializeBinaryToWriter
+    );
+  }
+  f = message.getIncludeCertificateContentInResponse();
+  if (f) {
+    writer.writeBool(
+      4,
+      f
     );
   }
 };
@@ -872,15 +885,15 @@ proto.hiber.certificate.ListCertificatesRequest.Response.serializeBinaryToWriter
 
 /**
  * repeated Certificate certificates = 1;
- * @return {!Array.<!proto.hiber.certificate.Certificate>}
+ * @return {!Array<!proto.hiber.certificate.Certificate>}
  */
 proto.hiber.certificate.ListCertificatesRequest.Response.prototype.getCertificatesList = function() {
-  return /** @type{!Array.<!proto.hiber.certificate.Certificate>} */ (
+  return /** @type{!Array<!proto.hiber.certificate.Certificate>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.certificate.Certificate, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.certificate.Certificate>} value */
+/** @param {!Array<!proto.hiber.certificate.Certificate>} value */
 proto.hiber.certificate.ListCertificatesRequest.Response.prototype.setCertificatesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -924,7 +937,7 @@ proto.hiber.certificate.ListCertificatesRequest.Response.prototype.clearRequest 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.certificate.ListCertificatesRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -954,7 +967,7 @@ proto.hiber.certificate.ListCertificatesRequest.Response.prototype.clearPaginati
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.certificate.ListCertificatesRequest.Response.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -972,7 +985,7 @@ proto.hiber.certificate.ListCertificatesRequest.prototype.getOrganization = func
 
 /** @param {string} value */
 proto.hiber.certificate.ListCertificatesRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -999,7 +1012,7 @@ proto.hiber.certificate.ListCertificatesRequest.prototype.clearSelection = funct
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.certificate.ListCertificatesRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1029,10 +1042,27 @@ proto.hiber.certificate.ListCertificatesRequest.prototype.clearPagination = func
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.certificate.ListCertificatesRequest.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional bool include_certificate_content_in_response = 4;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.certificate.ListCertificatesRequest.prototype.getIncludeCertificateContentInResponse = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 4, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.certificate.ListCertificatesRequest.prototype.setIncludeCertificateContentInResponse = function(value) {
+  jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
@@ -1086,7 +1116,8 @@ proto.hiber.certificate.UploadCertificateRequest.toObject = function(includeInst
     organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     uploadCertificate: (f = msg.getUploadCertificate()) && proto.hiber.certificate.UploadCertificateRequest.UploadCertificate.toObject(includeInstance, f),
     uploadCaCertificate: (f = msg.getUploadCaCertificate()) && proto.hiber.certificate.UploadCertificateRequest.UploadCertificate.toObject(includeInstance, f),
-    caCertificateId: jspb.Message.getFieldWithDefault(msg, 4, 0)
+    caCertificateId: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    includeCertificateContentInResponse: jspb.Message.getFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -1140,6 +1171,10 @@ proto.hiber.certificate.UploadCertificateRequest.deserializeBinaryFromReader = f
     case 4:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setCaCertificateId(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIncludeCertificateContentInResponse(value);
       break;
     default:
       reader.skipField();
@@ -1197,6 +1232,13 @@ proto.hiber.certificate.UploadCertificateRequest.serializeBinaryToWriter = funct
   if (f !== 0) {
     writer.writeInt64(
       4,
+      f
+    );
+  }
+  f = message.getIncludeCertificateContentInResponse();
+  if (f) {
+    writer.writeBool(
+      5,
       f
     );
   }
@@ -1369,7 +1411,7 @@ proto.hiber.certificate.UploadCertificateRequest.Response.prototype.clearCertifi
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.certificate.UploadCertificateRequest.Response.prototype.hasCertificate = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -1399,7 +1441,7 @@ proto.hiber.certificate.UploadCertificateRequest.Response.prototype.clearRequest
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.certificate.UploadCertificateRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1572,7 +1614,7 @@ proto.hiber.certificate.UploadCertificateRequest.UploadCertificate.prototype.get
 
 /** @param {string} value */
 proto.hiber.certificate.UploadCertificateRequest.UploadCertificate.prototype.setName = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1599,7 +1641,7 @@ proto.hiber.certificate.UploadCertificateRequest.UploadCertificate.prototype.cle
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.certificate.UploadCertificateRequest.UploadCertificate.prototype.hasCertificate = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1629,7 +1671,7 @@ proto.hiber.certificate.UploadCertificateRequest.UploadCertificate.prototype.cle
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.certificate.UploadCertificateRequest.UploadCertificate.prototype.hasPrivateKey = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -1647,7 +1689,7 @@ proto.hiber.certificate.UploadCertificateRequest.prototype.getOrganization = fun
 
 /** @param {string} value */
 proto.hiber.certificate.UploadCertificateRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1674,7 +1716,7 @@ proto.hiber.certificate.UploadCertificateRequest.prototype.clearUploadCertificat
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.certificate.UploadCertificateRequest.prototype.hasUploadCertificate = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1704,7 +1746,7 @@ proto.hiber.certificate.UploadCertificateRequest.prototype.clearUploadCaCertific
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.certificate.UploadCertificateRequest.prototype.hasUploadCaCertificate = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -1722,7 +1764,24 @@ proto.hiber.certificate.UploadCertificateRequest.prototype.getCaCertificateId = 
 
 /** @param {number} value */
 proto.hiber.certificate.UploadCertificateRequest.prototype.setCaCertificateId = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+/**
+ * optional bool include_certificate_content_in_response = 5;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.certificate.UploadCertificateRequest.prototype.getIncludeCertificateContentInResponse = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 5, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.certificate.UploadCertificateRequest.prototype.setIncludeCertificateContentInResponse = function(value) {
+  jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 
@@ -1775,7 +1834,8 @@ proto.hiber.certificate.RenameCertificateRequest.toObject = function(includeInst
   var f, obj = {
     organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     selection: (f = msg.getSelection()) && proto.hiber.certificate.CertificateSelection.toObject(includeInstance, f),
-    newName: jspb.Message.getFieldWithDefault(msg, 3, "")
+    newName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    includeCertificateContentInResponse: jspb.Message.getFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -1825,6 +1885,10 @@ proto.hiber.certificate.RenameCertificateRequest.deserializeBinaryFromReader = f
       var value = /** @type {string} */ (reader.readString());
       msg.setNewName(value);
       break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIncludeCertificateContentInResponse(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1873,6 +1937,13 @@ proto.hiber.certificate.RenameCertificateRequest.serializeBinaryToWriter = funct
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getIncludeCertificateContentInResponse();
+  if (f) {
+    writer.writeBool(
+      4,
       f
     );
   }
@@ -2046,15 +2117,15 @@ proto.hiber.certificate.RenameCertificateRequest.Response.serializeBinaryToWrite
 
 /**
  * repeated Certificate certificates = 1;
- * @return {!Array.<!proto.hiber.certificate.Certificate>}
+ * @return {!Array<!proto.hiber.certificate.Certificate>}
  */
 proto.hiber.certificate.RenameCertificateRequest.Response.prototype.getCertificatesList = function() {
-  return /** @type{!Array.<!proto.hiber.certificate.Certificate>} */ (
+  return /** @type{!Array<!proto.hiber.certificate.Certificate>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.certificate.Certificate, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.certificate.Certificate>} value */
+/** @param {!Array<!proto.hiber.certificate.Certificate>} value */
 proto.hiber.certificate.RenameCertificateRequest.Response.prototype.setCertificatesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -2098,7 +2169,7 @@ proto.hiber.certificate.RenameCertificateRequest.Response.prototype.clearRequest
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.certificate.RenameCertificateRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2128,7 +2199,7 @@ proto.hiber.certificate.RenameCertificateRequest.Response.prototype.clearPaginat
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.certificate.RenameCertificateRequest.Response.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -2146,7 +2217,7 @@ proto.hiber.certificate.RenameCertificateRequest.prototype.getOrganization = fun
 
 /** @param {string} value */
 proto.hiber.certificate.RenameCertificateRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -2173,7 +2244,7 @@ proto.hiber.certificate.RenameCertificateRequest.prototype.clearSelection = func
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.certificate.RenameCertificateRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2191,7 +2262,24 @@ proto.hiber.certificate.RenameCertificateRequest.prototype.getNewName = function
 
 /** @param {string} value */
 proto.hiber.certificate.RenameCertificateRequest.prototype.setNewName = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional bool include_certificate_content_in_response = 4;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.certificate.RenameCertificateRequest.prototype.getIncludeCertificateContentInResponse = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 4, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.certificate.RenameCertificateRequest.prototype.setIncludeCertificateContentInResponse = function(value) {
+  jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
@@ -2429,7 +2517,7 @@ proto.hiber.certificate.DeleteCertificateRequest.Response.deserializeBinaryFromR
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
+      var value = /** @type {!Array<number>} */ (reader.readPackedInt64());
       msg.setDeletedCertificateIdsList(value);
       break;
     case 2:
@@ -2486,21 +2574,21 @@ proto.hiber.certificate.DeleteCertificateRequest.Response.serializeBinaryToWrite
 
 /**
  * repeated int64 deleted_certificate_ids = 1;
- * @return {!Array.<number>}
+ * @return {!Array<number>}
  */
 proto.hiber.certificate.DeleteCertificateRequest.Response.prototype.getDeletedCertificateIdsList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
-/** @param {!Array.<number>} value */
+/** @param {!Array<number>} value */
 proto.hiber.certificate.DeleteCertificateRequest.Response.prototype.setDeletedCertificateIdsList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!number} value
+ * @param {number} value
  * @param {number=} opt_index
  */
 proto.hiber.certificate.DeleteCertificateRequest.Response.prototype.addDeletedCertificateIds = function(value, opt_index) {
@@ -2536,7 +2624,7 @@ proto.hiber.certificate.DeleteCertificateRequest.Response.prototype.clearRequest
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.certificate.DeleteCertificateRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2554,7 +2642,7 @@ proto.hiber.certificate.DeleteCertificateRequest.prototype.getOrganization = fun
 
 /** @param {string} value */
 proto.hiber.certificate.DeleteCertificateRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -2581,7 +2669,7 @@ proto.hiber.certificate.DeleteCertificateRequest.prototype.clearSelection = func
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.certificate.DeleteCertificateRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;

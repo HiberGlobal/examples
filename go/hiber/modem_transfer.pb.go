@@ -36,7 +36,7 @@ var ModemTransfer_Type_value = map[string]int32{
 func (x ModemTransfer_Type) String() string {
 	return proto.EnumName(ModemTransfer_Type_name, int32(x))
 }
-func (ModemTransfer_Type) EnumDescriptor() ([]byte, []int) { return fileDescriptor9, []int{0, 0} }
+func (ModemTransfer_Type) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{0, 0} }
 
 type ModemTransfer_Status int32
 
@@ -63,7 +63,7 @@ var ModemTransfer_Status_value = map[string]int32{
 func (x ModemTransfer_Status) String() string {
 	return proto.EnumName(ModemTransfer_Status_name, int32(x))
 }
-func (ModemTransfer_Status) EnumDescriptor() ([]byte, []int) { return fileDescriptor9, []int{0, 1} }
+func (ModemTransfer_Status) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{0, 1} }
 
 type ModemTransferReturnLine_Reason int32
 
@@ -97,7 +97,7 @@ func (x ModemTransferReturnLine_Reason) String() string {
 	return proto.EnumName(ModemTransferReturnLine_Reason_name, int32(x))
 }
 func (ModemTransferReturnLine_Reason) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor9, []int{1, 0}
+	return fileDescriptor13, []int{1, 0}
 }
 
 type ModemTransfer struct {
@@ -121,7 +121,7 @@ type ModemTransfer struct {
 func (m *ModemTransfer) Reset()                    { *m = ModemTransfer{} }
 func (m *ModemTransfer) String() string            { return proto.CompactTextString(m) }
 func (*ModemTransfer) ProtoMessage()               {}
-func (*ModemTransfer) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{0} }
+func (*ModemTransfer) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{0} }
 
 func (m *ModemTransfer) GetIdentifier() string {
 	if m != nil {
@@ -242,7 +242,7 @@ type ModemTransferReturnLine struct {
 func (m *ModemTransferReturnLine) Reset()                    { *m = ModemTransferReturnLine{} }
 func (m *ModemTransferReturnLine) String() string            { return proto.CompactTextString(m) }
 func (*ModemTransferReturnLine) ProtoMessage()               {}
-func (*ModemTransferReturnLine) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{1} }
+func (*ModemTransferReturnLine) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{1} }
 
 func (m *ModemTransferReturnLine) GetOriginalTransfer() string {
 	if m != nil {
@@ -322,7 +322,7 @@ type ModemTransferSelection struct {
 func (m *ModemTransferSelection) Reset()                    { *m = ModemTransferSelection{} }
 func (m *ModemTransferSelection) String() string            { return proto.CompactTextString(m) }
 func (*ModemTransferSelection) ProtoMessage()               {}
-func (*ModemTransferSelection) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{2} }
+func (*ModemTransferSelection) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{2} }
 
 func (m *ModemTransferSelection) GetIdentifiers() []string {
 	if m != nil {
@@ -433,7 +433,7 @@ type TransferModemsRequest struct {
 func (m *TransferModemsRequest) Reset()                    { *m = TransferModemsRequest{} }
 func (m *TransferModemsRequest) String() string            { return proto.CompactTextString(m) }
 func (*TransferModemsRequest) ProtoMessage()               {}
-func (*TransferModemsRequest) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{3} }
+func (*TransferModemsRequest) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{3} }
 
 func (m *TransferModemsRequest) GetOrganization() string {
 	if m != nil {
@@ -493,7 +493,7 @@ func (m *TransferModemsRequest_Response) Reset()         { *m = TransferModemsRe
 func (m *TransferModemsRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*TransferModemsRequest_Response) ProtoMessage()    {}
 func (*TransferModemsRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor9, []int{3, 0}
+	return fileDescriptor13, []int{3, 0}
 }
 
 func (m *TransferModemsRequest_Response) GetRequest() *TransferModemsRequest {
@@ -520,7 +520,7 @@ type ListModemTransfersRequest struct {
 func (m *ListModemTransfersRequest) Reset()                    { *m = ListModemTransfersRequest{} }
 func (m *ListModemTransfersRequest) String() string            { return proto.CompactTextString(m) }
 func (*ListModemTransfersRequest) ProtoMessage()               {}
-func (*ListModemTransfersRequest) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{4} }
+func (*ListModemTransfersRequest) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{4} }
 
 func (m *ListModemTransfersRequest) GetOrganization() string {
 	if m != nil {
@@ -553,7 +553,7 @@ func (m *ListModemTransfersRequest_Response) Reset()         { *m = ListModemTra
 func (m *ListModemTransfersRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*ListModemTransfersRequest_Response) ProtoMessage()    {}
 func (*ListModemTransfersRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor9, []int{4, 0}
+	return fileDescriptor13, []int{4, 0}
 }
 
 func (m *ListModemTransfersRequest_Response) GetRequest() *ListModemTransfersRequest {
@@ -586,7 +586,7 @@ type CancelModemTransferRequest struct {
 func (m *CancelModemTransferRequest) Reset()                    { *m = CancelModemTransferRequest{} }
 func (m *CancelModemTransferRequest) String() string            { return proto.CompactTextString(m) }
 func (*CancelModemTransferRequest) ProtoMessage()               {}
-func (*CancelModemTransferRequest) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{5} }
+func (*CancelModemTransferRequest) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{5} }
 
 func (m *CancelModemTransferRequest) GetOrganization() string {
 	if m != nil {
@@ -611,7 +611,7 @@ func (m *CancelModemTransferRequest_Response) Reset()         { *m = CancelModem
 func (m *CancelModemTransferRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*CancelModemTransferRequest_Response) ProtoMessage()    {}
 func (*CancelModemTransferRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor9, []int{5, 0}
+	return fileDescriptor13, []int{5, 0}
 }
 
 func (m *CancelModemTransferRequest_Response) GetRequest() *CancelModemTransferRequest {
@@ -637,7 +637,7 @@ type ReceivedModemTransferRequest struct {
 func (m *ReceivedModemTransferRequest) Reset()                    { *m = ReceivedModemTransferRequest{} }
 func (m *ReceivedModemTransferRequest) String() string            { return proto.CompactTextString(m) }
 func (*ReceivedModemTransferRequest) ProtoMessage()               {}
-func (*ReceivedModemTransferRequest) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{6} }
+func (*ReceivedModemTransferRequest) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{6} }
 
 func (m *ReceivedModemTransferRequest) GetOrganization() string {
 	if m != nil {
@@ -662,7 +662,7 @@ func (m *ReceivedModemTransferRequest_Response) Reset()         { *m = ReceivedM
 func (m *ReceivedModemTransferRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*ReceivedModemTransferRequest_Response) ProtoMessage()    {}
 func (*ReceivedModemTransferRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor9, []int{6, 0}
+	return fileDescriptor13, []int{6, 0}
 }
 
 func (m *ReceivedModemTransferRequest_Response) GetRequest() *ReceivedModemTransferRequest {
@@ -685,10 +685,12 @@ type NotReceivedModemTransferRequest struct {
 	Selection    *ModemTransferSelection `protobuf:"bytes,2,opt,name=selection" json:"selection,omitempty"`
 }
 
-func (m *NotReceivedModemTransferRequest) Reset()                    { *m = NotReceivedModemTransferRequest{} }
-func (m *NotReceivedModemTransferRequest) String() string            { return proto.CompactTextString(m) }
-func (*NotReceivedModemTransferRequest) ProtoMessage()               {}
-func (*NotReceivedModemTransferRequest) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{7} }
+func (m *NotReceivedModemTransferRequest) Reset()         { *m = NotReceivedModemTransferRequest{} }
+func (m *NotReceivedModemTransferRequest) String() string { return proto.CompactTextString(m) }
+func (*NotReceivedModemTransferRequest) ProtoMessage()    {}
+func (*NotReceivedModemTransferRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor13, []int{7}
+}
 
 func (m *NotReceivedModemTransferRequest) GetOrganization() string {
 	if m != nil {
@@ -715,7 +717,7 @@ func (m *NotReceivedModemTransferRequest_Response) Reset() {
 func (m *NotReceivedModemTransferRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*NotReceivedModemTransferRequest_Response) ProtoMessage()    {}
 func (*NotReceivedModemTransferRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor9, []int{7, 0}
+	return fileDescriptor13, []int{7, 0}
 }
 
 func (m *NotReceivedModemTransferRequest_Response) GetRequest() *NotReceivedModemTransferRequest {
@@ -753,7 +755,7 @@ type PrepareModemForReturnRequest struct {
 func (m *PrepareModemForReturnRequest) Reset()                    { *m = PrepareModemForReturnRequest{} }
 func (m *PrepareModemForReturnRequest) String() string            { return proto.CompactTextString(m) }
 func (*PrepareModemForReturnRequest) ProtoMessage()               {}
-func (*PrepareModemForReturnRequest) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{8} }
+func (*PrepareModemForReturnRequest) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{8} }
 
 func (m *PrepareModemForReturnRequest) GetOrganization() string {
 	if m != nil {
@@ -806,7 +808,7 @@ func (m *PrepareModemForReturnRequest_Response) Reset()         { *m = PrepareMo
 func (m *PrepareModemForReturnRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*PrepareModemForReturnRequest_Response) ProtoMessage()    {}
 func (*PrepareModemForReturnRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor9, []int{8, 0}
+	return fileDescriptor13, []int{8, 0}
 }
 
 func (m *PrepareModemForReturnRequest_Response) GetRequest() *PrepareModemForReturnRequest {
@@ -833,7 +835,7 @@ func (m *DeleteModemTransferReturnLinesRequest) Reset()         { *m = DeleteMod
 func (m *DeleteModemTransferReturnLinesRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteModemTransferReturnLinesRequest) ProtoMessage()    {}
 func (*DeleteModemTransferReturnLinesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor9, []int{9}
+	return fileDescriptor13, []int{9}
 }
 
 func (m *DeleteModemTransferReturnLinesRequest) GetOrganization() string {
@@ -868,7 +870,7 @@ func (m *DeleteModemTransferReturnLinesRequest_Response) String() string {
 }
 func (*DeleteModemTransferReturnLinesRequest_Response) ProtoMessage() {}
 func (*DeleteModemTransferReturnLinesRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor9, []int{9, 0}
+	return fileDescriptor13, []int{9, 0}
 }
 
 type ListModemTransferReturnLinesRequest struct {
@@ -882,7 +884,7 @@ func (m *ListModemTransferReturnLinesRequest) Reset()         { *m = ListModemTr
 func (m *ListModemTransferReturnLinesRequest) String() string { return proto.CompactTextString(m) }
 func (*ListModemTransferReturnLinesRequest) ProtoMessage()    {}
 func (*ListModemTransferReturnLinesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor9, []int{10}
+	return fileDescriptor13, []int{10}
 }
 
 func (m *ListModemTransferReturnLinesRequest) GetOrganization() string {
@@ -920,7 +922,7 @@ func (m *ListModemTransferReturnLinesRequest_Response) String() string {
 }
 func (*ListModemTransferReturnLinesRequest_Response) ProtoMessage() {}
 func (*ListModemTransferReturnLinesRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor9, []int{10, 0}
+	return fileDescriptor13, []int{10, 0}
 }
 
 func (m *ListModemTransferReturnLinesRequest_Response) GetRequest() *ListModemTransferReturnLinesRequest {
@@ -954,7 +956,7 @@ type SendReturnRequest struct {
 func (m *SendReturnRequest) Reset()                    { *m = SendReturnRequest{} }
 func (m *SendReturnRequest) String() string            { return proto.CompactTextString(m) }
 func (*SendReturnRequest) ProtoMessage()               {}
-func (*SendReturnRequest) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{11} }
+func (*SendReturnRequest) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{11} }
 
 func (m *SendReturnRequest) GetOrganization() string {
 	if m != nil {
@@ -985,7 +987,7 @@ type SendReturnRequest_Response struct {
 func (m *SendReturnRequest_Response) Reset()                    { *m = SendReturnRequest_Response{} }
 func (m *SendReturnRequest_Response) String() string            { return proto.CompactTextString(m) }
 func (*SendReturnRequest_Response) ProtoMessage()               {}
-func (*SendReturnRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{11, 0} }
+func (*SendReturnRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{11, 0} }
 
 func (m *SendReturnRequest_Response) GetRequest() *SendReturnRequest {
 	if m != nil {
@@ -1427,9 +1429,9 @@ var _ModemTransferReturnService_serviceDesc = grpc.ServiceDesc{
 	Metadata: "modem_transfer.proto",
 }
 
-func init() { proto.RegisterFile("modem_transfer.proto", fileDescriptor9) }
+func init() { proto.RegisterFile("modem_transfer.proto", fileDescriptor13) }
 
-var fileDescriptor9 = []byte{
+var fileDescriptor13 = []byte{
 	// 1676 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x59, 0x4f, 0x73, 0xdb, 0x54,
 	0x10, 0xaf, 0xff, 0xc6, 0x5e, 0x39, 0x89, 0xf2, 0xda, 0x14, 0x55, 0x2d, 0x8d, 0xab, 0x00, 0x4d,

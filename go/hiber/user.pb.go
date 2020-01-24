@@ -42,7 +42,7 @@ var UserSort_value = map[string]int32{
 func (x UserSort) String() string {
 	return proto.EnumName(UserSort_name, int32(x))
 }
-func (UserSort) EnumDescriptor() ([]byte, []int) { return fileDescriptor20, []int{0} }
+func (UserSort) EnumDescriptor() ([]byte, []int) { return fileDescriptor24, []int{0} }
 
 type User struct {
 	Id          string                          `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
@@ -54,7 +54,7 @@ type User struct {
 func (m *User) Reset()                    { *m = User{} }
 func (m *User) String() string            { return proto.CompactTextString(m) }
 func (*User) ProtoMessage()               {}
-func (*User) Descriptor() ([]byte, []int) { return fileDescriptor20, []int{0} }
+func (*User) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{0} }
 
 func (m *User) GetId() string {
 	if m != nil {
@@ -93,7 +93,7 @@ type UserSelection struct {
 func (m *UserSelection) Reset()                    { *m = UserSelection{} }
 func (m *UserSelection) String() string            { return proto.CompactTextString(m) }
 func (*UserSelection) ProtoMessage()               {}
-func (*UserSelection) Descriptor() ([]byte, []int) { return fileDescriptor20, []int{1} }
+func (*UserSelection) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{1} }
 
 func (m *UserSelection) GetUserIds() []string {
 	if m != nil {
@@ -116,6 +116,22 @@ func (m *UserSelection) GetByName() string {
 	return ""
 }
 
+type UserValidation struct {
+	EmailValidationRegex string `protobuf:"bytes,1,opt,name=email_validation_regex,json=emailValidationRegex" json:"email_validation_regex,omitempty"`
+}
+
+func (m *UserValidation) Reset()                    { *m = UserValidation{} }
+func (m *UserValidation) String() string            { return proto.CompactTextString(m) }
+func (*UserValidation) ProtoMessage()               {}
+func (*UserValidation) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{2} }
+
+func (m *UserValidation) GetEmailValidationRegex() string {
+	if m != nil {
+		return m.EmailValidationRegex
+	}
+	return ""
+}
+
 type ListUsersRequest struct {
 	// Pick the organization to use (/impersonate). If unset, your default organization is used.
 	Organization string         `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
@@ -127,7 +143,7 @@ type ListUsersRequest struct {
 func (m *ListUsersRequest) Reset()                    { *m = ListUsersRequest{} }
 func (m *ListUsersRequest) String() string            { return proto.CompactTextString(m) }
 func (*ListUsersRequest) ProtoMessage()               {}
-func (*ListUsersRequest) Descriptor() ([]byte, []int) { return fileDescriptor20, []int{2} }
+func (*ListUsersRequest) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{3} }
 
 func (m *ListUsersRequest) GetOrganization() string {
 	if m != nil {
@@ -166,7 +182,7 @@ type ListUsersRequest_Response struct {
 func (m *ListUsersRequest_Response) Reset()                    { *m = ListUsersRequest_Response{} }
 func (m *ListUsersRequest_Response) String() string            { return proto.CompactTextString(m) }
 func (*ListUsersRequest_Response) ProtoMessage()               {}
-func (*ListUsersRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor20, []int{2, 0} }
+func (*ListUsersRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{3, 0} }
 
 func (m *ListUsersRequest_Response) GetUsers() []*User {
 	if m != nil {
@@ -200,7 +216,7 @@ type ListAccessRequestsRequest struct {
 func (m *ListAccessRequestsRequest) Reset()                    { *m = ListAccessRequestsRequest{} }
 func (m *ListAccessRequestsRequest) String() string            { return proto.CompactTextString(m) }
 func (*ListAccessRequestsRequest) ProtoMessage()               {}
-func (*ListAccessRequestsRequest) Descriptor() ([]byte, []int) { return fileDescriptor20, []int{3} }
+func (*ListAccessRequestsRequest) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{4} }
 
 func (m *ListAccessRequestsRequest) GetOrganization() string {
 	if m != nil {
@@ -240,7 +256,7 @@ func (m *ListAccessRequestsRequest_Response) Reset()         { *m = ListAccessRe
 func (m *ListAccessRequestsRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*ListAccessRequestsRequest_Response) ProtoMessage()    {}
 func (*ListAccessRequestsRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor20, []int{3, 0}
+	return fileDescriptor24, []int{4, 0}
 }
 
 func (m *ListAccessRequestsRequest_Response) GetUsers() []*User {
@@ -267,14 +283,16 @@ func (m *ListAccessRequestsRequest_Response) GetPagination() *Pagination_Result 
 type ApproveUserRequest struct {
 	// Pick the organization to use (/impersonate). If unset, your default organization is used.
 	Organization string                          `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
-	UserId       []string                        `protobuf:"bytes,2,rep,name=user_id,json=userId" json:"user_id,omitempty"`
+	UserIds      []string                        `protobuf:"bytes,2,rep,name=user_ids,json=userIds" json:"user_ids,omitempty"`
 	Permissions  *Filter_OrganizationPermissions `protobuf:"bytes,3,opt,name=permissions" json:"permissions,omitempty"`
+	// By default, the server returns an error when you don't specify any permissions. Set this to true to allow it.
+	OverrideAllowNoPermissions bool `protobuf:"varint,4,opt,name=override_allow_no_permissions,json=overrideAllowNoPermissions" json:"override_allow_no_permissions,omitempty"`
 }
 
 func (m *ApproveUserRequest) Reset()                    { *m = ApproveUserRequest{} }
 func (m *ApproveUserRequest) String() string            { return proto.CompactTextString(m) }
 func (*ApproveUserRequest) ProtoMessage()               {}
-func (*ApproveUserRequest) Descriptor() ([]byte, []int) { return fileDescriptor20, []int{4} }
+func (*ApproveUserRequest) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{5} }
 
 func (m *ApproveUserRequest) GetOrganization() string {
 	if m != nil {
@@ -283,9 +301,9 @@ func (m *ApproveUserRequest) GetOrganization() string {
 	return ""
 }
 
-func (m *ApproveUserRequest) GetUserId() []string {
+func (m *ApproveUserRequest) GetUserIds() []string {
 	if m != nil {
-		return m.UserId
+		return m.UserIds
 	}
 	return nil
 }
@@ -297,24 +315,31 @@ func (m *ApproveUserRequest) GetPermissions() *Filter_OrganizationPermissions {
 	return nil
 }
 
+func (m *ApproveUserRequest) GetOverrideAllowNoPermissions() bool {
+	if m != nil {
+		return m.OverrideAllowNoPermissions
+	}
+	return false
+}
+
 type ApproveUserRequest_Response struct {
 }
 
 func (m *ApproveUserRequest_Response) Reset()                    { *m = ApproveUserRequest_Response{} }
 func (m *ApproveUserRequest_Response) String() string            { return proto.CompactTextString(m) }
 func (*ApproveUserRequest_Response) ProtoMessage()               {}
-func (*ApproveUserRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor20, []int{4, 0} }
+func (*ApproveUserRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{5, 0} }
 
 type RemoveUserRequest struct {
 	// Pick the organization to use (/impersonate). If unset, your default organization is used.
 	Organization string   `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
-	UserId       []string `protobuf:"bytes,2,rep,name=user_id,json=userId" json:"user_id,omitempty"`
+	UserIds      []string `protobuf:"bytes,2,rep,name=user_ids,json=userIds" json:"user_ids,omitempty"`
 }
 
 func (m *RemoveUserRequest) Reset()                    { *m = RemoveUserRequest{} }
 func (m *RemoveUserRequest) String() string            { return proto.CompactTextString(m) }
 func (*RemoveUserRequest) ProtoMessage()               {}
-func (*RemoveUserRequest) Descriptor() ([]byte, []int) { return fileDescriptor20, []int{5} }
+func (*RemoveUserRequest) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{6} }
 
 func (m *RemoveUserRequest) GetOrganization() string {
 	if m != nil {
@@ -323,9 +348,9 @@ func (m *RemoveUserRequest) GetOrganization() string {
 	return ""
 }
 
-func (m *RemoveUserRequest) GetUserId() []string {
+func (m *RemoveUserRequest) GetUserIds() []string {
 	if m != nil {
-		return m.UserId
+		return m.UserIds
 	}
 	return nil
 }
@@ -336,7 +361,113 @@ type RemoveUserRequest_Response struct {
 func (m *RemoveUserRequest_Response) Reset()                    { *m = RemoveUserRequest_Response{} }
 func (m *RemoveUserRequest_Response) String() string            { return proto.CompactTextString(m) }
 func (*RemoveUserRequest_Response) ProtoMessage()               {}
-func (*RemoveUserRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor20, []int{5, 0} }
+func (*RemoveUserRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{6, 0} }
+
+// List all invited users (email addresses).
+type ListInvitationsRequest struct {
+	// Pick the organization to use (/impersonate). If unset, your default organization is used.
+	Organization string `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
+	// Search the invited email addresses.
+	Search string `protobuf:"bytes,2,opt,name=search" json:"search,omitempty"`
+}
+
+func (m *ListInvitationsRequest) Reset()                    { *m = ListInvitationsRequest{} }
+func (m *ListInvitationsRequest) String() string            { return proto.CompactTextString(m) }
+func (*ListInvitationsRequest) ProtoMessage()               {}
+func (*ListInvitationsRequest) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{7} }
+
+func (m *ListInvitationsRequest) GetOrganization() string {
+	if m != nil {
+		return m.Organization
+	}
+	return ""
+}
+
+func (m *ListInvitationsRequest) GetSearch() string {
+	if m != nil {
+		return m.Search
+	}
+	return ""
+}
+
+type ListInvitationsRequest_Response struct {
+	Emails []string `protobuf:"bytes,1,rep,name=emails" json:"emails,omitempty"`
+}
+
+func (m *ListInvitationsRequest_Response) Reset()         { *m = ListInvitationsRequest_Response{} }
+func (m *ListInvitationsRequest_Response) String() string { return proto.CompactTextString(m) }
+func (*ListInvitationsRequest_Response) ProtoMessage()    {}
+func (*ListInvitationsRequest_Response) Descriptor() ([]byte, []int) {
+	return fileDescriptor24, []int{7, 0}
+}
+
+func (m *ListInvitationsRequest_Response) GetEmails() []string {
+	if m != nil {
+		return m.Emails
+	}
+	return nil
+}
+
+// Accept an invitation to an organization.
+type InviteUserRequest struct {
+	// Pick the organization to use (/impersonate). If unset, your default organization is used.
+	Organization string `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
+	// The email address of the user you want to invite.
+	Email string `protobuf:"bytes,2,opt,name=email" json:"email,omitempty"`
+	// Invite the user again, even if there is an open invite. This can be done a limited amount of times.
+	Retry       bool                            `protobuf:"varint,3,opt,name=retry" json:"retry,omitempty"`
+	Permissions *Filter_OrganizationPermissions `protobuf:"bytes,4,opt,name=permissions" json:"permissions,omitempty"`
+	// By default, the server returns an error when you don't specify any permissions. Set this to true to allow it.
+	OverrideAllowNoPermissions bool `protobuf:"varint,5,opt,name=override_allow_no_permissions,json=overrideAllowNoPermissions" json:"override_allow_no_permissions,omitempty"`
+}
+
+func (m *InviteUserRequest) Reset()                    { *m = InviteUserRequest{} }
+func (m *InviteUserRequest) String() string            { return proto.CompactTextString(m) }
+func (*InviteUserRequest) ProtoMessage()               {}
+func (*InviteUserRequest) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{8} }
+
+func (m *InviteUserRequest) GetOrganization() string {
+	if m != nil {
+		return m.Organization
+	}
+	return ""
+}
+
+func (m *InviteUserRequest) GetEmail() string {
+	if m != nil {
+		return m.Email
+	}
+	return ""
+}
+
+func (m *InviteUserRequest) GetRetry() bool {
+	if m != nil {
+		return m.Retry
+	}
+	return false
+}
+
+func (m *InviteUserRequest) GetPermissions() *Filter_OrganizationPermissions {
+	if m != nil {
+		return m.Permissions
+	}
+	return nil
+}
+
+func (m *InviteUserRequest) GetOverrideAllowNoPermissions() bool {
+	if m != nil {
+		return m.OverrideAllowNoPermissions
+	}
+	return false
+}
+
+type InviteUserRequest_Response struct {
+}
+
+func (m *InviteUserRequest_Response) Reset()                    { *m = InviteUserRequest_Response{} }
+func (m *InviteUserRequest_Response) String() string            { return proto.CompactTextString(m) }
+func (*InviteUserRequest_Response) ProtoMessage()               {}
+func (*InviteUserRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{8, 0} }
 
 type CreateUserRequest struct {
 	// Pick the organization to use (/impersonate). If unset, your default organization is used.
@@ -344,18 +475,25 @@ type CreateUserRequest struct {
 	Email        string `protobuf:"bytes,2,opt,name=email" json:"email,omitempty"`
 	Name         string `protobuf:"bytes,3,opt,name=name" json:"name,omitempty"`
 	// Optional. If no password is given, the account can only be accessed using a password reset.
-	Password    string                          `protobuf:"bytes,4,opt,name=password" json:"password,omitempty"`
+	Password string `protobuf:"bytes,4,opt,name=password" json:"password,omitempty"`
+	// Permissions the new user should get.
 	Permissions *Filter_OrganizationPermissions `protobuf:"bytes,5,opt,name=permissions" json:"permissions,omitempty"`
 	// Send an automated email prompting the user to verify their email address.
 	SendVerificationMail bool `protobuf:"varint,6,opt,name=send_verification_mail,json=sendVerificationMail" json:"send_verification_mail,omitempty"`
 	// Send an automated email prompting the user to set a password. Recommended when password is not set.
 	SendPasswordResetMail bool `protobuf:"varint,7,opt,name=send_password_reset_mail,json=sendPasswordResetMail" json:"send_password_reset_mail,omitempty"`
+	// When the user cannot be created, (i.e. they already exist because they are in a different organization)
+	// we can send an invite instead, effectively calling InviteUserRequest with the email and permissions.
+	// Set this to true to allow this behaviour.
+	AllowInviteInstead bool `protobuf:"varint,8,opt,name=allow_invite_instead,json=allowInviteInstead" json:"allow_invite_instead,omitempty"`
+	// By default, the server returns an error when you don't specify any permissions. Set this to true to allow it.
+	OverrideAllowNoPermissions bool `protobuf:"varint,9,opt,name=override_allow_no_permissions,json=overrideAllowNoPermissions" json:"override_allow_no_permissions,omitempty"`
 }
 
 func (m *CreateUserRequest) Reset()                    { *m = CreateUserRequest{} }
 func (m *CreateUserRequest) String() string            { return proto.CompactTextString(m) }
 func (*CreateUserRequest) ProtoMessage()               {}
-func (*CreateUserRequest) Descriptor() ([]byte, []int) { return fileDescriptor20, []int{6} }
+func (*CreateUserRequest) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{9} }
 
 func (m *CreateUserRequest) GetOrganization() string {
 	if m != nil {
@@ -406,6 +544,20 @@ func (m *CreateUserRequest) GetSendPasswordResetMail() bool {
 	return false
 }
 
+func (m *CreateUserRequest) GetAllowInviteInstead() bool {
+	if m != nil {
+		return m.AllowInviteInstead
+	}
+	return false
+}
+
+func (m *CreateUserRequest) GetOverrideAllowNoPermissions() bool {
+	if m != nil {
+		return m.OverrideAllowNoPermissions
+	}
+	return false
+}
+
 type CreateUsersRequest struct {
 	// Pick the organization to use (/impersonate). If unset, your default organization is used.
 	Organization string `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
@@ -422,7 +574,7 @@ type CreateUsersRequest struct {
 func (m *CreateUsersRequest) Reset()                    { *m = CreateUsersRequest{} }
 func (m *CreateUsersRequest) String() string            { return proto.CompactTextString(m) }
 func (*CreateUsersRequest) ProtoMessage()               {}
-func (*CreateUsersRequest) Descriptor() ([]byte, []int) { return fileDescriptor20, []int{7} }
+func (*CreateUsersRequest) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{10} }
 
 func (m *CreateUsersRequest) GetOrganization() string {
 	if m != nil {
@@ -463,10 +615,12 @@ type CreateUsersRequest_Response struct {
 	Users []*User `protobuf:"bytes,1,rep,name=users" json:"users,omitempty"`
 }
 
-func (m *CreateUsersRequest_Response) Reset()                    { *m = CreateUsersRequest_Response{} }
-func (m *CreateUsersRequest_Response) String() string            { return proto.CompactTextString(m) }
-func (*CreateUsersRequest_Response) ProtoMessage()               {}
-func (*CreateUsersRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor20, []int{7, 0} }
+func (m *CreateUsersRequest_Response) Reset()         { *m = CreateUsersRequest_Response{} }
+func (m *CreateUsersRequest_Response) String() string { return proto.CompactTextString(m) }
+func (*CreateUsersRequest_Response) ProtoMessage()    {}
+func (*CreateUsersRequest_Response) Descriptor() ([]byte, []int) {
+	return fileDescriptor24, []int{10, 0}
+}
 
 func (m *CreateUsersRequest_Response) GetUsers() []*User {
 	if m != nil {
@@ -484,7 +638,7 @@ type ResetUserPasswordRequest struct {
 func (m *ResetUserPasswordRequest) Reset()                    { *m = ResetUserPasswordRequest{} }
 func (m *ResetUserPasswordRequest) String() string            { return proto.CompactTextString(m) }
 func (*ResetUserPasswordRequest) ProtoMessage()               {}
-func (*ResetUserPasswordRequest) Descriptor() ([]byte, []int) { return fileDescriptor20, []int{8} }
+func (*ResetUserPasswordRequest) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{11} }
 
 func (m *ResetUserPasswordRequest) GetOrganization() string {
 	if m != nil {
@@ -507,7 +661,7 @@ func (m *ResetUserPasswordRequest_Response) Reset()         { *m = ResetUserPass
 func (m *ResetUserPasswordRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*ResetUserPasswordRequest_Response) ProtoMessage()    {}
 func (*ResetUserPasswordRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor20, []int{8, 0}
+	return fileDescriptor24, []int{11, 0}
 }
 
 type UpdateUserPermissionsRequest struct {
@@ -516,12 +670,14 @@ type UpdateUserPermissionsRequest struct {
 	UserIds      []string `protobuf:"bytes,2,rep,name=user_ids,json=userIds" json:"user_ids,omitempty"`
 	// The previous permissions are replaced!
 	NewPermissions *Filter_OrganizationPermissions `protobuf:"bytes,3,opt,name=new_permissions,json=newPermissions" json:"new_permissions,omitempty"`
+	// By default, the server returns an error when you don't specify any permissions. Set this to true to allow it.
+	OverrideAllowNoPermissions bool `protobuf:"varint,4,opt,name=override_allow_no_permissions,json=overrideAllowNoPermissions" json:"override_allow_no_permissions,omitempty"`
 }
 
 func (m *UpdateUserPermissionsRequest) Reset()                    { *m = UpdateUserPermissionsRequest{} }
 func (m *UpdateUserPermissionsRequest) String() string            { return proto.CompactTextString(m) }
 func (*UpdateUserPermissionsRequest) ProtoMessage()               {}
-func (*UpdateUserPermissionsRequest) Descriptor() ([]byte, []int) { return fileDescriptor20, []int{9} }
+func (*UpdateUserPermissionsRequest) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{12} }
 
 func (m *UpdateUserPermissionsRequest) GetOrganization() string {
 	if m != nil {
@@ -544,6 +700,13 @@ func (m *UpdateUserPermissionsRequest) GetNewPermissions() *Filter_OrganizationP
 	return nil
 }
 
+func (m *UpdateUserPermissionsRequest) GetOverrideAllowNoPermissions() bool {
+	if m != nil {
+		return m.OverrideAllowNoPermissions
+	}
+	return false
+}
+
 type UpdateUserPermissionsRequest_Response struct {
 }
 
@@ -551,12 +714,314 @@ func (m *UpdateUserPermissionsRequest_Response) Reset()         { *m = UpdateUse
 func (m *UpdateUserPermissionsRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*UpdateUserPermissionsRequest_Response) ProtoMessage()    {}
 func (*UpdateUserPermissionsRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor20, []int{9, 0}
+	return fileDescriptor24, []int{12, 0}
+}
+
+type GetUserValidationRequest struct {
+	// Pick the organization to use (/impersonate). If unset, your default organization is used.
+	Organization string `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
+}
+
+func (m *GetUserValidationRequest) Reset()                    { *m = GetUserValidationRequest{} }
+func (m *GetUserValidationRequest) String() string            { return proto.CompactTextString(m) }
+func (*GetUserValidationRequest) ProtoMessage()               {}
+func (*GetUserValidationRequest) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{13} }
+
+func (m *GetUserValidationRequest) GetOrganization() string {
+	if m != nil {
+		return m.Organization
+	}
+	return ""
+}
+
+type UpdateUserValidationRequest struct {
+	// Pick the organization to use (/impersonate). If unset, your default organization is used.
+	Organization         string                 `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
+	EmailValidationRegex *UpdateClearableString `protobuf:"bytes,2,opt,name=email_validation_regex,json=emailValidationRegex" json:"email_validation_regex,omitempty"`
+}
+
+func (m *UpdateUserValidationRequest) Reset()                    { *m = UpdateUserValidationRequest{} }
+func (m *UpdateUserValidationRequest) String() string            { return proto.CompactTextString(m) }
+func (*UpdateUserValidationRequest) ProtoMessage()               {}
+func (*UpdateUserValidationRequest) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{14} }
+
+func (m *UpdateUserValidationRequest) GetOrganization() string {
+	if m != nil {
+		return m.Organization
+	}
+	return ""
+}
+
+func (m *UpdateUserValidationRequest) GetEmailValidationRegex() *UpdateClearableString {
+	if m != nil {
+		return m.EmailValidationRegex
+	}
+	return nil
+}
+
+type TestUserValidationRequest struct {
+	// Pick the organization to use (/impersonate). If unset, your default organization is used.
+	Organization string `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
+	// Types that are valid to be assigned to Validate:
+	//	*TestUserValidationRequest_Selection
+	//	*TestUserValidationRequest_EmailAddress
+	Validate isTestUserValidationRequest_Validate `protobuf_oneof:"validate"`
+	// Test the given validation instead of the validation configured for your organization.
+	CustomValidation *UserValidation `protobuf:"bytes,4,opt,name=custom_validation,json=customValidation" json:"custom_validation,omitempty"`
+}
+
+func (m *TestUserValidationRequest) Reset()                    { *m = TestUserValidationRequest{} }
+func (m *TestUserValidationRequest) String() string            { return proto.CompactTextString(m) }
+func (*TestUserValidationRequest) ProtoMessage()               {}
+func (*TestUserValidationRequest) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{15} }
+
+type isTestUserValidationRequest_Validate interface{ isTestUserValidationRequest_Validate() }
+
+type TestUserValidationRequest_Selection struct {
+	Selection *UserSelection `protobuf:"bytes,2,opt,name=selection,oneof"`
+}
+type TestUserValidationRequest_EmailAddress struct {
+	EmailAddress string `protobuf:"bytes,3,opt,name=email_address,json=emailAddress,oneof"`
+}
+
+func (*TestUserValidationRequest_Selection) isTestUserValidationRequest_Validate()    {}
+func (*TestUserValidationRequest_EmailAddress) isTestUserValidationRequest_Validate() {}
+
+func (m *TestUserValidationRequest) GetValidate() isTestUserValidationRequest_Validate {
+	if m != nil {
+		return m.Validate
+	}
+	return nil
+}
+
+func (m *TestUserValidationRequest) GetOrganization() string {
+	if m != nil {
+		return m.Organization
+	}
+	return ""
+}
+
+func (m *TestUserValidationRequest) GetSelection() *UserSelection {
+	if x, ok := m.GetValidate().(*TestUserValidationRequest_Selection); ok {
+		return x.Selection
+	}
+	return nil
+}
+
+func (m *TestUserValidationRequest) GetEmailAddress() string {
+	if x, ok := m.GetValidate().(*TestUserValidationRequest_EmailAddress); ok {
+		return x.EmailAddress
+	}
+	return ""
+}
+
+func (m *TestUserValidationRequest) GetCustomValidation() *UserValidation {
+	if m != nil {
+		return m.CustomValidation
+	}
+	return nil
+}
+
+// XXX_OneofFuncs is for the internal use of the proto package.
+func (*TestUserValidationRequest) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface{}) {
+	return _TestUserValidationRequest_OneofMarshaler, _TestUserValidationRequest_OneofUnmarshaler, _TestUserValidationRequest_OneofSizer, []interface{}{
+		(*TestUserValidationRequest_Selection)(nil),
+		(*TestUserValidationRequest_EmailAddress)(nil),
+	}
+}
+
+func _TestUserValidationRequest_OneofMarshaler(msg proto.Message, b *proto.Buffer) error {
+	m := msg.(*TestUserValidationRequest)
+	// validate
+	switch x := m.Validate.(type) {
+	case *TestUserValidationRequest_Selection:
+		b.EncodeVarint(2<<3 | proto.WireBytes)
+		if err := b.EncodeMessage(x.Selection); err != nil {
+			return err
+		}
+	case *TestUserValidationRequest_EmailAddress:
+		b.EncodeVarint(3<<3 | proto.WireBytes)
+		b.EncodeStringBytes(x.EmailAddress)
+	case nil:
+	default:
+		return fmt.Errorf("TestUserValidationRequest.Validate has unexpected type %T", x)
+	}
+	return nil
+}
+
+func _TestUserValidationRequest_OneofUnmarshaler(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error) {
+	m := msg.(*TestUserValidationRequest)
+	switch tag {
+	case 2: // validate.selection
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		msg := new(UserSelection)
+		err := b.DecodeMessage(msg)
+		m.Validate = &TestUserValidationRequest_Selection{msg}
+		return true, err
+	case 3: // validate.email_address
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		x, err := b.DecodeStringBytes()
+		m.Validate = &TestUserValidationRequest_EmailAddress{x}
+		return true, err
+	default:
+		return false, nil
+	}
+}
+
+func _TestUserValidationRequest_OneofSizer(msg proto.Message) (n int) {
+	m := msg.(*TestUserValidationRequest)
+	// validate
+	switch x := m.Validate.(type) {
+	case *TestUserValidationRequest_Selection:
+		s := proto.Size(x.Selection)
+		n += proto.SizeVarint(2<<3 | proto.WireBytes)
+		n += proto.SizeVarint(uint64(s))
+		n += s
+	case *TestUserValidationRequest_EmailAddress:
+		n += proto.SizeVarint(3<<3 | proto.WireBytes)
+		n += proto.SizeVarint(uint64(len(x.EmailAddress)))
+		n += len(x.EmailAddress)
+	case nil:
+	default:
+		panic(fmt.Sprintf("proto: unexpected type %T in oneof", x))
+	}
+	return n
+}
+
+type TestUserValidationRequest_Response struct {
+}
+
+func (m *TestUserValidationRequest_Response) Reset()         { *m = TestUserValidationRequest_Response{} }
+func (m *TestUserValidationRequest_Response) String() string { return proto.CompactTextString(m) }
+func (*TestUserValidationRequest_Response) ProtoMessage()    {}
+func (*TestUserValidationRequest_Response) Descriptor() ([]byte, []int) {
+	return fileDescriptor24, []int{15, 0}
+}
+
+type UserActivitySummaryRequest struct {
+	// Pick the organization to use (/impersonate). If unset, your default organization is used.
+	Organization string `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
+	// The user to request activity for.
+	UserId string `protobuf:"bytes,2,opt,name=user_id,json=userId" json:"user_id,omitempty"`
+	// The dates to request user activity for.
+	Dates []*Date `protobuf:"bytes,3,rep,name=dates" json:"dates,omitempty"`
+	// Include activity for child organizations.
+	ChildOrganizations *Filter_ChildOrganizations `protobuf:"bytes,4,opt,name=child_organizations,json=childOrganizations" json:"child_organizations,omitempty"`
+}
+
+func (m *UserActivitySummaryRequest) Reset()                    { *m = UserActivitySummaryRequest{} }
+func (m *UserActivitySummaryRequest) String() string            { return proto.CompactTextString(m) }
+func (*UserActivitySummaryRequest) ProtoMessage()               {}
+func (*UserActivitySummaryRequest) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{16} }
+
+func (m *UserActivitySummaryRequest) GetOrganization() string {
+	if m != nil {
+		return m.Organization
+	}
+	return ""
+}
+
+func (m *UserActivitySummaryRequest) GetUserId() string {
+	if m != nil {
+		return m.UserId
+	}
+	return ""
+}
+
+func (m *UserActivitySummaryRequest) GetDates() []*Date {
+	if m != nil {
+		return m.Dates
+	}
+	return nil
+}
+
+func (m *UserActivitySummaryRequest) GetChildOrganizations() *Filter_ChildOrganizations {
+	if m != nil {
+		return m.ChildOrganizations
+	}
+	return nil
+}
+
+type UserActivitySummaryRequest_Response struct {
+	Summaries []*UserActivitySummaryRequest_Response_UserActivitySummary `protobuf:"bytes,1,rep,name=summaries" json:"summaries,omitempty"`
+}
+
+func (m *UserActivitySummaryRequest_Response) Reset()         { *m = UserActivitySummaryRequest_Response{} }
+func (m *UserActivitySummaryRequest_Response) String() string { return proto.CompactTextString(m) }
+func (*UserActivitySummaryRequest_Response) ProtoMessage()    {}
+func (*UserActivitySummaryRequest_Response) Descriptor() ([]byte, []int) {
+	return fileDescriptor24, []int{16, 0}
+}
+
+func (m *UserActivitySummaryRequest_Response) GetSummaries() []*UserActivitySummaryRequest_Response_UserActivitySummary {
+	if m != nil {
+		return m.Summaries
+	}
+	return nil
+}
+
+type UserActivitySummaryRequest_Response_UserActivitySummary struct {
+	Organization  string   `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
+	UserId        string   `protobuf:"bytes,2,opt,name=user_id,json=userId" json:"user_id,omitempty"`
+	Date          *Date    `protobuf:"bytes,3,opt,name=date" json:"date,omitempty"`
+	Actions       []string `protobuf:"bytes,4,rep,name=actions" json:"actions,omitempty"`
+	TotalRequests uint32   `protobuf:"varint,5,opt,name=total_requests,json=totalRequests" json:"total_requests,omitempty"`
+}
+
+func (m *UserActivitySummaryRequest_Response_UserActivitySummary) Reset() {
+	*m = UserActivitySummaryRequest_Response_UserActivitySummary{}
+}
+func (m *UserActivitySummaryRequest_Response_UserActivitySummary) String() string {
+	return proto.CompactTextString(m)
+}
+func (*UserActivitySummaryRequest_Response_UserActivitySummary) ProtoMessage() {}
+func (*UserActivitySummaryRequest_Response_UserActivitySummary) Descriptor() ([]byte, []int) {
+	return fileDescriptor24, []int{16, 0, 0}
+}
+
+func (m *UserActivitySummaryRequest_Response_UserActivitySummary) GetOrganization() string {
+	if m != nil {
+		return m.Organization
+	}
+	return ""
+}
+
+func (m *UserActivitySummaryRequest_Response_UserActivitySummary) GetUserId() string {
+	if m != nil {
+		return m.UserId
+	}
+	return ""
+}
+
+func (m *UserActivitySummaryRequest_Response_UserActivitySummary) GetDate() *Date {
+	if m != nil {
+		return m.Date
+	}
+	return nil
+}
+
+func (m *UserActivitySummaryRequest_Response_UserActivitySummary) GetActions() []string {
+	if m != nil {
+		return m.Actions
+	}
+	return nil
+}
+
+func (m *UserActivitySummaryRequest_Response_UserActivitySummary) GetTotalRequests() uint32 {
+	if m != nil {
+		return m.TotalRequests
+	}
+	return 0
 }
 
 func init() {
 	proto.RegisterType((*User)(nil), "hiber.user.User")
 	proto.RegisterType((*UserSelection)(nil), "hiber.user.UserSelection")
+	proto.RegisterType((*UserValidation)(nil), "hiber.user.UserValidation")
 	proto.RegisterType((*ListUsersRequest)(nil), "hiber.user.ListUsersRequest")
 	proto.RegisterType((*ListUsersRequest_Response)(nil), "hiber.user.ListUsersRequest.Response")
 	proto.RegisterType((*ListAccessRequestsRequest)(nil), "hiber.user.ListAccessRequestsRequest")
@@ -565,6 +1030,10 @@ func init() {
 	proto.RegisterType((*ApproveUserRequest_Response)(nil), "hiber.user.ApproveUserRequest.Response")
 	proto.RegisterType((*RemoveUserRequest)(nil), "hiber.user.RemoveUserRequest")
 	proto.RegisterType((*RemoveUserRequest_Response)(nil), "hiber.user.RemoveUserRequest.Response")
+	proto.RegisterType((*ListInvitationsRequest)(nil), "hiber.user.ListInvitationsRequest")
+	proto.RegisterType((*ListInvitationsRequest_Response)(nil), "hiber.user.ListInvitationsRequest.Response")
+	proto.RegisterType((*InviteUserRequest)(nil), "hiber.user.InviteUserRequest")
+	proto.RegisterType((*InviteUserRequest_Response)(nil), "hiber.user.InviteUserRequest.Response")
 	proto.RegisterType((*CreateUserRequest)(nil), "hiber.user.CreateUserRequest")
 	proto.RegisterType((*CreateUsersRequest)(nil), "hiber.user.CreateUsersRequest")
 	proto.RegisterType((*CreateUsersRequest_Response)(nil), "hiber.user.CreateUsersRequest.Response")
@@ -572,6 +1041,13 @@ func init() {
 	proto.RegisterType((*ResetUserPasswordRequest_Response)(nil), "hiber.user.ResetUserPasswordRequest.Response")
 	proto.RegisterType((*UpdateUserPermissionsRequest)(nil), "hiber.user.UpdateUserPermissionsRequest")
 	proto.RegisterType((*UpdateUserPermissionsRequest_Response)(nil), "hiber.user.UpdateUserPermissionsRequest.Response")
+	proto.RegisterType((*GetUserValidationRequest)(nil), "hiber.user.GetUserValidationRequest")
+	proto.RegisterType((*UpdateUserValidationRequest)(nil), "hiber.user.UpdateUserValidationRequest")
+	proto.RegisterType((*TestUserValidationRequest)(nil), "hiber.user.TestUserValidationRequest")
+	proto.RegisterType((*TestUserValidationRequest_Response)(nil), "hiber.user.TestUserValidationRequest.Response")
+	proto.RegisterType((*UserActivitySummaryRequest)(nil), "hiber.user.UserActivitySummaryRequest")
+	proto.RegisterType((*UserActivitySummaryRequest_Response)(nil), "hiber.user.UserActivitySummaryRequest.Response")
+	proto.RegisterType((*UserActivitySummaryRequest_Response_UserActivitySummary)(nil), "hiber.user.UserActivitySummaryRequest.Response.UserActivitySummary")
 	proto.RegisterEnum("hiber.user.UserSort", UserSort_name, UserSort_value)
 }
 
@@ -590,10 +1066,16 @@ type UserServiceClient interface {
 	ListAccessRequests(ctx context.Context, in *ListAccessRequestsRequest, opts ...grpc.CallOption) (*ListAccessRequestsRequest_Response, error)
 	Approve(ctx context.Context, in *ApproveUserRequest, opts ...grpc.CallOption) (*ApproveUserRequest_Response, error)
 	Remove(ctx context.Context, in *RemoveUserRequest, opts ...grpc.CallOption) (*RemoveUserRequest_Response, error)
+	Invite(ctx context.Context, in *InviteUserRequest, opts ...grpc.CallOption) (*InviteUserRequest_Response, error)
+	ListInvitations(ctx context.Context, in *ListInvitationsRequest, opts ...grpc.CallOption) (*ListInvitationsRequest_Response, error)
 	CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*User, error)
 	CreateUsers(ctx context.Context, in *CreateUsersRequest, opts ...grpc.CallOption) (*CreateUsersRequest_Response, error)
 	ResetPassword(ctx context.Context, in *ResetUserPasswordRequest, opts ...grpc.CallOption) (*ResetUserPasswordRequest_Response, error)
 	UpdateUserPermissions(ctx context.Context, in *UpdateUserPermissionsRequest, opts ...grpc.CallOption) (*UpdateUserPermissionsRequest_Response, error)
+	GetUserValidation(ctx context.Context, in *GetUserValidationRequest, opts ...grpc.CallOption) (*UserValidation, error)
+	UpdateUserValidation(ctx context.Context, in *UpdateUserValidationRequest, opts ...grpc.CallOption) (*UserValidation, error)
+	TestUserValidation(ctx context.Context, in *TestUserValidationRequest, opts ...grpc.CallOption) (*TestUserValidationRequest_Response, error)
+	Activity(ctx context.Context, in *UserActivitySummaryRequest, opts ...grpc.CallOption) (*UserActivitySummaryRequest_Response, error)
 }
 
 type userServiceClient struct {
@@ -640,6 +1122,24 @@ func (c *userServiceClient) Remove(ctx context.Context, in *RemoveUserRequest, o
 	return out, nil
 }
 
+func (c *userServiceClient) Invite(ctx context.Context, in *InviteUserRequest, opts ...grpc.CallOption) (*InviteUserRequest_Response, error) {
+	out := new(InviteUserRequest_Response)
+	err := grpc.Invoke(ctx, "/hiber.user.UserService/Invite", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) ListInvitations(ctx context.Context, in *ListInvitationsRequest, opts ...grpc.CallOption) (*ListInvitationsRequest_Response, error) {
+	out := new(ListInvitationsRequest_Response)
+	err := grpc.Invoke(ctx, "/hiber.user.UserService/ListInvitations", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *userServiceClient) CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*User, error) {
 	out := new(User)
 	err := grpc.Invoke(ctx, "/hiber.user.UserService/CreateUser", in, out, c.cc, opts...)
@@ -676,6 +1176,42 @@ func (c *userServiceClient) UpdateUserPermissions(ctx context.Context, in *Updat
 	return out, nil
 }
 
+func (c *userServiceClient) GetUserValidation(ctx context.Context, in *GetUserValidationRequest, opts ...grpc.CallOption) (*UserValidation, error) {
+	out := new(UserValidation)
+	err := grpc.Invoke(ctx, "/hiber.user.UserService/GetUserValidation", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) UpdateUserValidation(ctx context.Context, in *UpdateUserValidationRequest, opts ...grpc.CallOption) (*UserValidation, error) {
+	out := new(UserValidation)
+	err := grpc.Invoke(ctx, "/hiber.user.UserService/UpdateUserValidation", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) TestUserValidation(ctx context.Context, in *TestUserValidationRequest, opts ...grpc.CallOption) (*TestUserValidationRequest_Response, error) {
+	out := new(TestUserValidationRequest_Response)
+	err := grpc.Invoke(ctx, "/hiber.user.UserService/TestUserValidation", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) Activity(ctx context.Context, in *UserActivitySummaryRequest, opts ...grpc.CallOption) (*UserActivitySummaryRequest_Response, error) {
+	out := new(UserActivitySummaryRequest_Response)
+	err := grpc.Invoke(ctx, "/hiber.user.UserService/Activity", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for UserService service
 
 type UserServiceServer interface {
@@ -683,10 +1219,16 @@ type UserServiceServer interface {
 	ListAccessRequests(context.Context, *ListAccessRequestsRequest) (*ListAccessRequestsRequest_Response, error)
 	Approve(context.Context, *ApproveUserRequest) (*ApproveUserRequest_Response, error)
 	Remove(context.Context, *RemoveUserRequest) (*RemoveUserRequest_Response, error)
+	Invite(context.Context, *InviteUserRequest) (*InviteUserRequest_Response, error)
+	ListInvitations(context.Context, *ListInvitationsRequest) (*ListInvitationsRequest_Response, error)
 	CreateUser(context.Context, *CreateUserRequest) (*User, error)
 	CreateUsers(context.Context, *CreateUsersRequest) (*CreateUsersRequest_Response, error)
 	ResetPassword(context.Context, *ResetUserPasswordRequest) (*ResetUserPasswordRequest_Response, error)
 	UpdateUserPermissions(context.Context, *UpdateUserPermissionsRequest) (*UpdateUserPermissionsRequest_Response, error)
+	GetUserValidation(context.Context, *GetUserValidationRequest) (*UserValidation, error)
+	UpdateUserValidation(context.Context, *UpdateUserValidationRequest) (*UserValidation, error)
+	TestUserValidation(context.Context, *TestUserValidationRequest) (*TestUserValidationRequest_Response, error)
+	Activity(context.Context, *UserActivitySummaryRequest) (*UserActivitySummaryRequest_Response, error)
 }
 
 func RegisterUserServiceServer(s *grpc.Server, srv UserServiceServer) {
@@ -765,6 +1307,42 @@ func _UserService_Remove_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_Invite_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InviteUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).Invite(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hiber.user.UserService/Invite",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).Invite(ctx, req.(*InviteUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_ListInvitations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListInvitationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).ListInvitations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hiber.user.UserService/ListInvitations",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).ListInvitations(ctx, req.(*ListInvitationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _UserService_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateUserRequest)
 	if err := dec(in); err != nil {
@@ -837,6 +1415,78 @@ func _UserService_UpdateUserPermissions_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_GetUserValidation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserValidationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).GetUserValidation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hiber.user.UserService/GetUserValidation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).GetUserValidation(ctx, req.(*GetUserValidationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_UpdateUserValidation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateUserValidationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).UpdateUserValidation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hiber.user.UserService/UpdateUserValidation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).UpdateUserValidation(ctx, req.(*UpdateUserValidationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_TestUserValidation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestUserValidationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).TestUserValidation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hiber.user.UserService/TestUserValidation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).TestUserValidation(ctx, req.(*TestUserValidationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_Activity_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserActivitySummaryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).Activity(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hiber.user.UserService/Activity",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).Activity(ctx, req.(*UserActivitySummaryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _UserService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "hiber.user.UserService",
 	HandlerType: (*UserServiceServer)(nil),
@@ -858,6 +1508,14 @@ var _UserService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _UserService_Remove_Handler,
 		},
 		{
+			MethodName: "Invite",
+			Handler:    _UserService_Invite_Handler,
+		},
+		{
+			MethodName: "ListInvitations",
+			Handler:    _UserService_ListInvitations_Handler,
+		},
+		{
 			MethodName: "CreateUser",
 			Handler:    _UserService_CreateUser_Handler,
 		},
@@ -873,68 +1531,115 @@ var _UserService_serviceDesc = grpc.ServiceDesc{
 			MethodName: "UpdateUserPermissions",
 			Handler:    _UserService_UpdateUserPermissions_Handler,
 		},
+		{
+			MethodName: "GetUserValidation",
+			Handler:    _UserService_GetUserValidation_Handler,
+		},
+		{
+			MethodName: "UpdateUserValidation",
+			Handler:    _UserService_UpdateUserValidation_Handler,
+		},
+		{
+			MethodName: "TestUserValidation",
+			Handler:    _UserService_TestUserValidation_Handler,
+		},
+		{
+			MethodName: "Activity",
+			Handler:    _UserService_Activity_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "user.proto",
 }
 
-func init() { proto.RegisterFile("user.proto", fileDescriptor20) }
+func init() { proto.RegisterFile("user.proto", fileDescriptor24) }
 
-var fileDescriptor20 = []byte{
-	// 868 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xdc, 0x57, 0x41, 0x8f, 0xdb, 0x44,
-	0x14, 0xae, 0xed, 0x24, 0x4e, 0x5e, 0xba, 0x4b, 0x76, 0xb4, 0xa5, 0x5e, 0xab, 0xa0, 0xc8, 0x62,
-	0x4b, 0x84, 0x84, 0xa5, 0xa6, 0x88, 0x72, 0x41, 0x28, 0x5d, 0x52, 0x54, 0xd1, 0xdd, 0x46, 0xb3,
-	0xea, 0x1e, 0x10, 0xc2, 0xb2, 0xe3, 0x21, 0x8c, 0x48, 0x6c, 0x33, 0xe3, 0xdd, 0x55, 0xb8, 0x73,
-	0xe0, 0x7f, 0x20, 0x6e, 0x1c, 0x39, 0xf0, 0x53, 0x38, 0xf1, 0x23, 0xf8, 0x03, 0x68, 0xc6, 0x76,
-	0x6c, 0xc7, 0xc1, 0x4a, 0xa2, 0x3d, 0xf5, 0x96, 0x99, 0xef, 0xbd, 0x37, 0xdf, 0xfb, 0x66, 0xbe,
-	0x67, 0x05, 0xe0, 0x9a, 0x13, 0x66, 0x47, 0x2c, 0x8c, 0x43, 0x04, 0x3f, 0x50, 0x8f, 0x30, 0x5b,
-	0xec, 0x98, 0xe0, 0xb9, 0x9c, 0x24, 0xfb, 0x66, 0x2f, 0x22, 0x6c, 0x41, 0x39, 0xa7, 0x61, 0x90,
-	0xec, 0x58, 0xbf, 0x2a, 0xd0, 0x78, 0xc3, 0x09, 0x43, 0x87, 0xa0, 0x52, 0xdf, 0x50, 0xfa, 0xca,
-	0xa0, 0x83, 0x55, 0xea, 0xa3, 0x63, 0x68, 0x92, 0x85, 0x4b, 0xe7, 0x86, 0x2a, 0xb7, 0x92, 0x05,
-	0x42, 0xd0, 0x08, 0xdc, 0x05, 0x31, 0x34, 0xb9, 0x29, 0x7f, 0xa3, 0xaf, 0xa0, 0x9b, 0x97, 0xe5,
-	0x46, 0xa3, 0xaf, 0x0c, 0xba, 0xc3, 0x53, 0x3b, 0xa1, 0xf0, 0x82, 0xce, 0x63, 0xc2, 0xec, 0xd7,
-	0x6c, 0xe6, 0x06, 0xf4, 0x67, 0x37, 0xa6, 0x61, 0x30, 0xc9, 0x83, 0x71, 0x31, 0xd3, 0xfa, 0x0e,
-	0x0e, 0x04, 0x95, 0x4b, 0x32, 0x27, 0x53, 0x11, 0x88, 0x4e, 0xa0, 0x2d, 0x5a, 0x70, 0xa8, 0xcf,
-	0x0d, 0xad, 0xaf, 0x0d, 0x3a, 0x58, 0x17, 0xeb, 0x97, 0x3e, 0x17, 0x90, 0xb7, 0x74, 0x12, 0x86,
-	0x09, 0x69, 0xdd, 0x5b, 0x8e, 0x25, 0xc7, 0x87, 0xa0, 0x7b, 0x4b, 0x47, 0xd2, 0x4c, 0xb8, 0xb7,
-	0xbc, 0xe5, 0x85, 0xbb, 0x20, 0xd6, 0xbf, 0x2a, 0xf4, 0x5e, 0x51, 0x1e, 0x8b, 0x43, 0x38, 0x26,
-	0x3f, 0x5d, 0x13, 0x1e, 0x23, 0x0b, 0xee, 0x87, 0x05, 0x72, 0x69, 0xb1, 0xd2, 0x1e, 0x7a, 0x06,
-	0x1d, 0x9e, 0x91, 0x92, 0x35, 0xbb, 0xc3, 0x13, 0x3b, 0x97, 0xd8, 0x2e, 0xb1, 0xc6, 0x79, 0x2c,
-	0x7a, 0x02, 0x10, 0xb9, 0x33, 0x1a, 0x24, 0xa5, 0x35, 0x99, 0x79, 0x94, 0x66, 0x4e, 0x56, 0x00,
-	0x2e, 0x04, 0xa1, 0x01, 0x34, 0x78, 0xc8, 0x62, 0x29, 0xe3, 0xe1, 0xf0, 0xb8, 0x72, 0x4c, 0xc8,
-	0x62, 0x2c, 0x23, 0xcc, 0xdf, 0x14, 0x68, 0x63, 0xc2, 0xa3, 0x30, 0xe0, 0x04, 0x3d, 0x86, 0xa6,
-	0x88, 0xe1, 0x86, 0xd2, 0xd7, 0x06, 0xdd, 0x61, 0x6f, 0x3d, 0x0f, 0x27, 0x30, 0xfa, 0x14, 0x74,
-	0x96, 0x74, 0x9e, 0x36, 0xf2, 0xa8, 0x18, 0xb9, 0xae, 0x0e, 0xce, 0x82, 0xd1, 0x67, 0x1b, 0x3a,
-	0x31, 0x2a, 0x9d, 0xd8, 0x98, 0xf0, 0xeb, 0x79, 0x5c, 0x6c, 0xc8, 0xfa, 0x45, 0x83, 0x13, 0x51,
-	0x77, 0x34, 0x9d, 0x12, 0x9e, 0x15, 0x7e, 0x0b, 0xe4, 0xff, 0x63, 0x1f, 0xf9, 0xbf, 0x58, 0x97,
-	0xff, 0x74, 0x5d, 0xfe, 0x8d, 0x32, 0xdd, 0xc5, 0x3d, 0xfc, 0xae, 0x00, 0x1a, 0x45, 0x11, 0x0b,
-	0x6f, 0x88, 0x64, 0xb4, 0xc3, 0x05, 0x3c, 0x04, 0x3d, 0xf5, 0xa1, 0xa1, 0x4a, 0x1b, 0xb6, 0x12,
-	0x1b, 0xae, 0x5b, 0x5f, 0xdb, 0xd7, 0xfa, 0x26, 0xe4, 0x5a, 0x5a, 0xdf, 0xc2, 0x11, 0x26, 0x8b,
-	0x3b, 0xa4, 0x59, 0xaa, 0xfe, 0xa7, 0x0a, 0x47, 0x67, 0x8c, 0xb8, 0xf1, 0xce, 0xe5, 0xb7, 0x9f,
-	0x88, 0x26, 0xb4, 0x23, 0x97, 0xf3, 0xdb, 0x90, 0xf9, 0xf2, 0x21, 0x75, 0xf0, 0x6a, 0xbd, 0x2e,
-	0x59, 0x73, 0x5f, 0xc9, 0xd0, 0x27, 0xf0, 0x2e, 0x27, 0x81, 0xef, 0xdc, 0x10, 0x46, 0xbf, 0xa7,
-	0x53, 0x19, 0xec, 0x48, 0x7e, 0xad, 0xbe, 0x32, 0x68, 0xe3, 0x63, 0x81, 0x5e, 0x15, 0xc0, 0x73,
-	0x41, 0xf7, 0x19, 0x18, 0x32, 0x2b, 0xe3, 0xe3, 0x30, 0xc2, 0x49, 0x9c, 0xe4, 0xe9, 0x32, 0xef,
-	0x81, 0xc0, 0x27, 0x29, 0x8c, 0x05, 0x2a, 0x12, 0xad, 0xbf, 0x55, 0x40, 0xb9, 0x6e, 0x3b, 0xf9,
-	0xf7, 0x69, 0x66, 0x0e, 0x55, 0x9a, 0xe3, 0xbd, 0xe2, 0x93, 0xaf, 0x5c, 0x45, 0xe6, 0x94, 0xbb,
-	0x7a, 0x5a, 0x35, 0x3a, 0x35, 0xf6, 0xd4, 0xa9, 0x59, 0xa3, 0x93, 0x39, 0xdc, 0x7d, 0x2a, 0x58,
-	0x53, 0x30, 0x64, 0x01, 0xb1, 0x97, 0x57, 0xdc, 0xf3, 0xe1, 0x2b, 0xff, 0xf3, 0xf0, 0xff, 0x52,
-	0xe0, 0xd1, 0x9b, 0xc8, 0x4f, 0xd5, 0x2e, 0xca, 0xb5, 0xc3, 0x49, 0xc5, 0x2f, 0xb2, 0x5a, 0xfe,
-	0x22, 0x5f, 0xc0, 0x3b, 0x01, 0xb9, 0x75, 0xf6, 0xbe, 0xb4, 0xc3, 0x80, 0xdc, 0x4e, 0x36, 0x8f,
-	0x84, 0x8f, 0x5e, 0x40, 0x3b, 0x9b, 0xbe, 0xe8, 0x00, 0x3a, 0xe3, 0xf3, 0xd1, 0xcb, 0x57, 0xce,
-	0xe8, 0xf2, 0xac, 0x77, 0x0f, 0x1d, 0x02, 0x24, 0xcb, 0x2f, 0xc7, 0x97, 0x67, 0x3d, 0x05, 0xdd,
-	0x87, 0xf6, 0xc5, 0xe8, 0x7c, 0x2c, 0x51, 0x55, 0x04, 0xcb, 0x95, 0x04, 0xb5, 0xe1, 0x3f, 0x4d,
-	0xe8, 0x26, 0x5f, 0x0b, 0x76, 0x43, 0xa7, 0x04, 0x7d, 0x0d, 0x0d, 0x31, 0x73, 0x51, 0xed, 0x47,
-	0xd0, 0x3c, 0xad, 0x43, 0xed, 0xd5, 0x6d, 0xff, 0x08, 0xa8, 0x3a, 0xc0, 0xd1, 0x76, 0x03, 0xde,
-	0xb4, 0xb7, 0x0a, 0xcb, 0x0f, 0xc3, 0xa0, 0xa7, 0xc3, 0x1c, 0xbd, 0x5f, 0x4c, 0xad, 0x4e, 0x78,
-	0xf3, 0xc3, 0x7a, 0x3c, 0xaf, 0xf9, 0x1a, 0x5a, 0xc9, 0xe0, 0x45, 0x25, 0x8b, 0x56, 0x86, 0xb1,
-	0xf9, 0xb8, 0x16, 0xce, 0x0b, 0x7e, 0x0e, 0x90, 0xfb, 0x1b, 0xd5, 0xfb, 0xde, 0xac, 0xb8, 0x03,
-	0x5d, 0x41, 0xb7, 0x30, 0x71, 0xca, 0x7d, 0x56, 0x47, 0x51, 0xb9, 0xcf, 0x2a, 0x9e, 0xd3, 0xf2,
-	0xe1, 0x40, 0xda, 0x2d, 0xb3, 0x1a, 0xfa, 0xa0, 0xdc, 0xcf, 0x66, 0x27, 0x9a, 0x1f, 0x6f, 0x13,
-	0x95, 0x9f, 0x12, 0xc3, 0x83, 0x8d, 0x76, 0x43, 0x83, 0x52, 0xa3, 0x35, 0x8e, 0x34, 0x9f, 0x6c,
-	0x1b, 0xb9, 0x3a, 0xf5, 0xb9, 0x0d, 0xe6, 0x6c, 0x1e, 0x7a, 0xee, 0x3c, 0x4d, 0x75, 0x23, 0x6a,
-	0xcf, 0x58, 0x34, 0x95, 0x35, 0x9e, 0xeb, 0x22, 0x7d, 0x14, 0xd1, 0xc9, 0xbd, 0x6f, 0x9a, 0x12,
-	0xf7, 0x5a, 0xf2, 0x6f, 0xc0, 0xd3, 0xff, 0x02, 0x00, 0x00, 0xff, 0xff, 0x84, 0xbc, 0x70, 0x22,
-	0x3e, 0x0c, 0x00, 0x00,
+var fileDescriptor24 = []byte{
+	// 1376 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xdc, 0x58, 0x4f, 0x73, 0xdb, 0x44,
+	0x14, 0x8f, 0xfc, 0x27, 0xb6, 0x9f, 0x9b, 0x34, 0xd9, 0xba, 0xa9, 0x22, 0x5a, 0x08, 0x1a, 0xd2,
+	0x66, 0x60, 0x30, 0xd4, 0xed, 0x50, 0x38, 0x00, 0xe3, 0xa6, 0x69, 0x9b, 0xa1, 0x4d, 0xc3, 0x86,
+	0xf6, 0x00, 0x33, 0xd5, 0xc8, 0xd2, 0x92, 0xec, 0x54, 0x96, 0xcc, 0xae, 0xe2, 0xd4, 0x1c, 0x99,
+	0xe1, 0xc0, 0x07, 0xe0, 0xc2, 0xb9, 0x27, 0x66, 0xb8, 0xf1, 0x65, 0xf8, 0x0c, 0x1c, 0x99, 0xe1,
+	0x02, 0x07, 0x66, 0x77, 0xa5, 0x48, 0xb2, 0x1c, 0xc7, 0x36, 0xe6, 0xc2, 0xcd, 0xbb, 0xef, 0xbd,
+	0xdf, 0xbe, 0x3f, 0xbb, 0xef, 0xfd, 0x64, 0x80, 0x63, 0x4e, 0x58, 0xb3, 0xc7, 0x82, 0x30, 0x40,
+	0x70, 0x44, 0x3b, 0x84, 0x35, 0xc5, 0x8e, 0x01, 0x1d, 0x9b, 0x13, 0xb5, 0x6f, 0xac, 0xf4, 0x08,
+	0xeb, 0x52, 0xce, 0x69, 0xe0, 0xab, 0x1d, 0xf3, 0x07, 0x0d, 0x4a, 0x4f, 0x39, 0x61, 0x68, 0x19,
+	0x0a, 0xd4, 0xd5, 0xb5, 0x0d, 0x6d, 0xab, 0x86, 0x0b, 0xd4, 0x45, 0x0d, 0x28, 0x93, 0xae, 0x4d,
+	0x3d, 0xbd, 0x20, 0xb7, 0xd4, 0x02, 0x21, 0x28, 0xf9, 0x76, 0x97, 0xe8, 0x45, 0xb9, 0x29, 0x7f,
+	0xa3, 0x07, 0x50, 0x4f, 0x60, 0xb9, 0x5e, 0xda, 0xd0, 0xb6, 0xea, 0xad, 0xcd, 0xa6, 0x72, 0xe1,
+	0x3e, 0xf5, 0x42, 0xc2, 0x9a, 0x4f, 0xd8, 0xa1, 0xed, 0xd3, 0x6f, 0xed, 0x90, 0x06, 0xfe, 0x7e,
+	0xa2, 0x8c, 0xd3, 0x96, 0xe6, 0x73, 0x58, 0x12, 0xae, 0x1c, 0x10, 0x8f, 0x38, 0x42, 0x11, 0xad,
+	0x43, 0x55, 0x84, 0x60, 0x51, 0x97, 0xeb, 0xc5, 0x8d, 0xe2, 0x56, 0x0d, 0x57, 0xc4, 0x7a, 0xd7,
+	0xe5, 0x42, 0xd4, 0x19, 0x58, 0xca, 0x43, 0xe5, 0x74, 0xa5, 0x33, 0xd8, 0x91, 0x3e, 0x5e, 0x81,
+	0x4a, 0x67, 0x60, 0x49, 0x37, 0x95, 0xef, 0x8b, 0x9d, 0xc1, 0x9e, 0xdd, 0x25, 0xe6, 0x7d, 0x58,
+	0x16, 0xf8, 0xcf, 0x6c, 0x8f, 0xba, 0xd2, 0x13, 0x74, 0x1b, 0xd6, 0x24, 0x84, 0xd5, 0x3f, 0xdd,
+	0xb3, 0x18, 0x39, 0x24, 0x2f, 0x23, 0xcc, 0x86, 0x94, 0x26, 0x06, 0x58, 0xc8, 0xcc, 0x3f, 0x0a,
+	0xb0, 0xf2, 0x88, 0xf2, 0x50, 0x80, 0x71, 0x4c, 0xbe, 0x39, 0x26, 0x3c, 0x44, 0x26, 0x5c, 0x08,
+	0x52, 0x41, 0x46, 0x00, 0x99, 0x3d, 0x74, 0x07, 0x6a, 0x3c, 0x0e, 0x4e, 0xfa, 0x56, 0x6f, 0xad,
+	0x37, 0x93, 0x52, 0x35, 0x33, 0xd1, 0xe3, 0x44, 0x17, 0xdd, 0x04, 0xe8, 0xd9, 0x87, 0xd4, 0x57,
+	0xd0, 0x45, 0x69, 0xb9, 0x1a, 0x59, 0xee, 0x9f, 0x0a, 0x70, 0x4a, 0x09, 0x6d, 0x41, 0x89, 0x07,
+	0x2c, 0x94, 0xe5, 0x58, 0x6e, 0x35, 0x72, 0xc7, 0x04, 0x2c, 0xc4, 0x52, 0xc3, 0x78, 0xa5, 0x41,
+	0x15, 0x13, 0xde, 0x0b, 0x7c, 0x4e, 0xd0, 0x75, 0x28, 0x0b, 0x1d, 0xae, 0x6b, 0x1b, 0xc5, 0xad,
+	0x7a, 0x6b, 0x65, 0xd8, 0x0e, 0x2b, 0x31, 0xfa, 0x00, 0x2a, 0x4c, 0x45, 0x1e, 0x05, 0x72, 0x35,
+	0xad, 0x39, 0x9c, 0x1d, 0x1c, 0x2b, 0xa3, 0x0f, 0x47, 0x44, 0xa2, 0xe7, 0x22, 0x69, 0x62, 0xc2,
+	0x8f, 0xbd, 0x30, 0x1d, 0x90, 0xf9, 0x7d, 0x11, 0xd6, 0x05, 0x6e, 0xdb, 0x71, 0x08, 0x8f, 0x81,
+	0xff, 0x07, 0xe9, 0xff, 0x65, 0x96, 0xf4, 0x7f, 0x3a, 0x9c, 0xfe, 0xcd, 0xe1, 0xf4, 0x8f, 0x4c,
+	0xd3, 0x3c, 0xea, 0xf0, 0xbb, 0x06, 0xa8, 0xdd, 0xeb, 0xb1, 0xa0, 0x4f, 0xa4, 0x47, 0x53, 0x14,
+	0x20, 0xfd, 0x9e, 0x0b, 0xd9, 0xf7, 0x3c, 0xd4, 0x44, 0x8a, 0xb3, 0x36, 0x11, 0xd4, 0x86, 0x6b,
+	0x41, 0x9f, 0x30, 0x46, 0x5d, 0x62, 0xd9, 0x9e, 0x17, 0x9c, 0x58, 0x7e, 0x60, 0x0d, 0xf7, 0xa7,
+	0x2a, 0x36, 0x62, 0xa5, 0xb6, 0xd0, 0xd9, 0x0b, 0x52, 0x78, 0x06, 0x24, 0x05, 0x31, 0x9f, 0xc3,
+	0x2a, 0x26, 0xdd, 0xb9, 0xc6, 0x9a, 0xc1, 0x7f, 0x09, 0x6b, 0xa2, 0x5a, 0xbb, 0x7e, 0x9f, 0x86,
+	0xd2, 0x70, 0xaa, 0x1b, 0xbd, 0x06, 0x8b, 0x9c, 0xd8, 0xcc, 0x39, 0x8a, 0x3b, 0x9d, 0x5a, 0x19,
+	0x66, 0xea, 0x4a, 0xad, 0xc1, 0xa2, 0xec, 0x62, 0xea, 0x4e, 0xd5, 0x70, 0xb4, 0x32, 0xff, 0xd2,
+	0x60, 0x55, 0x1e, 0x3b, 0x75, 0x68, 0xa3, 0x47, 0x43, 0x03, 0xca, 0x8c, 0x84, 0x6c, 0x20, 0x6b,
+	0x57, 0xc5, 0x6a, 0x31, 0xb7, 0xe1, 0x70, 0x7e, 0x5d, 0xcb, 0x53, 0xd5, 0xf5, 0xe7, 0x22, 0xac,
+	0x6e, 0x33, 0x62, 0xcf, 0x2b, 0xfa, 0x51, 0x83, 0xd1, 0x80, 0x6a, 0xcf, 0xe6, 0xfc, 0x24, 0x60,
+	0xae, 0x0c, 0xbc, 0x86, 0x4f, 0xd7, 0xc3, 0x79, 0x29, 0xcf, 0x9c, 0x97, 0xdb, 0xb0, 0xc6, 0x89,
+	0xef, 0x5a, 0x7d, 0xc2, 0xe8, 0xd7, 0xd4, 0x51, 0x33, 0x4c, 0xfa, 0xb7, 0x28, 0x13, 0xd2, 0x10,
+	0xd2, 0x67, 0x29, 0xe1, 0x63, 0xe1, 0xee, 0x1d, 0xd0, 0xa5, 0x55, 0xec, 0x8f, 0xc5, 0x08, 0x27,
+	0xa1, 0xb2, 0xab, 0x48, 0xbb, 0xcb, 0x42, 0xbe, 0x1f, 0x89, 0xb1, 0x90, 0x4a, 0xc3, 0xf7, 0xa1,
+	0xa1, 0xb2, 0x4f, 0xe5, 0xd5, 0xb1, 0xa8, 0xcf, 0x43, 0x62, 0xbb, 0x7a, 0x55, 0x1a, 0x21, 0x29,
+	0x53, 0xb7, 0x6a, 0x57, 0x49, 0xce, 0x2f, 0x5c, 0xed, 0xbc, 0xc2, 0x99, 0xbf, 0x15, 0x00, 0x25,
+	0xc5, 0x9a, 0xea, 0x85, 0xdc, 0x8a, 0x1b, 0x6a, 0x41, 0x36, 0xd4, 0x6b, 0xe9, 0x36, 0x99, 0xab,
+	0x7f, 0xdc, 0x5d, 0xe7, 0xd6, 0x8c, 0xce, 0x2e, 0x4e, 0x69, 0xc6, 0xe2, 0x94, 0xc7, 0x14, 0xc7,
+	0x68, 0x4d, 0x3f, 0x49, 0x4c, 0x07, 0x74, 0x09, 0x20, 0xf6, 0x12, 0xc4, 0xc9, 0x13, 0x7c, 0x05,
+	0x2a, 0x51, 0x9f, 0x8b, 0x7b, 0x90, 0x6a, 0x73, 0x99, 0xd7, 0xf6, 0xb7, 0x06, 0x57, 0x9f, 0xf6,
+	0xdc, 0x28, 0xdb, 0xe9, 0x74, 0xcd, 0x67, 0x7a, 0xec, 0xc1, 0x45, 0x9f, 0x9c, 0x58, 0x33, 0x17,
+	0x6d, 0xd9, 0x27, 0x27, 0xfb, 0xff, 0xdd, 0x10, 0xf9, 0x04, 0xf4, 0x07, 0x2a, 0xc3, 0x69, 0x2a,
+	0x39, 0x71, 0xe4, 0xe6, 0x8f, 0x1a, 0xbc, 0x96, 0xa4, 0x6f, 0x26, 0x0c, 0x84, 0xcf, 0xa4, 0xba,
+	0x59, 0xfe, 0xa6, 0xce, 0xd9, 0xf6, 0x88, 0xcd, 0xec, 0x8e, 0x47, 0x0e, 0x42, 0x46, 0xfd, 0xc3,
+	0x33, 0x88, 0xf0, 0x77, 0x05, 0x58, 0xff, 0x82, 0xf0, 0xd9, 0x23, 0x43, 0x1f, 0x4d, 0x43, 0xc9,
+	0x1e, 0x2e, 0xa4, 0x49, 0xd9, 0x26, 0x2c, 0xa9, 0x80, 0x6c, 0xd7, 0x65, 0x84, 0xab, 0x8a, 0xd7,
+	0x1e, 0x2e, 0xe0, 0x0b, 0x72, 0xbb, 0xad, 0x76, 0xd1, 0x03, 0x58, 0x75, 0x8e, 0x79, 0x18, 0x74,
+	0x53, 0x81, 0x47, 0x63, 0xc8, 0x18, 0x3e, 0x29, 0x15, 0xc3, 0x8a, 0x32, 0x4a, 0x76, 0xd2, 0x05,
+	0xbd, 0x0b, 0x50, 0x8d, 0xd0, 0x88, 0xf9, 0x67, 0x11, 0x0c, 0x61, 0xdc, 0x76, 0x42, 0xda, 0xa7,
+	0xe1, 0xe0, 0xe0, 0xb8, 0xdb, 0xb5, 0xd9, 0x60, 0x1e, 0x6f, 0x08, 0xbd, 0x09, 0x65, 0x71, 0x86,
+	0xfa, 0xfa, 0xa9, 0xb7, 0xea, 0x91, 0xc3, 0xf7, 0xec, 0x90, 0x60, 0x25, 0x41, 0x9f, 0xc3, 0x25,
+	0xe7, 0x88, 0x7a, 0xae, 0x95, 0x46, 0x8c, 0x07, 0xed, 0x46, 0xf6, 0xfa, 0x6f, 0x0b, 0xc5, 0xf4,
+	0x1b, 0xe0, 0x18, 0x39, 0xb9, 0x3d, 0xe3, 0x55, 0x21, 0xd5, 0x47, 0x6c, 0xa8, 0x71, 0x19, 0x11,
+	0x25, 0x71, 0x2f, 0xd9, 0x1e, 0xce, 0xdb, 0xe8, 0xd0, 0x9b, 0x31, 0xc6, 0x48, 0x9d, 0x04, 0xd5,
+	0xf8, 0x55, 0x83, 0x4b, 0x23, 0x54, 0xfe, 0x5d, 0xea, 0xde, 0x80, 0x92, 0x48, 0x50, 0xd4, 0x07,
+	0x32, 0x99, 0x93, 0x02, 0xa4, 0x43, 0xc5, 0x76, 0xe2, 0x64, 0xc9, 0x6e, 0x12, 0x2d, 0xd1, 0x26,
+	0x2c, 0x87, 0x41, 0x68, 0x7b, 0x56, 0x44, 0x96, 0xd5, 0x78, 0x5e, 0xc2, 0x4b, 0x72, 0x37, 0xa6,
+	0xd4, 0x6f, 0xdf, 0x87, 0x6a, 0x4c, 0xe5, 0xd1, 0x12, 0xd4, 0x76, 0x1e, 0xb7, 0x77, 0x1f, 0x59,
+	0xed, 0x83, 0xed, 0x95, 0x05, 0xb4, 0x0c, 0xa0, 0x96, 0xf7, 0x76, 0x0e, 0xb6, 0x57, 0x34, 0x74,
+	0x01, 0xaa, 0x7b, 0xed, 0xc7, 0x3b, 0x52, 0x5a, 0x10, 0xca, 0x72, 0x25, 0x85, 0xc5, 0xd6, 0x4f,
+	0x00, 0x75, 0x75, 0xcf, 0x59, 0x9f, 0x3a, 0x04, 0x7d, 0x06, 0x25, 0x41, 0x09, 0xd1, 0xd8, 0x2f,
+	0x2a, 0x63, 0x73, 0x9c, 0xf4, 0x34, 0xf5, 0xe8, 0x05, 0xa0, 0xfc, 0xd7, 0x00, 0x9a, 0xec, 0x6b,
+	0xc1, 0x68, 0x4e, 0xa4, 0x96, 0x1c, 0x86, 0xa1, 0x12, 0x7d, 0x19, 0xa0, 0xd7, 0xd3, 0xa6, 0xf9,
+	0xcf, 0x05, 0xe3, 0xc6, 0x78, 0x79, 0x82, 0xf9, 0x04, 0x16, 0x15, 0x01, 0x47, 0x99, 0xd9, 0x9d,
+	0x23, 0xe5, 0xc6, 0xf5, 0xb1, 0xe2, 0x0c, 0xa0, 0x22, 0x28, 0x59, 0xc0, 0x1c, 0x15, 0xce, 0x02,
+	0xe6, 0xc4, 0x09, 0x60, 0x07, 0x2e, 0x0e, 0x51, 0x78, 0x64, 0x0e, 0x27, 0x2e, 0xcf, 0xef, 0x8d,
+	0x77, 0xce, 0xd7, 0x49, 0xce, 0xf8, 0x18, 0x20, 0x61, 0x2b, 0x68, 0x3c, 0x8b, 0x31, 0x72, 0xb3,
+	0x1e, 0x3d, 0x83, 0x7a, 0x8a, 0x3f, 0x65, 0x8b, 0x93, 0x27, 0x56, 0xd9, 0xe2, 0xe4, 0xe5, 0x89,
+	0x5b, 0x2e, 0x2c, 0x49, 0xf2, 0x10, 0x13, 0x07, 0xf4, 0x56, 0xb6, 0x08, 0xa3, 0x79, 0x85, 0xf1,
+	0xee, 0x24, 0x5a, 0xc9, 0x29, 0x21, 0x5c, 0x1e, 0x49, 0x1e, 0xd0, 0x56, 0x26, 0xd0, 0x31, 0xfc,
+	0xc2, 0xb8, 0x39, 0xa9, 0x66, 0x72, 0xea, 0x53, 0x58, 0xcd, 0x0d, 0xed, 0x6c, 0x7c, 0x67, 0xcd,
+	0x74, 0x63, 0xcc, 0x60, 0x41, 0x5f, 0x41, 0x63, 0xd4, 0x28, 0x47, 0x37, 0x46, 0x7b, 0x38, 0x1d,
+	0xf8, 0x0b, 0x40, 0xf9, 0x79, 0x9c, 0x7d, 0xed, 0x67, 0xce, 0xeb, 0xec, 0x6b, 0x3f, 0x53, 0x2d,
+	0x49, 0x90, 0x03, 0xd5, 0xb8, 0x63, 0xa3, 0xeb, 0x93, 0x8d, 0x04, 0xe3, 0xbd, 0x29, 0x47, 0xc7,
+	0xdd, 0x26, 0x18, 0x87, 0x5e, 0xd0, 0xb1, 0xbd, 0xc8, 0xd0, 0xee, 0xd1, 0xe6, 0x21, 0xeb, 0x39,
+	0x12, 0xe1, 0x6e, 0x45, 0x42, 0xf4, 0xe8, 0xfe, 0xc2, 0x97, 0x65, 0x29, 0xef, 0x2c, 0xca, 0xbf,
+	0x35, 0x6f, 0xfd, 0x13, 0x00, 0x00, 0xff, 0xff, 0x0c, 0x21, 0x08, 0x2b, 0x0e, 0x15, 0x00, 0x00,
 }

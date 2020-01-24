@@ -11,7 +11,7 @@ function serialize_hiber_modem_GetModemRequest(arg) {
   if (!(arg instanceof modem_pb.GetModemRequest)) {
     throw new Error('Expected argument of type hiber.modem.GetModemRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_modem_GetModemRequest(buffer_arg) {
@@ -22,7 +22,7 @@ function serialize_hiber_modem_LicenseKeysRequest(arg) {
   if (!(arg instanceof modem_pb.LicenseKeysRequest)) {
     throw new Error('Expected argument of type hiber.modem.LicenseKeysRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_modem_LicenseKeysRequest(buffer_arg) {
@@ -33,7 +33,7 @@ function serialize_hiber_modem_LicenseKeysRequest_Response(arg) {
   if (!(arg instanceof modem_pb.LicenseKeysRequest.Response)) {
     throw new Error('Expected argument of type hiber.modem.LicenseKeysRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_modem_LicenseKeysRequest_Response(buffer_arg) {
@@ -44,7 +44,7 @@ function serialize_hiber_modem_ListModemMessagesRequest(arg) {
   if (!(arg instanceof modem_pb.ListModemMessagesRequest)) {
     throw new Error('Expected argument of type hiber.modem.ListModemMessagesRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_modem_ListModemMessagesRequest(buffer_arg) {
@@ -55,7 +55,7 @@ function serialize_hiber_modem_ListModemMessagesRequest_Response(arg) {
   if (!(arg instanceof modem_pb.ListModemMessagesRequest.Response)) {
     throw new Error('Expected argument of type hiber.modem.ListModemMessagesRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_modem_ListModemMessagesRequest_Response(buffer_arg) {
@@ -66,7 +66,7 @@ function serialize_hiber_modem_ListModemsRequest(arg) {
   if (!(arg instanceof modem_pb.ListModemsRequest)) {
     throw new Error('Expected argument of type hiber.modem.ListModemsRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_modem_ListModemsRequest(buffer_arg) {
@@ -77,7 +77,7 @@ function serialize_hiber_modem_ListModemsRequest_Response(arg) {
   if (!(arg instanceof modem_pb.ListModemsRequest.Response)) {
     throw new Error('Expected argument of type hiber.modem.ListModemsRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_modem_ListModemsRequest_Response(buffer_arg) {
@@ -88,7 +88,7 @@ function serialize_hiber_modem_MessageCountRequest(arg) {
   if (!(arg instanceof modem_pb.MessageCountRequest)) {
     throw new Error('Expected argument of type hiber.modem.MessageCountRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_modem_MessageCountRequest(buffer_arg) {
@@ -99,7 +99,7 @@ function serialize_hiber_modem_MessageCountRequest_Response(arg) {
   if (!(arg instanceof modem_pb.MessageCountRequest.Response)) {
     throw new Error('Expected argument of type hiber.modem.MessageCountRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_modem_MessageCountRequest_Response(buffer_arg) {
@@ -110,7 +110,7 @@ function serialize_hiber_modem_Modem(arg) {
   if (!(arg instanceof modem_pb.Modem)) {
     throw new Error('Expected argument of type hiber.modem.Modem');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_modem_Modem(buffer_arg) {
@@ -121,18 +121,62 @@ function serialize_hiber_modem_RenameModemRequest(arg) {
   if (!(arg instanceof modem_pb.RenameModemRequest)) {
     throw new Error('Expected argument of type hiber.modem.RenameModemRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_modem_RenameModemRequest(buffer_arg) {
   return modem_pb.RenameModemRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_hiber_modem_UpdateModemNotesRequest(arg) {
+  if (!(arg instanceof modem_pb.UpdateModemNotesRequest)) {
+    throw new Error('Expected argument of type hiber.modem.UpdateModemNotesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_hiber_modem_UpdateModemNotesRequest(buffer_arg) {
+  return modem_pb.UpdateModemNotesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_modem_UpdateModemNotesRequest_Response(arg) {
+  if (!(arg instanceof modem_pb.UpdateModemNotesRequest.Response)) {
+    throw new Error('Expected argument of type hiber.modem.UpdateModemNotesRequest.Response');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_hiber_modem_UpdateModemNotesRequest_Response(buffer_arg) {
+  return modem_pb.UpdateModemNotesRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_modem_UpdateModemSecureNotesRequest(arg) {
+  if (!(arg instanceof modem_pb.UpdateModemSecureNotesRequest)) {
+    throw new Error('Expected argument of type hiber.modem.UpdateModemSecureNotesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_hiber_modem_UpdateModemSecureNotesRequest(buffer_arg) {
+  return modem_pb.UpdateModemSecureNotesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_modem_UpdateModemSecureNotesRequest_Response(arg) {
+  if (!(arg instanceof modem_pb.UpdateModemSecureNotesRequest.Response)) {
+    throw new Error('Expected argument of type hiber.modem.UpdateModemSecureNotesRequest.Response');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_hiber_modem_UpdateModemSecureNotesRequest_Response(buffer_arg) {
+  return modem_pb.UpdateModemSecureNotesRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_hiber_modem_UpdateModemTagsRequest(arg) {
   if (!(arg instanceof modem_pb.UpdateModemTagsRequest)) {
     throw new Error('Expected argument of type hiber.modem.UpdateModemTagsRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_modem_UpdateModemTagsRequest(buffer_arg) {
@@ -143,7 +187,7 @@ function serialize_hiber_modem_UpdateModemTagsRequest_Response(arg) {
   if (!(arg instanceof modem_pb.UpdateModemTagsRequest.Response)) {
     throw new Error('Expected argument of type hiber.modem.UpdateModemTagsRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_modem_UpdateModemTagsRequest_Response(buffer_arg) {
@@ -154,7 +198,7 @@ function serialize_hiber_modem_UpdatePeripheralsRequest(arg) {
   if (!(arg instanceof modem_pb.UpdatePeripheralsRequest)) {
     throw new Error('Expected argument of type hiber.modem.UpdatePeripheralsRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_modem_UpdatePeripheralsRequest(buffer_arg) {
@@ -165,7 +209,7 @@ function serialize_hiber_modem_UpdatePeripheralsRequest_Response(arg) {
   if (!(arg instanceof modem_pb.UpdatePeripheralsRequest.Response)) {
     throw new Error('Expected argument of type hiber.modem.UpdatePeripheralsRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_modem_UpdatePeripheralsRequest_Response(buffer_arg) {
@@ -241,6 +285,28 @@ var ModemServiceService = exports.ModemServiceService = {
     requestDeserialize: deserialize_hiber_modem_UpdateModemTagsRequest,
     responseSerialize: serialize_hiber_modem_UpdateModemTagsRequest_Response,
     responseDeserialize: deserialize_hiber_modem_UpdateModemTagsRequest_Response,
+  },
+  updateNotes: {
+    path: '/hiber.modem.ModemService/UpdateNotes',
+    requestStream: false,
+    responseStream: false,
+    requestType: modem_pb.UpdateModemNotesRequest,
+    responseType: modem_pb.UpdateModemNotesRequest.Response,
+    requestSerialize: serialize_hiber_modem_UpdateModemNotesRequest,
+    requestDeserialize: deserialize_hiber_modem_UpdateModemNotesRequest,
+    responseSerialize: serialize_hiber_modem_UpdateModemNotesRequest_Response,
+    responseDeserialize: deserialize_hiber_modem_UpdateModemNotesRequest_Response,
+  },
+  updateSecureNotes: {
+    path: '/hiber.modem.ModemService/UpdateSecureNotes',
+    requestStream: false,
+    responseStream: false,
+    requestType: modem_pb.UpdateModemSecureNotesRequest,
+    responseType: modem_pb.UpdateModemSecureNotesRequest.Response,
+    requestSerialize: serialize_hiber_modem_UpdateModemSecureNotesRequest,
+    requestDeserialize: deserialize_hiber_modem_UpdateModemSecureNotesRequest,
+    responseSerialize: serialize_hiber_modem_UpdateModemSecureNotesRequest_Response,
+    responseDeserialize: deserialize_hiber_modem_UpdateModemSecureNotesRequest_Response,
   },
   updatePeripherals: {
     path: '/hiber.modem.ModemService/UpdatePeripherals',

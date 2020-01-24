@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='permission.proto',
   package='hiber',
   syntax='proto3',
-  serialized_pb=_b('\n\x10permission.proto\x12\x05hiber*\xd6\x03\n\x16OrganizationPermission\x12\x16\n\x12PERMISSION_DEFAULT\x10\x00\x12\x17\n\x13ORGANIZATION_CREATE\x10\x01\x12\x17\n\x13ORGANIZATION_UPDATE\x10\x02\x12\x17\n\x13ORGANIZATION_DELETE\x10\x03\x12\n\n\x06MODEMS\x10\n\x12\x11\n\rMODEMS_UPDATE\x10\x0b\x12\x17\n\x13MODEMS_LICENSE_KEYS\x10\x0c\x12\x12\n\x0eMODEM_MESSAGES\x10\x0f\x12%\n!MODEM_MESSAGES_SEND_TEST_MESSAGES\x10\x10\x12%\n!MODEM_MESSAGES_SEND_REAL_MESSAGES\x10)\x12\x13\n\x0fMODEM_TRANSFERS\x10\x14\x12\x18\n\x14MODEM_TRANSFERS_SEND\x10\x15\x12\x1b\n\x17MODEM_TRANSFERS_PROCESS\x10\x16\x12\x0f\n\x0bMODEM_CLAIM\x10\x19\x12\t\n\x05USERS\x10\x1e\x12\x10\n\x0cUSERS_MANAGE\x10\x1f\x12\x0e\n\nPUBLISHERS\x10#\x12\n\n\x06TOKENS\x10$\x12\x10\n\x0c\x43\x45RTIFICATES\x10&\x12\x17\n\x13\x43\x45RTIFICATES_MANAGE\x10\'*F\n\x0eUserPermission\x12\x08\n\x04READ\x10\x00\x12\n\n\x06UPDATE\x10\x01\x12\x12\n\x0eREQUEST_ACCESS\x10\x02\x12\n\n\x06\x44\x45LETE\x10\x03\x42 \n\x15global.hiber.api.grpcP\x01Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\x10permission.proto\x12\x05hiber*\x90\x04\n\x16OrganizationPermission\x12\x16\n\x12PERMISSION_DEFAULT\x10\x00\x12\x17\n\x13ORGANIZATION_CREATE\x10\x01\x12\x17\n\x13ORGANIZATION_UPDATE\x10\x02\x12\x17\n\x13ORGANIZATION_DELETE\x10\x03\x12\n\n\x06MODEMS\x10\n\x12\x11\n\rMODEMS_UPDATE\x10\x0b\x12\x17\n\x13MODEMS_LICENSE_KEYS\x10\x0c\x12\x1f\n\x1bMODEMS_MESSAGE_BODY_PARSERS\x10+\x12\x17\n\x13MODEMS_SECURE_NOTES\x10*\x12\x12\n\x0eMODEM_MESSAGES\x10\x0f\x12%\n!MODEM_MESSAGES_SEND_TEST_MESSAGES\x10\x10\x12%\n!MODEM_MESSAGES_SEND_REAL_MESSAGES\x10)\x12\x13\n\x0fMODEM_TRANSFERS\x10\x14\x12\x18\n\x14MODEM_TRANSFERS_SEND\x10\x15\x12\x1b\n\x17MODEM_TRANSFERS_PROCESS\x10\x16\x12\x0f\n\x0bMODEM_CLAIM\x10\x19\x12\t\n\x05USERS\x10\x1e\x12\x10\n\x0cUSERS_MANAGE\x10\x1f\x12\x0e\n\nPUBLISHERS\x10#\x12\n\n\x06TOKENS\x10$\x12\x10\n\x0c\x43\x45RTIFICATES\x10&\x12\x17\n\x13\x43\x45RTIFICATES_MANAGE\x10\'*F\n\x0eUserPermission\x12\x08\n\x04READ\x10\x00\x12\n\n\x06UPDATE\x10\x01\x12\x12\n\x0eREQUEST_ACCESS\x10\x02\x12\n\n\x06\x44\x45LETE\x10\x03\x42 \n\x15global.hiber.api.grpcP\x01Z\x05hiberb\x06proto3')
 )
 
 _ORGANIZATIONPERMISSION = _descriptor.EnumDescriptor(
@@ -58,62 +58,70 @@ _ORGANIZATIONPERMISSION = _descriptor.EnumDescriptor(
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='MODEM_MESSAGES', index=7, number=15,
+      name='MODEMS_MESSAGE_BODY_PARSERS', index=7, number=43,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='MODEM_MESSAGES_SEND_TEST_MESSAGES', index=8, number=16,
+      name='MODEMS_SECURE_NOTES', index=8, number=42,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='MODEM_MESSAGES_SEND_REAL_MESSAGES', index=9, number=41,
+      name='MODEM_MESSAGES', index=9, number=15,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='MODEM_TRANSFERS', index=10, number=20,
+      name='MODEM_MESSAGES_SEND_TEST_MESSAGES', index=10, number=16,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='MODEM_TRANSFERS_SEND', index=11, number=21,
+      name='MODEM_MESSAGES_SEND_REAL_MESSAGES', index=11, number=41,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='MODEM_TRANSFERS_PROCESS', index=12, number=22,
+      name='MODEM_TRANSFERS', index=12, number=20,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='MODEM_CLAIM', index=13, number=25,
+      name='MODEM_TRANSFERS_SEND', index=13, number=21,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='USERS', index=14, number=30,
+      name='MODEM_TRANSFERS_PROCESS', index=14, number=22,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='USERS_MANAGE', index=15, number=31,
+      name='MODEM_CLAIM', index=15, number=25,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='PUBLISHERS', index=16, number=35,
+      name='USERS', index=16, number=30,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='TOKENS', index=17, number=36,
+      name='USERS_MANAGE', index=17, number=31,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='CERTIFICATES', index=18, number=38,
+      name='PUBLISHERS', index=18, number=35,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='CERTIFICATES_MANAGE', index=19, number=39,
+      name='TOKENS', index=19, number=36,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='CERTIFICATES', index=20, number=38,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='CERTIFICATES_MANAGE', index=21, number=39,
       options=None,
       type=None),
   ],
   containing_type=None,
   options=None,
   serialized_start=28,
-  serialized_end=498,
+  serialized_end=556,
 )
 _sym_db.RegisterEnumDescriptor(_ORGANIZATIONPERMISSION)
 
@@ -143,8 +151,8 @@ _USERPERMISSION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=500,
-  serialized_end=570,
+  serialized_start=558,
+  serialized_end=628,
 )
 _sym_db.RegisterEnumDescriptor(_USERPERMISSION)
 
@@ -156,6 +164,8 @@ ORGANIZATION_DELETE = 3
 MODEMS = 10
 MODEMS_UPDATE = 11
 MODEMS_LICENSE_KEYS = 12
+MODEMS_MESSAGE_BODY_PARSERS = 43
+MODEMS_SECURE_NOTES = 42
 MODEM_MESSAGES = 15
 MODEM_MESSAGES_SEND_TEST_MESSAGES = 16
 MODEM_MESSAGES_SEND_REAL_MESSAGES = 41

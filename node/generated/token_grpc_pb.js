@@ -10,7 +10,7 @@ function serialize_hiber_token_CreateTokenRequest(arg) {
   if (!(arg instanceof token_pb.CreateTokenRequest)) {
     throw new Error('Expected argument of type hiber.token.CreateTokenRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_token_CreateTokenRequest(buffer_arg) {
@@ -21,7 +21,7 @@ function serialize_hiber_token_CreateTokenRequest_Response(arg) {
   if (!(arg instanceof token_pb.CreateTokenRequest.Response)) {
     throw new Error('Expected argument of type hiber.token.CreateTokenRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_token_CreateTokenRequest_Response(buffer_arg) {
@@ -32,7 +32,7 @@ function serialize_hiber_token_DeleteTokenRequest(arg) {
   if (!(arg instanceof token_pb.DeleteTokenRequest)) {
     throw new Error('Expected argument of type hiber.token.DeleteTokenRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_token_DeleteTokenRequest(buffer_arg) {
@@ -43,7 +43,7 @@ function serialize_hiber_token_DeleteTokenRequest_Response(arg) {
   if (!(arg instanceof token_pb.DeleteTokenRequest.Response)) {
     throw new Error('Expected argument of type hiber.token.DeleteTokenRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_token_DeleteTokenRequest_Response(buffer_arg) {
@@ -54,7 +54,7 @@ function serialize_hiber_token_ListTokensRequest(arg) {
   if (!(arg instanceof token_pb.ListTokensRequest)) {
     throw new Error('Expected argument of type hiber.token.ListTokensRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_token_ListTokensRequest(buffer_arg) {
@@ -65,7 +65,7 @@ function serialize_hiber_token_ListTokensRequest_Response(arg) {
   if (!(arg instanceof token_pb.ListTokensRequest.Response)) {
     throw new Error('Expected argument of type hiber.token.ListTokensRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_token_ListTokensRequest_Response(buffer_arg) {
@@ -76,7 +76,7 @@ function serialize_hiber_token_UpdateTokenOrganizationPermissionsRequest(arg) {
   if (!(arg instanceof token_pb.UpdateTokenOrganizationPermissionsRequest)) {
     throw new Error('Expected argument of type hiber.token.UpdateTokenOrganizationPermissionsRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_token_UpdateTokenOrganizationPermissionsRequest(buffer_arg) {
@@ -87,7 +87,7 @@ function serialize_hiber_token_UpdateTokenOrganizationPermissionsRequest_Respons
   if (!(arg instanceof token_pb.UpdateTokenOrganizationPermissionsRequest.Response)) {
     throw new Error('Expected argument of type hiber.token.UpdateTokenOrganizationPermissionsRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_token_UpdateTokenOrganizationPermissionsRequest_Response(buffer_arg) {
@@ -98,7 +98,7 @@ function serialize_hiber_token_UpdateTokenUserPermissionsRequest(arg) {
   if (!(arg instanceof token_pb.UpdateTokenUserPermissionsRequest)) {
     throw new Error('Expected argument of type hiber.token.UpdateTokenUserPermissionsRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_token_UpdateTokenUserPermissionsRequest(buffer_arg) {
@@ -109,7 +109,7 @@ function serialize_hiber_token_UpdateTokenUserPermissionsRequest_Response(arg) {
   if (!(arg instanceof token_pb.UpdateTokenUserPermissionsRequest.Response)) {
     throw new Error('Expected argument of type hiber.token.UpdateTokenUserPermissionsRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_token_UpdateTokenUserPermissionsRequest_Response(buffer_arg) {

@@ -10,7 +10,7 @@ function serialize_hiber_map_MapRequest(arg) {
   if (!(arg instanceof map_pb.MapRequest)) {
     throw new Error('Expected argument of type hiber.map.MapRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_map_MapRequest(buffer_arg) {
@@ -21,7 +21,7 @@ function serialize_hiber_map_MapRequest_Response(arg) {
   if (!(arg instanceof map_pb.MapRequest.Response)) {
     throw new Error('Expected argument of type hiber.map.MapRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_map_MapRequest_Response(buffer_arg) {
@@ -32,7 +32,7 @@ function serialize_hiber_map_SatellitesRequest(arg) {
   if (!(arg instanceof map_pb.SatellitesRequest)) {
     throw new Error('Expected argument of type hiber.map.SatellitesRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_map_SatellitesRequest(buffer_arg) {
@@ -43,7 +43,7 @@ function serialize_hiber_map_SatellitesRequest_Response(arg) {
   if (!(arg instanceof map_pb.SatellitesRequest.Response)) {
     throw new Error('Expected argument of type hiber.map.SatellitesRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_map_SatellitesRequest_Response(buffer_arg) {
@@ -54,7 +54,7 @@ function serialize_hiber_map_TileMapRequest(arg) {
   if (!(arg instanceof map_pb.TileMapRequest)) {
     throw new Error('Expected argument of type hiber.map.TileMapRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_map_TileMapRequest(buffer_arg) {
@@ -65,7 +65,7 @@ function serialize_hiber_map_TileMapRequest_Response(arg) {
   if (!(arg instanceof map_pb.TileMapRequest.Response)) {
     throw new Error('Expected argument of type hiber.map.TileMapRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_map_TileMapRequest_Response(buffer_arg) {
@@ -87,8 +87,8 @@ var MapServiceService = exports.MapServiceService = {
     responseDeserialize: deserialize_hiber_map_TileMapRequest_Response,
   },
   // This call has been deprecated in favour of the Path (ListSatellitesPathRequest) call in SatelliteService.
-  // It will be removed in a future version.
-  satellites: {
+// It will be removed in a future version.
+satellites: {
     path: '/hiber.map.MapService/Satellites',
     requestStream: false,
     responseStream: false,
@@ -100,7 +100,7 @@ var MapServiceService = exports.MapServiceService = {
     responseDeserialize: deserialize_hiber_map_SatellitesRequest_Response,
   },
   // This is the old map request. It has been deprecated and will be removed in a future version. 
-  map: {
+map: {
     path: '/hiber.map.MapService/Map',
     requestStream: false,
     responseStream: false,

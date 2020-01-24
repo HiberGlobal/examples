@@ -12,6 +12,7 @@ var goog = jspb;
 var global = Function('return this')();
 
 var base_pb = require('./base_pb.js');
+goog.object.extend(proto, base_pb);
 goog.exportSymbol('proto.hiber.status.AreaStatus', null, global);
 goog.exportSymbol('proto.hiber.status.NetworkStatus', null, global);
 goog.exportSymbol('proto.hiber.status.OrganizationStatus', null, global);
@@ -183,7 +184,7 @@ proto.hiber.status.NetworkStatus.prototype.getHealth = function() {
 
 /** @param {!proto.hiber.Health} value */
 proto.hiber.status.NetworkStatus.prototype.setHealth = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -198,7 +199,7 @@ proto.hiber.status.NetworkStatus.prototype.getMessage = function() {
 
 /** @param {string} value */
 proto.hiber.status.NetworkStatus.prototype.setMessage = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -225,7 +226,7 @@ proto.hiber.status.NetworkStatus.prototype.clearLastUpdated = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.status.NetworkStatus.prototype.hasLastUpdated = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -422,7 +423,7 @@ proto.hiber.status.AreaStatus.prototype.clearArea = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.status.AreaStatus.prototype.hasArea = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -440,7 +441,7 @@ proto.hiber.status.AreaStatus.prototype.getHealth = function() {
 
 /** @param {!proto.hiber.Health} value */
 proto.hiber.status.AreaStatus.prototype.setHealth = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3EnumField(this, 2, value);
 };
 
 
@@ -455,7 +456,7 @@ proto.hiber.status.AreaStatus.prototype.getMessage = function() {
 
 /** @param {string} value */
 proto.hiber.status.AreaStatus.prototype.setMessage = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -482,7 +483,7 @@ proto.hiber.status.AreaStatus.prototype.clearLastUpdated = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.status.AreaStatus.prototype.hasLastUpdated = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -846,7 +847,7 @@ proto.hiber.status.OrganizationStatus.ModemStatus.prototype.getModemNumber = fun
 
 /** @param {string} value */
 proto.hiber.status.OrganizationStatus.ModemStatus.prototype.setModemNumber = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -861,27 +862,27 @@ proto.hiber.status.OrganizationStatus.ModemStatus.prototype.getHealth = function
 
 /** @param {!proto.hiber.Health} value */
 proto.hiber.status.OrganizationStatus.ModemStatus.prototype.setHealth = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3EnumField(this, 2, value);
 };
 
 
 /**
  * repeated string messages = 3;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.status.OrganizationStatus.ModemStatus.prototype.getMessagesList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 3));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.status.OrganizationStatus.ModemStatus.prototype.setMessagesList = function(value) {
   jspb.Message.setField(this, 3, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.status.OrganizationStatus.ModemStatus.prototype.addMessages = function(value, opt_index) {
@@ -1063,7 +1064,7 @@ proto.hiber.status.OrganizationStatus.PublisherStatus.prototype.getPublisherId =
 
 /** @param {number} value */
 proto.hiber.status.OrganizationStatus.PublisherStatus.prototype.setPublisherId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -1078,27 +1079,27 @@ proto.hiber.status.OrganizationStatus.PublisherStatus.prototype.getHealth = func
 
 /** @param {!proto.hiber.Health} value */
 proto.hiber.status.OrganizationStatus.PublisherStatus.prototype.setHealth = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3EnumField(this, 2, value);
 };
 
 
 /**
  * repeated string messages = 3;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.status.OrganizationStatus.PublisherStatus.prototype.getMessagesList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 3));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.status.OrganizationStatus.PublisherStatus.prototype.setMessagesList = function(value) {
   jspb.Message.setField(this, 3, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.status.OrganizationStatus.PublisherStatus.prototype.addMessages = function(value, opt_index) {
@@ -1122,7 +1123,7 @@ proto.hiber.status.OrganizationStatus.prototype.getHealth = function() {
 
 /** @param {!proto.hiber.Health} value */
 proto.hiber.status.OrganizationStatus.prototype.setHealth = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -1137,7 +1138,7 @@ proto.hiber.status.OrganizationStatus.prototype.getModems = function() {
 
 /** @param {!proto.hiber.Health} value */
 proto.hiber.status.OrganizationStatus.prototype.setModems = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3EnumField(this, 2, value);
 };
 
 
@@ -1152,21 +1153,21 @@ proto.hiber.status.OrganizationStatus.prototype.getPublishers = function() {
 
 /** @param {!proto.hiber.Health} value */
 proto.hiber.status.OrganizationStatus.prototype.setPublishers = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
 /**
  * repeated ModemStatus relevant_modems = 4;
- * @return {!Array.<!proto.hiber.status.OrganizationStatus.ModemStatus>}
+ * @return {!Array<!proto.hiber.status.OrganizationStatus.ModemStatus>}
  */
 proto.hiber.status.OrganizationStatus.prototype.getRelevantModemsList = function() {
-  return /** @type{!Array.<!proto.hiber.status.OrganizationStatus.ModemStatus>} */ (
+  return /** @type{!Array<!proto.hiber.status.OrganizationStatus.ModemStatus>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.status.OrganizationStatus.ModemStatus, 4));
 };
 
 
-/** @param {!Array.<!proto.hiber.status.OrganizationStatus.ModemStatus>} value */
+/** @param {!Array<!proto.hiber.status.OrganizationStatus.ModemStatus>} value */
 proto.hiber.status.OrganizationStatus.prototype.setRelevantModemsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 4, value);
 };
@@ -1189,15 +1190,15 @@ proto.hiber.status.OrganizationStatus.prototype.clearRelevantModemsList = functi
 
 /**
  * repeated PublisherStatus relevant_publishers = 5;
- * @return {!Array.<!proto.hiber.status.OrganizationStatus.PublisherStatus>}
+ * @return {!Array<!proto.hiber.status.OrganizationStatus.PublisherStatus>}
  */
 proto.hiber.status.OrganizationStatus.prototype.getRelevantPublishersList = function() {
-  return /** @type{!Array.<!proto.hiber.status.OrganizationStatus.PublisherStatus>} */ (
+  return /** @type{!Array<!proto.hiber.status.OrganizationStatus.PublisherStatus>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.status.OrganizationStatus.PublisherStatus, 5));
 };
 
 
-/** @param {!Array.<!proto.hiber.status.OrganizationStatus.PublisherStatus>} value */
+/** @param {!Array<!proto.hiber.status.OrganizationStatus.PublisherStatus>} value */
 proto.hiber.status.OrganizationStatus.prototype.setRelevantPublishersList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 5, value);
 };
@@ -1599,7 +1600,7 @@ proto.hiber.status.StatusRequest.Response.prototype.clearRequest = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.status.StatusRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -1629,7 +1630,7 @@ proto.hiber.status.StatusRequest.Response.prototype.clearSatellites = function()
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.status.StatusRequest.Response.prototype.hasSatellites = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1659,7 +1660,7 @@ proto.hiber.status.StatusRequest.Response.prototype.clearGroundStations = functi
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.status.StatusRequest.Response.prototype.hasGroundStations = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -1668,15 +1669,15 @@ proto.hiber.status.StatusRequest.Response.prototype.hasGroundStations = function
 
 /**
  * repeated AreaStatus global_areas = 4;
- * @return {!Array.<!proto.hiber.status.AreaStatus>}
+ * @return {!Array<!proto.hiber.status.AreaStatus>}
  */
 proto.hiber.status.StatusRequest.Response.prototype.getGlobalAreasList = function() {
-  return /** @type{!Array.<!proto.hiber.status.AreaStatus>} */ (
+  return /** @type{!Array<!proto.hiber.status.AreaStatus>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.status.AreaStatus, 4));
 };
 
 
-/** @param {!Array.<!proto.hiber.status.AreaStatus>} value */
+/** @param {!Array<!proto.hiber.status.AreaStatus>} value */
 proto.hiber.status.StatusRequest.Response.prototype.setGlobalAreasList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 4, value);
 };
@@ -1720,7 +1721,7 @@ proto.hiber.status.StatusRequest.Response.prototype.clearOrganization = function
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.status.StatusRequest.Response.prototype.hasOrganization = function() {
   return jspb.Message.getField(this, 5) != null;
@@ -1750,7 +1751,7 @@ proto.hiber.status.StatusRequest.Response.prototype.clearServer = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.status.StatusRequest.Response.prototype.hasServer = function() {
   return jspb.Message.getField(this, 6) != null;
@@ -1768,7 +1769,7 @@ proto.hiber.status.StatusRequest.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.status.StatusRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1785,7 +1786,7 @@ proto.hiber.status.StatusRequest.prototype.getIncludeModems = function() {
 
 /** @param {boolean} value */
 proto.hiber.status.StatusRequest.prototype.setIncludeModems = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 
@@ -1802,7 +1803,7 @@ proto.hiber.status.StatusRequest.prototype.getIncludePublishers = function() {
 
 /** @param {boolean} value */
 proto.hiber.status.StatusRequest.prototype.setIncludePublishers = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 

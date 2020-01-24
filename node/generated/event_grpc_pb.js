@@ -4,11 +4,13 @@
 var grpc = require('grpc');
 var event_pb = require('./event_pb.js');
 var base_pb = require('./base_pb.js');
-var organization_pb = require('./organization_pb.js');
-var publisher_pb = require('./publisher_pb.js');
+var integration_aws_iot_pb = require('./integration_aws_iot_pb.js');
+var integration_mqtt_pb = require('./integration_mqtt_pb.js');
 var modem_pb = require('./modem_pb.js');
 var modem_transfer_pb = require('./modem_transfer_pb.js');
 var modem_claim_pb = require('./modem_claim_pb.js');
+var organization_pb = require('./organization_pb.js');
+var publisher_pb = require('./publisher_pb.js');
 var tag_pb = require('./tag_pb.js');
 var token_pb = require('./token_pb.js');
 var user_pb = require('./user_pb.js');
@@ -18,7 +20,7 @@ function serialize_hiber_event_Event(arg) {
   if (!(arg instanceof event_pb.Event)) {
     throw new Error('Expected argument of type hiber.event.Event');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_event_Event(buffer_arg) {
@@ -29,7 +31,7 @@ function serialize_hiber_event_EventStreamRequest(arg) {
   if (!(arg instanceof event_pb.EventStreamRequest)) {
     throw new Error('Expected argument of type hiber.event.EventStreamRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_event_EventStreamRequest(buffer_arg) {
@@ -40,7 +42,7 @@ function serialize_hiber_event_ListEventsRequest(arg) {
   if (!(arg instanceof event_pb.ListEventsRequest)) {
     throw new Error('Expected argument of type hiber.event.ListEventsRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_event_ListEventsRequest(buffer_arg) {
@@ -51,7 +53,7 @@ function serialize_hiber_event_ListEventsRequest_Response(arg) {
   if (!(arg instanceof event_pb.ListEventsRequest.Response)) {
     throw new Error('Expected argument of type hiber.event.ListEventsRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_event_ListEventsRequest_Response(buffer_arg) {

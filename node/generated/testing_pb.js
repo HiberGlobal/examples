@@ -12,6 +12,7 @@ var goog = jspb;
 var global = Function('return this')();
 
 var base_pb = require('./base_pb.js');
+goog.object.extend(proto, base_pb);
 goog.exportSymbol('proto.hiber.testing.PushModemMessagesFromDebugPortRequest', null, global);
 goog.exportSymbol('proto.hiber.testing.PushModemMessagesFromDebugPortRequest.Response', null, global);
 goog.exportSymbol('proto.hiber.testing.PushModemMessagesRequest', null, global);
@@ -318,7 +319,7 @@ proto.hiber.testing.PushModemMessagesRequest.Response.prototype.clearRequest = f
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.testing.PushModemMessagesRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -503,7 +504,7 @@ proto.hiber.testing.PushModemMessagesRequest.MessageToPush.prototype.getModemNum
 
 /** @param {string} value */
 proto.hiber.testing.PushModemMessagesRequest.MessageToPush.prototype.setModemNumber = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -530,7 +531,7 @@ proto.hiber.testing.PushModemMessagesRequest.MessageToPush.prototype.clearTime =
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.testing.PushModemMessagesRequest.MessageToPush.prototype.hasTime = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -560,7 +561,7 @@ proto.hiber.testing.PushModemMessagesRequest.MessageToPush.prototype.clearLocati
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.testing.PushModemMessagesRequest.MessageToPush.prototype.hasLocation = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -602,7 +603,7 @@ proto.hiber.testing.PushModemMessagesRequest.MessageToPush.prototype.getContent_
 
 /** @param {!(string|Uint8Array)} value */
 proto.hiber.testing.PushModemMessagesRequest.MessageToPush.prototype.setContent = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3BytesField(this, 4, value);
 };
 
 
@@ -617,21 +618,21 @@ proto.hiber.testing.PushModemMessagesRequest.prototype.getOrganization = functio
 
 /** @param {string} value */
 proto.hiber.testing.PushModemMessagesRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
  * repeated MessageToPush messages = 2;
- * @return {!Array.<!proto.hiber.testing.PushModemMessagesRequest.MessageToPush>}
+ * @return {!Array<!proto.hiber.testing.PushModemMessagesRequest.MessageToPush>}
  */
 proto.hiber.testing.PushModemMessagesRequest.prototype.getMessagesList = function() {
-  return /** @type{!Array.<!proto.hiber.testing.PushModemMessagesRequest.MessageToPush>} */ (
+  return /** @type{!Array<!proto.hiber.testing.PushModemMessagesRequest.MessageToPush>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.testing.PushModemMessagesRequest.MessageToPush, 2));
 };
 
 
-/** @param {!Array.<!proto.hiber.testing.PushModemMessagesRequest.MessageToPush>} value */
+/** @param {!Array<!proto.hiber.testing.PushModemMessagesRequest.MessageToPush>} value */
 proto.hiber.testing.PushModemMessagesRequest.prototype.setMessagesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
@@ -950,7 +951,7 @@ proto.hiber.testing.PushModemMessagesFromDebugPortRequest.Response.prototype.cle
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.testing.PushModemMessagesFromDebugPortRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -968,27 +969,27 @@ proto.hiber.testing.PushModemMessagesFromDebugPortRequest.prototype.getOrganizat
 
 /** @param {string} value */
 proto.hiber.testing.PushModemMessagesFromDebugPortRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
  * repeated string encoded_messages = 2;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.testing.PushModemMessagesFromDebugPortRequest.prototype.getEncodedMessagesList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 2));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.testing.PushModemMessagesFromDebugPortRequest.prototype.setEncodedMessagesList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.testing.PushModemMessagesFromDebugPortRequest.prototype.addEncodedMessages = function(value, opt_index) {

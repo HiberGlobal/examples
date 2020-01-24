@@ -15,6 +15,11 @@ _sym_db = _symbol_database.Default()
 
 import base_pb2 as base__pb2
 import tag_pb2 as tag__pb2
+import webhook_pb2 as webhook__pb2
+import email_notifications_pb2 as email__notifications__pb2
+import integration_mqtt_pb2 as integration__mqtt__pb2
+import integration_slack_pb2 as integration__slack__pb2
+import integration_aws_iot_pb2 as integration__aws__iot__pb2
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
@@ -22,9 +27,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='publisher.proto',
   package='hiber.publisher',
   syntax='proto3',
-  serialized_pb=_b('\n\x0fpublisher.proto\x12\x0fhiber.publisher\x1a\nbase.proto\x1a\ttag.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xca\x08\n\tPublisher\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12-\n\x04\x64\x61ta\x18\x03 \x01(\x0b\x32\x1f.hiber.publisher.Publisher.Data\x12\x33\n\x07\x66ilters\x18\x04 \x01(\x0b\x32\".hiber.publisher.Publisher.Filters\x12\x1c\n\x04tags\x18\x05 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\x1d\n\x06health\x18\x06 \x01(\x0e\x32\r.hiber.Health\x12-\n\x04type\x18\x07 \x01(\x0e\x32\x1f.hiber.publisher.Publisher.Type\x12+\n\x11in_cooldown_until\x18\x08 \x01(\x0b\x32\x10.hiber.Timestamp\x1a\xcb\x04\n\x04\x44\x61ta\x12\x0b\n\x03url\x18\x01 \x01(\t\x12<\n\x0c\x63ontent_type\x18\x02 \x01(\x0e\x32&.hiber.publisher.Publisher.ContentType\x12\x10\n\x08\x64isabled\x18\x03 \x01(\x08\x12\x16\n\x0e\x63\x65rtificate_id\x18\x04 \x01(\x03\x12\x18\n\x10\x63\x65rtificate_name\x18\x05 \x01(\t\x12\x19\n\x11\x63\x61_certificate_id\x18\x06 \x01(\x03\x12\x1b\n\x13\x63\x61_certificate_name\x18\x07 \x01(\t\x12:\n\x04http\x18\x08 \x01(\x0b\x32*.hiber.publisher.Publisher.Data.HTTPConfigH\x00\x12:\n\x04mqtt\x18\t \x01(\x0b\x32*.hiber.publisher.Publisher.Data.MQTTConfigH\x00\x1a\xdb\x01\n\nMQTTConfig\x12\r\n\x05topic\x18\x01 \x01(\t\x12;\n\x03qos\x18\x02 \x01(\x0e\x32..hiber.publisher.Publisher.Data.MQTTConfig.QoS\x12\x10\n\x08username\x18\x03 \x01(\t\x12\x10\n\x08password\x18\x04 \x01(\t\x12\x12\n\nidentifier\x18\x05 \x01(\t\"I\n\x03QoS\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\x10\n\x0c\x41T_MOST_ONCE\x10\x01\x12\x11\n\rAT_LEAST_ONCE\x10\x02\x12\x10\n\x0c\x45XACTLY_ONCE\x10\x03\x1a\x1c\n\nHTTPConfig\x12\x0e\n\x06secret\x18\x01 \x01(\tB\x08\n\x06\x63onfig\x1a\x83\x01\n\x07\x46ilters\x12)\n\x0b\x65vent_types\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Events\x12+\n\rmodem_numbers\x18\x02 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12 \n\x04tags\x18\x03 \x01(\x0b\x32\x12.hiber.Filter.Tags\"/\n\x0b\x43ontentType\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\x08\n\x04JSON\x10\x01\x12\t\n\x05PROTO\x10\x02\"\x1a\n\x04Type\x12\x08\n\x04HTTP\x10\x00\x12\x08\n\x04MQTT\x10\x01\"\xd4\x02\n\x12PublisherSelection\x12,\n\npublishers\x18\x01 \x01(\x0b\x32\x18.hiber.Filter.Publishers\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x12\n\nsearch_url\x18\x03 \x01(\t\x12=\n\rcontent_types\x18\x04 \x03(\x0e\x32&.hiber.publisher.Publisher.ContentType\x12\x17\n\x0f\x63\x65rtificate_ids\x18\x05 \x03(\x03\x12\x19\n\x11search_mqtt_topic\x18\x06 \x01(\t\x12%\n\x04tags\x18\x07 \x01(\x0b\x32\x17.hiber.tag.TagSelection\x12\x1d\n\x06health\x18\x08 \x03(\x0e\x32\r.hiber.Health\x12.\n\x05types\x18\t \x03(\x0e\x32\x1f.hiber.publisher.Publisher.Type\"\x99\x01\n\rPublisherCall\x12\x1e\n\x04time\x18\x01 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x37\n\x0epublisher_data\x18\x02 \x01(\x0b\x32\x1f.hiber.publisher.Publisher.Data\x12\x0c\n\x04\x62ody\x18\x03 \x01(\x0c\x12\x12\n\nsuccessful\x18\x04 \x01(\x08\x12\r\n\x05\x65rror\x18\x05 \x01(\t\"X\n\x19PublisherHistorySelection\x12\x15\n\ronly_failures\x18\x02 \x01(\x08\x12$\n\ntime_range\x18\x03 \x01(\x0b\x32\x10.hiber.TimeRange\"\xb4\x02\n\x15ListPublishersRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x36\n\tselection\x18\x02 \x01(\x0b\x32#.hiber.publisher.PublisherSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\xa1\x01\n\x08Response\x12.\n\npublishers\x18\x01 \x03(\x0b\x32\x1a.hiber.publisher.Publisher\x12\x37\n\x07request\x18\x02 \x01(\x0b\x32&.hiber.publisher.ListPublishersRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result:\x02\x18\x01\"\xd4\x02\n\x17PublisherHistoryRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x14\n\x0cpublisher_id\x18\x02 \x01(\x03\x12=\n\tselection\x18\x03 \x01(\x0b\x32*.hiber.publisher.PublisherHistorySelection\x12%\n\npagination\x18\x04 \x01(\x0b\x32\x11.hiber.Pagination\x1a\xa2\x01\n\x08Response\x12-\n\x05\x63\x61lls\x18\x01 \x03(\x0b\x32\x1e.hiber.publisher.PublisherCall\x12\x39\n\x07request\x18\x02 \x01(\x0b\x32(.hiber.publisher.PublisherHistoryRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result:\x02\x18\x01\"\x91\x04\n\x16\x43reatePublisherRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x0b\n\x03url\x18\x03 \x01(\t\x12<\n\x0c\x63ontent_type\x18\x04 \x01(\x0e\x32&.hiber.publisher.Publisher.ContentType\x12\x16\n\x0e\x63\x65rtificate_id\x18\x05 \x01(\x03\x12\x33\n\x07\x66ilters\x18\x06 \x01(\x0b\x32\".hiber.publisher.Publisher.Filters\x12\x0c\n\x04tags\x18\x07 \x03(\x03\x12-\n\x04type\x18\x08 \x01(\x0e\x32\x1f.hiber.publisher.Publisher.Type\x12:\n\x04http\x18\t \x01(\x0b\x32*.hiber.publisher.Publisher.Data.HTTPConfigH\x00\x12:\n\x04mqtt\x18\n \x01(\x0b\x32*.hiber.publisher.Publisher.Data.MQTTConfigH\x00\x1aq\n\x08Response\x12+\n\x07\x63reated\x18\x01 \x01(\x0b\x32\x1a.hiber.publisher.Publisher\x12\x38\n\x07request\x18\x02 \x01(\x0b\x32\'.hiber.publisher.CreatePublisherRequest:\x02\x18\x01\x42\x08\n\x06\x63onfig\"\x8f\x02\n\x16\x45nablePublisherRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x36\n\tselection\x18\x02 \x01(\x0b\x32#.hiber.publisher.PublisherSelection\x1a\xa2\x01\n\x08Response\x12.\n\npublishers\x18\x01 \x03(\x0b\x32\x1a.hiber.publisher.Publisher\x12\x38\n\x07request\x18\x02 \x01(\x0b\x32\'.hiber.publisher.EnablePublisherRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result:\x02\x18\x01\"\x91\x02\n\x17\x44isablePublisherRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x36\n\tselection\x18\x02 \x01(\x0b\x32#.hiber.publisher.PublisherSelection\x1a\xa3\x01\n\x08Response\x12.\n\npublishers\x18\x01 \x03(\x0b\x32\x1a.hiber.publisher.Publisher\x12\x39\n\x07request\x18\x02 \x01(\x0b\x32(.hiber.publisher.DisablePublisherRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result:\x02\x18\x01\"\x91\x08\n\x16UpdatePublisherRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x36\n\tselection\x18\x02 \x01(\x0b\x32#.hiber.publisher.PublisherSelection\x12\x31\n\x0b\x64\x65scription\x18\x03 \x01(\x0b\x32\x1c.hiber.UpdateClearableString\x12\x0b\n\x03url\x18\x04 \x01(\t\x12<\n\x0c\x63ontent_type\x18\x05 \x01(\x0e\x32&.hiber.publisher.Publisher.ContentType\x12/\n\x0e\x63\x65rtificate_id\x18\x06 \x01(\x0b\x32\x17.hiber.UpdateOptionalId\x12J\n\x0c\x65vent_filter\x18\x07 \x01(\x0b\x32\x34.hiber.publisher.UpdatePublisherRequest.UpdateEvents\x12J\n\x0cmodem_filter\x18\x08 \x01(\x0b\x32\x34.hiber.publisher.UpdatePublisherRequest.UpdateModems\x12\x46\n\ntag_filter\x18\t \x01(\x0b\x32\x32.hiber.publisher.UpdatePublisherRequest.UpdateTags\x12$\n\x06\x61\x63tive\x18\n \x01(\x0b\x32\x14.hiber.UpdateBoolean\x12:\n\x04http\x18\x0b \x01(\x0b\x32*.hiber.publisher.Publisher.Data.HTTPConfigH\x00\x12:\n\x04mqtt\x18\x0c \x01(\x0b\x32*.hiber.publisher.Publisher.Data.MQTTConfigH\x00\x1a\x9f\x01\n\x08Response\x12+\n\x07updated\x18\x01 \x03(\x0b\x32\x1a.hiber.publisher.Publisher\x12\x38\n\x07request\x18\x02 \x01(\x0b\x32\'.hiber.publisher.UpdatePublisherRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\x1a\x44\n\x0cUpdateEvents\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12#\n\x05value\x18\x02 \x01(\x0b\x32\x14.hiber.Filter.Events\x1a\x44\n\x0cUpdateModems\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12#\n\x05value\x18\x02 \x01(\x0b\x32\x14.hiber.Filter.Modems\x1a@\n\nUpdateTags\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12!\n\x05value\x18\x02 \x01(\x0b\x32\x12.hiber.Filter.Tags:\x02\x18\x01\x42\x08\n\x06\x63onfig\"\xc5\x02\n\x1aUpdatePublisherTagsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x36\n\tselection\x18\x02 \x01(\x0b\x32#.hiber.publisher.PublisherSelection\x12,\n\x06update\x18\x03 \x01(\x0b\x32\x1c.hiber.tag.UpdateTagsForItem\x1a\xa6\x01\n\x08Response\x12.\n\npublishers\x18\x01 \x03(\x0b\x32\x1a.hiber.publisher.Publisher\x12<\n\x07request\x18\x02 \x01(\x0b\x32+.hiber.publisher.UpdatePublisherTagsRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result:\x02\x18\x01\"J\n\x16\x44\x65letePublisherRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\x1a\n\n\x08Response:\x02\x18\x01\x32\xcd\x06\n\x10PublisherService\x12_\n\x04List\x12&.hiber.publisher.ListPublishersRequest\x1a/.hiber.publisher.ListPublishersRequest.Response\x12\x63\n\x06\x43reate\x12\'.hiber.publisher.CreatePublisherRequest\x1a\x30.hiber.publisher.CreatePublisherRequest.Response\x12\x63\n\x06\x45nable\x12\'.hiber.publisher.EnablePublisherRequest\x1a\x30.hiber.publisher.EnablePublisherRequest.Response\x12\x66\n\x07\x44isable\x12(.hiber.publisher.DisablePublisherRequest\x1a\x31.hiber.publisher.DisablePublisherRequest.Response\x12\x63\n\x06Update\x12\'.hiber.publisher.UpdatePublisherRequest\x1a\x30.hiber.publisher.UpdatePublisherRequest.Response\x12o\n\nUpdateTags\x12+.hiber.publisher.UpdatePublisherTagsRequest\x1a\x34.hiber.publisher.UpdatePublisherTagsRequest.Response\x12\x63\n\x06\x44\x65lete\x12\'.hiber.publisher.DeletePublisherRequest\x1a\x30.hiber.publisher.DeletePublisherRequest.Response\x12\x66\n\x07History\x12(.hiber.publisher.PublisherHistoryRequest\x1a\x31.hiber.publisher.PublisherHistoryRequest.Response\x1a\x03\x88\x02\x01\x42\x38\n\x1fglobal.hiber.api.grpc.publisherB\x0cPublisherApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\x0fpublisher.proto\x12\x0fhiber.publisher\x1a\nbase.proto\x1a\ttag.proto\x1a\rwebhook.proto\x1a\x19\x65mail_notifications.proto\x1a\x16integration_mqtt.proto\x1a\x17integration_slack.proto\x1a\x19integration_aws_iot.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd3\x0b\n\tPublisher\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12<\n\x0f\x64\x65precated_data\x18\x03 \x01(\x0b\x32\x1f.hiber.publisher.Publisher.DataB\x02\x18\x01\x12\x33\n\x07\x66ilters\x18\x04 \x01(\x0b\x32\".hiber.publisher.Publisher.Filters\x12\x1c\n\x04tags\x18\x05 \x03(\x0b\x32\x0e.hiber.tag.Tag\x12\x1d\n\x06health\x18\x06 \x01(\x0e\x32\r.hiber.Health\x12-\n\x04type\x18\x07 \x01(\x0e\x32\x1f.hiber.publisher.Publisher.Type\x12+\n\x11in_cooldown_until\x18\x08 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x10\n\x08\x64isabled\x18\t \x01(\x08\x12\x32\n\x04http\x18\n \x01(\x0b\x32\".hiber.webhook.Webhook.WebhookDataH\x00\x12:\n\x04mqtt\x18\x0b \x01(\x0b\x32*.hiber.integration.mqtt.MQTTPublisher.DataH\x00\x12@\n\x07\x61ws_iot\x18\x0c \x01(\x0b\x32-.hiber.integration.awsiot.AWSIoTConfigurationH\x00\x12:\n\x05\x65mail\x18\r \x01(\x0b\x32).hiber.email.EmailNotificationPreferencesH\x00\x12=\n\x05slack\x18\x0e \x01(\x0b\x32,.hiber.integration.slack.SlackPublisher.DataH\x00\x1a\xd7\x04\n\x04\x44\x61ta\x12\x0b\n\x03url\x18\x01 \x01(\t\x12<\n\x0c\x63ontent_type\x18\x02 \x01(\x0e\x32&.hiber.publisher.Publisher.ContentType\x12\x10\n\x08\x64isabled\x18\x03 \x01(\x08\x12\x16\n\x0e\x63\x65rtificate_id\x18\x04 \x01(\x03\x12\x18\n\x10\x63\x65rtificate_name\x18\x05 \x01(\t\x12\x19\n\x11\x63\x61_certificate_id\x18\x06 \x01(\x03\x12\x1b\n\x13\x63\x61_certificate_name\x18\x07 \x01(\t\x12:\n\x04http\x18\x08 \x01(\x0b\x32*.hiber.publisher.Publisher.Data.HTTPConfigH\x00\x12:\n\x04mqtt\x18\t \x01(\x0b\x32*.hiber.publisher.Publisher.Data.MQTTConfigH\x00\x1a\xdf\x01\n\nMQTTConfig\x12\r\n\x05topic\x18\x01 \x01(\t\x12;\n\x03qos\x18\x02 \x01(\x0e\x32..hiber.publisher.Publisher.Data.MQTTConfig.QoS\x12\x10\n\x08username\x18\x03 \x01(\t\x12\x10\n\x08password\x18\x04 \x01(\t\x12\x12\n\nidentifier\x18\x05 \x01(\t\"I\n\x03QoS\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\x10\n\x0c\x41T_MOST_ONCE\x10\x01\x12\x11\n\rAT_LEAST_ONCE\x10\x02\x12\x10\n\x0c\x45XACTLY_ONCE\x10\x03:\x02\x18\x01\x1a \n\nHTTPConfig\x12\x0e\n\x06secret\x18\x01 \x01(\t:\x02\x18\x01:\x02\x18\x01\x42\x08\n\x06\x63onfig\x1a\x83\x01\n\x07\x46ilters\x12)\n\x0b\x65vent_types\x18\x01 \x01(\x0b\x32\x14.hiber.Filter.Events\x12+\n\rmodem_numbers\x18\x02 \x01(\x0b\x32\x14.hiber.Filter.Modems\x12 \n\x04tags\x18\x03 \x01(\x0b\x32\x12.hiber.Filter.Tags\"3\n\x0b\x43ontentType\x12\x0b\n\x07\x44\x45\x46\x41ULT\x10\x00\x12\x08\n\x04JSON\x10\x01\x12\t\n\x05PROTO\x10\x02\x1a\x02\x18\x01\"=\n\x04Type\x12\x08\n\x04HTTP\x10\x00\x12\x08\n\x04MQTT\x10\x01\x12\x0b\n\x07\x41WS_IOT\x10\x02\x12\t\n\x05\x45MAIL\x10\x03\x12\t\n\x05SLACK\x10\x04\x42\x06\n\x04\x64\x61ta\"f\n\x16UpdatePublisherRequest\x1aH\n\x0cUpdateModems\x12\x0f\n\x07updated\x18\x01 \x01(\x08\x12#\n\x05value\x18\x02 \x01(\x0b\x32\x14.hiber.Filter.Modems:\x02\x18\x01:\x02\x18\x01\x42\x38\n\x1fglobal.hiber.api.grpc.publisherB\x0cPublisherApiP\x00Z\x05hiberb\x06proto3')
   ,
-  dependencies=[base__pb2.DESCRIPTOR,tag__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
+  dependencies=[base__pb2.DESCRIPTOR,tag__pb2.DESCRIPTOR,webhook__pb2.DESCRIPTOR,email__notifications__pb2.DESCRIPTOR,integration__mqtt__pb2.DESCRIPTOR,integration__slack__pb2.DESCRIPTOR,integration__aws__iot__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 
 
 
@@ -53,8 +58,8 @@ _PUBLISHER_DATA_MQTTCONFIG_QOS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=867,
-  serialized_end=940,
+  serialized_start=1319,
+  serialized_end=1392,
 )
 _sym_db.RegisterEnumDescriptor(_PUBLISHER_DATA_MQTTCONFIG_QOS)
 
@@ -78,9 +83,9 @@ _PUBLISHER_CONTENTTYPE = _descriptor.EnumDescriptor(
       type=None),
   ],
   containing_type=None,
-  options=None,
-  serialized_start=1116,
-  serialized_end=1163,
+  options=_descriptor._ParseOptions(descriptor_pb2.EnumOptions(), _b('\030\001')),
+  serialized_start=1580,
+  serialized_end=1631,
 )
 _sym_db.RegisterEnumDescriptor(_PUBLISHER_CONTENTTYPE)
 
@@ -98,11 +103,23 @@ _PUBLISHER_TYPE = _descriptor.EnumDescriptor(
       name='MQTT', index=1, number=1,
       options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='AWS_IOT', index=2, number=2,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='EMAIL', index=3, number=3,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='SLACK', index=4, number=4,
+      options=None,
+      type=None),
   ],
   containing_type=None,
   options=None,
-  serialized_start=1165,
-  serialized_end=1191,
+  serialized_start=1633,
+  serialized_end=1694,
 )
 _sym_db.RegisterEnumDescriptor(_PUBLISHER_TYPE)
 
@@ -156,14 +173,14 @@ _PUBLISHER_DATA_MQTTCONFIG = _descriptor.Descriptor(
   enum_types=[
     _PUBLISHER_DATA_MQTTCONFIG_QOS,
   ],
-  options=None,
+  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001')),
   is_extendable=False,
   syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=721,
-  serialized_end=940,
+  serialized_start=1173,
+  serialized_end=1396,
 )
 
 _PUBLISHER_DATA_HTTPCONFIG = _descriptor.Descriptor(
@@ -186,14 +203,14 @@ _PUBLISHER_DATA_HTTPCONFIG = _descriptor.Descriptor(
   nested_types=[],
   enum_types=[
   ],
-  options=None,
+  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001')),
   is_extendable=False,
   syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=942,
-  serialized_end=970,
+  serialized_start=1398,
+  serialized_end=1430,
 )
 
 _PUBLISHER_DATA = _descriptor.Descriptor(
@@ -272,7 +289,7 @@ _PUBLISHER_DATA = _descriptor.Descriptor(
   nested_types=[_PUBLISHER_DATA_MQTTCONFIG, _PUBLISHER_DATA_HTTPCONFIG, ],
   enum_types=[
   ],
-  options=None,
+  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001')),
   is_extendable=False,
   syntax='proto3',
   extension_ranges=[],
@@ -281,8 +298,8 @@ _PUBLISHER_DATA = _descriptor.Descriptor(
       name='config', full_name='hiber.publisher.Publisher.Data.config',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=393,
-  serialized_end=980,
+  serialized_start=845,
+  serialized_end=1444,
 )
 
 _PUBLISHER_FILTERS = _descriptor.Descriptor(
@@ -325,8 +342,8 @@ _PUBLISHER_FILTERS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=983,
-  serialized_end=1114,
+  serialized_start=1447,
+  serialized_end=1578,
 )
 
 _PUBLISHER = _descriptor.Descriptor(
@@ -351,12 +368,12 @@ _PUBLISHER = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='data', full_name='hiber.publisher.Publisher.data', index=2,
+      name='deprecated_data', full_name='hiber.publisher.Publisher.deprecated_data', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
+      options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\030\001')), file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='filters', full_name='hiber.publisher.Publisher.filters', index=3,
       number=4, type=11, cpp_type=10, label=1,
@@ -392,6 +409,48 @@ _PUBLISHER = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='disabled', full_name='hiber.publisher.Publisher.disabled', index=8,
+      number=9, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='http', full_name='hiber.publisher.Publisher.http', index=9,
+      number=10, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='mqtt', full_name='hiber.publisher.Publisher.mqtt', index=10,
+      number=11, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='aws_iot', full_name='hiber.publisher.Publisher.aws_iot', index=11,
+      number=12, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='email', full_name='hiber.publisher.Publisher.email', index=12,
+      number=13, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='slack', full_name='hiber.publisher.Publisher.slack', index=13,
+      number=14, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -405,759 +464,14 @@ _PUBLISHER = _descriptor.Descriptor(
   syntax='proto3',
   extension_ranges=[],
   oneofs=[
-  ],
-  serialized_start=93,
-  serialized_end=1191,
-)
-
-
-_PUBLISHERSELECTION = _descriptor.Descriptor(
-  name='PublisherSelection',
-  full_name='hiber.publisher.PublisherSelection',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='publishers', full_name='hiber.publisher.PublisherSelection.publishers', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='description', full_name='hiber.publisher.PublisherSelection.description', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='search_url', full_name='hiber.publisher.PublisherSelection.search_url', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='content_types', full_name='hiber.publisher.PublisherSelection.content_types', index=3,
-      number=4, type=14, cpp_type=8, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='certificate_ids', full_name='hiber.publisher.PublisherSelection.certificate_ids', index=4,
-      number=5, type=3, cpp_type=2, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='search_mqtt_topic', full_name='hiber.publisher.PublisherSelection.search_mqtt_topic', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='tags', full_name='hiber.publisher.PublisherSelection.tags', index=6,
-      number=7, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='health', full_name='hiber.publisher.PublisherSelection.health', index=7,
-      number=8, type=14, cpp_type=8, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='types', full_name='hiber.publisher.PublisherSelection.types', index=8,
-      number=9, type=14, cpp_type=8, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1194,
-  serialized_end=1534,
-)
-
-
-_PUBLISHERCALL = _descriptor.Descriptor(
-  name='PublisherCall',
-  full_name='hiber.publisher.PublisherCall',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='time', full_name='hiber.publisher.PublisherCall.time', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='publisher_data', full_name='hiber.publisher.PublisherCall.publisher_data', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='body', full_name='hiber.publisher.PublisherCall.body', index=2,
-      number=3, type=12, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b(""),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='successful', full_name='hiber.publisher.PublisherCall.successful', index=3,
-      number=4, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='error', full_name='hiber.publisher.PublisherCall.error', index=4,
-      number=5, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1537,
-  serialized_end=1690,
-)
-
-
-_PUBLISHERHISTORYSELECTION = _descriptor.Descriptor(
-  name='PublisherHistorySelection',
-  full_name='hiber.publisher.PublisherHistorySelection',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='only_failures', full_name='hiber.publisher.PublisherHistorySelection.only_failures', index=0,
-      number=2, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='time_range', full_name='hiber.publisher.PublisherHistorySelection.time_range', index=1,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1692,
-  serialized_end=1780,
-)
-
-
-_LISTPUBLISHERSREQUEST_RESPONSE = _descriptor.Descriptor(
-  name='Response',
-  full_name='hiber.publisher.ListPublishersRequest.Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='publishers', full_name='hiber.publisher.ListPublishersRequest.Response.publishers', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='request', full_name='hiber.publisher.ListPublishersRequest.Response.request', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='pagination', full_name='hiber.publisher.ListPublishersRequest.Response.pagination', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1926,
-  serialized_end=2087,
-)
-
-_LISTPUBLISHERSREQUEST = _descriptor.Descriptor(
-  name='ListPublishersRequest',
-  full_name='hiber.publisher.ListPublishersRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='organization', full_name='hiber.publisher.ListPublishersRequest.organization', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='selection', full_name='hiber.publisher.ListPublishersRequest.selection', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='pagination', full_name='hiber.publisher.ListPublishersRequest.pagination', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[_LISTPUBLISHERSREQUEST_RESPONSE, ],
-  enum_types=[
-  ],
-  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001')),
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1783,
-  serialized_end=2091,
-)
-
-
-_PUBLISHERHISTORYREQUEST_RESPONSE = _descriptor.Descriptor(
-  name='Response',
-  full_name='hiber.publisher.PublisherHistoryRequest.Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='calls', full_name='hiber.publisher.PublisherHistoryRequest.Response.calls', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='request', full_name='hiber.publisher.PublisherHistoryRequest.Response.request', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='pagination', full_name='hiber.publisher.PublisherHistoryRequest.Response.pagination', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2268,
-  serialized_end=2430,
-)
-
-_PUBLISHERHISTORYREQUEST = _descriptor.Descriptor(
-  name='PublisherHistoryRequest',
-  full_name='hiber.publisher.PublisherHistoryRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='organization', full_name='hiber.publisher.PublisherHistoryRequest.organization', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='publisher_id', full_name='hiber.publisher.PublisherHistoryRequest.publisher_id', index=1,
-      number=2, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='selection', full_name='hiber.publisher.PublisherHistoryRequest.selection', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='pagination', full_name='hiber.publisher.PublisherHistoryRequest.pagination', index=3,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[_PUBLISHERHISTORYREQUEST_RESPONSE, ],
-  enum_types=[
-  ],
-  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001')),
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2094,
-  serialized_end=2434,
-)
-
-
-_CREATEPUBLISHERREQUEST_RESPONSE = _descriptor.Descriptor(
-  name='Response',
-  full_name='hiber.publisher.CreatePublisherRequest.Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='created', full_name='hiber.publisher.CreatePublisherRequest.Response.created', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='request', full_name='hiber.publisher.CreatePublisherRequest.Response.request', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2839,
-  serialized_end=2952,
-)
-
-_CREATEPUBLISHERREQUEST = _descriptor.Descriptor(
-  name='CreatePublisherRequest',
-  full_name='hiber.publisher.CreatePublisherRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='organization', full_name='hiber.publisher.CreatePublisherRequest.organization', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='description', full_name='hiber.publisher.CreatePublisherRequest.description', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='url', full_name='hiber.publisher.CreatePublisherRequest.url', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='content_type', full_name='hiber.publisher.CreatePublisherRequest.content_type', index=3,
-      number=4, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='certificate_id', full_name='hiber.publisher.CreatePublisherRequest.certificate_id', index=4,
-      number=5, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='filters', full_name='hiber.publisher.CreatePublisherRequest.filters', index=5,
-      number=6, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='tags', full_name='hiber.publisher.CreatePublisherRequest.tags', index=6,
-      number=7, type=3, cpp_type=2, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='type', full_name='hiber.publisher.CreatePublisherRequest.type', index=7,
-      number=8, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='http', full_name='hiber.publisher.CreatePublisherRequest.http', index=8,
-      number=9, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='mqtt', full_name='hiber.publisher.CreatePublisherRequest.mqtt', index=9,
-      number=10, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[_CREATEPUBLISHERREQUEST_RESPONSE, ],
-  enum_types=[
-  ],
-  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001')),
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
     _descriptor.OneofDescriptor(
-      name='config', full_name='hiber.publisher.CreatePublisherRequest.config',
+      name='data', full_name='hiber.publisher.Publisher.data',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=2437,
-  serialized_end=2966,
+  serialized_start=211,
+  serialized_end=1702,
 )
 
-
-_ENABLEPUBLISHERREQUEST_RESPONSE = _descriptor.Descriptor(
-  name='Response',
-  full_name='hiber.publisher.EnablePublisherRequest.Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='publishers', full_name='hiber.publisher.EnablePublisherRequest.Response.publishers', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='request', full_name='hiber.publisher.EnablePublisherRequest.Response.request', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='pagination', full_name='hiber.publisher.EnablePublisherRequest.Response.pagination', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3074,
-  serialized_end=3236,
-)
-
-_ENABLEPUBLISHERREQUEST = _descriptor.Descriptor(
-  name='EnablePublisherRequest',
-  full_name='hiber.publisher.EnablePublisherRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='organization', full_name='hiber.publisher.EnablePublisherRequest.organization', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='selection', full_name='hiber.publisher.EnablePublisherRequest.selection', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[_ENABLEPUBLISHERREQUEST_RESPONSE, ],
-  enum_types=[
-  ],
-  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001')),
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2969,
-  serialized_end=3240,
-)
-
-
-_DISABLEPUBLISHERREQUEST_RESPONSE = _descriptor.Descriptor(
-  name='Response',
-  full_name='hiber.publisher.DisablePublisherRequest.Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='publishers', full_name='hiber.publisher.DisablePublisherRequest.Response.publishers', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='request', full_name='hiber.publisher.DisablePublisherRequest.Response.request', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='pagination', full_name='hiber.publisher.DisablePublisherRequest.Response.pagination', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3349,
-  serialized_end=3512,
-)
-
-_DISABLEPUBLISHERREQUEST = _descriptor.Descriptor(
-  name='DisablePublisherRequest',
-  full_name='hiber.publisher.DisablePublisherRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='organization', full_name='hiber.publisher.DisablePublisherRequest.organization', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='selection', full_name='hiber.publisher.DisablePublisherRequest.selection', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[_DISABLEPUBLISHERREQUEST_RESPONSE, ],
-  enum_types=[
-  ],
-  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001')),
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3243,
-  serialized_end=3516,
-)
-
-
-_UPDATEPUBLISHERREQUEST_RESPONSE = _descriptor.Descriptor(
-  name='Response',
-  full_name='hiber.publisher.UpdatePublisherRequest.Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='updated', full_name='hiber.publisher.UpdatePublisherRequest.Response.updated', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='request', full_name='hiber.publisher.UpdatePublisherRequest.Response.request', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='pagination', full_name='hiber.publisher.UpdatePublisherRequest.Response.pagination', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4181,
-  serialized_end=4340,
-)
-
-_UPDATEPUBLISHERREQUEST_UPDATEEVENTS = _descriptor.Descriptor(
-  name='UpdateEvents',
-  full_name='hiber.publisher.UpdatePublisherRequest.UpdateEvents',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='updated', full_name='hiber.publisher.UpdatePublisherRequest.UpdateEvents.updated', index=0,
-      number=1, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='value', full_name='hiber.publisher.UpdatePublisherRequest.UpdateEvents.value', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4342,
-  serialized_end=4410,
-)
 
 _UPDATEPUBLISHERREQUEST_UPDATEMODEMS = _descriptor.Descriptor(
   name='UpdateModems',
@@ -1186,51 +500,14 @@ _UPDATEPUBLISHERREQUEST_UPDATEMODEMS = _descriptor.Descriptor(
   nested_types=[],
   enum_types=[
   ],
-  options=None,
+  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001')),
   is_extendable=False,
   syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4412,
-  serialized_end=4480,
-)
-
-_UPDATEPUBLISHERREQUEST_UPDATETAGS = _descriptor.Descriptor(
-  name='UpdateTags',
-  full_name='hiber.publisher.UpdatePublisherRequest.UpdateTags',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='updated', full_name='hiber.publisher.UpdatePublisherRequest.UpdateTags.updated', index=0,
-      number=1, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='value', full_name='hiber.publisher.UpdatePublisherRequest.UpdateTags.value', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4482,
-  serialized_end=4546,
+  serialized_start=1730,
+  serialized_end=1802,
 )
 
 _UPDATEPUBLISHERREQUEST = _descriptor.Descriptor(
@@ -1240,186 +517,10 @@ _UPDATEPUBLISHERREQUEST = _descriptor.Descriptor(
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
-    _descriptor.FieldDescriptor(
-      name='organization', full_name='hiber.publisher.UpdatePublisherRequest.organization', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='selection', full_name='hiber.publisher.UpdatePublisherRequest.selection', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='description', full_name='hiber.publisher.UpdatePublisherRequest.description', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='url', full_name='hiber.publisher.UpdatePublisherRequest.url', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='content_type', full_name='hiber.publisher.UpdatePublisherRequest.content_type', index=4,
-      number=5, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='certificate_id', full_name='hiber.publisher.UpdatePublisherRequest.certificate_id', index=5,
-      number=6, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='event_filter', full_name='hiber.publisher.UpdatePublisherRequest.event_filter', index=6,
-      number=7, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='modem_filter', full_name='hiber.publisher.UpdatePublisherRequest.modem_filter', index=7,
-      number=8, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='tag_filter', full_name='hiber.publisher.UpdatePublisherRequest.tag_filter', index=8,
-      number=9, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='active', full_name='hiber.publisher.UpdatePublisherRequest.active', index=9,
-      number=10, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='http', full_name='hiber.publisher.UpdatePublisherRequest.http', index=10,
-      number=11, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='mqtt', full_name='hiber.publisher.UpdatePublisherRequest.mqtt', index=11,
-      number=12, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
-  nested_types=[_UPDATEPUBLISHERREQUEST_RESPONSE, _UPDATEPUBLISHERREQUEST_UPDATEEVENTS, _UPDATEPUBLISHERREQUEST_UPDATEMODEMS, _UPDATEPUBLISHERREQUEST_UPDATETAGS, ],
-  enum_types=[
-  ],
-  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001')),
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-    _descriptor.OneofDescriptor(
-      name='config', full_name='hiber.publisher.UpdatePublisherRequest.config',
-      index=0, containing_type=None, fields=[]),
-  ],
-  serialized_start=3519,
-  serialized_end=4560,
-)
-
-
-_UPDATEPUBLISHERTAGSREQUEST_RESPONSE = _descriptor.Descriptor(
-  name='Response',
-  full_name='hiber.publisher.UpdatePublisherTagsRequest.Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='publishers', full_name='hiber.publisher.UpdatePublisherTagsRequest.Response.publishers', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='request', full_name='hiber.publisher.UpdatePublisherTagsRequest.Response.request', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='pagination', full_name='hiber.publisher.UpdatePublisherTagsRequest.Response.pagination', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4718,
-  serialized_end=4884,
-)
-
-_UPDATEPUBLISHERTAGSREQUEST = _descriptor.Descriptor(
-  name='UpdatePublisherTagsRequest',
-  full_name='hiber.publisher.UpdatePublisherTagsRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='organization', full_name='hiber.publisher.UpdatePublisherTagsRequest.organization', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='selection', full_name='hiber.publisher.UpdatePublisherTagsRequest.selection', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='update', full_name='hiber.publisher.UpdatePublisherTagsRequest.update', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[_UPDATEPUBLISHERTAGSREQUEST_RESPONSE, ],
+  nested_types=[_UPDATEPUBLISHERREQUEST_UPDATEMODEMS, ],
   enum_types=[
   ],
   options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001')),
@@ -1428,69 +529,8 @@ _UPDATEPUBLISHERTAGSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4563,
-  serialized_end=4888,
-)
-
-
-_DELETEPUBLISHERREQUEST_RESPONSE = _descriptor.Descriptor(
-  name='Response',
-  full_name='hiber.publisher.DeletePublisherRequest.Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1926,
-  serialized_end=1936,
-)
-
-_DELETEPUBLISHERREQUEST = _descriptor.Descriptor(
-  name='DeletePublisherRequest',
-  full_name='hiber.publisher.DeletePublisherRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='organization', full_name='hiber.publisher.DeletePublisherRequest.organization', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='id', full_name='hiber.publisher.DeletePublisherRequest.id', index=1,
-      number=2, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[_DELETEPUBLISHERREQUEST_RESPONSE, ],
-  enum_types=[
-  ],
-  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001')),
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4890,
-  serialized_end=4964,
+  serialized_start=1704,
+  serialized_end=1806,
 )
 
 _PUBLISHER_DATA_MQTTCONFIG.fields_by_name['qos'].enum_type = _PUBLISHER_DATA_MQTTCONFIG_QOS
@@ -1511,103 +551,38 @@ _PUBLISHER_FILTERS.fields_by_name['event_types'].message_type = base__pb2._FILTE
 _PUBLISHER_FILTERS.fields_by_name['modem_numbers'].message_type = base__pb2._FILTER_MODEMS
 _PUBLISHER_FILTERS.fields_by_name['tags'].message_type = base__pb2._FILTER_TAGS
 _PUBLISHER_FILTERS.containing_type = _PUBLISHER
-_PUBLISHER.fields_by_name['data'].message_type = _PUBLISHER_DATA
+_PUBLISHER.fields_by_name['deprecated_data'].message_type = _PUBLISHER_DATA
 _PUBLISHER.fields_by_name['filters'].message_type = _PUBLISHER_FILTERS
 _PUBLISHER.fields_by_name['tags'].message_type = tag__pb2._TAG
 _PUBLISHER.fields_by_name['health'].enum_type = base__pb2._HEALTH
 _PUBLISHER.fields_by_name['type'].enum_type = _PUBLISHER_TYPE
 _PUBLISHER.fields_by_name['in_cooldown_until'].message_type = base__pb2._TIMESTAMP
+_PUBLISHER.fields_by_name['http'].message_type = webhook__pb2._WEBHOOK_WEBHOOKDATA
+_PUBLISHER.fields_by_name['mqtt'].message_type = integration__mqtt__pb2._MQTTPUBLISHER_DATA
+_PUBLISHER.fields_by_name['aws_iot'].message_type = integration__aws__iot__pb2._AWSIOTCONFIGURATION
+_PUBLISHER.fields_by_name['email'].message_type = email__notifications__pb2._EMAILNOTIFICATIONPREFERENCES
+_PUBLISHER.fields_by_name['slack'].message_type = integration__slack__pb2._SLACKPUBLISHER_DATA
 _PUBLISHER_CONTENTTYPE.containing_type = _PUBLISHER
 _PUBLISHER_TYPE.containing_type = _PUBLISHER
-_PUBLISHERSELECTION.fields_by_name['publishers'].message_type = base__pb2._FILTER_PUBLISHERS
-_PUBLISHERSELECTION.fields_by_name['content_types'].enum_type = _PUBLISHER_CONTENTTYPE
-_PUBLISHERSELECTION.fields_by_name['tags'].message_type = tag__pb2._TAGSELECTION
-_PUBLISHERSELECTION.fields_by_name['health'].enum_type = base__pb2._HEALTH
-_PUBLISHERSELECTION.fields_by_name['types'].enum_type = _PUBLISHER_TYPE
-_PUBLISHERCALL.fields_by_name['time'].message_type = base__pb2._TIMESTAMP
-_PUBLISHERCALL.fields_by_name['publisher_data'].message_type = _PUBLISHER_DATA
-_PUBLISHERHISTORYSELECTION.fields_by_name['time_range'].message_type = base__pb2._TIMERANGE
-_LISTPUBLISHERSREQUEST_RESPONSE.fields_by_name['publishers'].message_type = _PUBLISHER
-_LISTPUBLISHERSREQUEST_RESPONSE.fields_by_name['request'].message_type = _LISTPUBLISHERSREQUEST
-_LISTPUBLISHERSREQUEST_RESPONSE.fields_by_name['pagination'].message_type = base__pb2._PAGINATION_RESULT
-_LISTPUBLISHERSREQUEST_RESPONSE.containing_type = _LISTPUBLISHERSREQUEST
-_LISTPUBLISHERSREQUEST.fields_by_name['selection'].message_type = _PUBLISHERSELECTION
-_LISTPUBLISHERSREQUEST.fields_by_name['pagination'].message_type = base__pb2._PAGINATION
-_PUBLISHERHISTORYREQUEST_RESPONSE.fields_by_name['calls'].message_type = _PUBLISHERCALL
-_PUBLISHERHISTORYREQUEST_RESPONSE.fields_by_name['request'].message_type = _PUBLISHERHISTORYREQUEST
-_PUBLISHERHISTORYREQUEST_RESPONSE.fields_by_name['pagination'].message_type = base__pb2._PAGINATION_RESULT
-_PUBLISHERHISTORYREQUEST_RESPONSE.containing_type = _PUBLISHERHISTORYREQUEST
-_PUBLISHERHISTORYREQUEST.fields_by_name['selection'].message_type = _PUBLISHERHISTORYSELECTION
-_PUBLISHERHISTORYREQUEST.fields_by_name['pagination'].message_type = base__pb2._PAGINATION
-_CREATEPUBLISHERREQUEST_RESPONSE.fields_by_name['created'].message_type = _PUBLISHER
-_CREATEPUBLISHERREQUEST_RESPONSE.fields_by_name['request'].message_type = _CREATEPUBLISHERREQUEST
-_CREATEPUBLISHERREQUEST_RESPONSE.containing_type = _CREATEPUBLISHERREQUEST
-_CREATEPUBLISHERREQUEST.fields_by_name['content_type'].enum_type = _PUBLISHER_CONTENTTYPE
-_CREATEPUBLISHERREQUEST.fields_by_name['filters'].message_type = _PUBLISHER_FILTERS
-_CREATEPUBLISHERREQUEST.fields_by_name['type'].enum_type = _PUBLISHER_TYPE
-_CREATEPUBLISHERREQUEST.fields_by_name['http'].message_type = _PUBLISHER_DATA_HTTPCONFIG
-_CREATEPUBLISHERREQUEST.fields_by_name['mqtt'].message_type = _PUBLISHER_DATA_MQTTCONFIG
-_CREATEPUBLISHERREQUEST.oneofs_by_name['config'].fields.append(
-  _CREATEPUBLISHERREQUEST.fields_by_name['http'])
-_CREATEPUBLISHERREQUEST.fields_by_name['http'].containing_oneof = _CREATEPUBLISHERREQUEST.oneofs_by_name['config']
-_CREATEPUBLISHERREQUEST.oneofs_by_name['config'].fields.append(
-  _CREATEPUBLISHERREQUEST.fields_by_name['mqtt'])
-_CREATEPUBLISHERREQUEST.fields_by_name['mqtt'].containing_oneof = _CREATEPUBLISHERREQUEST.oneofs_by_name['config']
-_ENABLEPUBLISHERREQUEST_RESPONSE.fields_by_name['publishers'].message_type = _PUBLISHER
-_ENABLEPUBLISHERREQUEST_RESPONSE.fields_by_name['request'].message_type = _ENABLEPUBLISHERREQUEST
-_ENABLEPUBLISHERREQUEST_RESPONSE.fields_by_name['pagination'].message_type = base__pb2._PAGINATION_RESULT
-_ENABLEPUBLISHERREQUEST_RESPONSE.containing_type = _ENABLEPUBLISHERREQUEST
-_ENABLEPUBLISHERREQUEST.fields_by_name['selection'].message_type = _PUBLISHERSELECTION
-_DISABLEPUBLISHERREQUEST_RESPONSE.fields_by_name['publishers'].message_type = _PUBLISHER
-_DISABLEPUBLISHERREQUEST_RESPONSE.fields_by_name['request'].message_type = _DISABLEPUBLISHERREQUEST
-_DISABLEPUBLISHERREQUEST_RESPONSE.fields_by_name['pagination'].message_type = base__pb2._PAGINATION_RESULT
-_DISABLEPUBLISHERREQUEST_RESPONSE.containing_type = _DISABLEPUBLISHERREQUEST
-_DISABLEPUBLISHERREQUEST.fields_by_name['selection'].message_type = _PUBLISHERSELECTION
-_UPDATEPUBLISHERREQUEST_RESPONSE.fields_by_name['updated'].message_type = _PUBLISHER
-_UPDATEPUBLISHERREQUEST_RESPONSE.fields_by_name['request'].message_type = _UPDATEPUBLISHERREQUEST
-_UPDATEPUBLISHERREQUEST_RESPONSE.fields_by_name['pagination'].message_type = base__pb2._PAGINATION_RESULT
-_UPDATEPUBLISHERREQUEST_RESPONSE.containing_type = _UPDATEPUBLISHERREQUEST
-_UPDATEPUBLISHERREQUEST_UPDATEEVENTS.fields_by_name['value'].message_type = base__pb2._FILTER_EVENTS
-_UPDATEPUBLISHERREQUEST_UPDATEEVENTS.containing_type = _UPDATEPUBLISHERREQUEST
+_PUBLISHER.oneofs_by_name['data'].fields.append(
+  _PUBLISHER.fields_by_name['http'])
+_PUBLISHER.fields_by_name['http'].containing_oneof = _PUBLISHER.oneofs_by_name['data']
+_PUBLISHER.oneofs_by_name['data'].fields.append(
+  _PUBLISHER.fields_by_name['mqtt'])
+_PUBLISHER.fields_by_name['mqtt'].containing_oneof = _PUBLISHER.oneofs_by_name['data']
+_PUBLISHER.oneofs_by_name['data'].fields.append(
+  _PUBLISHER.fields_by_name['aws_iot'])
+_PUBLISHER.fields_by_name['aws_iot'].containing_oneof = _PUBLISHER.oneofs_by_name['data']
+_PUBLISHER.oneofs_by_name['data'].fields.append(
+  _PUBLISHER.fields_by_name['email'])
+_PUBLISHER.fields_by_name['email'].containing_oneof = _PUBLISHER.oneofs_by_name['data']
+_PUBLISHER.oneofs_by_name['data'].fields.append(
+  _PUBLISHER.fields_by_name['slack'])
+_PUBLISHER.fields_by_name['slack'].containing_oneof = _PUBLISHER.oneofs_by_name['data']
 _UPDATEPUBLISHERREQUEST_UPDATEMODEMS.fields_by_name['value'].message_type = base__pb2._FILTER_MODEMS
 _UPDATEPUBLISHERREQUEST_UPDATEMODEMS.containing_type = _UPDATEPUBLISHERREQUEST
-_UPDATEPUBLISHERREQUEST_UPDATETAGS.fields_by_name['value'].message_type = base__pb2._FILTER_TAGS
-_UPDATEPUBLISHERREQUEST_UPDATETAGS.containing_type = _UPDATEPUBLISHERREQUEST
-_UPDATEPUBLISHERREQUEST.fields_by_name['selection'].message_type = _PUBLISHERSELECTION
-_UPDATEPUBLISHERREQUEST.fields_by_name['description'].message_type = base__pb2._UPDATECLEARABLESTRING
-_UPDATEPUBLISHERREQUEST.fields_by_name['content_type'].enum_type = _PUBLISHER_CONTENTTYPE
-_UPDATEPUBLISHERREQUEST.fields_by_name['certificate_id'].message_type = base__pb2._UPDATEOPTIONALID
-_UPDATEPUBLISHERREQUEST.fields_by_name['event_filter'].message_type = _UPDATEPUBLISHERREQUEST_UPDATEEVENTS
-_UPDATEPUBLISHERREQUEST.fields_by_name['modem_filter'].message_type = _UPDATEPUBLISHERREQUEST_UPDATEMODEMS
-_UPDATEPUBLISHERREQUEST.fields_by_name['tag_filter'].message_type = _UPDATEPUBLISHERREQUEST_UPDATETAGS
-_UPDATEPUBLISHERREQUEST.fields_by_name['active'].message_type = base__pb2._UPDATEBOOLEAN
-_UPDATEPUBLISHERREQUEST.fields_by_name['http'].message_type = _PUBLISHER_DATA_HTTPCONFIG
-_UPDATEPUBLISHERREQUEST.fields_by_name['mqtt'].message_type = _PUBLISHER_DATA_MQTTCONFIG
-_UPDATEPUBLISHERREQUEST.oneofs_by_name['config'].fields.append(
-  _UPDATEPUBLISHERREQUEST.fields_by_name['http'])
-_UPDATEPUBLISHERREQUEST.fields_by_name['http'].containing_oneof = _UPDATEPUBLISHERREQUEST.oneofs_by_name['config']
-_UPDATEPUBLISHERREQUEST.oneofs_by_name['config'].fields.append(
-  _UPDATEPUBLISHERREQUEST.fields_by_name['mqtt'])
-_UPDATEPUBLISHERREQUEST.fields_by_name['mqtt'].containing_oneof = _UPDATEPUBLISHERREQUEST.oneofs_by_name['config']
-_UPDATEPUBLISHERTAGSREQUEST_RESPONSE.fields_by_name['publishers'].message_type = _PUBLISHER
-_UPDATEPUBLISHERTAGSREQUEST_RESPONSE.fields_by_name['request'].message_type = _UPDATEPUBLISHERTAGSREQUEST
-_UPDATEPUBLISHERTAGSREQUEST_RESPONSE.fields_by_name['pagination'].message_type = base__pb2._PAGINATION_RESULT
-_UPDATEPUBLISHERTAGSREQUEST_RESPONSE.containing_type = _UPDATEPUBLISHERTAGSREQUEST
-_UPDATEPUBLISHERTAGSREQUEST.fields_by_name['selection'].message_type = _PUBLISHERSELECTION
-_UPDATEPUBLISHERTAGSREQUEST.fields_by_name['update'].message_type = tag__pb2._UPDATETAGSFORITEM
-_DELETEPUBLISHERREQUEST_RESPONSE.containing_type = _DELETEPUBLISHERREQUEST
 DESCRIPTOR.message_types_by_name['Publisher'] = _PUBLISHER
-DESCRIPTOR.message_types_by_name['PublisherSelection'] = _PUBLISHERSELECTION
-DESCRIPTOR.message_types_by_name['PublisherCall'] = _PUBLISHERCALL
-DESCRIPTOR.message_types_by_name['PublisherHistorySelection'] = _PUBLISHERHISTORYSELECTION
-DESCRIPTOR.message_types_by_name['ListPublishersRequest'] = _LISTPUBLISHERSREQUEST
-DESCRIPTOR.message_types_by_name['PublisherHistoryRequest'] = _PUBLISHERHISTORYREQUEST
-DESCRIPTOR.message_types_by_name['CreatePublisherRequest'] = _CREATEPUBLISHERREQUEST
-DESCRIPTOR.message_types_by_name['EnablePublisherRequest'] = _ENABLEPUBLISHERREQUEST
-DESCRIPTOR.message_types_by_name['DisablePublisherRequest'] = _DISABLEPUBLISHERREQUEST
 DESCRIPTOR.message_types_by_name['UpdatePublisherRequest'] = _UPDATEPUBLISHERREQUEST
-DESCRIPTOR.message_types_by_name['UpdatePublisherTagsRequest'] = _UPDATEPUBLISHERTAGSREQUEST
-DESCRIPTOR.message_types_by_name['DeletePublisherRequest'] = _DELETEPUBLISHERREQUEST
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Publisher = _reflection.GeneratedProtocolMessageType('Publisher', (_message.Message,), dict(
@@ -1649,117 +624,7 @@ _sym_db.RegisterMessage(Publisher.Data.MQTTConfig)
 _sym_db.RegisterMessage(Publisher.Data.HTTPConfig)
 _sym_db.RegisterMessage(Publisher.Filters)
 
-PublisherSelection = _reflection.GeneratedProtocolMessageType('PublisherSelection', (_message.Message,), dict(
-  DESCRIPTOR = _PUBLISHERSELECTION,
-  __module__ = 'publisher_pb2'
-  # @@protoc_insertion_point(class_scope:hiber.publisher.PublisherSelection)
-  ))
-_sym_db.RegisterMessage(PublisherSelection)
-
-PublisherCall = _reflection.GeneratedProtocolMessageType('PublisherCall', (_message.Message,), dict(
-  DESCRIPTOR = _PUBLISHERCALL,
-  __module__ = 'publisher_pb2'
-  # @@protoc_insertion_point(class_scope:hiber.publisher.PublisherCall)
-  ))
-_sym_db.RegisterMessage(PublisherCall)
-
-PublisherHistorySelection = _reflection.GeneratedProtocolMessageType('PublisherHistorySelection', (_message.Message,), dict(
-  DESCRIPTOR = _PUBLISHERHISTORYSELECTION,
-  __module__ = 'publisher_pb2'
-  # @@protoc_insertion_point(class_scope:hiber.publisher.PublisherHistorySelection)
-  ))
-_sym_db.RegisterMessage(PublisherHistorySelection)
-
-ListPublishersRequest = _reflection.GeneratedProtocolMessageType('ListPublishersRequest', (_message.Message,), dict(
-
-  Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
-    DESCRIPTOR = _LISTPUBLISHERSREQUEST_RESPONSE,
-    __module__ = 'publisher_pb2'
-    # @@protoc_insertion_point(class_scope:hiber.publisher.ListPublishersRequest.Response)
-    ))
-  ,
-  DESCRIPTOR = _LISTPUBLISHERSREQUEST,
-  __module__ = 'publisher_pb2'
-  # @@protoc_insertion_point(class_scope:hiber.publisher.ListPublishersRequest)
-  ))
-_sym_db.RegisterMessage(ListPublishersRequest)
-_sym_db.RegisterMessage(ListPublishersRequest.Response)
-
-PublisherHistoryRequest = _reflection.GeneratedProtocolMessageType('PublisherHistoryRequest', (_message.Message,), dict(
-
-  Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
-    DESCRIPTOR = _PUBLISHERHISTORYREQUEST_RESPONSE,
-    __module__ = 'publisher_pb2'
-    # @@protoc_insertion_point(class_scope:hiber.publisher.PublisherHistoryRequest.Response)
-    ))
-  ,
-  DESCRIPTOR = _PUBLISHERHISTORYREQUEST,
-  __module__ = 'publisher_pb2'
-  # @@protoc_insertion_point(class_scope:hiber.publisher.PublisherHistoryRequest)
-  ))
-_sym_db.RegisterMessage(PublisherHistoryRequest)
-_sym_db.RegisterMessage(PublisherHistoryRequest.Response)
-
-CreatePublisherRequest = _reflection.GeneratedProtocolMessageType('CreatePublisherRequest', (_message.Message,), dict(
-
-  Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
-    DESCRIPTOR = _CREATEPUBLISHERREQUEST_RESPONSE,
-    __module__ = 'publisher_pb2'
-    # @@protoc_insertion_point(class_scope:hiber.publisher.CreatePublisherRequest.Response)
-    ))
-  ,
-  DESCRIPTOR = _CREATEPUBLISHERREQUEST,
-  __module__ = 'publisher_pb2'
-  # @@protoc_insertion_point(class_scope:hiber.publisher.CreatePublisherRequest)
-  ))
-_sym_db.RegisterMessage(CreatePublisherRequest)
-_sym_db.RegisterMessage(CreatePublisherRequest.Response)
-
-EnablePublisherRequest = _reflection.GeneratedProtocolMessageType('EnablePublisherRequest', (_message.Message,), dict(
-
-  Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
-    DESCRIPTOR = _ENABLEPUBLISHERREQUEST_RESPONSE,
-    __module__ = 'publisher_pb2'
-    # @@protoc_insertion_point(class_scope:hiber.publisher.EnablePublisherRequest.Response)
-    ))
-  ,
-  DESCRIPTOR = _ENABLEPUBLISHERREQUEST,
-  __module__ = 'publisher_pb2'
-  # @@protoc_insertion_point(class_scope:hiber.publisher.EnablePublisherRequest)
-  ))
-_sym_db.RegisterMessage(EnablePublisherRequest)
-_sym_db.RegisterMessage(EnablePublisherRequest.Response)
-
-DisablePublisherRequest = _reflection.GeneratedProtocolMessageType('DisablePublisherRequest', (_message.Message,), dict(
-
-  Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
-    DESCRIPTOR = _DISABLEPUBLISHERREQUEST_RESPONSE,
-    __module__ = 'publisher_pb2'
-    # @@protoc_insertion_point(class_scope:hiber.publisher.DisablePublisherRequest.Response)
-    ))
-  ,
-  DESCRIPTOR = _DISABLEPUBLISHERREQUEST,
-  __module__ = 'publisher_pb2'
-  # @@protoc_insertion_point(class_scope:hiber.publisher.DisablePublisherRequest)
-  ))
-_sym_db.RegisterMessage(DisablePublisherRequest)
-_sym_db.RegisterMessage(DisablePublisherRequest.Response)
-
 UpdatePublisherRequest = _reflection.GeneratedProtocolMessageType('UpdatePublisherRequest', (_message.Message,), dict(
-
-  Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
-    DESCRIPTOR = _UPDATEPUBLISHERREQUEST_RESPONSE,
-    __module__ = 'publisher_pb2'
-    # @@protoc_insertion_point(class_scope:hiber.publisher.UpdatePublisherRequest.Response)
-    ))
-  ,
-
-  UpdateEvents = _reflection.GeneratedProtocolMessageType('UpdateEvents', (_message.Message,), dict(
-    DESCRIPTOR = _UPDATEPUBLISHERREQUEST_UPDATEEVENTS,
-    __module__ = 'publisher_pb2'
-    # @@protoc_insertion_point(class_scope:hiber.publisher.UpdatePublisherRequest.UpdateEvents)
-    ))
-  ,
 
   UpdateModems = _reflection.GeneratedProtocolMessageType('UpdateModems', (_message.Message,), dict(
     DESCRIPTOR = _UPDATEPUBLISHERREQUEST_UPDATEMODEMS,
@@ -1767,157 +632,28 @@ UpdatePublisherRequest = _reflection.GeneratedProtocolMessageType('UpdatePublish
     # @@protoc_insertion_point(class_scope:hiber.publisher.UpdatePublisherRequest.UpdateModems)
     ))
   ,
-
-  UpdateTags = _reflection.GeneratedProtocolMessageType('UpdateTags', (_message.Message,), dict(
-    DESCRIPTOR = _UPDATEPUBLISHERREQUEST_UPDATETAGS,
-    __module__ = 'publisher_pb2'
-    # @@protoc_insertion_point(class_scope:hiber.publisher.UpdatePublisherRequest.UpdateTags)
-    ))
-  ,
   DESCRIPTOR = _UPDATEPUBLISHERREQUEST,
   __module__ = 'publisher_pb2'
   # @@protoc_insertion_point(class_scope:hiber.publisher.UpdatePublisherRequest)
   ))
 _sym_db.RegisterMessage(UpdatePublisherRequest)
-_sym_db.RegisterMessage(UpdatePublisherRequest.Response)
-_sym_db.RegisterMessage(UpdatePublisherRequest.UpdateEvents)
 _sym_db.RegisterMessage(UpdatePublisherRequest.UpdateModems)
-_sym_db.RegisterMessage(UpdatePublisherRequest.UpdateTags)
-
-UpdatePublisherTagsRequest = _reflection.GeneratedProtocolMessageType('UpdatePublisherTagsRequest', (_message.Message,), dict(
-
-  Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
-    DESCRIPTOR = _UPDATEPUBLISHERTAGSREQUEST_RESPONSE,
-    __module__ = 'publisher_pb2'
-    # @@protoc_insertion_point(class_scope:hiber.publisher.UpdatePublisherTagsRequest.Response)
-    ))
-  ,
-  DESCRIPTOR = _UPDATEPUBLISHERTAGSREQUEST,
-  __module__ = 'publisher_pb2'
-  # @@protoc_insertion_point(class_scope:hiber.publisher.UpdatePublisherTagsRequest)
-  ))
-_sym_db.RegisterMessage(UpdatePublisherTagsRequest)
-_sym_db.RegisterMessage(UpdatePublisherTagsRequest.Response)
-
-DeletePublisherRequest = _reflection.GeneratedProtocolMessageType('DeletePublisherRequest', (_message.Message,), dict(
-
-  Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
-    DESCRIPTOR = _DELETEPUBLISHERREQUEST_RESPONSE,
-    __module__ = 'publisher_pb2'
-    # @@protoc_insertion_point(class_scope:hiber.publisher.DeletePublisherRequest.Response)
-    ))
-  ,
-  DESCRIPTOR = _DELETEPUBLISHERREQUEST,
-  __module__ = 'publisher_pb2'
-  # @@protoc_insertion_point(class_scope:hiber.publisher.DeletePublisherRequest)
-  ))
-_sym_db.RegisterMessage(DeletePublisherRequest)
-_sym_db.RegisterMessage(DeletePublisherRequest.Response)
 
 
 DESCRIPTOR.has_options = True
 DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\037global.hiber.api.grpc.publisherB\014PublisherApiP\000Z\005hiber'))
-_LISTPUBLISHERSREQUEST.has_options = True
-_LISTPUBLISHERSREQUEST._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001'))
-_PUBLISHERHISTORYREQUEST.has_options = True
-_PUBLISHERHISTORYREQUEST._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001'))
-_CREATEPUBLISHERREQUEST.has_options = True
-_CREATEPUBLISHERREQUEST._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001'))
-_ENABLEPUBLISHERREQUEST.has_options = True
-_ENABLEPUBLISHERREQUEST._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001'))
-_DISABLEPUBLISHERREQUEST.has_options = True
-_DISABLEPUBLISHERREQUEST._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001'))
+_PUBLISHER_DATA_MQTTCONFIG.has_options = True
+_PUBLISHER_DATA_MQTTCONFIG._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001'))
+_PUBLISHER_DATA_HTTPCONFIG.has_options = True
+_PUBLISHER_DATA_HTTPCONFIG._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001'))
+_PUBLISHER_DATA.has_options = True
+_PUBLISHER_DATA._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001'))
+_PUBLISHER_CONTENTTYPE.has_options = True
+_PUBLISHER_CONTENTTYPE._options = _descriptor._ParseOptions(descriptor_pb2.EnumOptions(), _b('\030\001'))
+_PUBLISHER.fields_by_name['deprecated_data'].has_options = True
+_PUBLISHER.fields_by_name['deprecated_data']._options = _descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\030\001'))
+_UPDATEPUBLISHERREQUEST_UPDATEMODEMS.has_options = True
+_UPDATEPUBLISHERREQUEST_UPDATEMODEMS._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001'))
 _UPDATEPUBLISHERREQUEST.has_options = True
 _UPDATEPUBLISHERREQUEST._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001'))
-_UPDATEPUBLISHERTAGSREQUEST.has_options = True
-_UPDATEPUBLISHERTAGSREQUEST._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001'))
-_DELETEPUBLISHERREQUEST.has_options = True
-_DELETEPUBLISHERREQUEST._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('\030\001'))
-
-_PUBLISHERSERVICE = _descriptor.ServiceDescriptor(
-  name='PublisherService',
-  full_name='hiber.publisher.PublisherService',
-  file=DESCRIPTOR,
-  index=0,
-  options=_descriptor._ParseOptions(descriptor_pb2.ServiceOptions(), _b('\210\002\001')),
-  serialized_start=4967,
-  serialized_end=5812,
-  methods=[
-  _descriptor.MethodDescriptor(
-    name='List',
-    full_name='hiber.publisher.PublisherService.List',
-    index=0,
-    containing_service=None,
-    input_type=_LISTPUBLISHERSREQUEST,
-    output_type=_LISTPUBLISHERSREQUEST_RESPONSE,
-    options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='Create',
-    full_name='hiber.publisher.PublisherService.Create',
-    index=1,
-    containing_service=None,
-    input_type=_CREATEPUBLISHERREQUEST,
-    output_type=_CREATEPUBLISHERREQUEST_RESPONSE,
-    options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='Enable',
-    full_name='hiber.publisher.PublisherService.Enable',
-    index=2,
-    containing_service=None,
-    input_type=_ENABLEPUBLISHERREQUEST,
-    output_type=_ENABLEPUBLISHERREQUEST_RESPONSE,
-    options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='Disable',
-    full_name='hiber.publisher.PublisherService.Disable',
-    index=3,
-    containing_service=None,
-    input_type=_DISABLEPUBLISHERREQUEST,
-    output_type=_DISABLEPUBLISHERREQUEST_RESPONSE,
-    options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='Update',
-    full_name='hiber.publisher.PublisherService.Update',
-    index=4,
-    containing_service=None,
-    input_type=_UPDATEPUBLISHERREQUEST,
-    output_type=_UPDATEPUBLISHERREQUEST_RESPONSE,
-    options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='UpdateTags',
-    full_name='hiber.publisher.PublisherService.UpdateTags',
-    index=5,
-    containing_service=None,
-    input_type=_UPDATEPUBLISHERTAGSREQUEST,
-    output_type=_UPDATEPUBLISHERTAGSREQUEST_RESPONSE,
-    options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='Delete',
-    full_name='hiber.publisher.PublisherService.Delete',
-    index=6,
-    containing_service=None,
-    input_type=_DELETEPUBLISHERREQUEST,
-    output_type=_DELETEPUBLISHERREQUEST_RESPONSE,
-    options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='History',
-    full_name='hiber.publisher.PublisherService.History',
-    index=7,
-    containing_service=None,
-    input_type=_PUBLISHERHISTORYREQUEST,
-    output_type=_PUBLISHERHISTORYREQUEST_RESPONSE,
-    options=None,
-  ),
-])
-_sym_db.RegisterServiceDescriptor(_PUBLISHERSERVICE)
-
-DESCRIPTOR.services_by_name['PublisherService'] = _PUBLISHERSERVICE
-
 # @@protoc_insertion_point(module_scope)

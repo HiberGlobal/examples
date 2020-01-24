@@ -35,15 +35,15 @@ var ServiceType_value = map[string]int32{
 func (x ServiceType) String() string {
 	return proto.EnumName(ServiceType_name, int32(x))
 }
-func (ServiceType) EnumDescriptor() ([]byte, []int) { return fileDescriptor16, []int{0} }
+func (ServiceType) EnumDescriptor() ([]byte, []int) { return fileDescriptor20, []int{0} }
 
 func init() {
 	proto.RegisterEnum("hiber.organization.subscription.ServiceType", ServiceType_name, ServiceType_value)
 }
 
-func init() { proto.RegisterFile("subscription.proto", fileDescriptor16) }
+func init() { proto.RegisterFile("subscription.proto", fileDescriptor20) }
 
-var fileDescriptor16 = []byte{
+var fileDescriptor20 = []byte{
 	// 198 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x2a, 0x2e, 0x4d, 0x2a,
 	0x4e, 0x2e, 0xca, 0x2c, 0x28, 0xc9, 0xcc, 0xcf, 0xd3, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x92,

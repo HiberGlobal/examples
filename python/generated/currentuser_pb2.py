@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='currentuser.proto',
   package='hiber.user',
   syntax='proto3',
-  serialized_pb=_b('\n\x11\x63urrentuser.proto\x12\nhiber.user\x1a\nbase.proto\"\xf2\x02\n\x0b\x43urrentUser\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x15\n\rorganizations\x18\x04 \x03(\t\x12\x1c\n\x14\x64\x65\x66\x61ult_organization\x18\x05 \x01(\t\x12\x1f\n\x17requested_organizations\x18\x06 \x03(\t\x12\x1c\n\x14\x63urrent_organization\x18\x08 \x01(\t\x12O\n current_organization_permissions\x18\t \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x12\x37\n\x10user_permissions\x18\n \x01(\x0b\x32\x1d.hiber.Filter.UserPermissions\x12 \n\x18mission_control_settings\x18\x0b \x01(\t\x12\x14\n\x0c\x61\x63\x63\x65pted_tac\x18\x0c \x01(\x08J\x04\x08\x07\x10\x08\"\x14\n\x12\x43urrentUserRequest\"8\n\x14RequestAccessRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x1a\n\n\x08Response\">\n\x1a\x43\x61ncelAccessRequestRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x1a\n\n\x08Response\"&\n\x18\x44\x65leteCurrentUserRequest\x1a\n\n\x08Response\"b\n UpdateDefaultOrganizationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x1a(\n\x08Response\x12\x1c\n\x14\x64\x65\x66\x61ult_organization\x18\x01 \x01(\t\"c\n#UpdateMissionControlSettingsRequest\x12\x0e\n\x06update\x18\x01 \x01(\t\x1a,\n\x08Response\x12 \n\x18mission_control_settings\x18\x01 \x01(\t\"A\n\x1f\x41\x63\x63\x65ptTermsAndConditionsRequest\x12\x12\n\naccept_tac\x18\x01 \x01(\x08\x1a\n\n\x08Response\"C\n\x1e\x41\x63\x63\x65ssibleOrganizationsRequest\x1a!\n\x08Response\x12\x15\n\rorganizations\x18\x01 \x03(\t2\x9e\x07\n\x12\x43urrentUserService\x12\x46\n\x0b\x43urrentUser\x12\x1e.hiber.user.CurrentUserRequest\x1a\x17.hiber.user.CurrentUser\x12\\\n\rRequestAccess\x12 .hiber.user.RequestAccessRequest\x1a).hiber.user.RequestAccessRequest.Response\x12n\n\x13\x43\x61ncelAccessRequest\x12&.hiber.user.CancelAccessRequestRequest\x1a/.hiber.user.CancelAccessRequestRequest.Response\x12h\n\x11\x44\x65leteCurrentUser\x12$.hiber.user.DeleteCurrentUserRequest\x1a-.hiber.user.DeleteCurrentUserRequest.Response\x12\x80\x01\n\x19UpdateDefaultOrganization\x12,.hiber.user.UpdateDefaultOrganizationRequest\x1a\x35.hiber.user.UpdateDefaultOrganizationRequest.Response\x12\x89\x01\n\x1cUpdateMissionControlSettings\x12/.hiber.user.UpdateMissionControlSettingsRequest\x1a\x38.hiber.user.UpdateMissionControlSettingsRequest.Response\x12}\n\x18\x41\x63\x63\x65ptTermsAndConditions\x12+.hiber.user.AcceptTermsAndConditionsRequest\x1a\x34.hiber.user.AcceptTermsAndConditionsRequest.Response\x12z\n\x17\x41\x63\x63\x65ssibleOrganizations\x12*.hiber.user.AccessibleOrganizationsRequest\x1a\x33.hiber.user.AccessibleOrganizationsRequest.ResponseB5\n\x1aglobal.hiber.api.grpc.userB\x0e\x43urrentUserApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\x11\x63urrentuser.proto\x12\nhiber.user\x1a\nbase.proto\"\x85\x03\n\x0b\x43urrentUser\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x15\n\rorganizations\x18\x04 \x03(\t\x12\x1c\n\x14\x64\x65\x66\x61ult_organization\x18\x05 \x01(\t\x12\x1f\n\x17requested_organizations\x18\x06 \x03(\t\x12\x1c\n\x14\x63urrent_organization\x18\x08 \x01(\t\x12O\n current_organization_permissions\x18\t \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x12\x37\n\x10user_permissions\x18\n \x01(\x0b\x32\x1d.hiber.Filter.UserPermissions\x12 \n\x18mission_control_settings\x18\x0b \x01(\t\x12\x14\n\x0c\x61\x63\x63\x65pted_tac\x18\x0c \x01(\x08\x12\x11\n\tuser_hash\x18\r \x01(\tJ\x04\x08\x07\x10\x08\"\x14\n\x12\x43urrentUserRequest\"8\n\x14RequestAccessRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x1a\n\n\x08Response\">\n\x1a\x43\x61ncelAccessRequestRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x1a\n\n\x08Response\"\xe2\x01\n\x1eListOrganizationInvitesRequest\x12\x0e\n\x06search\x18\x01 \x01(\t\x1aZ\n\x06Invite\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12$\n\ninvited_at\x18\x03 \x01(\x0b\x32\x10.hiber.Timestamp\x1aT\n\x08Response\x12H\n\rorganizations\x18\x01 \x03(\x0b\x32\x31.hiber.user.ListOrganizationInvitesRequest.Invite\"a\n\x1f\x41\x63\x63\x65ptOrganizationInviteRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x1c\n\x14\x64\x65\x66\x61ult_organization\x18\x02 \x01(\x08\x1a\n\n\x08Response\"&\n\x18\x44\x65leteCurrentUserRequest\x1a\n\n\x08Response\"b\n UpdateDefaultOrganizationRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x1a(\n\x08Response\x12\x1c\n\x14\x64\x65\x66\x61ult_organization\x18\x01 \x01(\t\"c\n#UpdateMissionControlSettingsRequest\x12\x0e\n\x06update\x18\x01 \x01(\t\x1a,\n\x08Response\x12 \n\x18mission_control_settings\x18\x01 \x01(\t\"A\n\x1f\x41\x63\x63\x65ptTermsAndConditionsRequest\x12\x12\n\naccept_tac\x18\x01 \x01(\x08\x1a\n\n\x08Response\"\x91\x03\n\x1e\x41\x63\x63\x65ssibleOrganizationsRequest\x12\x0e\n\x06search\x18\x01 \x01(\t\x12\x13\n\x0bmember_only\x18\x03 \x01(\x08\x12\x14\n\x0c\x64\x65\x66\x61ult_only\x18\x04 \x01(\x08\x12%\n\npagination\x18\x02 \x01(\x0b\x32\x11.hiber.Pagination\x1ar\n\x16\x41\x63\x63\x65ssibleOrganization\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12\x0e\n\x06member\x18\x03 \x01(\x08\x12\x1c\n\x14\x64\x65\x66\x61ult_organization\x18\x04 \x01(\x08\x1a\x98\x01\n\x08Response\x12X\n\rorganizations\x18\x03 \x03(\x0b\x32\x41.hiber.user.AccessibleOrganizationsRequest.AccessibleOrganization\x12,\n\npagination\x18\x02 \x01(\x0b\x32\x18.hiber.Pagination.ResultJ\x04\x08\x01\x10\x02\x32\x99\t\n\x12\x43urrentUserService\x12\x46\n\x0b\x43urrentUser\x12\x1e.hiber.user.CurrentUserRequest\x1a\x17.hiber.user.CurrentUser\x12h\n\x11\x44\x65leteCurrentUser\x12$.hiber.user.DeleteCurrentUserRequest\x1a-.hiber.user.DeleteCurrentUserRequest.Response\x12\\\n\rRequestAccess\x12 .hiber.user.RequestAccessRequest\x1a).hiber.user.RequestAccessRequest.Response\x12n\n\x13\x43\x61ncelAccessRequest\x12&.hiber.user.CancelAccessRequestRequest\x1a/.hiber.user.CancelAccessRequestRequest.Response\x12z\n\x17ListOrganizationInvites\x12*.hiber.user.ListOrganizationInvitesRequest\x1a\x33.hiber.user.ListOrganizationInvitesRequest.Response\x12}\n\x18\x41\x63\x63\x65ptOrganizationInvite\x12+.hiber.user.AcceptOrganizationInviteRequest\x1a\x34.hiber.user.AcceptOrganizationInviteRequest.Response\x12z\n\x17\x41\x63\x63\x65ssibleOrganizations\x12*.hiber.user.AccessibleOrganizationsRequest\x1a\x33.hiber.user.AccessibleOrganizationsRequest.Response\x12\x80\x01\n\x19UpdateDefaultOrganization\x12,.hiber.user.UpdateDefaultOrganizationRequest\x1a\x35.hiber.user.UpdateDefaultOrganizationRequest.Response\x12\x89\x01\n\x1cUpdateMissionControlSettings\x12/.hiber.user.UpdateMissionControlSettingsRequest\x1a\x38.hiber.user.UpdateMissionControlSettingsRequest.Response\x12}\n\x18\x41\x63\x63\x65ptTermsAndConditions\x12+.hiber.user.AcceptTermsAndConditionsRequest\x1a\x34.hiber.user.AcceptTermsAndConditionsRequest.ResponseB5\n\x1aglobal.hiber.api.grpc.userB\x0e\x43urrentUserApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,])
 
@@ -111,6 +111,13 @@ _CURRENTUSER = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='user_hash', full_name='hiber.user.CurrentUser.user_hash', index=11,
+      number=13, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -124,7 +131,7 @@ _CURRENTUSER = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=46,
-  serialized_end=416,
+  serialized_end=435,
 )
 
 
@@ -147,8 +154,8 @@ _CURRENTUSERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=418,
-  serialized_end=438,
+  serialized_start=437,
+  serialized_end=457,
 )
 
 
@@ -171,8 +178,8 @@ _REQUESTACCESSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=486,
-  serialized_end=496,
+  serialized_start=505,
+  serialized_end=515,
 )
 
 _REQUESTACCESSREQUEST = _descriptor.Descriptor(
@@ -201,8 +208,8 @@ _REQUESTACCESSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=440,
-  serialized_end=496,
+  serialized_start=459,
+  serialized_end=515,
 )
 
 
@@ -225,8 +232,8 @@ _CANCELACCESSREQUESTREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=486,
-  serialized_end=496,
+  serialized_start=505,
+  serialized_end=515,
 )
 
 _CANCELACCESSREQUESTREQUEST = _descriptor.Descriptor(
@@ -255,8 +262,174 @@ _CANCELACCESSREQUESTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=498,
-  serialized_end=560,
+  serialized_start=517,
+  serialized_end=579,
+)
+
+
+_LISTORGANIZATIONINVITESREQUEST_INVITE = _descriptor.Descriptor(
+  name='Invite',
+  full_name='hiber.user.ListOrganizationInvitesRequest.Invite',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organization', full_name='hiber.user.ListOrganizationInvitesRequest.Invite.organization', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='display_name', full_name='hiber.user.ListOrganizationInvitesRequest.Invite.display_name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='invited_at', full_name='hiber.user.ListOrganizationInvitesRequest.Invite.invited_at', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=632,
+  serialized_end=722,
+)
+
+_LISTORGANIZATIONINVITESREQUEST_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='hiber.user.ListOrganizationInvitesRequest.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organizations', full_name='hiber.user.ListOrganizationInvitesRequest.Response.organizations', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=724,
+  serialized_end=808,
+)
+
+_LISTORGANIZATIONINVITESREQUEST = _descriptor.Descriptor(
+  name='ListOrganizationInvitesRequest',
+  full_name='hiber.user.ListOrganizationInvitesRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='search', full_name='hiber.user.ListOrganizationInvitesRequest.search', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_LISTORGANIZATIONINVITESREQUEST_INVITE, _LISTORGANIZATIONINVITESREQUEST_RESPONSE, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=582,
+  serialized_end=808,
+)
+
+
+_ACCEPTORGANIZATIONINVITEREQUEST_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='hiber.user.AcceptOrganizationInviteRequest.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=505,
+  serialized_end=515,
+)
+
+_ACCEPTORGANIZATIONINVITEREQUEST = _descriptor.Descriptor(
+  name='AcceptOrganizationInviteRequest',
+  full_name='hiber.user.AcceptOrganizationInviteRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organization', full_name='hiber.user.AcceptOrganizationInviteRequest.organization', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='default_organization', full_name='hiber.user.AcceptOrganizationInviteRequest.default_organization', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_ACCEPTORGANIZATIONINVITEREQUEST_RESPONSE, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=810,
+  serialized_end=907,
 )
 
 
@@ -279,8 +452,8 @@ _DELETECURRENTUSERREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=486,
-  serialized_end=496,
+  serialized_start=505,
+  serialized_end=515,
 )
 
 _DELETECURRENTUSERREQUEST = _descriptor.Descriptor(
@@ -302,8 +475,8 @@ _DELETECURRENTUSERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=562,
-  serialized_end=600,
+  serialized_start=909,
+  serialized_end=947,
 )
 
 
@@ -333,8 +506,8 @@ _UPDATEDEFAULTORGANIZATIONREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=660,
-  serialized_end=700,
+  serialized_start=1007,
+  serialized_end=1047,
 )
 
 _UPDATEDEFAULTORGANIZATIONREQUEST = _descriptor.Descriptor(
@@ -363,8 +536,8 @@ _UPDATEDEFAULTORGANIZATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=602,
-  serialized_end=700,
+  serialized_start=949,
+  serialized_end=1047,
 )
 
 
@@ -394,8 +567,8 @@ _UPDATEMISSIONCONTROLSETTINGSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=757,
-  serialized_end=801,
+  serialized_start=1104,
+  serialized_end=1148,
 )
 
 _UPDATEMISSIONCONTROLSETTINGSREQUEST = _descriptor.Descriptor(
@@ -424,8 +597,8 @@ _UPDATEMISSIONCONTROLSETTINGSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=702,
-  serialized_end=801,
+  serialized_start=1049,
+  serialized_end=1148,
 )
 
 
@@ -448,8 +621,8 @@ _ACCEPTTERMSANDCONDITIONSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=486,
-  serialized_end=496,
+  serialized_start=505,
+  serialized_end=515,
 )
 
 _ACCEPTTERMSANDCONDITIONSREQUEST = _descriptor.Descriptor(
@@ -478,22 +651,43 @@ _ACCEPTTERMSANDCONDITIONSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=803,
-  serialized_end=868,
+  serialized_start=1150,
+  serialized_end=1215,
 )
 
 
-_ACCESSIBLEORGANIZATIONSREQUEST_RESPONSE = _descriptor.Descriptor(
-  name='Response',
-  full_name='hiber.user.AccessibleOrganizationsRequest.Response',
+_ACCESSIBLEORGANIZATIONSREQUEST_ACCESSIBLEORGANIZATION = _descriptor.Descriptor(
+  name='AccessibleOrganization',
+  full_name='hiber.user.AccessibleOrganizationsRequest.AccessibleOrganization',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='organizations', full_name='hiber.user.AccessibleOrganizationsRequest.Response.organizations', index=0,
-      number=1, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
+      name='organization', full_name='hiber.user.AccessibleOrganizationsRequest.AccessibleOrganization.organization', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='display_name', full_name='hiber.user.AccessibleOrganizationsRequest.AccessibleOrganization.display_name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='member', full_name='hiber.user.AccessibleOrganizationsRequest.AccessibleOrganization.member', index=2,
+      number=3, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='default_organization', full_name='hiber.user.AccessibleOrganizationsRequest.AccessibleOrganization.default_organization', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
@@ -509,8 +703,45 @@ _ACCESSIBLEORGANIZATIONSREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=904,
-  serialized_end=937,
+  serialized_start=1350,
+  serialized_end=1464,
+)
+
+_ACCESSIBLEORGANIZATIONSREQUEST_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='hiber.user.AccessibleOrganizationsRequest.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organizations', full_name='hiber.user.AccessibleOrganizationsRequest.Response.organizations', index=0,
+      number=3, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='pagination', full_name='hiber.user.AccessibleOrganizationsRequest.Response.pagination', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1467,
+  serialized_end=1619,
 )
 
 _ACCESSIBLEORGANIZATIONSREQUEST = _descriptor.Descriptor(
@@ -520,10 +751,38 @@ _ACCESSIBLEORGANIZATIONSREQUEST = _descriptor.Descriptor(
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
+    _descriptor.FieldDescriptor(
+      name='search', full_name='hiber.user.AccessibleOrganizationsRequest.search', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='member_only', full_name='hiber.user.AccessibleOrganizationsRequest.member_only', index=1,
+      number=3, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='default_only', full_name='hiber.user.AccessibleOrganizationsRequest.default_only', index=2,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='pagination', full_name='hiber.user.AccessibleOrganizationsRequest.pagination', index=3,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
-  nested_types=[_ACCESSIBLEORGANIZATIONSREQUEST_RESPONSE, ],
+  nested_types=[_ACCESSIBLEORGANIZATIONSREQUEST_ACCESSIBLEORGANIZATION, _ACCESSIBLEORGANIZATIONSREQUEST_RESPONSE, ],
   enum_types=[
   ],
   options=None,
@@ -532,23 +791,34 @@ _ACCESSIBLEORGANIZATIONSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=870,
-  serialized_end=937,
+  serialized_start=1218,
+  serialized_end=1619,
 )
 
 _CURRENTUSER.fields_by_name['current_organization_permissions'].message_type = base__pb2._FILTER_ORGANIZATIONPERMISSIONS
 _CURRENTUSER.fields_by_name['user_permissions'].message_type = base__pb2._FILTER_USERPERMISSIONS
 _REQUESTACCESSREQUEST_RESPONSE.containing_type = _REQUESTACCESSREQUEST
 _CANCELACCESSREQUESTREQUEST_RESPONSE.containing_type = _CANCELACCESSREQUESTREQUEST
+_LISTORGANIZATIONINVITESREQUEST_INVITE.fields_by_name['invited_at'].message_type = base__pb2._TIMESTAMP
+_LISTORGANIZATIONINVITESREQUEST_INVITE.containing_type = _LISTORGANIZATIONINVITESREQUEST
+_LISTORGANIZATIONINVITESREQUEST_RESPONSE.fields_by_name['organizations'].message_type = _LISTORGANIZATIONINVITESREQUEST_INVITE
+_LISTORGANIZATIONINVITESREQUEST_RESPONSE.containing_type = _LISTORGANIZATIONINVITESREQUEST
+_ACCEPTORGANIZATIONINVITEREQUEST_RESPONSE.containing_type = _ACCEPTORGANIZATIONINVITEREQUEST
 _DELETECURRENTUSERREQUEST_RESPONSE.containing_type = _DELETECURRENTUSERREQUEST
 _UPDATEDEFAULTORGANIZATIONREQUEST_RESPONSE.containing_type = _UPDATEDEFAULTORGANIZATIONREQUEST
 _UPDATEMISSIONCONTROLSETTINGSREQUEST_RESPONSE.containing_type = _UPDATEMISSIONCONTROLSETTINGSREQUEST
 _ACCEPTTERMSANDCONDITIONSREQUEST_RESPONSE.containing_type = _ACCEPTTERMSANDCONDITIONSREQUEST
+_ACCESSIBLEORGANIZATIONSREQUEST_ACCESSIBLEORGANIZATION.containing_type = _ACCESSIBLEORGANIZATIONSREQUEST
+_ACCESSIBLEORGANIZATIONSREQUEST_RESPONSE.fields_by_name['organizations'].message_type = _ACCESSIBLEORGANIZATIONSREQUEST_ACCESSIBLEORGANIZATION
+_ACCESSIBLEORGANIZATIONSREQUEST_RESPONSE.fields_by_name['pagination'].message_type = base__pb2._PAGINATION_RESULT
 _ACCESSIBLEORGANIZATIONSREQUEST_RESPONSE.containing_type = _ACCESSIBLEORGANIZATIONSREQUEST
+_ACCESSIBLEORGANIZATIONSREQUEST.fields_by_name['pagination'].message_type = base__pb2._PAGINATION
 DESCRIPTOR.message_types_by_name['CurrentUser'] = _CURRENTUSER
 DESCRIPTOR.message_types_by_name['CurrentUserRequest'] = _CURRENTUSERREQUEST
 DESCRIPTOR.message_types_by_name['RequestAccessRequest'] = _REQUESTACCESSREQUEST
 DESCRIPTOR.message_types_by_name['CancelAccessRequestRequest'] = _CANCELACCESSREQUESTREQUEST
+DESCRIPTOR.message_types_by_name['ListOrganizationInvitesRequest'] = _LISTORGANIZATIONINVITESREQUEST
+DESCRIPTOR.message_types_by_name['AcceptOrganizationInviteRequest'] = _ACCEPTORGANIZATIONINVITEREQUEST
 DESCRIPTOR.message_types_by_name['DeleteCurrentUserRequest'] = _DELETECURRENTUSERREQUEST
 DESCRIPTOR.message_types_by_name['UpdateDefaultOrganizationRequest'] = _UPDATEDEFAULTORGANIZATIONREQUEST
 DESCRIPTOR.message_types_by_name['UpdateMissionControlSettingsRequest'] = _UPDATEMISSIONCONTROLSETTINGSREQUEST
@@ -599,6 +869,44 @@ CancelAccessRequestRequest = _reflection.GeneratedProtocolMessageType('CancelAcc
   ))
 _sym_db.RegisterMessage(CancelAccessRequestRequest)
 _sym_db.RegisterMessage(CancelAccessRequestRequest.Response)
+
+ListOrganizationInvitesRequest = _reflection.GeneratedProtocolMessageType('ListOrganizationInvitesRequest', (_message.Message,), dict(
+
+  Invite = _reflection.GeneratedProtocolMessageType('Invite', (_message.Message,), dict(
+    DESCRIPTOR = _LISTORGANIZATIONINVITESREQUEST_INVITE,
+    __module__ = 'currentuser_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.user.ListOrganizationInvitesRequest.Invite)
+    ))
+  ,
+
+  Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
+    DESCRIPTOR = _LISTORGANIZATIONINVITESREQUEST_RESPONSE,
+    __module__ = 'currentuser_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.user.ListOrganizationInvitesRequest.Response)
+    ))
+  ,
+  DESCRIPTOR = _LISTORGANIZATIONINVITESREQUEST,
+  __module__ = 'currentuser_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.user.ListOrganizationInvitesRequest)
+  ))
+_sym_db.RegisterMessage(ListOrganizationInvitesRequest)
+_sym_db.RegisterMessage(ListOrganizationInvitesRequest.Invite)
+_sym_db.RegisterMessage(ListOrganizationInvitesRequest.Response)
+
+AcceptOrganizationInviteRequest = _reflection.GeneratedProtocolMessageType('AcceptOrganizationInviteRequest', (_message.Message,), dict(
+
+  Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
+    DESCRIPTOR = _ACCEPTORGANIZATIONINVITEREQUEST_RESPONSE,
+    __module__ = 'currentuser_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.user.AcceptOrganizationInviteRequest.Response)
+    ))
+  ,
+  DESCRIPTOR = _ACCEPTORGANIZATIONINVITEREQUEST,
+  __module__ = 'currentuser_pb2'
+  # @@protoc_insertion_point(class_scope:hiber.user.AcceptOrganizationInviteRequest)
+  ))
+_sym_db.RegisterMessage(AcceptOrganizationInviteRequest)
+_sym_db.RegisterMessage(AcceptOrganizationInviteRequest.Response)
 
 DeleteCurrentUserRequest = _reflection.GeneratedProtocolMessageType('DeleteCurrentUserRequest', (_message.Message,), dict(
 
@@ -662,6 +970,13 @@ _sym_db.RegisterMessage(AcceptTermsAndConditionsRequest.Response)
 
 AccessibleOrganizationsRequest = _reflection.GeneratedProtocolMessageType('AccessibleOrganizationsRequest', (_message.Message,), dict(
 
+  AccessibleOrganization = _reflection.GeneratedProtocolMessageType('AccessibleOrganization', (_message.Message,), dict(
+    DESCRIPTOR = _ACCESSIBLEORGANIZATIONSREQUEST_ACCESSIBLEORGANIZATION,
+    __module__ = 'currentuser_pb2'
+    # @@protoc_insertion_point(class_scope:hiber.user.AccessibleOrganizationsRequest.AccessibleOrganization)
+    ))
+  ,
+
   Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
     DESCRIPTOR = _ACCESSIBLEORGANIZATIONSREQUEST_RESPONSE,
     __module__ = 'currentuser_pb2'
@@ -673,6 +988,7 @@ AccessibleOrganizationsRequest = _reflection.GeneratedProtocolMessageType('Acces
   # @@protoc_insertion_point(class_scope:hiber.user.AccessibleOrganizationsRequest)
   ))
 _sym_db.RegisterMessage(AccessibleOrganizationsRequest)
+_sym_db.RegisterMessage(AccessibleOrganizationsRequest.AccessibleOrganization)
 _sym_db.RegisterMessage(AccessibleOrganizationsRequest.Response)
 
 
@@ -685,8 +1001,8 @@ _CURRENTUSERSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=940,
-  serialized_end=1866,
+  serialized_start=1622,
+  serialized_end=2799,
   methods=[
   _descriptor.MethodDescriptor(
     name='CurrentUser',
@@ -698,9 +1014,18 @@ _CURRENTUSERSERVICE = _descriptor.ServiceDescriptor(
     options=None,
   ),
   _descriptor.MethodDescriptor(
+    name='DeleteCurrentUser',
+    full_name='hiber.user.CurrentUserService.DeleteCurrentUser',
+    index=1,
+    containing_service=None,
+    input_type=_DELETECURRENTUSERREQUEST,
+    output_type=_DELETECURRENTUSERREQUEST_RESPONSE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
     name='RequestAccess',
     full_name='hiber.user.CurrentUserService.RequestAccess',
-    index=1,
+    index=2,
     containing_service=None,
     input_type=_REQUESTACCESSREQUEST,
     output_type=_REQUESTACCESSREQUEST_RESPONSE,
@@ -709,25 +1034,43 @@ _CURRENTUSERSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='CancelAccessRequest',
     full_name='hiber.user.CurrentUserService.CancelAccessRequest',
-    index=2,
+    index=3,
     containing_service=None,
     input_type=_CANCELACCESSREQUESTREQUEST,
     output_type=_CANCELACCESSREQUESTREQUEST_RESPONSE,
     options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='DeleteCurrentUser',
-    full_name='hiber.user.CurrentUserService.DeleteCurrentUser',
-    index=3,
+    name='ListOrganizationInvites',
+    full_name='hiber.user.CurrentUserService.ListOrganizationInvites',
+    index=4,
     containing_service=None,
-    input_type=_DELETECURRENTUSERREQUEST,
-    output_type=_DELETECURRENTUSERREQUEST_RESPONSE,
+    input_type=_LISTORGANIZATIONINVITESREQUEST,
+    output_type=_LISTORGANIZATIONINVITESREQUEST_RESPONSE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='AcceptOrganizationInvite',
+    full_name='hiber.user.CurrentUserService.AcceptOrganizationInvite',
+    index=5,
+    containing_service=None,
+    input_type=_ACCEPTORGANIZATIONINVITEREQUEST,
+    output_type=_ACCEPTORGANIZATIONINVITEREQUEST_RESPONSE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='AccessibleOrganizations',
+    full_name='hiber.user.CurrentUserService.AccessibleOrganizations',
+    index=6,
+    containing_service=None,
+    input_type=_ACCESSIBLEORGANIZATIONSREQUEST,
+    output_type=_ACCESSIBLEORGANIZATIONSREQUEST_RESPONSE,
     options=None,
   ),
   _descriptor.MethodDescriptor(
     name='UpdateDefaultOrganization',
     full_name='hiber.user.CurrentUserService.UpdateDefaultOrganization',
-    index=4,
+    index=7,
     containing_service=None,
     input_type=_UPDATEDEFAULTORGANIZATIONREQUEST,
     output_type=_UPDATEDEFAULTORGANIZATIONREQUEST_RESPONSE,
@@ -736,7 +1079,7 @@ _CURRENTUSERSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='UpdateMissionControlSettings',
     full_name='hiber.user.CurrentUserService.UpdateMissionControlSettings',
-    index=5,
+    index=8,
     containing_service=None,
     input_type=_UPDATEMISSIONCONTROLSETTINGSREQUEST,
     output_type=_UPDATEMISSIONCONTROLSETTINGSREQUEST_RESPONSE,
@@ -745,19 +1088,10 @@ _CURRENTUSERSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='AcceptTermsAndConditions',
     full_name='hiber.user.CurrentUserService.AcceptTermsAndConditions',
-    index=6,
+    index=9,
     containing_service=None,
     input_type=_ACCEPTTERMSANDCONDITIONSREQUEST,
     output_type=_ACCEPTTERMSANDCONDITIONSREQUEST_RESPONSE,
-    options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='AccessibleOrganizations',
-    full_name='hiber.user.CurrentUserService.AccessibleOrganizations',
-    index=7,
-    containing_service=None,
-    input_type=_ACCESSIBLEORGANIZATIONSREQUEST,
-    output_type=_ACCESSIBLEORGANIZATIONSREQUEST_RESPONSE,
     options=None,
   ),
 ])

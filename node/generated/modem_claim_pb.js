@@ -12,8 +12,11 @@ var goog = jspb;
 var global = Function('return this')();
 
 var base_pb = require('./base_pb.js');
+goog.object.extend(proto, base_pb);
 var modem_pb = require('./modem_pb.js');
+goog.object.extend(proto, modem_pb);
 var tag_pb = require('./tag_pb.js');
+goog.object.extend(proto, tag_pb);
 goog.exportSymbol('proto.hiber.modem.ClaimModemRequest', null, global);
 goog.exportSymbol('proto.hiber.modem.ClaimModemRequest.ClaimModem', null, global);
 goog.exportSymbol('proto.hiber.modem.ClaimModemRequest.Response', null, global);
@@ -207,7 +210,7 @@ proto.hiber.modem.ModemClaim.prototype.getModemNumber = function() {
 
 /** @param {string} value */
 proto.hiber.modem.ModemClaim.prototype.setModemNumber = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -234,7 +237,7 @@ proto.hiber.modem.ModemClaim.prototype.clearCreatedAt = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemClaim.prototype.hasCreatedAt = function() {
   return jspb.Message.getField(this, 5) != null;
@@ -252,21 +255,21 @@ proto.hiber.modem.ModemClaim.prototype.getClaimingOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.modem.ModemClaim.prototype.setClaimingOrganization = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
 /**
  * repeated hiber.tag.Tag tags = 8;
- * @return {!Array.<!proto.hiber.tag.Tag>}
+ * @return {!Array<!proto.hiber.tag.Tag>}
  */
 proto.hiber.modem.ModemClaim.prototype.getTagsList = function() {
-  return /** @type{!Array.<!proto.hiber.tag.Tag>} */ (
+  return /** @type{!Array<!proto.hiber.tag.Tag>} */ (
     jspb.Message.getRepeatedWrapperField(this, tag_pb.Tag, 8));
 };
 
 
-/** @param {!Array.<!proto.hiber.tag.Tag>} value */
+/** @param {!Array<!proto.hiber.tag.Tag>} value */
 proto.hiber.modem.ModemClaim.prototype.setTagsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 8, value);
 };
@@ -453,7 +456,7 @@ proto.hiber.modem.ModemClaimSelection.prototype.clearModems = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemClaimSelection.prototype.hasModems = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -483,7 +486,7 @@ proto.hiber.modem.ModemClaimSelection.prototype.clearTimeRange = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemClaimSelection.prototype.hasTimeRange = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -789,7 +792,7 @@ proto.hiber.modem.ClaimModemRequest.ClaimModem.prototype.getModemNumber = functi
 
 /** @param {string} value */
 proto.hiber.modem.ClaimModemRequest.ClaimModem.prototype.setModemNumber = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -804,7 +807,7 @@ proto.hiber.modem.ClaimModemRequest.ClaimModem.prototype.getVerifier = function(
 
 /** @param {string} value */
 proto.hiber.modem.ClaimModemRequest.ClaimModem.prototype.setVerifier = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -982,7 +985,7 @@ proto.hiber.modem.ClaimModemRequest.Response.prototype.clearRequest = function()
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ClaimModemRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -991,15 +994,15 @@ proto.hiber.modem.ClaimModemRequest.Response.prototype.hasRequest = function() {
 
 /**
  * repeated ModemClaim claims = 2;
- * @return {!Array.<!proto.hiber.modem.ModemClaim>}
+ * @return {!Array<!proto.hiber.modem.ModemClaim>}
  */
 proto.hiber.modem.ClaimModemRequest.Response.prototype.getClaimsList = function() {
-  return /** @type{!Array.<!proto.hiber.modem.ModemClaim>} */ (
+  return /** @type{!Array<!proto.hiber.modem.ModemClaim>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.modem.ModemClaim, 2));
 };
 
 
-/** @param {!Array.<!proto.hiber.modem.ModemClaim>} value */
+/** @param {!Array<!proto.hiber.modem.ModemClaim>} value */
 proto.hiber.modem.ClaimModemRequest.Response.prototype.setClaimsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
@@ -1031,21 +1034,21 @@ proto.hiber.modem.ClaimModemRequest.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.modem.ClaimModemRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
  * repeated ClaimModem claims = 2;
- * @return {!Array.<!proto.hiber.modem.ClaimModemRequest.ClaimModem>}
+ * @return {!Array<!proto.hiber.modem.ClaimModemRequest.ClaimModem>}
  */
 proto.hiber.modem.ClaimModemRequest.prototype.getClaimsList = function() {
-  return /** @type{!Array.<!proto.hiber.modem.ClaimModemRequest.ClaimModem>} */ (
+  return /** @type{!Array<!proto.hiber.modem.ClaimModemRequest.ClaimModem>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.modem.ClaimModemRequest.ClaimModem, 2));
 };
 
 
-/** @param {!Array.<!proto.hiber.modem.ClaimModemRequest.ClaimModem>} value */
+/** @param {!Array<!proto.hiber.modem.ClaimModemRequest.ClaimModem>} value */
 proto.hiber.modem.ClaimModemRequest.prototype.setClaimsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
@@ -1388,15 +1391,15 @@ proto.hiber.modem.ListModemClaimsRequest.Response.serializeBinaryToWriter = func
 
 /**
  * repeated ModemClaim claims = 1;
- * @return {!Array.<!proto.hiber.modem.ModemClaim>}
+ * @return {!Array<!proto.hiber.modem.ModemClaim>}
  */
 proto.hiber.modem.ListModemClaimsRequest.Response.prototype.getClaimsList = function() {
-  return /** @type{!Array.<!proto.hiber.modem.ModemClaim>} */ (
+  return /** @type{!Array<!proto.hiber.modem.ModemClaim>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.modem.ModemClaim, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.modem.ModemClaim>} value */
+/** @param {!Array<!proto.hiber.modem.ModemClaim>} value */
 proto.hiber.modem.ListModemClaimsRequest.Response.prototype.setClaimsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -1440,7 +1443,7 @@ proto.hiber.modem.ListModemClaimsRequest.Response.prototype.clearRequest = funct
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemClaimsRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1470,7 +1473,7 @@ proto.hiber.modem.ListModemClaimsRequest.Response.prototype.clearPagination = fu
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemClaimsRequest.Response.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -1488,7 +1491,7 @@ proto.hiber.modem.ListModemClaimsRequest.prototype.getOrganization = function() 
 
 /** @param {string} value */
 proto.hiber.modem.ListModemClaimsRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1515,7 +1518,7 @@ proto.hiber.modem.ListModemClaimsRequest.prototype.clearSelection = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemClaimsRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1545,7 +1548,7 @@ proto.hiber.modem.ListModemClaimsRequest.prototype.clearPagination = function() 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemClaimsRequest.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;

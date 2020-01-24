@@ -12,9 +12,13 @@ var goog = jspb;
 var global = Function('return this')();
 
 var base_pb = require('./base_pb.js');
+goog.object.extend(proto, base_pb);
 var organization_pb = require('./organization_pb.js');
+goog.object.extend(proto, organization_pb);
 var modem_pb = require('./modem_pb.js');
+goog.object.extend(proto, modem_pb);
 var tag_pb = require('./tag_pb.js');
+goog.object.extend(proto, tag_pb);
 goog.exportSymbol('proto.hiber.modem.CancelModemTransferRequest', null, global);
 goog.exportSymbol('proto.hiber.modem.CancelModemTransferRequest.Response', null, global);
 goog.exportSymbol('proto.hiber.modem.DeleteModemTransferReturnLinesRequest', null, global);
@@ -383,27 +387,27 @@ proto.hiber.modem.ModemTransfer.prototype.getIdentifier = function() {
 
 /** @param {string} value */
 proto.hiber.modem.ModemTransfer.prototype.setIdentifier = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
  * repeated string modem_numbers = 2;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.modem.ModemTransfer.prototype.getModemNumbersList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 2));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.modem.ModemTransfer.prototype.setModemNumbersList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.modem.ModemTransfer.prototype.addModemNumbers = function(value, opt_index) {
@@ -427,7 +431,7 @@ proto.hiber.modem.ModemTransfer.prototype.getType = function() {
 
 /** @param {!proto.hiber.modem.ModemTransfer.Type} value */
 proto.hiber.modem.ModemTransfer.prototype.setType = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
@@ -442,7 +446,7 @@ proto.hiber.modem.ModemTransfer.prototype.getStatus = function() {
 
 /** @param {!proto.hiber.modem.ModemTransfer.Status} value */
 proto.hiber.modem.ModemTransfer.prototype.setStatus = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3EnumField(this, 4, value);
 };
 
 
@@ -457,7 +461,7 @@ proto.hiber.modem.ModemTransfer.prototype.getSenderOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.modem.ModemTransfer.prototype.setSenderOrganization = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -472,27 +476,27 @@ proto.hiber.modem.ModemTransfer.prototype.getRecipientOrganization = function() 
 
 /** @param {string} value */
 proto.hiber.modem.ModemTransfer.prototype.setRecipientOrganization = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
 /**
  * repeated string return_transfers = 7;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.modem.ModemTransfer.prototype.getReturnTransfersList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 7));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 7));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.modem.ModemTransfer.prototype.setReturnTransfersList = function(value) {
   jspb.Message.setField(this, 7, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.modem.ModemTransfer.prototype.addReturnTransfers = function(value, opt_index) {
@@ -507,21 +511,21 @@ proto.hiber.modem.ModemTransfer.prototype.clearReturnTransfersList = function() 
 
 /**
  * repeated string return_for = 8;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.modem.ModemTransfer.prototype.getReturnForList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 8));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 8));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.modem.ModemTransfer.prototype.setReturnForList = function(value) {
   jspb.Message.setField(this, 8, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.modem.ModemTransfer.prototype.addReturnFor = function(value, opt_index) {
@@ -545,7 +549,7 @@ proto.hiber.modem.ModemTransfer.prototype.getTrackingInformation = function() {
 
 /** @param {string} value */
 proto.hiber.modem.ModemTransfer.prototype.setTrackingInformation = function(value) {
-  jspb.Message.setField(this, 9, value);
+  jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
@@ -572,7 +576,7 @@ proto.hiber.modem.ModemTransfer.prototype.clearCreatedAt = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemTransfer.prototype.hasCreatedAt = function() {
   return jspb.Message.getField(this, 10) != null;
@@ -602,7 +606,7 @@ proto.hiber.modem.ModemTransfer.prototype.clearReceivedAt = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemTransfer.prototype.hasReceivedAt = function() {
   return jspb.Message.getField(this, 11) != null;
@@ -632,7 +636,7 @@ proto.hiber.modem.ModemTransfer.prototype.clearCancelledAt = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemTransfer.prototype.hasCancelledAt = function() {
   return jspb.Message.getField(this, 12) != null;
@@ -662,7 +666,7 @@ proto.hiber.modem.ModemTransfer.prototype.clearNotReceivedAt = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemTransfer.prototype.hasNotReceivedAt = function() {
   return jspb.Message.getField(this, 13) != null;
@@ -692,7 +696,7 @@ proto.hiber.modem.ModemTransfer.prototype.clearReturnDeadline = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemTransfer.prototype.hasReturnDeadline = function() {
   return jspb.Message.getField(this, 14) != null;
@@ -701,15 +705,15 @@ proto.hiber.modem.ModemTransfer.prototype.hasReturnDeadline = function() {
 
 /**
  * repeated hiber.tag.Tag tags = 15;
- * @return {!Array.<!proto.hiber.tag.Tag>}
+ * @return {!Array<!proto.hiber.tag.Tag>}
  */
 proto.hiber.modem.ModemTransfer.prototype.getTagsList = function() {
-  return /** @type{!Array.<!proto.hiber.tag.Tag>} */ (
+  return /** @type{!Array<!proto.hiber.tag.Tag>} */ (
     jspb.Message.getRepeatedWrapperField(this, tag_pb.Tag, 15));
 };
 
 
-/** @param {!Array.<!proto.hiber.tag.Tag>} value */
+/** @param {!Array<!proto.hiber.tag.Tag>} value */
 proto.hiber.modem.ModemTransfer.prototype.setTagsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 15, value);
 };
@@ -977,7 +981,7 @@ proto.hiber.modem.ModemTransferReturnLine.prototype.getOriginalTransfer = functi
 
 /** @param {string} value */
 proto.hiber.modem.ModemTransferReturnLine.prototype.setOriginalTransfer = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -992,27 +996,27 @@ proto.hiber.modem.ModemTransferReturnLine.prototype.getReturnTransfer = function
 
 /** @param {string} value */
 proto.hiber.modem.ModemTransferReturnLine.prototype.setReturnTransfer = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
  * repeated string modem_numbers = 3;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.modem.ModemTransferReturnLine.prototype.getModemNumbersList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 3));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.modem.ModemTransferReturnLine.prototype.setModemNumbersList = function(value) {
   jspb.Message.setField(this, 3, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.modem.ModemTransferReturnLine.prototype.addModemNumbers = function(value, opt_index) {
@@ -1036,7 +1040,7 @@ proto.hiber.modem.ModemTransferReturnLine.prototype.getReason = function() {
 
 /** @param {!proto.hiber.modem.ModemTransferReturnLine.Reason} value */
 proto.hiber.modem.ModemTransferReturnLine.prototype.setReason = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3EnumField(this, 4, value);
 };
 
 
@@ -1051,7 +1055,7 @@ proto.hiber.modem.ModemTransferReturnLine.prototype.getComment = function() {
 
 /** @param {string} value */
 proto.hiber.modem.ModemTransferReturnLine.prototype.setComment = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -1078,7 +1082,7 @@ proto.hiber.modem.ModemTransferReturnLine.prototype.clearCreatedAt = function() 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemTransferReturnLine.prototype.hasCreatedAt = function() {
   return jspb.Message.getField(this, 6) != null;
@@ -1108,7 +1112,7 @@ proto.hiber.modem.ModemTransferReturnLine.prototype.clearReturnedAt = function()
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemTransferReturnLine.prototype.hasReturnedAt = function() {
   return jspb.Message.getField(this, 7) != null;
@@ -1138,7 +1142,7 @@ proto.hiber.modem.ModemTransferReturnLine.prototype.clearReturnDeadline = functi
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemTransferReturnLine.prototype.hasReturnDeadline = function() {
   return jspb.Message.getField(this, 8) != null;
@@ -1265,7 +1269,7 @@ proto.hiber.modem.ModemTransferSelection.deserializeBinaryFromReader = function(
       msg.addRecipients(value);
       break;
     case 5:
-      var value = /** @type {!Array.<!proto.hiber.modem.ModemTransfer.Status>} */ (reader.readPackedEnum());
+      var value = /** @type {!Array<!proto.hiber.modem.ModemTransfer.Status>} */ (reader.readPackedEnum());
       msg.setStatusesList(value);
       break;
     case 6:
@@ -1289,7 +1293,7 @@ proto.hiber.modem.ModemTransferSelection.deserializeBinaryFromReader = function(
       msg.setCancelledIn(value);
       break;
     case 10:
-      var value = /** @type {!Array.<!proto.hiber.modem.ModemTransfer.Type>} */ (reader.readPackedEnum());
+      var value = /** @type {!Array<!proto.hiber.modem.ModemTransfer.Type>} */ (reader.readPackedEnum());
       msg.setTypesList(value);
       break;
     case 11:
@@ -1423,21 +1427,21 @@ proto.hiber.modem.ModemTransferSelection.serializeBinaryToWriter = function(mess
 
 /**
  * repeated string identifiers = 1;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.modem.ModemTransferSelection.prototype.getIdentifiersList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.modem.ModemTransferSelection.prototype.setIdentifiersList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.modem.ModemTransferSelection.prototype.addIdentifiers = function(value, opt_index) {
@@ -1473,7 +1477,7 @@ proto.hiber.modem.ModemTransferSelection.prototype.clearModems = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemTransferSelection.prototype.hasModems = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1482,21 +1486,21 @@ proto.hiber.modem.ModemTransferSelection.prototype.hasModems = function() {
 
 /**
  * repeated string senders = 3;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.modem.ModemTransferSelection.prototype.getSendersList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 3));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.modem.ModemTransferSelection.prototype.setSendersList = function(value) {
   jspb.Message.setField(this, 3, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.modem.ModemTransferSelection.prototype.addSenders = function(value, opt_index) {
@@ -1511,21 +1515,21 @@ proto.hiber.modem.ModemTransferSelection.prototype.clearSendersList = function()
 
 /**
  * repeated string recipients = 4;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.modem.ModemTransferSelection.prototype.getRecipientsList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 4));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.modem.ModemTransferSelection.prototype.setRecipientsList = function(value) {
   jspb.Message.setField(this, 4, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.modem.ModemTransferSelection.prototype.addRecipients = function(value, opt_index) {
@@ -1540,14 +1544,14 @@ proto.hiber.modem.ModemTransferSelection.prototype.clearRecipientsList = functio
 
 /**
  * repeated ModemTransfer.Status statuses = 5;
- * @return {!Array.<!proto.hiber.modem.ModemTransfer.Status>}
+ * @return {!Array<!proto.hiber.modem.ModemTransfer.Status>}
  */
 proto.hiber.modem.ModemTransferSelection.prototype.getStatusesList = function() {
-  return /** @type {!Array.<!proto.hiber.modem.ModemTransfer.Status>} */ (jspb.Message.getRepeatedField(this, 5));
+  return /** @type {!Array<!proto.hiber.modem.ModemTransfer.Status>} */ (jspb.Message.getRepeatedField(this, 5));
 };
 
 
-/** @param {!Array.<!proto.hiber.modem.ModemTransfer.Status>} value */
+/** @param {!Array<!proto.hiber.modem.ModemTransfer.Status>} value */
 proto.hiber.modem.ModemTransferSelection.prototype.setStatusesList = function(value) {
   jspb.Message.setField(this, 5, value || []);
 };
@@ -1590,7 +1594,7 @@ proto.hiber.modem.ModemTransferSelection.prototype.clearCreatedIn = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemTransferSelection.prototype.hasCreatedIn = function() {
   return jspb.Message.getField(this, 6) != null;
@@ -1620,7 +1624,7 @@ proto.hiber.modem.ModemTransferSelection.prototype.clearReceivedIn = function() 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemTransferSelection.prototype.hasReceivedIn = function() {
   return jspb.Message.getField(this, 7) != null;
@@ -1650,7 +1654,7 @@ proto.hiber.modem.ModemTransferSelection.prototype.clearNotReceivedIn = function
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemTransferSelection.prototype.hasNotReceivedIn = function() {
   return jspb.Message.getField(this, 8) != null;
@@ -1680,7 +1684,7 @@ proto.hiber.modem.ModemTransferSelection.prototype.clearCancelledIn = function()
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemTransferSelection.prototype.hasCancelledIn = function() {
   return jspb.Message.getField(this, 9) != null;
@@ -1689,14 +1693,14 @@ proto.hiber.modem.ModemTransferSelection.prototype.hasCancelledIn = function() {
 
 /**
  * repeated ModemTransfer.Type types = 10;
- * @return {!Array.<!proto.hiber.modem.ModemTransfer.Type>}
+ * @return {!Array<!proto.hiber.modem.ModemTransfer.Type>}
  */
 proto.hiber.modem.ModemTransferSelection.prototype.getTypesList = function() {
-  return /** @type {!Array.<!proto.hiber.modem.ModemTransfer.Type>} */ (jspb.Message.getRepeatedField(this, 10));
+  return /** @type {!Array<!proto.hiber.modem.ModemTransfer.Type>} */ (jspb.Message.getRepeatedField(this, 10));
 };
 
 
-/** @param {!Array.<!proto.hiber.modem.ModemTransfer.Type>} value */
+/** @param {!Array<!proto.hiber.modem.ModemTransfer.Type>} value */
 proto.hiber.modem.ModemTransferSelection.prototype.setTypesList = function(value) {
   jspb.Message.setField(this, 10, value || []);
 };
@@ -1729,7 +1733,7 @@ proto.hiber.modem.ModemTransferSelection.prototype.getInboundOnly = function() {
 
 /** @param {boolean} value */
 proto.hiber.modem.ModemTransferSelection.prototype.setInboundOnly = function(value) {
-  jspb.Message.setField(this, 11, value);
+  jspb.Message.setProto3BooleanField(this, 11, value);
 };
 
 
@@ -1746,7 +1750,7 @@ proto.hiber.modem.ModemTransferSelection.prototype.getOutboundOnly = function() 
 
 /** @param {boolean} value */
 proto.hiber.modem.ModemTransferSelection.prototype.setOutboundOnly = function(value) {
-  jspb.Message.setField(this, 12, value);
+  jspb.Message.setProto3BooleanField(this, 12, value);
 };
 
 
@@ -2119,7 +2123,7 @@ proto.hiber.modem.TransferModemsRequest.Response.prototype.clearRequest = functi
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.TransferModemsRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -2149,7 +2153,7 @@ proto.hiber.modem.TransferModemsRequest.Response.prototype.clearTransfer = funct
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.TransferModemsRequest.Response.prototype.hasTransfer = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2167,7 +2171,7 @@ proto.hiber.modem.TransferModemsRequest.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.modem.TransferModemsRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -2194,7 +2198,7 @@ proto.hiber.modem.TransferModemsRequest.prototype.clearSelection = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.TransferModemsRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2212,7 +2216,7 @@ proto.hiber.modem.TransferModemsRequest.prototype.getRecipientOrganization = fun
 
 /** @param {string} value */
 proto.hiber.modem.TransferModemsRequest.prototype.setRecipientOrganization = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -2239,7 +2243,7 @@ proto.hiber.modem.TransferModemsRequest.prototype.clearCreateRecipient = functio
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.TransferModemsRequest.prototype.hasCreateRecipient = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -2257,7 +2261,7 @@ proto.hiber.modem.TransferModemsRequest.prototype.getTrackingInformation = funct
 
 /** @param {string} value */
 proto.hiber.modem.TransferModemsRequest.prototype.setTrackingInformation = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -2274,7 +2278,7 @@ proto.hiber.modem.TransferModemsRequest.prototype.getMarkReceivedAutomatically =
 
 /** @param {boolean} value */
 proto.hiber.modem.TransferModemsRequest.prototype.setMarkReceivedAutomatically = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
@@ -2291,7 +2295,7 @@ proto.hiber.modem.TransferModemsRequest.prototype.getAllowGatewaysAndExternalDev
 
 /** @param {boolean} value */
 proto.hiber.modem.TransferModemsRequest.prototype.setAllowGatewaysAndExternalDevices = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3BooleanField(this, 7, value);
 };
 
 
@@ -2638,7 +2642,7 @@ proto.hiber.modem.ListModemTransfersRequest.Response.prototype.clearRequest = fu
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemTransfersRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -2647,15 +2651,15 @@ proto.hiber.modem.ListModemTransfersRequest.Response.prototype.hasRequest = func
 
 /**
  * repeated ModemTransfer transfers = 2;
- * @return {!Array.<!proto.hiber.modem.ModemTransfer>}
+ * @return {!Array<!proto.hiber.modem.ModemTransfer>}
  */
 proto.hiber.modem.ListModemTransfersRequest.Response.prototype.getTransfersList = function() {
-  return /** @type{!Array.<!proto.hiber.modem.ModemTransfer>} */ (
+  return /** @type{!Array<!proto.hiber.modem.ModemTransfer>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.modem.ModemTransfer, 2));
 };
 
 
-/** @param {!Array.<!proto.hiber.modem.ModemTransfer>} value */
+/** @param {!Array<!proto.hiber.modem.ModemTransfer>} value */
 proto.hiber.modem.ListModemTransfersRequest.Response.prototype.setTransfersList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
@@ -2699,7 +2703,7 @@ proto.hiber.modem.ListModemTransfersRequest.Response.prototype.clearPagination =
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemTransfersRequest.Response.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -2717,7 +2721,7 @@ proto.hiber.modem.ListModemTransfersRequest.prototype.getOrganization = function
 
 /** @param {string} value */
 proto.hiber.modem.ListModemTransfersRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -2744,7 +2748,7 @@ proto.hiber.modem.ListModemTransfersRequest.prototype.clearSelection = function(
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemTransfersRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2774,7 +2778,7 @@ proto.hiber.modem.ListModemTransfersRequest.prototype.clearPagination = function
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemTransfersRequest.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -3096,7 +3100,7 @@ proto.hiber.modem.CancelModemTransferRequest.Response.prototype.clearRequest = f
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.CancelModemTransferRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -3105,15 +3109,15 @@ proto.hiber.modem.CancelModemTransferRequest.Response.prototype.hasRequest = fun
 
 /**
  * repeated ModemTransfer cancelled = 2;
- * @return {!Array.<!proto.hiber.modem.ModemTransfer>}
+ * @return {!Array<!proto.hiber.modem.ModemTransfer>}
  */
 proto.hiber.modem.CancelModemTransferRequest.Response.prototype.getCancelledList = function() {
-  return /** @type{!Array.<!proto.hiber.modem.ModemTransfer>} */ (
+  return /** @type{!Array<!proto.hiber.modem.ModemTransfer>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.modem.ModemTransfer, 2));
 };
 
 
-/** @param {!Array.<!proto.hiber.modem.ModemTransfer>} value */
+/** @param {!Array<!proto.hiber.modem.ModemTransfer>} value */
 proto.hiber.modem.CancelModemTransferRequest.Response.prototype.setCancelledList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
@@ -3145,7 +3149,7 @@ proto.hiber.modem.CancelModemTransferRequest.prototype.getOrganization = functio
 
 /** @param {string} value */
 proto.hiber.modem.CancelModemTransferRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -3172,7 +3176,7 @@ proto.hiber.modem.CancelModemTransferRequest.prototype.clearSelection = function
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.CancelModemTransferRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -3494,7 +3498,7 @@ proto.hiber.modem.ReceivedModemTransferRequest.Response.prototype.clearRequest =
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ReceivedModemTransferRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -3503,15 +3507,15 @@ proto.hiber.modem.ReceivedModemTransferRequest.Response.prototype.hasRequest = f
 
 /**
  * repeated ModemTransfer received = 2;
- * @return {!Array.<!proto.hiber.modem.ModemTransfer>}
+ * @return {!Array<!proto.hiber.modem.ModemTransfer>}
  */
 proto.hiber.modem.ReceivedModemTransferRequest.Response.prototype.getReceivedList = function() {
-  return /** @type{!Array.<!proto.hiber.modem.ModemTransfer>} */ (
+  return /** @type{!Array<!proto.hiber.modem.ModemTransfer>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.modem.ModemTransfer, 2));
 };
 
 
-/** @param {!Array.<!proto.hiber.modem.ModemTransfer>} value */
+/** @param {!Array<!proto.hiber.modem.ModemTransfer>} value */
 proto.hiber.modem.ReceivedModemTransferRequest.Response.prototype.setReceivedList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
@@ -3543,7 +3547,7 @@ proto.hiber.modem.ReceivedModemTransferRequest.prototype.getOrganization = funct
 
 /** @param {string} value */
 proto.hiber.modem.ReceivedModemTransferRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -3570,7 +3574,7 @@ proto.hiber.modem.ReceivedModemTransferRequest.prototype.clearSelection = functi
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ReceivedModemTransferRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -3892,7 +3896,7 @@ proto.hiber.modem.NotReceivedModemTransferRequest.Response.prototype.clearReques
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.NotReceivedModemTransferRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -3901,15 +3905,15 @@ proto.hiber.modem.NotReceivedModemTransferRequest.Response.prototype.hasRequest 
 
 /**
  * repeated ModemTransfer not_received = 2;
- * @return {!Array.<!proto.hiber.modem.ModemTransfer>}
+ * @return {!Array<!proto.hiber.modem.ModemTransfer>}
  */
 proto.hiber.modem.NotReceivedModemTransferRequest.Response.prototype.getNotReceivedList = function() {
-  return /** @type{!Array.<!proto.hiber.modem.ModemTransfer>} */ (
+  return /** @type{!Array<!proto.hiber.modem.ModemTransfer>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.modem.ModemTransfer, 2));
 };
 
 
-/** @param {!Array.<!proto.hiber.modem.ModemTransfer>} value */
+/** @param {!Array<!proto.hiber.modem.ModemTransfer>} value */
 proto.hiber.modem.NotReceivedModemTransferRequest.Response.prototype.setNotReceivedList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
@@ -3941,7 +3945,7 @@ proto.hiber.modem.NotReceivedModemTransferRequest.prototype.getOrganization = fu
 
 /** @param {string} value */
 proto.hiber.modem.NotReceivedModemTransferRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -3968,7 +3972,7 @@ proto.hiber.modem.NotReceivedModemTransferRequest.prototype.clearSelection = fun
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.NotReceivedModemTransferRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -4338,7 +4342,7 @@ proto.hiber.modem.PrepareModemForReturnRequest.Response.prototype.clearRequest =
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.PrepareModemForReturnRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -4347,15 +4351,15 @@ proto.hiber.modem.PrepareModemForReturnRequest.Response.prototype.hasRequest = f
 
 /**
  * repeated ModemTransferReturnLine modem_return_lines = 3;
- * @return {!Array.<!proto.hiber.modem.ModemTransferReturnLine>}
+ * @return {!Array<!proto.hiber.modem.ModemTransferReturnLine>}
  */
 proto.hiber.modem.PrepareModemForReturnRequest.Response.prototype.getModemReturnLinesList = function() {
-  return /** @type{!Array.<!proto.hiber.modem.ModemTransferReturnLine>} */ (
+  return /** @type{!Array<!proto.hiber.modem.ModemTransferReturnLine>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.modem.ModemTransferReturnLine, 3));
 };
 
 
-/** @param {!Array.<!proto.hiber.modem.ModemTransferReturnLine>} value */
+/** @param {!Array<!proto.hiber.modem.ModemTransferReturnLine>} value */
 proto.hiber.modem.PrepareModemForReturnRequest.Response.prototype.setModemReturnLinesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
@@ -4387,7 +4391,7 @@ proto.hiber.modem.PrepareModemForReturnRequest.prototype.getOrganization = funct
 
 /** @param {string} value */
 proto.hiber.modem.PrepareModemForReturnRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -4402,7 +4406,7 @@ proto.hiber.modem.PrepareModemForReturnRequest.prototype.getTransferId = functio
 
 /** @param {string} value */
 proto.hiber.modem.PrepareModemForReturnRequest.prototype.setTransferId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -4429,7 +4433,7 @@ proto.hiber.modem.PrepareModemForReturnRequest.prototype.clearSelection = functi
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.PrepareModemForReturnRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -4447,7 +4451,7 @@ proto.hiber.modem.PrepareModemForReturnRequest.prototype.getReason = function() 
 
 /** @param {!proto.hiber.modem.ModemTransferReturnLine.Reason} value */
 proto.hiber.modem.PrepareModemForReturnRequest.prototype.setReason = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3EnumField(this, 4, value);
 };
 
 
@@ -4462,7 +4466,7 @@ proto.hiber.modem.PrepareModemForReturnRequest.prototype.getComment = function()
 
 /** @param {string} value */
 proto.hiber.modem.PrepareModemForReturnRequest.prototype.setComment = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -4479,7 +4483,7 @@ proto.hiber.modem.PrepareModemForReturnRequest.prototype.getReplacePreviousComme
 
 /** @param {boolean} value */
 proto.hiber.modem.PrepareModemForReturnRequest.prototype.setReplacePreviousComment = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
@@ -4768,7 +4772,7 @@ proto.hiber.modem.DeleteModemTransferReturnLinesRequest.prototype.getOrganizatio
 
 /** @param {string} value */
 proto.hiber.modem.DeleteModemTransferReturnLinesRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -4783,27 +4787,27 @@ proto.hiber.modem.DeleteModemTransferReturnLinesRequest.prototype.getTransferId 
 
 /** @param {string} value */
 proto.hiber.modem.DeleteModemTransferReturnLinesRequest.prototype.setTransferId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
  * repeated string modem_numbers = 3;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.modem.DeleteModemTransferReturnLinesRequest.prototype.getModemNumbersList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 3));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.modem.DeleteModemTransferReturnLinesRequest.prototype.setModemNumbersList = function(value) {
   jspb.Message.setField(this, 3, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.modem.DeleteModemTransferReturnLinesRequest.prototype.addModemNumbers = function(value, opt_index) {
@@ -5159,7 +5163,7 @@ proto.hiber.modem.ListModemTransferReturnLinesRequest.Response.prototype.clearRe
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemTransferReturnLinesRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -5168,15 +5172,15 @@ proto.hiber.modem.ListModemTransferReturnLinesRequest.Response.prototype.hasRequ
 
 /**
  * repeated ModemTransferReturnLine lines = 2;
- * @return {!Array.<!proto.hiber.modem.ModemTransferReturnLine>}
+ * @return {!Array<!proto.hiber.modem.ModemTransferReturnLine>}
  */
 proto.hiber.modem.ListModemTransferReturnLinesRequest.Response.prototype.getLinesList = function() {
-  return /** @type{!Array.<!proto.hiber.modem.ModemTransferReturnLine>} */ (
+  return /** @type{!Array<!proto.hiber.modem.ModemTransferReturnLine>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.modem.ModemTransferReturnLine, 2));
 };
 
 
-/** @param {!Array.<!proto.hiber.modem.ModemTransferReturnLine>} value */
+/** @param {!Array<!proto.hiber.modem.ModemTransferReturnLine>} value */
 proto.hiber.modem.ListModemTransferReturnLinesRequest.Response.prototype.setLinesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
@@ -5220,7 +5224,7 @@ proto.hiber.modem.ListModemTransferReturnLinesRequest.Response.prototype.clearPa
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemTransferReturnLinesRequest.Response.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -5238,7 +5242,7 @@ proto.hiber.modem.ListModemTransferReturnLinesRequest.prototype.getOrganization 
 
 /** @param {string} value */
 proto.hiber.modem.ListModemTransferReturnLinesRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -5265,7 +5269,7 @@ proto.hiber.modem.ListModemTransferReturnLinesRequest.prototype.clearSelection =
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemTransferReturnLinesRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -5295,7 +5299,7 @@ proto.hiber.modem.ListModemTransferReturnLinesRequest.prototype.clearPagination 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemTransferReturnLinesRequest.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -5621,7 +5625,7 @@ proto.hiber.modem.SendReturnRequest.Response.prototype.clearRequest = function()
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.SendReturnRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -5651,7 +5655,7 @@ proto.hiber.modem.SendReturnRequest.Response.prototype.clearReturnTransfer = fun
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.SendReturnRequest.Response.prototype.hasReturnTransfer = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -5669,7 +5673,7 @@ proto.hiber.modem.SendReturnRequest.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.modem.SendReturnRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -5696,7 +5700,7 @@ proto.hiber.modem.SendReturnRequest.prototype.clearSelection = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.SendReturnRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -5714,7 +5718,7 @@ proto.hiber.modem.SendReturnRequest.prototype.getTrackingInformation = function(
 
 /** @param {string} value */
 proto.hiber.modem.SendReturnRequest.prototype.setTrackingInformation = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 

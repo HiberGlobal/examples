@@ -12,7 +12,9 @@ var goog = jspb;
 var global = Function('return this')();
 
 var base_pb = require('./base_pb.js');
+goog.object.extend(proto, base_pb);
 var permission_pb = require('./permission_pb.js');
+goog.object.extend(proto, permission_pb);
 goog.exportSymbol('proto.hiber.token.CreateTokenRequest', null, global);
 goog.exportSymbol('proto.hiber.token.CreateTokenRequest.Response', null, global);
 goog.exportSymbol('proto.hiber.token.DeleteTokenRequest', null, global);
@@ -144,11 +146,11 @@ proto.hiber.token.Token.deserializeBinaryFromReader = function(msg, reader) {
       msg.setExpiresAt(value);
       break;
     case 7:
-      var value = /** @type {!Array.<!proto.hiber.UserPermission>} */ (reader.readPackedEnum());
+      var value = /** @type {!Array<!proto.hiber.UserPermission>} */ (reader.readPackedEnum());
       msg.setUserPermissionsList(value);
       break;
     case 8:
-      var value = /** @type {!Array.<!proto.hiber.OrganizationPermission>} */ (reader.readPackedEnum());
+      var value = /** @type {!Array<!proto.hiber.OrganizationPermission>} */ (reader.readPackedEnum());
       msg.setOrganizationPermissionsList(value);
       break;
     default:
@@ -244,7 +246,7 @@ proto.hiber.token.Token.prototype.getId = function() {
 
 /** @param {number} value */
 proto.hiber.token.Token.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -259,7 +261,7 @@ proto.hiber.token.Token.prototype.getName = function() {
 
 /** @param {string} value */
 proto.hiber.token.Token.prototype.setName = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -274,7 +276,7 @@ proto.hiber.token.Token.prototype.getUserId = function() {
 
 /** @param {string} value */
 proto.hiber.token.Token.prototype.setUserId = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -289,7 +291,7 @@ proto.hiber.token.Token.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.token.Token.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -316,7 +318,7 @@ proto.hiber.token.Token.prototype.clearExpiresAt = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.token.Token.prototype.hasExpiresAt = function() {
   return jspb.Message.getField(this, 6) != null;
@@ -325,14 +327,14 @@ proto.hiber.token.Token.prototype.hasExpiresAt = function() {
 
 /**
  * repeated hiber.UserPermission user_permissions = 7;
- * @return {!Array.<!proto.hiber.UserPermission>}
+ * @return {!Array<!proto.hiber.UserPermission>}
  */
 proto.hiber.token.Token.prototype.getUserPermissionsList = function() {
-  return /** @type {!Array.<!proto.hiber.UserPermission>} */ (jspb.Message.getRepeatedField(this, 7));
+  return /** @type {!Array<!proto.hiber.UserPermission>} */ (jspb.Message.getRepeatedField(this, 7));
 };
 
 
-/** @param {!Array.<!proto.hiber.UserPermission>} value */
+/** @param {!Array<!proto.hiber.UserPermission>} value */
 proto.hiber.token.Token.prototype.setUserPermissionsList = function(value) {
   jspb.Message.setField(this, 7, value || []);
 };
@@ -354,14 +356,14 @@ proto.hiber.token.Token.prototype.clearUserPermissionsList = function() {
 
 /**
  * repeated hiber.OrganizationPermission organization_permissions = 8;
- * @return {!Array.<!proto.hiber.OrganizationPermission>}
+ * @return {!Array<!proto.hiber.OrganizationPermission>}
  */
 proto.hiber.token.Token.prototype.getOrganizationPermissionsList = function() {
-  return /** @type {!Array.<!proto.hiber.OrganizationPermission>} */ (jspb.Message.getRepeatedField(this, 8));
+  return /** @type {!Array<!proto.hiber.OrganizationPermission>} */ (jspb.Message.getRepeatedField(this, 8));
 };
 
 
-/** @param {!Array.<!proto.hiber.OrganizationPermission>} value */
+/** @param {!Array<!proto.hiber.OrganizationPermission>} value */
 proto.hiber.token.Token.prototype.setOrganizationPermissionsList = function(value) {
   jspb.Message.setField(this, 8, value || []);
 };
@@ -557,7 +559,7 @@ proto.hiber.token.TokenSelection.prototype.clearUsers = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.token.TokenSelection.prototype.hasUsers = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -575,7 +577,7 @@ proto.hiber.token.TokenSelection.prototype.getName = function() {
 
 /** @param {string} value */
 proto.hiber.token.TokenSelection.prototype.setName = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -592,7 +594,7 @@ proto.hiber.token.TokenSelection.prototype.getIncludeExpired = function() {
 
 /** @param {boolean} value */
 proto.hiber.token.TokenSelection.prototype.setIncludeExpired = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
@@ -918,15 +920,15 @@ proto.hiber.token.ListTokensRequest.Response.serializeBinaryToWriter = function(
 
 /**
  * repeated Token tokens = 1;
- * @return {!Array.<!proto.hiber.token.Token>}
+ * @return {!Array<!proto.hiber.token.Token>}
  */
 proto.hiber.token.ListTokensRequest.Response.prototype.getTokensList = function() {
-  return /** @type{!Array.<!proto.hiber.token.Token>} */ (
+  return /** @type{!Array<!proto.hiber.token.Token>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.token.Token, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.token.Token>} value */
+/** @param {!Array<!proto.hiber.token.Token>} value */
 proto.hiber.token.ListTokensRequest.Response.prototype.setTokensList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -970,7 +972,7 @@ proto.hiber.token.ListTokensRequest.Response.prototype.clearRequest = function()
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.token.ListTokensRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1000,7 +1002,7 @@ proto.hiber.token.ListTokensRequest.Response.prototype.clearPagination = functio
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.token.ListTokensRequest.Response.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -1018,7 +1020,7 @@ proto.hiber.token.ListTokensRequest.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.token.ListTokensRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1045,7 +1047,7 @@ proto.hiber.token.ListTokensRequest.prototype.clearSelection = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.token.ListTokensRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1075,7 +1077,7 @@ proto.hiber.token.ListTokensRequest.prototype.clearPagination = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.token.ListTokensRequest.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -1133,7 +1135,8 @@ proto.hiber.token.CreateTokenRequest.toObject = function(includeInstance, msg) {
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     expiresAt: (f = msg.getExpiresAt()) && base_pb.Timestamp.toObject(includeInstance, f),
     userPermissions: (f = msg.getUserPermissions()) && base_pb.Filter.UserPermissions.toObject(includeInstance, f),
-    organizationPermissions: (f = msg.getOrganizationPermissions()) && base_pb.Filter.OrganizationPermissions.toObject(includeInstance, f)
+    organizationPermissions: (f = msg.getOrganizationPermissions()) && base_pb.Filter.OrganizationPermissions.toObject(includeInstance, f),
+    overrideAllowNoPermissions: jspb.Message.getFieldWithDefault(msg, 7, false)
   };
 
   if (includeInstance) {
@@ -1192,6 +1195,10 @@ proto.hiber.token.CreateTokenRequest.deserializeBinaryFromReader = function(msg,
       var value = new base_pb.Filter.OrganizationPermissions;
       reader.readMessage(value,base_pb.Filter.OrganizationPermissions.deserializeBinaryFromReader);
       msg.setOrganizationPermissions(value);
+      break;
+    case 7:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setOverrideAllowNoPermissions(value);
       break;
     default:
       reader.skipField();
@@ -1258,6 +1265,13 @@ proto.hiber.token.CreateTokenRequest.serializeBinaryToWriter = function(message,
       6,
       f,
       base_pb.Filter.OrganizationPermissions.serializeBinaryToWriter
+    );
+  }
+  f = message.getOverrideAllowNoPermissions();
+  if (f) {
+    writer.writeBool(
+      7,
+      f
     );
   }
 };
@@ -1401,7 +1415,7 @@ proto.hiber.token.CreateTokenRequest.Response.prototype.getToken = function() {
 
 /** @param {string} value */
 proto.hiber.token.CreateTokenRequest.Response.prototype.setToken = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1416,7 +1430,7 @@ proto.hiber.token.CreateTokenRequest.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.token.CreateTokenRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1431,7 +1445,7 @@ proto.hiber.token.CreateTokenRequest.prototype.getName = function() {
 
 /** @param {string} value */
 proto.hiber.token.CreateTokenRequest.prototype.setName = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -1458,7 +1472,7 @@ proto.hiber.token.CreateTokenRequest.prototype.clearExpiresAt = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.token.CreateTokenRequest.prototype.hasExpiresAt = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -1488,7 +1502,7 @@ proto.hiber.token.CreateTokenRequest.prototype.clearUserPermissions = function()
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.token.CreateTokenRequest.prototype.hasUserPermissions = function() {
   return jspb.Message.getField(this, 5) != null;
@@ -1518,10 +1532,27 @@ proto.hiber.token.CreateTokenRequest.prototype.clearOrganizationPermissions = fu
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.token.CreateTokenRequest.prototype.hasOrganizationPermissions = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional bool override_allow_no_permissions = 7;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.token.CreateTokenRequest.prototype.getOverrideAllowNoPermissions = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 7, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.token.CreateTokenRequest.prototype.setOverrideAllowNoPermissions = function(value) {
+  jspb.Message.setProto3BooleanField(this, 7, value);
 };
 
 
@@ -1791,7 +1822,7 @@ proto.hiber.token.DeleteTokenRequest.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.token.DeleteTokenRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1806,7 +1837,7 @@ proto.hiber.token.DeleteTokenRequest.prototype.getTokenId = function() {
 
 /** @param {number} value */
 proto.hiber.token.DeleteTokenRequest.prototype.setTokenId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -1866,7 +1897,8 @@ proto.hiber.token.UpdateTokenOrganizationPermissionsRequest.toObject = function(
   var f, obj = {
     organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     tokenIdsList: jspb.Message.getRepeatedField(msg, 2),
-    newOrganizationPermissions: (f = msg.getNewOrganizationPermissions()) && base_pb.Filter.OrganizationPermissions.toObject(includeInstance, f)
+    newOrganizationPermissions: (f = msg.getNewOrganizationPermissions()) && base_pb.Filter.OrganizationPermissions.toObject(includeInstance, f),
+    overrideAllowNoPermissions: jspb.Message.getFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -1908,13 +1940,17 @@ proto.hiber.token.UpdateTokenOrganizationPermissionsRequest.deserializeBinaryFro
       msg.setOrganization(value);
       break;
     case 2:
-      var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
+      var value = /** @type {!Array<number>} */ (reader.readPackedInt64());
       msg.setTokenIdsList(value);
       break;
     case 3:
       var value = new base_pb.Filter.OrganizationPermissions;
       reader.readMessage(value,base_pb.Filter.OrganizationPermissions.deserializeBinaryFromReader);
       msg.setNewOrganizationPermissions(value);
+      break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setOverrideAllowNoPermissions(value);
       break;
     default:
       reader.skipField();
@@ -1965,6 +2001,13 @@ proto.hiber.token.UpdateTokenOrganizationPermissionsRequest.serializeBinaryToWri
       3,
       f,
       base_pb.Filter.OrganizationPermissions.serializeBinaryToWriter
+    );
+  }
+  f = message.getOverrideAllowNoPermissions();
+  if (f) {
+    writer.writeBool(
+      4,
+      f
     );
   }
 };
@@ -2097,27 +2140,27 @@ proto.hiber.token.UpdateTokenOrganizationPermissionsRequest.prototype.getOrganiz
 
 /** @param {string} value */
 proto.hiber.token.UpdateTokenOrganizationPermissionsRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
  * repeated int64 token_ids = 2;
- * @return {!Array.<number>}
+ * @return {!Array<number>}
  */
 proto.hiber.token.UpdateTokenOrganizationPermissionsRequest.prototype.getTokenIdsList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 2));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
-/** @param {!Array.<number>} value */
+/** @param {!Array<number>} value */
 proto.hiber.token.UpdateTokenOrganizationPermissionsRequest.prototype.setTokenIdsList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
 
 
 /**
- * @param {!number} value
+ * @param {number} value
  * @param {number=} opt_index
  */
 proto.hiber.token.UpdateTokenOrganizationPermissionsRequest.prototype.addTokenIds = function(value, opt_index) {
@@ -2153,10 +2196,27 @@ proto.hiber.token.UpdateTokenOrganizationPermissionsRequest.prototype.clearNewOr
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.token.UpdateTokenOrganizationPermissionsRequest.prototype.hasNewOrganizationPermissions = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional bool override_allow_no_permissions = 4;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.token.UpdateTokenOrganizationPermissionsRequest.prototype.getOverrideAllowNoPermissions = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 4, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.token.UpdateTokenOrganizationPermissionsRequest.prototype.setOverrideAllowNoPermissions = function(value) {
+  jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
@@ -2258,7 +2318,7 @@ proto.hiber.token.UpdateTokenUserPermissionsRequest.deserializeBinaryFromReader 
       msg.setOrganization(value);
       break;
     case 2:
-      var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
+      var value = /** @type {!Array<number>} */ (reader.readPackedInt64());
       msg.setTokenIdsList(value);
       break;
     case 4:
@@ -2447,27 +2507,27 @@ proto.hiber.token.UpdateTokenUserPermissionsRequest.prototype.getOrganization = 
 
 /** @param {string} value */
 proto.hiber.token.UpdateTokenUserPermissionsRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
  * repeated int64 token_ids = 2;
- * @return {!Array.<number>}
+ * @return {!Array<number>}
  */
 proto.hiber.token.UpdateTokenUserPermissionsRequest.prototype.getTokenIdsList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 2));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
-/** @param {!Array.<number>} value */
+/** @param {!Array<number>} value */
 proto.hiber.token.UpdateTokenUserPermissionsRequest.prototype.setTokenIdsList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
 
 
 /**
- * @param {!number} value
+ * @param {number} value
  * @param {number=} opt_index
  */
 proto.hiber.token.UpdateTokenUserPermissionsRequest.prototype.addTokenIds = function(value, opt_index) {
@@ -2503,7 +2563,7 @@ proto.hiber.token.UpdateTokenUserPermissionsRequest.prototype.clearNewUserPermis
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.token.UpdateTokenUserPermissionsRequest.prototype.hasNewUserPermissions = function() {
   return jspb.Message.getField(this, 4) != null;

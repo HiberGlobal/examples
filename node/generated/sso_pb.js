@@ -11,7 +11,6 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
-var base_pb = require('./base_pb.js');
 goog.exportSymbol('proto.hiber.sso.ZendeskTokenRequest', null, global);
 goog.exportSymbol('proto.hiber.sso.ZendeskTokenRequest.Response', null, global);
 
@@ -268,7 +267,7 @@ proto.hiber.sso.ZendeskTokenRequest.Response.prototype.getToken = function() {
 
 /** @param {string} value */
 proto.hiber.sso.ZendeskTokenRequest.Response.prototype.setToken = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 

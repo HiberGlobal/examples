@@ -12,8 +12,11 @@ var goog = jspb;
 var global = Function('return this')();
 
 var base_pb = require('./base_pb.js');
+goog.object.extend(proto, base_pb);
 var tag_pb = require('./tag_pb.js');
+goog.object.extend(proto, tag_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
+goog.object.extend(proto, google_protobuf_timestamp_pb);
 goog.exportSymbol('proto.hiber.webhook.CreateWebhookRequest', null, global);
 goog.exportSymbol('proto.hiber.webhook.DeleteWebhookRequest', null, global);
 goog.exportSymbol('proto.hiber.webhook.DeleteWebhookRequest.Response', null, global);
@@ -329,7 +332,10 @@ proto.hiber.webhook.Webhook.WebhookData.toObject = function(includeInstance, msg
     secret: jspb.Message.getFieldWithDefault(msg, 2, ""),
     contentType: jspb.Message.getFieldWithDefault(msg, 3, 0),
     disabled: jspb.Message.getFieldWithDefault(msg, 4, false),
-    certificateId: jspb.Message.getFieldWithDefault(msg, 5, 0)
+    certificateId: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    certificateName: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    caCertificateId: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    caCertificateName: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -385,6 +391,18 @@ proto.hiber.webhook.Webhook.WebhookData.deserializeBinaryFromReader = function(m
     case 5:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setCertificateId(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCertificateName(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setCaCertificateId(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCaCertificateName(value);
       break;
     default:
       reader.skipField();
@@ -450,6 +468,27 @@ proto.hiber.webhook.Webhook.WebhookData.serializeBinaryToWriter = function(messa
       f
     );
   }
+  f = message.getCertificateName();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
+  f = message.getCaCertificateId();
+  if (f !== 0) {
+    writer.writeInt64(
+      7,
+      f
+    );
+  }
+  f = message.getCaCertificateName();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
 };
 
 
@@ -464,7 +503,7 @@ proto.hiber.webhook.Webhook.WebhookData.prototype.getUrl = function() {
 
 /** @param {string} value */
 proto.hiber.webhook.Webhook.WebhookData.prototype.setUrl = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -479,7 +518,7 @@ proto.hiber.webhook.Webhook.WebhookData.prototype.getSecret = function() {
 
 /** @param {string} value */
 proto.hiber.webhook.Webhook.WebhookData.prototype.setSecret = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -494,7 +533,7 @@ proto.hiber.webhook.Webhook.WebhookData.prototype.getContentType = function() {
 
 /** @param {!proto.hiber.webhook.Webhook.ContentType} value */
 proto.hiber.webhook.Webhook.WebhookData.prototype.setContentType = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
@@ -511,7 +550,7 @@ proto.hiber.webhook.Webhook.WebhookData.prototype.getDisabled = function() {
 
 /** @param {boolean} value */
 proto.hiber.webhook.Webhook.WebhookData.prototype.setDisabled = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
@@ -526,7 +565,52 @@ proto.hiber.webhook.Webhook.WebhookData.prototype.getCertificateId = function() 
 
 /** @param {number} value */
 proto.hiber.webhook.Webhook.WebhookData.prototype.setCertificateId = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3IntField(this, 5, value);
+};
+
+
+/**
+ * optional string certificate_name = 6;
+ * @return {string}
+ */
+proto.hiber.webhook.Webhook.WebhookData.prototype.getCertificateName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.webhook.Webhook.WebhookData.prototype.setCertificateName = function(value) {
+  jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional int64 ca_certificate_id = 7;
+ * @return {number}
+ */
+proto.hiber.webhook.Webhook.WebhookData.prototype.getCaCertificateId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/** @param {number} value */
+proto.hiber.webhook.Webhook.WebhookData.prototype.setCaCertificateId = function(value) {
+  jspb.Message.setProto3IntField(this, 7, value);
+};
+
+
+/**
+ * optional string ca_certificate_name = 8;
+ * @return {string}
+ */
+proto.hiber.webhook.Webhook.WebhookData.prototype.getCaCertificateName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.webhook.Webhook.WebhookData.prototype.setCaCertificateName = function(value) {
+  jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
@@ -710,7 +794,7 @@ proto.hiber.webhook.Webhook.WebhookFilters.prototype.clearEventTypes = function(
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.Webhook.WebhookFilters.prototype.hasEventTypes = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -740,7 +824,7 @@ proto.hiber.webhook.Webhook.WebhookFilters.prototype.clearModemNumbers = functio
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.Webhook.WebhookFilters.prototype.hasModemNumbers = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -770,7 +854,7 @@ proto.hiber.webhook.Webhook.WebhookFilters.prototype.clearTags = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.Webhook.WebhookFilters.prototype.hasTags = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -788,7 +872,7 @@ proto.hiber.webhook.Webhook.prototype.getId = function() {
 
 /** @param {number} value */
 proto.hiber.webhook.Webhook.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -803,7 +887,7 @@ proto.hiber.webhook.Webhook.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.webhook.Webhook.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -818,7 +902,7 @@ proto.hiber.webhook.Webhook.prototype.getDescription = function() {
 
 /** @param {string} value */
 proto.hiber.webhook.Webhook.prototype.setDescription = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -845,7 +929,7 @@ proto.hiber.webhook.Webhook.prototype.clearData = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.Webhook.prototype.hasData = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -875,7 +959,7 @@ proto.hiber.webhook.Webhook.prototype.clearFilters = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.Webhook.prototype.hasFilters = function() {
   return jspb.Message.getField(this, 5) != null;
@@ -884,15 +968,15 @@ proto.hiber.webhook.Webhook.prototype.hasFilters = function() {
 
 /**
  * repeated hiber.tag.Tag tags = 6;
- * @return {!Array.<!proto.hiber.tag.Tag>}
+ * @return {!Array<!proto.hiber.tag.Tag>}
  */
 proto.hiber.webhook.Webhook.prototype.getTagsList = function() {
-  return /** @type{!Array.<!proto.hiber.tag.Tag>} */ (
+  return /** @type{!Array<!proto.hiber.tag.Tag>} */ (
     jspb.Message.getRepeatedWrapperField(this, tag_pb.Tag, 6));
 };
 
 
-/** @param {!Array.<!proto.hiber.tag.Tag>} value */
+/** @param {!Array<!proto.hiber.tag.Tag>} value */
 proto.hiber.webhook.Webhook.prototype.setTagsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 6, value);
 };
@@ -924,7 +1008,7 @@ proto.hiber.webhook.Webhook.prototype.getHealth = function() {
 
 /** @param {!proto.hiber.Health} value */
 proto.hiber.webhook.Webhook.prototype.setHealth = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3EnumField(this, 7, value);
 };
 
 
@@ -951,7 +1035,7 @@ proto.hiber.webhook.Webhook.prototype.clearInCooldownUntil = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.Webhook.prototype.hasInCooldownUntil = function() {
   return jspb.Message.getField(this, 8) != null;
@@ -1073,11 +1157,11 @@ proto.hiber.webhook.WebhookSelection.deserializeBinaryFromReader = function(msg,
       msg.setTags(value);
       break;
     case 5:
-      var value = /** @type {!Array.<!proto.hiber.Health>} */ (reader.readPackedEnum());
+      var value = /** @type {!Array<!proto.hiber.Health>} */ (reader.readPackedEnum());
       msg.setHealthList(value);
       break;
     case 6:
-      var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
+      var value = /** @type {!Array<number>} */ (reader.readPackedInt64());
       msg.setCertificateIdsList(value);
       break;
     default:
@@ -1167,7 +1251,7 @@ proto.hiber.webhook.WebhookSelection.prototype.getDescription = function() {
 
 /** @param {string} value */
 proto.hiber.webhook.WebhookSelection.prototype.setDescription = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1182,7 +1266,7 @@ proto.hiber.webhook.WebhookSelection.prototype.getUrl = function() {
 
 /** @param {string} value */
 proto.hiber.webhook.WebhookSelection.prototype.setUrl = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -1209,7 +1293,7 @@ proto.hiber.webhook.WebhookSelection.prototype.clearWebhooks = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.WebhookSelection.prototype.hasWebhooks = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -1239,7 +1323,7 @@ proto.hiber.webhook.WebhookSelection.prototype.clearTags = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.WebhookSelection.prototype.hasTags = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -1248,14 +1332,14 @@ proto.hiber.webhook.WebhookSelection.prototype.hasTags = function() {
 
 /**
  * repeated hiber.Health health = 5;
- * @return {!Array.<!proto.hiber.Health>}
+ * @return {!Array<!proto.hiber.Health>}
  */
 proto.hiber.webhook.WebhookSelection.prototype.getHealthList = function() {
-  return /** @type {!Array.<!proto.hiber.Health>} */ (jspb.Message.getRepeatedField(this, 5));
+  return /** @type {!Array<!proto.hiber.Health>} */ (jspb.Message.getRepeatedField(this, 5));
 };
 
 
-/** @param {!Array.<!proto.hiber.Health>} value */
+/** @param {!Array<!proto.hiber.Health>} value */
 proto.hiber.webhook.WebhookSelection.prototype.setHealthList = function(value) {
   jspb.Message.setField(this, 5, value || []);
 };
@@ -1277,21 +1361,21 @@ proto.hiber.webhook.WebhookSelection.prototype.clearHealthList = function() {
 
 /**
  * repeated int64 certificate_ids = 6;
- * @return {!Array.<number>}
+ * @return {!Array<number>}
  */
 proto.hiber.webhook.WebhookSelection.prototype.getCertificateIdsList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 6));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 6));
 };
 
 
-/** @param {!Array.<number>} value */
+/** @param {!Array<number>} value */
 proto.hiber.webhook.WebhookSelection.prototype.setCertificateIdsList = function(value) {
   jspb.Message.setField(this, 6, value || []);
 };
 
 
 /**
- * @param {!number} value
+ * @param {number} value
  * @param {number=} opt_index
  */
 proto.hiber.webhook.WebhookSelection.prototype.addCertificateIds = function(value, opt_index) {
@@ -1354,7 +1438,8 @@ proto.hiber.webhook.WebhookCall.toObject = function(includeInstance, msg) {
     time: (f = msg.getTime()) && base_pb.Timestamp.toObject(includeInstance, f),
     url: jspb.Message.getFieldWithDefault(msg, 2, ""),
     headersMap: (f = msg.getHeadersMap()) ? f.toObject(includeInstance, undefined) : [],
-    body: msg.getBody_asB64(),
+    bodyProto: msg.getBodyProto_asB64(),
+    bodyJson: jspb.Message.getFieldWithDefault(msg, 7, ""),
     successful: jspb.Message.getFieldWithDefault(msg, 5, false),
     error: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
@@ -1405,12 +1490,16 @@ proto.hiber.webhook.WebhookCall.deserializeBinaryFromReader = function(msg, read
     case 3:
       var value = msg.getHeadersMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     case 4:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setBody(value);
+      msg.setBodyProto(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBodyJson(value);
       break;
     case 5:
       var value = /** @type {boolean} */ (reader.readBool());
@@ -1468,10 +1557,17 @@ proto.hiber.webhook.WebhookCall.serializeBinaryToWriter = function(message, writ
   if (f && f.getLength() > 0) {
     f.serializeBinary(3, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
-  f = message.getBody_asU8();
+  f = message.getBodyProto_asU8();
   if (f.length > 0) {
     writer.writeBytes(
       4,
+      f
+    );
+  }
+  f = message.getBodyJson();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
       f
     );
   }
@@ -1515,7 +1611,7 @@ proto.hiber.webhook.WebhookCall.prototype.clearTime = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.WebhookCall.prototype.hasTime = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -1533,7 +1629,7 @@ proto.hiber.webhook.WebhookCall.prototype.getUrl = function() {
 
 /** @param {string} value */
 proto.hiber.webhook.WebhookCall.prototype.setUrl = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -1556,41 +1652,56 @@ proto.hiber.webhook.WebhookCall.prototype.clearHeadersMap = function() {
 
 
 /**
- * optional bytes body = 4;
+ * optional bytes body_proto = 4;
  * @return {!(string|Uint8Array)}
  */
-proto.hiber.webhook.WebhookCall.prototype.getBody = function() {
+proto.hiber.webhook.WebhookCall.prototype.getBodyProto = function() {
   return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /**
- * optional bytes body = 4;
- * This is a type-conversion wrapper around `getBody()`
+ * optional bytes body_proto = 4;
+ * This is a type-conversion wrapper around `getBodyProto()`
  * @return {string}
  */
-proto.hiber.webhook.WebhookCall.prototype.getBody_asB64 = function() {
+proto.hiber.webhook.WebhookCall.prototype.getBodyProto_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getBody()));
+      this.getBodyProto()));
 };
 
 
 /**
- * optional bytes body = 4;
+ * optional bytes body_proto = 4;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getBody()`
+ * This is a type-conversion wrapper around `getBodyProto()`
  * @return {!Uint8Array}
  */
-proto.hiber.webhook.WebhookCall.prototype.getBody_asU8 = function() {
+proto.hiber.webhook.WebhookCall.prototype.getBodyProto_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getBody()));
+      this.getBodyProto()));
 };
 
 
 /** @param {!(string|Uint8Array)} value */
-proto.hiber.webhook.WebhookCall.prototype.setBody = function(value) {
-  jspb.Message.setField(this, 4, value);
+proto.hiber.webhook.WebhookCall.prototype.setBodyProto = function(value) {
+  jspb.Message.setProto3BytesField(this, 4, value);
+};
+
+
+/**
+ * optional string body_json = 7;
+ * @return {string}
+ */
+proto.hiber.webhook.WebhookCall.prototype.getBodyJson = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.webhook.WebhookCall.prototype.setBodyJson = function(value) {
+  jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
@@ -1607,7 +1718,7 @@ proto.hiber.webhook.WebhookCall.prototype.getSuccessful = function() {
 
 /** @param {boolean} value */
 proto.hiber.webhook.WebhookCall.prototype.setSuccessful = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 
@@ -1622,7 +1733,7 @@ proto.hiber.webhook.WebhookCall.prototype.getError = function() {
 
 /** @param {string} value */
 proto.hiber.webhook.WebhookCall.prototype.setError = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
@@ -1780,7 +1891,7 @@ proto.hiber.webhook.WebhookHistorySelection.prototype.getOnlyFailures = function
 
 /** @param {boolean} value */
 proto.hiber.webhook.WebhookHistorySelection.prototype.setOnlyFailures = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 
@@ -1807,7 +1918,7 @@ proto.hiber.webhook.WebhookHistorySelection.prototype.clearTimeRange = function(
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.WebhookHistorySelection.prototype.hasTimeRange = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -2136,15 +2247,15 @@ proto.hiber.webhook.ListWebhooksRequest.Response.serializeBinaryToWriter = funct
 
 /**
  * repeated Webhook webhooks = 1;
- * @return {!Array.<!proto.hiber.webhook.Webhook>}
+ * @return {!Array<!proto.hiber.webhook.Webhook>}
  */
 proto.hiber.webhook.ListWebhooksRequest.Response.prototype.getWebhooksList = function() {
-  return /** @type{!Array.<!proto.hiber.webhook.Webhook>} */ (
+  return /** @type{!Array<!proto.hiber.webhook.Webhook>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.webhook.Webhook, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.webhook.Webhook>} value */
+/** @param {!Array<!proto.hiber.webhook.Webhook>} value */
 proto.hiber.webhook.ListWebhooksRequest.Response.prototype.setWebhooksList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -2188,7 +2299,7 @@ proto.hiber.webhook.ListWebhooksRequest.Response.prototype.clearRequest = functi
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.ListWebhooksRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2218,7 +2329,7 @@ proto.hiber.webhook.ListWebhooksRequest.Response.prototype.clearPagination = fun
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.ListWebhooksRequest.Response.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -2236,7 +2347,7 @@ proto.hiber.webhook.ListWebhooksRequest.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.webhook.ListWebhooksRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -2263,7 +2374,7 @@ proto.hiber.webhook.ListWebhooksRequest.prototype.clearSelection = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.ListWebhooksRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2293,7 +2404,7 @@ proto.hiber.webhook.ListWebhooksRequest.prototype.clearPagination = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.ListWebhooksRequest.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -2634,15 +2745,15 @@ proto.hiber.webhook.WebhookHistoryRequest.Response.serializeBinaryToWriter = fun
 
 /**
  * repeated WebhookCall calls = 1;
- * @return {!Array.<!proto.hiber.webhook.WebhookCall>}
+ * @return {!Array<!proto.hiber.webhook.WebhookCall>}
  */
 proto.hiber.webhook.WebhookHistoryRequest.Response.prototype.getCallsList = function() {
-  return /** @type{!Array.<!proto.hiber.webhook.WebhookCall>} */ (
+  return /** @type{!Array<!proto.hiber.webhook.WebhookCall>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.webhook.WebhookCall, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.webhook.WebhookCall>} value */
+/** @param {!Array<!proto.hiber.webhook.WebhookCall>} value */
 proto.hiber.webhook.WebhookHistoryRequest.Response.prototype.setCallsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -2686,7 +2797,7 @@ proto.hiber.webhook.WebhookHistoryRequest.Response.prototype.clearRequest = func
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.WebhookHistoryRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2716,7 +2827,7 @@ proto.hiber.webhook.WebhookHistoryRequest.Response.prototype.clearPagination = f
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.WebhookHistoryRequest.Response.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -2734,7 +2845,7 @@ proto.hiber.webhook.WebhookHistoryRequest.prototype.getOrganization = function()
 
 /** @param {string} value */
 proto.hiber.webhook.WebhookHistoryRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -2749,7 +2860,7 @@ proto.hiber.webhook.WebhookHistoryRequest.prototype.getWebhookId = function() {
 
 /** @param {number} value */
 proto.hiber.webhook.WebhookHistoryRequest.prototype.setWebhookId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -2776,7 +2887,7 @@ proto.hiber.webhook.WebhookHistoryRequest.prototype.clearSelection = function() 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.WebhookHistoryRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -2806,7 +2917,7 @@ proto.hiber.webhook.WebhookHistoryRequest.prototype.clearPagination = function()
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.WebhookHistoryRequest.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -2928,7 +3039,7 @@ proto.hiber.webhook.CreateWebhookRequest.deserializeBinaryFromReader = function(
       msg.setFilters(value);
       break;
     case 5:
-      var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
+      var value = /** @type {!Array<number>} */ (reader.readPackedInt64());
       msg.setTagsList(value);
       break;
     case 6:
@@ -3022,7 +3133,7 @@ proto.hiber.webhook.CreateWebhookRequest.prototype.getOrganization = function() 
 
 /** @param {string} value */
 proto.hiber.webhook.CreateWebhookRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -3037,7 +3148,7 @@ proto.hiber.webhook.CreateWebhookRequest.prototype.getDescription = function() {
 
 /** @param {string} value */
 proto.hiber.webhook.CreateWebhookRequest.prototype.setDescription = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -3064,7 +3175,7 @@ proto.hiber.webhook.CreateWebhookRequest.prototype.clearData = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.CreateWebhookRequest.prototype.hasData = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -3094,7 +3205,7 @@ proto.hiber.webhook.CreateWebhookRequest.prototype.clearFilters = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.CreateWebhookRequest.prototype.hasFilters = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -3103,21 +3214,21 @@ proto.hiber.webhook.CreateWebhookRequest.prototype.hasFilters = function() {
 
 /**
  * repeated int64 tags = 5;
- * @return {!Array.<number>}
+ * @return {!Array<number>}
  */
 proto.hiber.webhook.CreateWebhookRequest.prototype.getTagsList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 5));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 5));
 };
 
 
-/** @param {!Array.<number>} value */
+/** @param {!Array<number>} value */
 proto.hiber.webhook.CreateWebhookRequest.prototype.setTagsList = function(value) {
   jspb.Message.setField(this, 5, value || []);
 };
 
 
 /**
- * @param {!number} value
+ * @param {number} value
  * @param {number=} opt_index
  */
 proto.hiber.webhook.CreateWebhookRequest.prototype.addTags = function(value, opt_index) {
@@ -3141,7 +3252,7 @@ proto.hiber.webhook.CreateWebhookRequest.prototype.getCertificateId = function()
 
 /** @param {number} value */
 proto.hiber.webhook.CreateWebhookRequest.prototype.setCertificateId = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
@@ -3295,7 +3406,7 @@ proto.hiber.webhook.GetWebhookRequest.prototype.getId = function() {
 
 /** @param {number} value */
 proto.hiber.webhook.GetWebhookRequest.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -3310,7 +3421,7 @@ proto.hiber.webhook.GetWebhookRequest.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.webhook.GetWebhookRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -3464,7 +3575,7 @@ proto.hiber.webhook.EnableWebhookRequest.prototype.getId = function() {
 
 /** @param {number} value */
 proto.hiber.webhook.EnableWebhookRequest.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -3479,7 +3590,7 @@ proto.hiber.webhook.EnableWebhookRequest.prototype.getOrganization = function() 
 
 /** @param {string} value */
 proto.hiber.webhook.EnableWebhookRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -3633,7 +3744,7 @@ proto.hiber.webhook.DisableWebhookRequest.prototype.getId = function() {
 
 /** @param {number} value */
 proto.hiber.webhook.DisableWebhookRequest.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -3648,7 +3759,7 @@ proto.hiber.webhook.DisableWebhookRequest.prototype.getOrganization = function()
 
 /** @param {string} value */
 proto.hiber.webhook.DisableWebhookRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -3701,9 +3812,12 @@ proto.hiber.webhook.UpdateWebhookFilterRequest.toObject = function(includeInstan
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
     organization: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    eventFilter: (f = msg.getEventFilter()) && proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents.toObject(includeInstance, f),
-    modemFilter: (f = msg.getModemFilter()) && proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateModems.toObject(includeInstance, f),
-    tagFilter: (f = msg.getTagFilter()) && proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateTags.toObject(includeInstance, f)
+    deprecatedEventFilter: (f = msg.getDeprecatedEventFilter()) && proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents.toObject(includeInstance, f),
+    deprecatedModemFilter: (f = msg.getDeprecatedModemFilter()) && proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateModems.toObject(includeInstance, f),
+    deprecatedTagFilter: (f = msg.getDeprecatedTagFilter()) && proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateTags.toObject(includeInstance, f),
+    eventFilter: (f = msg.getEventFilter()) && base_pb.Filter.Events.Update.toObject(includeInstance, f),
+    modemFilter: (f = msg.getModemFilter()) && base_pb.Filter.Modems.Update.toObject(includeInstance, f),
+    tagFilter: (f = msg.getTagFilter()) && base_pb.Filter.Tags.Update.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3751,16 +3865,31 @@ proto.hiber.webhook.UpdateWebhookFilterRequest.deserializeBinaryFromReader = fun
     case 3:
       var value = new proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents;
       reader.readMessage(value,proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents.deserializeBinaryFromReader);
-      msg.setEventFilter(value);
+      msg.setDeprecatedEventFilter(value);
       break;
     case 4:
       var value = new proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateModems;
       reader.readMessage(value,proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateModems.deserializeBinaryFromReader);
-      msg.setModemFilter(value);
+      msg.setDeprecatedModemFilter(value);
       break;
     case 5:
       var value = new proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateTags;
       reader.readMessage(value,proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateTags.deserializeBinaryFromReader);
+      msg.setDeprecatedTagFilter(value);
+      break;
+    case 7:
+      var value = new base_pb.Filter.Events.Update;
+      reader.readMessage(value,base_pb.Filter.Events.Update.deserializeBinaryFromReader);
+      msg.setEventFilter(value);
+      break;
+    case 8:
+      var value = new base_pb.Filter.Modems.Update;
+      reader.readMessage(value,base_pb.Filter.Modems.Update.deserializeBinaryFromReader);
+      msg.setModemFilter(value);
+      break;
+    case 9:
+      var value = new base_pb.Filter.Tags.Update;
+      reader.readMessage(value,base_pb.Filter.Tags.Update.deserializeBinaryFromReader);
       msg.setTagFilter(value);
       break;
     default:
@@ -3806,7 +3935,7 @@ proto.hiber.webhook.UpdateWebhookFilterRequest.serializeBinaryToWriter = functio
       f
     );
   }
-  f = message.getEventFilter();
+  f = message.getDeprecatedEventFilter();
   if (f != null) {
     writer.writeMessage(
       3,
@@ -3814,7 +3943,7 @@ proto.hiber.webhook.UpdateWebhookFilterRequest.serializeBinaryToWriter = functio
       proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents.serializeBinaryToWriter
     );
   }
-  f = message.getModemFilter();
+  f = message.getDeprecatedModemFilter();
   if (f != null) {
     writer.writeMessage(
       4,
@@ -3822,12 +3951,36 @@ proto.hiber.webhook.UpdateWebhookFilterRequest.serializeBinaryToWriter = functio
       proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateModems.serializeBinaryToWriter
     );
   }
-  f = message.getTagFilter();
+  f = message.getDeprecatedTagFilter();
   if (f != null) {
     writer.writeMessage(
       5,
       f,
       proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateTags.serializeBinaryToWriter
+    );
+  }
+  f = message.getEventFilter();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      base_pb.Filter.Events.Update.serializeBinaryToWriter
+    );
+  }
+  f = message.getModemFilter();
+  if (f != null) {
+    writer.writeMessage(
+      8,
+      f,
+      base_pb.Filter.Modems.Update.serializeBinaryToWriter
+    );
+  }
+  f = message.getTagFilter();
+  if (f != null) {
+    writer.writeMessage(
+      9,
+      f,
+      base_pb.Filter.Tags.Update.serializeBinaryToWriter
     );
   }
 };
@@ -3987,7 +4140,7 @@ proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents.prototype.getUpdated
 
 /** @param {boolean} value */
 proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents.prototype.setUpdated = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
@@ -4014,7 +4167,7 @@ proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents.prototype.clearValue
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents.prototype.hasValue = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -4175,7 +4328,7 @@ proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateModems.prototype.getUpdated
 
 /** @param {boolean} value */
 proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateModems.prototype.setUpdated = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
@@ -4202,7 +4355,7 @@ proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateModems.prototype.clearValue
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateModems.prototype.hasValue = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -4363,7 +4516,7 @@ proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateTags.prototype.getUpdated =
 
 /** @param {boolean} value */
 proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateTags.prototype.setUpdated = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
@@ -4390,7 +4543,7 @@ proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateTags.prototype.clearValue =
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateTags.prototype.hasValue = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -4408,7 +4561,7 @@ proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.getId = function() {
 
 /** @param {number} value */
 proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -4423,23 +4576,113 @@ proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.getOrganization = funct
 
 /** @param {string} value */
 proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional UpdateEvents event_filter = 3;
+ * optional UpdateEvents deprecated_event_filter = 3;
  * @return {?proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents}
  */
-proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.getEventFilter = function() {
+proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.getDeprecatedEventFilter = function() {
   return /** @type{?proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents} */ (
     jspb.Message.getWrapperField(this, proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents, 3));
 };
 
 
 /** @param {?proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents|undefined} value */
-proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.setEventFilter = function(value) {
+proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.setDeprecatedEventFilter = function(value) {
   jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.clearDeprecatedEventFilter = function() {
+  this.setDeprecatedEventFilter(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.hasDeprecatedEventFilter = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional UpdateModems deprecated_modem_filter = 4;
+ * @return {?proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateModems}
+ */
+proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.getDeprecatedModemFilter = function() {
+  return /** @type{?proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateModems} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateModems, 4));
+};
+
+
+/** @param {?proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateModems|undefined} value */
+proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.setDeprecatedModemFilter = function(value) {
+  jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.clearDeprecatedModemFilter = function() {
+  this.setDeprecatedModemFilter(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.hasDeprecatedModemFilter = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional UpdateTags deprecated_tag_filter = 5;
+ * @return {?proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateTags}
+ */
+proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.getDeprecatedTagFilter = function() {
+  return /** @type{?proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateTags} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateTags, 5));
+};
+
+
+/** @param {?proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateTags|undefined} value */
+proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.setDeprecatedTagFilter = function(value) {
+  jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.clearDeprecatedTagFilter = function() {
+  this.setDeprecatedTagFilter(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.hasDeprecatedTagFilter = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional hiber.Filter.Events.Update event_filter = 7;
+ * @return {?proto.hiber.Filter.Events.Update}
+ */
+proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.getEventFilter = function() {
+  return /** @type{?proto.hiber.Filter.Events.Update} */ (
+    jspb.Message.getWrapperField(this, base_pb.Filter.Events.Update, 7));
+};
+
+
+/** @param {?proto.hiber.Filter.Events.Update|undefined} value */
+proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.setEventFilter = function(value) {
+  jspb.Message.setWrapperField(this, 7, value);
 };
 
 
@@ -4450,26 +4693,26 @@ proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.clearEventFilter = func
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.hasEventFilter = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
 /**
- * optional UpdateModems modem_filter = 4;
- * @return {?proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateModems}
+ * optional hiber.Filter.Modems.Update modem_filter = 8;
+ * @return {?proto.hiber.Filter.Modems.Update}
  */
 proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.getModemFilter = function() {
-  return /** @type{?proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateModems} */ (
-    jspb.Message.getWrapperField(this, proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateModems, 4));
+  return /** @type{?proto.hiber.Filter.Modems.Update} */ (
+    jspb.Message.getWrapperField(this, base_pb.Filter.Modems.Update, 8));
 };
 
 
-/** @param {?proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateModems|undefined} value */
+/** @param {?proto.hiber.Filter.Modems.Update|undefined} value */
 proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.setModemFilter = function(value) {
-  jspb.Message.setWrapperField(this, 4, value);
+  jspb.Message.setWrapperField(this, 8, value);
 };
 
 
@@ -4480,26 +4723,26 @@ proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.clearModemFilter = func
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.hasModemFilter = function() {
-  return jspb.Message.getField(this, 4) != null;
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
 /**
- * optional UpdateTags tag_filter = 5;
- * @return {?proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateTags}
+ * optional hiber.Filter.Tags.Update tag_filter = 9;
+ * @return {?proto.hiber.Filter.Tags.Update}
  */
 proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.getTagFilter = function() {
-  return /** @type{?proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateTags} */ (
-    jspb.Message.getWrapperField(this, proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateTags, 5));
+  return /** @type{?proto.hiber.Filter.Tags.Update} */ (
+    jspb.Message.getWrapperField(this, base_pb.Filter.Tags.Update, 9));
 };
 
 
-/** @param {?proto.hiber.webhook.UpdateWebhookFilterRequest.UpdateTags|undefined} value */
+/** @param {?proto.hiber.Filter.Tags.Update|undefined} value */
 proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.setTagFilter = function(value) {
-  jspb.Message.setWrapperField(this, 5, value);
+  jspb.Message.setWrapperField(this, 9, value);
 };
 
 
@@ -4510,10 +4753,10 @@ proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.clearTagFilter = functi
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.UpdateWebhookFilterRequest.prototype.hasTagFilter = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 9) != null;
 };
 
 
@@ -4721,9 +4964,12 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.toObject = function(inclu
     secret: (f = msg.getSecret()) && base_pb.UpdateClearableString.toObject(includeInstance, f),
     contentType: jspb.Message.getFieldWithDefault(msg, 3, 0),
     description: (f = msg.getDescription()) && base_pb.UpdateClearableString.toObject(includeInstance, f),
-    eventFilter: (f = msg.getEventFilter()) && proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents.toObject(includeInstance, f),
-    modemFilter: (f = msg.getModemFilter()) && proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems.toObject(includeInstance, f),
-    tagFilter: (f = msg.getTagFilter()) && proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags.toObject(includeInstance, f),
+    deprecatedEventFilter: (f = msg.getDeprecatedEventFilter()) && proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents.toObject(includeInstance, f),
+    deprecatedModemFilter: (f = msg.getDeprecatedModemFilter()) && proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems.toObject(includeInstance, f),
+    deprecatedTagFilter: (f = msg.getDeprecatedTagFilter()) && proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags.toObject(includeInstance, f),
+    eventFilter: (f = msg.getEventFilter()) && base_pb.Filter.Events.Update.toObject(includeInstance, f),
+    modemFilter: (f = msg.getModemFilter()) && base_pb.Filter.Modems.Update.toObject(includeInstance, f),
+    tagFilter: (f = msg.getTagFilter()) && base_pb.Filter.Tags.Update.toObject(includeInstance, f),
     active: (f = msg.getActive()) && base_pb.UpdateBoolean.toObject(includeInstance, f),
     certificateId: (f = msg.getCertificateId()) && base_pb.UpdateOptionalId.toObject(includeInstance, f)
   };
@@ -4783,16 +5029,31 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.deserializeBinaryFromRead
     case 5:
       var value = new proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents;
       reader.readMessage(value,proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents.deserializeBinaryFromReader);
-      msg.setEventFilter(value);
+      msg.setDeprecatedEventFilter(value);
       break;
     case 6:
       var value = new proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems;
       reader.readMessage(value,proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems.deserializeBinaryFromReader);
-      msg.setModemFilter(value);
+      msg.setDeprecatedModemFilter(value);
       break;
     case 7:
       var value = new proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags;
       reader.readMessage(value,proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags.deserializeBinaryFromReader);
+      msg.setDeprecatedTagFilter(value);
+      break;
+    case 10:
+      var value = new base_pb.Filter.Events.Update;
+      reader.readMessage(value,base_pb.Filter.Events.Update.deserializeBinaryFromReader);
+      msg.setEventFilter(value);
+      break;
+    case 11:
+      var value = new base_pb.Filter.Modems.Update;
+      reader.readMessage(value,base_pb.Filter.Modems.Update.deserializeBinaryFromReader);
+      msg.setModemFilter(value);
+      break;
+    case 12:
+      var value = new base_pb.Filter.Tags.Update;
+      reader.readMessage(value,base_pb.Filter.Tags.Update.deserializeBinaryFromReader);
       msg.setTagFilter(value);
       break;
     case 8:
@@ -4864,7 +5125,7 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.serializeBinaryToWriter =
       base_pb.UpdateClearableString.serializeBinaryToWriter
     );
   }
-  f = message.getEventFilter();
+  f = message.getDeprecatedEventFilter();
   if (f != null) {
     writer.writeMessage(
       5,
@@ -4872,7 +5133,7 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.serializeBinaryToWriter =
       proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents.serializeBinaryToWriter
     );
   }
-  f = message.getModemFilter();
+  f = message.getDeprecatedModemFilter();
   if (f != null) {
     writer.writeMessage(
       6,
@@ -4880,12 +5141,36 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.serializeBinaryToWriter =
       proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems.serializeBinaryToWriter
     );
   }
-  f = message.getTagFilter();
+  f = message.getDeprecatedTagFilter();
   if (f != null) {
     writer.writeMessage(
       7,
       f,
       proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags.serializeBinaryToWriter
+    );
+  }
+  f = message.getEventFilter();
+  if (f != null) {
+    writer.writeMessage(
+      10,
+      f,
+      base_pb.Filter.Events.Update.serializeBinaryToWriter
+    );
+  }
+  f = message.getModemFilter();
+  if (f != null) {
+    writer.writeMessage(
+      11,
+      f,
+      base_pb.Filter.Modems.Update.serializeBinaryToWriter
+    );
+  }
+  f = message.getTagFilter();
+  if (f != null) {
+    writer.writeMessage(
+      12,
+      f,
+      base_pb.Filter.Tags.Update.serializeBinaryToWriter
     );
   }
   f = message.getActive();
@@ -5061,7 +5346,7 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents.prototype.ge
 
 /** @param {boolean} value */
 proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents.prototype.setUpdated = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
@@ -5088,7 +5373,7 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents.prototype.cl
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents.prototype.hasValue = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -5249,7 +5534,7 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems.prototype.ge
 
 /** @param {boolean} value */
 proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems.prototype.setUpdated = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
@@ -5276,7 +5561,7 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems.prototype.cl
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems.prototype.hasValue = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -5437,7 +5722,7 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags.prototype.getU
 
 /** @param {boolean} value */
 proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags.prototype.setUpdated = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
@@ -5464,7 +5749,7 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags.prototype.clea
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags.prototype.hasValue = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -5482,7 +5767,7 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.getUrl = functi
 
 /** @param {string} value */
 proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.setUrl = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -5509,7 +5794,7 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.clearSecret = f
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.hasSecret = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -5527,7 +5812,7 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.getContentType 
 
 /** @param {!proto.hiber.webhook.Webhook.ContentType} value */
 proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.setContentType = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
@@ -5554,7 +5839,7 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.clearDescriptio
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.hasDescription = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -5562,18 +5847,108 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.hasDescription 
 
 
 /**
- * optional UpdateEvents event_filter = 5;
+ * optional UpdateEvents deprecated_event_filter = 5;
  * @return {?proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents}
  */
-proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.getEventFilter = function() {
+proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.getDeprecatedEventFilter = function() {
   return /** @type{?proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents} */ (
     jspb.Message.getWrapperField(this, proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents, 5));
 };
 
 
 /** @param {?proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents|undefined} value */
-proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.setEventFilter = function(value) {
+proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.setDeprecatedEventFilter = function(value) {
   jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.clearDeprecatedEventFilter = function() {
+  this.setDeprecatedEventFilter(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.hasDeprecatedEventFilter = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional UpdateModems deprecated_modem_filter = 6;
+ * @return {?proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems}
+ */
+proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.getDeprecatedModemFilter = function() {
+  return /** @type{?proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems, 6));
+};
+
+
+/** @param {?proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems|undefined} value */
+proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.setDeprecatedModemFilter = function(value) {
+  jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.clearDeprecatedModemFilter = function() {
+  this.setDeprecatedModemFilter(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.hasDeprecatedModemFilter = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional UpdateTags deprecated_tag_filter = 7;
+ * @return {?proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags}
+ */
+proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.getDeprecatedTagFilter = function() {
+  return /** @type{?proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags, 7));
+};
+
+
+/** @param {?proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags|undefined} value */
+proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.setDeprecatedTagFilter = function(value) {
+  jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.clearDeprecatedTagFilter = function() {
+  this.setDeprecatedTagFilter(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.hasDeprecatedTagFilter = function() {
+  return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * optional hiber.Filter.Events.Update event_filter = 10;
+ * @return {?proto.hiber.Filter.Events.Update}
+ */
+proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.getEventFilter = function() {
+  return /** @type{?proto.hiber.Filter.Events.Update} */ (
+    jspb.Message.getWrapperField(this, base_pb.Filter.Events.Update, 10));
+};
+
+
+/** @param {?proto.hiber.Filter.Events.Update|undefined} value */
+proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.setEventFilter = function(value) {
+  jspb.Message.setWrapperField(this, 10, value);
 };
 
 
@@ -5584,26 +5959,26 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.clearEventFilte
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.hasEventFilter = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 10) != null;
 };
 
 
 /**
- * optional UpdateModems modem_filter = 6;
- * @return {?proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems}
+ * optional hiber.Filter.Modems.Update modem_filter = 11;
+ * @return {?proto.hiber.Filter.Modems.Update}
  */
 proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.getModemFilter = function() {
-  return /** @type{?proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems} */ (
-    jspb.Message.getWrapperField(this, proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems, 6));
+  return /** @type{?proto.hiber.Filter.Modems.Update} */ (
+    jspb.Message.getWrapperField(this, base_pb.Filter.Modems.Update, 11));
 };
 
 
-/** @param {?proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems|undefined} value */
+/** @param {?proto.hiber.Filter.Modems.Update|undefined} value */
 proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.setModemFilter = function(value) {
-  jspb.Message.setWrapperField(this, 6, value);
+  jspb.Message.setWrapperField(this, 11, value);
 };
 
 
@@ -5614,26 +5989,26 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.clearModemFilte
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.hasModemFilter = function() {
-  return jspb.Message.getField(this, 6) != null;
+  return jspb.Message.getField(this, 11) != null;
 };
 
 
 /**
- * optional UpdateTags tag_filter = 7;
- * @return {?proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags}
+ * optional hiber.Filter.Tags.Update tag_filter = 12;
+ * @return {?proto.hiber.Filter.Tags.Update}
  */
 proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.getTagFilter = function() {
-  return /** @type{?proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags} */ (
-    jspb.Message.getWrapperField(this, proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags, 7));
+  return /** @type{?proto.hiber.Filter.Tags.Update} */ (
+    jspb.Message.getWrapperField(this, base_pb.Filter.Tags.Update, 12));
 };
 
 
-/** @param {?proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags|undefined} value */
+/** @param {?proto.hiber.Filter.Tags.Update|undefined} value */
 proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.setTagFilter = function(value) {
-  jspb.Message.setWrapperField(this, 7, value);
+  jspb.Message.setWrapperField(this, 12, value);
 };
 
 
@@ -5644,10 +6019,10 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.clearTagFilter 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.hasTagFilter = function() {
-  return jspb.Message.getField(this, 7) != null;
+  return jspb.Message.getField(this, 12) != null;
 };
 
 
@@ -5674,7 +6049,7 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.clearActive = f
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.hasActive = function() {
   return jspb.Message.getField(this, 8) != null;
@@ -5704,7 +6079,7 @@ proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.clearCertificat
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.UpdateWebhookRequest.UpdateWebhook.prototype.hasCertificateId = function() {
   return jspb.Message.getField(this, 9) != null;
@@ -5722,7 +6097,7 @@ proto.hiber.webhook.UpdateWebhookRequest.prototype.getId = function() {
 
 /** @param {number} value */
 proto.hiber.webhook.UpdateWebhookRequest.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -5737,7 +6112,7 @@ proto.hiber.webhook.UpdateWebhookRequest.prototype.getOrganization = function() 
 
 /** @param {string} value */
 proto.hiber.webhook.UpdateWebhookRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -5764,7 +6139,7 @@ proto.hiber.webhook.UpdateWebhookRequest.prototype.clearUpdate = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.UpdateWebhookRequest.prototype.hasUpdate = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -5869,7 +6244,7 @@ proto.hiber.webhook.UpdateWebhookTagsRequest.deserializeBinaryFromReader = funct
       msg.setOrganization(value);
       break;
     case 2:
-      var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
+      var value = /** @type {!Array<number>} */ (reader.readPackedInt64());
       msg.setWebhookIdsList(value);
       break;
     case 3:
@@ -6070,15 +6445,15 @@ proto.hiber.webhook.UpdateWebhookTagsRequest.Response.serializeBinaryToWriter = 
 
 /**
  * repeated Webhook webhooks = 1;
- * @return {!Array.<!proto.hiber.webhook.Webhook>}
+ * @return {!Array<!proto.hiber.webhook.Webhook>}
  */
 proto.hiber.webhook.UpdateWebhookTagsRequest.Response.prototype.getWebhooksList = function() {
-  return /** @type{!Array.<!proto.hiber.webhook.Webhook>} */ (
+  return /** @type{!Array<!proto.hiber.webhook.Webhook>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.webhook.Webhook, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.webhook.Webhook>} value */
+/** @param {!Array<!proto.hiber.webhook.Webhook>} value */
 proto.hiber.webhook.UpdateWebhookTagsRequest.Response.prototype.setWebhooksList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -6110,27 +6485,27 @@ proto.hiber.webhook.UpdateWebhookTagsRequest.prototype.getOrganization = functio
 
 /** @param {string} value */
 proto.hiber.webhook.UpdateWebhookTagsRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
  * repeated int64 webhook_ids = 2;
- * @return {!Array.<number>}
+ * @return {!Array<number>}
  */
 proto.hiber.webhook.UpdateWebhookTagsRequest.prototype.getWebhookIdsList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 2));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
-/** @param {!Array.<number>} value */
+/** @param {!Array<number>} value */
 proto.hiber.webhook.UpdateWebhookTagsRequest.prototype.setWebhookIdsList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
 
 
 /**
- * @param {!number} value
+ * @param {number} value
  * @param {number=} opt_index
  */
 proto.hiber.webhook.UpdateWebhookTagsRequest.prototype.addWebhookIds = function(value, opt_index) {
@@ -6166,7 +6541,7 @@ proto.hiber.webhook.UpdateWebhookTagsRequest.prototype.clearUpdate = function() 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.webhook.UpdateWebhookTagsRequest.prototype.hasUpdate = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -6439,7 +6814,7 @@ proto.hiber.webhook.DeleteWebhookRequest.prototype.getId = function() {
 
 /** @param {number} value */
 proto.hiber.webhook.DeleteWebhookRequest.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -6454,7 +6829,7 @@ proto.hiber.webhook.DeleteWebhookRequest.prototype.getOrganization = function() 
 
 /** @param {string} value */
 proto.hiber.webhook.DeleteWebhookRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

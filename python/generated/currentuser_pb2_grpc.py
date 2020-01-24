@@ -20,6 +20,11 @@ class CurrentUserServiceStub(object):
         request_serializer=currentuser__pb2.CurrentUserRequest.SerializeToString,
         response_deserializer=currentuser__pb2.CurrentUser.FromString,
         )
+    self.DeleteCurrentUser = channel.unary_unary(
+        '/hiber.user.CurrentUserService/DeleteCurrentUser',
+        request_serializer=currentuser__pb2.DeleteCurrentUserRequest.SerializeToString,
+        response_deserializer=currentuser__pb2.DeleteCurrentUserRequest.Response.FromString,
+        )
     self.RequestAccess = channel.unary_unary(
         '/hiber.user.CurrentUserService/RequestAccess',
         request_serializer=currentuser__pb2.RequestAccessRequest.SerializeToString,
@@ -30,10 +35,20 @@ class CurrentUserServiceStub(object):
         request_serializer=currentuser__pb2.CancelAccessRequestRequest.SerializeToString,
         response_deserializer=currentuser__pb2.CancelAccessRequestRequest.Response.FromString,
         )
-    self.DeleteCurrentUser = channel.unary_unary(
-        '/hiber.user.CurrentUserService/DeleteCurrentUser',
-        request_serializer=currentuser__pb2.DeleteCurrentUserRequest.SerializeToString,
-        response_deserializer=currentuser__pb2.DeleteCurrentUserRequest.Response.FromString,
+    self.ListOrganizationInvites = channel.unary_unary(
+        '/hiber.user.CurrentUserService/ListOrganizationInvites',
+        request_serializer=currentuser__pb2.ListOrganizationInvitesRequest.SerializeToString,
+        response_deserializer=currentuser__pb2.ListOrganizationInvitesRequest.Response.FromString,
+        )
+    self.AcceptOrganizationInvite = channel.unary_unary(
+        '/hiber.user.CurrentUserService/AcceptOrganizationInvite',
+        request_serializer=currentuser__pb2.AcceptOrganizationInviteRequest.SerializeToString,
+        response_deserializer=currentuser__pb2.AcceptOrganizationInviteRequest.Response.FromString,
+        )
+    self.AccessibleOrganizations = channel.unary_unary(
+        '/hiber.user.CurrentUserService/AccessibleOrganizations',
+        request_serializer=currentuser__pb2.AccessibleOrganizationsRequest.SerializeToString,
+        response_deserializer=currentuser__pb2.AccessibleOrganizationsRequest.Response.FromString,
         )
     self.UpdateDefaultOrganization = channel.unary_unary(
         '/hiber.user.CurrentUserService/UpdateDefaultOrganization',
@@ -50,11 +65,6 @@ class CurrentUserServiceStub(object):
         request_serializer=currentuser__pb2.AcceptTermsAndConditionsRequest.SerializeToString,
         response_deserializer=currentuser__pb2.AcceptTermsAndConditionsRequest.Response.FromString,
         )
-    self.AccessibleOrganizations = channel.unary_unary(
-        '/hiber.user.CurrentUserService/AccessibleOrganizations',
-        request_serializer=currentuser__pb2.AccessibleOrganizationsRequest.SerializeToString,
-        response_deserializer=currentuser__pb2.AccessibleOrganizationsRequest.Response.FromString,
-        )
 
 
 class CurrentUserServiceServicer(object):
@@ -63,6 +73,13 @@ class CurrentUserServiceServicer(object):
   """
 
   def CurrentUser(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def DeleteCurrentUser(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -83,7 +100,21 @@ class CurrentUserServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def DeleteCurrentUser(self, request, context):
+  def ListOrganizationInvites(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def AcceptOrganizationInvite(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def AccessibleOrganizations(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -111,13 +142,6 @@ class CurrentUserServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def AccessibleOrganizations(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
 
 def add_CurrentUserServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -125,6 +149,11 @@ def add_CurrentUserServiceServicer_to_server(servicer, server):
           servicer.CurrentUser,
           request_deserializer=currentuser__pb2.CurrentUserRequest.FromString,
           response_serializer=currentuser__pb2.CurrentUser.SerializeToString,
+      ),
+      'DeleteCurrentUser': grpc.unary_unary_rpc_method_handler(
+          servicer.DeleteCurrentUser,
+          request_deserializer=currentuser__pb2.DeleteCurrentUserRequest.FromString,
+          response_serializer=currentuser__pb2.DeleteCurrentUserRequest.Response.SerializeToString,
       ),
       'RequestAccess': grpc.unary_unary_rpc_method_handler(
           servicer.RequestAccess,
@@ -136,10 +165,20 @@ def add_CurrentUserServiceServicer_to_server(servicer, server):
           request_deserializer=currentuser__pb2.CancelAccessRequestRequest.FromString,
           response_serializer=currentuser__pb2.CancelAccessRequestRequest.Response.SerializeToString,
       ),
-      'DeleteCurrentUser': grpc.unary_unary_rpc_method_handler(
-          servicer.DeleteCurrentUser,
-          request_deserializer=currentuser__pb2.DeleteCurrentUserRequest.FromString,
-          response_serializer=currentuser__pb2.DeleteCurrentUserRequest.Response.SerializeToString,
+      'ListOrganizationInvites': grpc.unary_unary_rpc_method_handler(
+          servicer.ListOrganizationInvites,
+          request_deserializer=currentuser__pb2.ListOrganizationInvitesRequest.FromString,
+          response_serializer=currentuser__pb2.ListOrganizationInvitesRequest.Response.SerializeToString,
+      ),
+      'AcceptOrganizationInvite': grpc.unary_unary_rpc_method_handler(
+          servicer.AcceptOrganizationInvite,
+          request_deserializer=currentuser__pb2.AcceptOrganizationInviteRequest.FromString,
+          response_serializer=currentuser__pb2.AcceptOrganizationInviteRequest.Response.SerializeToString,
+      ),
+      'AccessibleOrganizations': grpc.unary_unary_rpc_method_handler(
+          servicer.AccessibleOrganizations,
+          request_deserializer=currentuser__pb2.AccessibleOrganizationsRequest.FromString,
+          response_serializer=currentuser__pb2.AccessibleOrganizationsRequest.Response.SerializeToString,
       ),
       'UpdateDefaultOrganization': grpc.unary_unary_rpc_method_handler(
           servicer.UpdateDefaultOrganization,
@@ -155,11 +194,6 @@ def add_CurrentUserServiceServicer_to_server(servicer, server):
           servicer.AcceptTermsAndConditions,
           request_deserializer=currentuser__pb2.AcceptTermsAndConditionsRequest.FromString,
           response_serializer=currentuser__pb2.AcceptTermsAndConditionsRequest.Response.SerializeToString,
-      ),
-      'AccessibleOrganizations': grpc.unary_unary_rpc_method_handler(
-          servicer.AccessibleOrganizations,
-          request_deserializer=currentuser__pb2.AccessibleOrganizationsRequest.FromString,
-          response_serializer=currentuser__pb2.AccessibleOrganizationsRequest.Response.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

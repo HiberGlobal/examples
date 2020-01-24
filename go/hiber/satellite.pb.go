@@ -27,7 +27,7 @@ type SatelliteInformation struct {
 func (m *SatelliteInformation) Reset()                    { *m = SatelliteInformation{} }
 func (m *SatelliteInformation) String() string            { return proto.CompactTextString(m) }
 func (*SatelliteInformation) ProtoMessage()               {}
-func (*SatelliteInformation) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{0} }
+func (*SatelliteInformation) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{0} }
 
 func (m *SatelliteInformation) GetId() int32 {
 	if m != nil {
@@ -66,7 +66,7 @@ type SatellitePath struct {
 func (m *SatellitePath) Reset()                    { *m = SatellitePath{} }
 func (m *SatellitePath) String() string            { return proto.CompactTextString(m) }
 func (*SatellitePath) ProtoMessage()               {}
-func (*SatellitePath) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{1} }
+func (*SatellitePath) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{1} }
 
 func (m *SatellitePath) GetSatelliteId() int32 {
 	if m != nil {
@@ -97,7 +97,7 @@ type SatellitePath_Position struct {
 func (m *SatellitePath_Position) Reset()                    { *m = SatellitePath_Position{} }
 func (m *SatellitePath_Position) String() string            { return proto.CompactTextString(m) }
 func (*SatellitePath_Position) ProtoMessage()               {}
-func (*SatellitePath_Position) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{1, 0} }
+func (*SatellitePath_Position) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{1, 0} }
 
 func (m *SatellitePath_Position) GetTime() *Timestamp {
 	if m != nil {
@@ -126,7 +126,7 @@ type SatellitePasses struct {
 func (m *SatellitePasses) Reset()                    { *m = SatellitePasses{} }
 func (m *SatellitePasses) String() string            { return proto.CompactTextString(m) }
 func (*SatellitePasses) ProtoMessage()               {}
-func (*SatellitePasses) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{2} }
+func (*SatellitePasses) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{2} }
 
 func (m *SatellitePasses) GetSatelliteId() int32 {
 	if m != nil {
@@ -167,7 +167,7 @@ type SatellitePasses_Pass struct {
 func (m *SatellitePasses_Pass) Reset()                    { *m = SatellitePasses_Pass{} }
 func (m *SatellitePasses_Pass) String() string            { return proto.CompactTextString(m) }
 func (*SatellitePasses_Pass) ProtoMessage()               {}
-func (*SatellitePasses_Pass) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{2, 0} }
+func (*SatellitePasses_Pass) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{2, 0} }
 
 func (m *SatellitePasses_Pass) GetTime() *TimeRange {
 	if m != nil {
@@ -212,7 +212,7 @@ type SatelliteSelection struct {
 func (m *SatelliteSelection) Reset()                    { *m = SatelliteSelection{} }
 func (m *SatelliteSelection) String() string            { return proto.CompactTextString(m) }
 func (*SatelliteSelection) ProtoMessage()               {}
-func (*SatelliteSelection) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{3} }
+func (*SatelliteSelection) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{3} }
 
 func (m *SatelliteSelection) GetIds() []int32 {
 	if m != nil {
@@ -235,7 +235,7 @@ type ListSatellitesRequest struct {
 func (m *ListSatellitesRequest) Reset()                    { *m = ListSatellitesRequest{} }
 func (m *ListSatellitesRequest) String() string            { return proto.CompactTextString(m) }
 func (*ListSatellitesRequest) ProtoMessage()               {}
-func (*ListSatellitesRequest) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{4} }
+func (*ListSatellitesRequest) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{4} }
 
 func (m *ListSatellitesRequest) GetSelection() *SatelliteSelection {
 	if m != nil {
@@ -253,7 +253,7 @@ func (m *ListSatellitesRequest_Response) Reset()         { *m = ListSatellitesRe
 func (m *ListSatellitesRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*ListSatellitesRequest_Response) ProtoMessage()    {}
 func (*ListSatellitesRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor13, []int{4, 0}
+	return fileDescriptor17, []int{4, 0}
 }
 
 func (m *ListSatellitesRequest_Response) GetSatellites() []*SatelliteInformation {
@@ -277,7 +277,7 @@ type ListSatellitesPathRequest struct {
 func (m *ListSatellitesPathRequest) Reset()                    { *m = ListSatellitesPathRequest{} }
 func (m *ListSatellitesPathRequest) String() string            { return proto.CompactTextString(m) }
 func (*ListSatellitesPathRequest) ProtoMessage()               {}
-func (*ListSatellitesPathRequest) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{5} }
+func (*ListSatellitesPathRequest) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{5} }
 
 func (m *ListSatellitesPathRequest) GetSelection() *SatelliteSelection {
 	if m != nil {
@@ -295,7 +295,7 @@ func (m *ListSatellitesPathRequest_Response) Reset()         { *m = ListSatellit
 func (m *ListSatellitesPathRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*ListSatellitesPathRequest_Response) ProtoMessage()    {}
 func (*ListSatellitesPathRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor13, []int{5, 0}
+	return fileDescriptor17, []int{5, 0}
 }
 
 func (m *ListSatellitesPathRequest_Response) GetSatellitePath() []*SatellitePath {
@@ -328,7 +328,7 @@ type ListSatellitesPassesRequest struct {
 func (m *ListSatellitesPassesRequest) Reset()                    { *m = ListSatellitesPassesRequest{} }
 func (m *ListSatellitesPassesRequest) String() string            { return proto.CompactTextString(m) }
 func (*ListSatellitesPassesRequest) ProtoMessage()               {}
-func (*ListSatellitesPassesRequest) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{6} }
+func (*ListSatellitesPassesRequest) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{6} }
 
 func (m *ListSatellitesPassesRequest) GetOrganization() string {
 	if m != nil {
@@ -374,7 +374,7 @@ func (m *ListSatellitesPassesRequest_Response) Reset()         { *m = ListSatell
 func (m *ListSatellitesPassesRequest_Response) String() string { return proto.CompactTextString(m) }
 func (*ListSatellitesPassesRequest_Response) ProtoMessage()    {}
 func (*ListSatellitesPassesRequest_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor13, []int{6, 0}
+	return fileDescriptor17, []int{6, 0}
 }
 
 func (m *ListSatellitesPassesRequest_Response) GetPasses() []*SatellitePasses {
@@ -544,9 +544,9 @@ var _SatelliteService_serviceDesc = grpc.ServiceDesc{
 	Metadata: "satellite.proto",
 }
 
-func init() { proto.RegisterFile("satellite.proto", fileDescriptor13) }
+func init() { proto.RegisterFile("satellite.proto", fileDescriptor17) }
 
-var fileDescriptor13 = []byte{
+var fileDescriptor17 = []byte{
 	// 765 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x56, 0xdd, 0x6a, 0xdb, 0x48,
 	0x14, 0x5e, 0x59, 0xb6, 0x37, 0x3a, 0x72, 0x62, 0x33, 0xec, 0x2e, 0x5a, 0x2d, 0x6c, 0xbc, 0xce,

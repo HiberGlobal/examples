@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='certificate.proto',
   package='hiber.certificate',
   syntax='proto3',
-  serialized_pb=_b('\n\x11\x63\x65rtificate.proto\x12\x11hiber.certificate\x1a\nbase.proto\"\xa0\x01\n\x0b\x43\x65rtificate\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12&\n\x0b\x63\x65rtificate\x18\x03 \x01(\x0b\x32\x11.hiber.BytesOrHex\x12\x17\n\x0fhas_private_key\x18\x04 \x01(\x08\x12\x1b\n\x13\x63\x61_certificate_name\x18\x05 \x01(\t\x12\x19\n\x11\x63\x61_certificate_id\x18\x06 \x01(\x03\"[\n\x14\x43\x65rtificateSelection\x12\x17\n\x0f\x63\x65rtificate_ids\x18\x01 \x03(\x03\x12\x0e\n\x06search\x18\x02 \x01(\t\x12\x1a\n\x12\x63\x61_certificate_ids\x18\x03 \x03(\x03\"\xc0\x02\n\x17ListCertificatesRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12:\n\tselection\x18\x02 \x01(\x0b\x32\'.hiber.certificate.CertificateSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\xab\x01\n\x08Response\x12\x34\n\x0c\x63\x65rtificates\x18\x01 \x03(\x0b\x32\x1e.hiber.certificate.Certificate\x12;\n\x07request\x18\x02 \x01(\x0b\x32*.hiber.certificate.ListCertificatesRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xf6\x03\n\x18UploadCertificateRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12Y\n\x12upload_certificate\x18\x02 \x01(\x0b\x32=.hiber.certificate.UploadCertificateRequest.UploadCertificate\x12\\\n\x15upload_ca_certificate\x18\x03 \x01(\x0b\x32=.hiber.certificate.UploadCertificateRequest.UploadCertificate\x12\x19\n\x11\x63\x61_certificate_id\x18\x04 \x01(\x03\x1a}\n\x08Response\x12\x33\n\x0b\x63\x65rtificate\x18\x01 \x01(\x0b\x32\x1e.hiber.certificate.Certificate\x12<\n\x07request\x18\x02 \x01(\x0b\x32+.hiber.certificate.UploadCertificateRequest\x1aq\n\x11UploadCertificate\x12\x0c\n\x04name\x18\x01 \x01(\t\x12&\n\x0b\x63\x65rtificate\x18\x02 \x01(\x0b\x32\x11.hiber.BytesOrHex\x12&\n\x0bprivate_key\x18\x03 \x01(\x0b\x32\x11.hiber.BytesOrHex\"\xad\x02\n\x18RenameCertificateRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12:\n\tselection\x18\x02 \x01(\x0b\x32\'.hiber.certificate.CertificateSelection\x12\x10\n\x08new_name\x18\x03 \x01(\t\x1a\xac\x01\n\x08Response\x12\x34\n\x0c\x63\x65rtificates\x18\x01 \x03(\x0b\x32\x1e.hiber.certificate.Certificate\x12<\n\x07request\x18\x02 \x01(\x0b\x32+.hiber.certificate.RenameCertificateRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xd7\x01\n\x18\x44\x65leteCertificateRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12:\n\tselection\x18\x02 \x01(\x0b\x32\'.hiber.certificate.CertificateSelection\x1ai\n\x08Response\x12\x1f\n\x17\x64\x65leted_certificate_ids\x18\x01 \x03(\x03\x12<\n\x07request\x18\x02 \x01(\x0b\x32+.hiber.certificate.DeleteCertificateRequest2\xc4\x03\n\x12\x43\x65rtificateService\x12g\n\x04List\x12*.hiber.certificate.ListCertificatesRequest\x1a\x33.hiber.certificate.ListCertificatesRequest.Response\x12k\n\x06Rename\x12+.hiber.certificate.RenameCertificateRequest\x1a\x34.hiber.certificate.RenameCertificateRequest.Response\x12k\n\x06Upload\x12+.hiber.certificate.UploadCertificateRequest\x1a\x34.hiber.certificate.UploadCertificateRequest.Response\x12k\n\x06\x44\x65lete\x12+.hiber.certificate.DeleteCertificateRequest\x1a\x34.hiber.certificate.DeleteCertificateRequest.ResponseB<\n!global.hiber.api.grpc.certificateB\x0e\x43\x65rtificateApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\x11\x63\x65rtificate.proto\x12\x11hiber.certificate\x1a\nbase.proto\"\xa0\x01\n\x0b\x43\x65rtificate\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12&\n\x0b\x63\x65rtificate\x18\x03 \x01(\x0b\x32\x11.hiber.BytesOrHex\x12\x17\n\x0fhas_private_key\x18\x04 \x01(\x08\x12\x1b\n\x13\x63\x61_certificate_name\x18\x05 \x01(\t\x12\x19\n\x11\x63\x61_certificate_id\x18\x06 \x01(\x03\"[\n\x14\x43\x65rtificateSelection\x12\x17\n\x0f\x63\x65rtificate_ids\x18\x01 \x03(\x03\x12\x0e\n\x06search\x18\x02 \x01(\t\x12\x1a\n\x12\x63\x61_certificate_ids\x18\x03 \x03(\x03\"\xf1\x02\n\x17ListCertificatesRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12:\n\tselection\x18\x02 \x01(\x0b\x32\'.hiber.certificate.CertificateSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x12/\n\'include_certificate_content_in_response\x18\x04 \x01(\x08\x1a\xab\x01\n\x08Response\x12\x34\n\x0c\x63\x65rtificates\x18\x01 \x03(\x0b\x32\x1e.hiber.certificate.Certificate\x12;\n\x07request\x18\x02 \x01(\x0b\x32*.hiber.certificate.ListCertificatesRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xa7\x04\n\x18UploadCertificateRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12Y\n\x12upload_certificate\x18\x02 \x01(\x0b\x32=.hiber.certificate.UploadCertificateRequest.UploadCertificate\x12\\\n\x15upload_ca_certificate\x18\x03 \x01(\x0b\x32=.hiber.certificate.UploadCertificateRequest.UploadCertificate\x12\x19\n\x11\x63\x61_certificate_id\x18\x04 \x01(\x03\x12/\n\'include_certificate_content_in_response\x18\x05 \x01(\x08\x1a}\n\x08Response\x12\x33\n\x0b\x63\x65rtificate\x18\x01 \x01(\x0b\x32\x1e.hiber.certificate.Certificate\x12<\n\x07request\x18\x02 \x01(\x0b\x32+.hiber.certificate.UploadCertificateRequest\x1aq\n\x11UploadCertificate\x12\x0c\n\x04name\x18\x01 \x01(\t\x12&\n\x0b\x63\x65rtificate\x18\x02 \x01(\x0b\x32\x11.hiber.BytesOrHex\x12&\n\x0bprivate_key\x18\x03 \x01(\x0b\x32\x11.hiber.BytesOrHex\"\xde\x02\n\x18RenameCertificateRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12:\n\tselection\x18\x02 \x01(\x0b\x32\'.hiber.certificate.CertificateSelection\x12\x10\n\x08new_name\x18\x03 \x01(\t\x12/\n\'include_certificate_content_in_response\x18\x04 \x01(\x08\x1a\xac\x01\n\x08Response\x12\x34\n\x0c\x63\x65rtificates\x18\x01 \x03(\x0b\x32\x1e.hiber.certificate.Certificate\x12<\n\x07request\x18\x02 \x01(\x0b\x32+.hiber.certificate.RenameCertificateRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xd7\x01\n\x18\x44\x65leteCertificateRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12:\n\tselection\x18\x02 \x01(\x0b\x32\'.hiber.certificate.CertificateSelection\x1ai\n\x08Response\x12\x1f\n\x17\x64\x65leted_certificate_ids\x18\x01 \x03(\x03\x12<\n\x07request\x18\x02 \x01(\x0b\x32+.hiber.certificate.DeleteCertificateRequest2\xc4\x03\n\x12\x43\x65rtificateService\x12g\n\x04List\x12*.hiber.certificate.ListCertificatesRequest\x1a\x33.hiber.certificate.ListCertificatesRequest.Response\x12k\n\x06Rename\x12+.hiber.certificate.RenameCertificateRequest\x1a\x34.hiber.certificate.RenameCertificateRequest.Response\x12k\n\x06Upload\x12+.hiber.certificate.UploadCertificateRequest\x1a\x34.hiber.certificate.UploadCertificateRequest.Response\x12k\n\x06\x44\x65lete\x12+.hiber.certificate.DeleteCertificateRequest\x1a\x34.hiber.certificate.DeleteCertificateRequest.ResponseB<\n!global.hiber.api.grpc.certificateB\x0e\x43\x65rtificateApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,])
 
@@ -178,8 +178,8 @@ _LISTCERTIFICATESREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=458,
-  serialized_end=629,
+  serialized_start=507,
+  serialized_end=678,
 )
 
 _LISTCERTIFICATESREQUEST = _descriptor.Descriptor(
@@ -210,6 +210,13 @@ _LISTCERTIFICATESREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='include_certificate_content_in_response', full_name='hiber.certificate.ListCertificatesRequest.include_certificate_content_in_response', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -223,7 +230,7 @@ _LISTCERTIFICATESREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=309,
-  serialized_end=629,
+  serialized_end=678,
 )
 
 
@@ -260,8 +267,8 @@ _UPLOADCERTIFICATEREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=894,
-  serialized_end=1019,
+  serialized_start=992,
+  serialized_end=1117,
 )
 
 _UPLOADCERTIFICATEREQUEST_UPLOADCERTIFICATE = _descriptor.Descriptor(
@@ -304,8 +311,8 @@ _UPLOADCERTIFICATEREQUEST_UPLOADCERTIFICATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1021,
-  serialized_end=1134,
+  serialized_start=1119,
+  serialized_end=1232,
 )
 
 _UPLOADCERTIFICATEREQUEST = _descriptor.Descriptor(
@@ -343,6 +350,13 @@ _UPLOADCERTIFICATEREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='include_certificate_content_in_response', full_name='hiber.certificate.UploadCertificateRequest.include_certificate_content_in_response', index=4,
+      number=5, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -355,8 +369,8 @@ _UPLOADCERTIFICATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=632,
-  serialized_end=1134,
+  serialized_start=681,
+  serialized_end=1232,
 )
 
 
@@ -400,8 +414,8 @@ _RENAMECERTIFICATEREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1266,
-  serialized_end=1438,
+  serialized_start=1413,
+  serialized_end=1585,
 )
 
 _RENAMECERTIFICATEREQUEST = _descriptor.Descriptor(
@@ -432,6 +446,13 @@ _RENAMECERTIFICATEREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='include_certificate_content_in_response', full_name='hiber.certificate.RenameCertificateRequest.include_certificate_content_in_response', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -444,8 +465,8 @@ _RENAMECERTIFICATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1137,
-  serialized_end=1438,
+  serialized_start=1235,
+  serialized_end=1585,
 )
 
 
@@ -482,8 +503,8 @@ _DELETECERTIFICATEREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1551,
-  serialized_end=1656,
+  serialized_start=1698,
+  serialized_end=1803,
 )
 
 _DELETECERTIFICATEREQUEST = _descriptor.Descriptor(
@@ -519,8 +540,8 @@ _DELETECERTIFICATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1441,
-  serialized_end=1656,
+  serialized_start=1588,
+  serialized_end=1803,
 )
 
 _CERTIFICATE.fields_by_name['certificate'].message_type = base__pb2._BYTESORHEX
@@ -646,8 +667,8 @@ _CERTIFICATESERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=1659,
-  serialized_end=2111,
+  serialized_start=1806,
+  serialized_end=2258,
   methods=[
   _descriptor.MethodDescriptor(
     name='List',

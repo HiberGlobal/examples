@@ -5,13 +5,12 @@ var grpc = require('grpc');
 var integration_aws_iot_pb = require('./integration_aws_iot_pb.js');
 var base_pb = require('./base_pb.js');
 var certificate_pb = require('./certificate_pb.js');
-var publisher_pb = require('./publisher_pb.js');
 
 function serialize_hiber_integration_awsiot_AWSIoTIntegrationConfigurationRequest(arg) {
   if (!(arg instanceof integration_aws_iot_pb.AWSIoTIntegrationConfigurationRequest)) {
     throw new Error('Expected argument of type hiber.integration.awsiot.AWSIoTIntegrationConfigurationRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_integration_awsiot_AWSIoTIntegrationConfigurationRequest(buffer_arg) {
@@ -22,7 +21,7 @@ function serialize_hiber_integration_awsiot_AWSIoTIntegrationConfigurationReques
   if (!(arg instanceof integration_aws_iot_pb.AWSIoTIntegrationConfigurationRequest.Response)) {
     throw new Error('Expected argument of type hiber.integration.awsiot.AWSIoTIntegrationConfigurationRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_integration_awsiot_AWSIoTIntegrationConfigurationRequest_Response(buffer_arg) {
@@ -33,7 +32,7 @@ function serialize_hiber_integration_awsiot_DisableAWSIoTIntegrationRequest(arg)
   if (!(arg instanceof integration_aws_iot_pb.DisableAWSIoTIntegrationRequest)) {
     throw new Error('Expected argument of type hiber.integration.awsiot.DisableAWSIoTIntegrationRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_integration_awsiot_DisableAWSIoTIntegrationRequest(buffer_arg) {
@@ -44,7 +43,7 @@ function serialize_hiber_integration_awsiot_DisableAWSIoTIntegrationRequest_Resp
   if (!(arg instanceof integration_aws_iot_pb.DisableAWSIoTIntegrationRequest.Response)) {
     throw new Error('Expected argument of type hiber.integration.awsiot.DisableAWSIoTIntegrationRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_integration_awsiot_DisableAWSIoTIntegrationRequest_Response(buffer_arg) {
@@ -55,7 +54,7 @@ function serialize_hiber_integration_awsiot_EnableAWSIoTIntegrationRequest(arg) 
   if (!(arg instanceof integration_aws_iot_pb.EnableAWSIoTIntegrationRequest)) {
     throw new Error('Expected argument of type hiber.integration.awsiot.EnableAWSIoTIntegrationRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_integration_awsiot_EnableAWSIoTIntegrationRequest(buffer_arg) {
@@ -66,7 +65,7 @@ function serialize_hiber_integration_awsiot_EnableAWSIoTIntegrationRequest_Respo
   if (!(arg instanceof integration_aws_iot_pb.EnableAWSIoTIntegrationRequest.Response)) {
     throw new Error('Expected argument of type hiber.integration.awsiot.EnableAWSIoTIntegrationRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_integration_awsiot_EnableAWSIoTIntegrationRequest_Response(buffer_arg) {
@@ -77,7 +76,7 @@ function serialize_hiber_integration_awsiot_InitializeAWSIoTIntegrationRequest(a
   if (!(arg instanceof integration_aws_iot_pb.InitializeAWSIoTIntegrationRequest)) {
     throw new Error('Expected argument of type hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_integration_awsiot_InitializeAWSIoTIntegrationRequest(buffer_arg) {
@@ -88,7 +87,7 @@ function serialize_hiber_integration_awsiot_InitializeAWSIoTIntegrationRequest_R
   if (!(arg instanceof integration_aws_iot_pb.InitializeAWSIoTIntegrationRequest.Response)) {
     throw new Error('Expected argument of type hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_integration_awsiot_InitializeAWSIoTIntegrationRequest_Response(buffer_arg) {
@@ -99,7 +98,7 @@ function serialize_hiber_integration_awsiot_UpdateAWSIoTIntegrationConfiguration
   if (!(arg instanceof integration_aws_iot_pb.UpdateAWSIoTIntegrationConfigurationRequest)) {
     throw new Error('Expected argument of type hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_integration_awsiot_UpdateAWSIoTIntegrationConfigurationRequest(buffer_arg) {
@@ -110,7 +109,7 @@ function serialize_hiber_integration_awsiot_UpdateAWSIoTIntegrationConfiguration
   if (!(arg instanceof integration_aws_iot_pb.UpdateAWSIoTIntegrationConfigurationRequest.Response)) {
     throw new Error('Expected argument of type hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_integration_awsiot_UpdateAWSIoTIntegrationConfigurationRequest_Response(buffer_arg) {

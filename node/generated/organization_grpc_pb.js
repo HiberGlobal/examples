@@ -9,7 +9,7 @@ function serialize_hiber_organization_CreateOrganizationRequest(arg) {
   if (!(arg instanceof organization_pb.CreateOrganizationRequest)) {
     throw new Error('Expected argument of type hiber.organization.CreateOrganizationRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_organization_CreateOrganizationRequest(buffer_arg) {
@@ -20,7 +20,7 @@ function serialize_hiber_organization_DeleteOrganizationConfirmationRequest(arg)
   if (!(arg instanceof organization_pb.DeleteOrganizationConfirmationRequest)) {
     throw new Error('Expected argument of type hiber.organization.DeleteOrganizationConfirmationRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_organization_DeleteOrganizationConfirmationRequest(buffer_arg) {
@@ -31,7 +31,7 @@ function serialize_hiber_organization_DeleteOrganizationConfirmationRequest_Resp
   if (!(arg instanceof organization_pb.DeleteOrganizationConfirmationRequest.Response)) {
     throw new Error('Expected argument of type hiber.organization.DeleteOrganizationConfirmationRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_organization_DeleteOrganizationConfirmationRequest_Response(buffer_arg) {
@@ -42,7 +42,7 @@ function serialize_hiber_organization_DeleteOrganizationRequest(arg) {
   if (!(arg instanceof organization_pb.DeleteOrganizationRequest)) {
     throw new Error('Expected argument of type hiber.organization.DeleteOrganizationRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_organization_DeleteOrganizationRequest(buffer_arg) {
@@ -53,7 +53,7 @@ function serialize_hiber_organization_DeleteOrganizationRequest_Response(arg) {
   if (!(arg instanceof organization_pb.DeleteOrganizationRequest.Response)) {
     throw new Error('Expected argument of type hiber.organization.DeleteOrganizationRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_organization_DeleteOrganizationRequest_Response(buffer_arg) {
@@ -64,7 +64,7 @@ function serialize_hiber_organization_GetOrganizationRequest(arg) {
   if (!(arg instanceof organization_pb.GetOrganizationRequest)) {
     throw new Error('Expected argument of type hiber.organization.GetOrganizationRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_organization_GetOrganizationRequest(buffer_arg) {
@@ -75,7 +75,7 @@ function serialize_hiber_organization_ListChildOrganizationsRequest(arg) {
   if (!(arg instanceof organization_pb.ListChildOrganizationsRequest)) {
     throw new Error('Expected argument of type hiber.organization.ListChildOrganizationsRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_organization_ListChildOrganizationsRequest(buffer_arg) {
@@ -86,7 +86,7 @@ function serialize_hiber_organization_ListChildOrganizationsRequest_Response(arg
   if (!(arg instanceof organization_pb.ListChildOrganizationsRequest.Response)) {
     throw new Error('Expected argument of type hiber.organization.ListChildOrganizationsRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_organization_ListChildOrganizationsRequest_Response(buffer_arg) {
@@ -97,7 +97,7 @@ function serialize_hiber_organization_Organization(arg) {
   if (!(arg instanceof organization_pb.Organization)) {
     throw new Error('Expected argument of type hiber.organization.Organization');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_organization_Organization(buffer_arg) {
@@ -108,7 +108,7 @@ function serialize_hiber_organization_OrganizationTreeRequest(arg) {
   if (!(arg instanceof organization_pb.OrganizationTreeRequest)) {
     throw new Error('Expected argument of type hiber.organization.OrganizationTreeRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_organization_OrganizationTreeRequest(buffer_arg) {
@@ -119,7 +119,7 @@ function serialize_hiber_organization_OrganizationTreeRequest_Response(arg) {
   if (!(arg instanceof organization_pb.OrganizationTreeRequest.Response)) {
     throw new Error('Expected argument of type hiber.organization.OrganizationTreeRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_organization_OrganizationTreeRequest_Response(buffer_arg) {
@@ -130,7 +130,7 @@ function serialize_hiber_organization_UpdateOrganizationRequest(arg) {
   if (!(arg instanceof organization_pb.UpdateOrganizationRequest)) {
     throw new Error('Expected argument of type hiber.organization.UpdateOrganizationRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_organization_UpdateOrganizationRequest(buffer_arg) {
@@ -141,7 +141,7 @@ function serialize_hiber_organization_ValidateOrganizationCreationTokenRequest(a
   if (!(arg instanceof organization_pb.ValidateOrganizationCreationTokenRequest)) {
     throw new Error('Expected argument of type hiber.organization.ValidateOrganizationCreationTokenRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_organization_ValidateOrganizationCreationTokenRequest(buffer_arg) {
@@ -152,7 +152,7 @@ function serialize_hiber_organization_ValidateOrganizationCreationTokenRequest_R
   if (!(arg instanceof organization_pb.ValidateOrganizationCreationTokenRequest.Response)) {
     throw new Error('Expected argument of type hiber.organization.ValidateOrganizationCreationTokenRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_organization_ValidateOrganizationCreationTokenRequest_Response(buffer_arg) {

@@ -11,7 +11,7 @@ function serialize_hiber_dashboard_DashboardRequest(arg) {
   if (!(arg instanceof dashboard_pb.DashboardRequest)) {
     throw new Error('Expected argument of type hiber.dashboard.DashboardRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_dashboard_DashboardRequest(buffer_arg) {
@@ -22,7 +22,7 @@ function serialize_hiber_dashboard_DashboardRequest_Response(arg) {
   if (!(arg instanceof dashboard_pb.DashboardRequest.Response)) {
     throw new Error('Expected argument of type hiber.dashboard.DashboardRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_dashboard_DashboardRequest_Response(buffer_arg) {

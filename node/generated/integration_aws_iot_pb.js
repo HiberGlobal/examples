@@ -12,8 +12,9 @@ var goog = jspb;
 var global = Function('return this')();
 
 var base_pb = require('./base_pb.js');
+goog.object.extend(proto, base_pb);
 var certificate_pb = require('./certificate_pb.js');
-var publisher_pb = require('./publisher_pb.js');
+goog.object.extend(proto, certificate_pb);
 goog.exportSymbol('proto.hiber.integration.awsiot.AWSIoTConfiguration', null, global);
 goog.exportSymbol('proto.hiber.integration.awsiot.AWSIoTIntegrationConfigurationRequest', null, global);
 goog.exportSymbol('proto.hiber.integration.awsiot.AWSIoTIntegrationConfigurationRequest.Response', null, global);
@@ -79,7 +80,8 @@ proto.hiber.integration.awsiot.AWSIoTConfiguration.toObject = function(includeIn
     certificateName: jspb.Message.getFieldWithDefault(msg, 5, ""),
     caCertificateId: jspb.Message.getFieldWithDefault(msg, 6, 0),
     caCertificateName: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    disabled: jspb.Message.getFieldWithDefault(msg, 8, false)
+    disabled: jspb.Message.getFieldWithDefault(msg, 8, false),
+    mqttClientIdentifier: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -148,6 +150,10 @@ proto.hiber.integration.awsiot.AWSIoTConfiguration.deserializeBinaryFromReader =
     case 8:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setDisabled(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMqttClientIdentifier(value);
       break;
     default:
       reader.skipField();
@@ -235,6 +241,13 @@ proto.hiber.integration.awsiot.AWSIoTConfiguration.serializeBinaryToWriter = fun
       f
     );
   }
+  f = message.getMqttClientIdentifier();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
+    );
+  }
 };
 
 
@@ -249,7 +262,7 @@ proto.hiber.integration.awsiot.AWSIoTConfiguration.prototype.getPublisherId = fu
 
 /** @param {number} value */
 proto.hiber.integration.awsiot.AWSIoTConfiguration.prototype.setPublisherId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -264,7 +277,7 @@ proto.hiber.integration.awsiot.AWSIoTConfiguration.prototype.getUrl = function()
 
 /** @param {string} value */
 proto.hiber.integration.awsiot.AWSIoTConfiguration.prototype.setUrl = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -291,7 +304,7 @@ proto.hiber.integration.awsiot.AWSIoTConfiguration.prototype.clearModems = funct
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.integration.awsiot.AWSIoTConfiguration.prototype.hasModems = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -309,7 +322,7 @@ proto.hiber.integration.awsiot.AWSIoTConfiguration.prototype.getCertificateId = 
 
 /** @param {number} value */
 proto.hiber.integration.awsiot.AWSIoTConfiguration.prototype.setCertificateId = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
@@ -324,7 +337,7 @@ proto.hiber.integration.awsiot.AWSIoTConfiguration.prototype.getCertificateName 
 
 /** @param {string} value */
 proto.hiber.integration.awsiot.AWSIoTConfiguration.prototype.setCertificateName = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -339,7 +352,7 @@ proto.hiber.integration.awsiot.AWSIoTConfiguration.prototype.getCaCertificateId 
 
 /** @param {number} value */
 proto.hiber.integration.awsiot.AWSIoTConfiguration.prototype.setCaCertificateId = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
@@ -354,7 +367,7 @@ proto.hiber.integration.awsiot.AWSIoTConfiguration.prototype.getCaCertificateNam
 
 /** @param {string} value */
 proto.hiber.integration.awsiot.AWSIoTConfiguration.prototype.setCaCertificateName = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
@@ -371,7 +384,22 @@ proto.hiber.integration.awsiot.AWSIoTConfiguration.prototype.getDisabled = funct
 
 /** @param {boolean} value */
 proto.hiber.integration.awsiot.AWSIoTConfiguration.prototype.setDisabled = function(value) {
-  jspb.Message.setField(this, 8, value);
+  jspb.Message.setProto3BooleanField(this, 8, value);
+};
+
+
+/**
+ * optional string mqtt_client_identifier = 9;
+ * @return {string}
+ */
+proto.hiber.integration.awsiot.AWSIoTConfiguration.prototype.getMqttClientIdentifier = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.integration.awsiot.AWSIoTConfiguration.prototype.setMqttClientIdentifier = function(value) {
+  jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
@@ -732,7 +760,7 @@ proto.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest.Response.proto
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest.Response.prototype.hasAwsIotConfiguration = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -762,7 +790,7 @@ proto.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest.Response.proto
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -780,7 +808,7 @@ proto.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest.prototype.getO
 
 /** @param {string} value */
 proto.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -795,7 +823,7 @@ proto.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest.prototype.getA
 
 /** @param {string} value */
 proto.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest.prototype.setAwsIotUrl = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -810,7 +838,7 @@ proto.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest.prototype.getE
 
 /** @param {number} value */
 proto.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest.prototype.setExistingCertificateId = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -837,7 +865,7 @@ proto.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest.prototype.clea
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest.prototype.hasUploadCertificate = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -867,7 +895,7 @@ proto.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest.prototype.clea
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest.prototype.hasModems = function() {
   return jspb.Message.getField(this, 5) != null;
@@ -885,7 +913,7 @@ proto.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest.prototype.getM
 
 /** @param {string} value */
 proto.hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest.prototype.setMqttClientIdentifier = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
@@ -1168,7 +1196,7 @@ proto.hiber.integration.awsiot.AWSIoTIntegrationConfigurationRequest.Response.pr
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.integration.awsiot.AWSIoTIntegrationConfigurationRequest.Response.prototype.hasAwsIotConfiguration = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -1186,7 +1214,7 @@ proto.hiber.integration.awsiot.AWSIoTIntegrationConfigurationRequest.prototype.g
 
 /** @param {string} value */
 proto.hiber.integration.awsiot.AWSIoTIntegrationConfigurationRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1469,7 +1497,7 @@ proto.hiber.integration.awsiot.EnableAWSIoTIntegrationRequest.Response.prototype
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.integration.awsiot.EnableAWSIoTIntegrationRequest.Response.prototype.hasAwsIotConfiguration = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -1487,7 +1515,7 @@ proto.hiber.integration.awsiot.EnableAWSIoTIntegrationRequest.prototype.getOrgan
 
 /** @param {string} value */
 proto.hiber.integration.awsiot.EnableAWSIoTIntegrationRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1770,7 +1798,7 @@ proto.hiber.integration.awsiot.DisableAWSIoTIntegrationRequest.Response.prototyp
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.integration.awsiot.DisableAWSIoTIntegrationRequest.Response.prototype.hasAwsIotConfiguration = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -1788,7 +1816,7 @@ proto.hiber.integration.awsiot.DisableAWSIoTIntegrationRequest.prototype.getOrga
 
 /** @param {string} value */
 proto.hiber.integration.awsiot.DisableAWSIoTIntegrationRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1842,7 +1870,7 @@ proto.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.toObj
     organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
     awsIotUrl: jspb.Message.getFieldWithDefault(msg, 2, ""),
     certificateId: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    modems: (f = msg.getModems()) && publisher_pb.UpdatePublisherRequest.UpdateModems.toObject(includeInstance, f),
+    modems: (f = msg.getModems()) && base_pb.Filter.Modems.Update.toObject(includeInstance, f),
     mqttClientIdentifier: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
@@ -1892,9 +1920,9 @@ proto.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.deser
       var value = /** @type {number} */ (reader.readInt64());
       msg.setCertificateId(value);
       break;
-    case 4:
-      var value = new publisher_pb.UpdatePublisherRequest.UpdateModems;
-      reader.readMessage(value,publisher_pb.UpdatePublisherRequest.UpdateModems.deserializeBinaryFromReader);
+    case 6:
+      var value = new base_pb.Filter.Modems.Update;
+      reader.readMessage(value,base_pb.Filter.Modems.Update.deserializeBinaryFromReader);
       msg.setModems(value);
       break;
     case 5:
@@ -1954,9 +1982,9 @@ proto.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.seria
   f = message.getModems();
   if (f != null) {
     writer.writeMessage(
-      4,
+      6,
       f,
-      publisher_pb.UpdatePublisherRequest.UpdateModems.serializeBinaryToWriter
+      base_pb.Filter.Modems.Update.serializeBinaryToWriter
     );
   }
   f = message.getMqttClientIdentifier();
@@ -2135,7 +2163,7 @@ proto.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.Respo
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.Response.prototype.hasAwsIotConfiguration = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -2165,7 +2193,7 @@ proto.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.Respo
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2183,7 +2211,7 @@ proto.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.proto
 
 /** @param {string} value */
 proto.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -2198,7 +2226,7 @@ proto.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.proto
 
 /** @param {string} value */
 proto.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.prototype.setAwsIotUrl = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -2213,23 +2241,23 @@ proto.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.proto
 
 /** @param {number} value */
 proto.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.prototype.setCertificateId = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
 /**
- * optional hiber.publisher.UpdatePublisherRequest.UpdateModems modems = 4;
- * @return {?proto.hiber.publisher.UpdatePublisherRequest.UpdateModems}
+ * optional hiber.Filter.Modems.Update modems = 6;
+ * @return {?proto.hiber.Filter.Modems.Update}
  */
 proto.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.prototype.getModems = function() {
-  return /** @type{?proto.hiber.publisher.UpdatePublisherRequest.UpdateModems} */ (
-    jspb.Message.getWrapperField(this, publisher_pb.UpdatePublisherRequest.UpdateModems, 4));
+  return /** @type{?proto.hiber.Filter.Modems.Update} */ (
+    jspb.Message.getWrapperField(this, base_pb.Filter.Modems.Update, 6));
 };
 
 
-/** @param {?proto.hiber.publisher.UpdatePublisherRequest.UpdateModems|undefined} value */
+/** @param {?proto.hiber.Filter.Modems.Update|undefined} value */
 proto.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.prototype.setModems = function(value) {
-  jspb.Message.setWrapperField(this, 4, value);
+  jspb.Message.setWrapperField(this, 6, value);
 };
 
 
@@ -2240,10 +2268,10 @@ proto.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.proto
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.prototype.hasModems = function() {
-  return jspb.Message.getField(this, 4) != null;
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
@@ -2258,7 +2286,7 @@ proto.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.proto
 
 /** @param {string} value */
 proto.hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.prototype.setMqttClientIdentifier = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 

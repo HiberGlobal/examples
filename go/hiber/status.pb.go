@@ -26,7 +26,7 @@ type NetworkStatus struct {
 func (m *NetworkStatus) Reset()                    { *m = NetworkStatus{} }
 func (m *NetworkStatus) String() string            { return proto.CompactTextString(m) }
 func (*NetworkStatus) ProtoMessage()               {}
-func (*NetworkStatus) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{0} }
+func (*NetworkStatus) Descriptor() ([]byte, []int) { return fileDescriptor19, []int{0} }
 
 func (m *NetworkStatus) GetHealth() Health {
 	if m != nil {
@@ -59,7 +59,7 @@ type AreaStatus struct {
 func (m *AreaStatus) Reset()                    { *m = AreaStatus{} }
 func (m *AreaStatus) String() string            { return proto.CompactTextString(m) }
 func (*AreaStatus) ProtoMessage()               {}
-func (*AreaStatus) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{1} }
+func (*AreaStatus) Descriptor() ([]byte, []int) { return fileDescriptor19, []int{1} }
 
 func (m *AreaStatus) GetArea() *Area {
 	if m != nil {
@@ -105,7 +105,7 @@ type OrganizationStatus struct {
 func (m *OrganizationStatus) Reset()                    { *m = OrganizationStatus{} }
 func (m *OrganizationStatus) String() string            { return proto.CompactTextString(m) }
 func (*OrganizationStatus) ProtoMessage()               {}
-func (*OrganizationStatus) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{2} }
+func (*OrganizationStatus) Descriptor() ([]byte, []int) { return fileDescriptor19, []int{2} }
 
 func (m *OrganizationStatus) GetHealth() Health {
 	if m != nil {
@@ -152,7 +152,7 @@ func (m *OrganizationStatus_ModemStatus) Reset()         { *m = OrganizationStat
 func (m *OrganizationStatus_ModemStatus) String() string { return proto.CompactTextString(m) }
 func (*OrganizationStatus_ModemStatus) ProtoMessage()    {}
 func (*OrganizationStatus_ModemStatus) Descriptor() ([]byte, []int) {
-	return fileDescriptor15, []int{2, 0}
+	return fileDescriptor19, []int{2, 0}
 }
 
 func (m *OrganizationStatus_ModemStatus) GetModemNumber() string {
@@ -186,7 +186,7 @@ func (m *OrganizationStatus_PublisherStatus) Reset()         { *m = Organization
 func (m *OrganizationStatus_PublisherStatus) String() string { return proto.CompactTextString(m) }
 func (*OrganizationStatus_PublisherStatus) ProtoMessage()    {}
 func (*OrganizationStatus_PublisherStatus) Descriptor() ([]byte, []int) {
-	return fileDescriptor15, []int{2, 1}
+	return fileDescriptor19, []int{2, 1}
 }
 
 func (m *OrganizationStatus_PublisherStatus) GetPublisherId() int64 {
@@ -222,7 +222,7 @@ type StatusRequest struct {
 func (m *StatusRequest) Reset()                    { *m = StatusRequest{} }
 func (m *StatusRequest) String() string            { return proto.CompactTextString(m) }
 func (*StatusRequest) ProtoMessage()               {}
-func (*StatusRequest) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{3} }
+func (*StatusRequest) Descriptor() ([]byte, []int) { return fileDescriptor19, []int{3} }
 
 func (m *StatusRequest) GetOrganization() string {
 	if m != nil {
@@ -262,7 +262,7 @@ type StatusRequest_Response struct {
 func (m *StatusRequest_Response) Reset()                    { *m = StatusRequest_Response{} }
 func (m *StatusRequest_Response) String() string            { return proto.CompactTextString(m) }
 func (*StatusRequest_Response) ProtoMessage()               {}
-func (*StatusRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{3, 0} }
+func (*StatusRequest_Response) Descriptor() ([]byte, []int) { return fileDescriptor19, []int{3, 0} }
 
 func (m *StatusRequest_Response) GetRequest() *StatusRequest {
 	if m != nil {
@@ -388,9 +388,9 @@ var _StatusService_serviceDesc = grpc.ServiceDesc{
 	Metadata: "status.proto",
 }
 
-func init() { proto.RegisterFile("status.proto", fileDescriptor15) }
+func init() { proto.RegisterFile("status.proto", fileDescriptor19) }
 
-var fileDescriptor15 = []byte{
+var fileDescriptor19 = []byte{
 	// 603 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x95, 0xcf, 0x6e, 0xd3, 0x40,
 	0x10, 0xc6, 0x49, 0x93, 0xba, 0xc9, 0xd8, 0x49, 0x61, 0xb9, 0x58, 0x01, 0x89, 0x10, 0x51, 0x29,

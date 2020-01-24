@@ -5,11 +5,33 @@ var grpc = require('grpc');
 var currentuser_pb = require('./currentuser_pb.js');
 var base_pb = require('./base_pb.js');
 
+function serialize_hiber_user_AcceptOrganizationInviteRequest(arg) {
+  if (!(arg instanceof currentuser_pb.AcceptOrganizationInviteRequest)) {
+    throw new Error('Expected argument of type hiber.user.AcceptOrganizationInviteRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_hiber_user_AcceptOrganizationInviteRequest(buffer_arg) {
+  return currentuser_pb.AcceptOrganizationInviteRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_user_AcceptOrganizationInviteRequest_Response(arg) {
+  if (!(arg instanceof currentuser_pb.AcceptOrganizationInviteRequest.Response)) {
+    throw new Error('Expected argument of type hiber.user.AcceptOrganizationInviteRequest.Response');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_hiber_user_AcceptOrganizationInviteRequest_Response(buffer_arg) {
+  return currentuser_pb.AcceptOrganizationInviteRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_hiber_user_AcceptTermsAndConditionsRequest(arg) {
   if (!(arg instanceof currentuser_pb.AcceptTermsAndConditionsRequest)) {
     throw new Error('Expected argument of type hiber.user.AcceptTermsAndConditionsRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_user_AcceptTermsAndConditionsRequest(buffer_arg) {
@@ -20,7 +42,7 @@ function serialize_hiber_user_AcceptTermsAndConditionsRequest_Response(arg) {
   if (!(arg instanceof currentuser_pb.AcceptTermsAndConditionsRequest.Response)) {
     throw new Error('Expected argument of type hiber.user.AcceptTermsAndConditionsRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_user_AcceptTermsAndConditionsRequest_Response(buffer_arg) {
@@ -31,7 +53,7 @@ function serialize_hiber_user_AccessibleOrganizationsRequest(arg) {
   if (!(arg instanceof currentuser_pb.AccessibleOrganizationsRequest)) {
     throw new Error('Expected argument of type hiber.user.AccessibleOrganizationsRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_user_AccessibleOrganizationsRequest(buffer_arg) {
@@ -42,7 +64,7 @@ function serialize_hiber_user_AccessibleOrganizationsRequest_Response(arg) {
   if (!(arg instanceof currentuser_pb.AccessibleOrganizationsRequest.Response)) {
     throw new Error('Expected argument of type hiber.user.AccessibleOrganizationsRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_user_AccessibleOrganizationsRequest_Response(buffer_arg) {
@@ -53,7 +75,7 @@ function serialize_hiber_user_CancelAccessRequestRequest(arg) {
   if (!(arg instanceof currentuser_pb.CancelAccessRequestRequest)) {
     throw new Error('Expected argument of type hiber.user.CancelAccessRequestRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_user_CancelAccessRequestRequest(buffer_arg) {
@@ -64,7 +86,7 @@ function serialize_hiber_user_CancelAccessRequestRequest_Response(arg) {
   if (!(arg instanceof currentuser_pb.CancelAccessRequestRequest.Response)) {
     throw new Error('Expected argument of type hiber.user.CancelAccessRequestRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_user_CancelAccessRequestRequest_Response(buffer_arg) {
@@ -75,7 +97,7 @@ function serialize_hiber_user_CurrentUser(arg) {
   if (!(arg instanceof currentuser_pb.CurrentUser)) {
     throw new Error('Expected argument of type hiber.user.CurrentUser');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_user_CurrentUser(buffer_arg) {
@@ -86,7 +108,7 @@ function serialize_hiber_user_CurrentUserRequest(arg) {
   if (!(arg instanceof currentuser_pb.CurrentUserRequest)) {
     throw new Error('Expected argument of type hiber.user.CurrentUserRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_user_CurrentUserRequest(buffer_arg) {
@@ -97,7 +119,7 @@ function serialize_hiber_user_DeleteCurrentUserRequest(arg) {
   if (!(arg instanceof currentuser_pb.DeleteCurrentUserRequest)) {
     throw new Error('Expected argument of type hiber.user.DeleteCurrentUserRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_user_DeleteCurrentUserRequest(buffer_arg) {
@@ -108,18 +130,40 @@ function serialize_hiber_user_DeleteCurrentUserRequest_Response(arg) {
   if (!(arg instanceof currentuser_pb.DeleteCurrentUserRequest.Response)) {
     throw new Error('Expected argument of type hiber.user.DeleteCurrentUserRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_user_DeleteCurrentUserRequest_Response(buffer_arg) {
   return currentuser_pb.DeleteCurrentUserRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_hiber_user_ListOrganizationInvitesRequest(arg) {
+  if (!(arg instanceof currentuser_pb.ListOrganizationInvitesRequest)) {
+    throw new Error('Expected argument of type hiber.user.ListOrganizationInvitesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_hiber_user_ListOrganizationInvitesRequest(buffer_arg) {
+  return currentuser_pb.ListOrganizationInvitesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hiber_user_ListOrganizationInvitesRequest_Response(arg) {
+  if (!(arg instanceof currentuser_pb.ListOrganizationInvitesRequest.Response)) {
+    throw new Error('Expected argument of type hiber.user.ListOrganizationInvitesRequest.Response');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_hiber_user_ListOrganizationInvitesRequest_Response(buffer_arg) {
+  return currentuser_pb.ListOrganizationInvitesRequest.Response.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_hiber_user_RequestAccessRequest(arg) {
   if (!(arg instanceof currentuser_pb.RequestAccessRequest)) {
     throw new Error('Expected argument of type hiber.user.RequestAccessRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_user_RequestAccessRequest(buffer_arg) {
@@ -130,7 +174,7 @@ function serialize_hiber_user_RequestAccessRequest_Response(arg) {
   if (!(arg instanceof currentuser_pb.RequestAccessRequest.Response)) {
     throw new Error('Expected argument of type hiber.user.RequestAccessRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_user_RequestAccessRequest_Response(buffer_arg) {
@@ -141,7 +185,7 @@ function serialize_hiber_user_UpdateDefaultOrganizationRequest(arg) {
   if (!(arg instanceof currentuser_pb.UpdateDefaultOrganizationRequest)) {
     throw new Error('Expected argument of type hiber.user.UpdateDefaultOrganizationRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_user_UpdateDefaultOrganizationRequest(buffer_arg) {
@@ -152,7 +196,7 @@ function serialize_hiber_user_UpdateDefaultOrganizationRequest_Response(arg) {
   if (!(arg instanceof currentuser_pb.UpdateDefaultOrganizationRequest.Response)) {
     throw new Error('Expected argument of type hiber.user.UpdateDefaultOrganizationRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_user_UpdateDefaultOrganizationRequest_Response(buffer_arg) {
@@ -163,7 +207,7 @@ function serialize_hiber_user_UpdateMissionControlSettingsRequest(arg) {
   if (!(arg instanceof currentuser_pb.UpdateMissionControlSettingsRequest)) {
     throw new Error('Expected argument of type hiber.user.UpdateMissionControlSettingsRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_user_UpdateMissionControlSettingsRequest(buffer_arg) {
@@ -174,7 +218,7 @@ function serialize_hiber_user_UpdateMissionControlSettingsRequest_Response(arg) 
   if (!(arg instanceof currentuser_pb.UpdateMissionControlSettingsRequest.Response)) {
     throw new Error('Expected argument of type hiber.user.UpdateMissionControlSettingsRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_user_UpdateMissionControlSettingsRequest_Response(buffer_arg) {
@@ -195,6 +239,17 @@ var CurrentUserServiceService = exports.CurrentUserServiceService = {
     requestDeserialize: deserialize_hiber_user_CurrentUserRequest,
     responseSerialize: serialize_hiber_user_CurrentUser,
     responseDeserialize: deserialize_hiber_user_CurrentUser,
+  },
+  deleteCurrentUser: {
+    path: '/hiber.user.CurrentUserService/DeleteCurrentUser',
+    requestStream: false,
+    responseStream: false,
+    requestType: currentuser_pb.DeleteCurrentUserRequest,
+    responseType: currentuser_pb.DeleteCurrentUserRequest.Response,
+    requestSerialize: serialize_hiber_user_DeleteCurrentUserRequest,
+    requestDeserialize: deserialize_hiber_user_DeleteCurrentUserRequest,
+    responseSerialize: serialize_hiber_user_DeleteCurrentUserRequest_Response,
+    responseDeserialize: deserialize_hiber_user_DeleteCurrentUserRequest_Response,
   },
   requestAccess: {
     path: '/hiber.user.CurrentUserService/RequestAccess',
@@ -218,16 +273,38 @@ var CurrentUserServiceService = exports.CurrentUserServiceService = {
     responseSerialize: serialize_hiber_user_CancelAccessRequestRequest_Response,
     responseDeserialize: deserialize_hiber_user_CancelAccessRequestRequest_Response,
   },
-  deleteCurrentUser: {
-    path: '/hiber.user.CurrentUserService/DeleteCurrentUser',
+  listOrganizationInvites: {
+    path: '/hiber.user.CurrentUserService/ListOrganizationInvites',
     requestStream: false,
     responseStream: false,
-    requestType: currentuser_pb.DeleteCurrentUserRequest,
-    responseType: currentuser_pb.DeleteCurrentUserRequest.Response,
-    requestSerialize: serialize_hiber_user_DeleteCurrentUserRequest,
-    requestDeserialize: deserialize_hiber_user_DeleteCurrentUserRequest,
-    responseSerialize: serialize_hiber_user_DeleteCurrentUserRequest_Response,
-    responseDeserialize: deserialize_hiber_user_DeleteCurrentUserRequest_Response,
+    requestType: currentuser_pb.ListOrganizationInvitesRequest,
+    responseType: currentuser_pb.ListOrganizationInvitesRequest.Response,
+    requestSerialize: serialize_hiber_user_ListOrganizationInvitesRequest,
+    requestDeserialize: deserialize_hiber_user_ListOrganizationInvitesRequest,
+    responseSerialize: serialize_hiber_user_ListOrganizationInvitesRequest_Response,
+    responseDeserialize: deserialize_hiber_user_ListOrganizationInvitesRequest_Response,
+  },
+  acceptOrganizationInvite: {
+    path: '/hiber.user.CurrentUserService/AcceptOrganizationInvite',
+    requestStream: false,
+    responseStream: false,
+    requestType: currentuser_pb.AcceptOrganizationInviteRequest,
+    responseType: currentuser_pb.AcceptOrganizationInviteRequest.Response,
+    requestSerialize: serialize_hiber_user_AcceptOrganizationInviteRequest,
+    requestDeserialize: deserialize_hiber_user_AcceptOrganizationInviteRequest,
+    responseSerialize: serialize_hiber_user_AcceptOrganizationInviteRequest_Response,
+    responseDeserialize: deserialize_hiber_user_AcceptOrganizationInviteRequest_Response,
+  },
+  accessibleOrganizations: {
+    path: '/hiber.user.CurrentUserService/AccessibleOrganizations',
+    requestStream: false,
+    responseStream: false,
+    requestType: currentuser_pb.AccessibleOrganizationsRequest,
+    responseType: currentuser_pb.AccessibleOrganizationsRequest.Response,
+    requestSerialize: serialize_hiber_user_AccessibleOrganizationsRequest,
+    requestDeserialize: deserialize_hiber_user_AccessibleOrganizationsRequest,
+    responseSerialize: serialize_hiber_user_AccessibleOrganizationsRequest_Response,
+    responseDeserialize: deserialize_hiber_user_AccessibleOrganizationsRequest_Response,
   },
   updateDefaultOrganization: {
     path: '/hiber.user.CurrentUserService/UpdateDefaultOrganization',
@@ -261,17 +338,6 @@ var CurrentUserServiceService = exports.CurrentUserServiceService = {
     requestDeserialize: deserialize_hiber_user_AcceptTermsAndConditionsRequest,
     responseSerialize: serialize_hiber_user_AcceptTermsAndConditionsRequest_Response,
     responseDeserialize: deserialize_hiber_user_AcceptTermsAndConditionsRequest_Response,
-  },
-  accessibleOrganizations: {
-    path: '/hiber.user.CurrentUserService/AccessibleOrganizations',
-    requestStream: false,
-    responseStream: false,
-    requestType: currentuser_pb.AccessibleOrganizationsRequest,
-    responseType: currentuser_pb.AccessibleOrganizationsRequest.Response,
-    requestSerialize: serialize_hiber_user_AccessibleOrganizationsRequest,
-    requestDeserialize: deserialize_hiber_user_AccessibleOrganizationsRequest,
-    responseSerialize: serialize_hiber_user_AccessibleOrganizationsRequest_Response,
-    responseDeserialize: deserialize_hiber_user_AccessibleOrganizationsRequest_Response,
   },
 };
 

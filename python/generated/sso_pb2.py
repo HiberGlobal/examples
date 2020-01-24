@@ -13,16 +13,14 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-import base_pb2 as base__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='sso.proto',
   package='hiber.sso',
   syntax='proto3',
-  serialized_pb=_b('\n\tsso.proto\x12\thiber.sso\x1a\nbase.proto\"0\n\x13ZendeskTokenRequest\x1a\x19\n\x08Response\x12\r\n\x05token\x18\x01 \x01(\t2i\n\x13SingleSignOnService\x12R\n\x07Zendesk\x12\x1e.hiber.sso.ZendeskTokenRequest\x1a\'.hiber.sso.ZendeskTokenRequest.ResponseB,\n\x19global.hiber.api.grpc.ssoB\x06SSOApiP\x00Z\x05hiberb\x06proto3')
-  ,
-  dependencies=[base__pb2.DESCRIPTOR,])
+  serialized_pb=_b('\n\tsso.proto\x12\thiber.sso\"0\n\x13ZendeskTokenRequest\x1a\x19\n\x08Response\x12\r\n\x05token\x18\x01 \x01(\t2i\n\x13SingleSignOnService\x12R\n\x07Zendesk\x12\x1e.hiber.sso.ZendeskTokenRequest\x1a\'.hiber.sso.ZendeskTokenRequest.ResponseB,\n\x19global.hiber.api.grpc.ssoB\x06SSOApiP\x00Z\x05hiberb\x06proto3')
+)
 
 
 
@@ -53,8 +51,8 @@ _ZENDESKTOKENREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=59,
-  serialized_end=84,
+  serialized_start=47,
+  serialized_end=72,
 )
 
 _ZENDESKTOKENREQUEST = _descriptor.Descriptor(
@@ -76,8 +74,8 @@ _ZENDESKTOKENREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=36,
-  serialized_end=84,
+  serialized_start=24,
+  serialized_end=72,
 )
 
 _ZENDESKTOKENREQUEST_RESPONSE.containing_type = _ZENDESKTOKENREQUEST
@@ -109,8 +107,8 @@ _SINGLESIGNONSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=86,
-  serialized_end=191,
+  serialized_start=74,
+  serialized_end=179,
   methods=[
   _descriptor.MethodDescriptor(
     name='Zendesk',

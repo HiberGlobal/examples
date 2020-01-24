@@ -9,7 +9,7 @@ function serialize_hiber_certificate_DeleteCertificateRequest(arg) {
   if (!(arg instanceof certificate_pb.DeleteCertificateRequest)) {
     throw new Error('Expected argument of type hiber.certificate.DeleteCertificateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_certificate_DeleteCertificateRequest(buffer_arg) {
@@ -20,7 +20,7 @@ function serialize_hiber_certificate_DeleteCertificateRequest_Response(arg) {
   if (!(arg instanceof certificate_pb.DeleteCertificateRequest.Response)) {
     throw new Error('Expected argument of type hiber.certificate.DeleteCertificateRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_certificate_DeleteCertificateRequest_Response(buffer_arg) {
@@ -31,7 +31,7 @@ function serialize_hiber_certificate_ListCertificatesRequest(arg) {
   if (!(arg instanceof certificate_pb.ListCertificatesRequest)) {
     throw new Error('Expected argument of type hiber.certificate.ListCertificatesRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_certificate_ListCertificatesRequest(buffer_arg) {
@@ -42,7 +42,7 @@ function serialize_hiber_certificate_ListCertificatesRequest_Response(arg) {
   if (!(arg instanceof certificate_pb.ListCertificatesRequest.Response)) {
     throw new Error('Expected argument of type hiber.certificate.ListCertificatesRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_certificate_ListCertificatesRequest_Response(buffer_arg) {
@@ -53,7 +53,7 @@ function serialize_hiber_certificate_RenameCertificateRequest(arg) {
   if (!(arg instanceof certificate_pb.RenameCertificateRequest)) {
     throw new Error('Expected argument of type hiber.certificate.RenameCertificateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_certificate_RenameCertificateRequest(buffer_arg) {
@@ -64,7 +64,7 @@ function serialize_hiber_certificate_RenameCertificateRequest_Response(arg) {
   if (!(arg instanceof certificate_pb.RenameCertificateRequest.Response)) {
     throw new Error('Expected argument of type hiber.certificate.RenameCertificateRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_certificate_RenameCertificateRequest_Response(buffer_arg) {
@@ -75,7 +75,7 @@ function serialize_hiber_certificate_UploadCertificateRequest(arg) {
   if (!(arg instanceof certificate_pb.UploadCertificateRequest)) {
     throw new Error('Expected argument of type hiber.certificate.UploadCertificateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_certificate_UploadCertificateRequest(buffer_arg) {
@@ -86,7 +86,7 @@ function serialize_hiber_certificate_UploadCertificateRequest_Response(arg) {
   if (!(arg instanceof certificate_pb.UploadCertificateRequest.Response)) {
     throw new Error('Expected argument of type hiber.certificate.UploadCertificateRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_certificate_UploadCertificateRequest_Response(buffer_arg) {

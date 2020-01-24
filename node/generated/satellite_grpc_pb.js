@@ -9,7 +9,7 @@ function serialize_hiber_satellite_ListSatellitesPassesRequest(arg) {
   if (!(arg instanceof satellite_pb.ListSatellitesPassesRequest)) {
     throw new Error('Expected argument of type hiber.satellite.ListSatellitesPassesRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_satellite_ListSatellitesPassesRequest(buffer_arg) {
@@ -20,7 +20,7 @@ function serialize_hiber_satellite_ListSatellitesPassesRequest_Response(arg) {
   if (!(arg instanceof satellite_pb.ListSatellitesPassesRequest.Response)) {
     throw new Error('Expected argument of type hiber.satellite.ListSatellitesPassesRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_satellite_ListSatellitesPassesRequest_Response(buffer_arg) {
@@ -31,7 +31,7 @@ function serialize_hiber_satellite_ListSatellitesPathRequest(arg) {
   if (!(arg instanceof satellite_pb.ListSatellitesPathRequest)) {
     throw new Error('Expected argument of type hiber.satellite.ListSatellitesPathRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_satellite_ListSatellitesPathRequest(buffer_arg) {
@@ -42,7 +42,7 @@ function serialize_hiber_satellite_ListSatellitesPathRequest_Response(arg) {
   if (!(arg instanceof satellite_pb.ListSatellitesPathRequest.Response)) {
     throw new Error('Expected argument of type hiber.satellite.ListSatellitesPathRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_satellite_ListSatellitesPathRequest_Response(buffer_arg) {
@@ -53,7 +53,7 @@ function serialize_hiber_satellite_ListSatellitesRequest(arg) {
   if (!(arg instanceof satellite_pb.ListSatellitesRequest)) {
     throw new Error('Expected argument of type hiber.satellite.ListSatellitesRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_satellite_ListSatellitesRequest(buffer_arg) {
@@ -64,7 +64,7 @@ function serialize_hiber_satellite_ListSatellitesRequest_Response(arg) {
   if (!(arg instanceof satellite_pb.ListSatellitesRequest.Response)) {
     throw new Error('Expected argument of type hiber.satellite.ListSatellitesRequest.Response');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_hiber_satellite_ListSatellitesRequest_Response(buffer_arg) {

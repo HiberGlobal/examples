@@ -12,8 +12,11 @@ var goog = jspb;
 var global = Function('return this')();
 
 var base_pb = require('./base_pb.js');
+goog.object.extend(proto, base_pb);
 var tag_pb = require('./tag_pb.js');
+goog.object.extend(proto, tag_pb);
 var subscription_pb = require('./subscription_pb.js');
+goog.object.extend(proto, subscription_pb);
 goog.exportSymbol('proto.hiber.modem.GetModemRequest', null, global);
 goog.exportSymbol('proto.hiber.modem.LicenseKeysRequest', null, global);
 goog.exportSymbol('proto.hiber.modem.LicenseKeysRequest.Response', null, global);
@@ -35,10 +38,16 @@ goog.exportSymbol('proto.hiber.modem.Modem.TechnicalData', null, global);
 goog.exportSymbol('proto.hiber.modem.Modem.Transfer', null, global);
 goog.exportSymbol('proto.hiber.modem.Modem.Transfer.Status', null, global);
 goog.exportSymbol('proto.hiber.modem.ModemMessage', null, global);
+goog.exportSymbol('proto.hiber.modem.ModemMessage.ParsedBody', null, global);
+goog.exportSymbol('proto.hiber.modem.ModemMessage.Source', null, global);
 goog.exportSymbol('proto.hiber.modem.ModemMessageSelection', null, global);
 goog.exportSymbol('proto.hiber.modem.ModemSelection', null, global);
 goog.exportSymbol('proto.hiber.modem.ModemSelection.Transfers', null, global);
 goog.exportSymbol('proto.hiber.modem.RenameModemRequest', null, global);
+goog.exportSymbol('proto.hiber.modem.UpdateModemNotesRequest', null, global);
+goog.exportSymbol('proto.hiber.modem.UpdateModemNotesRequest.Response', null, global);
+goog.exportSymbol('proto.hiber.modem.UpdateModemSecureNotesRequest', null, global);
+goog.exportSymbol('proto.hiber.modem.UpdateModemSecureNotesRequest.Response', null, global);
 goog.exportSymbol('proto.hiber.modem.UpdateModemTagsRequest', null, global);
 goog.exportSymbol('proto.hiber.modem.UpdateModemTagsRequest.Response', null, global);
 goog.exportSymbol('proto.hiber.modem.UpdatePeripheralsRequest', null, global);
@@ -104,7 +113,7 @@ proto.hiber.modem.Modem.toObject = function(includeInstance, msg) {
     lastMessageId: jspb.Message.getFieldWithDefault(msg, 16, 0),
     lastMessageReceivedAt: (f = msg.getLastMessageReceivedAt()) && base_pb.Timestamp.toObject(includeInstance, f),
     lastMessageSentAt: (f = msg.getLastMessageSentAt()) && base_pb.Timestamp.toObject(includeInstance, f),
-    lastMessagePayload: (f = msg.getLastMessagePayload()) && base_pb.BytesOrHex.toObject(includeInstance, f),
+    lastMessageBody: (f = msg.getLastMessageBody()) && base_pb.BytesOrHex.toObject(includeInstance, f),
     maximumInactivityPeriod: jspb.Message.getFieldWithDefault(msg, 8, 0),
     health: jspb.Message.getFieldWithDefault(msg, 9, 0),
     status: jspb.Message.getFieldWithDefault(msg, 12, 0),
@@ -112,6 +121,8 @@ proto.hiber.modem.Modem.toObject = function(includeInstance, msg) {
     technical: (f = msg.getTechnical()) && proto.hiber.modem.Modem.TechnicalData.toObject(includeInstance, f),
     peripherals: (f = msg.getPeripherals()) && proto.hiber.modem.Modem.Peripherals.toObject(includeInstance, f),
     inTransfer: (f = msg.getInTransfer()) && proto.hiber.modem.Modem.Transfer.toObject(includeInstance, f),
+    notes: jspb.Message.getFieldWithDefault(msg, 17, ""),
+    secureNotes: jspb.Message.getFieldWithDefault(msg, 18, ""),
     tagsList: jspb.Message.toObjectList(msg.getTagsList(),
     tag_pb.Tag.toObject, includeInstance),
     isGateway: jspb.Message.getFieldWithDefault(msg, 20, false),
@@ -188,7 +199,7 @@ proto.hiber.modem.Modem.deserializeBinaryFromReader = function(msg, reader) {
     case 15:
       var value = new base_pb.BytesOrHex;
       reader.readMessage(value,base_pb.BytesOrHex.deserializeBinaryFromReader);
-      msg.setLastMessagePayload(value);
+      msg.setLastMessageBody(value);
       break;
     case 8:
       var value = /** @type {number} */ (reader.readInt32());
@@ -222,6 +233,14 @@ proto.hiber.modem.Modem.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,proto.hiber.modem.Modem.Transfer.deserializeBinaryFromReader);
       msg.setInTransfer(value);
       break;
+    case 17:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNotes(value);
+      break;
+    case 18:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSecureNotes(value);
+      break;
     case 10:
       var value = new tag_pb.Tag;
       reader.readMessage(value,tag_pb.Tag.deserializeBinaryFromReader);
@@ -240,8 +259,8 @@ proto.hiber.modem.Modem.deserializeBinaryFromReader = function(msg, reader) {
       msg.setConnectedToGateway(value);
       break;
     case 23:
-      var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
-      msg.setExternalDeviceIdsList(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.addExternalDeviceIds(value);
       break;
     default:
       reader.skipField();
@@ -324,7 +343,7 @@ proto.hiber.modem.Modem.serializeBinaryToWriter = function(message, writer) {
       base_pb.Timestamp.serializeBinaryToWriter
     );
   }
-  f = message.getLastMessagePayload();
+  f = message.getLastMessageBody();
   if (f != null) {
     writer.writeMessage(
       15,
@@ -385,6 +404,20 @@ proto.hiber.modem.Modem.serializeBinaryToWriter = function(message, writer) {
       proto.hiber.modem.Modem.Transfer.serializeBinaryToWriter
     );
   }
+  f = message.getNotes();
+  if (f.length > 0) {
+    writer.writeString(
+      17,
+      f
+    );
+  }
+  f = message.getSecureNotes();
+  if (f.length > 0) {
+    writer.writeString(
+      18,
+      f
+    );
+  }
   f = message.getTagsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
@@ -416,7 +449,7 @@ proto.hiber.modem.Modem.serializeBinaryToWriter = function(message, writer) {
   }
   f = message.getExternalDeviceIdsList();
   if (f.length > 0) {
-    writer.writePackedInt64(
+    writer.writeRepeatedString(
       23,
       f
     );
@@ -610,7 +643,7 @@ proto.hiber.modem.Modem.TechnicalData.prototype.getHardwareName = function() {
 
 /** @param {string} value */
 proto.hiber.modem.Modem.TechnicalData.prototype.setHardwareName = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -625,7 +658,7 @@ proto.hiber.modem.Modem.TechnicalData.prototype.getFirmwareVersionName = functio
 
 /** @param {string} value */
 proto.hiber.modem.Modem.TechnicalData.prototype.setFirmwareVersionName = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -640,7 +673,7 @@ proto.hiber.modem.Modem.TechnicalData.prototype.getHardwareProductionBatch = fun
 
 /** @param {string} value */
 proto.hiber.modem.Modem.TechnicalData.prototype.setHardwareProductionBatch = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
@@ -655,7 +688,7 @@ proto.hiber.modem.Modem.TechnicalData.prototype.getManufacturer = function() {
 
 /** @param {string} value */
 proto.hiber.modem.Modem.TechnicalData.prototype.setManufacturer = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
@@ -825,7 +858,7 @@ proto.hiber.modem.Modem.ActiveSubscription.prototype.getType = function() {
 
 /** @param {!proto.hiber.organization.subscription.ServiceType} value */
 proto.hiber.modem.Modem.ActiveSubscription.prototype.setType = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
@@ -852,7 +885,7 @@ proto.hiber.modem.Modem.ActiveSubscription.prototype.clearStartDate = function()
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.Modem.ActiveSubscription.prototype.hasStartDate = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -882,7 +915,7 @@ proto.hiber.modem.Modem.ActiveSubscription.prototype.clearEndDate = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.Modem.ActiveSubscription.prototype.hasEndDate = function() {
   return jspb.Message.getField(this, 5) != null;
@@ -1049,7 +1082,7 @@ proto.hiber.modem.Modem.Transfer.prototype.getStatus = function() {
 
 /** @param {!proto.hiber.modem.Modem.Transfer.Status} value */
 proto.hiber.modem.Modem.Transfer.prototype.setStatus = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -1064,7 +1097,7 @@ proto.hiber.modem.Modem.Transfer.prototype.getIdentifier = function() {
 
 /** @param {string} value */
 proto.hiber.modem.Modem.Transfer.prototype.setIdentifier = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -1166,7 +1199,7 @@ proto.hiber.modem.Modem.Peripherals.deserializeBinaryFromReader = function(msg, 
     case 3:
       var value = msg.getPeripheralsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     case 4:
@@ -1252,7 +1285,7 @@ proto.hiber.modem.Modem.Peripherals.prototype.getHiberAntenna = function() {
 
 /** @param {!proto.hiber.modem.Modem.Peripherals.HiberAntenna} value */
 proto.hiber.modem.Modem.Peripherals.prototype.setHiberAntenna = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -1269,7 +1302,7 @@ proto.hiber.modem.Modem.Peripherals.prototype.getGps = function() {
 
 /** @param {boolean} value */
 proto.hiber.modem.Modem.Peripherals.prototype.setGps = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 
@@ -1302,7 +1335,7 @@ proto.hiber.modem.Modem.Peripherals.prototype.getCustomAntenna = function() {
 
 /** @param {string} value */
 proto.hiber.modem.Modem.Peripherals.prototype.setCustomAntenna = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -1317,7 +1350,7 @@ proto.hiber.modem.Modem.prototype.getNumber = function() {
 
 /** @param {string} value */
 proto.hiber.modem.Modem.prototype.setNumber = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1332,7 +1365,7 @@ proto.hiber.modem.Modem.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.modem.Modem.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -1347,7 +1380,7 @@ proto.hiber.modem.Modem.prototype.getName = function() {
 
 /** @param {string} value */
 proto.hiber.modem.Modem.prototype.setName = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -1374,7 +1407,7 @@ proto.hiber.modem.Modem.prototype.clearLocation = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.Modem.prototype.hasLocation = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -1392,7 +1425,7 @@ proto.hiber.modem.Modem.prototype.getLastMessageId = function() {
 
 /** @param {number} value */
 proto.hiber.modem.Modem.prototype.setLastMessageId = function(value) {
-  jspb.Message.setField(this, 16, value);
+  jspb.Message.setProto3IntField(this, 16, value);
 };
 
 
@@ -1419,7 +1452,7 @@ proto.hiber.modem.Modem.prototype.clearLastMessageReceivedAt = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.Modem.prototype.hasLastMessageReceivedAt = function() {
   return jspb.Message.getField(this, 5) != null;
@@ -1449,7 +1482,7 @@ proto.hiber.modem.Modem.prototype.clearLastMessageSentAt = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.Modem.prototype.hasLastMessageSentAt = function() {
   return jspb.Message.getField(this, 14) != null;
@@ -1457,31 +1490,31 @@ proto.hiber.modem.Modem.prototype.hasLastMessageSentAt = function() {
 
 
 /**
- * optional hiber.BytesOrHex last_message_payload = 15;
+ * optional hiber.BytesOrHex last_message_body = 15;
  * @return {?proto.hiber.BytesOrHex}
  */
-proto.hiber.modem.Modem.prototype.getLastMessagePayload = function() {
+proto.hiber.modem.Modem.prototype.getLastMessageBody = function() {
   return /** @type{?proto.hiber.BytesOrHex} */ (
     jspb.Message.getWrapperField(this, base_pb.BytesOrHex, 15));
 };
 
 
 /** @param {?proto.hiber.BytesOrHex|undefined} value */
-proto.hiber.modem.Modem.prototype.setLastMessagePayload = function(value) {
+proto.hiber.modem.Modem.prototype.setLastMessageBody = function(value) {
   jspb.Message.setWrapperField(this, 15, value);
 };
 
 
-proto.hiber.modem.Modem.prototype.clearLastMessagePayload = function() {
-  this.setLastMessagePayload(undefined);
+proto.hiber.modem.Modem.prototype.clearLastMessageBody = function() {
+  this.setLastMessageBody(undefined);
 };
 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
-proto.hiber.modem.Modem.prototype.hasLastMessagePayload = function() {
+proto.hiber.modem.Modem.prototype.hasLastMessageBody = function() {
   return jspb.Message.getField(this, 15) != null;
 };
 
@@ -1497,7 +1530,7 @@ proto.hiber.modem.Modem.prototype.getMaximumInactivityPeriod = function() {
 
 /** @param {number} value */
 proto.hiber.modem.Modem.prototype.setMaximumInactivityPeriod = function(value) {
-  jspb.Message.setField(this, 8, value);
+  jspb.Message.setProto3IntField(this, 8, value);
 };
 
 
@@ -1512,7 +1545,7 @@ proto.hiber.modem.Modem.prototype.getHealth = function() {
 
 /** @param {!proto.hiber.Health} value */
 proto.hiber.modem.Modem.prototype.setHealth = function(value) {
-  jspb.Message.setField(this, 9, value);
+  jspb.Message.setProto3EnumField(this, 9, value);
 };
 
 
@@ -1527,7 +1560,7 @@ proto.hiber.modem.Modem.prototype.getStatus = function() {
 
 /** @param {!proto.hiber.modem.Modem.Status} value */
 proto.hiber.modem.Modem.prototype.setStatus = function(value) {
-  jspb.Message.setField(this, 12, value);
+  jspb.Message.setProto3EnumField(this, 12, value);
 };
 
 
@@ -1554,7 +1587,7 @@ proto.hiber.modem.Modem.prototype.clearActiveSubscription = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.Modem.prototype.hasActiveSubscription = function() {
   return jspb.Message.getField(this, 6) != null;
@@ -1584,7 +1617,7 @@ proto.hiber.modem.Modem.prototype.clearTechnical = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.Modem.prototype.hasTechnical = function() {
   return jspb.Message.getField(this, 7) != null;
@@ -1614,7 +1647,7 @@ proto.hiber.modem.Modem.prototype.clearPeripherals = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.Modem.prototype.hasPeripherals = function() {
   return jspb.Message.getField(this, 11) != null;
@@ -1644,7 +1677,7 @@ proto.hiber.modem.Modem.prototype.clearInTransfer = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.Modem.prototype.hasInTransfer = function() {
   return jspb.Message.getField(this, 13) != null;
@@ -1652,16 +1685,46 @@ proto.hiber.modem.Modem.prototype.hasInTransfer = function() {
 
 
 /**
+ * optional string notes = 17;
+ * @return {string}
+ */
+proto.hiber.modem.Modem.prototype.getNotes = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 17, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.modem.Modem.prototype.setNotes = function(value) {
+  jspb.Message.setProto3StringField(this, 17, value);
+};
+
+
+/**
+ * optional string secure_notes = 18;
+ * @return {string}
+ */
+proto.hiber.modem.Modem.prototype.getSecureNotes = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 18, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.modem.Modem.prototype.setSecureNotes = function(value) {
+  jspb.Message.setProto3StringField(this, 18, value);
+};
+
+
+/**
  * repeated hiber.tag.Tag tags = 10;
- * @return {!Array.<!proto.hiber.tag.Tag>}
+ * @return {!Array<!proto.hiber.tag.Tag>}
  */
 proto.hiber.modem.Modem.prototype.getTagsList = function() {
-  return /** @type{!Array.<!proto.hiber.tag.Tag>} */ (
+  return /** @type{!Array<!proto.hiber.tag.Tag>} */ (
     jspb.Message.getRepeatedWrapperField(this, tag_pb.Tag, 10));
 };
 
 
-/** @param {!Array.<!proto.hiber.tag.Tag>} value */
+/** @param {!Array<!proto.hiber.tag.Tag>} value */
 proto.hiber.modem.Modem.prototype.setTagsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 10, value);
 };
@@ -1695,7 +1758,7 @@ proto.hiber.modem.Modem.prototype.getIsGateway = function() {
 
 /** @param {boolean} value */
 proto.hiber.modem.Modem.prototype.setIsGateway = function(value) {
-  jspb.Message.setField(this, 20, value);
+  jspb.Message.setProto3BooleanField(this, 20, value);
 };
 
 
@@ -1712,7 +1775,7 @@ proto.hiber.modem.Modem.prototype.getIsDeviceConnectedToGateway = function() {
 
 /** @param {boolean} value */
 proto.hiber.modem.Modem.prototype.setIsDeviceConnectedToGateway = function(value) {
-  jspb.Message.setField(this, 21, value);
+  jspb.Message.setProto3BooleanField(this, 21, value);
 };
 
 
@@ -1727,27 +1790,27 @@ proto.hiber.modem.Modem.prototype.getConnectedToGateway = function() {
 
 /** @param {string} value */
 proto.hiber.modem.Modem.prototype.setConnectedToGateway = function(value) {
-  jspb.Message.setField(this, 22, value);
+  jspb.Message.setProto3StringField(this, 22, value);
 };
 
 
 /**
- * repeated int64 external_device_ids = 23;
- * @return {!Array.<number>}
+ * repeated string external_device_ids = 23;
+ * @return {!Array<string>}
  */
 proto.hiber.modem.Modem.prototype.getExternalDeviceIdsList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 23));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 23));
 };
 
 
-/** @param {!Array.<number>} value */
+/** @param {!Array<string>} value */
 proto.hiber.modem.Modem.prototype.setExternalDeviceIdsList = function(value) {
   jspb.Message.setField(this, 23, value || []);
 };
 
 
 /**
- * @param {!number} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.modem.Modem.prototype.addExternalDeviceIds = function(value, opt_index) {
@@ -1888,15 +1951,15 @@ proto.hiber.modem.ModemSelection.deserializeBinaryFromReader = function(msg, rea
       msg.setWithLastMessageIn(value);
       break;
     case 6:
-      var value = /** @type {!Array.<!proto.hiber.organization.subscription.ServiceType>} */ (reader.readPackedEnum());
+      var value = /** @type {!Array<!proto.hiber.organization.subscription.ServiceType>} */ (reader.readPackedEnum());
       msg.setWithServiceTypeList(value);
       break;
     case 9:
-      var value = /** @type {!Array.<!proto.hiber.Health>} */ (reader.readPackedEnum());
+      var value = /** @type {!Array<!proto.hiber.Health>} */ (reader.readPackedEnum());
       msg.setHealthList(value);
       break;
     case 10:
-      var value = /** @type {!Array.<!proto.hiber.modem.Modem.Status>} */ (reader.readPackedEnum());
+      var value = /** @type {!Array<!proto.hiber.modem.Modem.Status>} */ (reader.readPackedEnum());
       msg.setStatusList(value);
       break;
     case 11:
@@ -1918,8 +1981,8 @@ proto.hiber.modem.ModemSelection.deserializeBinaryFromReader = function(msg, rea
       msg.setConnectedToGateways(value);
       break;
     case 15:
-      var value = /** @type {!Array.<number>} */ (reader.readPackedInt64());
-      msg.setExternalDeviceIdsList(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.addExternalDeviceIds(value);
       break;
     case 2:
       var value = new tag_pb.TagSelection;
@@ -2046,7 +2109,7 @@ proto.hiber.modem.ModemSelection.serializeBinaryToWriter = function(message, wri
   }
   f = message.getExternalDeviceIdsList();
   if (f.length > 0) {
-    writer.writePackedInt64(
+    writer.writeRepeatedString(
       15,
       f
     );
@@ -2198,21 +2261,21 @@ proto.hiber.modem.ModemSelection.Transfers.serializeBinaryToWriter = function(me
 
 /**
  * repeated string transfers_identifiers = 1;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.modem.ModemSelection.Transfers.prototype.getTransfersIdentifiersList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.modem.ModemSelection.Transfers.prototype.setTransfersIdentifiersList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.modem.ModemSelection.Transfers.prototype.addTransfersIdentifiers = function(value, opt_index) {
@@ -2248,7 +2311,7 @@ proto.hiber.modem.ModemSelection.prototype.clearModems = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemSelection.prototype.hasModems = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -2266,7 +2329,7 @@ proto.hiber.modem.ModemSelection.prototype.getFreeTextSearch = function() {
 
 /** @param {string} value */
 proto.hiber.modem.ModemSelection.prototype.setFreeTextSearch = function(value) {
-  jspb.Message.setField(this, 8, value);
+  jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
@@ -2283,7 +2346,7 @@ proto.hiber.modem.ModemSelection.prototype.getOnlyActive = function() {
 
 /** @param {boolean} value */
 proto.hiber.modem.ModemSelection.prototype.setOnlyActive = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
@@ -2310,7 +2373,7 @@ proto.hiber.modem.ModemSelection.prototype.clearActivatedIn = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemSelection.prototype.hasActivatedIn = function() {
   return jspb.Message.getField(this, 5) != null;
@@ -2340,7 +2403,7 @@ proto.hiber.modem.ModemSelection.prototype.clearWithLastMessageIn = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemSelection.prototype.hasWithLastMessageIn = function() {
   return jspb.Message.getField(this, 7) != null;
@@ -2349,14 +2412,14 @@ proto.hiber.modem.ModemSelection.prototype.hasWithLastMessageIn = function() {
 
 /**
  * repeated hiber.organization.subscription.ServiceType with_service_type = 6;
- * @return {!Array.<!proto.hiber.organization.subscription.ServiceType>}
+ * @return {!Array<!proto.hiber.organization.subscription.ServiceType>}
  */
 proto.hiber.modem.ModemSelection.prototype.getWithServiceTypeList = function() {
-  return /** @type {!Array.<!proto.hiber.organization.subscription.ServiceType>} */ (jspb.Message.getRepeatedField(this, 6));
+  return /** @type {!Array<!proto.hiber.organization.subscription.ServiceType>} */ (jspb.Message.getRepeatedField(this, 6));
 };
 
 
-/** @param {!Array.<!proto.hiber.organization.subscription.ServiceType>} value */
+/** @param {!Array<!proto.hiber.organization.subscription.ServiceType>} value */
 proto.hiber.modem.ModemSelection.prototype.setWithServiceTypeList = function(value) {
   jspb.Message.setField(this, 6, value || []);
 };
@@ -2378,14 +2441,14 @@ proto.hiber.modem.ModemSelection.prototype.clearWithServiceTypeList = function()
 
 /**
  * repeated hiber.Health health = 9;
- * @return {!Array.<!proto.hiber.Health>}
+ * @return {!Array<!proto.hiber.Health>}
  */
 proto.hiber.modem.ModemSelection.prototype.getHealthList = function() {
-  return /** @type {!Array.<!proto.hiber.Health>} */ (jspb.Message.getRepeatedField(this, 9));
+  return /** @type {!Array<!proto.hiber.Health>} */ (jspb.Message.getRepeatedField(this, 9));
 };
 
 
-/** @param {!Array.<!proto.hiber.Health>} value */
+/** @param {!Array<!proto.hiber.Health>} value */
 proto.hiber.modem.ModemSelection.prototype.setHealthList = function(value) {
   jspb.Message.setField(this, 9, value || []);
 };
@@ -2407,14 +2470,14 @@ proto.hiber.modem.ModemSelection.prototype.clearHealthList = function() {
 
 /**
  * repeated Modem.Status status = 10;
- * @return {!Array.<!proto.hiber.modem.Modem.Status>}
+ * @return {!Array<!proto.hiber.modem.Modem.Status>}
  */
 proto.hiber.modem.ModemSelection.prototype.getStatusList = function() {
-  return /** @type {!Array.<!proto.hiber.modem.Modem.Status>} */ (jspb.Message.getRepeatedField(this, 10));
+  return /** @type {!Array<!proto.hiber.modem.Modem.Status>} */ (jspb.Message.getRepeatedField(this, 10));
 };
 
 
-/** @param {!Array.<!proto.hiber.modem.Modem.Status>} value */
+/** @param {!Array<!proto.hiber.modem.Modem.Status>} value */
 proto.hiber.modem.ModemSelection.prototype.setStatusList = function(value) {
   jspb.Message.setField(this, 10, value || []);
 };
@@ -2457,7 +2520,7 @@ proto.hiber.modem.ModemSelection.prototype.clearTransfers = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemSelection.prototype.hasTransfers = function() {
   return jspb.Message.getField(this, 11) != null;
@@ -2477,7 +2540,7 @@ proto.hiber.modem.ModemSelection.prototype.getOnlyGateways = function() {
 
 /** @param {boolean} value */
 proto.hiber.modem.ModemSelection.prototype.setOnlyGateways = function(value) {
-  jspb.Message.setField(this, 12, value);
+  jspb.Message.setProto3BooleanField(this, 12, value);
 };
 
 
@@ -2494,7 +2557,7 @@ proto.hiber.modem.ModemSelection.prototype.getOnlyHasExternalDeviceIds = functio
 
 /** @param {boolean} value */
 proto.hiber.modem.ModemSelection.prototype.setOnlyHasExternalDeviceIds = function(value) {
-  jspb.Message.setField(this, 13, value);
+  jspb.Message.setProto3BooleanField(this, 13, value);
 };
 
 
@@ -2521,7 +2584,7 @@ proto.hiber.modem.ModemSelection.prototype.clearConnectedToGateways = function()
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemSelection.prototype.hasConnectedToGateways = function() {
   return jspb.Message.getField(this, 14) != null;
@@ -2529,22 +2592,22 @@ proto.hiber.modem.ModemSelection.prototype.hasConnectedToGateways = function() {
 
 
 /**
- * repeated int64 external_device_ids = 15;
- * @return {!Array.<number>}
+ * repeated string external_device_ids = 15;
+ * @return {!Array<string>}
  */
 proto.hiber.modem.ModemSelection.prototype.getExternalDeviceIdsList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 15));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 15));
 };
 
 
-/** @param {!Array.<number>} value */
+/** @param {!Array<string>} value */
 proto.hiber.modem.ModemSelection.prototype.setExternalDeviceIdsList = function(value) {
   jspb.Message.setField(this, 15, value || []);
 };
 
 
 /**
- * @param {!number} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.modem.ModemSelection.prototype.addExternalDeviceIds = function(value, opt_index) {
@@ -2580,7 +2643,7 @@ proto.hiber.modem.ModemSelection.prototype.clearFilterByTags = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemSelection.prototype.hasFilterByTags = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2599,12 +2662,19 @@ proto.hiber.modem.ModemSelection.prototype.hasFilterByTags = function() {
  * @constructor
  */
 proto.hiber.modem.ModemMessage = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.modem.ModemMessage.repeatedFields_, null);
 };
 goog.inherits(proto.hiber.modem.ModemMessage, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.hiber.modem.ModemMessage.displayName = 'proto.hiber.modem.ModemMessage';
 }
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.hiber.modem.ModemMessage.repeatedFields_ = [11,10];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -2634,14 +2704,17 @@ proto.hiber.modem.ModemMessage.prototype.toObject = function(opt_includeInstance
  */
 proto.hiber.modem.ModemMessage.toObject = function(includeInstance, msg) {
   var f, obj = {
+    messageId: jspb.Message.getFieldWithDefault(msg, 7, 0),
     modemNumber: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    version: jspb.Message.getFieldWithDefault(msg, 2, 0),
     sentAt: (f = msg.getSentAt()) && base_pb.Timestamp.toObject(includeInstance, f),
+    receivedAt: (f = msg.getReceivedAt()) && base_pb.Timestamp.toObject(includeInstance, f),
     location: (f = msg.getLocation()) && base_pb.Location.toObject(includeInstance, f),
     body: msg.getBody_asB64(),
-    receivedAt: (f = msg.getReceivedAt()) && base_pb.Timestamp.toObject(includeInstance, f),
-    messageId: jspb.Message.getFieldWithDefault(msg, 7, 0),
     bodyBytes: (f = msg.getBodyBytes()) && base_pb.BytesOrHex.toObject(includeInstance, f),
+    bodyParsedList: jspb.Message.toObjectList(msg.getBodyParsedList(),
+    proto.hiber.modem.ModemMessage.ParsedBody.toObject, includeInstance),
+    bodyParsedSuccessfully: jspb.Message.getFieldWithDefault(msg, 12, false),
+    sourcesList: jspb.Message.getRepeatedField(msg, 10),
     isTest: jspb.Message.getFieldWithDefault(msg, 9, false)
   };
 
@@ -2679,18 +2752,23 @@ proto.hiber.modem.ModemMessage.deserializeBinaryFromReader = function(msg, reade
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 7:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setMessageId(value);
+      break;
     case 1:
       var value = /** @type {string} */ (reader.readString());
       msg.setModemNumber(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setVersion(value);
       break;
     case 3:
       var value = new base_pb.Timestamp;
       reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
       msg.setSentAt(value);
+      break;
+    case 6:
+      var value = new base_pb.Timestamp;
+      reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setReceivedAt(value);
       break;
     case 4:
       var value = new base_pb.Location;
@@ -2701,19 +2779,23 @@ proto.hiber.modem.ModemMessage.deserializeBinaryFromReader = function(msg, reade
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setBody(value);
       break;
-    case 6:
-      var value = new base_pb.Timestamp;
-      reader.readMessage(value,base_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setReceivedAt(value);
-      break;
-    case 7:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setMessageId(value);
-      break;
     case 8:
       var value = new base_pb.BytesOrHex;
       reader.readMessage(value,base_pb.BytesOrHex.deserializeBinaryFromReader);
       msg.setBodyBytes(value);
+      break;
+    case 11:
+      var value = new proto.hiber.modem.ModemMessage.ParsedBody;
+      reader.readMessage(value,proto.hiber.modem.ModemMessage.ParsedBody.deserializeBinaryFromReader);
+      msg.addBodyParsed(value);
+      break;
+    case 12:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setBodyParsedSuccessfully(value);
+      break;
+    case 10:
+      var value = /** @type {!Array<!proto.hiber.modem.ModemMessage.Source>} */ (reader.readPackedEnum());
+      msg.setSourcesList(value);
       break;
     case 9:
       var value = /** @type {boolean} */ (reader.readBool());
@@ -2748,6 +2830,13 @@ proto.hiber.modem.ModemMessage.prototype.serializeBinary = function() {
  */
 proto.hiber.modem.ModemMessage.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getMessageId();
+  if (f !== 0) {
+    writer.writeUint64(
+      7,
+      f
+    );
+  }
   f = message.getModemNumber();
   if (f.length > 0) {
     writer.writeString(
@@ -2755,17 +2844,18 @@ proto.hiber.modem.ModemMessage.serializeBinaryToWriter = function(message, write
       f
     );
   }
-  f = message.getVersion();
-  if (f !== 0) {
-    writer.writeUint32(
-      2,
-      f
-    );
-  }
   f = message.getSentAt();
   if (f != null) {
     writer.writeMessage(
       3,
+      f,
+      base_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getReceivedAt();
+  if (f != null) {
+    writer.writeMessage(
+      6,
       f,
       base_pb.Timestamp.serializeBinaryToWriter
     );
@@ -2785,27 +2875,34 @@ proto.hiber.modem.ModemMessage.serializeBinaryToWriter = function(message, write
       f
     );
   }
-  f = message.getReceivedAt();
-  if (f != null) {
-    writer.writeMessage(
-      6,
-      f,
-      base_pb.Timestamp.serializeBinaryToWriter
-    );
-  }
-  f = message.getMessageId();
-  if (f !== 0) {
-    writer.writeUint64(
-      7,
-      f
-    );
-  }
   f = message.getBodyBytes();
   if (f != null) {
     writer.writeMessage(
       8,
       f,
       base_pb.BytesOrHex.serializeBinaryToWriter
+    );
+  }
+  f = message.getBodyParsedList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      11,
+      f,
+      proto.hiber.modem.ModemMessage.ParsedBody.serializeBinaryToWriter
+    );
+  }
+  f = message.getBodyParsedSuccessfully();
+  if (f) {
+    writer.writeBool(
+      12,
+      f
+    );
+  }
+  f = message.getSourcesList();
+  if (f.length > 0) {
+    writer.writePackedEnum(
+      10,
+      f
     );
   }
   f = message.getIsTest();
@@ -2815,6 +2912,256 @@ proto.hiber.modem.ModemMessage.serializeBinaryToWriter = function(message, write
       f
     );
   }
+};
+
+
+/**
+ * @enum {number}
+ */
+proto.hiber.modem.ModemMessage.Source = {
+  HIBERBAND: 0,
+  DIRECT_TO_API: 1,
+  TEST: 2,
+  SIMULATION: 3
+};
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.modem.ModemMessage.ParsedBody = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.hiber.modem.ModemMessage.ParsedBody, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.modem.ModemMessage.ParsedBody.displayName = 'proto.hiber.modem.ModemMessage.ParsedBody';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.modem.ModemMessage.ParsedBody.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.modem.ModemMessage.ParsedBody.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.modem.ModemMessage.ParsedBody} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.modem.ModemMessage.ParsedBody.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    parserId: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    parserName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    resultMap: (f = msg.getResultMap()) ? f.toObject(includeInstance, undefined) : [],
+    error: jspb.Message.getFieldWithDefault(msg, 4, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.modem.ModemMessage.ParsedBody}
+ */
+proto.hiber.modem.ModemMessage.ParsedBody.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.modem.ModemMessage.ParsedBody;
+  return proto.hiber.modem.ModemMessage.ParsedBody.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.modem.ModemMessage.ParsedBody} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.modem.ModemMessage.ParsedBody}
+ */
+proto.hiber.modem.ModemMessage.ParsedBody.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setParserId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setParserName(value);
+      break;
+    case 3:
+      var value = msg.getResultMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
+         });
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setError(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.modem.ModemMessage.ParsedBody.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.modem.ModemMessage.ParsedBody.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.modem.ModemMessage.ParsedBody} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.modem.ModemMessage.ParsedBody.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getParserId();
+  if (f !== 0) {
+    writer.writeInt32(
+      1,
+      f
+    );
+  }
+  f = message.getParserName();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getResultMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(3, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
+  f = message.getError();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional int32 parser_id = 1;
+ * @return {number}
+ */
+proto.hiber.modem.ModemMessage.ParsedBody.prototype.getParserId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/** @param {number} value */
+proto.hiber.modem.ModemMessage.ParsedBody.prototype.setParserId = function(value) {
+  jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional string parser_name = 2;
+ * @return {string}
+ */
+proto.hiber.modem.ModemMessage.ParsedBody.prototype.getParserName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.modem.ModemMessage.ParsedBody.prototype.setParserName = function(value) {
+  jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * map<string, string> result = 3;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,string>}
+ */
+proto.hiber.modem.ModemMessage.ParsedBody.prototype.getResultMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,string>} */ (
+      jspb.Message.getMapField(this, 3, opt_noLazyCreate,
+      null));
+};
+
+
+proto.hiber.modem.ModemMessage.ParsedBody.prototype.clearResultMap = function() {
+  this.getResultMap().clear();
+};
+
+
+/**
+ * optional string error = 4;
+ * @return {string}
+ */
+proto.hiber.modem.ModemMessage.ParsedBody.prototype.getError = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.modem.ModemMessage.ParsedBody.prototype.setError = function(value) {
+  jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional uint64 message_id = 7;
+ * @return {number}
+ */
+proto.hiber.modem.ModemMessage.prototype.getMessageId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/** @param {number} value */
+proto.hiber.modem.ModemMessage.prototype.setMessageId = function(value) {
+  jspb.Message.setProto3IntField(this, 7, value);
 };
 
 
@@ -2829,22 +3176,7 @@ proto.hiber.modem.ModemMessage.prototype.getModemNumber = function() {
 
 /** @param {string} value */
 proto.hiber.modem.ModemMessage.prototype.setModemNumber = function(value) {
-  jspb.Message.setField(this, 1, value);
-};
-
-
-/**
- * optional uint32 version = 2;
- * @return {number}
- */
-proto.hiber.modem.ModemMessage.prototype.getVersion = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/** @param {number} value */
-proto.hiber.modem.ModemMessage.prototype.setVersion = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -2871,10 +3203,40 @@ proto.hiber.modem.ModemMessage.prototype.clearSentAt = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemMessage.prototype.hasSentAt = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional hiber.Timestamp received_at = 6;
+ * @return {?proto.hiber.Timestamp}
+ */
+proto.hiber.modem.ModemMessage.prototype.getReceivedAt = function() {
+  return /** @type{?proto.hiber.Timestamp} */ (
+    jspb.Message.getWrapperField(this, base_pb.Timestamp, 6));
+};
+
+
+/** @param {?proto.hiber.Timestamp|undefined} value */
+proto.hiber.modem.ModemMessage.prototype.setReceivedAt = function(value) {
+  jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+proto.hiber.modem.ModemMessage.prototype.clearReceivedAt = function() {
+  this.setReceivedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.hiber.modem.ModemMessage.prototype.hasReceivedAt = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
@@ -2901,7 +3263,7 @@ proto.hiber.modem.ModemMessage.prototype.clearLocation = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemMessage.prototype.hasLocation = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -2943,52 +3305,7 @@ proto.hiber.modem.ModemMessage.prototype.getBody_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.hiber.modem.ModemMessage.prototype.setBody = function(value) {
-  jspb.Message.setField(this, 5, value);
-};
-
-
-/**
- * optional hiber.Timestamp received_at = 6;
- * @return {?proto.hiber.Timestamp}
- */
-proto.hiber.modem.ModemMessage.prototype.getReceivedAt = function() {
-  return /** @type{?proto.hiber.Timestamp} */ (
-    jspb.Message.getWrapperField(this, base_pb.Timestamp, 6));
-};
-
-
-/** @param {?proto.hiber.Timestamp|undefined} value */
-proto.hiber.modem.ModemMessage.prototype.setReceivedAt = function(value) {
-  jspb.Message.setWrapperField(this, 6, value);
-};
-
-
-proto.hiber.modem.ModemMessage.prototype.clearReceivedAt = function() {
-  this.setReceivedAt(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.hiber.modem.ModemMessage.prototype.hasReceivedAt = function() {
-  return jspb.Message.getField(this, 6) != null;
-};
-
-
-/**
- * optional uint64 message_id = 7;
- * @return {number}
- */
-proto.hiber.modem.ModemMessage.prototype.getMessageId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
-};
-
-
-/** @param {number} value */
-proto.hiber.modem.ModemMessage.prototype.setMessageId = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3BytesField(this, 5, value);
 };
 
 
@@ -3015,10 +3332,87 @@ proto.hiber.modem.ModemMessage.prototype.clearBodyBytes = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemMessage.prototype.hasBodyBytes = function() {
   return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * repeated ParsedBody body_parsed = 11;
+ * @return {!Array<!proto.hiber.modem.ModemMessage.ParsedBody>}
+ */
+proto.hiber.modem.ModemMessage.prototype.getBodyParsedList = function() {
+  return /** @type{!Array<!proto.hiber.modem.ModemMessage.ParsedBody>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.hiber.modem.ModemMessage.ParsedBody, 11));
+};
+
+
+/** @param {!Array<!proto.hiber.modem.ModemMessage.ParsedBody>} value */
+proto.hiber.modem.ModemMessage.prototype.setBodyParsedList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 11, value);
+};
+
+
+/**
+ * @param {!proto.hiber.modem.ModemMessage.ParsedBody=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.hiber.modem.ModemMessage.ParsedBody}
+ */
+proto.hiber.modem.ModemMessage.prototype.addBodyParsed = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 11, opt_value, proto.hiber.modem.ModemMessage.ParsedBody, opt_index);
+};
+
+
+proto.hiber.modem.ModemMessage.prototype.clearBodyParsedList = function() {
+  this.setBodyParsedList([]);
+};
+
+
+/**
+ * optional bool body_parsed_successfully = 12;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.modem.ModemMessage.prototype.getBodyParsedSuccessfully = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 12, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.modem.ModemMessage.prototype.setBodyParsedSuccessfully = function(value) {
+  jspb.Message.setProto3BooleanField(this, 12, value);
+};
+
+
+/**
+ * repeated Source sources = 10;
+ * @return {!Array<!proto.hiber.modem.ModemMessage.Source>}
+ */
+proto.hiber.modem.ModemMessage.prototype.getSourcesList = function() {
+  return /** @type {!Array<!proto.hiber.modem.ModemMessage.Source>} */ (jspb.Message.getRepeatedField(this, 10));
+};
+
+
+/** @param {!Array<!proto.hiber.modem.ModemMessage.Source>} value */
+proto.hiber.modem.ModemMessage.prototype.setSourcesList = function(value) {
+  jspb.Message.setField(this, 10, value || []);
+};
+
+
+/**
+ * @param {!proto.hiber.modem.ModemMessage.Source} value
+ * @param {number=} opt_index
+ */
+proto.hiber.modem.ModemMessage.prototype.addSources = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 10, value, opt_index);
+};
+
+
+proto.hiber.modem.ModemMessage.prototype.clearSourcesList = function() {
+  this.setSourcesList([]);
 };
 
 
@@ -3035,7 +3429,7 @@ proto.hiber.modem.ModemMessage.prototype.getIsTest = function() {
 
 /** @param {boolean} value */
 proto.hiber.modem.ModemMessage.prototype.setIsTest = function(value) {
-  jspb.Message.setField(this, 9, value);
+  jspb.Message.setProto3BooleanField(this, 9, value);
 };
 
 
@@ -3205,7 +3599,7 @@ proto.hiber.modem.ModemMessageSelection.prototype.clearModems = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemMessageSelection.prototype.hasModems = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -3235,7 +3629,7 @@ proto.hiber.modem.ModemMessageSelection.prototype.clearTimeRange = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ModemMessageSelection.prototype.hasTimeRange = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -3406,7 +3800,7 @@ proto.hiber.modem.GetModemRequest.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.modem.GetModemRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -3421,7 +3815,7 @@ proto.hiber.modem.GetModemRequest.prototype.getModemNumber = function() {
 
 /** @param {string} value */
 proto.hiber.modem.GetModemRequest.prototype.setModemNumber = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -3448,7 +3842,7 @@ proto.hiber.modem.GetModemRequest.prototype.clearChildOrganizations = function()
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.GetModemRequest.prototype.hasChildOrganizations = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -3853,15 +4247,15 @@ proto.hiber.modem.ListModemsRequest.Response.serializeBinaryToWriter = function(
 
 /**
  * repeated Modem modems = 1;
- * @return {!Array.<!proto.hiber.modem.Modem>}
+ * @return {!Array<!proto.hiber.modem.Modem>}
  */
 proto.hiber.modem.ListModemsRequest.Response.prototype.getModemsList = function() {
-  return /** @type{!Array.<!proto.hiber.modem.Modem>} */ (
+  return /** @type{!Array<!proto.hiber.modem.Modem>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.modem.Modem, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.modem.Modem>} value */
+/** @param {!Array<!proto.hiber.modem.Modem>} value */
 proto.hiber.modem.ListModemsRequest.Response.prototype.setModemsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -3905,7 +4299,7 @@ proto.hiber.modem.ListModemsRequest.Response.prototype.clearRequest = function()
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemsRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -3935,7 +4329,7 @@ proto.hiber.modem.ListModemsRequest.Response.prototype.clearPagination = functio
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemsRequest.Response.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -3953,7 +4347,7 @@ proto.hiber.modem.ListModemsRequest.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.modem.ListModemsRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -3980,7 +4374,7 @@ proto.hiber.modem.ListModemsRequest.prototype.clearSelection = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemsRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -4010,7 +4404,7 @@ proto.hiber.modem.ListModemsRequest.prototype.clearPagination = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemsRequest.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -4028,7 +4422,7 @@ proto.hiber.modem.ListModemsRequest.prototype.getSortBy = function() {
 
 /** @param {!proto.hiber.modem.ListModemsRequest.Sort} value */
 proto.hiber.modem.ListModemsRequest.prototype.setSortBy = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3EnumField(this, 4, value);
 };
 
 
@@ -4045,7 +4439,7 @@ proto.hiber.modem.ListModemsRequest.prototype.getIncludeInboundModems = function
 
 /** @param {boolean} value */
 proto.hiber.modem.ListModemsRequest.prototype.setIncludeInboundModems = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
@@ -4062,7 +4456,7 @@ proto.hiber.modem.ListModemsRequest.prototype.getIncludeOutboundModems = functio
 
 /** @param {boolean} value */
 proto.hiber.modem.ListModemsRequest.prototype.setIncludeOutboundModems = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3BooleanField(this, 7, value);
 };
 
 
@@ -4089,7 +4483,7 @@ proto.hiber.modem.ListModemsRequest.prototype.clearChildOrganizations = function
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemsRequest.prototype.hasChildOrganizations = function() {
   return jspb.Message.getField(this, 8) != null;
@@ -4119,7 +4513,7 @@ proto.hiber.modem.ListModemsRequest.prototype.clearLocationSelection = function(
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemsRequest.prototype.hasLocationSelection = function() {
   return jspb.Message.getField(this, 9) != null;
@@ -4448,15 +4842,15 @@ proto.hiber.modem.ListModemMessagesRequest.Response.serializeBinaryToWriter = fu
 
 /**
  * repeated ModemMessage messages = 1;
- * @return {!Array.<!proto.hiber.modem.ModemMessage>}
+ * @return {!Array<!proto.hiber.modem.ModemMessage>}
  */
 proto.hiber.modem.ListModemMessagesRequest.Response.prototype.getMessagesList = function() {
-  return /** @type{!Array.<!proto.hiber.modem.ModemMessage>} */ (
+  return /** @type{!Array<!proto.hiber.modem.ModemMessage>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.modem.ModemMessage, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.modem.ModemMessage>} value */
+/** @param {!Array<!proto.hiber.modem.ModemMessage>} value */
 proto.hiber.modem.ListModemMessagesRequest.Response.prototype.setMessagesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -4500,7 +4894,7 @@ proto.hiber.modem.ListModemMessagesRequest.Response.prototype.clearRequest = fun
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemMessagesRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -4530,7 +4924,7 @@ proto.hiber.modem.ListModemMessagesRequest.Response.prototype.clearPagination = 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemMessagesRequest.Response.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -4548,7 +4942,7 @@ proto.hiber.modem.ListModemMessagesRequest.prototype.getOrganization = function(
 
 /** @param {string} value */
 proto.hiber.modem.ListModemMessagesRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -4575,7 +4969,7 @@ proto.hiber.modem.ListModemMessagesRequest.prototype.clearSelection = function()
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemMessagesRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -4605,7 +4999,7 @@ proto.hiber.modem.ListModemMessagesRequest.prototype.clearPagination = function(
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.ListModemMessagesRequest.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -5092,7 +5486,7 @@ proto.hiber.modem.MessageCountRequest.Response.MessageCount.prototype.clearDate 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.MessageCountRequest.Response.MessageCount.prototype.hasDate = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -5110,21 +5504,21 @@ proto.hiber.modem.MessageCountRequest.Response.MessageCount.prototype.getCount =
 
 /** @param {number} value */
 proto.hiber.modem.MessageCountRequest.Response.MessageCount.prototype.setCount = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
  * repeated MessageCount message_count_per_day = 1;
- * @return {!Array.<!proto.hiber.modem.MessageCountRequest.Response.MessageCount>}
+ * @return {!Array<!proto.hiber.modem.MessageCountRequest.Response.MessageCount>}
  */
 proto.hiber.modem.MessageCountRequest.Response.prototype.getMessageCountPerDayList = function() {
-  return /** @type{!Array.<!proto.hiber.modem.MessageCountRequest.Response.MessageCount>} */ (
+  return /** @type{!Array<!proto.hiber.modem.MessageCountRequest.Response.MessageCount>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.modem.MessageCountRequest.Response.MessageCount, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.modem.MessageCountRequest.Response.MessageCount>} value */
+/** @param {!Array<!proto.hiber.modem.MessageCountRequest.Response.MessageCount>} value */
 proto.hiber.modem.MessageCountRequest.Response.prototype.setMessageCountPerDayList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -5168,7 +5562,7 @@ proto.hiber.modem.MessageCountRequest.Response.prototype.clearRequest = function
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.MessageCountRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -5186,7 +5580,7 @@ proto.hiber.modem.MessageCountRequest.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.modem.MessageCountRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -5213,7 +5607,7 @@ proto.hiber.modem.MessageCountRequest.prototype.clearSelection = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.MessageCountRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -5231,7 +5625,7 @@ proto.hiber.modem.MessageCountRequest.prototype.getTimeZoneOffset = function() {
 
 /** @param {number} value */
 proto.hiber.modem.MessageCountRequest.prototype.setTimeZoneOffset = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
@@ -5246,7 +5640,7 @@ proto.hiber.modem.MessageCountRequest.prototype.getTimeZone = function() {
 
 /** @param {string} value */
 proto.hiber.modem.MessageCountRequest.prototype.setTimeZone = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
@@ -5412,7 +5806,7 @@ proto.hiber.modem.RenameModemRequest.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.modem.RenameModemRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -5427,7 +5821,7 @@ proto.hiber.modem.RenameModemRequest.prototype.getModemNumber = function() {
 
 /** @param {string} value */
 proto.hiber.modem.RenameModemRequest.prototype.setModemNumber = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -5442,7 +5836,7 @@ proto.hiber.modem.RenameModemRequest.prototype.getName = function() {
 
 /** @param {string} value */
 proto.hiber.modem.RenameModemRequest.prototype.setName = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -5782,15 +6176,15 @@ proto.hiber.modem.UpdateModemTagsRequest.Response.serializeBinaryToWriter = func
 
 /**
  * repeated Modem modems = 1;
- * @return {!Array.<!proto.hiber.modem.Modem>}
+ * @return {!Array<!proto.hiber.modem.Modem>}
  */
 proto.hiber.modem.UpdateModemTagsRequest.Response.prototype.getModemsList = function() {
-  return /** @type{!Array.<!proto.hiber.modem.Modem>} */ (
+  return /** @type{!Array<!proto.hiber.modem.Modem>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.modem.Modem, 1));
 };
 
 
-/** @param {!Array.<!proto.hiber.modem.Modem>} value */
+/** @param {!Array<!proto.hiber.modem.Modem>} value */
 proto.hiber.modem.UpdateModemTagsRequest.Response.prototype.setModemsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -5834,7 +6228,7 @@ proto.hiber.modem.UpdateModemTagsRequest.Response.prototype.clearRequest = funct
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.UpdateModemTagsRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -5864,7 +6258,7 @@ proto.hiber.modem.UpdateModemTagsRequest.Response.prototype.clearPagination = fu
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.UpdateModemTagsRequest.Response.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -5882,7 +6276,7 @@ proto.hiber.modem.UpdateModemTagsRequest.prototype.getOrganization = function() 
 
 /** @param {string} value */
 proto.hiber.modem.UpdateModemTagsRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -5909,7 +6303,7 @@ proto.hiber.modem.UpdateModemTagsRequest.prototype.clearUpdate = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.UpdateModemTagsRequest.prototype.hasUpdate = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -5939,7 +6333,7 @@ proto.hiber.modem.UpdateModemTagsRequest.prototype.clearSelection = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.UpdateModemTagsRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 5) != null;
@@ -5969,10 +6363,951 @@ proto.hiber.modem.UpdateModemTagsRequest.prototype.clearPagination = function() 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.UpdateModemTagsRequest.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.modem.UpdateModemNotesRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.hiber.modem.UpdateModemNotesRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.modem.UpdateModemNotesRequest.displayName = 'proto.hiber.modem.UpdateModemNotesRequest';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.modem.UpdateModemNotesRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.modem.UpdateModemNotesRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.modem.UpdateModemNotesRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.modem.UpdateModemNotesRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    selection: (f = msg.getSelection()) && proto.hiber.modem.ModemSelection.toObject(includeInstance, f),
+    pagination: (f = msg.getPagination()) && base_pb.Pagination.toObject(includeInstance, f),
+    notes: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    allowOverrideExistingNotes: jspb.Message.getFieldWithDefault(msg, 5, false)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.modem.UpdateModemNotesRequest}
+ */
+proto.hiber.modem.UpdateModemNotesRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.modem.UpdateModemNotesRequest;
+  return proto.hiber.modem.UpdateModemNotesRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.modem.UpdateModemNotesRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.modem.UpdateModemNotesRequest}
+ */
+proto.hiber.modem.UpdateModemNotesRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganization(value);
+      break;
+    case 2:
+      var value = new proto.hiber.modem.ModemSelection;
+      reader.readMessage(value,proto.hiber.modem.ModemSelection.deserializeBinaryFromReader);
+      msg.setSelection(value);
+      break;
+    case 3:
+      var value = new base_pb.Pagination;
+      reader.readMessage(value,base_pb.Pagination.deserializeBinaryFromReader);
+      msg.setPagination(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNotes(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setAllowOverrideExistingNotes(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.modem.UpdateModemNotesRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.modem.UpdateModemNotesRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.modem.UpdateModemNotesRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.modem.UpdateModemNotesRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOrganization();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getSelection();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.hiber.modem.ModemSelection.serializeBinaryToWriter
+    );
+  }
+  f = message.getPagination();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      base_pb.Pagination.serializeBinaryToWriter
+    );
+  }
+  f = message.getNotes();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getAllowOverrideExistingNotes();
+  if (f) {
+    writer.writeBool(
+      5,
+      f
+    );
+  }
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.modem.UpdateModemNotesRequest.Response = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.hiber.modem.UpdateModemNotesRequest.Response.repeatedFields_, null);
+};
+goog.inherits(proto.hiber.modem.UpdateModemNotesRequest.Response, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.modem.UpdateModemNotesRequest.Response.displayName = 'proto.hiber.modem.UpdateModemNotesRequest.Response';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.hiber.modem.UpdateModemNotesRequest.Response.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.modem.UpdateModemNotesRequest.Response.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.modem.UpdateModemNotesRequest.Response.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.modem.UpdateModemNotesRequest.Response} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.modem.UpdateModemNotesRequest.Response.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    modemsList: jspb.Message.toObjectList(msg.getModemsList(),
+    proto.hiber.modem.Modem.toObject, includeInstance),
+    request: (f = msg.getRequest()) && proto.hiber.modem.UpdateModemNotesRequest.toObject(includeInstance, f),
+    pagination: (f = msg.getPagination()) && base_pb.Pagination.Result.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.modem.UpdateModemNotesRequest.Response}
+ */
+proto.hiber.modem.UpdateModemNotesRequest.Response.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.modem.UpdateModemNotesRequest.Response;
+  return proto.hiber.modem.UpdateModemNotesRequest.Response.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.modem.UpdateModemNotesRequest.Response} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.modem.UpdateModemNotesRequest.Response}
+ */
+proto.hiber.modem.UpdateModemNotesRequest.Response.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.hiber.modem.Modem;
+      reader.readMessage(value,proto.hiber.modem.Modem.deserializeBinaryFromReader);
+      msg.addModems(value);
+      break;
+    case 2:
+      var value = new proto.hiber.modem.UpdateModemNotesRequest;
+      reader.readMessage(value,proto.hiber.modem.UpdateModemNotesRequest.deserializeBinaryFromReader);
+      msg.setRequest(value);
+      break;
+    case 3:
+      var value = new base_pb.Pagination.Result;
+      reader.readMessage(value,base_pb.Pagination.Result.deserializeBinaryFromReader);
+      msg.setPagination(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.modem.UpdateModemNotesRequest.Response.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.modem.UpdateModemNotesRequest.Response.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.modem.UpdateModemNotesRequest.Response} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.modem.UpdateModemNotesRequest.Response.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getModemsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.hiber.modem.Modem.serializeBinaryToWriter
+    );
+  }
+  f = message.getRequest();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.hiber.modem.UpdateModemNotesRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getPagination();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      base_pb.Pagination.Result.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * repeated Modem modems = 1;
+ * @return {!Array<!proto.hiber.modem.Modem>}
+ */
+proto.hiber.modem.UpdateModemNotesRequest.Response.prototype.getModemsList = function() {
+  return /** @type{!Array<!proto.hiber.modem.Modem>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.hiber.modem.Modem, 1));
+};
+
+
+/** @param {!Array<!proto.hiber.modem.Modem>} value */
+proto.hiber.modem.UpdateModemNotesRequest.Response.prototype.setModemsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.hiber.modem.Modem=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.hiber.modem.Modem}
+ */
+proto.hiber.modem.UpdateModemNotesRequest.Response.prototype.addModems = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.hiber.modem.Modem, opt_index);
+};
+
+
+proto.hiber.modem.UpdateModemNotesRequest.Response.prototype.clearModemsList = function() {
+  this.setModemsList([]);
+};
+
+
+/**
+ * optional UpdateModemNotesRequest request = 2;
+ * @return {?proto.hiber.modem.UpdateModemNotesRequest}
+ */
+proto.hiber.modem.UpdateModemNotesRequest.Response.prototype.getRequest = function() {
+  return /** @type{?proto.hiber.modem.UpdateModemNotesRequest} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.modem.UpdateModemNotesRequest, 2));
+};
+
+
+/** @param {?proto.hiber.modem.UpdateModemNotesRequest|undefined} value */
+proto.hiber.modem.UpdateModemNotesRequest.Response.prototype.setRequest = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.hiber.modem.UpdateModemNotesRequest.Response.prototype.clearRequest = function() {
+  this.setRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.hiber.modem.UpdateModemNotesRequest.Response.prototype.hasRequest = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional hiber.Pagination.Result pagination = 3;
+ * @return {?proto.hiber.Pagination.Result}
+ */
+proto.hiber.modem.UpdateModemNotesRequest.Response.prototype.getPagination = function() {
+  return /** @type{?proto.hiber.Pagination.Result} */ (
+    jspb.Message.getWrapperField(this, base_pb.Pagination.Result, 3));
+};
+
+
+/** @param {?proto.hiber.Pagination.Result|undefined} value */
+proto.hiber.modem.UpdateModemNotesRequest.Response.prototype.setPagination = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.hiber.modem.UpdateModemNotesRequest.Response.prototype.clearPagination = function() {
+  this.setPagination(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.hiber.modem.UpdateModemNotesRequest.Response.prototype.hasPagination = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional string organization = 1;
+ * @return {string}
+ */
+proto.hiber.modem.UpdateModemNotesRequest.prototype.getOrganization = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.modem.UpdateModemNotesRequest.prototype.setOrganization = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional ModemSelection selection = 2;
+ * @return {?proto.hiber.modem.ModemSelection}
+ */
+proto.hiber.modem.UpdateModemNotesRequest.prototype.getSelection = function() {
+  return /** @type{?proto.hiber.modem.ModemSelection} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.modem.ModemSelection, 2));
+};
+
+
+/** @param {?proto.hiber.modem.ModemSelection|undefined} value */
+proto.hiber.modem.UpdateModemNotesRequest.prototype.setSelection = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.hiber.modem.UpdateModemNotesRequest.prototype.clearSelection = function() {
+  this.setSelection(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.hiber.modem.UpdateModemNotesRequest.prototype.hasSelection = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional hiber.Pagination pagination = 3;
+ * @return {?proto.hiber.Pagination}
+ */
+proto.hiber.modem.UpdateModemNotesRequest.prototype.getPagination = function() {
+  return /** @type{?proto.hiber.Pagination} */ (
+    jspb.Message.getWrapperField(this, base_pb.Pagination, 3));
+};
+
+
+/** @param {?proto.hiber.Pagination|undefined} value */
+proto.hiber.modem.UpdateModemNotesRequest.prototype.setPagination = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.hiber.modem.UpdateModemNotesRequest.prototype.clearPagination = function() {
+  this.setPagination(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.hiber.modem.UpdateModemNotesRequest.prototype.hasPagination = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional string notes = 4;
+ * @return {string}
+ */
+proto.hiber.modem.UpdateModemNotesRequest.prototype.getNotes = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.modem.UpdateModemNotesRequest.prototype.setNotes = function(value) {
+  jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional bool allow_override_existing_notes = 5;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.hiber.modem.UpdateModemNotesRequest.prototype.getAllowOverrideExistingNotes = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 5, false));
+};
+
+
+/** @param {boolean} value */
+proto.hiber.modem.UpdateModemNotesRequest.prototype.setAllowOverrideExistingNotes = function(value) {
+  jspb.Message.setProto3BooleanField(this, 5, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.modem.UpdateModemSecureNotesRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.hiber.modem.UpdateModemSecureNotesRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.modem.UpdateModemSecureNotesRequest.displayName = 'proto.hiber.modem.UpdateModemSecureNotesRequest';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.modem.UpdateModemSecureNotesRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.modem.UpdateModemSecureNotesRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.modem.UpdateModemSecureNotesRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.modem.UpdateModemSecureNotesRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    organization: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    modemNumber: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    secureNotes: jspb.Message.getFieldWithDefault(msg, 3, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.modem.UpdateModemSecureNotesRequest}
+ */
+proto.hiber.modem.UpdateModemSecureNotesRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.modem.UpdateModemSecureNotesRequest;
+  return proto.hiber.modem.UpdateModemSecureNotesRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.modem.UpdateModemSecureNotesRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.modem.UpdateModemSecureNotesRequest}
+ */
+proto.hiber.modem.UpdateModemSecureNotesRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganization(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setModemNumber(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSecureNotes(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.modem.UpdateModemSecureNotesRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.modem.UpdateModemSecureNotesRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.modem.UpdateModemSecureNotesRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.modem.UpdateModemSecureNotesRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOrganization();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getModemNumber();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getSecureNotes();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.hiber.modem.UpdateModemSecureNotesRequest.Response = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.hiber.modem.UpdateModemSecureNotesRequest.Response, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.hiber.modem.UpdateModemSecureNotesRequest.Response.displayName = 'proto.hiber.modem.UpdateModemSecureNotesRequest.Response';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.hiber.modem.UpdateModemSecureNotesRequest.Response.prototype.toObject = function(opt_includeInstance) {
+  return proto.hiber.modem.UpdateModemSecureNotesRequest.Response.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.hiber.modem.UpdateModemSecureNotesRequest.Response} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.modem.UpdateModemSecureNotesRequest.Response.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    modem: (f = msg.getModem()) && proto.hiber.modem.Modem.toObject(includeInstance, f),
+    request: (f = msg.getRequest()) && proto.hiber.modem.UpdateModemSecureNotesRequest.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.hiber.modem.UpdateModemSecureNotesRequest.Response}
+ */
+proto.hiber.modem.UpdateModemSecureNotesRequest.Response.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.hiber.modem.UpdateModemSecureNotesRequest.Response;
+  return proto.hiber.modem.UpdateModemSecureNotesRequest.Response.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.hiber.modem.UpdateModemSecureNotesRequest.Response} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.hiber.modem.UpdateModemSecureNotesRequest.Response}
+ */
+proto.hiber.modem.UpdateModemSecureNotesRequest.Response.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.hiber.modem.Modem;
+      reader.readMessage(value,proto.hiber.modem.Modem.deserializeBinaryFromReader);
+      msg.setModem(value);
+      break;
+    case 2:
+      var value = new proto.hiber.modem.UpdateModemSecureNotesRequest;
+      reader.readMessage(value,proto.hiber.modem.UpdateModemSecureNotesRequest.deserializeBinaryFromReader);
+      msg.setRequest(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.hiber.modem.UpdateModemSecureNotesRequest.Response.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.hiber.modem.UpdateModemSecureNotesRequest.Response.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.hiber.modem.UpdateModemSecureNotesRequest.Response} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.hiber.modem.UpdateModemSecureNotesRequest.Response.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getModem();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.hiber.modem.Modem.serializeBinaryToWriter
+    );
+  }
+  f = message.getRequest();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.hiber.modem.UpdateModemSecureNotesRequest.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional Modem modem = 1;
+ * @return {?proto.hiber.modem.Modem}
+ */
+proto.hiber.modem.UpdateModemSecureNotesRequest.Response.prototype.getModem = function() {
+  return /** @type{?proto.hiber.modem.Modem} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.modem.Modem, 1));
+};
+
+
+/** @param {?proto.hiber.modem.Modem|undefined} value */
+proto.hiber.modem.UpdateModemSecureNotesRequest.Response.prototype.setModem = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.hiber.modem.UpdateModemSecureNotesRequest.Response.prototype.clearModem = function() {
+  this.setModem(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.hiber.modem.UpdateModemSecureNotesRequest.Response.prototype.hasModem = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional UpdateModemSecureNotesRequest request = 2;
+ * @return {?proto.hiber.modem.UpdateModemSecureNotesRequest}
+ */
+proto.hiber.modem.UpdateModemSecureNotesRequest.Response.prototype.getRequest = function() {
+  return /** @type{?proto.hiber.modem.UpdateModemSecureNotesRequest} */ (
+    jspb.Message.getWrapperField(this, proto.hiber.modem.UpdateModemSecureNotesRequest, 2));
+};
+
+
+/** @param {?proto.hiber.modem.UpdateModemSecureNotesRequest|undefined} value */
+proto.hiber.modem.UpdateModemSecureNotesRequest.Response.prototype.setRequest = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.hiber.modem.UpdateModemSecureNotesRequest.Response.prototype.clearRequest = function() {
+  this.setRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.hiber.modem.UpdateModemSecureNotesRequest.Response.prototype.hasRequest = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional string organization = 1;
+ * @return {string}
+ */
+proto.hiber.modem.UpdateModemSecureNotesRequest.prototype.getOrganization = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.modem.UpdateModemSecureNotesRequest.prototype.setOrganization = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string modem_number = 2;
+ * @return {string}
+ */
+proto.hiber.modem.UpdateModemSecureNotesRequest.prototype.getModemNumber = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.modem.UpdateModemSecureNotesRequest.prototype.setModemNumber = function(value) {
+  jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string secure_notes = 3;
+ * @return {string}
+ */
+proto.hiber.modem.UpdateModemSecureNotesRequest.prototype.getSecureNotes = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/** @param {string} value */
+proto.hiber.modem.UpdateModemSecureNotesRequest.prototype.setSecureNotes = function(value) {
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -6101,7 +7436,7 @@ proto.hiber.modem.UpdatePeripheralsRequest.deserializeBinaryFromReader = functio
     case 6:
       var value = msg.getAddPeripheralsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     case 7:
@@ -6401,7 +7736,7 @@ proto.hiber.modem.UpdatePeripheralsRequest.Response.prototype.clearRequest = fun
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.UpdatePeripheralsRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -6410,15 +7745,15 @@ proto.hiber.modem.UpdatePeripheralsRequest.Response.prototype.hasRequest = funct
 
 /**
  * repeated Modem modems = 2;
- * @return {!Array.<!proto.hiber.modem.Modem>}
+ * @return {!Array<!proto.hiber.modem.Modem>}
  */
 proto.hiber.modem.UpdatePeripheralsRequest.Response.prototype.getModemsList = function() {
-  return /** @type{!Array.<!proto.hiber.modem.Modem>} */ (
+  return /** @type{!Array<!proto.hiber.modem.Modem>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.modem.Modem, 2));
 };
 
 
-/** @param {!Array.<!proto.hiber.modem.Modem>} value */
+/** @param {!Array<!proto.hiber.modem.Modem>} value */
 proto.hiber.modem.UpdatePeripheralsRequest.Response.prototype.setModemsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
@@ -6462,7 +7797,7 @@ proto.hiber.modem.UpdatePeripheralsRequest.Response.prototype.clearPagination = 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.UpdatePeripheralsRequest.Response.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -6480,7 +7815,7 @@ proto.hiber.modem.UpdatePeripheralsRequest.prototype.getOrganization = function(
 
 /** @param {string} value */
 proto.hiber.modem.UpdatePeripheralsRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -6507,7 +7842,7 @@ proto.hiber.modem.UpdatePeripheralsRequest.prototype.clearSelection = function()
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.UpdatePeripheralsRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -6525,7 +7860,7 @@ proto.hiber.modem.UpdatePeripheralsRequest.prototype.getHiberAntenna = function(
 
 /** @param {!proto.hiber.modem.Modem.Peripherals.HiberAntenna} value */
 proto.hiber.modem.UpdatePeripheralsRequest.prototype.setHiberAntenna = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
@@ -6552,7 +7887,7 @@ proto.hiber.modem.UpdatePeripheralsRequest.prototype.clearGps = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.UpdatePeripheralsRequest.prototype.hasGps = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -6582,7 +7917,7 @@ proto.hiber.modem.UpdatePeripheralsRequest.prototype.clearHardcodedGpsLocation =
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.UpdatePeripheralsRequest.prototype.hasHardcodedGpsLocation = function() {
   return jspb.Message.getField(this, 5) != null;
@@ -6609,21 +7944,21 @@ proto.hiber.modem.UpdatePeripheralsRequest.prototype.clearAddPeripheralsMap = fu
 
 /**
  * repeated string remove_peripherals = 7;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.hiber.modem.UpdatePeripheralsRequest.prototype.getRemovePeripheralsList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 7));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 7));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.hiber.modem.UpdatePeripheralsRequest.prototype.setRemovePeripheralsList = function(value) {
   jspb.Message.setField(this, 7, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.hiber.modem.UpdatePeripheralsRequest.prototype.addRemovePeripherals = function(value, opt_index) {
@@ -6659,7 +7994,7 @@ proto.hiber.modem.UpdatePeripheralsRequest.prototype.clearPagination = function(
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.UpdatePeripheralsRequest.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 9) != null;
@@ -6677,7 +8012,7 @@ proto.hiber.modem.UpdatePeripheralsRequest.prototype.getCustomAntenna = function
 
 /** @param {string} value */
 proto.hiber.modem.UpdatePeripheralsRequest.prototype.setCustomAntenna = function(value) {
-  jspb.Message.setField(this, 10, value);
+  jspb.Message.setProto3StringField(this, 10, value);
 };
 
 
@@ -7151,7 +8486,7 @@ proto.hiber.modem.LicenseKeysRequest.Response.ModemLicenseKey.prototype.getModem
 
 /** @param {string} value */
 proto.hiber.modem.LicenseKeysRequest.Response.ModemLicenseKey.prototype.setModemNumber = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -7166,7 +8501,7 @@ proto.hiber.modem.LicenseKeysRequest.Response.ModemLicenseKey.prototype.getLicen
 
 /** @param {string} value */
 proto.hiber.modem.LicenseKeysRequest.Response.ModemLicenseKey.prototype.setLicenseKey = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -7193,7 +8528,7 @@ proto.hiber.modem.LicenseKeysRequest.Response.prototype.clearRequest = function(
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.LicenseKeysRequest.Response.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -7202,15 +8537,15 @@ proto.hiber.modem.LicenseKeysRequest.Response.prototype.hasRequest = function() 
 
 /**
  * repeated ModemLicenseKey license_keys = 2;
- * @return {!Array.<!proto.hiber.modem.LicenseKeysRequest.Response.ModemLicenseKey>}
+ * @return {!Array<!proto.hiber.modem.LicenseKeysRequest.Response.ModemLicenseKey>}
  */
 proto.hiber.modem.LicenseKeysRequest.Response.prototype.getLicenseKeysList = function() {
-  return /** @type{!Array.<!proto.hiber.modem.LicenseKeysRequest.Response.ModemLicenseKey>} */ (
+  return /** @type{!Array<!proto.hiber.modem.LicenseKeysRequest.Response.ModemLicenseKey>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.hiber.modem.LicenseKeysRequest.Response.ModemLicenseKey, 2));
 };
 
 
-/** @param {!Array.<!proto.hiber.modem.LicenseKeysRequest.Response.ModemLicenseKey>} value */
+/** @param {!Array<!proto.hiber.modem.LicenseKeysRequest.Response.ModemLicenseKey>} value */
 proto.hiber.modem.LicenseKeysRequest.Response.prototype.setLicenseKeysList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
@@ -7254,7 +8589,7 @@ proto.hiber.modem.LicenseKeysRequest.Response.prototype.clearPagination = functi
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.LicenseKeysRequest.Response.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -7272,7 +8607,7 @@ proto.hiber.modem.LicenseKeysRequest.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.hiber.modem.LicenseKeysRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -7299,7 +8634,7 @@ proto.hiber.modem.LicenseKeysRequest.prototype.clearSelection = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.LicenseKeysRequest.prototype.hasSelection = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -7329,7 +8664,7 @@ proto.hiber.modem.LicenseKeysRequest.prototype.clearPagination = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.hiber.modem.LicenseKeysRequest.prototype.hasPagination = function() {
   return jspb.Message.getField(this, 3) != null;

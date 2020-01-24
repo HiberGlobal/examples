@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='token.proto',
   package='hiber.token',
   syntax='proto3',
-  serialized_pb=_b('\n\x0btoken.proto\x12\x0bhiber.token\x1a\nbase.proto\x1a\x10permission.proto\"\xe6\x01\n\x05Token\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07user_id\x18\x03 \x01(\t\x12\x14\n\x0corganization\x18\x04 \x01(\t\x12$\n\nexpires_at\x18\x06 \x01(\x0b\x32\x10.hiber.Timestamp\x12/\n\x10user_permissions\x18\x07 \x03(\x0e\x32\x15.hiber.UserPermission\x12?\n\x18organization_permissions\x18\x08 \x03(\x0e\x32\x1d.hiber.OrganizationPermissionJ\x04\x08\x05\x10\x06\"[\n\x0eTokenSelection\x12\"\n\x05users\x18\x01 \x01(\x0b\x32\x13.hiber.Filter.Users\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x17\n\x0finclude_expired\x18\x04 \x01(\x08\"\x90\x02\n\x11ListTokensRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12.\n\tselection\x18\x02 \x01(\x0b\x32\x1b.hiber.token.TokenSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\x8d\x01\n\x08Response\x12\"\n\x06tokens\x18\x01 \x03(\x0b\x32\x12.hiber.token.Token\x12/\n\x07request\x18\x02 \x01(\x0b\x32\x1e.hiber.token.ListTokensRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\x81\x02\n\x12\x43reateTokenRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12$\n\nexpires_at\x18\x04 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x37\n\x10user_permissions\x18\x05 \x01(\x0b\x32\x1d.hiber.Filter.UserPermissions\x12G\n\x18organization_permissions\x18\x06 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x1a\x19\n\x08Response\x12\r\n\x05token\x18\x01 \x01(\tJ\x04\x08\x03\x10\x04\"H\n\x12\x44\x65leteTokenRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x10\n\x08token_id\x18\x02 \x01(\x03\x1a\n\n\x08Response\"\xad\x01\n)UpdateTokenOrganizationPermissionsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x11\n\ttoken_ids\x18\x02 \x03(\x03\x12K\n\x1cnew_organization_permissions\x18\x03 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x1a\n\n\x08Response\"\x95\x01\n!UpdateTokenUserPermissionsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x11\n\ttoken_ids\x18\x02 \x03(\x03\x12;\n\x14new_user_permissions\x18\x04 \x01(\x0b\x32\x1d.hiber.Filter.UserPermissions\x1a\n\n\x08Response2\xb1\x04\n\x0cTokenService\x12O\n\x04List\x12\x1e.hiber.token.ListTokensRequest\x1a\'.hiber.token.ListTokensRequest.Response\x12S\n\x06\x43reate\x12\x1f.hiber.token.CreateTokenRequest\x1a(.hiber.token.CreateTokenRequest.Response\x12S\n\x06\x44\x65lete\x12\x1f.hiber.token.DeleteTokenRequest\x1a(.hiber.token.DeleteTokenRequest.Response\x12\x9d\x01\n\"UpdateTokenOrganizationPermissions\x12\x36.hiber.token.UpdateTokenOrganizationPermissionsRequest\x1a?.hiber.token.UpdateTokenOrganizationPermissionsRequest.Response\x12\x85\x01\n\x1aUpdateTokenUserPermissions\x12..hiber.token.UpdateTokenUserPermissionsRequest\x1a\x37.hiber.token.UpdateTokenUserPermissionsRequest.ResponseB0\n\x1bglobal.hiber.api.grpc.tokenB\x08TokenApiP\x00Z\x05hiberb\x06proto3')
+  serialized_pb=_b('\n\x0btoken.proto\x12\x0bhiber.token\x1a\nbase.proto\x1a\x10permission.proto\"\xe6\x01\n\x05Token\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07user_id\x18\x03 \x01(\t\x12\x14\n\x0corganization\x18\x04 \x01(\t\x12$\n\nexpires_at\x18\x06 \x01(\x0b\x32\x10.hiber.Timestamp\x12/\n\x10user_permissions\x18\x07 \x03(\x0e\x32\x15.hiber.UserPermission\x12?\n\x18organization_permissions\x18\x08 \x03(\x0e\x32\x1d.hiber.OrganizationPermissionJ\x04\x08\x05\x10\x06\"[\n\x0eTokenSelection\x12\"\n\x05users\x18\x01 \x01(\x0b\x32\x13.hiber.Filter.Users\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x17\n\x0finclude_expired\x18\x04 \x01(\x08\"\x90\x02\n\x11ListTokensRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12.\n\tselection\x18\x02 \x01(\x0b\x32\x1b.hiber.token.TokenSelection\x12%\n\npagination\x18\x03 \x01(\x0b\x32\x11.hiber.Pagination\x1a\x8d\x01\n\x08Response\x12\"\n\x06tokens\x18\x01 \x03(\x0b\x32\x12.hiber.token.Token\x12/\n\x07request\x18\x02 \x01(\x0b\x32\x1e.hiber.token.ListTokensRequest\x12,\n\npagination\x18\x03 \x01(\x0b\x32\x18.hiber.Pagination.Result\"\xa8\x02\n\x12\x43reateTokenRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12$\n\nexpires_at\x18\x04 \x01(\x0b\x32\x10.hiber.Timestamp\x12\x37\n\x10user_permissions\x18\x05 \x01(\x0b\x32\x1d.hiber.Filter.UserPermissions\x12G\n\x18organization_permissions\x18\x06 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x12%\n\x1doverride_allow_no_permissions\x18\x07 \x01(\x08\x1a\x19\n\x08Response\x12\r\n\x05token\x18\x01 \x01(\tJ\x04\x08\x03\x10\x04\"H\n\x12\x44\x65leteTokenRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x10\n\x08token_id\x18\x02 \x01(\x03\x1a\n\n\x08Response\"\xd4\x01\n)UpdateTokenOrganizationPermissionsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x11\n\ttoken_ids\x18\x02 \x03(\x03\x12K\n\x1cnew_organization_permissions\x18\x03 \x01(\x0b\x32%.hiber.Filter.OrganizationPermissions\x12%\n\x1doverride_allow_no_permissions\x18\x04 \x01(\x08\x1a\n\n\x08Response\"\x95\x01\n!UpdateTokenUserPermissionsRequest\x12\x14\n\x0corganization\x18\x01 \x01(\t\x12\x11\n\ttoken_ids\x18\x02 \x03(\x03\x12;\n\x14new_user_permissions\x18\x04 \x01(\x0b\x32\x1d.hiber.Filter.UserPermissions\x1a\n\n\x08Response2\xb1\x04\n\x0cTokenService\x12O\n\x04List\x12\x1e.hiber.token.ListTokensRequest\x1a\'.hiber.token.ListTokensRequest.Response\x12S\n\x06\x43reate\x12\x1f.hiber.token.CreateTokenRequest\x1a(.hiber.token.CreateTokenRequest.Response\x12S\n\x06\x44\x65lete\x12\x1f.hiber.token.DeleteTokenRequest\x1a(.hiber.token.DeleteTokenRequest.Response\x12\x9d\x01\n\"UpdateTokenOrganizationPermissions\x12\x36.hiber.token.UpdateTokenOrganizationPermissionsRequest\x1a?.hiber.token.UpdateTokenOrganizationPermissionsRequest.Response\x12\x85\x01\n\x1aUpdateTokenUserPermissions\x12..hiber.token.UpdateTokenUserPermissionsRequest\x1a\x37.hiber.token.UpdateTokenUserPermissionsRequest.ResponseB0\n\x1bglobal.hiber.api.grpc.tokenB\x08TokenApiP\x00Z\x05hiberb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,permission__pb2.DESCRIPTOR,])
 
@@ -261,8 +261,8 @@ _CREATETOKENREQUEST_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=886,
-  serialized_end=911,
+  serialized_start=925,
+  serialized_end=950,
 )
 
 _CREATETOKENREQUEST = _descriptor.Descriptor(
@@ -307,6 +307,13 @@ _CREATETOKENREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='override_allow_no_permissions', full_name='hiber.token.CreateTokenRequest.override_allow_no_permissions', index=5,
+      number=7, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -320,7 +327,7 @@ _CREATETOKENREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=660,
-  serialized_end=917,
+  serialized_end=956,
 )
 
 
@@ -380,8 +387,8 @@ _DELETETOKENREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=919,
-  serialized_end=991,
+  serialized_start=958,
+  serialized_end=1030,
 )
 
 
@@ -436,6 +443,13 @@ _UPDATETOKENORGANIZATIONPERMISSIONSREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='override_allow_no_permissions', full_name='hiber.token.UpdateTokenOrganizationPermissionsRequest.override_allow_no_permissions', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -448,8 +462,8 @@ _UPDATETOKENORGANIZATIONPERMISSIONSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=994,
-  serialized_end=1167,
+  serialized_start=1033,
+  serialized_end=1245,
 )
 
 
@@ -516,8 +530,8 @@ _UPDATETOKENUSERPERMISSIONSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1170,
-  serialized_end=1319,
+  serialized_start=1248,
+  serialized_end=1397,
 )
 
 _TOKEN.fields_by_name['expires_at'].message_type = base__pb2._TIMESTAMP
@@ -647,8 +661,8 @@ _TOKENSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=1322,
-  serialized_end=1883,
+  serialized_start=1400,
+  serialized_end=1961,
   methods=[
   _descriptor.MethodDescriptor(
     name='List',
