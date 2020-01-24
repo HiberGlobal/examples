@@ -57,7 +57,12 @@ object CurrentUserGrpcController : CurrentUserServiceGrpc.CurrentUserServiceImpl
     response: StreamObserver<CurrentUserApi.AccessibleOrganizationsRequest.Response>
   ) = response.unary {
     CurrentUserApi.AccessibleOrganizationsRequest.Response.newBuilder()
-      .addOrganizations(organization.organization)
+      .addOrganizations(CurrentUserApi.AccessibleOrganizationsRequest.AccessibleOrganization.newBuilder().also {
+        it.organization = organization.organization
+        it.displayName = organization.displayName
+        it.defaultOrganization = true
+        it.member = true
+      }.build())
       .build()
   }
 }

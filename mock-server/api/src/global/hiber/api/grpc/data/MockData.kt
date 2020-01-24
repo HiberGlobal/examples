@@ -123,20 +123,6 @@ val modemTransferNotReceived
     .setStatus(ModemTransferApi.ModemTransfer.Status.NOT_RECEIVED)
     .build()
 
-val publisher: PublisherApi.Publisher = PublisherApi.Publisher.newBuilder()
-  .setId(1)
-  .setFilters(PublisherApi.Publisher.Filters.getDefaultInstance())
-  .setData(
-    PublisherApi.Publisher.Data.newBuilder()
-      .setContentType(PublisherApi.Publisher.ContentType.JSON)
-      .setHttp(PublisherApi.Publisher.Data.HTTPConfig.newBuilder().setSecret("secret").build())
-      .setUrl("https://example.com")
-      .build()
-  )
-  .setHealth(Health.OK)
-  .setType(PublisherApi.Publisher.Type.HTTP)
-  .build()
-
 val webhook: WebhookApi.Webhook = WebhookApi.Webhook.newBuilder().apply {
   id = 1L
   organization = global.hiber.api.grpc.data.organization.organization

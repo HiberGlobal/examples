@@ -36,7 +36,6 @@ class MockServer {
       DashboardGrpcController,
       MapGrpcController,
       ModemTransferGrpcController,
-      PublisherGrpcController,
       StatusGrpcController,
       TokenGrpcController,
       EventGrpcController,
